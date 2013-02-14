@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>629</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CodeQuery</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="codequery.qrc">
+    <normaloff>:/mainwindow/images/logo.png</normaloff>:/mainwindow/images/logo.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="pushButtonOpenDB">
+          <property name="toolTip">
+           <string>Open Database</string>
+          </property>
+          <property name="statusTip">
+           <string>Open Database</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="codequery.qrc">
+            <normaloff>:/mainwindow/images/Database.png</normaloff>:/mainwindow/images/Database.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxDB">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxAutoComplete">
+          <property name="layoutDirection">
+           <enum>Qt::LeftToRight</enum>
+          </property>
+          <property name="text">
+           <string>Auto-complete</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="Line" name="line_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxExactMatch">
+          <property name="text">
+           <string>Exact match</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="pushButtonSearch">
+          <property name="toolTip">
+           <string>Search</string>
+          </property>
+          <property name="statusTip">
+           <string>Search</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="codequery.qrc">
+            <normaloff>:/mainwindow/images/Search.png</normaloff>:/mainwindow/images/Search.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonClipSearch">
+          <property name="toolTip">
+           <string>Paste and Search</string>
+          </property>
+          <property name="statusTip">
+           <string>Paste and Search</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="codequery.qrc">
+            <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxSearch">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxQueryType">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <widget class="QSplitter" name="splitter">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <widget class="QTreeWidget" name="treeWidgetSearchResults">
+         <column>
+          <property name="text">
+           <string notr="true">1</string>
+          </property>
+         </column>
+        </widget>
+        <widget class="QWidget" name="layoutWidget">
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QPushButton" name="pushButtonPrev">
+              <property name="toolTip">
+               <string>Previous File</string>
+              </property>
+              <property name="statusTip">
+               <string>Previous File</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="codequery.qrc">
+                <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonNext">
+              <property name="toolTip">
+               <string>Next File</string>
+              </property>
+              <property name="statusTip">
+               <string>Next File</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="codequery.qrc">
+                <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonOpenInEditor">
+              <property name="toolTip">
+               <string>Open in Editor</string>
+              </property>
+              <property name="statusTip">
+               <string>Open in Editor</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="codequery.qrc">
+                <normaloff>:/mainwindow/images/Document2.png</normaloff>:/mainwindow/images/Document2.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonGoToLine">
+              <property name="toolTip">
+               <string>Go to selected line</string>
+              </property>
+              <property name="statusTip">
+               <string>Go to selected line</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="codequery.qrc">
+                <normaloff>:/mainwindow/images/Flag.png</normaloff>:/mainwindow/images/Flag.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonPaste">
+              <property name="toolTip">
+               <string>Copy, paste and search</string>
+              </property>
+              <property name="statusTip">
+               <string>Copy, paste and search</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="codequery.qrc">
+                <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="labelFilePath">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="frameShape">
+               <enum>QFrame::Box</enum>
+              </property>
+              <property name="text">
+               <string>FilePath:0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="CodeEditor" name="textEditSource">
+            <property name="toolTip">
+             <string>CodeEditor</string>
+            </property>
+            <property name="whatsThis">
+             <string>CodeEditor</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: white</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>629</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpenDB"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionOptionsExtEditor"/>
+    <addaction name="actionLanguage"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionExit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionOptionsExtEditor">
+   <property name="text">
+    <string>External Editor</string>
+   </property>
+  </action>
+  <action name="actionOpenDB">
+   <property name="text">
+    <string>Open CQ Database</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CodeEditor</class>
+   <extends>QPlainTextEdit</extends>
+   <header>CodeEditor.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="codequery.qrc"/>
+ </resources>
+ <connections/>
+</ui>

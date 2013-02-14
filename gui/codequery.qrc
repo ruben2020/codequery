@@ -1,0 +1,20 @@
+<RCC>
+  <qresource prefix="/mainwindow">
+    <file>images/Search.png</file>
+    <file>images/Arrow2_Left.png</file>
+    <file>images/Arrow2_Right.png</file>
+    <file>images/Clipboard_Copy.png</file>
+    <file>images/Clipboard_Paste.png</file>
+    <file>images/Database.png</file>
+    <file>images/Document2.png</file>
+    <file>images/Flag.png</file>
+    <file>images/Gear.png</file>
+    <file>images/logo.png</file>
+    <file>../build/gui/codequery_en.qm</file>
+    <file>../build/gui/codequery_de.qm</file>
+    <file>../build/gui/codequery_es.qm</file>
+    <file>../build/gui/codequery_fr.qm</file>
+    <file>../build/gui/codequery_id.qm</file>
+  </qresource>
+</RCC>
+

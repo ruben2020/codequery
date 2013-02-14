@@ -24,9 +24,10 @@
 #include "fileviewer.h"
 #include "listhandler.h"
 #include "searchhandler.h"
+#include "swver.h"
 
 #include <QInputDialog>
-
+#include <QMessageBox>
 
 mainwindow::mainwindow(QMainWindow *parent, QApplication *app)
 :QMainWindow(parent)
@@ -69,6 +70,10 @@ void mainwindow::init(void)
 			ui->statusbar, SLOT(showMessage(const QString&, int)));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
 			this, SLOT(ExitTriggered(bool)));
+	connect(ui->actionAbout, SIGNAL(triggered(bool)),
+			this, SLOT(AboutTriggered(bool)));
+	connect(ui->actionAbout_Qt, SIGNAL(triggered(bool)),
+			this, SLOT(AboutQtTriggered(bool)));
 	connect(ui->actionLanguage, SIGNAL(triggered(bool)),
 			this, SLOT(LanguageTriggered(bool)));
 	connect(ui->actionOpenDB, SIGNAL(triggered(bool)),
@@ -174,6 +179,19 @@ void mainwindow::retranslateUi(void)
 void mainwindow::ExitTriggered(bool checked)
 {
 	prepareToExit();
+}
+
+void mainwindow::AboutQtTriggered(bool checked)
+{
+	QMessageBox::aboutQt(this);
+}
+
+void mainwindow::AboutTriggered(bool checked)
+{
+	QString txt = CODEQUERY_SW_VERSION;
+	txt += "\n";
+	txt += CODEQUERY_SW_LICENSE_PARA;
+	QMessageBox::about(this, tr("About"), txt);
 }
 
 void mainwindow::prepareToExit()

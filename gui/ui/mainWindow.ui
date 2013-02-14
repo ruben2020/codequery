@@ -14,7 +14,7 @@
    <string>CodeQuery</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="codequery.qrc">
+   <iconset resource="../codequery.qrc">
     <normaloff>:/mainwindow/images/logo.png</normaloff>:/mainwindow/images/logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -35,7 +35,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="codequery.qrc">
+           <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Database.png</normaloff>:/mainwindow/images/Database.png</iconset>
           </property>
          </widget>
@@ -97,7 +97,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="codequery.qrc">
+           <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Search.png</normaloff>:/mainwindow/images/Search.png</iconset>
           </property>
          </widget>
@@ -114,7 +114,7 @@
            <string/>
           </property>
           <property name="icon">
-           <iconset resource="codequery.qrc">
+           <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
           </property>
          </widget>
@@ -172,7 +172,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="codequery.qrc">
+               <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
               </property>
              </widget>
@@ -189,7 +189,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="codequery.qrc">
+               <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
               </property>
              </widget>
@@ -206,7 +206,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="codequery.qrc">
+               <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Document2.png</normaloff>:/mainwindow/images/Document2.png</iconset>
               </property>
              </widget>
@@ -223,7 +223,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="codequery.qrc">
+               <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Flag.png</normaloff>:/mainwindow/images/Flag.png</iconset>
               </property>
              </widget>
@@ -240,7 +240,7 @@
                <string/>
               </property>
               <property name="icon">
-               <iconset resource="codequery.qrc">
+               <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
               </property>
              </widget>
@@ -314,6 +314,7 @@
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionAbout_Qt"/>
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
@@ -351,6 +352,11 @@
     <string>Language</string>
    </property>
   </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -360,7 +366,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="codequery.qrc"/>
+  <include location="../codequery.qrc"/>
  </resources>
  <connections/>
 </ui>

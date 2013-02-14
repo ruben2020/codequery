@@ -46,6 +46,8 @@ void setup_searchhandler(void);
 void retranslateUi(void);
 
 public slots:
+void AboutQtTriggered(bool checked);
+void AboutTriggered(bool checked);
 void ExitTriggered(bool checked);
 void LanguageTriggered(bool checked);
 void prepareToExit();

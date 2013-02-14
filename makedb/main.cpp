@@ -25,6 +25,7 @@
 #include "cs2sq.h"
 #include "ctagread.h"
 #include "small_lib.h"
+#include "swver.h"
 
 #if 0 // test code for csdbparser - not needed
 int test_csdbparser (void)
@@ -138,18 +139,26 @@ int process_ctags(const char* ctagsfn, const char* sqfn, bool debug)
 
 void printhelp(const char* str)
 {
-	printf("Usage: %s [-s <sqdbfile> [-c <cscope.out>] [-t <ctags>]] [-v] [-d] [-h]\n\n", str);
+	printf("Usage: %s [-s <sqdbfile> [-c <cscope.out>] [-t <ctags>]] [-p] [-d] [-v] [-h]\n\n", str);
 	printf("options:\n");
 	printf("  -s : sqlite3 db file path\n");
 	printf("  -c : cscope.out file path\n");
 	printf("  -t : ctags tags file path\n");
-	printf("  -v : \"vacuum\", compact database (may take more time)\n");
+	printf("  -p : \"vacuum\", compact database (may take more time)\n");
 	printf("  -d : debug\n");
+	printf("  -v : version\n");
 	printf("  -h : help\n\n");
 	printf("The combinations possible are -s -c, -s -t, -s -c -t\n");
-	printf("The additional optional arguments are -v and -d\n");
+	printf("The additional optional arguments are -p and -d\n");
 	printf("if -c is present then sqdbfile need not exist. It will be created.\n");
 	printf("if -t is present but not -c, then sqdbfile has to exist. Ctags info will be added to it.\n\n");
+}
+
+void printlicense(void)
+{
+	printf(CODEQUERY_SW_VERSION);
+	printf("\n");
+	printf(CODEQUERY_SW_LICENSE);
 }
 
 bool fileexists(const char* fn)
@@ -183,8 +192,9 @@ void process_argwithopt(option_t* thisOpt, bool& err, std::string& fnstr, bool f
 int main(int argc, char *argv[])
 {
     option_t *optList=NULL, *thisOpt=NULL;
-    bool bHelp, bSqlite, bCscope, bCtags, bDebug, bError, bVacuum;
+    bool bHelp, bSqlite, bCscope, bCtags, bDebug, bError, bVacuum, bVersion;
 	bHelp = (argc <= 1);
+	bVersion = false;
 	bSqlite = false;
 	bCscope = false;
 	bCtags = false;
@@ -194,7 +204,7 @@ int main(int argc, char *argv[])
 	std::string sqfn, csfn, ctfn;
 
     /* get list of command line options and their arguments */
-    optList = GetOptList(argc, argv, (char*)"s:c:t:vdh");
+    optList = GetOptList(argc, argv, (char*)"s:c:t:pdvh");
 
     /* display results of parsing */
     while (optList != NULL)
@@ -204,6 +214,9 @@ int main(int argc, char *argv[])
 		
 		switch(thisOpt->option)
 		{
+			case 'v':
+				bVersion = true;
+				break;
 			case 'h':
 				bHelp = true;
 				break;
@@ -222,7 +235,7 @@ int main(int argc, char *argv[])
 			case 'd':
 				bDebug = true;
 				break;
-			case 'v':
+			case 'p':
 				bVacuum = true;
 				break;
 			default:
@@ -231,6 +244,11 @@ int main(int argc, char *argv[])
         free(thisOpt);    /* done with this item, free it */
     }
 
+	if (bVersion)
+	{
+		printlicense();
+		return 0;
+	}
 	if (bHelp || bError)
 	{
 		printhelp(extract_filename(argv[0]));

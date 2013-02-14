@@ -12,6 +12,10 @@
 *.la
 *.a
 
+# Ignore backups
+*~
+*.bak
+
 # Ignore the following directories
 build/
 bin/

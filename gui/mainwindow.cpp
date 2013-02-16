@@ -24,6 +24,7 @@
 #include "fileviewer.h"
 #include "listhandler.h"
 #include "searchhandler.h"
+#include "langtable.h"
 #include "swver.h"
 
 #include <QInputDialog>
@@ -45,11 +46,11 @@ mainwindow::mainwindow(QMainWindow *parent, QApplication *app)
 
 mainwindow::~mainwindow()
  {
-	 disconnect();
-     delete m_fileviewer;
-     delete m_listhandler;
-     delete m_searchhandler;
-     delete ui;
+	disconnect();
+	delete m_fileviewer;
+	delete m_listhandler;
+	delete m_searchhandler;
+	delete ui;
  }
 
 void mainwindow::init(void)
@@ -62,10 +63,16 @@ void mainwindow::init(void)
 	setup_searchhandler();
 	connect(m_searchhandler, SIGNAL(searchresults(sqlqueryresultlist)),
 			m_listhandler, SLOT(populateList(sqlqueryresultlist)));
+	connect(m_searchhandler, SIGNAL(DBreset()),
+			m_fileviewer, SLOT(clearList()));
+	connect(m_searchhandler, SIGNAL(DBreset()),
+			m_listhandler, SLOT(clearList()));
 	connect(m_listhandler, SIGNAL(openFile(QString, QString)),
 			m_fileviewer, SLOT(fileToBeOpened(QString, QString)));
 	connect(m_fileviewer, SIGNAL(searchCopiedText()),
 			m_searchhandler, SLOT(newSearchText()));
+	connect(m_fileviewer, SIGNAL(searchCopiedTextSymbolOnly()),
+			m_searchhandler, SLOT(newSearchTextSymbolOnly()));
 	connect(m_searchhandler, SIGNAL(updateStatus(const QString&, int)),
 			ui->statusbar, SLOT(showMessage(const QString&, int)));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
@@ -94,6 +101,7 @@ void mainwindow::setup_fileviewer(void)
 	m_fileviewer->m_pushButtonGoToLine = ui->pushButtonGoToLine;
 	m_fileviewer->m_labelFilePath = ui->labelFilePath;
 	m_fileviewer->m_textEditSource = ui->textEditSource;
+	m_fileviewer->m_checkBoxSymbolOnly = ui->checkBoxSymbolOnly;
 	m_fileviewer->init();
 }
 
@@ -119,10 +127,7 @@ void mainwindow::setup_searchhandler(void)
 
 void mainwindow::LanguageTriggered(bool checked)
 {
-	QStringList items;
-	items << QString("English") << QString("Deutsch") << QString("Francais")
-		<< QString("Espanol") << QString("Bahasa Indonesia");
-
+	QStringList items(langtable::getLangNameList());
 	bool ok;
 	int curLangIdx = items.indexOf(m_currentLanguage);
 	curLangIdx = curLangIdx != -1 ? curLangIdx : 0;
@@ -149,28 +154,12 @@ void mainwindow::LanguageTriggered(bool checked)
 void mainwindow::retranslateUi(void)
 {
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	if (m_currentLanguage.compare("English") == 0)
-	{
-		m_translator.load(":/mainwindow/build/gui/codequery_en");
-	}
-	else if (m_currentLanguage.compare("Deutsch") == 0)
-	{
-		m_translator.load(":/mainwindow/build/gui/codequery_de");
-	}
-	else if (m_currentLanguage.compare("Francais") == 0)
-	{
-		m_translator.load(":/mainwindow/build/gui/codequery_fr");
-	}
-	else if (m_currentLanguage.compare("Espanol") == 0)
-	{
-		m_translator.load(":/mainwindow/build/gui/codequery_es");
-	}
-	else if (m_currentLanguage.compare("Bahasa Indonesia") == 0)
-	{
-		m_translator.load(":/mainwindow/build/gui/codequery_id");
-	}
+	m_translator.load(langtable::getLangFilePath(m_currentLanguage));
 	m_app->installTranslator(&m_translator);
 	ui->retranslateUi(this);
+	QString langtxt = ui->actionLanguage->text();
+	if (m_currentLanguage.compare("English") != 0) langtxt += " (Language)";
+	ui->actionLanguage->setText(langtxt);
 	m_searchhandler->retranslateUi();
 	m_listhandler->retranslateUi();
 	QApplication::restoreOverrideCursor();

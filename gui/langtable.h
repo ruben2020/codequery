@@ -18,47 +18,21 @@
  * 
  */
 
+#ifndef _LANGTABLE_H
+#define _LANGTABLE_H
 
+// Forward declarations
+class QString;
+class QStringList;
 
-#ifndef _LISTHANDLER_H
-#define _LISTHANDLER_H
-
-#include <QtGui>
-#include "sqlquery.h"
-
-class mainwindow;
-
-class listhandler : public QObject
+class langtable
 {
-  Q_OBJECT
 
 public:
-QTreeWidget *m_treeWidgetSearchResults;
-
-listhandler(mainwindow* pmw);
-~listhandler();
-void init(void);
-void updateList(void);
-void prepareToExit(void);
-void updateListHeaders(void);
-void resizeColumns(void);
-void retranslateUi(void);
-
-public slots:
-void populateList(sqlqueryresultlist resultlist);
-void listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * previous);
-void clearList();
-
-signals:
-void openFile(QString file, QString linenum);
-
-private:
-mainwindow *mw;
-sqlqueryresultlist m_sqlist;
-QList<QTreeWidgetItem*> m_itemlist;
-bool m_noclick;
+static QStringList getLangNameList(void);
+static QString getLangFilePath(const QString& lang);
 
 };
 
+#endif // _LANGTABLE_H
 
-#endif

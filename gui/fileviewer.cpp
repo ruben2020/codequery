@@ -121,6 +121,19 @@ void fileviewer::init(void)
 	m_fileDataList.clear();
 }
 
+void fileviewer::clearList()
+{
+	m_pushButtonPaste->setEnabled(false);
+	m_pushButtonPrev->setEnabled(false);
+	m_pushButtonNext->setEnabled(false);
+	m_pushButtonGoToLine->setEnabled(false);
+	m_pushButtonOpenInEditor->setEnabled(false);
+	m_labelFilePath->clear();
+	m_textEditSource->clear();
+	m_fileDataList.clear();
+	m_iter = m_fileDataList.begin();
+}
+
 void fileviewer::fileToBeOpened(QString filename, QString linenum)
 {
 	filename.replace(QString("$HOME"), QDir::homePath());
@@ -313,7 +326,9 @@ void fileviewer::Paste_ButtonClick(bool checked)
 	if (!checked)
 	{
 		m_textEditSource->copy();
-		emit searchCopiedText();
+		if (m_checkBoxSymbolOnly->isChecked())
+			emit searchCopiedTextSymbolOnly();
+		else emit searchCopiedText();
 	}
 }
 

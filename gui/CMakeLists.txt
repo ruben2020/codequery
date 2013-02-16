@@ -7,6 +7,7 @@ project(CodeQueryGUI)
   # here we define CODEQUERY_SRCS variable that contains a list of all .cpp files
   # note that we don't need \ at the end of line
   SET( CODEQUERY_SRCS
+       langtable.cpp
        CodeEditor.cpp
        highlighter.cpp
        sqlquery.cpp
@@ -39,11 +40,18 @@ project(CodeQueryGUI)
 
   # translation files
   SET( CODEQUERY_TRANS
-       translations/codequery_en.ts
-       translations/codequery_de.ts
-       translations/codequery_es.ts
-       translations/codequery_fr.ts
-       translations/codequery_id.ts
+
+translations/codequery_de.ts
+translations/codequery_en.ts
+translations/codequery_es.ts
+translations/codequery_fr.ts
+translations/codequery_id.ts
+translations/codequery_it.ts
+translations/codequery_ja.ts
+translations/codequery_ko.ts
+translations/codequery_zh-CHS.ts
+translations/codequery_zh-CHT.ts
+
   )  
 
   add_definitions( -DNO_QDESIGNER_WIDGET_EXPORT )
@@ -91,8 +99,9 @@ project(CodeQueryGUI)
   # we need this to be able to include headers produced by uic in our code
   # (CMAKE_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
   INCLUDE_DIRECTORIES( ${SQLITE_INCLUDE_DIR} )
-  INCLUDE_DIRECTORIES( ${CMAKE_BINARY_DIR}/gui )
+  INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
   INCLUDE_DIRECTORIES( "." )
+  INCLUDE_DIRECTORIES( "./translations" )
   INCLUDE_DIRECTORIES( "../makedb" )
 
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )

@@ -396,18 +396,6 @@ sqlqueryresultlist sqlquery::search_file_only(sqlite3_stmt* stmt)
 	return result;
 }
 
-const char* sqlquery::errormsg(sqlquery::en_filereadstatus status)
-{
-	switch(status)
-	{
-		case sqlfileOPENERROR: return "File open error";
-		case sqlfileNOTCORRECTDB: return "Wrong file format";
-		case sqlfileINCORRECTVER: return "Incorrect DB Version";
-		case sqlfileOK: return "OK";
-		case sqlfileUNKNOWNERROR:
-		default: return "Unknown Error";
-	}
-}
 
 
 

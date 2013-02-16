@@ -46,8 +46,8 @@ searchhandler(mainwindow* pmw);
 ~searchhandler();
 void init(void);
 void perform_open_db(void);
-void perform_search(void);
-void perform_search(QString searchtxt);
+void perform_search(QString searchtxt, sqlquery::en_queryType qrytyp = sqlquery::sqlresultDEFAULT);
+void updateSearchHistory(const QString& searchtxt);
 void retranslateUi(void);
 
 public slots:
@@ -57,16 +57,20 @@ void ClipSearch_ButtonClick(bool checked);
 void Search_EnterKeyPressed();
 void searchTextEdited(const QString& searchtxt);
 void newSearchText();
+void newSearchTextSymbolOnly();
 void autoCompleteStateChanged(int state);
+void OpenDB_indexChanged(const int& idx);
 
 signals:
 void searchresults(sqlqueryresultlist resultlist);
 void updateStatus(const QString & message, int timeout = 0);
+void DBreset();
 
 private:
 mainwindow *mw;
 sqlquery* sq;
 QStringListModel m_srchStrLstModel;
+QString sqlerrormsg(sqlquery::en_filereadstatus status);
 
 };
 

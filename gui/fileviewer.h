@@ -52,6 +52,7 @@ QPushButton *m_pushButtonNext;
 QPushButton *m_pushButtonOpenInEditor;
 QPushButton *m_pushButtonPaste;
 QPushButton *m_pushButtonGoToLine;
+QCheckBox   *m_checkBoxSymbolOnly;
 QLabel *m_labelFilePath;
 CodeEditor *m_textEditSource;
 QString m_externalEditorPath;
@@ -72,9 +73,11 @@ void Prev_ButtonClick(bool checked);
 void Next_ButtonClick(bool checked);
 void OpenInEditor_ButtonClick(bool checked);
 void OptionsExtEditor_Triggered(bool checked);
+void clearList();
 
 signals:
 void searchCopiedText();
+void searchCopiedTextSymbolOnly();
 
 private:
 mainwindow *mw;

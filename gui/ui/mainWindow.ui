@@ -130,6 +130,9 @@
           <property name="editable">
            <bool>true</bool>
           </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::NoInsert</enum>
+          </property>
          </widget>
         </item>
         <item>
@@ -229,6 +232,19 @@
              </widget>
             </item>
             <item>
+             <widget class="Line" name="line">
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="lineWidth">
+               <number>1</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QPushButton" name="pushButtonPaste">
               <property name="toolTip">
                <string>Copy, paste and search</string>
@@ -246,6 +262,19 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBoxSymbolOnly">
+              <property name="toolTip">
+               <string>Symbol search only for paste and search</string>
+              </property>
+              <property name="statusTip">
+               <string>Symbol search only for paste and search</string>
+              </property>
+              <property name="text">
+               <string>Symbol only</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QLabel" name="labelFilePath">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -255,6 +284,9 @@
               </property>
               <property name="frameShape">
                <enum>QFrame::Box</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
               </property>
               <property name="text">
                <string>FilePath:0</string>

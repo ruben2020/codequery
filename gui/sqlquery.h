@@ -84,7 +84,8 @@ enum en_queryType
 		sqlresultCALLEDFUNC,
 		sqlresultMEMBERS,
 		sqlresultPARENTCLASS,
-		sqlresultAUTOCOMPLETE
+		sqlresultAUTOCOMPLETE,
+		sqlresultDEFAULT
 	};
 enum en_filereadstatus
 	{
@@ -99,7 +100,6 @@ enum en_filereadstatus
 	bool isDBOpen(void) {return (m_db != NULL);}
 	en_filereadstatus open_dbfile(QString dbfn);
 	void close_dbfile(void);
-	const char* errormsg(en_filereadstatus status);
 	sqlqueryresultlist search(QString searchstr,
 								en_queryType querytype = sqlquerySYMBOL,
 								bool exactmatch=false);

@@ -50,7 +50,7 @@ void searchhandler::OpenDB_ButtonClick(bool checked)
 
 void searchhandler::Search_ButtonClick(bool checked)
 {
-	if (!checked) perform_search();
+	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data());
 }
 
 void searchhandler::ClipSearch_ButtonClick(bool checked)
@@ -60,7 +60,7 @@ void searchhandler::ClipSearch_ButtonClick(bool checked)
 
 void searchhandler::Search_EnterKeyPressed()
 {
-	perform_search();
+	perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data());
 }
 
 void searchhandler::searchTextEdited(const QString& searchtxt)
@@ -75,7 +75,7 @@ void searchhandler::autoCompleteStateChanged(int state)
 {
 	if (state == Qt::Checked)
 	{
-		m_srchStrLstModel.setStringList(QStringList(m_comboBoxSearch->lineEdit()->text()));		
+		m_srchStrLstModel.setStringList(QStringList(m_comboBoxSearch->lineEdit()->text()));
 	}
 	else if (state == Qt::Unchecked)
 	{
@@ -86,8 +86,15 @@ void searchhandler::autoCompleteStateChanged(int state)
 void searchhandler::newSearchText()
 {
 	QString txt = (QApplication::clipboard())->text();
-	m_comboBoxSearch->lineEdit()->setText(txt);
+	//m_comboBoxSearch->lineEdit()->setText(txt);
 	perform_search(txt);
+}
+
+void searchhandler::newSearchTextSymbolOnly()
+{
+	QString txt = (QApplication::clipboard())->text();
+	//m_comboBoxSearch->lineEdit()->setText(txt);
+	perform_search(txt, sqlquery::sqlquerySYMBOL);
 }
 
 void searchhandler::init(void)
@@ -107,6 +114,8 @@ void searchhandler::init(void)
 			this, SLOT(Search_EnterKeyPressed()));
 	connect(m_comboBoxSearch->lineEdit(), SIGNAL(textEdited(QString)),
 			this, SLOT(searchTextEdited(QString)));
+	connect(m_comboBoxDB, SIGNAL(currentIndexChanged(int)),
+			this, SLOT(OpenDB_indexChanged(int)));
 	connect(m_checkBoxAutoComplete, SIGNAL(stateChanged(int)),
 			this, SLOT(autoCompleteStateChanged(int)));
 }
@@ -150,64 +159,60 @@ void searchhandler::retranslateUi(void)
 
 void searchhandler::perform_open_db(void)
 {
-	sqlquery::en_filereadstatus sqstatus;
-	sq->close_dbfile();
-	m_comboBoxDB->clear();
+	QString fileext = tr("CodeQuery DB Files");
+	fileext += " (*.db)";
 	QString fileName = QFileDialog::getOpenFileName( (QWidget*)mw,
-	tr("Open DB"), "", tr("CodeQuery DB Files (*.db)"));
+	tr("Open CQ database file"), "", fileext);
 	if (fileName.isEmpty() == false)
 	{
-		sqstatus = sq->open_dbfile(fileName);
-		if (sqstatus != sqlquery::sqlfileOK)
+		m_comboBoxDB->insertItem(0, fileName);
+		m_comboBoxDB->setCurrentIndex(0);
+		for (int i=1; i < (m_comboBoxDB->count()); i++)
 		{
-			QMessageBox msgBox((QWidget*)mw);
-			msgBox.setText(sq->errormsg(sqstatus));
-			msgBox.exec();
+			if (fileName.compare(m_comboBoxDB->itemText(i)) == 0)
+			{
+				m_comboBoxDB->removeItem(i);
+				break;
+			}
 		}
-		else
-		{
-			m_comboBoxDB->clear();
-			m_comboBoxDB->addItem(fileName);
-			m_comboBoxDB->setCurrentIndex(0);
-		}
+		if (m_comboBoxDB->count() > 7) m_comboBoxDB->removeItem(m_comboBoxDB->count() - 1);
 	}
 }
 
-void searchhandler::perform_search(void)
+void searchhandler::OpenDB_indexChanged(const int& idx)
 {
-	if (sq->isDBOpen() == false) return;
-	if ((m_comboBoxSearch->lineEdit())->text().isEmpty()) return;
-	sqlqueryresultlist sqlresultlist;
-	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	sqlresultlist = sq->search(m_comboBoxSearch->lineEdit()->text().toAscii().data(),
-		(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt(),
-		m_checkBoxExactMatch->isChecked());
-	QApplication::restoreOverrideCursor();
-	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
+	if (idx < 0) return;
+	sqlquery::en_filereadstatus sqstatus;
+	sq->close_dbfile();
+	sqstatus = sq->open_dbfile(m_comboBoxDB->itemText(idx));
+	if (sqstatus != sqlquery::sqlfileOK)
 	{
 		QMessageBox msgBox((QWidget*)mw);
-		msgBox.setText(sqlresultlist.sqlerrmsg);
+		msgBox.setText(sqlerrormsg(sqstatus));
 		msgBox.exec();
+		m_comboBoxDB->removeItem(idx);
 	}
 	else
 	{
-		emit searchresults(sqlresultlist);
-		QString str;
-		str = QString("%1").arg(sqlresultlist.resultlist.size());
-		str += " ";
-		str += tr("results found");
-		emit updateStatus(str, 5000);
+		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+		m_comboBoxSearch->clear();
+		m_comboBoxSearch->lineEdit()->clear();
+		emit DBreset();
+		QApplication::restoreOverrideCursor();
 	}
 }
 
-void searchhandler::perform_search(QString searchtxt)
+void searchhandler::perform_search(QString searchtxt, sqlquery::en_queryType qrytyp)
 {
 	if (sq->isDBOpen() == false) return;
+	if (searchtxt.isEmpty()) return;
 	sqlqueryresultlist sqlresultlist;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	sqlquery::en_queryType querytype = qrytyp;
+	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
+		(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
 	sqlresultlist = sq->search(searchtxt.toAscii().data(),
-			(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt(),
-			m_checkBoxExactMatch->isChecked());
+			querytype, m_checkBoxExactMatch->isChecked());
 	QApplication::restoreOverrideCursor();
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
@@ -217,6 +222,7 @@ void searchhandler::perform_search(QString searchtxt)
 	}
 	else
 	{
+		updateSearchHistory(searchtxt);
 		emit searchresults(sqlresultlist);
 		QString str;
 		str = QString("%1").arg(sqlresultlist.resultlist.size());
@@ -224,5 +230,36 @@ void searchhandler::perform_search(QString searchtxt)
 		str += tr("results found");
 		emit updateStatus(str, 5000);
 	}
+}
+
+void searchhandler::updateSearchHistory(const QString& searchtxt)
+{
+	m_comboBoxSearch->insertItem(0, searchtxt); // insert to top
+	for(int i=1; i < (m_comboBoxSearch->count()); i++)
+	{
+		if (m_comboBoxSearch->itemText(i).compare(searchtxt) == 0)
+		{
+			m_comboBoxSearch->removeItem(i); // remove duplicates
+			break;
+		}
+	}
+	// limit to 10 only
+	if (m_comboBoxSearch->count() > 10) m_comboBoxSearch->removeItem(m_comboBoxSearch->count() - 1);
+	m_comboBoxSearch->setCurrentIndex(0);
+}
+
+QString searchhandler::sqlerrormsg(sqlquery::en_filereadstatus status)
+{
+	QString str;
+	switch(status)
+	{
+		case sqlquery::sqlfileOPENERROR: str = tr("File open error");
+		case sqlquery::sqlfileNOTCORRECTDB: str = tr("Wrong file format");
+		case sqlquery::sqlfileINCORRECTVER: str = tr("Incorrect CQ database version");
+		case sqlquery::sqlfileOK: str = tr("OK");
+		case sqlquery::sqlfileUNKNOWNERROR:
+		default: str = tr("Unknown Error");
+	}
+	return str;
 }
 

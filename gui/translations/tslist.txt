@@ -1,0 +1,11 @@
+{"English", "codequery_en" },
+{"Deutsch", "codequery_de" },
+{"Francais", "codequery_fr" },
+{"Espanol", "codequery_es" },
+{"Italiano", "codequery_it" },
+{"Bahasa Indonesia", "codequery_id" },
+{"Chinese Simplified", "codequery_zh-CHS" },
+{"Chinese Traditional", "codequery_zh-CHT" },
+{"Japanese", "codequery_ja" },
+{"Korean", "codequery_ko" },
+

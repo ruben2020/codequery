@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="es_ES">
+<TS version="2.0" language="ko_KR">
 <context>
     <name>MainWindow</name>
     <message>
@@ -12,70 +12,70 @@
         <location filename="../ui/mainWindow.ui" line="29"/>
         <location filename="../ui/mainWindow.ui" line="32"/>
         <source>Open Database</source>
-        <translation>Base de datos abierta</translation>
+        <translation>데이터베이스 열기</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="66"/>
         <source>Auto-complete</source>
-        <translation>Completar automáticamente</translation>
+        <translation>자동 완성</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="80"/>
         <source>Exact match</source>
-        <translation>Coincidencia exacta</translation>
+        <translation>정확 하 게 일치</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="91"/>
         <location filename="../ui/mainWindow.ui" line="94"/>
         <source>Search</source>
-        <translation>Búsqueda</translation>
+        <translation>검색</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="108"/>
         <location filename="../ui/mainWindow.ui" line="111"/>
         <source>Paste and Search</source>
-        <translation>Pasta y búsqueda</translation>
+        <translation>붙여넣기 및 검색</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="169"/>
         <location filename="../ui/mainWindow.ui" line="172"/>
         <source>Previous File</source>
-        <translation>Archivo anterior</translation>
+        <translation>이전 파일</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="186"/>
         <location filename="../ui/mainWindow.ui" line="189"/>
         <source>Next File</source>
-        <translation>Siguiente archivo</translation>
+        <translation>다음 파일</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="203"/>
         <location filename="../ui/mainWindow.ui" line="206"/>
         <source>Open in Editor</source>
-        <translation>Abierto en el Editor</translation>
+        <translation>편집기에서 열려</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="220"/>
         <location filename="../ui/mainWindow.ui" line="223"/>
         <source>Go to selected line</source>
-        <translation>Ir a la línea seleccionada</translation>
+        <translation>선택 된 줄으로 이동</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="250"/>
         <location filename="../ui/mainWindow.ui" line="253"/>
         <source>Copy, paste and search</source>
-        <translation>Copiar, pegar y buscar</translation>
+        <translation>복사, 붙여넣기 및 검색</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="267"/>
         <location filename="../ui/mainWindow.ui" line="270"/>
         <source>Symbol search only for paste and search</source>
-        <translation>Búsqueda de símbolo sólo para pasta y búsqueda</translation>
+        <translation>붙여넣기 및 검색에 대해서만 기호 검색</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="273"/>
         <source>Symbol only</source>
-        <translation>Símbolo sólo</translation>
+        <translation>상징만</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="292"/>
@@ -91,52 +91,52 @@
     <message>
         <location filename="../ui/mainWindow.ui" line="333"/>
         <source>File</source>
-        <translation>Archivo</translation>
+        <translation>파일</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="340"/>
         <source>Options</source>
-        <translation>Opciones</translation>
+        <translation>옵션</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="347"/>
         <source>Help</source>
-        <translation>Ayuda</translation>
+        <translation>도움말</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="359"/>
         <source>Exit</source>
-        <translation>Salida</translation>
+        <translation>출구</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="364"/>
         <source>Open</source>
-        <translation>Abierto</translation>
+        <translation>오픈</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="369"/>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>에 대 한</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="374"/>
         <source>External Editor</source>
-        <translation>Editor externo</translation>
+        <translation>외부 편집기</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="379"/>
         <source>Open CQ Database</source>
-        <translation>Base de datos abierta CQ</translation>
+        <translation>오픈 CQ 데이터베이스</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="384"/>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation>언어</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="389"/>
         <source>About Qt</source>
-        <translation>Acerca de Qt</translation>
+        <translation>Qt에 대 한</translation>
     </message>
 </context>
 <context>
@@ -144,42 +144,42 @@
     <message>
         <location filename="../fileviewer.cpp" line="142"/>
         <source>File not found</source>
-        <translation>Archivo no encontrado</translation>
+        <translation>파일을 찾을 수 없습니다</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="149"/>
         <source>File could not be opened</source>
-        <translation>No se pudo abrir el archivo</translation>
+        <translation>파일을 열 수 없습니다.</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="340"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="341"/>
         <source>OK</source>
-        <translation>Vale</translation>
+        <translation>괜찮았던 것</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="343"/>
         <source>External Editor Configuration</source>
-        <translation>Configuración del Editor externo</translation>
+        <translation>외부 편집기 구성</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="344"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number.For example, gedit %f +%n</source>
-        <translation>Introduzca la ruta y argumentos para el editor externo. Uso agregué para nombre de archivo y n número de línea.Por ejemplo, gedit %f + %n</translation>
+        <translation>경로 및 외부 편집기에 대 한 인수를 입력 하십시오. 파일 이름 및 줄 번호에 대 한 %n% f 사용 합니다.예를 들어, gedit %f + %n</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="365"/>
         <source>File could not be opened!</source>
-        <translation>No se pudo abrir el archivo!</translation>
+        <translation>파일을 열 수 없습니다!</translation>
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="378"/>
         <source>External editor could not be started. Please check Options!</source>
-        <translation>No se pudo iniciar el editor externo. Consulte Opciones!</translation>
+        <translation>외부 편집기를 시작할 수 없습니다. 옵션을 확인 하십시오!</translation>
     </message>
 </context>
 <context>
@@ -187,22 +187,22 @@
     <message>
         <location filename="../listhandler.cpp" line="104"/>
         <source>Symbol</source>
-        <translation>Símbolo</translation>
+        <translation>기호</translation>
     </message>
     <message>
         <location filename="../listhandler.cpp" line="105"/>
         <source>File</source>
-        <translation>Archivo</translation>
+        <translation>파일</translation>
     </message>
     <message>
         <location filename="../listhandler.cpp" line="108"/>
         <source>Line</source>
-        <translation>Línea</translation>
+        <translation>선</translation>
     </message>
     <message>
         <location filename="../listhandler.cpp" line="108"/>
         <source>Preview</source>
-        <translation>Vista previa</translation>
+        <translation>미리 보기</translation>
     </message>
 </context>
 <context>
@@ -210,27 +210,27 @@
     <message>
         <location filename="../mainwindow.cpp" line="136"/>
         <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <translation>취소</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="137"/>
         <source>OK</source>
-        <translation>Vale</translation>
+        <translation>괜찮았던 것</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="139"/>
         <source>Language</source>
-        <translation>Idioma</translation>
+        <translation>언어</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="140"/>
         <source>Select language:</source>
-        <translation>Seleccionar idioma:</translation>
+        <translation>언어 선택:</translation>
     </message>
     <message>
         <location filename="../mainwindow.cpp" line="183"/>
         <source>About</source>
-        <translation>Acerca de</translation>
+        <translation>에 대 한</translation>
     </message>
 </context>
 <context>
@@ -238,87 +238,87 @@
     <message>
         <location filename="../searchhandler.cpp" line="130"/>
         <source>Symbol</source>
-        <translation>Símbolo</translation>
+        <translation>기호</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="133"/>
         <source>Function or macro</source>
-        <translation>Macro o función</translation>
+        <translation>함수 또는 매크로</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="136"/>
         <source>Class or struct</source>
-        <translation>Clase o estructura</translation>
+        <translation>클래스 또는 구조체</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="139"/>
         <source>Functions calling this function</source>
-        <translation>Funciones llamar a esta función</translation>
+        <translation>이 함수를 호출 하는 함수</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="142"/>
         <source>Functions called by this function</source>
-        <translation>Funciones de llamada por esta función</translation>
+        <translation>이 함수에 의해 호출 된 함수</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="145"/>
         <source>Class which owns this member/ method</source>
-        <translation>Clase que posee este miembro / método</translation>
+        <translation>이 멤버를 소유 하 고 있는 클래스 / 메서드</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="148"/>
         <source>Members/ methods of this class</source>
-        <translation>Miembros / métodos de esta clase</translation>
+        <translation>회원 /이 클래스의 메서드</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="151"/>
         <source>Files including this file</source>
-        <translation>Archivos incluyendo este archivo</translation>
+        <translation>이 파일을 포함 한 파일</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="154"/>
         <source>Full path for file</source>
-        <translation>Ruta de acceso completa de archivo</translation>
+        <translation>파일의 전체 경로</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="162"/>
         <source>CodeQuery DB Files</source>
-        <translation>CodeQuery DB archivos</translation>
+        <translation>CodeQuery DB 파일</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="165"/>
         <source>Open CQ database file</source>
-        <translation>Abrir archivo de base de datos de CQ</translation>
+        <translation>CQ 데이터베이스 파일 열기</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="230"/>
         <source>results found</source>
-        <translation>se han encontrado resultados</translation>
+        <translation>찾은 결과</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="256"/>
         <source>File open error</source>
-        <translation>Error de archivo abierto</translation>
+        <translation>파일 열기 오류</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="257"/>
         <source>Wrong file format</source>
-        <translation>Formato de archivo incorrecto</translation>
+        <translation>잘못 된 파일 형식</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="258"/>
         <source>Incorrect CQ database version</source>
-        <translation>Versión incorrecta de la base de datos de CQ</translation>
+        <translation>잘못 된 CQ 데이터베이스 버전</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="259"/>
         <source>OK</source>
-        <translation>Vale</translation>
+        <translation>괜찮았던 것</translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="261"/>
         <source>Unknown Error</source>
-        <translation>Error desconocido</translation>
+        <translation>알 수 없는 오류</translation>
     </message>
 </context>
 </TS>

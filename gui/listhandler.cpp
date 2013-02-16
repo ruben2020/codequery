@@ -127,11 +127,14 @@ void listhandler::resizeColumns(void)
 		{m_treeWidgetSearchResults->resizeColumnToContents(i);}
 }
 
-void listhandler::clearList(void)
+void listhandler::clearList()
 {
+	bool noclick = m_noclick;
+	m_noclick = true;
 	for(int i=0; i<m_itemlist.size(); i++) delete m_itemlist[i];
 	m_itemlist.clear();
 	m_treeWidgetSearchResults->clear();
+	m_noclick = noclick;
 }
 
 void listhandler::retranslateUi(void)

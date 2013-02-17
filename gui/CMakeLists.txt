@@ -107,3 +107,6 @@ translations/codequery_zh-CHT.ts
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
   target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} small_lib)
   
+  install(TARGETS codequery RUNTIME DESTINATION bin)
+
+

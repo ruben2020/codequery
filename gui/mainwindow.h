@@ -44,6 +44,8 @@ void setup_fileviewer(void);
 void setup_listhandler(void);
 void setup_searchhandler(void);
 void retranslateUi(void);
+void writeSettings();
+void readSettings();
 
 public slots:
 void AboutQtTriggered(bool checked);

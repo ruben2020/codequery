@@ -43,7 +43,7 @@ QStringList langtable::getLangNameList(void)
 	QStringList lst;
 	for(int i=0; i<DIM(langTable); i++)
 	{
-		lst << langTable[i].langName;
+		lst << QString::fromLatin1(langTable[i].langName);
 	}
 	lst.sort();
 	return lst;
@@ -55,7 +55,7 @@ QString langtable::getLangFilePath(const QString& lang)
 	QString langfn = "codequery_en";
 	for (int i=0; i<DIM(langTable); i++)
 	{
-		if (lang.compare(langTable[i].langName) == 0)
+		if (lang.compare(QString::fromLatin1(langTable[i].langName)) == 0)
 		{
 			langfn = langTable[i].langFile;
 			break;

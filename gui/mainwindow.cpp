@@ -90,6 +90,7 @@ void mainwindow::init(void)
 	m_app->setQuitOnLastWindowClosed(false);
 	connect(m_app, SIGNAL(lastWindowClosed()),
 			this, SLOT(prepareToExit()));
+	readSettings();
 }
 
 void mainwindow::setup_fileviewer(void)
@@ -185,7 +186,89 @@ void mainwindow::AboutTriggered(bool checked)
 
 void mainwindow::prepareToExit()
 {
+	writeSettings();
 	m_listhandler->prepareToExit();
 	m_app->quit();
 }
+
+void mainwindow::writeSettings()
+{
+	QSettings settings("ruben2020_foss", "CodeQuery");
+
+	settings.beginGroup("MainWindow");
+	settings.setValue("Size", size());
+	settings.setValue("Pos", pos());
+	settings.setValue("Maximized", isMaximized());
+	settings.setValue("AutoComplete", ui->checkBoxAutoComplete->isChecked());
+	settings.setValue("ExactMatch", ui->checkBoxExactMatch->isChecked());
+	settings.setValue("SymbolOnly", ui->checkBoxSymbolOnly->isChecked());
+	settings.setValue("QueryType", ui->comboBoxQueryType->currentIndex());
+	settings.setValue("LastOpenDB", ui->comboBoxDB->currentIndex());
+	settings.setValue("Language", m_currentLanguage);
+	settings.setValue("ExtEditorPath", m_fileviewer->m_externalEditorPath);
+	settings.endGroup();
+
+	settings.beginWriteArray("OpenDBHistory");
+	for (int i=0; i < ui->comboBoxDB->count(); i++)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("db", ui->comboBoxDB->itemText(i));
+	}
+	settings.endArray();
+
+	/*settings.beginWriteArray("SearchHistory");
+	for (int i=0; i < ui->comboBoxSearch->count(); i++)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("phrase", ui->comboBoxSearch->itemText(i));
+	}
+	settings.endArray();*/
+}
+
+void mainwindow::readSettings()
+{
+	QSettings settings("ruben2020_foss", "CodeQuery");
+
+	int sizee = settings.beginReadArray("OpenDBHistory");
+	QStringList dbhist;
+	for (int i=0; i < sizee; i++)
+	{
+		settings.setArrayIndex(i);
+		dbhist << settings.value("db").toString();
+	}
+	settings.endArray();
+	if (dbhist.isEmpty() == false) ui->comboBoxDB->addItems(dbhist);
+
+	settings.beginGroup("MainWindow");
+	resize(settings.value("Size", size()).toSize());
+	move(settings.value("Pos", pos()).toPoint());
+	if (settings.value("Maximized", false).toBool()) showMaximized();
+	else showNormal();
+	ui->checkBoxAutoComplete->setChecked(settings.value("AutoComplete", true).toBool());
+	ui->checkBoxExactMatch->setChecked(settings.value("ExactMatch", false).toBool());
+	ui->checkBoxSymbolOnly->setChecked(settings.value("SymbolOnly", false).toBool());
+	ui->comboBoxQueryType->setCurrentIndex(settings.value("QueryType", 0).toInt());
+	ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());
+	m_currentLanguage = settings.value("Language", QString("English")).toString();
+	retranslateUi();
+	m_fileviewer->m_externalEditorPath =
+		settings.value("ExtEditorPath", m_fileviewer->m_externalEditorPath).toString();
+	settings.endGroup();
+
+	/*sizee = settings.beginReadArray("SearchHistory");
+	QStringList srchhist;
+	for (int i=0; i < sizee; i++)
+	{
+		settings.setArrayIndex(i);
+		srchhist << settings.value("phrase").toString();
+	}
+	settings.endArray();
+	if (srchhist.isEmpty() == false)
+	{
+		ui->comboBoxSearch->addItems(srchhist);
+		ui->comboBoxSearch->setCurrentIndex(0);
+	}*/
+
+}
+
 

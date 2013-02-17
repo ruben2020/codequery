@@ -33,6 +33,12 @@
 
 typedef std::vector<std::string> strctagIDList;
 
+typedef struct
+{
+	std::string cls;
+	std::string id;
+} stClsID;
+
 class ctagread : public sqlbase
 {
 
@@ -62,11 +68,13 @@ enResult finalize(void);
 private:
 FILE* f_tags;
 sqlite3_stmt* m_insertstmt;
+sqlite3_stmt* m_insertinheritstmt;
 sqlite3_stmt* m_readclassstmt;
 sqlite3_stmt* m_readsymstmt;
 sqlite3_stmt* m_readsymfstmt;
 sqlite3_stmt* m_writedeststmt;
 enResult getListOfClassIDs(strctagIDList* idlist, const char* v1);
+enResult getHListOfClassIDs(strctagIDList* idlist, const char* v1, std::vector<stClsID> *listClsHist);
 enResult getListOfSymIDs(sqlite3_stmt* pstmt, strctagIDList* idlist, const char* v1, const char* v2, const char* v3);
 
 };

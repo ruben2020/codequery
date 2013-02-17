@@ -143,10 +143,16 @@ void searchhandler::retranslateUi(void)
 				QVariant(sqlquery::sqlresultCALLEDFUNC));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Class which owns this member/ method"),
-				QVariant(sqlquery::sqlresultPARENTCLASS));
+				QVariant(sqlquery::sqlresultOWNERCLASS));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Members/ methods of this class"),
 				QVariant(sqlquery::sqlresultMEMBERS));
+	m_comboBoxQueryType->addItem(QIcon(),
+				tr("Parent of this class"),
+				QVariant(sqlquery::sqlresultPARENTCLASS));
+	m_comboBoxQueryType->addItem(QIcon(),
+				tr("Children of this class"),
+				QVariant(sqlquery::sqlresultCHILDCLASS));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Files including this file"),
 				QVariant(sqlquery::sqlresultINCLUDE));

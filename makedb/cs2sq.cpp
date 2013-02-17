@@ -144,6 +144,7 @@ cs2sq::enResult cs2sq::setup_tables(void)
 	s+= "DROP TABLE IF EXISTS filestbl;";
 	s+= "DROP TABLE IF EXISTS linestbl;";
 	s+= "DROP TABLE IF EXISTS calltbl;";
+	s+= "DROP TABLE IF EXISTS inherittbl;";
 	s+= "DROP TABLE IF EXISTS configtbl;";
 	s+= "DROP TABLE IF EXISTS membertbl;";
 	s+= "DROP INDEX IF EXISTS symNameIdx;";
@@ -158,6 +159,7 @@ cs2sq::enResult cs2sq::setup_tables(void)
 	s+= "CREATE TABLE filestbl(fileID INTEGER PRIMARY KEY ASC, filePath TEXT);";
 	s+= "CREATE TABLE linestbl(lineID INTEGER PRIMARY KEY ASC, linenum INTEGER, fileID INTEGER, linetext TEXT);";
 	s+= "CREATE TABLE calltbl(callerID INTEGER, calledID INTEGER);";
+	s+= "CREATE TABLE inherittbl(parentID INTEGER, childID INTEGER);";
 	s+= "CREATE TABLE symtbl(symID INTEGER PRIMARY KEY ASC, symName TEXT, symType TEXT, lineID INTEGER);";
 	s+= "CREATE TABLE membertbl(groupID INTEGER, memberID INTEGER, memberType TEXT);";
 	s+= "INSERT INTO configtbl VALUES (\"DB_MAJOR_VER\",\"0\");";

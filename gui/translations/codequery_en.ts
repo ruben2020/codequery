@@ -272,51 +272,61 @@
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="151"/>
-        <source>Files including this file</source>
+        <source>Parent of this class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../searchhandler.cpp" line="154"/>
+        <source>Children of this class</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchhandler.cpp" line="157"/>
+        <source>Files including this file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchhandler.cpp" line="160"/>
         <source>Full path for file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="162"/>
+        <location filename="../searchhandler.cpp" line="168"/>
         <source>CodeQuery DB Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="165"/>
+        <location filename="../searchhandler.cpp" line="171"/>
         <source>Open CQ database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="230"/>
+        <location filename="../searchhandler.cpp" line="236"/>
         <source>results found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="256"/>
+        <location filename="../searchhandler.cpp" line="262"/>
         <source>File open error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="257"/>
+        <location filename="../searchhandler.cpp" line="263"/>
         <source>Wrong file format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="258"/>
+        <location filename="../searchhandler.cpp" line="264"/>
         <source>Incorrect CQ database version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="259"/>
+        <location filename="../searchhandler.cpp" line="265"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="261"/>
+        <location filename="../searchhandler.cpp" line="267"/>
         <source>Unknown Error</source>
         <translation type="unfinished"></translation>
     </message>

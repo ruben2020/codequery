@@ -25,6 +25,27 @@
 
 #include "small_lib.h"
 
+std::vector<std::string> splitstr(const char* inpstr, const char delim)
+{
+	size_t pos = 0, retpos = 0;
+	std::vector<std::string> vecstr;
+	std::string str(inpstr);
+	do
+	{
+		retpos = str.find_first_of(delim, pos);
+		if (retpos == std::string::npos)
+		{
+			vecstr.push_back(str.substr(pos));
+		}
+		else
+		{
+			vecstr.push_back(str.substr(pos, retpos - pos));
+			pos = retpos + 1;
+		}
+	} while (retpos != std::string::npos);
+	return vecstr;
+}
+
 const char* chomp(char* str)
 {
 	if ((str != NULL)&&(strlen(str) > 0))

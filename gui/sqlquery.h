@@ -83,6 +83,8 @@ enum en_queryType
 		sqlresultCALLINGFUNC,
 		sqlresultCALLEDFUNC,
 		sqlresultMEMBERS,
+		sqlresultOWNERCLASS,
+		sqlresultCHILDCLASS,
 		sqlresultPARENTCLASS,
 		sqlresultAUTOCOMPLETE,
 		sqlresultDEFAULT

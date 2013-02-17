@@ -24,6 +24,7 @@
 ctagread::ctagread()
 :f_tags(NULL)
 ,m_insertstmt(NULL)
+,m_insertinheritstmt(NULL)
 ,m_readclassstmt(NULL)
 ,m_readsymstmt(NULL)
 ,m_writedeststmt(NULL)
@@ -59,11 +60,13 @@ ctagread::enResult ctagread::open_files(const char* sqldb, const char* tagsfn)
 void ctagread::close_files(void)
 {
 	sqlite3_reset(m_insertstmt);
+	sqlite3_reset(m_insertinheritstmt);
 	sqlite3_reset(m_readclassstmt);
 	sqlite3_reset(m_readsymstmt);
 	sqlite3_reset(m_writedeststmt);
 	sqlite3_reset(m_readsymfstmt);
 	sqlite3_finalize(m_insertstmt);
+	sqlite3_finalize(m_insertinheritstmt);
 	sqlite3_finalize(m_readclassstmt);
 	sqlite3_finalize(m_readsymstmt);
 	sqlite3_finalize(m_writedeststmt);
@@ -78,13 +81,6 @@ void ctagread::close_files(void)
 	sqlite3_close(m_db);
 }
 
-typedef struct
-{
-	std::string cls;
-	std::string id;
-} stClsID;
-
-
 ctagread::enResult ctagread::process_ctags(void)
 {
 	tempbuf sym(200), fil(200), classname(200), numtxt(30), linetxt(2000), fil2(200);
@@ -96,13 +92,15 @@ ctagread::enResult ctagread::process_ctags(void)
 	char c;
 	char smallstr[2];
 	char *cp;
-	strctagIDList classIDs, symIDs;
+	strctagIDList classIDs, symIDs, parentClassIDs, parentClassIDs_temp;
 	enResult res;
 	std::vector<stClsID> listClsHist;
 	
 	*(fil.get()) = '%'; // for SQL LIKE pattern recognition
 	smallstr[1] = 0;
 	rc = prepare_stmt(&m_insertstmt, "INSERT INTO membertbl VALUES (?,?,?);");
+	if (rc!=0) return resSQLError;
+	rc = prepare_stmt(&m_insertinheritstmt, "INSERT INTO inherittbl VALUES (?,?);");
 	if (rc!=0) return resSQLError;
 	rc = prepare_stmt(&m_readclassstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"c\";");
 	if (rc!=0) return resSQLError;
@@ -131,27 +129,10 @@ ctagread::enResult ctagread::process_ctags(void)
 		}
 		if ((retval != NULL)&&(scanretval == 5))
 		{
-			classIDs.clear();
 			strcpy(fil.get(), "%");
 			strcat(fil.get(), extract_filename(fil2.get()));
-			for (int i=0; i<listClsHist.size(); i++)
-			{
-				if (listClsHist[i].cls.compare(classname.get()) == 0)
-				{classIDs.push_back(listClsHist[i].id); break;}
-			}
-			if (classIDs.empty())
-			{
-				res = getListOfClassIDs(&classIDs, classname.get());
-				if (res != resOK) {return res;}
-				if (classIDs.empty() == false)
-				{
-					stClsID tempClsID;
-					tempClsID.cls = classname.get();
-					tempClsID.id = classIDs[0];
-					listClsHist.insert(listClsHist.begin(), tempClsID);
-					if (listClsHist.size() > 50) listClsHist.pop_back();
-				}
-			}
+			res = getHListOfClassIDs(&classIDs, classname.get(), &listClsHist);
+			if (res != resOK) return res;
 			if (classIDs.empty()) continue;
 			cp = sym.get();
 			if (*(sym.get()) == '~')
@@ -182,8 +163,61 @@ ctagread::enResult ctagread::process_ctags(void)
 			}
 			//else {if (m_debug) {printf("no match found for symbol: %s\n",sym.get());}}
 		}
+		else if (retval != NULL)
+		{
+			scanretval = sscanf(linetxt.get(),
+			"%s\t%s\t%ld;\"\t%c\tinherits:%s", sym.get(), fil2.get(), &num, &c, classname.get());
+			if ((scanretval == 5)&&(c == 'c'))
+			{
+				res = getHListOfClassIDs(&classIDs, sym.get(), &listClsHist);
+				if (res != resOK) return res;
+				parentClassIDs.clear();
+				parentClassIDs_temp.clear();
+				std::vector<std::string> vecstr = splitstr(classname.get(), ',');
+				for (int i=0; i<vecstr.size(); i++)
+				{
+					res = getHListOfClassIDs(&parentClassIDs_temp, vecstr[i].c_str(), &listClsHist);
+					if (res != resOK) return res;
+					while (parentClassIDs_temp.empty() == false)
+					{
+						parentClassIDs.push_back(parentClassIDs_temp.back());
+						parentClassIDs_temp.pop_back();
+					}
+				}
+				for (int i=0; i<parentClassIDs.size(); i++)
+				{
+					rc=execstmt(m_insertinheritstmt, parentClassIDs[i].c_str(), classIDs[0].c_str());
+					if (rc!=0) return resSQLError;
+				}
+			}
+		}
 	} while (retval != NULL);
 	if (m_debug) printf ("Total membertbl records possible = %d\n", numOfLines);
+	return resOK;
+}
+
+ctagread::enResult ctagread::getHListOfClassIDs(strctagIDList* idlist, const char* v1, std::vector<stClsID> *listClsHist)
+{
+	enResult res = resOK;
+	idlist->clear();
+	for (int i=0; i<listClsHist->size(); i++)
+	{
+		if ((*listClsHist)[i].cls.compare(v1) == 0)
+		{idlist->push_back((*listClsHist)[i].id); break;}
+	}
+	if (idlist->empty())
+	{
+		res = getListOfClassIDs(idlist, v1);
+		if (res != resOK) {return res;}
+		if (idlist->empty() == false)
+		{
+			stClsID tempClsID;
+			tempClsID.cls = v1;
+			tempClsID.id = (*idlist)[0];
+			(*listClsHist).insert((*listClsHist).begin(), tempClsID);
+			if ((*listClsHist).size() > 50) (*listClsHist).pop_back();
+		}
+	}
 	return resOK;
 }
 
@@ -239,6 +273,8 @@ ctagread::enResult ctagread::finalize(void)
 	s  = "BEGIN EXCLUSIVE;";
 	s += "CREATE INDEX groupIDIdx ON membertbl (groupID);";
 	s += "CREATE INDEX memberIDIdx ON membertbl (memberID);";
+	s += "CREATE INDEX parentIDIdx ON inherittbl (parentID);";
+	s += "CREATE INDEX childIDIdx ON inherittbl (childID);";
 	s += "REINDEX symNameIdx;";
 	s += "COMMIT;";
 	rc=sqlite3_exec(m_db, s.c_str(), NULL, 0, NULL);

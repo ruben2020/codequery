@@ -2,6 +2,7 @@ CodeQuery
 =========
 
 Website: [CodeQuery website](https://github.com/ruben2020/codequery)
+
 Email address: ![Contact address](doc/emailaddr.png)
 
 This is a tool to index, then query or search C, C++ and Java source code (and probably also C#).

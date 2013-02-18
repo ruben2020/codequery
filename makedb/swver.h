@@ -26,6 +26,7 @@
 
 #define CODEQUERY_SW_LICENSE  \
 "Copyright (C) 2013 ruben2020 https://github.com/ruben2020/\n\n" \
+"Website: https://github.com/ruben2020/codequery\n\n" \
 "This program is free software: you can redistribute it and/or modify\n" \
 "it under the terms of the GNU General Public License as published by\n" \
 "the Free Software Foundation, either version 3 of the License, or\n" \
@@ -39,6 +40,7 @@
 
 #define CODEQUERY_SW_LICENSE_PARA  \
 "Copyright (C) 2013 ruben2020 https://github.com/ruben2020/\n\n" \
+"Website: https://github.com/ruben2020/codequery\n\n" \
 "This program is free software: you can redistribute it and/or modify " \
 "it under the terms of the GNU General Public License as published by " \
 "the Free Software Foundation, either version 3 of the License, or " \

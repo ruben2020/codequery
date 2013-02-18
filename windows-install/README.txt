@@ -55,9 +55,9 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Ubuntu 32-bit and Windows XP.
+It has been tested on Ubuntu 32-bit, Windows XP and Windows 7.
 
-Help is welcomed to attempt ports to Mac OS and 64-bit operating systems.
+Help is welcomed to attempt ports to Mac OS and other operating systems.
 
 
 ## Is the software available in multiple languages?
@@ -69,7 +69,7 @@ Help is welcomed to update and contribute translations.
 
 ## How to install it?
 
-On Linux, please read the INSTALL file. At present, the only way is to build the code.
+On Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. At present, the only way is to build the code.
 
 On Windows, an EXE setup package will be provided here:
 [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
@@ -80,15 +80,24 @@ On Windows, an EXE setup package will be provided here:
 Please read the HOWTO file provided for each platform. The workflow looks like this:
 ![CodeQuery workflow](doc/workflow.png)
 
+On Linux: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
 
-## How does it look like?
-
-![CodeQuery screenshot](doc/screenshot.png)
+On Windows: [HOWTO-WINDOWS](windows-install/HOWTO-WINDOWS.txt)
 
 
 ## How do I contact the author for support, issues, bug reports, fix patches etc.?
 
 Please see the email address above, and also the Issues tab in Github.
+
+## List of Contributors
+
+ruben2020
+
+
+## What does it look like?
+
+![CodeQuery screenshot](doc/screenshot.png)
+
 
 
 

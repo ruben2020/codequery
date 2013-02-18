@@ -16,7 +16,7 @@ This INSTALL guide applies to Linux only
 
 [CMake](http://www.cmake.org/)
 
-[sqlite2](http://www.sqlite.org/)
+[sqlite3](http://www.sqlite.org/)
 
 [Qt4](http://qt-project.org/)
 

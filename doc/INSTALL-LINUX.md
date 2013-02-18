@@ -15,32 +15,42 @@ This INSTALL guide applies to Linux only
    gcc and make should also be installed.
 
 [CMake](http://www.cmake.org/)
+
 [sqlite2](http://www.sqlite.org/)
+
 [Qt4](http://qt-project.org/)
+
 [cscope](http://cscope.sourceforge.net/)
+
 [ctags](http://ctags.sourceforge.net/)
 
 
+
 2. Download the repository as a ZIP file from github:
+
 [codequery@github](https://github.com/ruben2020/codequery)
+
 
 3. Unzip to a directory and change to that directory.
 
-     cd ~/workspace/codequery
-
+```bash
+cd ~/workspace/codequery
+```
 
 4. Create a directory called build and change to it.
 
-     mkdir build
-     cd build
-
+```bash
+mkdir build
+cd build
+```
 
 5. Run cmake, make and make install.
 
-     cmake ..
-     make
-     sudo make install
+```bash
+cmake ..
+make
+sudo make install
+```
 
-6. Please read HOWTO-LINUX.txt to learn how to use
-   this software.
+6. Please read HOWTO-LINUX.txt to learn how to use this software.
 

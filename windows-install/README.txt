@@ -14,6 +14,22 @@ The CodeQuery database tool can be viewed and queried in the *codequery* GUI too
 Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 
+## What are the advantages compared to cscope and ctags?
+
+cscope is more C-centric, but is fuzzy enough to cover C++ and Java, but not very well for e.g. it doesn't understand destructors and class member instantiations. cscope can do "functions that call this functions" and "functions called by this function". But it can't provide relationships of inheritance and membership.
+
+ctags can do many languages well and understands destructors, member instantiations and inheritance, but doesn't do "functions that call this functions" or "functions called by this function". From ctags, we can find out "members and methods of this class", "class which owns this member or method", "parent of this class", "child of this class" etc.
+
+CodeQuery is a project that attempts to combine the best of these, provide faster database access compared to cscope (because it uses sqlite) and provide a nice GUI tool as well.
+
+* Combines the best of both cscope and ctags
+* Faster due to the use of sqlite for the CodeQuery database
+* Cross-platform GUI tool
+* Auto-complete feature
+* File viewer with syntax highlighting
+* Ability to open in an external editor
+
+
 ## What types of query can I make?
 
 * Symbol
@@ -27,16 +43,6 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 * Children of this class (inheritance)
 * Files including this file
 * Full path for file
-
-
-## What are the advantages compared to cscope and ctags?
-
-* Combines the best of both cscope and ctags
-* Faster due to the use of sqlite for the CodeQuery database
-* Cross-platform GUI tool
-* Auto-complete feature
-* File viewer with syntax highlighting
-* Ability to open in an external editor
 
 
 ## What does it cost? How is it licensed?

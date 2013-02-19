@@ -22,7 +22,7 @@
 #ifndef _SQLQUERY_H
 #define _SQLQUERY_H
 
-#include <QtGui>
+#include "small_lib.h"
 
 // forward declaration
 class sqlite3;
@@ -41,12 +41,12 @@ sqlite3_stmt* get(void);
 class sqlqueryresult
 {
 public:
-	QString symname;
-	QString symtype;
-	QString linenum;
-	QString filename;
-	QString filepath;
-	QString linetext;
+	tStr symname;
+	tStr symtype;
+	tStr linenum;
+	tStr filename;
+	tStr filepath;
+	tStr linetext;
 	sqlqueryresult() : linenum((const char*)"1"){}
 };
 
@@ -62,11 +62,11 @@ enum en_resultType
 		sqlresultERROR
 	};
 	en_resultType result_type;
-	QVector<sqlqueryresult> resultlist;
+	std::vector<sqlqueryresult> resultlist;
 	sqlqueryresultlist();
 	sqlqueryresultlist(const sqlqueryresultlist& copy);
 	sqlqueryresultlist& operator= (const sqlqueryresultlist& copy);
-	QString sqlerrmsg;
+	tStr sqlerrmsg;
 };
 
 
@@ -100,24 +100,23 @@ enum en_filereadstatus
 	sqlquery();
 	~sqlquery();
 	bool isDBOpen(void) {return (m_db != NULL);}
-	en_filereadstatus open_dbfile(QString dbfn);
+	en_filereadstatus open_dbfile(tStr dbfn);
 	void close_dbfile(void);
-	sqlqueryresultlist search(QString searchstr,
-								en_queryType querytype = sqlquerySYMBOL,
-								bool exactmatch=false);
-	QStringList search_autocomplete(const QString& searchstr);
+	sqlqueryresultlist search(tStr searchstr,
+				en_queryType querytype = sqlquerySYMBOL,
+				bool exactmatch=false);
+	tVecStr search_autocomplete(const char* searchstr);
 
 private:
 	sqlite3 *m_db;
-	QString m_basepath;
+	tStr m_basepath;
 	tempstmt m_autocompstmt;
 	sqlqueryresultlist search_full(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_line(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_only(sqlite3_stmt* stmt);
-	QString read_configtbl(const char *key, sqlite3_stmt *stmt);
-	//sqlqueryresultlist search_sym_only(QString searchstr);
-	QString process_searchterm(const QString& searchterm, const bool& exactmatch);
-	QString process_searchterm_autocomplete(const QString& searchstr);
+	tStr read_configtbl(const char *key, sqlite3_stmt *stmt);
+	tStr process_searchterm(const char* searchterm, const bool& exactmatch);
+	tStr process_searchterm_autocomplete(const char* searchstr);
 };
 
 #endif

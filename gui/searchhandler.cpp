@@ -19,6 +19,7 @@
  */
 
 
+#include "std2qt.h"
 #include "searchhandler.h"
 
 searchhandler::searchhandler(mainwindow* pmw)
@@ -67,7 +68,7 @@ void searchhandler::searchTextEdited(const QString& searchtxt)
 {
 	if (m_checkBoxAutoComplete->isChecked())
 	{
-		m_srchStrLstModel.setStringList(sq->search_autocomplete(searchtxt));
+		m_srchStrLstModel.setStringList(strLst2qt(sq->search_autocomplete(searchtxt.toAscii().data())));
 	}
 }
 
@@ -190,7 +191,7 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 	if (idx < 0) return;
 	sqlquery::en_filereadstatus sqstatus;
 	sq->close_dbfile();
-	sqstatus = sq->open_dbfile(m_comboBoxDB->itemText(idx));
+	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
 	if (sqstatus != sqlquery::sqlfileOK)
 	{
 		QMessageBox msgBox((QWidget*)mw);
@@ -223,7 +224,7 @@ void searchhandler::perform_search(QString searchtxt, sqlquery::en_queryType qry
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
 		QMessageBox msgBox((QWidget*)mw);
-		msgBox.setText(sqlresultlist.sqlerrmsg);
+		msgBox.setText(str2qt(sqlresultlist.sqlerrmsg));
 		msgBox.exec();
 	}
 	else

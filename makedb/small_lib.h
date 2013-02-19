@@ -34,6 +34,10 @@
 // Get number of elements of a fixed-sized array
 #define DIM(x)   (sizeof( x ) / sizeof( x [0] ) )
 
+typedef std::string tStr;
+typedef std::vector<std::string> tVecStr;
+
+
 std::vector<std::string> splitstr(const char* inpstr, const char delim);
 const char* chomp(char* str);
 std::string add_escape_char(std::string ori, char chr2escp, char escpchr);

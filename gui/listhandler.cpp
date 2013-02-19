@@ -18,7 +18,7 @@
  * 
  */
 
-
+#include "std2qt.h"
 #include "listhandler.h"
 
 listhandler::listhandler(mainwindow* pmw)
@@ -75,22 +75,22 @@ void listhandler::listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * p
 {
 	if (current == NULL) return;
 	if (m_noclick) return;
-	emit openFile(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].filepath,
-				m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum);
+	emit openFile(str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].filepath),
+			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum));
 }
 
 void listhandler::updateList(void)
 {
-	if (m_sqlist.resultlist.isEmpty()) return;
+	if (m_sqlist.resultlist.empty()) return;
 	for (int i=0; i < m_sqlist.resultlist.size(); i++)
 	{
 		QStringList strList;
 		if (m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)
-			strList += m_sqlist.resultlist[i].symname;
-		strList += m_sqlist.resultlist[i].filename;
+			strList += str2qt(m_sqlist.resultlist[i].symname);
+		strList += str2qt(m_sqlist.resultlist[i].filename);
 		if ((m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)||
 			(m_sqlist.result_type == sqlqueryresultlist::sqlresultFILE_LINE))
-			strList << m_sqlist.resultlist[i].linenum << m_sqlist.resultlist[i].linetext;
+			strList << str2qt(m_sqlist.resultlist[i].linenum) << str2qt(m_sqlist.resultlist[i].linetext);
 		m_itemlist += new QTreeWidgetItem(m_treeWidgetSearchResults, strList);
 		m_itemlist[i]->setData(0, Qt::UserRole, QVariant(i));
 	}

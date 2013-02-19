@@ -9,7 +9,7 @@ This INSTALL guide applies to Linux only
 
 ## HOW TO INSTALL IN LINUX?
 
-1. Install CMake (>2.7), sqlite3, Qt4 (>4.7), cscope, ctags. If you have Ubuntu installed, most of these should be obtainable through the Synaptic Package Manager. gcc and make should also be installed.
+1. Install CMake (>2.7), sqlite3, Qt4 (>4.7), cscope, ctags. If you have Ubuntu installed, most of these should be obtainable through the Synaptic Package Manager. gcc and make should also be installed.   
 [CMake](http://www.cmake.org/)   
 [sqlite3](http://www.sqlite.org/)   
 [Qt4](http://qt-project.org/)   
@@ -39,5 +39,5 @@ make
 sudo make install
 ```
 
-6. Please read HOWTO-LINUX.txt to learn how to use this software.
+6. Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
 

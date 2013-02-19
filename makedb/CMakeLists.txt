@@ -6,7 +6,7 @@ project(CodeQueryDBMaker)
 find_package(Sqlite REQUIRED)
 
 include_directories( "." )
-include_directories( "../cli" )
+include_directories( "../querylib" )
 include_directories( ${SQLITE_INCLUDE_DIR} )
 
 set( CQMAKEDB_SRCS
@@ -21,6 +21,5 @@ add_executable( cqmakedb ${CQMAKEDB_SRCS} )
 target_link_libraries( cqmakedb ${SQLITE_LIBRARIES} small_lib optlist_lib)
 
 install(TARGETS cqmakedb RUNTIME DESTINATION bin)
-
 
 

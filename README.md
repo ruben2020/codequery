@@ -34,8 +34,9 @@ CodeQuery is a project that attempts to combine the features available from both
 * Combines the best of both cscope and ctags
 * Faster due to the use of sqlite for the CodeQuery database
 * Cross-platform GUI tool
-* Auto-complete feature
-* case-insensitive, partial keyword search, or exact match search
+* Fast auto-completion of search term
+* Case-insensitive, partial keyword search
+* Exact match search
 * File viewer with syntax highlighting
 * Ability to open viewed file in an external editor or IDE.
 
@@ -59,7 +60,9 @@ CodeQuery is a project that attempts to combine the features available from both
 
 It's freeware and free open source software.
 
-It's licensed under the [GNU GPL v3](http://www.gnu.org/licenses/gpl.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+This software is licensed under the [GNU GPL v3](http://www.gnu.org/licenses/gpl.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+
+Files under the `querylib` directory are licensed under the [MIT license](http://opensource.org/licenses/MIT). See [QueryLib README](querylib/README.txt). This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without license restrictions. It's only dependency is on sqlite3.
 
 
 ## Can I use it in a commercial environment without purchasing, for an unlimited time?
@@ -118,5 +121,9 @@ ruben2020
 ![CodeQuery screenshot](doc/screenshot.png)
 
 
+## What future features are planned?
+
+* Wildcard searches
+* Visualization of call graphs
 
 

@@ -10,12 +10,6 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
 
-## Latest version = v0.01
-
-For Windows, v0.01 available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
-
-For Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
-
 
 ## How is it different from cscope and ctags? What are the advantages?
 

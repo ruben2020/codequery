@@ -168,16 +168,16 @@
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="344"/>
-        <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number.For example, gedit %f +%n</source>
+        <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="365"/>
+        <location filename="../fileviewer.cpp" line="370"/>
         <source>File could not be opened!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="378"/>
+        <location filename="../fileviewer.cpp" line="395"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -208,27 +208,27 @@
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="136"/>
+        <location filename="../mainwindow.cpp" line="137"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="137"/>
+        <location filename="../mainwindow.cpp" line="138"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="139"/>
+        <location filename="../mainwindow.cpp" line="140"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="140"/>
+        <location filename="../mainwindow.cpp" line="141"/>
         <source>Select language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="183"/>
+        <location filename="../mainwindow.cpp" line="184"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

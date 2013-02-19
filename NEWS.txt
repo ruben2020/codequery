@@ -1,0 +1,7 @@
+
+Version 0.02 - Feb 19, 2013
+Fixed external editor file path recognition bug for Windows (could not recognize spaces e.g. C:\Program Files).
+
+Version 0.01 - Feb 18, 2013
+Initial release
+

@@ -341,15 +341,20 @@ void fileviewer::OptionsExtEditor_Triggered(bool checked)
 	qinp.setOkButtonText(tr("OK"));
 	qinp.setInputMode(QInputDialog::TextInput);
 	qinp.setWindowTitle(tr("External Editor Configuration"));
-	qinp.setLabelText(tr("Please enter the path and arguments for the external editor. "
-		"Use %f for filename and %n for line number."
-		"For example, gedit %f +%n"));
+	QString exted = tr("Please enter the path and arguments for the external editor. "
+			"Use \%f for filename and \%n for line number. For example:");
+#ifdef _WIN32
+	exted += "\n\"C:\\Program Files\\Notepad++\\notepad++.exe\" -n\%n \%f";
+#else
+	exted += "\ngedit \%f +\%n";
+#endif
+	qinp.setLabelText(exted);
 	qinp.setTextEchoMode(QLineEdit::Normal);
 	qinp.setTextValue(m_externalEditorPath);
 	qinp.exec();
 	ok = (qinp.result() == QDialog::Accepted);
 	inptext = qinp.textValue();
-	if (ok && (inptext.isEmpty() == false)) m_externalEditorPath = inptext;
+	if (ok && (inptext.isEmpty() == false)) m_externalEditorPath = inptext.trimmed();
 }
 
 void fileviewer::OpenInEditor_ButtonClick(bool checked)
@@ -368,8 +373,20 @@ void fileviewer::OpenInEditor_ButtonClick(bool checked)
 		}
 		file.close();
 
-		QStringList arguments = m_externalEditorPath.split(QRegExp("[ ]+"));
-		QString program = arguments.takeFirst();
+		QStringList arguments;
+		QString program;
+		QRegExp rx("^\"([^\"]+)\" (.*)");
+		int pos = rx.indexIn(m_externalEditorPath);
+		if (pos != -1)
+		{
+			program = rx.cap(1);
+			arguments = (rx.cap(2)).split(QRegExp("[ ]+"));
+		}
+		else
+		{
+			arguments = m_externalEditorPath.split(QRegExp("[ ]+"));
+			program = arguments.takeFirst();
+		}
 		arguments.replaceInStrings(QRegExp("%f"), m_iter->filename);
 		arguments.replaceInStrings(QRegExp("%n"), m_iter->linenum);
 

@@ -24,7 +24,7 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 [Setup]
 ShowLanguageDialog=auto
 AppName=CodeQuery
-AppVersion=0.01
+AppVersion=0.02
 AppCopyright=Copyright 2013 (C) ruben2020
 AppId={{D95A3CC0-CC79-4CF1-A92B-50E909B60EF1}
 LicenseFile=C:\workspace\CodeQuery\windows-install\LICENSE.txt
@@ -37,7 +37,7 @@ DefaultGroupName=CodeQuery
 ChangesEnvironment=true
 
 [Tasks]
-Name: "modifypath"; Description: "Add application directory to your environmental path"; GroupDescription: "unchecked"; Flags: unchecked
+Name: "modifypath"; Description: "Add application directory to your environmental path"; Flags:
 
 [Code]
 const

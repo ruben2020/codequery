@@ -6,137 +6,137 @@
     <message>
     <location filename="../ui/mainWindow.ui" line="14"/>
         <source>CodeQuery</source>
-        <translation>CodeQuery</translation>
+        <translation type="finished">CodeQuery</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="29"/>
     <location filename="../ui/mainWindow.ui" line="32"/>
         <source>Open Database</source>
-        <translation>Base de données ouverte</translation>
+        <translation type="finished">Base de données ouverte</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="66"/>
         <source>Auto-complete</source>
-        <translation>Semi-automatique</translation>
+        <translation type="finished">Semi-automatique</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="80"/>
         <source>Exact match</source>
-        <translation>Correspondance exacte</translation>
+        <translation type="finished">Correspondance exacte</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="91"/>
     <location filename="../ui/mainWindow.ui" line="94"/>
         <source>Search</source>
-        <translation>Rechercher</translation>
+        <translation type="finished">Rechercher</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="108"/>
     <location filename="../ui/mainWindow.ui" line="111"/>
         <source>Paste and Search</source>
-        <translation>Pâte et recherche</translation>
+        <translation type="finished">Pâte et recherche</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="169"/>
     <location filename="../ui/mainWindow.ui" line="172"/>
         <source>Previous File</source>
-        <translation>Fichier précédent</translation>
+        <translation type="finished">Fichier précédent</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="186"/>
     <location filename="../ui/mainWindow.ui" line="189"/>
         <source>Next File</source>
-        <translation>Fichier suivant</translation>
+        <translation type="finished">Fichier suivant</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="203"/>
     <location filename="../ui/mainWindow.ui" line="206"/>
         <source>Open in Editor</source>
-        <translation>Ouvert dans l&apos;éditeur</translation>
+        <translation type="finished">Ouvert dans l'éditeur</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="220"/>
     <location filename="../ui/mainWindow.ui" line="223"/>
         <source>Go to selected line</source>
-        <translation>Aller à la ligne sélectionnée</translation>
+        <translation type="finished">Aller à la ligne sélectionnée</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="250"/>
     <location filename="../ui/mainWindow.ui" line="253"/>
         <source>Copy, paste and search</source>
-        <translation>Copier, coller et Rechercher</translation>
+        <translation type="finished">Copier, coller et Rechercher</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="267"/>
     <location filename="../ui/mainWindow.ui" line="270"/>
         <source>Symbol search only for paste and search</source>
-        <translation>Recherche de symbole que pour la pâte et de la recherche</translation>
+        <translation type="finished">Recherche de symbole que pour la pâte et de la recherche</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="273"/>
         <source>Symbol only</source>
-        <translation>Symbole seulement</translation>
+        <translation type="finished">Symbole seulement</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="292"/>
         <source>FilePath:0</source>
-        <translation>FilePath:0</translation>
+        <translation type="finished">FilePath:0</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="304"/>
     <location filename="../ui/mainWindow.ui" line="307"/>
         <source>CodeEditor</source>
-        <translation>CodeEditor</translation>
+        <translation type="finished">CodeEditor</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="333"/>
         <source>File</source>
-        <translation>Fichier</translation>
+        <translation type="finished">Fichier</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="340"/>
         <source>Options</source>
-        <translation>Options</translation>
+        <translation type="finished">Options</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="347"/>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation type="finished">Aide</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="359"/>
         <source>Exit</source>
-        <translation>Sortie</translation>
+        <translation type="finished">Sortie</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="364"/>
         <source>Open</source>
-        <translation>Ouvert</translation>
+        <translation type="finished">Ouvert</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="369"/>
         <source>About</source>
-        <translation>Sur</translation>
+        <translation type="finished">Sur</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="374"/>
         <source>External Editor</source>
-        <translation>External Editor</translation>
+        <translation type="finished">External Editor</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="379"/>
         <source>Open CQ Database</source>
-        <translation>Base de données ouverte CQ</translation>
+        <translation type="finished">Base de données ouverte CQ</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="384"/>
         <source>Language</source>
-        <translation>Langue</translation>
+        <translation type="finished">Langue</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="389"/>
         <source>About Qt</source>
-        <translation>Sur Qt</translation>
+        <translation type="finished">Sur Qt</translation>
     </message>
     </context>
     <context>
@@ -144,42 +144,42 @@
     <message>
     <location filename="../fileviewer.cpp" line="142"/>
         <source>File not found</source>
-        <translation>Fichier non trouvé</translation>
+        <translation type="finished">Fichier non trouvé</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="149"/>
         <source>File could not be opened</source>
-        <translation>Fichier n&apos;a pas pu être ouvert</translation>
+        <translation type="finished">Fichier n'a pas pu être ouvert</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="340"/>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation type="finished">Annuler</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="341"/>
         <source>OK</source>
-        <translation>Bien</translation>
+        <translation type="finished">Bien</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="343"/>
         <source>External Editor Configuration</source>
-        <translation>Configuration de l&apos;éditeur externe</translation>
+        <translation type="finished">Configuration de l'éditeur externe</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="344"/>
-        <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number.For example, gedit %f +%n</source>
-        <translation>Veuillez entrer le chemin d&apos;accès et les arguments de l&apos;éditeur externe. Utilisez %f pour filename et %n pour numéro de ligne.Par exemple, gedit %f + %n</translation>
+        <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
+        <translation type="finished">Veuillez entrer le chemin d'accès et les arguments de l'éditeur externe. Utilisez %f pour filename et %n pour numéro de ligne. Par exemple :</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="365"/>
+    <location filename="../fileviewer.cpp" line="370"/>
         <source>File could not be opened!</source>
-        <translation>Fichier n&apos;a pas pu être ouvert !</translation>
+        <translation type="finished">Fichier n'a pas pu être ouvert !</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="378"/>
+    <location filename="../fileviewer.cpp" line="395"/>
         <source>External editor could not be started. Please check Options!</source>
-        <translation>Éditeur externe n&apos;a pas pu être démarré. Vérifiez les Options !</translation>
+        <translation type="finished">Éditeur externe n'a pas pu être démarré. Vérifiez les Options !</translation>
     </message>
     </context>
     <context>
@@ -187,50 +187,50 @@
     <message>
     <location filename="../listhandler.cpp" line="104"/>
         <source>Symbol</source>
-        <translation>Symbole</translation>
+        <translation type="finished">Symbole</translation>
     </message>
     <message>
     <location filename="../listhandler.cpp" line="105"/>
         <source>File</source>
-        <translation>Fichier</translation>
+        <translation type="finished">Fichier</translation>
     </message>
     <message>
     <location filename="../listhandler.cpp" line="108"/>
         <source>Line</source>
-        <translation>Ligne</translation>
+        <translation type="finished">Ligne</translation>
     </message>
     <message>
     <location filename="../listhandler.cpp" line="108"/>
         <source>Preview</source>
-        <translation>Aperçu</translation>
+        <translation type="finished">Aperçu</translation>
     </message>
     </context>
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="136"/>
-        <source>Cancel</source>
-        <translation>Annuler</translation>
-    </message>
-    <message>
     <location filename="../mainwindow.cpp" line="137"/>
-        <source>OK</source>
-        <translation>Bien</translation>
+        <source>Cancel</source>
+        <translation type="finished">Annuler</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="139"/>
-        <source>Language</source>
-        <translation>Langue</translation>
+    <location filename="../mainwindow.cpp" line="138"/>
+        <source>OK</source>
+        <translation type="finished">Bien</translation>
     </message>
     <message>
     <location filename="../mainwindow.cpp" line="140"/>
-        <source>Select language:</source>
-        <translation>Sélectionner une langue:</translation>
+        <source>Language</source>
+        <translation type="finished">Langue</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="183"/>
+    <location filename="../mainwindow.cpp" line="141"/>
+        <source>Select language:</source>
+        <translation type="finished">Sélectionner une langue:</translation>
+    </message>
+    <message>
+    <location filename="../mainwindow.cpp" line="184"/>
         <source>About</source>
-        <translation>Sur</translation>
+        <translation type="finished">Sur</translation>
     </message>
     </context>
     <context>
@@ -238,37 +238,37 @@
     <message>
     <location filename="../searchhandler.cpp" line="130"/>
         <source>Symbol</source>
-        <translation>Symbole</translation>
+        <translation type="finished">Symbole</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="133"/>
         <source>Function or macro</source>
-        <translation>Macro ou fonction</translation>
+        <translation type="finished">Macro ou fonction</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="136"/>
         <source>Class or struct</source>
-        <translation>Classe ou struct</translation>
+        <translation type="finished">Classe ou struct</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="139"/>
         <source>Functions calling this function</source>
-        <translation>Fonctions d&apos;appel de cette fonction</translation>
+        <translation type="finished">Fonctions d'appel de cette fonction</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="142"/>
         <source>Functions called by this function</source>
-        <translation>Fonctions appelées par cette fonction</translation>
+        <translation type="finished">Fonctions appelées par cette fonction</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="145"/>
         <source>Class which owns this member/ method</source>
-        <translation>Classe qui possède ce membre / méthode</translation>
+        <translation type="finished">Classe qui possède ce membre / méthode</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="148"/>
         <source>Members/ methods of this class</source>
-        <translation>Membres / méthodes de cette classe</translation>
+        <translation type="finished">Membres / méthodes de cette classe</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="151"/>
@@ -283,52 +283,52 @@
     <message>
     <location filename="../searchhandler.cpp" line="157"/>
         <source>Files including this file</source>
-        <translation>Fichiers à inclure ce fichier</translation>
+        <translation type="finished">Fichiers à inclure ce fichier</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="160"/>
         <source>Full path for file</source>
-        <translation>Chemin d&apos;accès complet pour le fichier</translation>
+        <translation type="finished">Chemin d'accès complet pour le fichier</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="168"/>
         <source>CodeQuery DB Files</source>
-        <translation>CodeQuery DB fichiers</translation>
+        <translation type="finished">CodeQuery DB fichiers</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="171"/>
         <source>Open CQ database file</source>
-        <translation>Ouvrir le fichier de base de données CQ</translation>
+        <translation type="finished">Ouvrir le fichier de base de données CQ</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="236"/>
         <source>results found</source>
-        <translation>résultats trouvés</translation>
+        <translation type="finished">résultats trouvés</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="262"/>
         <source>File open error</source>
-        <translation>Erreur de fichier ouvert</translation>
+        <translation type="finished">Erreur de fichier ouvert</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="263"/>
         <source>Wrong file format</source>
-        <translation>Format de fichier incorrect</translation>
+        <translation type="finished">Format de fichier incorrect</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="264"/>
         <source>Incorrect CQ database version</source>
-        <translation>Version de base de données incorrecte CQ</translation>
+        <translation type="finished">Version de base de données incorrecte CQ</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="265"/>
         <source>OK</source>
-        <translation>Bien</translation>
+        <translation type="finished">Bien</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="267"/>
         <source>Unknown Error</source>
-        <translation>Erreur inconnue</translation>
+        <translation type="finished">Erreur inconnue</translation>
     </message>
     </context>
     </TS>

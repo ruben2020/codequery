@@ -11,7 +11,12 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database tool can be viewed and queried in the *codequery* GUI tool.
 
-Website: [CodeQuery website](https://github.com/ruben2020/codequery)
+
+## Latest version = v0.01
+
+For Windows, v0.01 available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+
+For Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
 
 
 ## What are the advantages compared to cscope and ctags?
@@ -61,22 +66,21 @@ Yes. However, donations are welcomed.
 
 It has been tested on Ubuntu 32-bit, Windows XP and Windows 7.
 
-Help is welcomed to attempt ports to Mac OS and other operating systems.
+Contributions are welcomed to attempt ports to Mac OS and other operating systems.
 
 
 ## Is the software available in multiple languages?
 
 Yes. This applies only to the GUI tool.
 
-Help is welcomed to update and contribute translations.
+Contributions are welcomed to update and contribute translations.
 
 
 ## How to install it?
 
-On Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. At present, the only way is to build the code.
+On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package.
 
-On Windows, an EXE setup package will be provided here:
-[CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+On Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 
 ## How do I use it?
@@ -89,16 +93,19 @@ On Linux: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
 On Windows: [HOWTO-WINDOWS](windows-install/HOWTO-WINDOWS.txt)
 
 
-## How do I contact the author for support, issues, bug reports, fix patches etc.?
+## How do I contact the authors for support, issues, bug reports, fix patches etc.?
 
-Please see the email address below, and also the Issues tab in Github.
+Please see the email address below, and also the Issues tab in GitHub.
 
 Email address: ![Contact address](doc/emailaddr.png)
+
+Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 
 ## List of Contributors
 
 ruben2020
+(More welcomed)
 
 
 ## What does it look like?

@@ -19,6 +19,8 @@
  */
 
 
+#include <stdio.h>
+#include <unistd.h>
 #include <sqlite3.h>
 #include "small_lib.h"
 #include "sqlquery.h"
@@ -113,14 +115,19 @@ sqlquery::~sqlquery()
 }
 
 
-sqlquery::en_filereadstatus sqlquery::open_dbfile(QString dbfn)
+sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 {
-	if (dbfn.isEmpty()) return sqlfileOPENERROR;
-	QFile file(dbfn);
-	if(!file.exists()) return sqlfileOPENERROR;
-	if(!file.open(QIODevice::ReadOnly))  {return sqlfileOPENERROR;}
-	file.close();
-	int rc = sqlite3_open_v2(dbfn.toAscii().data(),
+	if (dbfn.empty()) return sqlfileOPENERROR;
+
+	smartFILE fp;
+	// Does the file exist?
+	if (access(dbfn.c_str(), F_OK) == -1) {return sqlfileOPENERROR;}
+	// Try to open the file for reading
+	fp = fopen(dbfn.c_str(), "r");
+	if (fp == NULL) {return sqlfileOPENERROR;}
+	fp.close_file();
+
+	int rc = sqlite3_open_v2(dbfn.c_str(),
 						&m_db, SQLITE_OPEN_READONLY, NULL);
 	if ((rc != SQLITE_OK)||(m_db == NULL)) 
 	{
@@ -128,14 +135,14 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(QString dbfn)
 		return sqlfileOPENERROR;
 	}
 	tempstmt stmt;
-	QString majorver = read_configtbl("DB_MAJOR_VER", stmt.get());
-	QString minorver = read_configtbl("DB_MINOR_VER", stmt.get());
-	if ((majorver.isEmpty())||(minorver.isEmpty()))
+	tStr majorver = read_configtbl("DB_MAJOR_VER", stmt.get());
+	tStr minorver = read_configtbl("DB_MINOR_VER", stmt.get());
+	if ((majorver.empty())||(minorver.empty()))
 		{return sqlfileNOTCORRECTDB;}
-	if (majorver.compare(QString("0")) != 0) return sqlfileINCORRECTVER;
-	if (minorver.compare(QString("1")) != 0) return sqlfileINCORRECTVER;
+	if (majorver.compare(tStr("0")) != 0) return sqlfileINCORRECTVER;
+	if (minorver.compare(tStr("1")) != 0) return sqlfileINCORRECTVER;
 	m_basepath = read_configtbl("DB_BASE_PATH", stmt.get());
-	if (m_basepath.isEmpty()) {return sqlfileNOTCORRECTDB;}
+	if (m_basepath.empty()) {return sqlfileNOTCORRECTDB;}
 	rc = sqlite3_prepare_v2(m_db, SQL_AUTOCOMPLETE, strlen(SQL_AUTOCOMPLETE),
 							&(m_autocompstmt.m_stmt), NULL);
 	if (rc != SQLITE_OK) {return sqlfileNOTCORRECTDB;}
@@ -150,9 +157,9 @@ void sqlquery::close_dbfile(void)
 	m_basepath.clear();
 }
 
-QString sqlquery::read_configtbl(const char *key, sqlite3_stmt *stmt)
+tStr sqlquery::read_configtbl(const char *key, sqlite3_stmt *stmt)
 {
-	QString result = "";
+	tStr result = "";
 	if ((key == NULL)||(strlen(key) == 0)||(m_db == NULL)) return result;
 	int rc;
 	if (stmt == NULL)
@@ -171,21 +178,21 @@ QString sqlquery::read_configtbl(const char *key, sqlite3_stmt *stmt)
 	return result;
 }
 
-QStringList sqlquery::search_autocomplete(const QString& searchstr)
+tVecStr sqlquery::search_autocomplete(const char* searchstr)
 {
-	QStringList result;
+	tVecStr result;
 	int ctr = 0;
-	if (searchstr.toAscii().size() < 1) return result;
-	QString srchterm = process_searchterm_autocomplete(searchstr);
+	if ((searchstr == NULL)||(strlen(searchstr) < 1)) return result;
+	tStr srchterm = process_searchterm_autocomplete(searchstr);
 	sqlite3_reset(m_autocompstmt.get());
-	int rc = sqlite3_bind_text(m_autocompstmt.get(), 1, srchterm.toAscii().data(), srchterm.toAscii().size(), SQLITE_STATIC);
+	int rc = sqlite3_bind_text(m_autocompstmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_STATIC);
 	if (rc != SQLITE_OK) {printf("Err: %s\n", sqlite3_errmsg(m_db)); return result;}
 	do
 	{
 		rc = sqlite3_step(m_autocompstmt.get());
 		if (rc == SQLITE_ROW)
 		{
-			result.push_back(QString((const char*) sqlite3_column_text(m_autocompstmt.get(), 0)));
+			result.push_back(tStr((const char*) sqlite3_column_text(m_autocompstmt.get(), 0)));
 			if (ctr++ > 300) rc = SQLITE_DONE;
 		}
 	} while (rc == SQLITE_ROW);
@@ -198,17 +205,17 @@ QStringList sqlquery::search_autocomplete(const QString& searchstr)
 
 
 sqlqueryresultlist sqlquery::search(
-						QString searchstr,
+						tStr searchstr,
 						sqlquery::en_queryType querytype,
 						bool exactmatch)
 {
 	sqlqueryresultlist result;
 	int rc;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
-	if ((m_db == NULL)||(searchstr.isEmpty())||(m_basepath.isEmpty())) return result;
-	QString sqlqry, srchterm;
+	if ((m_db == NULL)||(searchstr.empty())||(m_basepath.empty())) return result;
+	tStr sqlqry, srchterm;
 	sqlqueryresultlist::en_resultType resultType = sqlqueryresultlist::sqlresultFULL;
-	srchterm = process_searchterm(searchstr, exactmatch);
+	srchterm = process_searchterm(searchstr.c_str(), exactmatch);
 	switch (querytype)
 	{
 		case sqlquerySYMBOL:
@@ -253,11 +260,11 @@ sqlqueryresultlist sqlquery::search(
 			return result;
 	}
 	tempstmt stmt;
-	rc = sqlite3_prepare_v2(m_db, sqlqry.toAscii().data(),
-									sqlqry.toAscii().size(),
+	rc = sqlite3_prepare_v2(m_db, sqlqry.c_str(),
+									sqlqry.size(),
 									&(stmt.m_stmt), NULL);
 	if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
-	rc = sqlite3_bind_text(stmt.get(), 1, srchterm.toAscii().data(), srchterm.toAscii().size(), SQLITE_TRANSIENT);
+	rc = sqlite3_bind_text(stmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_TRANSIENT);
 	if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
 	if (resultType == sqlqueryresultlist::sqlresultFULL) result = search_full(stmt.get());
 	else if (resultType == sqlqueryresultlist::sqlresultFILE_LINE) result = search_file_line(stmt.get());
@@ -265,13 +272,13 @@ sqlqueryresultlist sqlquery::search(
 	return result;
 }	
 
-QString sqlquery::process_searchterm(const QString& searchterm, const bool& exactmatch)
+tStr sqlquery::process_searchterm(const char* searchterm, const bool& exactmatch)
 {
-	QString srchterm, srchterm2;
+	tStr srchterm, srchterm2;
 	if (!exactmatch)
 	{
-		srchterm2 = add_escape_char(searchterm.toAscii().data(), '%', ';').c_str();
-		srchterm2 = add_escape_char( srchterm2.toAscii().data(), '_', ';').c_str();
+		srchterm2 = add_escape_char(searchterm,        '%', ';').c_str();
+		srchterm2 = add_escape_char( srchterm2.c_str(), '_', ';').c_str();
 		srchterm = "%";
 		srchterm += srchterm2;
 		srchterm += "%";
@@ -280,11 +287,11 @@ QString sqlquery::process_searchterm(const QString& searchterm, const bool& exac
 	return srchterm;
 }
 
-QString sqlquery::process_searchterm_autocomplete(const QString& searchterm)
+tStr sqlquery::process_searchterm_autocomplete(const char* searchterm)
 {
-	QString srchterm;//, srchterm2="%";
-	srchterm = add_escape_char(searchterm.toAscii().data(), '%', ';').c_str();
-	srchterm = add_escape_char(  srchterm.toAscii().data(), '_', ';').c_str();
+	tStr srchterm;//, srchterm2="%";
+	srchterm = add_escape_char(searchterm,         '%', ';').c_str();
+	srchterm = add_escape_char(  srchterm.c_str(), '_', ';').c_str();
 	srchterm += "%";
 	//srchterm2 += srchterm;
 	return srchterm;//2;
@@ -295,7 +302,7 @@ sqlqueryresultlist sqlquery::search_full(sqlite3_stmt* stmt)
 {
 	int rc;
 	sqlqueryresultlist result;
-	QString fp;
+	tStr fp;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
 	do
 	{
@@ -308,8 +315,8 @@ sqlqueryresultlist sqlquery::search_full(sqlite3_stmt* stmt)
 			fp            = (const char*) sqlite3_column_text(stmt, 2);
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 3);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 4);
-			item.filename = extract_filename(fp.toAscii().data());
-			if (fp[0] != QChar(DIRSEP))
+			item.filename = extract_filename(fp.c_str());
+			if (fp[0] != (char)DIRSEP)
 			{
 				item.filepath = m_basepath;
 				item.filepath += DIRSEP;
@@ -335,7 +342,7 @@ sqlqueryresultlist sqlquery::search_file_line(sqlite3_stmt* stmt)
 {
 	int rc;
 	sqlqueryresultlist result;
-	QString fp;
+	tStr fp;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
 	do
 	{
@@ -346,8 +353,8 @@ sqlqueryresultlist sqlquery::search_file_line(sqlite3_stmt* stmt)
 			fp            = (const char*) sqlite3_column_text(stmt, 0);
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 1);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 2);
-			item.filename = extract_filename(fp.toAscii().data());
-			if (fp[0] != QChar(DIRSEP))
+			item.filename = extract_filename(fp.c_str());
+			if (fp[0] != (char)DIRSEP)
 			{
 				item.filepath = m_basepath;
 				item.filepath += DIRSEP;
@@ -373,7 +380,7 @@ sqlqueryresultlist sqlquery::search_file_only(sqlite3_stmt* stmt)
 {
 	int rc;
 	sqlqueryresultlist result;
-	QString fp;
+	tStr fp;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
 	do
 	{
@@ -383,8 +390,8 @@ sqlqueryresultlist sqlquery::search_file_only(sqlite3_stmt* stmt)
 			sqlqueryresult item;
 			fp            = (const char*) sqlite3_column_text(stmt, 0);
 			item.linenum  = "1";
-			item.filename = extract_filename(fp.toAscii().data());
-			if (fp[0] != QChar(DIRSEP))
+			item.filename = extract_filename(fp.c_str());
+			if (fp[0] != (char)DIRSEP)
 			{
 				item.filepath = m_basepath;
 				item.filepath += DIRSEP;

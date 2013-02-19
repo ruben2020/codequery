@@ -3,6 +3,7 @@ project(CodeQueryGUI)
 
 #ADD_DEFINITIONS( -Wall )
 
+
   # with SET() command you can change variables or define new ones
   # here we define CODEQUERY_SRCS variable that contains a list of all .cpp files
   # note that we don't need \ at the end of line
@@ -102,8 +103,8 @@ translations/codequery_zh-CHT.ts
   INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
   INCLUDE_DIRECTORIES( "." )
   INCLUDE_DIRECTORIES( "./translations" )
+  INCLUDE_DIRECTORIES( "../querylib" )
   INCLUDE_DIRECTORIES( "../makedb" )
-  INCLUDE_DIRECTORIES( "../cli" )
 
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
   target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} sqlquery_lib small_lib)

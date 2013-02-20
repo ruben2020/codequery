@@ -61,14 +61,16 @@ void mainwindow::init(void)
 	setup_fileviewer();
 	setup_listhandler();
 	setup_searchhandler();
-	connect(m_searchhandler, SIGNAL(searchresults(sqlqueryresultlist)),
-			m_listhandler, SLOT(populateList(sqlqueryresultlist)));
+	connect(m_searchhandler, SIGNAL(searchresults(sqlqueryresultlist, int)),
+			m_listhandler, SLOT(populateList(sqlqueryresultlist, int)));
 	connect(m_searchhandler, SIGNAL(DBreset()),
 			m_fileviewer, SLOT(clearList()));
 	connect(m_searchhandler, SIGNAL(DBreset()),
 			m_listhandler, SLOT(clearList()));
 	connect(m_listhandler, SIGNAL(openFile(QString, QString)),
 			m_fileviewer, SLOT(fileToBeOpened(QString, QString)));
+	connect(m_listhandler, SIGNAL(listRowNumUpdated(int)),
+			m_searchhandler, SLOT(updateListItemRowNum(int)));
 	connect(m_fileviewer, SIGNAL(searchCopiedText()),
 			m_searchhandler, SLOT(newSearchText()));
 	connect(m_fileviewer, SIGNAL(searchCopiedTextSymbolOnly()),
@@ -122,9 +124,10 @@ void mainwindow::setup_searchhandler(void)
 	m_searchhandler->m_pushButtonClipSearch = ui->pushButtonClipSearch;
 	m_searchhandler->m_comboBoxSearch = ui->comboBoxSearch;
 	m_searchhandler->m_comboBoxQueryType = ui->comboBoxQueryType;
+	m_searchhandler->m_pushButtonSearchPrev = ui->pushButtonSearchPrev;
+	m_searchhandler->m_pushButtonSearchNext = ui->pushButtonSearchNext;
 	m_searchhandler->init();
 }
-
 
 void mainwindow::LanguageTriggered(bool checked)
 {

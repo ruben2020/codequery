@@ -56,7 +56,7 @@ void listhandler::init(void)
 	m_sqlist.result_type = sqlqueryresultlist::sqlresultERROR;
 }
 
-void listhandler::populateList(sqlqueryresultlist resultlist)
+void listhandler::populateList(sqlqueryresultlist resultlist, int selectitem)
 {
 	bool headersChanged = (m_sqlist.result_type != resultlist.result_type);
 	m_sqlist = resultlist;
@@ -68,13 +68,15 @@ void listhandler::populateList(sqlqueryresultlist resultlist)
 	resizeColumns();
 	QApplication::restoreOverrideCursor();
 	m_noclick = false;
-	m_treeWidgetSearchResults->setCurrentItem(m_treeWidgetSearchResults->topLevelItem(0));
+	m_treeWidgetSearchResults->setCurrentItem(m_treeWidgetSearchResults->topLevelItem(selectitem));
+	emit listRowNumUpdated(selectitem);
 }
 
 void listhandler::listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * previous)
 {
 	if (current == NULL) return;
 	if (m_noclick) return;
+	emit listRowNumUpdated(m_treeWidgetSearchResults->indexOfTopLevelItem(current));
 	emit openFile(str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].filepath),
 			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum));
 }

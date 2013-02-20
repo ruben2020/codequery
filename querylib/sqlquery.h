@@ -96,7 +96,7 @@ enum en_queryType
 		sqlresultCHILDCLASS,
 		sqlresultPARENTCLASS,
 		sqlresultAUTOCOMPLETE,
-		sqlresultDEFAULT
+		sqlresultDEFAULT = 100
 	};
 enum en_filereadstatus
 	{

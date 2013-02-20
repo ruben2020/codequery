@@ -27,6 +27,23 @@
 
 class mainwindow;
 
+class searchitem
+{
+public:
+	searchitem();
+	~searchitem(){}
+	searchitem(const searchitem& otheritem);
+	searchitem& operator=(const searchitem& otheritem);
+
+	// return value: 0=same, 1=completely different, 2=only linenum changed
+	int compare(const searchitem& otheritem);
+
+	QString searchterm;
+	bool exactmatch;
+	sqlquery::en_queryType qtype;
+	int rownum;
+};
+
 class searchhandler : public QObject
 {
   Q_OBJECT
@@ -38,6 +55,8 @@ QCheckBox *m_checkBoxAutoComplete;
 QCheckBox *m_checkBoxExactMatch;
 QPushButton *m_pushButtonSearch;
 QPushButton *m_pushButtonClipSearch;
+QPushButton *m_pushButtonSearchPrev;
+QPushButton *m_pushButtonSearchNext;
 QComboBox *m_comboBoxSearch;
 QComboBox *m_comboBoxQueryType;
 QCompleter *m_completer;
@@ -46,13 +65,23 @@ searchhandler(mainwindow* pmw);
 ~searchhandler();
 void init(void);
 void perform_open_db(void);
-void perform_search(QString searchtxt, sqlquery::en_queryType qrytyp = sqlquery::sqlresultDEFAULT);
+void perform_search(QString searchtxt,
+			bool exactmatch,
+			sqlquery::en_queryType qrytyp = sqlquery::sqlresultDEFAULT,
+			int selectitem = 0,
+			bool updSearchMemory = true);
 void updateSearchHistory(const QString& searchtxt);
+void addToSearchMemory(void);
+void goForwardInSearchMemory(void);
+void goBackInSearchMemory(void);
+void restoreSearchMemoryItem(void);
 void retranslateUi(void);
 
 public slots:
 void OpenDB_ButtonClick(bool checked);
 void Search_ButtonClick(bool checked);
+void PrevSearch_ButtonClick(bool checked);
+void NextSearch_ButtonClick(bool checked);
 void ClipSearch_ButtonClick(bool checked);
 void Search_EnterKeyPressed();
 void searchTextEdited(const QString& searchtxt);
@@ -60,9 +89,10 @@ void newSearchText();
 void newSearchTextSymbolOnly();
 void autoCompleteStateChanged(int state);
 void OpenDB_indexChanged(const int& idx);
+void updateListItemRowNum(const int& row);
 
 signals:
-void searchresults(sqlqueryresultlist resultlist);
+void searchresults(sqlqueryresultlist resultlist, int selectitem);
 void updateStatus(const QString & message, int timeout = 0);
 void DBreset();
 
@@ -71,6 +101,8 @@ mainwindow *mw;
 sqlquery* sq;
 QStringListModel m_srchStrLstModel;
 QString sqlerrormsg(sqlquery::en_filereadstatus status);
+QVector<searchitem> m_searchMemoryList;
+QVector<searchitem>::iterator m_iter;
 
 };
 

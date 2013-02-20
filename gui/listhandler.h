@@ -45,12 +45,13 @@ void resizeColumns(void);
 void retranslateUi(void);
 
 public slots:
-void populateList(sqlqueryresultlist resultlist);
+void populateList(sqlqueryresultlist resultlist, int selectitem);
 void listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * previous);
 void clearList();
 
 signals:
 void openFile(QString file, QString linenum);
+void listRowNumUpdated(int row);
 
 private:
 mainwindow *mw;

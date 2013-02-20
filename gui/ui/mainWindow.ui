@@ -86,6 +86,56 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
+         <widget class="QPushButton" name="pushButtonSearchPrev">
+          <property name="toolTip">
+           <string>Previous search term</string>
+          </property>
+          <property name="statusTip">
+           <string>Previous search term</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../codequery.qrc">
+            <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pushButtonSearchNext">
+          <property name="toolTip">
+           <string>Next search term</string>
+          </property>
+          <property name="statusTip">
+           <string>Next search term</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../codequery.qrc">
+            <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxSearch">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::NoInsert</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="pushButtonSearch">
           <property name="toolTip">
            <string>Search</string>
@@ -120,18 +170,22 @@
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="comboBoxSearch">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <widget class="QPushButton" name="pushButtonGraph">
+          <property name="enabled">
+           <bool>false</bool>
           </property>
-          <property name="editable">
-           <bool>true</bool>
+          <property name="toolTip">
+           <string>Draw graph</string>
           </property>
-          <property name="insertPolicy">
-           <enum>QComboBox::NoInsert</enum>
+          <property name="statusTip">
+           <string>Draw graph</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="../codequery.qrc">
+            <normaloff>:/mainwindow/images/Graph.png</normaloff>:/mainwindow/images/Graph.png</iconset>
           </property>
          </widget>
         </item>
@@ -397,6 +451,26 @@
    <header>CodeEditor.h</header>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>pushButtonOpenDB</tabstop>
+  <tabstop>comboBoxDB</tabstop>
+  <tabstop>checkBoxAutoComplete</tabstop>
+  <tabstop>checkBoxExactMatch</tabstop>
+  <tabstop>pushButtonSearchPrev</tabstop>
+  <tabstop>pushButtonSearchNext</tabstop>
+  <tabstop>comboBoxSearch</tabstop>
+  <tabstop>pushButtonSearch</tabstop>
+  <tabstop>pushButtonClipSearch</tabstop>
+  <tabstop>comboBoxQueryType</tabstop>
+  <tabstop>treeWidgetSearchResults</tabstop>
+  <tabstop>pushButtonPrev</tabstop>
+  <tabstop>pushButtonNext</tabstop>
+  <tabstop>pushButtonOpenInEditor</tabstop>
+  <tabstop>pushButtonGoToLine</tabstop>
+  <tabstop>pushButtonPaste</tabstop>
+  <tabstop>checkBoxSymbolOnly</tabstop>
+  <tabstop>textEditSource</tabstop>
+ </tabstops>
  <resources>
   <include location="../codequery.qrc"/>
  </resources>

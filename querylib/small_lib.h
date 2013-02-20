@@ -41,6 +41,8 @@ typedef std::vector<std::string> tVecStr;
 
 
 std::vector<std::string> splitstr(const char* inpstr, const char delim);
+int replacechar(std::string::iterator i1, std::string::iterator i2,
+			const char o, const char r);
 const char* chomp(char* str);
 std::string add_escape_char(std::string ori, char chr2escp, char escpchr);
 std::string add_escape_char(const char* oristr, char chr2escp, char escpchr);

@@ -1,4 +1,4 @@
-
+	
 /*
  * CodeQuery
  * Copyright (C) 2013 ruben2020 https://github.com/ruben2020/
@@ -22,6 +22,43 @@
 #include "std2qt.h"
 #include "searchhandler.h"
 
+searchitem::searchitem()
+:exactmatch(false)
+,qtype(sqlquery::sqlquerySYMBOL)
+,rownum(1)
+{
+}
+
+searchitem::searchitem(const searchitem& otheritem)
+{
+	searchterm = otheritem.searchterm;
+	exactmatch = otheritem.exactmatch;
+	qtype = otheritem.qtype;
+	rownum = otheritem.rownum;
+}
+
+searchitem& searchitem::operator=(const searchitem& otheritem)
+{
+	if (&otheritem != this)
+	{
+		searchterm = otheritem.searchterm;
+		exactmatch = otheritem.exactmatch;
+		qtype = otheritem.qtype;
+		rownum = otheritem.rownum;
+	}
+	return *this;
+}
+
+// return value: 0=same, 1=completely different, 2=only linenum changed
+int searchitem::compare(const searchitem& otheritem)
+{
+	if ((searchterm.compare(otheritem.searchterm) != 0) ||
+		(exactmatch != otheritem.exactmatch) ||
+		(qtype != otheritem.qtype)) return 1;
+	if (rownum != otheritem.rownum) return 2;
+}
+
+
 searchhandler::searchhandler(mainwindow* pmw)
 :mw(pmw)
 ,sq(new sqlquery)
@@ -35,6 +72,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_srchStrLstModel(QStringList())
 {
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
+	m_iter = m_searchMemoryList.begin();
 }
 
 searchhandler::~searchhandler()
@@ -51,7 +89,8 @@ void searchhandler::OpenDB_ButtonClick(bool checked)
 
 void searchhandler::Search_ButtonClick(bool checked)
 {
-	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data());
+	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data(),
+					m_checkBoxExactMatch->isChecked());
 }
 
 void searchhandler::ClipSearch_ButtonClick(bool checked)
@@ -59,9 +98,20 @@ void searchhandler::ClipSearch_ButtonClick(bool checked)
 	if (!checked) newSearchText();
 }
 
+void searchhandler::PrevSearch_ButtonClick(bool checked)
+{
+	if (!checked) goBackInSearchMemory();
+}
+
+void searchhandler::NextSearch_ButtonClick(bool checked)
+{
+	if (!checked) goForwardInSearchMemory();
+}
+
 void searchhandler::Search_EnterKeyPressed()
 {
-	perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data());
+	perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data(),
+			m_checkBoxExactMatch->isChecked());
 }
 
 void searchhandler::searchTextEdited(const QString& searchtxt)
@@ -88,14 +138,14 @@ void searchhandler::newSearchText()
 {
 	QString txt = (QApplication::clipboard())->text();
 	//m_comboBoxSearch->lineEdit()->setText(txt);
-	perform_search(txt);
+	perform_search(txt,m_checkBoxExactMatch->isChecked());
 }
 
 void searchhandler::newSearchTextSymbolOnly()
 {
 	QString txt = (QApplication::clipboard())->text();
 	//m_comboBoxSearch->lineEdit()->setText(txt);
-	perform_search(txt, sqlquery::sqlquerySYMBOL);
+	perform_search(txt, m_checkBoxExactMatch->isChecked(), sqlquery::sqlquerySYMBOL);
 }
 
 void searchhandler::init(void)
@@ -105,6 +155,8 @@ void searchhandler::init(void)
 	m_comboBoxSearch->lineEdit()->setCompleter(m_completer);
 	m_comboBoxSearch->setInsertPolicy(QComboBox::NoInsert);
 	retranslateUi();
+	m_pushButtonSearchPrev->setEnabled(false);
+	m_pushButtonSearchNext->setEnabled(false);
 	connect(m_pushButtonOpenDB, SIGNAL(clicked(bool)),
 			this, SLOT(OpenDB_ButtonClick(bool)));
 	connect(m_pushButtonSearch, SIGNAL(clicked(bool)),
@@ -119,6 +171,10 @@ void searchhandler::init(void)
 			this, SLOT(OpenDB_indexChanged(int)));
 	connect(m_checkBoxAutoComplete, SIGNAL(stateChanged(int)),
 			this, SLOT(autoCompleteStateChanged(int)));
+	connect(m_pushButtonSearchPrev, SIGNAL(clicked(bool)),
+			this, SLOT(PrevSearch_ButtonClick(bool)));
+	connect(m_pushButtonSearchNext, SIGNAL(clicked(bool)),
+			this, SLOT(NextSearch_ButtonClick(bool)));
 }
 
 void searchhandler::retranslateUi(void)
@@ -204,12 +260,20 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 		QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 		m_comboBoxSearch->clear();
 		m_comboBoxSearch->lineEdit()->clear();
+		m_searchMemoryList.clear();
+		m_iter = m_searchMemoryList.begin();
+		m_pushButtonSearchPrev->setEnabled(false);
+		m_pushButtonSearchNext->setEnabled(false);
 		emit DBreset();
 		QApplication::restoreOverrideCursor();
 	}
 }
 
-void searchhandler::perform_search(QString searchtxt, sqlquery::en_queryType qrytyp)
+void searchhandler::perform_search(QString searchtxt,
+			bool exactmatch,
+			sqlquery::en_queryType qrytyp,
+			int selectitem,
+			bool updSearchMemory)
 {
 	if (sq->isDBOpen() == false) return;
 	if (searchtxt.isEmpty()) return;
@@ -219,7 +283,7 @@ void searchhandler::perform_search(QString searchtxt, sqlquery::en_queryType qry
 	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
 		(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
 	sqlresultlist = sq->search(searchtxt.toAscii().data(),
-			querytype, m_checkBoxExactMatch->isChecked());
+				querytype, exactmatch);
 	QApplication::restoreOverrideCursor();
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
@@ -230,13 +294,62 @@ void searchhandler::perform_search(QString searchtxt, sqlquery::en_queryType qry
 	else
 	{
 		updateSearchHistory(searchtxt);
-		emit searchresults(sqlresultlist);
+		if (updSearchMemory) addToSearchMemory();
+		emit searchresults(sqlresultlist, selectitem);
 		QString str;
 		str = QString("%1").arg(sqlresultlist.resultlist.size());
 		str += " ";
 		str += tr("results found");
 		emit updateStatus(str, 5000);
 	}
+}
+
+void searchhandler::addToSearchMemory(void)
+{
+	searchitem item;
+	item.searchterm = m_comboBoxSearch->lineEdit()->text();
+	item.exactmatch = m_checkBoxExactMatch->isChecked();
+	item.qtype = (sqlquery::en_queryType)
+		m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
+	m_searchMemoryList.push_back(item);
+	if (m_searchMemoryList.size() > 20) m_searchMemoryList.erase(m_searchMemoryList.begin());
+	m_iter = m_searchMemoryList.end() - 1;
+	m_pushButtonSearchPrev->setEnabled(m_searchMemoryList.isEmpty() == false);
+	m_pushButtonSearchNext->setEnabled(false);
+}
+
+void searchhandler::goForwardInSearchMemory(void)
+{
+	if (m_searchMemoryList.size() <= 1) return;
+	if (m_iter == m_searchMemoryList.end() - 1) return;
+	m_iter++;
+	m_pushButtonSearchPrev->setEnabled(m_searchMemoryList.isEmpty() == false);
+	m_pushButtonSearchNext->setEnabled(m_iter != m_searchMemoryList.end() - 1);
+	restoreSearchMemoryItem();
+}
+
+void searchhandler::goBackInSearchMemory(void)
+{
+	if (m_searchMemoryList.size() <= 1) return;
+	if (m_iter == m_searchMemoryList.begin()) return;
+	m_iter--;
+	m_pushButtonSearchPrev->setEnabled(m_iter != m_searchMemoryList.begin());
+	m_pushButtonSearchNext->setEnabled(m_searchMemoryList.isEmpty() == false);
+	restoreSearchMemoryItem();
+}
+
+void searchhandler::restoreSearchMemoryItem(void)
+{
+	perform_search(m_iter->searchterm,
+			m_iter->exactmatch,
+			m_iter->qtype,
+			m_iter->rownum,
+			false);
+}
+
+void searchhandler::updateListItemRowNum(const int& row)
+{
+	if (m_searchMemoryList.isEmpty() == false) m_iter->rownum = row;
 }
 
 void searchhandler::updateSearchHistory(const QString& searchtxt)

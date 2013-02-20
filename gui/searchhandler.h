@@ -71,7 +71,7 @@ void perform_search(QString searchtxt,
 			int selectitem = 0,
 			bool updSearchMemory = true);
 void updateSearchHistory(const QString& searchtxt);
-void addToSearchMemory(void);
+void addToSearchMemory(const QString& searchtxt);
 void goForwardInSearchMemory(void);
 void goBackInSearchMemory(void);
 void restoreSearchMemoryItem(void);

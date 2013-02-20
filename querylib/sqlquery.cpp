@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include <algorithm>
+//#include <algorithm>
 #include <sqlite3.h>
 #include "small_lib.h"
 #include "sqlquery.h"
@@ -291,8 +291,8 @@ tStr sqlquery::process_searchterm(const char* searchterm, const bool& exactmatch
 		srchterm = "%";
 		srchterm += srchterm2;
 		srchterm += "%";
-		std::replace( srchterm.begin(), srchterm.end(), '*', '%');
-		std::replace( srchterm.begin(), srchterm.end(), '?', '_');
+		replacechar( srchterm.begin(), srchterm.end(), '*', '%');
+		replacechar( srchterm.begin(), srchterm.end(), '?', '_');
 	}
 	else srchterm = searchterm;
 	return srchterm;

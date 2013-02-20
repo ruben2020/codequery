@@ -48,6 +48,20 @@ std::vector<std::string> splitstr(const char* inpstr, const char delim)
 	return vecstr;
 }
 
+int replacechar(std::string::iterator i1, std::string::iterator i2, const char o, const char r)
+{
+	int count = 0;
+	for(std::string::iterator i = i1; i != i2; ++i)
+	{
+		if (*i == o)
+		{
+			*i = r;
+			count++;
+		}
+	}
+	return count;
+}
+
 const char* chomp(char* str)
 {
 	if ((str != NULL)&&(strlen(str) > 0))

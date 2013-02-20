@@ -89,7 +89,7 @@ void searchhandler::OpenDB_ButtonClick(bool checked)
 
 void searchhandler::Search_ButtonClick(bool checked)
 {
-	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data(),
+	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().trimmed().toAscii().data(),
 					m_checkBoxExactMatch->isChecked());
 }
 
@@ -110,7 +110,7 @@ void searchhandler::NextSearch_ButtonClick(bool checked)
 
 void searchhandler::Search_EnterKeyPressed()
 {
-	perform_search(m_comboBoxSearch->lineEdit()->text().toAscii().data(),
+	perform_search(m_comboBoxSearch->lineEdit()->text().trimmed().toAscii().data(),
 			m_checkBoxExactMatch->isChecked());
 }
 
@@ -126,7 +126,7 @@ void searchhandler::autoCompleteStateChanged(int state)
 {
 	if (state == Qt::Checked)
 	{
-		m_srchStrLstModel.setStringList(QStringList(m_comboBoxSearch->lineEdit()->text()));
+		m_srchStrLstModel.setStringList(QStringList(m_comboBoxSearch->lineEdit()->text().trimmed()));
 	}
 	else if (state == Qt::Unchecked)
 	{
@@ -294,7 +294,7 @@ void searchhandler::perform_search(QString searchtxt,
 	else
 	{
 		updateSearchHistory(searchtxt);
-		if (updSearchMemory) addToSearchMemory();
+		if (updSearchMemory) addToSearchMemory(searchtxt);
 		emit searchresults(sqlresultlist, selectitem);
 		QString str;
 		str = QString("%1").arg(sqlresultlist.resultlist.size());
@@ -304,10 +304,10 @@ void searchhandler::perform_search(QString searchtxt,
 	}
 }
 
-void searchhandler::addToSearchMemory(void)
+void searchhandler::addToSearchMemory(const QString& searchtxt)
 {
 	searchitem item;
-	item.searchterm = m_comboBoxSearch->lineEdit()->text();
+	item.searchterm = searchtxt;
 	item.exactmatch = m_checkBoxExactMatch->isChecked();
 	item.qtype = (sqlquery::en_queryType)
 		m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();

@@ -11,7 +11,7 @@ This HOWTO guide applies to Linux only
 cd ~/projects/myproject/src
 ```
 
-2. Create a cscope.files file with all the C/C++ source files listed in it.
+2. Create a cscope.files file with all the C/C++ source files listed in it. (optional step for C/C++, as cscope and ctags can autodetect files)
 ```bash
 find -iname "*.c"    > ./cscope.files
 find -iname "*.cpp" >> ./cscope.files
@@ -26,9 +26,10 @@ find -iname "*.hxx" >> ./cscope.files
 cscope -cbR
 ```
 
-4. Create a ctags database like this. (Only for C++ and Java)
+4. Create a ctags database like this. The first line if cscope.files was created, otherwise the second line. (Only for C++ and Java)
 ```bash
 ctags --fields=+i -n -R -L ./cscope.files
+ctags --fields=+i -n -R
 ```
 
 5. Run cqmakedb to create a CodeQuery database out of the cscope and ctags databases, like this:
@@ -36,7 +37,7 @@ ctags --fields=+i -n -R -L ./cscope.files
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 ```
 
-6. Open myproject.db using the CodeQuery GUI tool by running:
+6. Open myproject.db using the CodeQuery GUI tool by running the following. Wild card search (* and ?) supported if Exact Match is switched off.
 ```bash
 codequery
 ```
@@ -72,7 +73,7 @@ ctags --fields=+i -n -R -L ./cscope.files
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 ```
 
-6. Open myproject.db using the CodeQuery GUI tool by running:
+6. Open myproject.db using the CodeQuery GUI tool by running the following. Wild card search (* and ?) supported if Exact Match is switched off.
 ```bash
 codequery
 ```

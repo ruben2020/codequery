@@ -10,7 +10,6 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
 
-
 ## How is it different from cscope and ctags? What are the advantages?
 
 Both cscope and ctags can do symbol lookup and identify functions, macros, classes and structs.
@@ -26,8 +25,9 @@ CodeQuery is a project that attempts to combine the features available from both
 * Combines the best of both cscope and ctags
 * Faster due to the use of sqlite for the CodeQuery database
 * Cross-platform GUI tool
-* Auto-complete feature
-* case-insensitive, partial keyword search, or exact match search
+* Fast auto-completion of search term
+* Case-insensitive, partial keyword search - wildcard search supported * and ?
+* Exact match search
 * File viewer with syntax highlighting
 * Ability to open viewed file in an external editor or IDE.
 
@@ -51,7 +51,9 @@ CodeQuery is a project that attempts to combine the features available from both
 
 It's freeware and free open source software.
 
-It's licensed under the [GNU GPL v3](http://www.gnu.org/licenses/gpl.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+This software is licensed under the [GNU GPL v3](http://www.gnu.org/licenses/gpl.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+
+Files under the `querylib` directory are licensed under the [MIT license](http://opensource.org/licenses/MIT). See [QueryLib README](querylib/README.txt). This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without license restrictions. It's only dependency is on sqlite3.
 
 
 ## Can I use it in a commercial environment without purchasing, for an unlimited time?
@@ -101,7 +103,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 ## List of Contributors
 
-ruben2020
+ruben2020   
 (More welcomed)
 
 
@@ -110,5 +112,19 @@ ruben2020
 ![CodeQuery screenshot](doc/screenshot.png)
 
 
+## What future features are planned?
+
+* Visualization of call graphs and class inheritance
+
+
+## Credits
+
+A big thank you to the people behind the following projects:    
+[cscope](http://cscope.sourceforge.net/)   
+[Exuberant ctags](http://ctags.sourceforge.net/)   
+[sqlite3](http://www.sqlite.org/)   
+[CMake](http://www.cmake.org/)   
+[Qt open source](http://qt-project.org/)   
+[optlist](http://michael.dipperstein.com/optlist/index.html)   
 
 

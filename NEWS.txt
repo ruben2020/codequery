@@ -1,4 +1,7 @@
 
+Version 0.03 - Feb 22, 2013
+Added wildcard search * and ?. Added previous and next history browsing for search.
+
 Version 0.02 - Feb 19, 2013
 Fixed external editor file path recognition bug for Windows (could not recognize spaces e.g. C:\Program Files).
 

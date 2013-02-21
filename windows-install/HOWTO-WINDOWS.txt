@@ -11,7 +11,8 @@ cd c:\projects\myproject\src
 
 
 2. Create a cscope.files file with all the C/C++ source
-   files listed in it.
+   files listed in it. (optional step for C/C++, as 
+   cscope and ctags can autodetect files)
 
 dir /b/a/s *.c    > cscope.files   
 dir /b/a/s *.cpp >> cscope.files   
@@ -26,9 +27,10 @@ dir /b/a/s *.hxx >> cscope.files
 cscope -cbR
 
 
-4. Create a ctags database like this:
+4. Create a ctags database like this. The first line if cscope.files was created, otherwise the second line. (Only for C++ and Java)
 
 ctags --fields=+i -n -R -L cscope.files
+ctags --fields=+i -n -R
 
 
 5. Run cqmakedb to create a CodeQuery database out of the
@@ -37,7 +39,7 @@ ctags --fields=+i -n -R -L cscope.files
 cqmakedb -s .\myproject.db -c cscope.out -t tags -p
 
 
-6. Open myproject.db using the CodeQuery GUI tool.
+6. Open myproject.db using the CodeQuery GUI tool. Wild card search (* and ?) supported if Exact Match is switched off.
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
 
@@ -74,6 +76,7 @@ ctags --fields=+i -n -R -L cscope.files
 cqmakedb -s .\myproject.db -c cscope.out -t tags -p
 
 
-6. Open myproject.db using the CodeQuery GUI tool.
+6. Open myproject.db using the CodeQuery GUI tool. Wild card search (* and ?) supported if Exact Match is switched off.
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
+

@@ -19,3 +19,11 @@
 # Ignore the following directories
 build/
 bin/
+
+# Ignore cscope and ctags files, and our db files
+cscope.files
+cscope.out
+tags
+*.db
+
+

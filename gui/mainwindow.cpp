@@ -126,6 +126,7 @@ void mainwindow::setup_searchhandler(void)
 	m_searchhandler->m_comboBoxQueryType = ui->comboBoxQueryType;
 	m_searchhandler->m_pushButtonSearchPrev = ui->pushButtonSearchPrev;
 	m_searchhandler->m_pushButtonSearchNext = ui->pushButtonSearchNext;
+	m_searchhandler->m_pushButtonGraph = ui->pushButtonGraph;
 	m_searchhandler->init();
 }
 

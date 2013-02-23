@@ -23,7 +23,7 @@
 #define _SEARCHHANDLER_H
 
 #include <QtGui>
-#include "sqlquery.h"
+#include "sqlqueryadv.h"
 
 class mainwindow;
 
@@ -59,6 +59,7 @@ QPushButton *m_pushButtonSearchPrev;
 QPushButton *m_pushButtonSearchNext;
 QComboBox *m_comboBoxSearch;
 QComboBox *m_comboBoxQueryType;
+QPushButton *m_pushButtonGraph;
 QCompleter *m_completer;
 
 searchhandler(mainwindow* pmw);
@@ -83,12 +84,14 @@ void Search_ButtonClick(bool checked);
 void PrevSearch_ButtonClick(bool checked);
 void NextSearch_ButtonClick(bool checked);
 void ClipSearch_ButtonClick(bool checked);
+void Graph_ButtonClick(bool checked);
 void Search_EnterKeyPressed();
 void searchTextEdited(const QString& searchtxt);
 void newSearchText();
 void newSearchTextSymbolOnly();
 void autoCompleteStateChanged(int state);
 void OpenDB_indexChanged(const int& idx);
+void QueryType_indexChanged(const int& idx);
 void updateListItemRowNum(const int& row);
 
 signals:
@@ -98,7 +101,7 @@ void DBreset();
 
 private:
 mainwindow *mw;
-sqlquery* sq;
+sqlqueryadv* sq;
 QStringListModel m_srchStrLstModel;
 QString sqlerrormsg(sqlquery::en_filereadstatus status);
 QVector<searchitem> m_searchMemoryList;

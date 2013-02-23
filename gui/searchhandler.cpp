@@ -20,6 +20,7 @@
 
 
 #include "std2qt.h"
+#include "graphdialog.h"
 #include "searchhandler.h"
 
 searchitem::searchitem()
@@ -61,7 +62,7 @@ int searchitem::compare(const searchitem& otheritem)
 
 searchhandler::searchhandler(mainwindow* pmw)
 :mw(pmw)
-,sq(new sqlquery)
+,sq(new sqlqueryadv)
 ,m_pushButtonOpenDB(NULL)
 ,m_comboBoxDB(NULL)
 ,m_checkBoxAutoComplete(NULL)
@@ -96,6 +97,22 @@ void searchhandler::Search_ButtonClick(bool checked)
 void searchhandler::ClipSearch_ButtonClick(bool checked)
 {
 	if (!checked) newSearchText();
+}
+
+void searchhandler::Graph_ButtonClick(bool checked)
+{
+	if (!checked)
+	{
+		QString grpxml, grpdot;
+		bool res;
+		res = sq->search_funcgraph(m_comboBoxSearch->lineEdit()->text().trimmed().toAscii().data(),
+				m_checkBoxExactMatch->isChecked(),
+				grpxml, grpdot);
+		if (!res) return;
+		cqDialogGraph cqdg((QWidget*)mw);
+		cqdg.setupGraphFromXML(grpxml, grpdot, tr("Function Call Graph"));
+		cqdg.exec();
+	}
 }
 
 void searchhandler::PrevSearch_ButtonClick(bool checked)
@@ -163,12 +180,16 @@ void searchhandler::init(void)
 			this, SLOT(Search_ButtonClick(bool)));
 	connect(m_pushButtonClipSearch, SIGNAL(clicked(bool)),
 			this, SLOT(ClipSearch_ButtonClick(bool)));
+	connect(m_pushButtonGraph, SIGNAL(clicked(bool)),
+			this, SLOT(Graph_ButtonClick(bool)));
 	connect(m_comboBoxSearch->lineEdit(), SIGNAL(returnPressed()),
 			this, SLOT(Search_EnterKeyPressed()));
 	connect(m_comboBoxSearch->lineEdit(), SIGNAL(textEdited(QString)),
 			this, SLOT(searchTextEdited(QString)));
 	connect(m_comboBoxDB, SIGNAL(currentIndexChanged(int)),
 			this, SLOT(OpenDB_indexChanged(int)));
+	connect(m_comboBoxQueryType, SIGNAL(currentIndexChanged(int)),
+			this, SLOT(QueryType_indexChanged(int)));
 	connect(m_checkBoxAutoComplete, SIGNAL(stateChanged(int)),
 			this, SLOT(autoCompleteStateChanged(int)));
 	connect(m_pushButtonSearchPrev, SIGNAL(clicked(bool)),
@@ -266,6 +287,21 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 		m_pushButtonSearchNext->setEnabled(false);
 		emit DBreset();
 		QApplication::restoreOverrideCursor();
+	}
+}
+
+void searchhandler::QueryType_indexChanged(const int& idx)
+{
+	switch(idx)
+	{
+		case 1: // function or macro
+		case 3: // functions calling this function
+		case 4: // functions called by this function
+			m_pushButtonGraph->setEnabled(true);
+			break;
+		default:
+			m_pushButtonGraph->setEnabled(false);
+			break;
 	}
 }
 

@@ -122,6 +122,11 @@ ruben2020
 
 ![CodeQuery screenshot](doc/screenshot.png)
 
+## What does the visualization look like?
+
+Here's a function call graph based on the search term of "updateFilePathLabel":    
+![Visualization screenshot](doc/screenshot2.png)
+
 
 ## Credits
 

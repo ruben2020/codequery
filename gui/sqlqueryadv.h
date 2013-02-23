@@ -35,6 +35,9 @@ public:
 	~sqlqueryadv();
 
 bool search_funcgraph(QString searchstr, bool exactmatch, QString& xmlout, QString& dotout);
+bool search_classinheritgraph(QString searchstr, bool exactmatch, QString& xmlout, QString& dotout);
+void unique_symnames(sqlqueryresultlist& res);
+void remove_symname(sqlqueryresultlist& res, tStr name);
 
 };
 

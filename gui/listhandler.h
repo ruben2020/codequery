@@ -48,10 +48,12 @@ public slots:
 void populateList(sqlqueryresultlist resultlist, int selectitem);
 void listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * previous);
 void clearList();
+void requestToProvideResultCurrentListItemSymbolName();
 
 signals:
 void openFile(QString file, QString linenum);
 void listRowNumUpdated(int row);
+void sendResultCurrentListItemSymbolName(const QString symName);
 
 private:
 mainwindow *mw;

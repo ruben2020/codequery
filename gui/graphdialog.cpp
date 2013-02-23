@@ -57,7 +57,6 @@ void cqDialogGraph::setupGraphFromXML(QString grpxml, QString grpdot, QString de
 	m_img = sg.convertToImage(grpxml);
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
-	//dialog_ui->labelGraph->adjustSize();
 	dialog_ui->labelDesc->setText(desc);
 }
 
@@ -73,24 +72,22 @@ void cqDialogGraph::zoomin()
 
 void cqDialogGraph::savetoimagefile()
 {
+	QString filetype = tr("Images");
+	filetype += " (*.png *.jpg *.bmp *.tiff)";
 	QString fileName =
 	QFileDialog::getSaveFileName( this, tr("Export Image"),
 					QDir::currentPath(),
-					tr("Windows Bitmap ( *.bmp);;").
-                                      append( tr("Joint Photographic Experts Group (*.jpg);;")).
-                                      append( tr("Joint Photographic Experts Group (*.jpeg);;")).
-                                      append( tr("Portable Network Graphics( *.png);;")).
-                                      append( tr("Tagged Image File Format( *.tiff)")));
+					filetype);
 	if (fileName.isEmpty()) return;
+
 	QMessageBox msgBox(this);
 	msgBox.setIcon(QMessageBox::Warning);
 	msgBox.setStandardButtons(QMessageBox::Ok);
 	QImageWriter writer( fileName);
-	if ( writer.canWrite() && writer.write( m_img)) {/* ok */;}
-	else
+	if ((writer.canWrite() && writer.write(m_img)) == false)
 	{
 		msgBox.setText(tr("File could not be saved!"));
-			msgBox.exec();
+		msgBox.exec();
 	}
 }
 
@@ -99,11 +96,19 @@ void cqDialogGraph::savetodotfile()
 	QString fileName =
 	QFileDialog::getSaveFileName( this, tr("Export DOT file"),
 					QDir::currentPath(),
-					tr("GraphViz DOT Files (*.dot)"));
+					"Graphviz DOT (*.dot)");
 	if (fileName.isEmpty()) return;
 
 	QFile outfile(fileName);
-	outfile.open(QIODevice::WriteOnly | QIODevice::Text);
+	QMessageBox msgBox(this);
+	msgBox.setIcon(QMessageBox::Warning);
+	msgBox.setStandardButtons(QMessageBox::Ok);
+	if (outfile.open(QIODevice::WriteOnly | QIODevice::Text) == false)
+	{
+		msgBox.setText(tr("File could not be saved!"));
+		msgBox.exec();
+		return;
+	}
 	QTextStream out(&outfile);
 	out << m_dot;
 	outfile.close();
@@ -120,9 +125,10 @@ void cqDialogGraph::scaleImage(double factor)
 
 void cqDialogGraph::adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
-     scrollBar->setValue(int(factor * scrollBar->value()
-                             + ((factor - 1) * scrollBar->pageStep()/2)));
+	int minim = scrollBar->minimum();
+	scrollBar->setValue((scrollBar->maximum() - minim)/2 + minim);
 }
+
 
 void cqDialogGraph::autoResizeChanged(int resizestate)
 {

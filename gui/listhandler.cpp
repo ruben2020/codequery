@@ -81,6 +81,17 @@ void listhandler::listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * p
 			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum));
 }
 
+void listhandler::requestToProvideResultCurrentListItemSymbolName()
+{
+	QString symName("");
+	if (m_treeWidgetSearchResults->topLevelItemCount() > 0)
+	{
+		QTreeWidgetItem* current = m_treeWidgetSearchResults->currentItem();
+		symName = str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].symname);
+	}
+	emit sendResultCurrentListItemSymbolName(symName);
+}
+
 void listhandler::updateList(void)
 {
 	if (m_sqlist.resultlist.empty()) return;

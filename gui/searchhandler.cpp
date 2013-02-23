@@ -71,6 +71,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_comboBoxSearch(NULL)
 ,m_comboBoxQueryType(NULL)
 ,m_srchStrLstModel(QStringList())
+,m_typeOfGraph(1)
 {
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
 	m_iter = m_searchMemoryList.begin();
@@ -103,15 +104,7 @@ void searchhandler::Graph_ButtonClick(bool checked)
 {
 	if (!checked)
 	{
-		QString grpxml, grpdot;
-		bool res;
-		res = sq->search_funcgraph(m_comboBoxSearch->lineEdit()->text().trimmed().toAscii().data(),
-				m_checkBoxExactMatch->isChecked(),
-				grpxml, grpdot);
-		if (!res) return;
-		cqDialogGraph cqdg((QWidget*)mw);
-		cqdg.setupGraphFromXML(grpxml, grpdot, tr("Function Call Graph"));
-		cqdg.exec();
+		emit getResultCurrentListItemSymbolName();
 	}
 }
 
@@ -208,10 +201,10 @@ void searchhandler::retranslateUi(void)
 				tr("Symbol"),
 				QVariant(sqlquery::sqlquerySYMBOL));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Function or macro"),
+				tr("Function or macro (Graph available)"),
 				QVariant(sqlquery::sqlresultFUNC_MACRO));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Class or struct"),
+				tr("Class or struct (Graph available)"),
 				QVariant(sqlquery::sqlresultCLASS_STRUCT));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Functions calling this function"),
@@ -292,15 +285,16 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 
 void searchhandler::QueryType_indexChanged(const int& idx)
 {
+	m_pushButtonGraph->setEnabled(false);
 	switch(idx)
 	{
 		case 1: // function or macro
-		case 3: // functions calling this function
-		case 4: // functions called by this function
-			m_pushButtonGraph->setEnabled(true);
+			m_graphdesc = tr("Function Call Graph");
+			m_typeOfGraph = 1;
 			break;
-		default:
-			m_pushButtonGraph->setEnabled(false);
+		case 2: // class or struct
+			m_graphdesc = tr("Class Inheritance Graph");
+			m_typeOfGraph = 2;
 			break;
 	}
 }
@@ -329,6 +323,8 @@ void searchhandler::perform_search(QString searchtxt,
 	}
 	else
 	{
+		m_pushButtonGraph->setEnabled((querytype == sqlquery::sqlresultFUNC_MACRO)||
+			(querytype == sqlquery::sqlresultCLASS_STRUCT));
 		updateSearchHistory(searchtxt);
 		if (updSearchMemory) addToSearchMemory(searchtxt);
 		emit searchresults(sqlresultlist, selectitem);
@@ -338,6 +334,48 @@ void searchhandler::perform_search(QString searchtxt,
 		str += tr("results found");
 		emit updateStatus(str, 5000);
 	}
+}
+
+void searchhandler::resultCurrentListItemSymbolName(const QString symName)
+{
+	if (symName.isEmpty())
+	{
+		QMessageBox msgBox((QWidget*)mw);
+		msgBox.setIcon(QMessageBox::Information);
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		msgBox.setText(tr("You have to first select an item from the list before pushing the Graph button."));
+		msgBox.exec();
+		return;
+	}	
+
+	QString grpxml, grpdot;
+	bool res;
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	if (m_typeOfGraph == 1)
+	res = sq->search_funcgraph(symName,
+			true,
+			grpxml, grpdot);
+	else if (m_typeOfGraph == 2)
+	res = sq->search_classinheritgraph(symName,
+			true,
+			grpxml, grpdot);
+	else {QApplication::restoreOverrideCursor(); return;}
+	QApplication::restoreOverrideCursor();
+	QMessageBox msgBox((QWidget*)mw);
+	msgBox.setIcon(QMessageBox::Warning);
+	msgBox.setStandardButtons(QMessageBox::Ok);
+	if (!res)
+	{
+		msgBox.setText("SQL Query error");
+		msgBox.exec();
+		return;
+	}
+	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	cqDialogGraph cqdg((QWidget*)mw);
+	cqdg.setupGraphFromXML(grpxml, grpdot, m_graphdesc);
+	cqdg.setModal(true);
+	QApplication::restoreOverrideCursor();
+	cqdg.exec();
 }
 
 void searchhandler::addToSearchMemory(const QString& searchtxt)

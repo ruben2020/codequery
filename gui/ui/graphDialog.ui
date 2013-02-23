@@ -38,29 +38,20 @@
         <x>0</x>
         <y>0</y>
         <width>892</width>
-        <height>479</height>
+        <height>472</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
         <widget class="QLabel" name="labelGraph">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="autoFillBackground">
-          <bool>true</bool>
-         </property>
          <property name="text">
           <string/>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -82,20 +73,52 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonZoomOut">
-       <property name="text">
+       <property name="toolTip">
         <string>Zoom Out</string>
+       </property>
+       <property name="statusTip">
+        <string>Zoom Out</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../codequery.qrc">
+         <normaloff>:/mainwindow/images/Zoom_Out.png</normaloff>:/mainwindow/images/Zoom_Out.png</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonZoomIn">
-       <property name="text">
+       <property name="toolTip">
         <string>Zoom In</string>
+       </property>
+       <property name="statusTip">
+        <string>Zoom In</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../codequery.qrc">
+         <normaloff>:/mainwindow/images/Zoom_In.png</normaloff>:/mainwindow/images/Zoom_In.png</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonSaveDot">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Save to DOT file</string>
+       </property>
+       <property name="statusTip">
+        <string>Save to DOT file</string>
+       </property>
        <property name="text">
         <string>Save to DOT file</string>
        </property>
@@ -103,6 +126,18 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonSave">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Save Image</string>
+       </property>
+       <property name="statusTip">
+        <string>Save Image</string>
+       </property>
        <property name="text">
         <string>Save Image</string>
        </property>
@@ -110,6 +145,18 @@
      </item>
      <item>
       <widget class="QPushButton" name="pushButtonClose">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Close</string>
+       </property>
+       <property name="statusTip">
+        <string>Close</string>
+       </property>
        <property name="text">
         <string>Close</string>
        </property>
@@ -120,7 +167,6 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>scrollArea</tabstop>
   <tabstop>checkBoxAutoResize</tabstop>
   <tabstop>pushButtonZoomOut</tabstop>
   <tabstop>pushButtonZoomIn</tabstop>
@@ -128,6 +174,8 @@
   <tabstop>pushButtonSave</tabstop>
   <tabstop>pushButtonClose</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../codequery.qrc"/>
+ </resources>
  <connections/>
 </ui>

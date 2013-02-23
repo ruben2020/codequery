@@ -93,15 +93,19 @@ void autoCompleteStateChanged(int state);
 void OpenDB_indexChanged(const int& idx);
 void QueryType_indexChanged(const int& idx);
 void updateListItemRowNum(const int& row);
+void resultCurrentListItemSymbolName(const QString symName);
 
 signals:
 void searchresults(sqlqueryresultlist resultlist, int selectitem);
 void updateStatus(const QString & message, int timeout = 0);
 void DBreset();
+void getResultCurrentListItemSymbolName();
 
 private:
 mainwindow *mw;
 sqlqueryadv* sq;
+QString m_graphdesc;
+int m_typeOfGraph; // 1 = Function Call, 2 = Class Inheritance
 QStringListModel m_srchStrLstModel;
 QString sqlerrormsg(sqlquery::en_filereadstatus status);
 QVector<searchitem> m_searchMemoryList;

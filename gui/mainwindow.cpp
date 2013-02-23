@@ -77,6 +77,10 @@ void mainwindow::init(void)
 			m_searchhandler, SLOT(newSearchTextSymbolOnly()));
 	connect(m_searchhandler, SIGNAL(updateStatus(const QString&, int)),
 			ui->statusbar, SLOT(showMessage(const QString&, int)));
+	connect(m_searchhandler, SIGNAL(getResultCurrentListItemSymbolName()),
+			m_listhandler, SLOT(requestToProvideResultCurrentListItemSymbolName()));
+	connect(m_listhandler, SIGNAL(sendResultCurrentListItemSymbolName(QString)),
+			m_searchhandler, SLOT(resultCurrentListItemSymbolName(QString)));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
 			this, SLOT(ExitTriggered(bool)));
 	connect(ui->actionAbout, SIGNAL(triggered(bool)),

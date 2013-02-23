@@ -10,9 +10,9 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
 
-## Latest version = v0.03
+## Latest version = v0.04
 
-For Windows, v0.03 available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+For Windows, v0.04 available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
 For Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
 
@@ -38,7 +38,9 @@ CodeQuery is a project that attempts to combine the features available from both
 * Case-insensitive, partial keyword search - wildcard search supported * and ?
 * Exact match search
 * File viewer with syntax highlighting
-* Ability to open viewed file in an external editor or IDE.
+* Ability to open viewed file in an external editor or IDE
+* Visualization of function call graph and class inheritance based on search term
+* Visualization graphs can be saved to PNG or Graphviz DOT files
 
 
 ## What types of query can I make?
@@ -121,11 +123,6 @@ ruben2020
 ![CodeQuery screenshot](doc/screenshot.png)
 
 
-## What future features are planned?
-
-* Visualization of call graphs and class inheritance
-
-
 ## Credits
 
 A big thank you to the people behind the following projects:    
@@ -135,5 +132,5 @@ A big thank you to the people behind the following projects:
 [CMake](http://www.cmake.org/)   
 [Qt open source](http://qt-project.org/)   
 [optlist](http://michael.dipperstein.com/optlist/index.html)   
-
+[showgraph](http://code.google.com/p/showgraph/)
 

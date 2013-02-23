@@ -22,7 +22,7 @@
 #include "showgraph.h"
 
 /** Magnifying factor for getting more detailed images */
-const int IMAGE_EXPORT_SCALE_FACTOR = 1;
+const int IMAGE_EXPORT_SCALE_FACTOR = 2;
 
 /** Adjust value for image's bounding rectangle on scene rendering */
 const qreal IMAGE_RECT_ADJUST = 10;

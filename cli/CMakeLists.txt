@@ -10,11 +10,11 @@ include_directories( "../makedb" )
 include_directories( "../querylib" )
 include_directories( ${SQLITE_INCLUDE_DIR} )
 
-set( CQMAKEDB_SRCS
+set( CQSEARCH_SRCS
      main_cli.cpp
    )
 
-add_executable( cqsearch ${CQMAKEDB_SRCS} )
+add_executable( cqsearch ${CQSEARCH_SRCS} )
 target_link_libraries( cqsearch ${SQLITE_LIBRARIES} small_lib optlist_lib sqlquery_lib )
 
 install(TARGETS cqsearch RUNTIME DESTINATION bin)

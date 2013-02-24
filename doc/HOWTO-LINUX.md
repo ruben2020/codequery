@@ -37,7 +37,7 @@ ctags --fields=+i -n -R
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 ```
 
-6. Open myproject.db using the CodeQuery GUI tool by running the following. Wild card search (* and ?) supported if Exact Match is switched off.
+6. Open myproject.db using the CodeQuery GUI tool by running the following. Wild card search (* and ?) supported if Exact Match is switched off. Or use cqsearch, the CLI-version of CodeQuery (type `cqsearch -h` for more info).
 ```bash
 codequery
 ```
@@ -73,7 +73,7 @@ ctags --fields=+i -n -R -L ./cscope.files
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 ```
 
-6. Open myproject.db using the CodeQuery GUI tool by running the following. Wild card search (* and ?) supported if Exact Match is switched off.
+6. Open myproject.db using the CodeQuery GUI tool by running the following. Wild card search (* and ?) supported if Exact Match is switched off. Or use cqsearch, the CLI-version of CodeQuery (type `cqsearch -h` for more info).
 ```bash
 codequery
 ```

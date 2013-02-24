@@ -42,6 +42,8 @@ cqmakedb -s .\myproject.db -c cscope.out -t tags -p
 
 6. Open myproject.db using the CodeQuery GUI tool. Wild card search
    (* and ?) supported if Exact Match is switched off.
+   Or use cqsearch, the CLI-version of CodeQuery (type `cqsearch -h`
+   for more info).
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
 
@@ -80,6 +82,8 @@ cqmakedb -s .\myproject.db -c cscope.out -t tags -p
 
 6. Open myproject.db using the CodeQuery GUI tool. Wild card search
    (* and ?) supported if Exact Match is switched off.
+   Or use cqsearch, the CLI-version of CodeQuery (type `cqsearch -h`
+   for more info).
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
 

@@ -88,122 +88,128 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="141"/>
-        <location filename="../ui/mainWindow.ui" line="144"/>
+        <location filename="../ui/mainWindow.ui" line="131"/>
+        <location filename="../ui/mainWindow.ui" line="134"/>
+        <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="147"/>
+        <location filename="../ui/mainWindow.ui" line="150"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="158"/>
-        <location filename="../ui/mainWindow.ui" line="161"/>
+        <location filename="../ui/mainWindow.ui" line="164"/>
+        <location filename="../ui/mainWindow.ui" line="167"/>
         <source>Paste and Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="178"/>
-        <location filename="../ui/mainWindow.ui" line="181"/>
+        <location filename="../ui/mainWindow.ui" line="184"/>
+        <location filename="../ui/mainWindow.ui" line="187"/>
         <source>Draw graph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="223"/>
-        <location filename="../ui/mainWindow.ui" line="226"/>
+        <location filename="../ui/mainWindow.ui" line="229"/>
+        <location filename="../ui/mainWindow.ui" line="232"/>
         <source>Previous File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="240"/>
-        <location filename="../ui/mainWindow.ui" line="243"/>
+        <location filename="../ui/mainWindow.ui" line="246"/>
+        <location filename="../ui/mainWindow.ui" line="249"/>
         <source>Next File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="257"/>
-        <location filename="../ui/mainWindow.ui" line="260"/>
+        <location filename="../ui/mainWindow.ui" line="263"/>
+        <location filename="../ui/mainWindow.ui" line="266"/>
         <source>Open in Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="274"/>
-        <location filename="../ui/mainWindow.ui" line="277"/>
+        <location filename="../ui/mainWindow.ui" line="280"/>
+        <location filename="../ui/mainWindow.ui" line="283"/>
         <source>Go to selected line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="304"/>
-        <location filename="../ui/mainWindow.ui" line="307"/>
+        <location filename="../ui/mainWindow.ui" line="310"/>
+        <location filename="../ui/mainWindow.ui" line="313"/>
         <source>Copy, paste and search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="321"/>
-        <location filename="../ui/mainWindow.ui" line="324"/>
+        <location filename="../ui/mainWindow.ui" line="327"/>
+        <location filename="../ui/mainWindow.ui" line="330"/>
         <source>Symbol search only for paste and search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="327"/>
+        <location filename="../ui/mainWindow.ui" line="333"/>
         <source>Symbol only</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="346"/>
+        <location filename="../ui/mainWindow.ui" line="352"/>
         <source>FilePath:0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="358"/>
-        <location filename="../ui/mainWindow.ui" line="361"/>
+        <location filename="../ui/mainWindow.ui" line="364"/>
+        <location filename="../ui/mainWindow.ui" line="367"/>
         <source>CodeEditor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="387"/>
+        <location filename="../ui/mainWindow.ui" line="393"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="394"/>
+        <location filename="../ui/mainWindow.ui" line="400"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="401"/>
+        <location filename="../ui/mainWindow.ui" line="407"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="413"/>
+        <location filename="../ui/mainWindow.ui" line="419"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="418"/>
+        <location filename="../ui/mainWindow.ui" line="424"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="423"/>
+        <location filename="../ui/mainWindow.ui" line="429"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="428"/>
+        <location filename="../ui/mainWindow.ui" line="434"/>
         <source>External Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="433"/>
+        <location filename="../ui/mainWindow.ui" line="439"/>
         <source>Open CQ Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="438"/>
+        <location filename="../ui/mainWindow.ui" line="444"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="443"/>
+        <location filename="../ui/mainWindow.ui" line="449"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>

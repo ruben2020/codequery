@@ -127,6 +127,12 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="statusTip">
+           <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
+          </property>
+          <property name="whatsThis">
+           <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
+          </property>
           <property name="editable">
            <bool>true</bool>
           </property>

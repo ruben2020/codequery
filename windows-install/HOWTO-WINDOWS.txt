@@ -27,7 +27,8 @@ dir /b/a/s *.hxx >> cscope.files
 cscope -cbR
 
 
-4. Create a ctags database like this. The first line if cscope.files was created, otherwise the second line. (Only for C++ and Java)
+4. Create a ctags database like this. The first line if cscope.files
+   was created, otherwise the second line. (Only for C++ and Java)
 
 ctags --fields=+i -n -R -L cscope.files
 ctags --fields=+i -n -R
@@ -39,7 +40,8 @@ ctags --fields=+i -n -R
 cqmakedb -s .\myproject.db -c cscope.out -t tags -p
 
 
-6. Open myproject.db using the CodeQuery GUI tool. Wild card search (* and ?) supported if Exact Match is switched off.
+6. Open myproject.db using the CodeQuery GUI tool. Wild card search
+   (* and ?) supported if Exact Match is switched off.
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
 
@@ -76,7 +78,8 @@ ctags --fields=+i -n -R -L cscope.files
 cqmakedb -s .\myproject.db -c cscope.out -t tags -p
 
 
-6. Open myproject.db using the CodeQuery GUI tool. Wild card search (* and ?) supported if Exact Match is switched off.
+6. Open myproject.db using the CodeQuery GUI tool. Wild card search
+   (* and ?) supported if Exact Match is switched off.
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
 

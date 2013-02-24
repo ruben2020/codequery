@@ -6,50 +6,50 @@
     <message>
     <location filename="../ui/graphDialog.ui" line="14"/>
         <source>Graph</source>
-        <translation type="finished">圖</translation>
+        <translation>圖</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="23"/>
         <source>Please wait ...</source>
-        <translation type="finished">請稍候。。。</translation>
+        <translation>請稍候。。。</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="67"/>
         <source>Auto-resize</source>
-        <translation type="finished">自動調整大小</translation>
+        <translation>自動調整大小</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="77"/>
     <location filename="../ui/graphDialog.ui" line="80"/>
         <source>Zoom Out</source>
-        <translation type="finished">縮小</translation>
+        <translation>縮小</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="94"/>
     <location filename="../ui/graphDialog.ui" line="97"/>
         <source>Zoom In</source>
-        <translation type="finished">放大</translation>
+        <translation>放大</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="117"/>
     <location filename="../ui/graphDialog.ui" line="120"/>
     <location filename="../ui/graphDialog.ui" line="123"/>
         <source>Save to DOT file</source>
-        <translation type="finished">將保存到點檔</translation>
+        <translation>將保存到點檔</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="136"/>
     <location filename="../ui/graphDialog.ui" line="139"/>
     <location filename="../ui/graphDialog.ui" line="142"/>
         <source>Save Image</source>
-        <translation type="finished">保存圖像</translation>
+        <translation>保存圖像</translation>
     </message>
     <message>
     <location filename="../ui/graphDialog.ui" line="155"/>
     <location filename="../ui/graphDialog.ui" line="158"/>
     <location filename="../ui/graphDialog.ui" line="161"/>
         <source>Close</source>
-        <translation type="finished">關閉</translation>
+        <translation>關閉</translation>
     </message>
     </context>
     <context>
@@ -57,155 +57,161 @@
     <message>
     <location filename="../ui/mainWindow.ui" line="14"/>
         <source>CodeQuery</source>
-        <translation type="finished">CodeQuery</translation>
+        <translation>CodeQuery</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="29"/>
     <location filename="../ui/mainWindow.ui" line="32"/>
         <source>Open Database</source>
-        <translation type="finished">打開的資料庫</translation>
+        <translation>打開的資料庫</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="66"/>
         <source>Auto-complete</source>
-        <translation type="finished">自動完成</translation>
+        <translation>自動完成</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="80"/>
         <source>Exact match</source>
-        <translation type="finished">精確匹配</translation>
+        <translation>精確匹配</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="91"/>
     <location filename="../ui/mainWindow.ui" line="94"/>
         <source>Previous search term</source>
-        <translation type="finished">以前的搜索詞</translation>
+        <translation>以前的搜索詞</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="108"/>
     <location filename="../ui/mainWindow.ui" line="111"/>
         <source>Next search term</source>
-        <translation type="finished">下一個搜索詞</translation>
+        <translation>下一個搜索詞</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="141"/>
-    <location filename="../ui/mainWindow.ui" line="144"/>
+    <location filename="../ui/mainWindow.ui" line="131"/>
+    <location filename="../ui/mainWindow.ui" line="134"/>
+        <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
+        <translation type="finished">如果精確匹配關掉，萬用字元搜尋 （* 和?） 支援</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="147"/>
+    <location filename="../ui/mainWindow.ui" line="150"/>
         <source>Search</source>
-        <translation type="finished">搜索</translation>
+        <translation>搜索</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="158"/>
-    <location filename="../ui/mainWindow.ui" line="161"/>
+    <location filename="../ui/mainWindow.ui" line="164"/>
+    <location filename="../ui/mainWindow.ui" line="167"/>
         <source>Paste and Search</source>
-        <translation type="finished">粘貼並搜索</translation>
+        <translation>粘貼並搜索</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="178"/>
-    <location filename="../ui/mainWindow.ui" line="181"/>
+    <location filename="../ui/mainWindow.ui" line="184"/>
+    <location filename="../ui/mainWindow.ui" line="187"/>
         <source>Draw graph</source>
-        <translation type="finished">繪製關係圖</translation>
+        <translation>繪製關係圖</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="223"/>
-    <location filename="../ui/mainWindow.ui" line="226"/>
+    <location filename="../ui/mainWindow.ui" line="229"/>
+    <location filename="../ui/mainWindow.ui" line="232"/>
         <source>Previous File</source>
-        <translation type="finished">以前的檔</translation>
+        <translation>以前的檔</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="240"/>
-    <location filename="../ui/mainWindow.ui" line="243"/>
+    <location filename="../ui/mainWindow.ui" line="246"/>
+    <location filename="../ui/mainWindow.ui" line="249"/>
         <source>Next File</source>
-        <translation type="finished">下一個檔</translation>
+        <translation>下一個檔</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="257"/>
-    <location filename="../ui/mainWindow.ui" line="260"/>
+    <location filename="../ui/mainWindow.ui" line="263"/>
+    <location filename="../ui/mainWindow.ui" line="266"/>
         <source>Open in Editor</source>
-        <translation type="finished">在編輯器中打開</translation>
+        <translation>在編輯器中打開</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="274"/>
-    <location filename="../ui/mainWindow.ui" line="277"/>
+    <location filename="../ui/mainWindow.ui" line="280"/>
+    <location filename="../ui/mainWindow.ui" line="283"/>
         <source>Go to selected line</source>
-        <translation type="finished">轉到所選行</translation>
+        <translation>轉到所選行</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="304"/>
-    <location filename="../ui/mainWindow.ui" line="307"/>
+    <location filename="../ui/mainWindow.ui" line="310"/>
+    <location filename="../ui/mainWindow.ui" line="313"/>
         <source>Copy, paste and search</source>
-        <translation type="finished">複製、 粘貼和搜索</translation>
-    </message>
-    <message>
-    <location filename="../ui/mainWindow.ui" line="321"/>
-    <location filename="../ui/mainWindow.ui" line="324"/>
-        <source>Symbol search only for paste and search</source>
-        <translation type="finished">僅用於粘貼和搜索符號搜索</translation>
+        <translation>複製、 粘貼和搜索</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="327"/>
+    <location filename="../ui/mainWindow.ui" line="330"/>
+        <source>Symbol search only for paste and search</source>
+        <translation>僅用於粘貼和搜索符號搜索</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="333"/>
         <source>Symbol only</source>
-        <translation type="finished">只有符號</translation>
+        <translation>只有符號</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="346"/>
+    <location filename="../ui/mainWindow.ui" line="352"/>
         <source>FilePath:0</source>
-        <translation type="finished">FilePath:0</translation>
+        <translation>FilePath:0</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="358"/>
-    <location filename="../ui/mainWindow.ui" line="361"/>
+    <location filename="../ui/mainWindow.ui" line="364"/>
+    <location filename="../ui/mainWindow.ui" line="367"/>
         <source>CodeEditor</source>
-        <translation type="finished">CodeEditor</translation>
+        <translation>CodeEditor</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="387"/>
+    <location filename="../ui/mainWindow.ui" line="393"/>
         <source>File</source>
-        <translation type="finished">檔</translation>
+        <translation>檔</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="394"/>
+    <location filename="../ui/mainWindow.ui" line="400"/>
         <source>Options</source>
-        <translation type="finished">選項</translation>
+        <translation>選項</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="401"/>
+    <location filename="../ui/mainWindow.ui" line="407"/>
         <source>Help</source>
-        <translation type="finished">説明</translation>
+        <translation>説明</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="413"/>
+    <location filename="../ui/mainWindow.ui" line="419"/>
         <source>Exit</source>
-        <translation type="finished">退出</translation>
+        <translation>退出</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="418"/>
+    <location filename="../ui/mainWindow.ui" line="424"/>
         <source>Open</source>
-        <translation type="finished">開放</translation>
+        <translation>開放</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="423"/>
+    <location filename="../ui/mainWindow.ui" line="429"/>
         <source>About</source>
-        <translation type="finished">關於</translation>
+        <translation>關於</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="428"/>
+    <location filename="../ui/mainWindow.ui" line="434"/>
         <source>External Editor</source>
-        <translation type="finished">外部編輯器</translation>
+        <translation>外部編輯器</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="433"/>
+    <location filename="../ui/mainWindow.ui" line="439"/>
         <source>Open CQ Database</source>
-        <translation type="finished">打開 CQ 資料庫</translation>
+        <translation>打開 CQ 資料庫</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="438"/>
+    <location filename="../ui/mainWindow.ui" line="444"/>
         <source>Language</source>
-        <translation type="finished">語言</translation>
+        <translation>語言</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="443"/>
+    <location filename="../ui/mainWindow.ui" line="449"/>
         <source>About Qt</source>
-        <translation type="finished">關於 Qt</translation>
+        <translation>關於 Qt</translation>
     </message>
     </context>
     <context>
@@ -213,23 +219,23 @@
     <message>
     <location filename="../graphdialog.cpp" line="75"/>
         <source>Images</source>
-        <translation type="finished">圖像</translation>
+        <translation>圖像</translation>
     </message>
     <message>
     <location filename="../graphdialog.cpp" line="78"/>
         <source>Export Image</source>
-        <translation type="finished">匯出圖像</translation>
+        <translation>匯出圖像</translation>
     </message>
     <message>
     <location filename="../graphdialog.cpp" line="89"/>
     <location filename="../graphdialog.cpp" line="108"/>
         <source>File could not be saved!</source>
-        <translation type="finished">無法保存檔 ！</translation>
+        <translation>無法保存檔 ！</translation>
     </message>
     <message>
     <location filename="../graphdialog.cpp" line="97"/>
         <source>Export DOT file</source>
-        <translation type="finished">出口點檔</translation>
+        <translation>出口點檔</translation>
     </message>
     </context>
     <context>
@@ -237,42 +243,42 @@
     <message>
     <location filename="../fileviewer.cpp" line="142"/>
         <source>File not found</source>
-        <translation type="finished">找不到檔</translation>
+        <translation>找不到檔</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="149"/>
         <source>File could not be opened</source>
-        <translation type="finished">不能打開檔</translation>
+        <translation>不能打開檔</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="340"/>
         <source>Cancel</source>
-        <translation type="finished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="341"/>
         <source>OK</source>
-        <translation type="finished">還行</translation>
+        <translation>還行</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="343"/>
         <source>External Editor Configuration</source>
-        <translation type="finished">外部編輯器配置</translation>
+        <translation>外部編輯器配置</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="344"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
-        <translation type="finished">請輸入路徑和參數的外部編輯器。檔案名和行號為 %n 使用 %f。例如：</translation>
+        <translation>請輸入路徑和參數的外部編輯器。檔案名和行號為 %n 使用 %f。例如：</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="370"/>
         <source>File could not be opened!</source>
-        <translation type="finished">不能打開檔 ！</translation>
+        <translation>不能打開檔 ！</translation>
     </message>
     <message>
     <location filename="../fileviewer.cpp" line="395"/>
         <source>External editor could not be started. Please check Options!</source>
-        <translation type="finished">無法啟動外部編輯器。請檢查選項 ！</translation>
+        <translation>無法啟動外部編輯器。請檢查選項 ！</translation>
     </message>
     </context>
     <context>
@@ -280,22 +286,22 @@
     <message>
     <location filename="../listhandler.cpp" line="117"/>
         <source>Symbol</source>
-        <translation type="finished">符號</translation>
+        <translation>符號</translation>
     </message>
     <message>
     <location filename="../listhandler.cpp" line="118"/>
         <source>File</source>
-        <translation type="finished">檔</translation>
+        <translation>檔</translation>
     </message>
     <message>
     <location filename="../listhandler.cpp" line="121"/>
         <source>Line</source>
-        <translation type="finished">行</translation>
+        <translation>行</translation>
     </message>
     <message>
     <location filename="../listhandler.cpp" line="121"/>
         <source>Preview</source>
-        <translation type="finished">預覽</translation>
+        <translation>預覽</translation>
     </message>
     </context>
     <context>
@@ -303,27 +309,27 @@
     <message>
     <location filename="../mainwindow.cpp" line="145"/>
         <source>Cancel</source>
-        <translation type="finished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
     <location filename="../mainwindow.cpp" line="146"/>
         <source>OK</source>
-        <translation type="finished">還行</translation>
+        <translation>還行</translation>
     </message>
     <message>
     <location filename="../mainwindow.cpp" line="148"/>
         <source>Language</source>
-        <translation type="finished">語言</translation>
+        <translation>語言</translation>
     </message>
     <message>
     <location filename="../mainwindow.cpp" line="149"/>
         <source>Select language:</source>
-        <translation type="finished">選擇語言：</translation>
+        <translation>選擇語言：</translation>
     </message>
     <message>
     <location filename="../mainwindow.cpp" line="192"/>
         <source>About</source>
-        <translation type="finished">關於</translation>
+        <translation>關於</translation>
     </message>
     </context>
     <context>
@@ -331,112 +337,112 @@
     <message>
     <location filename="../searchhandler.cpp" line="201"/>
         <source>Symbol</source>
-        <translation type="finished">符號</translation>
+        <translation>符號</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="204"/>
         <source>Function or macro (Graph available)</source>
-        <translation type="finished">函數或宏 (Graph 中可用）</translation>
+        <translation>函數或宏 (Graph 中可用）</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="207"/>
         <source>Class or struct (Graph available)</source>
-        <translation type="finished">類或結構 （Graph 中可用）</translation>
+        <translation>類或結構 （Graph 中可用）</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="210"/>
         <source>Functions calling this function</source>
-        <translation type="finished">調用此函數的函數</translation>
+        <translation>調用此函數的函數</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="213"/>
         <source>Functions called by this function</source>
-        <translation type="finished">此函式呼叫的函數</translation>
+        <translation>此函式呼叫的函數</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="216"/>
         <source>Class which owns this member/ method</source>
-        <translation type="finished">擁有此成員的類 / 方法</translation>
+        <translation>擁有此成員的類 / 方法</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="219"/>
         <source>Members/ methods of this class</source>
-        <translation type="finished">成員 / 此類方法</translation>
+        <translation>成員 / 此類方法</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="222"/>
         <source>Parent of this class</source>
-        <translation type="finished">此類的父</translation>
+        <translation>此類的父</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="225"/>
         <source>Children of this class</source>
-        <translation type="finished">兒童的此類</translation>
+        <translation>兒童的此類</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="228"/>
         <source>Files including this file</source>
-        <translation type="finished">此檔包括檔</translation>
+        <translation>此檔包括檔</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="231"/>
         <source>Full path for file</source>
-        <translation type="finished">檔的完整路徑</translation>
+        <translation>檔的完整路徑</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="239"/>
         <source>CodeQuery DB Files</source>
-        <translation type="finished">CodeQuery DB 檔</translation>
+        <translation>CodeQuery DB 檔</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="242"/>
         <source>Open CQ database file</source>
-        <translation type="finished">打開 CQ 資料庫檔案</translation>
+        <translation>打開 CQ 資料庫檔案</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="292"/>
         <source>Function Call Graph</source>
-        <translation type="finished">函數的調用關係圖</translation>
+        <translation>函數的調用關係圖</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="296"/>
         <source>Class Inheritance Graph</source>
-        <translation type="finished">類繼承關係圖</translation>
+        <translation>類繼承關係圖</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="334"/>
         <source>results found</source>
-        <translation type="finished">找到的結果</translation>
+        <translation>找到的結果</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="346"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
-        <translation type="finished">您必須先推圖形按鈕之前從清單中選擇一個項。</translation>
+        <translation>您必須先推圖形按鈕之前從清單中選擇一個項。</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="450"/>
         <source>File open error</source>
-        <translation type="finished">檔打開錯誤</translation>
+        <translation>檔打開錯誤</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="451"/>
         <source>Wrong file format</source>
-        <translation type="finished">錯誤的檔案格式</translation>
+        <translation>錯誤的檔案格式</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="452"/>
         <source>Incorrect CQ database version</source>
-        <translation type="finished">CQ 資料庫版本不正確</translation>
+        <translation>CQ 資料庫版本不正確</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="453"/>
         <source>OK</source>
-        <translation type="finished">還行</translation>
+        <translation>還行</translation>
     </message>
     <message>
     <location filename="../searchhandler.cpp" line="455"/>
         <source>Unknown Error</source>
-        <translation type="finished">未知的錯誤</translation>
+        <translation>未知的錯誤</translation>
     </message>
     </context>
     </TS>

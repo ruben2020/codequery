@@ -120,7 +120,8 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 
 Please see the email address below, and also the Issues tab in GitHub.
 
-Email address: ![Contact address](doc/emailaddr.png)
+Email address:    
+![Contact address](doc/emailaddr.png)
 
 Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 

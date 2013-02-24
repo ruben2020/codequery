@@ -29,7 +29,9 @@ ctags does many languages well and understands destructors, member instantiation
 
 So both these tools have their pros and cons, but complement each other.
 
-CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well.
+CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.
+
+## What features does CodeQuery have?
 
 * Combines the best of both cscope and ctags
 * Faster due to the use of sqlite for the CodeQuery database
@@ -122,9 +124,9 @@ ruben2020
 
 ![CodeQuery screenshot](doc/screenshot.png)
 
-## What does the visualization look like?
+## How does the visualization look like?
 
-Here's a function call graph based on the search term of "updateFilePathLabel":    
+Here's a function call graph based on the search term of "updateFilePathLabel". A -> B means A calls B:    
 ![Visualization screenshot](doc/screenshot2.png)
 
 

@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CodeQuery by ruben2020</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">CodeQuery</h1>
+        <p class="header">A code-understanding,  code-browsing or code-search tool. This is a tool to index, then query or search C, C++ and Java source code. It builds upon the databases of cscope and ctags, and provides a nice GUI tool.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/ruben2020/codequery/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/ruben2020/codequery/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/ruben2020/codequery">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/ruben2020">ruben2020</a></p>
+
+
+      </header>
+      <section>
+        <h1><img src="https://raw.github.com/ruben2020/codequery/master/doc/logotitle.png" alt="CodeQuery"></h1>
+
+<p>This is a tool to index, then query or search C, C++ and Java source code (and probably also C#).</p>
+
+<p>It builds upon the databases of <a href="http://cscope.sourceforge.net/">cscope</a> and <a href="http://ctags.sourceforge.net/">Exuberant ctags</a>.</p>
+
+<p>The databases of <em>cscope</em> and <em>ctags</em> would be processed by the <em>cqmakedb</em> tool to generate the CodeQuery database file.</p>
+
+<p>The CodeQuery database file can be viewed and queried using the <em>codequery</em> GUI tool.</p>
+
+<p>Website: <a href="https://github.com/ruben2020/codequery">CodeQuery website</a></p>
+
+<h2>How is it different from cscope and ctags? What are the advantages?</h2>
+
+<p>Both cscope and ctags can do symbol lookup and identify functions, macros, classes and structs.</p>
+
+<p>cscope is very C-centric, but is fuzzy enough to cover C++ and Java, but not very well for e.g. it doesn't understand destructors and class member instantiations. It can't provide relationships of class inheritance and membership. cscope can do "functions that call this function" and "functions called by this function". This is a very powerful feature that makes cscope stand out among comparable tools.</p>
+
+<p>ctags does many languages well and understands destructors, member instantiations, and the relationships of class membership and inheritance. From ctags, we can find out "members and methods of this class", "class which owns this member or method", "parent of this class", "child of this class" etc. However, it doesn't do "functions that call this function" or "functions called by this function".</p>
+
+<p>So both these tools have their pros and cons, but complement each other.</p>
+
+<p>CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.</p>
+
+<h2>What features does CodeQuery have?</h2>
+
+<ul>
+<li>Combines the best of both cscope and ctags</li>
+<li>Faster due to the use of sqlite for the CodeQuery database</li>
+<li>Cross-platform GUI tool</li>
+<li>Fast auto-completion of search term</li>
+<li>Case-insensitive, partial keyword search - wildcard search supported * and ?</li>
+<li>Exact match search</li>
+<li>File viewer with syntax highlighting</li>
+<li>Ability to open viewed file in an external editor or IDE</li>
+<li>Visualization of function call graph and class inheritance based on search term</li>
+<li>Visualization graphs can be saved to PNG or Graphviz DOT files</li>
+</ul><h2>What types of query can I make?</h2>
+
+<ul>
+<li>Symbol</li>
+<li>Function or macro</li>
+<li>Class or struct</li>
+<li>Functions calling this function</li>
+<li>Functions called by this function</li>
+<li>Class which owns this member or method</li>
+<li>Members and methods of this class</li>
+<li>Parent of this class (inheritance)</li>
+<li>Children of this class (inheritance)</li>
+<li>Files including this file</li>
+<li>Full path for file</li>
+</ul><h2>What does it look like?</h2>
+
+<p><img src="https://raw.github.com/ruben2020/codequery/master/doc/screenshot.png" alt="CodeQuery screenshot"></p>
+
+<h2>How does the visualization look like?</h2>
+
+<p>Here's a function call graph based on the search term of "updateFilePathLabel". A -&gt; B means A calls B:<br><img src="https://raw.github.com/ruben2020/codequery/master/doc/screenshot2.png" alt="Visualization screenshot"></p>
+
+<h2>What does it cost? How is it licensed?</h2>
+
+<p>It's freeware and free open source software.</p>
+
+<p>This software is licensed under the <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL v3</a>. See <a href="LICENSE.md">LICENSE.md</a> or <a href="windows-install/LICENSE.txt">LICENSE.txt</a>.</p>
+
+<p>Files under the <code>querylib</code> directory are licensed under the <a href="http://opensource.org/licenses/MIT">MIT license</a>. See <a href="querylib/README.txt">QueryLib README</a>. This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without license restrictions. It's only dependency is on sqlite3.</p>
+
+<h2>Can I use it in a commercial environment without purchasing, for an unlimited time?</h2>
+
+<p>Yes. However, donations are welcomed.</p>
+
+<h2>Which platforms are supported?</h2>
+
+<p>It has been tested on Windows 7, Windows XP and Ubuntu Linux 32-bit.</p>
+
+<p>Contributions are welcomed to attempt ports to Mac OS and other operating systems.</p>
+
+<h2>Is the software available in other languages?</h2>
+
+<p>Yes. This applies only to the GUI tool.</p>
+
+<p>Contributions are welcomed to update or provide new translations.</p>
+
+<h2>How to install it?</h2>
+
+<p>On Windows, EXE setup packages will be provided here: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a>. The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package.</p>
+
+<p>On Linux, please read the <a href="doc/INSTALL-LINUX.md">INSTALL-LINUX</a> file.</p>
+
+<h2>How do I use it?</h2>
+
+<p>On Windows: <a href="windows-install/HOWTO-WINDOWS.txt">HOWTO-WINDOWS</a>. This file is included in the EXE setup package.</p>
+
+<p>On Linux: <a href="doc/HOWTO-LINUX.md">HOWTO-LINUX</a></p>
+
+<p>Please read the HOWTO file provided for each platform. The workflow looks like this:
+<img src="https://raw.github.com/ruben2020/codequery/master/doc/workflow.png" alt="CodeQuery workflow"></p>
+
+<h2>How do I contact the authors for support, issues, bug reports, fix patches, feature requests etc.?</h2>
+
+<p>Please see the email address below, and also the Issues tab in GitHub.</p>
+
+<p>Email address:<br><img src="https://raw.github.com/ruben2020/codequery/master/doc/emailaddr.png" alt="Contact address"></p>
+
+<p>Website: <a href="https://github.com/ruben2020/codequery">CodeQuery website</a></p>
+
+<h2>List of Contributors</h2>
+
+<p>ruben2020<br>
+(More welcomed)</p>
+
+<h2>Credits</h2>
+
+<p>We thank the people behind the following projects:<br><a href="http://cscope.sourceforge.net/">cscope</a> - our database is derived from this<br><a href="http://ctags.sourceforge.net/">Exuberant ctags</a>- our database is derived from this<br><a href="http://www.sqlite.org/">sqlite3</a> - our database is using this format<br><a href="http://www.cmake.org/">CMake</a> - cross-platform build toolchain for CodeQuery<br><a href="http://qt-project.org/">Qt open source</a> - GUI toolkit used to build CodeQuery<br><a href="http://michael.dipperstein.com/optlist/index.html">optlist</a> - cqmakedb uses this to parse command line options<br><a href="http://code.google.com/p/showgraph/">showgraph</a> - visualization done using this library<br><a href="http://www.axialis.com/iconworkshop">Axialis</a> - free images for CodeQuery and this website</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>

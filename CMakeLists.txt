@@ -11,6 +11,7 @@ add_library( optlist_lib STATIC ${OPTLISTLIB_SRCS} )
 
 add_subdirectory( "querylib" )
 add_subdirectory( "makedb" )
+add_subdirectory( "cli" )
 add_subdirectory( "showgraph" )
 add_subdirectory( "gui" )
 

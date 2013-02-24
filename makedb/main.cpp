@@ -141,7 +141,7 @@ void printhelp(const char* str)
 {
 	printf("Usage: %s [-s <sqdbfile> [-c <cscope.out>] [-t <ctags>]] [-p] [-d] [-v] [-h]\n\n", str);
 	printf("options:\n");
-	printf("  -s : sqlite3 db file path\n");
+	printf("  -s : CodeQuery sqlite3 db file path\n");
 	printf("  -c : cscope.out file path\n");
 	printf("  -t : ctags tags file path\n");
 	printf("  -p : \"vacuum\", compact database (may take more time)\n");

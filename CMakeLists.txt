@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 project(CodeQuery)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/helper/")
+
 set( EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR} )
 
 INCLUDE_DIRECTORIES( "../makedb" )

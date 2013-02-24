@@ -1,0 +1,18 @@
+
+language: cpp
+
+compiler: gcc
+
+before_install:
+ - sudo apt-get update -qq
+ - sudo apt-get install -qq cmake sqlite3 qt4-dev-tools
+
+script: mkdir build && cd build && cmake .. & make
+
+notifications:
+  email:
+    - ruben2020-git@users.sourceforge.net
+  on_success: change
+  on_failure: always
+
+

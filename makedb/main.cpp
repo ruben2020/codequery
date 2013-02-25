@@ -103,7 +103,12 @@ int process_cscope(const char* cscopefn, const char* sqfn, bool debug)
 	
 	k = dbmaker.test_csdb();
 	printf("cscope.out detailed check %s\n",(k==0 ? "OK" : "Error"));
-	if (k != 0) return 1;
+	if (k != 0)
+	{
+		printf("Please note that assembly code embedded in C/C++ files is unsupported.\n"
+			"This might be the cause for this error.\n");
+		return 1;
+	}
 
 	res = dbmaker.open_db(sqfn);
 	if (res != cs2sq::resOK) {printf("Error1! %d\n",res); return 1;}

@@ -33,13 +33,20 @@
 #include <vector>
 #include <string.h>
 
+
+#ifdef _WIN32
+#define DIRSEP '\\'
+#else
+#define DIRSEP '/'
+#endif
+
 // Get number of elements of a fixed-sized array
 #define DIM(x)   (sizeof( x ) / sizeof( x [0] ) )
 
 typedef std::string tStr;
 typedef std::vector<std::string> tVecStr;
 
-
+bool isAbsolutePath(tStr fp);
 std::vector<std::string> splitstr(const char* inpstr, const char delim);
 int replacechar(std::string::iterator i1, std::string::iterator i2,
 			const char o, const char r);

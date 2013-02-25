@@ -88,7 +88,8 @@ csdbparser::enResult cs2sq::test_csdb(void)
 		res = m_csdbp.get_next_symbol(&sp);
 		if (res != csdbparser::resOK)
 		{
-			if (m_debug) {printf("Error at symbol %ld, retval=%d\n", num, res);}
+			if (m_debug) {printf("Error at symbol %ld, retval=%d,"
+			" file=%s:%ld\n", num, res, sp.filename.c_str(), sp.line_num);}
 			return res;
 		}
 		if (sp.valid) num += sp.symbols.size();

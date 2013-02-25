@@ -22,7 +22,7 @@
 #ifndef _SWVER_H
 #define _SWVER_H
 
-#define CODEQUERY_SW_VERSION      "CodeQuery v0.04"
+#define CODEQUERY_SW_VERSION      "CodeQuery v0.05"
 
 #define CODEQUERY_SW_LICENSE  \
 "Copyright (C) 2013 ruben2020 https://github.com/ruben2020/\n\n" \

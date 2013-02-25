@@ -1,5 +1,6 @@
 [Files]
 Source: "C:\workspace\CodeQuery\build\cqmakedb.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "C:\workspace\CodeQuery\build\cqsearch.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "C:\workspace\CodeQuery\build\codequery.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "C:\workspace\CodeQuery\windows-install\README.txt"; DestDir: "{app}"; Flags: overwritereadonly isreadme
 Source: "C:\workspace\CodeQuery\windows-install\LICENSE.txt"; DestDir: "{app}"; Flags: overwritereadonly
@@ -25,7 +26,7 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 [Setup]
 ShowLanguageDialog=auto
 AppName=CodeQuery
-AppVersion=0.04
+AppVersion=0.05
 AppCopyright=Copyright 2013 (C) ruben2020
 AppId={{D95A3CC0-CC79-4CF1-A92B-50E909B60EF1}
 LicenseFile=C:\workspace\CodeQuery\windows-install\LICENSE.txt

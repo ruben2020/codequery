@@ -1,4 +1,7 @@
 
+Version 0.05 - Feb 25, 2013
+Fixed file path bug in Windows and initial version of cqsearch CLI tool
+
 Version 0.04 - Feb 24, 2013
 Initial version of visualization for function call graph and class inheritance is now working.
 

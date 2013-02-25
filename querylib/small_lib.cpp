@@ -27,6 +27,23 @@
 
 #include "small_lib.h"
 
+// is the file path given (fp), absolute or relative?
+bool isAbsolutePath(tStr fp)
+{
+	bool result = false;
+
+	// example: /usr/bin/local/file or \temp\file
+	result = (fp[0] == DIRSEP);
+
+#ifdef _WIN32
+	// example: c:\temp\file
+	result = result || ((fp[1] == ':')&&(fp[2] == DIRSEP));
+#endif
+
+	return result;
+}
+
+// split string into an array based on a delimiter
 std::vector<std::string> splitstr(const char* inpstr, const char delim)
 {
 	size_t pos = 0, retpos = 0;
@@ -48,6 +65,8 @@ std::vector<std::string> splitstr(const char* inpstr, const char delim)
 	return vecstr;
 }
 
+// replace char o with char r for every part of the string
+// from iterator i1 to iterator i2, excluding i2
 int replacechar(std::string::iterator i1, std::string::iterator i2, const char o, const char r)
 {
 	int count = 0;
@@ -62,6 +81,7 @@ int replacechar(std::string::iterator i1, std::string::iterator i2, const char o
 	return count;
 }
 
+// remove EOL char
 const char* chomp(char* str)
 {
 	if ((str != NULL)&&(strlen(str) > 0))
@@ -82,6 +102,7 @@ const char* chomp(char* str)
 	return static_cast<const char*>(str);
 }
 
+// add an escape character in front of another predetermined character
 std::string add_escape_char(std::string ori, char chr2escp, char escpchr)
 {
 	std::string s;
@@ -99,6 +120,7 @@ std::string add_escape_char(std::string ori, char chr2escp, char escpchr)
 	return s;
 }
 
+// add an escape character in front of another predetermined character
 std::string add_escape_char(const char* oristr, char chr2escp, char escpchr)
 {
 	std::string ori(oristr);
@@ -117,6 +139,7 @@ std::string add_escape_char(const char* oristr, char chr2escp, char escpchr)
 	return s;
 }
 
+// extract the filename.ext from a file path
 const char* extract_filename(const char* filepath)
 {
 	char* str = (char*) filepath;

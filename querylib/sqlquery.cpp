@@ -34,12 +34,6 @@
 #include "small_lib.h"
 #include "sqlquery.h"
 
-#ifdef _WIN32
-#define DIRSEP '\\'
-#else
-#define DIRSEP '/'
-#endif
-
 
 #define SQL_SYM "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName LIKE ? ESCAPE \";\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_FUNC_MACRO "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName LIKE ? ESCAPE \";\") AND (symtbl.symType=\"$\" OR symtbl.symType=\"#\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
@@ -327,7 +321,7 @@ sqlqueryresultlist sqlquery::search_full(sqlite3_stmt* stmt)
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 3);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 4);
 			item.filename = extract_filename(fp.c_str());
-			if (fp[0] != (char)DIRSEP)
+			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
 				item.filepath += DIRSEP;
@@ -365,7 +359,7 @@ sqlqueryresultlist sqlquery::search_file_line(sqlite3_stmt* stmt)
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 1);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 2);
 			item.filename = extract_filename(fp.c_str());
-			if (fp[0] != (char)DIRSEP)
+			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
 				item.filepath += DIRSEP;
@@ -402,7 +396,7 @@ sqlqueryresultlist sqlquery::search_file_only(sqlite3_stmt* stmt)
 			fp            = (const char*) sqlite3_column_text(stmt, 0);
 			item.linenum  = "1";
 			item.filename = extract_filename(fp.c_str());
-			if (fp[0] != (char)DIRSEP)
+			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
 				item.filepath += DIRSEP;

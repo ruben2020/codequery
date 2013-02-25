@@ -1,5 +1,5 @@
-CodeQuery
-=========
+![CodeQuery](doc/logotitle.png)
+===============================
 
 This is a tool to index, then query or search C, C++ and Java source code (and probably also C#).
 
@@ -20,7 +20,9 @@ ctags does many languages well and understands destructors, member instantiation
 
 So both these tools have their pros and cons, but complement each other.
 
-CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well.
+CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.
+
+## What features does CodeQuery have?
 
 * Combines the best of both cscope and ctags
 * Faster due to the use of sqlite for the CodeQuery database
@@ -49,6 +51,17 @@ CodeQuery is a project that attempts to combine the features available from both
 * Full path for file
 
 
+## What does it look like?
+
+![CodeQuery screenshot](doc/screenshot.png)
+
+
+## How does the visualization look like?
+
+Here's a function call graph based on the search term of "updateFilePathLabel". A -> B means A calls B:    
+![Visualization screenshot](doc/screenshot2.png)
+
+
 ## What does it cost? How is it licensed?
 
 It's freeware and free open source software.
@@ -65,12 +78,12 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Ubuntu 32-bit, Windows XP and Windows 7.
+It has been tested on Windows 7, Windows XP and Ubuntu Linux 32-bit.
 
 Contributions are welcomed to attempt ports to Mac OS and other operating systems.
 
 
-## Is the software available in multiple languages?
+## Is the software available in other languages?
 
 Yes. This applies only to the GUI tool.
 
@@ -86,19 +99,20 @@ On Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 ## How do I use it?
 
-Please read the HOWTO file provided for each platform. The workflow looks like this:
-![CodeQuery workflow](doc/workflow.png)
+On Windows: [HOWTO-WINDOWS](windows-install/HOWTO-WINDOWS.txt). This file is included in the EXE setup package.
 
 On Linux: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
 
-On Windows: [HOWTO-WINDOWS](windows-install/HOWTO-WINDOWS.txt)
+Please read the HOWTO file provided for each platform. The workflow looks like this:
+![CodeQuery workflow](doc/workflow.png)
 
 
-## How do I contact the authors for support, issues, bug reports, fix patches etc.?
+## How do I contact the authors for support, issues, bug reports, fix patches, feature requests etc.?
 
 Please see the email address below, and also the Issues tab in GitHub.
 
-Email address: ![Contact address](doc/emailaddr.png)
+Email address:    
+![Contact address](doc/emailaddr.png)
 
 Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
@@ -108,20 +122,15 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 ruben2020   
 (More welcomed)
 
-
-## What does it look like?
-
-![CodeQuery screenshot](doc/screenshot.png)
-
-
 ## Credits
 
-A big thank you to the people behind the following projects:    
-[cscope](http://cscope.sourceforge.net/)   
-[Exuberant ctags](http://ctags.sourceforge.net/)   
-[sqlite3](http://www.sqlite.org/)   
-[CMake](http://www.cmake.org/)   
-[Qt open source](http://qt-project.org/)   
-[optlist](http://michael.dipperstein.com/optlist/index.html)   
-[showgraph](http://code.google.com/p/showgraph/)
+We thank the people behind the following projects:    
+[cscope](http://cscope.sourceforge.net/) - our database is derived from this   
+[Exuberant ctags](http://ctags.sourceforge.net/)- our database is derived from this   
+[sqlite3](http://www.sqlite.org/) - our database is using this format    
+[CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
+[Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
+[optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
+[showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
+[Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website
 

@@ -91,7 +91,7 @@
     <location filename="../ui/mainWindow.ui" line="131"/>
     <location filename="../ui/mainWindow.ui" line="134"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
-        <translation type="finished">如果精确匹配关掉，通配符搜索 （* 和?） 支持</translation>
+        <translation>如果精确匹配关掉，通配符搜索 （* 和?） 支持</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="147"/>
@@ -241,42 +241,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="142"/>
+    <location filename="../fileviewer.cpp" line="149"/>
         <source>File not found</source>
         <translation>找不到文件</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="156"/>
         <source>File could not be opened</source>
         <translation>不能打开文件</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="340"/>
+    <location filename="../fileviewer.cpp" line="170"/>
+        <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
+        <translation type="finished">要查看源文件是比 CodeQuery 数据库文件更新。建议您手动重新生成的 CodeQuery 数据库文件。</translation>
+    </message>
+    <message>
+    <location filename="../fileviewer.cpp" line="358"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="341"/>
+    <location filename="../fileviewer.cpp" line="359"/>
         <source>OK</source>
         <translation>还行</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="343"/>
+    <location filename="../fileviewer.cpp" line="361"/>
         <source>External Editor Configuration</source>
         <translation>外部编辑器配置</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="344"/>
+    <location filename="../fileviewer.cpp" line="362"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>请输入路径和参数的外部编辑器。文件名和行号为 %n 使用 %f。例如：</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="370"/>
+    <location filename="../fileviewer.cpp" line="388"/>
         <source>File could not be opened!</source>
         <translation>不能打开文件 ！</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="395"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>无法启动外部编辑器。请检查选项 ！</translation>
     </message>
@@ -307,27 +312,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="145"/>
+    <location filename="../mainwindow.cpp" line="147"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="146"/>
+    <location filename="../mainwindow.cpp" line="148"/>
         <source>OK</source>
         <translation>还行</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="149"/>
+    <location filename="../mainwindow.cpp" line="151"/>
         <source>Select language:</source>
         <translation>选择语言：</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="192"/>
+    <location filename="../mainwindow.cpp" line="194"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
@@ -400,47 +405,47 @@
         <translation>打开 CQ 数据库文件</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="292"/>
+    <location filename="../searchhandler.cpp" line="294"/>
         <source>Function Call Graph</source>
         <translation>函数的调用关系图</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="296"/>
+    <location filename="../searchhandler.cpp" line="298"/>
         <source>Class Inheritance Graph</source>
         <translation>类继承关系图</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="334"/>
+    <location filename="../searchhandler.cpp" line="336"/>
         <source>results found</source>
         <translation>找到的结果</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="346"/>
+    <location filename="../searchhandler.cpp" line="348"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation>您必须先推图形按钮之前从列表中选择一个项。</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="450"/>
+    <location filename="../searchhandler.cpp" line="452"/>
         <source>File open error</source>
         <translation>文件打开错误</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="451"/>
+    <location filename="../searchhandler.cpp" line="453"/>
         <source>Wrong file format</source>
         <translation>错误的文件格式</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="452"/>
+    <location filename="../searchhandler.cpp" line="454"/>
         <source>Incorrect CQ database version</source>
         <translation>CQ 数据库版本不正确</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="453"/>
+    <location filename="../searchhandler.cpp" line="455"/>
         <source>OK</source>
         <translation>还行</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="455"/>
+    <location filename="../searchhandler.cpp" line="457"/>
         <source>Unknown Error</source>
         <translation>未知的错误</translation>
     </message>

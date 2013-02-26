@@ -91,7 +91,7 @@
     <location filename="../ui/mainWindow.ui" line="131"/>
     <location filename="../ui/mainWindow.ui" line="134"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
-        <translation type="finished">Wenn genaue Übereinstimmung Platzhaltersuche ausgeschaltet ist (* und?) werden unterstützt</translation>
+        <translation>Wenn genaue Übereinstimmung Platzhaltersuche ausgeschaltet ist (* und?) werden unterstützt</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="147"/>
@@ -241,42 +241,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="142"/>
+    <location filename="../fileviewer.cpp" line="149"/>
         <source>File not found</source>
         <translation>Datei nicht gefunden</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="156"/>
         <source>File could not be opened</source>
         <translation>Datei konnte nicht geöffnet werden</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="340"/>
+    <location filename="../fileviewer.cpp" line="170"/>
+        <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
+        <translation type="finished">Die Quelldatei angezeigt werden ist neuer als die CodeQuery-Datenbank-Datei. Wir empfehlen Ihnen, die CodeQuery-Datenbank-Datei manuell zu regenerieren.</translation>
+    </message>
+    <message>
+    <location filename="../fileviewer.cpp" line="358"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="341"/>
+    <location filename="../fileviewer.cpp" line="359"/>
         <source>OK</source>
         <translation>Okay</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="343"/>
+    <location filename="../fileviewer.cpp" line="361"/>
         <source>External Editor Configuration</source>
         <translation>Externer Editor Konfiguration</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="344"/>
+    <location filename="../fileviewer.cpp" line="362"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>Bitte geben Sie den Pfad und die Argumente für den externen Editor. %F Verwendung für Dateinamen und %n für Zeilennummer. Zum Beispiel:</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="370"/>
+    <location filename="../fileviewer.cpp" line="388"/>
         <source>File could not be opened!</source>
         <translation>Datei konnte nicht geöffnet werden!</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="395"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>Externer Editor konnte nicht gestartet werden. Bitte überprüfen Sie die Optionen!</translation>
     </message>
@@ -307,27 +312,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="145"/>
+    <location filename="../mainwindow.cpp" line="147"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="146"/>
+    <location filename="../mainwindow.cpp" line="148"/>
         <source>OK</source>
         <translation>Okay</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="149"/>
+    <location filename="../mainwindow.cpp" line="151"/>
         <source>Select language:</source>
         <translation>Sprache auswählen:</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="192"/>
+    <location filename="../mainwindow.cpp" line="194"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
@@ -400,47 +405,47 @@
         <translation>Offene CQ-Datenbankdatei</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="292"/>
+    <location filename="../searchhandler.cpp" line="294"/>
         <source>Function Call Graph</source>
         <translation>Funktion Anruf-Diagramm</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="296"/>
+    <location filename="../searchhandler.cpp" line="298"/>
         <source>Class Inheritance Graph</source>
         <translation>Klasse Vererbung Graph</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="334"/>
+    <location filename="../searchhandler.cpp" line="336"/>
         <source>results found</source>
         <translation>Treffer gefunden</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="346"/>
+    <location filename="../searchhandler.cpp" line="348"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation>Du musst zuerst ein Element aus der Liste auswählen, bevor Sie sich die Schaltfläche \&quot;Graph\&quot;.</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="450"/>
+    <location filename="../searchhandler.cpp" line="452"/>
         <source>File open error</source>
         <translation>Offene Dateifehler</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="451"/>
+    <location filename="../searchhandler.cpp" line="453"/>
         <source>Wrong file format</source>
         <translation>Falsches Dateiformat</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="452"/>
+    <location filename="../searchhandler.cpp" line="454"/>
         <source>Incorrect CQ database version</source>
         <translation>Falsche CQ-Datenbankversion</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="453"/>
+    <location filename="../searchhandler.cpp" line="455"/>
         <source>OK</source>
         <translation>Okay</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="455"/>
+    <location filename="../searchhandler.cpp" line="457"/>
         <source>Unknown Error</source>
         <translation>Unbekannter Fehler</translation>
     </message>

@@ -82,6 +82,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_highlighter(NULL)
 ,m_textEditSourceFont("Courier New")
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
+,m_timestampMismatchWarned(false)
 {
 	m_iter = m_fileDataList.begin();
 	m_textEditSourceFont.setStyleHint(QFont::TypeWriter);	
@@ -132,6 +133,12 @@ void fileviewer::clearList()
 	m_textEditSource->clear();
 	m_fileDataList.clear();
 	m_iter = m_fileDataList.begin();
+	m_timestampMismatchWarned = false;
+}
+
+void fileviewer::recvDBtimestamp(QDateTime dt)
+{
+	m_DBtimestamp = dt;
 }
 
 void fileviewer::fileToBeOpened(QString filename, QString linenum)
@@ -152,6 +159,17 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum)
 	}
 	file.close();
 
+	QFileInfo fi(filename);
+	if ((m_DBtimestamp < fi.lastModified())&&(m_timestampMismatchWarned == false))
+	{
+		
+		m_timestampMismatchWarned = true;
+		QMessageBox msgBox((QWidget*)mw);
+		msgBox.setIcon(QMessageBox::Warning);
+		msgBox.setStandardButtons(QMessageBox::Ok);
+		msgBox.setText(tr("The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file."));
+		msgBox.exec();
+	}
 	filedata fd(filename, linenum);
 	if (m_fileDataList.isEmpty())
 	{

@@ -99,6 +99,7 @@ signals:
 void searchresults(sqlqueryresultlist resultlist, int selectitem);
 void updateStatus(const QString & message, int timeout = 0);
 void DBreset();
+void sendDBtimestamp(QDateTime dt);
 void getResultCurrentListItemSymbolName();
 
 private:

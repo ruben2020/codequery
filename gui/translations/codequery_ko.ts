@@ -91,7 +91,7 @@
     <location filename="../ui/mainWindow.ui" line="131"/>
     <location filename="../ui/mainWindow.ui" line="134"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
-        <translation type="finished">정확히 일치 하는 와일드 카드 검색을 전환 하는 경우 (* 및?) 지원</translation>
+        <translation>정확히 일치 하는 와일드 카드 검색을 전환 하는 경우 (* 및?) 지원</translation>
     </message>
     <message>
     <location filename="../ui/mainWindow.ui" line="147"/>
@@ -241,42 +241,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="142"/>
+    <location filename="../fileviewer.cpp" line="149"/>
         <source>File not found</source>
         <translation>파일을 찾을 수 없습니다</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="156"/>
         <source>File could not be opened</source>
         <translation>파일을 열 수 없습니다.</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="340"/>
+    <location filename="../fileviewer.cpp" line="170"/>
+        <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
+        <translation type="finished">소스 파일을 볼 수 CodeQuery 데이터베이스 파일 보다 최신입니다. CodeQuery 데이터베이스 파일을 수동으로 다시 생성 하는 것이 좋습니다.</translation>
+    </message>
+    <message>
+    <location filename="../fileviewer.cpp" line="358"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="341"/>
+    <location filename="../fileviewer.cpp" line="359"/>
         <source>OK</source>
         <translation>괜찮았던 것</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="343"/>
+    <location filename="../fileviewer.cpp" line="361"/>
         <source>External Editor Configuration</source>
         <translation>외부 편집기 구성</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="344"/>
+    <location filename="../fileviewer.cpp" line="362"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>경로 및 외부 편집기에 대 한 인수를 입력 하십시오. 파일 이름 및 줄 번호에 대 한 %n% f 사용 합니다. 예를 들어:</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="370"/>
+    <location filename="../fileviewer.cpp" line="388"/>
         <source>File could not be opened!</source>
         <translation>파일을 열 수 없습니다!</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="395"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>외부 편집기를 시작할 수 없습니다. 옵션을 확인 하십시오!</translation>
     </message>
@@ -307,27 +312,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="145"/>
+    <location filename="../mainwindow.cpp" line="147"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="146"/>
+    <location filename="../mainwindow.cpp" line="148"/>
         <source>OK</source>
         <translation>괜찮았던 것</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="149"/>
+    <location filename="../mainwindow.cpp" line="151"/>
         <source>Select language:</source>
         <translation>언어 선택:</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="192"/>
+    <location filename="../mainwindow.cpp" line="194"/>
         <source>About</source>
         <translation>에 대 한</translation>
     </message>
@@ -400,47 +405,47 @@
         <translation>CQ 데이터베이스 파일 열기</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="292"/>
+    <location filename="../searchhandler.cpp" line="294"/>
         <source>Function Call Graph</source>
         <translation>함수 호출 그래프</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="296"/>
+    <location filename="../searchhandler.cpp" line="298"/>
         <source>Class Inheritance Graph</source>
         <translation>클래스 상속 그래프</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="334"/>
+    <location filename="../searchhandler.cpp" line="336"/>
         <source>results found</source>
         <translation>찾은 결과</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="346"/>
+    <location filename="../searchhandler.cpp" line="348"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation>먼저 그래프 버튼을 추진 하기 전에 목록에서 항목을 선택 해야 합니다.</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="450"/>
+    <location filename="../searchhandler.cpp" line="452"/>
         <source>File open error</source>
         <translation>파일 열기 오류</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="451"/>
+    <location filename="../searchhandler.cpp" line="453"/>
         <source>Wrong file format</source>
         <translation>잘못 된 파일 형식</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="452"/>
+    <location filename="../searchhandler.cpp" line="454"/>
         <source>Incorrect CQ database version</source>
         <translation>잘못 된 CQ 데이터베이스 버전</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="453"/>
+    <location filename="../searchhandler.cpp" line="455"/>
         <source>OK</source>
         <translation>괜찮았던 것</translation>
     </message>
     <message>
-    <location filename="../searchhandler.cpp" line="455"/>
+    <location filename="../searchhandler.cpp" line="457"/>
         <source>Unknown Error</source>
         <translation>알 수 없는 오류</translation>
     </message>

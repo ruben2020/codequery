@@ -261,6 +261,7 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 	if (idx < 0) return;
 	sqlquery::en_filereadstatus sqstatus;
 	sq->close_dbfile();
+	QFileInfo dbfile(m_comboBoxDB->itemText(idx));
 	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
 	if (sqstatus != sqlquery::sqlfileOK)
 	{
@@ -278,6 +279,7 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 		m_iter = m_searchMemoryList.begin();
 		m_pushButtonSearchPrev->setEnabled(false);
 		m_pushButtonSearchNext->setEnabled(false);
+		emit sendDBtimestamp(dbfile.lastModified());
 		emit DBreset();
 		QApplication::restoreOverrideCursor();
 	}

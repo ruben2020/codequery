@@ -65,6 +65,8 @@ void mainwindow::init(void)
 			m_listhandler, SLOT(populateList(sqlqueryresultlist, int)));
 	connect(m_searchhandler, SIGNAL(DBreset()),
 			m_fileviewer, SLOT(clearList()));
+	connect(m_searchhandler, SIGNAL(sendDBtimestamp(QDateTime)),
+			m_fileviewer, SLOT(recvDBtimestamp(QDateTime)));
 	connect(m_searchhandler, SIGNAL(DBreset()),
 			m_listhandler, SLOT(clearList()));
 	connect(m_listhandler, SIGNAL(openFile(QString, QString)),

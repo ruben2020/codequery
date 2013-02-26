@@ -74,6 +74,7 @@ void Next_ButtonClick(bool checked);
 void OpenInEditor_ButtonClick(bool checked);
 void OptionsExtEditor_Triggered(bool checked);
 void clearList();
+void recvDBtimestamp(QDateTime dt);
 
 signals:
 void searchCopiedText();
@@ -85,6 +86,8 @@ Highlighter *m_highlighter;
 QFont m_textEditSourceFont;
 QVector<filedata> m_fileDataList;
 QVector<filedata>::iterator m_iter;
+QDateTime m_DBtimestamp;
+bool m_timestampMismatchWarned;
 
 };
 

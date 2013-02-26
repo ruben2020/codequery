@@ -184,11 +184,12 @@
                    else if (c1 == '\'') {mode = 3; startindex = i-1;}
                    break;
            case 1:
-                   if ((c2 == '\n')||(c2 == '\r'))
+                   if ((c2 == '\n')||(c2 == '\r')||(i == maxi))
                        {
                            mode = 0;
                            endindex = i;
                            setFormat(startindex, endindex - startindex + 1, singleLineCommentFormat);
+                           c2 = ' '; //if new line is reached, reset scanners
                        }
                    break;
            case 2:
@@ -248,6 +249,7 @@
           sdfsdfsdfsdfsdfsd \  /******/
           sdfsdfsdfs
 
+// Another test "hello"
 
 void test(void)
 {

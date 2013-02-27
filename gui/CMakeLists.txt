@@ -111,7 +111,12 @@ translations/codequery_zh-CHT.ts
   INCLUDE_DIRECTORIES( "../makedb" )
   INCLUDE_DIRECTORIES( "../showgraph" )
 
+if(WIN32)
+  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+endif()
+
   target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph)
   
   install(TARGETS codequery RUNTIME DESTINATION bin)

@@ -11,9 +11,9 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 
 [![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
 
-## Latest version = v0.05
+## Latest version = v0.06
 
-For Windows, v0.05 available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+For Windows, v0.06 available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
 For Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
 

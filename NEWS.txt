@@ -1,4 +1,7 @@
 
+Version 0.06 - Feb 27, 2013
+Fixed syntax highlight bug, added user warning if CQ database is older than viewed source file, removed the extra console window appearing alongside the GUI app in Windows
+
 Version 0.05 - Feb 25, 2013
 Fixed file path bug in Windows and initial version of cqsearch CLI tool
 

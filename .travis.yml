@@ -1,4 +1,3 @@
-
 language: cpp
 
 compiler: gcc
@@ -16,8 +15,10 @@ script: make
 
 after_script:
   - make package
-  - export pkgfile=`ls -1 ./*.deb`
-  - sudo dpkg -i $pkgfile
+  - export tgzfile=`ls -1 ./*.tar.gz`
+  - tar -ztvf $tgzfile
+  - export debfile=`ls -1 ./*.deb`
+  - sudo dpkg -i $debfile
   - cqmakedb -v
   - cqsearch -v
   - cqmakedb -h

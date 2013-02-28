@@ -20,9 +20,11 @@ after_script:
   - export debfile=`ls -1 ./*.deb`
   - sudo dpkg -i $debfile
   - cqmakedb -v
-  - cqsearch -v
-  - cqmakedb -h
-  - cqsearch -h
+  - cd ..
+  - cscope -cbR
+  - ctags --fields=+i -nR
+  - cqmakedb -s cq.db -c cscope.out -t tags -p -d
+  - cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION
 
 notifications:
   email:

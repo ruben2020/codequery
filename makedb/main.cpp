@@ -1,4 +1,3 @@
-
 /*
  * CodeQuery
  * Copyright (C) 2013 ruben2020 https://github.com/ruben2020/
@@ -106,7 +105,8 @@ int process_cscope(const char* cscopefn, const char* sqfn, bool debug)
 	if (k != 0)
 	{
 		printf("Please note that assembly code embedded in C/C++ files is unsupported.\n"
-			"This might be the cause for this error.\n");
+			"This might be the cause for this error.\n"
+			"Please use the -d (for debug) argument to get more info.\n");
 		return 1;
 	}
 

@@ -1,6 +1,7 @@
 
 Version 0.06 - Feb 27, 2013
-Fixed syntax highlight bug, added user warning if CQ database is older than viewed source file, removed the extra console window appearing alongside the GUI app in Windows
+Fixed syntax highlight bug, added user warning if CQ database is older than viewed source file,
+removed the extra console window appearing alongside the GUI app in Windows
 
 Version 0.05 - Feb 25, 2013
 Fixed file path bug in Windows and initial version of cqsearch CLI tool
@@ -12,7 +13,8 @@ Version 0.03 - Feb 22, 2013
 Added wildcard search * and ?. Added previous and next history browsing for search.
 
 Version 0.02 - Feb 19, 2013
-Fixed external editor file path recognition bug for Windows (could not recognize spaces e.g. C:\Program Files).
+Fixed external editor file path recognition bug for Windows
+(could not recognize spaces e.g. C:\Program Files).
 
 Version 0.01 - Feb 18, 2013
 Initial release

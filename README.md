@@ -104,7 +104,9 @@ Contributions are welcomed to update or provide new translations.
 
 On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package.
 
-On Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
+On Linux, tar.gz and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
+
+To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 
 ## How do I use it?

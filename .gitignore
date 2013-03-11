@@ -18,6 +18,8 @@
 
 # Ignore the following directories
 build/
+build32/
+build64/
 bin/
 
 # Ignore cscope and ctags files, and our db files

@@ -14,6 +14,10 @@ before_script:
 script: make
 
 after_script:
+  - uname -i
+  - uname -p
+  - uname -m
+  - uname -a
   - make package
   - export tgzfile=`ls -1 ./*.tar.gz`
   - tar -ztvf $tgzfile

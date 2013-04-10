@@ -235,6 +235,13 @@ void fileviewer::updateTextEdit(void)
 		return;
 	}
 	QTextStream in(&file);
+
+	QRegExp rx("\\.py$", Qt::CaseInsensitive);
+	int pos = rx.indexIn(m_iter->filename);
+	int lang = enHighlightCPP;
+	if (pos != -1) lang = enHighlightPython;
+	m_highlighter->m_intLanguage = lang;
+
 	while (!in.atEnd())
 	{
 		m_textEditSource->insertPlainText(in.readAll());

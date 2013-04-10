@@ -92,6 +92,7 @@ csdbparser::enResult cs2sq::test_csdb(void)
 			" file=%s:%ld\n", num, res, sp.filename.c_str(), sp.line_num);}
 			return res;
 		}
+		if (sp.line_num == -1) continue; // empty line
 		if (sp.valid) num += sp.symbols.size();
 	}
 
@@ -212,6 +213,7 @@ cs2sq::enResult cs2sq::add_symbols(void)
 		m_csdbpLastErr = m_csdbp.get_next_symbol(&sp);
 		if (m_csdbpLastErr != csdbparser::resOK) return resCSDBPError;
 		if (sp.valid == false) break; //end of symbols
+		if (sp.line_num == -1) continue; // empty line
 		++lineidx;
 		if (current_file.compare(sp.filename) != 0)
 		{

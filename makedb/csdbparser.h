@@ -33,6 +33,7 @@
 #define CSDBP_MINIM_BUFSIZE      (20000)
 #define CSDBP_SUPPORTED_VER      "15"
 #define CSDBP_SUP_PARAM          " -c               "
+#define CSDBP_SUP_PARAM2         " -c "
 
 typedef std::vector<std::string> strvect;
 

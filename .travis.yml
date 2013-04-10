@@ -3,6 +3,7 @@ language: cpp
 compiler: gcc
 
 before_install:
+ - uname -a
  - sudo apt-get update -qq
  - sudo apt-get install -qq cmake sqlite3 qt4-dev-tools cscope exuberant-ctags
 
@@ -14,15 +15,7 @@ before_script:
 script: make
 
 after_script:
-  - uname -i
-  - uname -p
-  - uname -m
-  - uname -a
-  - make package
-  - export tgzfile=`ls -1 ./*.tar.gz`
-  - tar -ztvf $tgzfile
-  - export debfile=`ls -1 ./*.deb`
-  - sudo dpkg -i $debfile
+  - sudo make install
   - cqmakedb -v
   - cd ..
   - cscope -cbR

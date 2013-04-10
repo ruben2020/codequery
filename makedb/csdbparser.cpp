@@ -307,6 +307,7 @@ if (s.compare(7, strlen(CSDBP_SUPPORTED_VER), CSDBP_SUPPORTED_VER) != 0)
 
 // Compare the parameters used to build the database with the supported one
 if (s.compare(hdr_len - 28, strlen(CSDBP_SUP_PARAM), CSDBP_SUP_PARAM) != 0)
+if (s.compare(hdr_len - 14, strlen(CSDBP_SUP_PARAM2), CSDBP_SUP_PARAM2) != 0)
      {return resUNSUPPORTED_PARAM;}
 
 // Trailer offset should be a positive number, normally > 20
@@ -337,7 +338,10 @@ std::string s(static_cast<const char*>(m_buf));
 m_trailer_start = atol(s.substr(slen - 10).c_str());
 
 // Remove the part of the string after the base path
-m_buf[slen - 28] = 0; 
+if (s.compare(slen - 28, strlen(CSDBP_SUP_PARAM), CSDBP_SUP_PARAM) == 0)
+	m_buf[slen - 28] = 0; 
+else m_buf[slen - 14] = 0;
+
 //slen = strlen(m_buf);
 
 s = static_cast<const char*>(m_buf);
@@ -421,7 +425,18 @@ pack->valid = true;
 pack->filename = m_current_srcfile;
 if (m_debug) printf("=====> Back from get_next_symbol\n");
 
-if (fscanf(m_fp, "%ld", &(pack->line_num)) != 1) {return resUNKNOWN_ERR;}
+ch = fgetc(m_fp);
+if (ch == 0x0A)
+	{
+		pack->line_num = -1; // empty line
+		return resOK; //EOL
+	}
+else ungetc(ch, m_fp);
+
+if (fscanf(m_fp, "%ld", &(pack->line_num)) != 1)
+	{
+		return resUNKNOWN_ERR;
+	}
 ch = fgetc(m_fp); // the space after the line number
 if (fgets(m_buf, m_bufsize, m_fp) == NULL) {return resFILE_ACCESS_ERR;}
 pack->line_text = chomp(m_buf);
@@ -444,6 +459,12 @@ while(loopcheck++ < 65500)
 		pack->line_text += sd.symbname;
 		if (sd.valid) {pack->symbols.push_back(sd);}
 		// no-symbol line
+		ch = fgetc(m_fp);
+		if ((ch == 0x0A)&&(loopcheck > 0))
+		{
+			break; //EOL
+		}
+		else ungetc(ch, m_fp);
 		if (fgets(m_buf, m_bufsize, m_fp) == NULL)
 			{return resFILE_ACCESS_ERR;}
 		pack->line_text += chomp(m_buf);	
@@ -470,6 +491,7 @@ if (ch == 9) // TAB
 				if (fgets(m_buf, m_bufsize, m_fp) == NULL)
 					return resFILE_ACCESS_ERR;
 				m_current_srcfile = chomp(m_buf);
+				if (m_debug) printf("New file=%s\n", m_buf);
 				endOfSymbData = m_current_srcfile.empty();
 				break;
 			case ')': // end of a definition
@@ -491,7 +513,7 @@ return resOK;
 csdbparser::enResult csdbparser::symbolread(sym_data *data, symdata_pack* pack)
 {
 if (m_debug) printf("=====> symbolread\n");
-int ch;
+int ch, ch2;
 data->clear();
 data->valid = true;
 data->sym_type = sym_data::symNone;
@@ -518,7 +540,15 @@ if (ch == 9) // TAB
 				if (m_debug) printf("End of macro found\n");
 				break;
 			case '~': // include
-				pack->line_text += (char) fgetc(m_fp);
+				ch2 = fgetc(m_fp);
+				if ((ch2 == '"')||(ch2 == '<'))
+				{
+					pack->line_text += (char) ch2;
+				}
+				else
+				{
+					ungetc(ch2, m_fp);
+				}
 				data->sym_type = sym_data::symIncl;
 				if (m_debug) printf("Incl found\n");
 				break;

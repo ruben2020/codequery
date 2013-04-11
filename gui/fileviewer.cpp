@@ -236,10 +236,16 @@ void fileviewer::updateTextEdit(void)
 	}
 	QTextStream in(&file);
 
-	QRegExp rx("\\.py$", Qt::CaseInsensitive);
-	int pos = rx.indexIn(m_iter->filename);
 	int lang = enHighlightCPP;
+
+	QRegExp rx1("\\.py$", Qt::CaseInsensitive);
+	int pos = rx1.indexIn(m_iter->filename);
 	if (pos != -1) lang = enHighlightPython;
+
+	QRegExp rx2("\\.java$", Qt::CaseInsensitive);
+	pos = rx2.indexIn(m_iter->filename);
+	if (pos != -1) lang = enHighlightJava;
+
 	m_highlighter->m_intLanguage = lang;
 
 	while (!in.atEnd())

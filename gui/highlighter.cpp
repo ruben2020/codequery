@@ -89,6 +89,52 @@
      */
  }
 
+ void Highlighter::setup_Java(void)
+ {
+     HighlightingRule rule;
+
+     rule.pattern = QRegExp("\\b[A-Za-z0-9_]+(?=\\()");
+     rule.format = functionFormat;
+     javaHighlightingRules.append(rule);
+
+     QStringList keywordPatterns;
+     keywordPatterns      << "\\babstract\\b"     << "\\bcontinue\\b"     << "\\bfor\\b"
+  << "\\bnew\\b"          << "\\bswitch\\b"       << "\\bassert\\b"
+  << "\\bdefault\\b"      << "\\bif\\b"           << "\\bpackage\\b"
+  << "\\bsynchronized\\b" << "\\bboolean\\b"      << "\\bdo\\b"
+  << "\\bgoto\\b"         << "\\bprivate\\b"      << "\\bthis\\b"
+  << "\\bbreak\\b"        << "\\bdouble\\b"       << "\\bimplements\\b"
+  << "\\bprotected\\b"    << "\\bthrow\\b"        << "\\bbyte\\b"
+  << "\\belse\\b"         << "\\bimport\\b"       << "\\bpublic\\b"
+  << "\\bthrows\\b"       << "\\bcase\\b"         << "\\benum\\b"
+  << "\\binstanceof\\b"   << "\\breturn\\b"       << "\\btransient\\b"
+  << "\\bcatch\\b"        << "\\bextends\\b"      << "\\bint\\b"
+  << "\\bshort\\b"        << "\\btry\\b"          << "\\bchar\\b"
+  << "\\bfinal\\b"        << "\\binterface\\b"    << "\\bstatic\\b"
+  << "\\bvoid\\b"         << "\\bclass\\b"        << "\\bfinally\\b"
+  << "\\blong\\b"         << "\\bstrictfp\\b"     << "\\bvolatile\\b"
+  << "\\bconst\\b"        << "\\bfloat\\b"        << "\\bnative\\b"
+  << "\\bsuper\\b"        << "\\bwhile\\b"        << "\\btrue\\b"
+  << "\\bfalse\\b"        << "\\bnull\\b";
+
+
+     foreach (const QString &pattern, keywordPatterns) {
+         rule.pattern = QRegExp(pattern);
+         rule.format = keywordFormat;
+         javaHighlightingRules.append(rule);
+     }
+
+     rule.pattern = QRegExp("\\b[0-9]+\\b");
+     rule.format = literalFormat;
+     javaHighlightingRules.append(rule);
+
+     rule.pattern = QRegExp("^[\t ]*#.+");
+     rule.format = cppFormat;
+     javaHighlightingRules.append(rule);
+
+ }
+
+
  void Highlighter::setup_Python(void)
  {
      HighlightingRule rule;
@@ -139,6 +185,7 @@
      cppFormat.setForeground(Qt::darkMagenta);
 	 
      setup_CPP();
+     setup_Java();
      setup_Python();
  }
 
@@ -147,6 +194,13 @@
     if (m_intLanguage == enHighlightCPP)
 	{
 	     foreach (const HighlightingRule &rule, cHighlightingRules) {
+             execHighlightRule(rule, text);
+         }
+         cAdditionalRules(text);
+    }
+    else if (m_intLanguage == enHighlightJava)
+	{
+	     foreach (const HighlightingRule &rule, javaHighlightingRules) {
              execHighlightRule(rule, text);
          }
          cAdditionalRules(text);

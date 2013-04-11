@@ -37,7 +37,8 @@
 
  enum enHighlightLang
  {
-     enHighlightCPP,
+     enHighlightCPP = 0,
+     enHighlightJava,
      enHighlightPython
  };
  
@@ -60,6 +61,7 @@
          QTextCharFormat format;
      };
      QVector<HighlightingRule> cHighlightingRules;
+     QVector<HighlightingRule> javaHighlightingRules;
      QVector<HighlightingRule> pyHighlightingRules;
 
      QTextCharFormat keywordFormat;
@@ -75,6 +77,7 @@
      void pyAdditionalRules(const QString &text);
      inline void execHighlightRule(const HighlightingRule &rule, const QString &text);
      void setup_CPP(void);
+     void setup_Java(void);
      void setup_Python(void);
  };
 

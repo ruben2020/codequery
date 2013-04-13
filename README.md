@@ -90,7 +90,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7, Windows XP and Ubuntu Linux 32-bit.
+It has been tested on Windows 7, Windows XP, Ubuntu Linux 64-bit and Ubuntu Linux 32-bit.
 
 Contributions are welcomed to attempt ports to Mac OS and other operating systems.
 

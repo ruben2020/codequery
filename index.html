@@ -41,7 +41,7 @@
       <section>
         <h1><img src="https://raw.github.com/ruben2020/codequery/master/doc/logotitle.png" alt="CodeQuery"></h1>
 
-<p><a href="https://github.com/ruben2020/codequery">CodeQuery</a> is a tool to index, then query or search C, C++ and Java source code (and probably also C#).</p>
+<p>This is a tool to index, then query or search C, C++, Java and Python source code.</p>
 
 <p>It builds upon the databases of <a href="http://cscope.sourceforge.net/">cscope</a> and <a href="http://ctags.sourceforge.net/">Exuberant ctags</a>.</p>
 
@@ -51,7 +51,7 @@
 
 <p><a href="https://travis-ci.org/ruben2020/codequery"><img src="https://travis-ci.org/ruben2020/codequery.png" alt="Build Status"></a></p>
 
-<h2>Latest version = v0.06</h2>
+<h2>Latest version = v0.07</h2>
 
 <p>Windows and Linux binaries available here for download: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a></p>
 
@@ -70,6 +70,8 @@
 <p>So both these tools have their pros and cons, but complement each other.</p>
 
 <p>CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.</p>
+
+<p>In addition, <a href="https://github.com/portante/pycscope">pycscope</a> is used to add support for Python, in place of cscope.</p>
 
 <h2>What features does CodeQuery have?</h2>
 
@@ -120,7 +122,7 @@
 
 <h2>Which platforms are supported?</h2>
 
-<p>It has been tested on Windows 7, Windows XP and Ubuntu Linux 32-bit.</p>
+<p>It has been tested on Windows 7, Windows XP, Ubuntu Linux 64-bit and Ubuntu Linux 32-bit.</p>
 
 <p>Contributions are welcomed to attempt ports to Mac OS and other operating systems.</p>
 
@@ -162,7 +164,7 @@
 
 <h2>Credits</h2>
 
-<p>We thank the people behind the following projects:<br><a href="http://cscope.sourceforge.net/">cscope</a> - our database is derived from this<br><a href="http://ctags.sourceforge.net/">Exuberant ctags</a>- our database is derived from this<br><a href="http://www.sqlite.org/">sqlite3</a> - our database is using this format<br><a href="http://www.cmake.org/">CMake</a> - cross-platform build toolchain for CodeQuery<br><a href="http://qt-project.org/">Qt open source</a> - GUI toolkit used to build CodeQuery<br><a href="http://michael.dipperstein.com/optlist/index.html">optlist</a> - cqmakedb uses this to parse command line options<br><a href="http://code.google.com/p/showgraph/">showgraph</a> - visualization done using this library<br><a href="http://www.axialis.com/iconworkshop">Axialis</a> - free images for CodeQuery and this website</p>
+<p>We thank the people behind the following projects:<br><a href="http://cscope.sourceforge.net/">cscope</a> - our database is derived from this<br><a href="http://ctags.sourceforge.net/">Exuberant ctags</a>- our database is derived from this<br><a href="https://github.com/portante/pycscope">pycscope</a> - our database (for Python) is derived from this<br><a href="http://www.sqlite.org/">sqlite3</a> - our database is using this format<br><a href="http://www.cmake.org/">CMake</a> - cross-platform build toolchain for CodeQuery<br><a href="http://qt-project.org/">Qt open source</a> - GUI toolkit used to build CodeQuery<br><a href="http://michael.dipperstein.com/optlist/index.html">optlist</a> - cqmakedb uses this to parse command line options<br><a href="http://code.google.com/p/showgraph/">showgraph</a> - visualization done using this library<br><a href="http://www.axialis.com/iconworkshop">Axialis</a> - free images for CodeQuery and this website</p>
       </section>
       <footer>
         <p>Project maintained by <a href="https://github.com/ruben2020">ruben2020</a></p>

@@ -104,11 +104,13 @@ Contributions are welcomed to update or provide new translations.
 
 ## How to install it?
 
-On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package.
+On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (only for Python) is not bundled together with this setup package and needs to be installed separately.
 
 On Linux, tar.gz and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
+
+Version 15.8a of cscope or higher, works best with CodeQuery.
 
 
 ## How do I use it?

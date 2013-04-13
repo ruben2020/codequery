@@ -14,12 +14,17 @@ This INSTALL guide applies to Linux only
 [sqlite3](http://www.sqlite.org/)   
 [Qt4](http://qt-project.org/)   
 [cscope](http://cscope.sourceforge.net/)   
-[ctags](http://ctags.sourceforge.net/)
+[ctags](http://ctags.sourceforge.net/)    
+[pycscope](https://github.com/portante/pycscope)
+```bash
+sudo apt-get install git cmake sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+```
 
-
-2. Download the repository as a ZIP file from github:
+2. Download the repository as a ZIP file from github or clone git repository:
 [codequery@github](https://github.com/ruben2020/codequery)
-
+```bash
+git clone https://github.com/ruben2020/codequery.git
+```
 
 3. Unzip to a directory and change to that directory.
 ```bash

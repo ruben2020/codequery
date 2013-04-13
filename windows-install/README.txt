@@ -1,13 +1,15 @@
 ![CodeQuery](doc/logotitle.png)
 ===============================
 
-This is a tool to index, then query or search C, C++ and Java source code (and probably also C#).
+This is a tool to index, then query or search C, C++, Java and Python source code.
 
 It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Exuberant ctags](http://ctags.sourceforge.net/).
 
 The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool to generate the CodeQuery database file.
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
+
+[![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
 
 
 ## How is it different from cscope and ctags? What are the advantages?
@@ -21,6 +23,8 @@ ctags does many languages well and understands destructors, member instantiation
 So both these tools have their pros and cons, but complement each other.
 
 CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.
+
+In addition, [pycscope](https://github.com/portante/pycscope) is used to add support for Python, in place of cscope.
 
 ## What features does CodeQuery have?
 
@@ -129,6 +133,7 @@ ruben2020
 We thank the people behind the following projects:    
 [cscope](http://cscope.sourceforge.net/) - our database is derived from this   
 [Exuberant ctags](http://ctags.sourceforge.net/)- our database is derived from this   
+[pycscope](https://github.com/portante/pycscope) - our database (for Python) is derived from this    
 [sqlite3](http://www.sqlite.org/) - our database is using this format    
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    

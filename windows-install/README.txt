@@ -9,8 +9,6 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
-
 
 ## How is it different from cscope and ctags? What are the advantages?
 
@@ -82,7 +80,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7, Windows XP and Ubuntu Linux 32-bit.
+It has been tested on Windows 7, Windows XP, Ubuntu Linux 64-bit and Ubuntu Linux 32-bit.
 
 Contributions are welcomed to attempt ports to Mac OS and other operating systems.
 
@@ -96,11 +94,13 @@ Contributions are welcomed to update or provide new translations.
 
 ## How to install it?
 
-On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package.
+On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) is not bundled together with this setup package and needs to be installed separately.
 
 On Linux, tar.gz and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
+
+Version 15.8a of [cscope](http://cscope.sourceforge.net/) or higher, works best with CodeQuery.
 
 
 ## How do I use it?

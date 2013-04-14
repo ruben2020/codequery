@@ -112,7 +112,8 @@ translations/codequery_zh-CHT.ts
   INCLUDE_DIRECTORIES( "../showgraph" )
 
 if(WIN32)
-  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+  SET(CQ_WIN_RCS cqwin32.rc)
+  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
 else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
 endif()

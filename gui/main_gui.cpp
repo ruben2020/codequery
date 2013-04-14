@@ -18,6 +18,9 @@
  * 
  */
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 #include "mainwindow.h"
 
@@ -29,5 +32,13 @@ int main(int argc, char *argv[])
 	mainwindow mw(wndw, &app);
 
 	mw.show();
+
+#ifdef _WIN32
+	ShowWindow(mw.winId(), SW_HIDE);
+	SetWindowLongPtr(mw.winId(), GWL_EXSTYLE, 
+			GetWindowLongPtr(mw.winId(), GWL_EXSTYLE) | WS_EX_APPWINDOW);
+	ShowWindow(mw.winId(), SW_SHOW);
+#endif
+
 	return app.exec();
 }

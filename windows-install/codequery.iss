@@ -14,10 +14,9 @@ Source: "C:\MinGW\bin\sqlite3.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\Qt\4.8.4\bin\QtCore4.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\Qt\4.8.4\bin\QtGui4.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\Qt\4.8.4\bin\QtXml4.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
-Source: "C:\workspace\CodeQuery\gui\images\logo1616.ico"; DestDir: "{app}"; Flags: overwritereadonly
 
 [Icons]
-Name: "{group}\CodeQuery"; Filename: "{app}\codequery.exe"; WorkingDir: "{app}"; IconFilename: "{app}\logo1616.ico"
+Name: "{group}\CodeQuery"; Filename: "{app}\codequery.exe"; WorkingDir: "{app}"; IconFilename: "{app}\codequery.exe"
 Name: "{group}\README"; Filename: "{app}\README.txt"; WorkingDir: "{app}"
 Name: "{group}\LICENSE"; Filename: "{app}\LICENSE.txt"; WorkingDir: "{app}"
 Name: "{group}\How to Use CodeQuery"; Filename: "{app}\HOWTO-WINDOWS.txt"; WorkingDir: "{app}"

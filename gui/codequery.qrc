@@ -11,6 +11,8 @@
     <file>images/Graph.png</file>
     <file>images/Zoom_Out.png</file>
     <file>images/Zoom_In.png</file>
+    <file>images/Text_Minus.png</file>
+    <file>images/Text_Plus.png</file>
     <file>images/logo.png</file>
     <file>../build/gui/codequery_de.qm</file>
     <file>../build/gui/codequery_en.qm</file>

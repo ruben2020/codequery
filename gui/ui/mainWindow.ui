@@ -292,6 +292,40 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pushButtonTextShrink">
+              <property name="toolTip">
+               <string>Reduce font size</string>
+              </property>
+              <property name="statusTip">
+               <string>Reduce font size</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../codequery.qrc">
+                <normaloff>:/mainwindow/images/Text_Minus.png</normaloff>:/mainwindow/images/Text_Minus.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonTextEnlarge">
+              <property name="toolTip">
+               <string>Increase font size</string>
+              </property>
+              <property name="statusTip">
+               <string>Increase font size</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../codequery.qrc">
+                <normaloff>:/mainwindow/images/Text_Plus.png</normaloff>:/mainwindow/images/Text_Plus.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="Line" name="line">
               <property name="frameShadow">
                <enum>QFrame::Sunken</enum>
@@ -470,12 +504,15 @@
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonClipSearch</tabstop>
+  <tabstop>pushButtonGraph</tabstop>
   <tabstop>comboBoxQueryType</tabstop>
   <tabstop>treeWidgetSearchResults</tabstop>
   <tabstop>pushButtonPrev</tabstop>
   <tabstop>pushButtonNext</tabstop>
   <tabstop>pushButtonOpenInEditor</tabstop>
   <tabstop>pushButtonGoToLine</tabstop>
+  <tabstop>pushButtonTextShrink</tabstop>
+  <tabstop>pushButtonTextEnlarge</tabstop>
   <tabstop>pushButtonPaste</tabstop>
   <tabstop>checkBoxSymbolOnly</tabstop>
   <tabstop>textEditSource</tabstop>

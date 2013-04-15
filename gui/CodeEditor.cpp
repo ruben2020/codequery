@@ -172,6 +172,9 @@
  {
      QPainter painter(lineNumberArea);
      painter.fillRect(event->rect(), Qt::lightGray);
+     QFont font1 = painter.font();
+     font1.setPixelSize(font().pixelSize());
+     painter.setFont(font1);
 
      QTextBlock block = firstVisibleBlock();
      int blockNumber = block.blockNumber();

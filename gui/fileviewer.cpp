@@ -80,7 +80,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_labelFilePath(NULL)
 ,m_textEditSource(NULL)
 ,m_highlighter(NULL)
-,m_textEditSourceFont("Courier New")
+,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
 {
@@ -98,6 +98,8 @@ void fileviewer::init(void)
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);
+	m_pushButtonTextShrink->setEnabled(false);
+	m_pushButtonTextEnlarge->setEnabled(false);
 	m_pushButtonGoToLine->setEnabled(false);
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
@@ -119,6 +121,10 @@ void fileviewer::init(void)
 			this, SLOT(Next_ButtonClick(bool)));
 	connect(m_pushButtonOpenInEditor, SIGNAL(clicked(bool)),
 			this, SLOT(OpenInEditor_ButtonClick(bool)));
+	connect(m_pushButtonTextShrink, SIGNAL(clicked(bool)),
+			this, SLOT(TextShrink_ButtonClick(bool)));
+	connect(m_pushButtonTextEnlarge, SIGNAL(clicked(bool)),
+			this, SLOT(TextEnlarge_ButtonClick(bool)));
 	m_fileDataList.clear();
 }
 
@@ -127,6 +133,8 @@ void fileviewer::clearList()
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);
+	m_pushButtonTextShrink->setEnabled(false);
+	m_pushButtonTextEnlarge->setEnabled(false);
 	m_pushButtonGoToLine->setEnabled(false);
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
@@ -256,6 +264,8 @@ void fileviewer::updateTextEdit(void)
 	updateFilePathLabel();
 	m_pushButtonGoToLine->setEnabled(true);
 	m_pushButtonOpenInEditor->setEnabled(true);
+	m_pushButtonTextShrink->setEnabled(true);
+	m_pushButtonTextEnlarge->setEnabled(true);
 	QApplication::restoreOverrideCursor();
 }
 
@@ -344,6 +354,8 @@ void fileviewer::Next_ButtonClick(bool checked)
 void fileviewer::handleFileCannotBeOpenedCase(void)
 {
 	m_textEditSource->clear();
+	m_pushButtonTextShrink->setEnabled(false);
+	m_pushButtonTextEnlarge->setEnabled(false);
         m_highlighter->m_intAddlRulesMode = 0; //reset additional rules mode
 	m_pushButtonGoToLine->setEnabled(false);	
 	m_pushButtonNext->setEnabled(false);
@@ -430,4 +442,21 @@ void fileviewer::OpenInEditor_ButtonClick(bool checked)
 	}
 }
 
+void fileviewer::TextShrink_ButtonClick(bool checked)
+{
+	if (!checked)
+	{
+		m_textEditSourceFont.setPixelSize(m_textEditSourceFont.pixelSize() - 2);
+		m_textEditSource->setFont(m_textEditSourceFont);
+	}
+}
+
+void fileviewer::TextEnlarge_ButtonClick(bool checked)
+{
+	if (!checked)
+	{
+		m_textEditSourceFont.setPixelSize(m_textEditSourceFont.pixelSize() + 2);
+		m_textEditSource->setFont(m_textEditSourceFont);
+	}
+}
 

@@ -105,6 +105,8 @@ void mainwindow::setup_fileviewer(void)
 {
 	m_fileviewer->m_pushButtonPrev = ui->pushButtonPrev;
 	m_fileviewer->m_pushButtonNext = ui->pushButtonNext;
+	m_fileviewer->m_pushButtonTextShrink = ui->pushButtonTextShrink;
+	m_fileviewer->m_pushButtonTextEnlarge = ui->pushButtonTextEnlarge;
 	m_fileviewer->m_pushButtonOpenInEditor = ui->pushButtonOpenInEditor;
 	m_fileviewer->m_pushButtonPaste = ui->pushButtonPaste;
 	m_fileviewer->m_pushButtonGoToLine = ui->pushButtonGoToLine;
@@ -216,6 +218,7 @@ void mainwindow::writeSettings()
 	settings.setValue("LastOpenDB", ui->comboBoxDB->currentIndex());
 	settings.setValue("Language", m_currentLanguage);
 	settings.setValue("ExtEditorPath", m_fileviewer->m_externalEditorPath);
+	settings.setValue("FileViewerFontSize", m_fileviewer->m_textEditSourceFont.pixelSize());
 	settings.endGroup();
 
 	settings.beginWriteArray("OpenDBHistory");
@@ -263,6 +266,8 @@ void mainwindow::readSettings()
 	retranslateUi();
 	m_fileviewer->m_externalEditorPath =
 		settings.value("ExtEditorPath", m_fileviewer->m_externalEditorPath).toString();
+	m_fileviewer->m_textEditSourceFont.setPixelSize(settings.value("FileViewerFontSize", 12).toInt());
+	m_fileviewer->m_textEditSource->setFont(m_fileviewer->m_textEditSourceFont);
 	settings.endGroup();
 
 	/*sizee = settings.beginReadArray("SearchHistory");

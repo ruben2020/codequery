@@ -208,7 +208,7 @@ csdbparser::csdbparser()
 ,m_state(stIDLE)
 ,m_trailer_start(0)
 ,m_bufsize(0)
-,m_debug(true)
+,m_debug(false)
 {
 }
 
@@ -452,6 +452,11 @@ while(loopcheck++ < 65500)
 		if ((ch == 0x0A)&&(loopcheck > 1))
 		{
 			break; //EOL
+		}
+		else if ((ch >= 0x30)&&(ch <= 0x39)&&(loopcheck > 1))
+		{
+			ungetc(ch, m_fp);
+			break; // symbol shouldn't start with line numbers
 		}
 		else 
 		{

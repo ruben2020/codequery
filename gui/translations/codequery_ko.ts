@@ -136,80 +136,92 @@
         <translation>선택 된 줄으로 이동</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="310"/>
-    <location filename="../ui/mainWindow.ui" line="313"/>
+    <location filename="../ui/mainWindow.ui" line="297"/>
+    <location filename="../ui/mainWindow.ui" line="300"/>
+        <source>Reduce font size</source>
+        <translation type="finished">글꼴 크기 줄이기</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="314"/>
+    <location filename="../ui/mainWindow.ui" line="317"/>
+        <source>Increase font size</source>
+        <translation type="finished">글꼴 크기 증가</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="344"/>
+    <location filename="../ui/mainWindow.ui" line="347"/>
         <source>Copy, paste and search</source>
         <translation>복사, 붙여넣기 및 검색</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="327"/>
-    <location filename="../ui/mainWindow.ui" line="330"/>
+    <location filename="../ui/mainWindow.ui" line="361"/>
+    <location filename="../ui/mainWindow.ui" line="364"/>
         <source>Symbol search only for paste and search</source>
         <translation>붙여넣기 및 검색에 대해서만 기호 검색</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="333"/>
+    <location filename="../ui/mainWindow.ui" line="367"/>
         <source>Symbol only</source>
         <translation>상징만</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="352"/>
+    <location filename="../ui/mainWindow.ui" line="386"/>
         <source>FilePath:0</source>
         <translation>FilePath:0</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="364"/>
-    <location filename="../ui/mainWindow.ui" line="367"/>
+    <location filename="../ui/mainWindow.ui" line="401"/>
+    <location filename="../ui/mainWindow.ui" line="404"/>
         <source>CodeEditor</source>
         <translation>CodeEditor</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="393"/>
+    <location filename="../ui/mainWindow.ui" line="430"/>
         <source>File</source>
         <translation>파일</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="400"/>
+    <location filename="../ui/mainWindow.ui" line="437"/>
         <source>Options</source>
         <translation>옵션</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="407"/>
+    <location filename="../ui/mainWindow.ui" line="444"/>
         <source>Help</source>
         <translation>도움말</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="419"/>
+    <location filename="../ui/mainWindow.ui" line="456"/>
         <source>Exit</source>
         <translation>출구</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="424"/>
+    <location filename="../ui/mainWindow.ui" line="461"/>
         <source>Open</source>
         <translation>오픈</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="429"/>
+    <location filename="../ui/mainWindow.ui" line="466"/>
         <source>About</source>
         <translation>에 대 한</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="434"/>
+    <location filename="../ui/mainWindow.ui" line="471"/>
         <source>External Editor</source>
         <translation>외부 편집기</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="439"/>
+    <location filename="../ui/mainWindow.ui" line="476"/>
         <source>Open CQ Database</source>
         <translation>오픈 CQ 데이터베이스</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="444"/>
+    <location filename="../ui/mainWindow.ui" line="481"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="449"/>
+    <location filename="../ui/mainWindow.ui" line="486"/>
         <source>About Qt</source>
         <translation>Qt에 대 한</translation>
     </message>
@@ -241,47 +253,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="157"/>
         <source>File not found</source>
         <translation>파일을 찾을 수 없습니다</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="156"/>
+    <location filename="../fileviewer.cpp" line="164"/>
         <source>File could not be opened</source>
         <translation>파일을 열 수 없습니다.</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="170"/>
+    <location filename="../fileviewer.cpp" line="178"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
-        <translation type="finished">소스 파일을 볼 수 CodeQuery 데이터베이스 파일 보다 최신입니다. CodeQuery 데이터베이스 파일을 수동으로 다시 생성 하는 것이 좋습니다.</translation>
+        <translation>소스 파일을 볼 수 CodeQuery 데이터베이스 파일 보다 최신입니다. CodeQuery 데이터베이스 파일을 수동으로 다시 생성 하는 것이 좋습니다.</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="358"/>
+    <location filename="../fileviewer.cpp" line="383"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="359"/>
+    <location filename="../fileviewer.cpp" line="384"/>
         <source>OK</source>
         <translation>괜찮았던 것</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="361"/>
+    <location filename="../fileviewer.cpp" line="386"/>
         <source>External Editor Configuration</source>
         <translation>외부 편집기 구성</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="362"/>
+    <location filename="../fileviewer.cpp" line="387"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>경로 및 외부 편집기에 대 한 인수를 입력 하십시오. 파일 이름 및 줄 번호에 대 한 %n% f 사용 합니다. 예를 들어:</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="388"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>File could not be opened!</source>
         <translation>파일을 열 수 없습니다!</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="413"/>
+    <location filename="../fileviewer.cpp" line="438"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>외부 편집기를 시작할 수 없습니다. 옵션을 확인 하십시오!</translation>
     </message>
@@ -312,27 +324,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="147"/>
+    <location filename="../mainwindow.cpp" line="149"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>OK</source>
         <translation>괜찮았던 것</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="150"/>
+    <location filename="../mainwindow.cpp" line="152"/>
         <source>Language</source>
         <translation>언어</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="151"/>
+    <location filename="../mainwindow.cpp" line="153"/>
         <source>Select language:</source>
         <translation>언어 선택:</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="194"/>
+    <location filename="../mainwindow.cpp" line="196"/>
         <source>About</source>
         <translation>에 대 한</translation>
     </message>

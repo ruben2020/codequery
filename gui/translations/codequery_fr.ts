@@ -136,80 +136,92 @@
         <translation>Aller à la ligne sélectionnée</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="310"/>
-    <location filename="../ui/mainWindow.ui" line="313"/>
+    <location filename="../ui/mainWindow.ui" line="297"/>
+    <location filename="../ui/mainWindow.ui" line="300"/>
+        <source>Reduce font size</source>
+        <translation type="finished">Réduire la taille de police</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="314"/>
+    <location filename="../ui/mainWindow.ui" line="317"/>
+        <source>Increase font size</source>
+        <translation type="finished">Augmenter la taille de police</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="344"/>
+    <location filename="../ui/mainWindow.ui" line="347"/>
         <source>Copy, paste and search</source>
         <translation>Copier, coller et Rechercher</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="327"/>
-    <location filename="../ui/mainWindow.ui" line="330"/>
+    <location filename="../ui/mainWindow.ui" line="361"/>
+    <location filename="../ui/mainWindow.ui" line="364"/>
         <source>Symbol search only for paste and search</source>
         <translation>Recherche de symbole que pour la pâte et de la recherche</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="333"/>
+    <location filename="../ui/mainWindow.ui" line="367"/>
         <source>Symbol only</source>
         <translation>Symbole seulement</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="352"/>
+    <location filename="../ui/mainWindow.ui" line="386"/>
         <source>FilePath:0</source>
         <translation>FilePath:0</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="364"/>
-    <location filename="../ui/mainWindow.ui" line="367"/>
+    <location filename="../ui/mainWindow.ui" line="401"/>
+    <location filename="../ui/mainWindow.ui" line="404"/>
         <source>CodeEditor</source>
         <translation>CodeEditor</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="393"/>
+    <location filename="../ui/mainWindow.ui" line="430"/>
         <source>File</source>
         <translation>Fichier</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="400"/>
+    <location filename="../ui/mainWindow.ui" line="437"/>
         <source>Options</source>
         <translation>Options</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="407"/>
+    <location filename="../ui/mainWindow.ui" line="444"/>
         <source>Help</source>
         <translation>Aide</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="419"/>
+    <location filename="../ui/mainWindow.ui" line="456"/>
         <source>Exit</source>
         <translation>Sortie</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="424"/>
+    <location filename="../ui/mainWindow.ui" line="461"/>
         <source>Open</source>
         <translation>Ouvert</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="429"/>
+    <location filename="../ui/mainWindow.ui" line="466"/>
         <source>About</source>
         <translation>Sur</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="434"/>
+    <location filename="../ui/mainWindow.ui" line="471"/>
         <source>External Editor</source>
         <translation>External Editor</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="439"/>
+    <location filename="../ui/mainWindow.ui" line="476"/>
         <source>Open CQ Database</source>
         <translation>Base de données ouverte CQ</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="444"/>
+    <location filename="../ui/mainWindow.ui" line="481"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="449"/>
+    <location filename="../ui/mainWindow.ui" line="486"/>
         <source>About Qt</source>
         <translation>Sur Qt</translation>
     </message>
@@ -241,47 +253,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="157"/>
         <source>File not found</source>
         <translation>Fichier non trouvé</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="156"/>
+    <location filename="../fileviewer.cpp" line="164"/>
         <source>File could not be opened</source>
         <translation>Fichier n&apos;a pas pu être ouvert</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="170"/>
+    <location filename="../fileviewer.cpp" line="178"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
-        <translation type="finished">Le fichier source à afficher est plus récent que le fichier de base de données CodeQuery. Il est conseillé de régénérer manuellement le fichier de base de données CodeQuery.</translation>
+        <translation>Le fichier source à afficher est plus récent que le fichier de base de données CodeQuery. Il est conseillé de régénérer manuellement le fichier de base de données CodeQuery.</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="358"/>
+    <location filename="../fileviewer.cpp" line="383"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="359"/>
+    <location filename="../fileviewer.cpp" line="384"/>
         <source>OK</source>
         <translation>Bien</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="361"/>
+    <location filename="../fileviewer.cpp" line="386"/>
         <source>External Editor Configuration</source>
         <translation>Configuration de l&apos;éditeur externe</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="362"/>
+    <location filename="../fileviewer.cpp" line="387"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>Veuillez entrer le chemin d&apos;accès et les arguments de l&apos;éditeur externe. Utilisez %f pour filename et %n pour numéro de ligne. Par exemple :</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="388"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>File could not be opened!</source>
         <translation>Fichier n&apos;a pas pu être ouvert !</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="413"/>
+    <location filename="../fileviewer.cpp" line="438"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>Éditeur externe n&apos;a pas pu être démarré. Vérifiez les Options !</translation>
     </message>
@@ -312,27 +324,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="147"/>
+    <location filename="../mainwindow.cpp" line="149"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>OK</source>
         <translation>Bien</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="150"/>
+    <location filename="../mainwindow.cpp" line="152"/>
         <source>Language</source>
         <translation>Langue</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="151"/>
+    <location filename="../mainwindow.cpp" line="153"/>
         <source>Select language:</source>
         <translation>Sélectionner une langue:</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="194"/>
+    <location filename="../mainwindow.cpp" line="196"/>
         <source>About</source>
         <translation>Sur</translation>
     </message>

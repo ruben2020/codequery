@@ -110,6 +110,7 @@ int process_cscope(const char* cscopefn, const char* sqfn, bool debug)
 		return 1;
 	}
 
+	remove(sqfn);	
 	res = dbmaker.open_db(sqfn);
 	if (res != cs2sq::resOK) {printf("Error1! %d\n",res); return 1;}
 

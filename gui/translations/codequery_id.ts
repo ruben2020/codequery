@@ -136,80 +136,92 @@
         <translation>Pergi ke saluran yang dipilih</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="310"/>
-    <location filename="../ui/mainWindow.ui" line="313"/>
+    <location filename="../ui/mainWindow.ui" line="297"/>
+    <location filename="../ui/mainWindow.ui" line="300"/>
+        <source>Reduce font size</source>
+        <translation type="finished">Mengurangi ukuran font</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="314"/>
+    <location filename="../ui/mainWindow.ui" line="317"/>
+        <source>Increase font size</source>
+        <translation type="finished">Meningkatkan ukuran font</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="344"/>
+    <location filename="../ui/mainWindow.ui" line="347"/>
         <source>Copy, paste and search</source>
         <translation>Salin, Tempel dan telusuri</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="327"/>
-    <location filename="../ui/mainWindow.ui" line="330"/>
+    <location filename="../ui/mainWindow.ui" line="361"/>
+    <location filename="../ui/mainWindow.ui" line="364"/>
         <source>Symbol search only for paste and search</source>
         <translation>Simbol pencarian hanya untuk Tempel dan telusuri</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="333"/>
+    <location filename="../ui/mainWindow.ui" line="367"/>
         <source>Symbol only</source>
         <translation>Simbol hanya</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="352"/>
+    <location filename="../ui/mainWindow.ui" line="386"/>
         <source>FilePath:0</source>
         <translation>FilePath:0</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="364"/>
-    <location filename="../ui/mainWindow.ui" line="367"/>
+    <location filename="../ui/mainWindow.ui" line="401"/>
+    <location filename="../ui/mainWindow.ui" line="404"/>
         <source>CodeEditor</source>
         <translation>CodeEditor</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="393"/>
+    <location filename="../ui/mainWindow.ui" line="430"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="400"/>
+    <location filename="../ui/mainWindow.ui" line="437"/>
         <source>Options</source>
         <translation>Pilihan</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="407"/>
+    <location filename="../ui/mainWindow.ui" line="444"/>
         <source>Help</source>
         <translation>Tolong</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="419"/>
+    <location filename="../ui/mainWindow.ui" line="456"/>
         <source>Exit</source>
         <translation>Keluar</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="424"/>
+    <location filename="../ui/mainWindow.ui" line="461"/>
         <source>Open</source>
         <translation>Buka</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="429"/>
+    <location filename="../ui/mainWindow.ui" line="466"/>
         <source>About</source>
         <translation>Tentang</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="434"/>
+    <location filename="../ui/mainWindow.ui" line="471"/>
         <source>External Editor</source>
         <translation>Editor eksternal</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="439"/>
+    <location filename="../ui/mainWindow.ui" line="476"/>
         <source>Open CQ Database</source>
         <translation>CQ buka Database</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="444"/>
+    <location filename="../ui/mainWindow.ui" line="481"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="449"/>
+    <location filename="../ui/mainWindow.ui" line="486"/>
         <source>About Qt</source>
         <translation>Tentang Qt</translation>
     </message>
@@ -241,47 +253,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="157"/>
         <source>File not found</source>
         <translation>File tidak ditemukan</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="156"/>
+    <location filename="../fileviewer.cpp" line="164"/>
         <source>File could not be opened</source>
         <translation>File tidak bisa dibuka</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="170"/>
+    <location filename="../fileviewer.cpp" line="178"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
-        <translation type="finished">File sumber untuk dilihat lebih baru daripada CodeQuery database file. Anda disarankan untuk secara manual regenerasi CodeQuery database file.</translation>
+        <translation>File sumber untuk dilihat lebih baru daripada CodeQuery database file. Anda disarankan untuk secara manual regenerasi CodeQuery database file.</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="358"/>
+    <location filename="../fileviewer.cpp" line="383"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="359"/>
+    <location filename="../fileviewer.cpp" line="384"/>
         <source>OK</source>
         <translation>Oke</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="361"/>
+    <location filename="../fileviewer.cpp" line="386"/>
         <source>External Editor Configuration</source>
         <translation>Konfigurasi eksternal Editor</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="362"/>
+    <location filename="../fileviewer.cpp" line="387"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>Masukkan path dan argumen untuk editor eksternal. Menggunakan %f untuk nama file dan %n untuk nomor baris. Sebagai contoh:</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="388"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>File could not be opened!</source>
         <translation>File tidak bisa dibuka!</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="413"/>
+    <location filename="../fileviewer.cpp" line="438"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>Editor eksternal tidak dapat dimulai. Silakan periksa pilihan!</translation>
     </message>
@@ -312,27 +324,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="147"/>
+    <location filename="../mainwindow.cpp" line="149"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>OK</source>
         <translation>Oke</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="150"/>
+    <location filename="../mainwindow.cpp" line="152"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="151"/>
+    <location filename="../mainwindow.cpp" line="153"/>
         <source>Select language:</source>
         <translation>Pilih bahasa:</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="194"/>
+    <location filename="../mainwindow.cpp" line="196"/>
         <source>About</source>
         <translation>Tentang</translation>
     </message>

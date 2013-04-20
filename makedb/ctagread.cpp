@@ -110,10 +110,14 @@ ctagread::enResult ctagread::process_ctags(void)
 	if (rc!=0) return resSQLError;
 	rc = prepare_stmt(&m_readsymfstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"$\" AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
 	if (rc!=0) return resSQLError;
-	rc=sqlite3_exec(m_db,  "DROP INDEX IF EXISTS memberIDIdx;\
-							DROP INDEX IF EXISTS groupIDIdx;\
-							DELETE FROM membertbl;\
-							BEGIN EXCLUSIVE;", NULL, 0, NULL);
+	rc=sqlite3_exec(m_db,  "BEGIN EXCLUSIVE;\
+				DROP INDEX IF EXISTS memberIDIdx;\
+				DROP INDEX IF EXISTS groupIDIdx;\
+				DROP INDEX IF EXISTS parentIDIdx;\
+				DROP INDEX IF EXISTS childIDIdx;\
+				DELETE FROM membertbl;\
+				DELETE FROM inherittbl;\
+				COMMIT;", NULL, 0, NULL);
 	if (rc != SQLITE_OK)
 	{
 		if (m_debug) printf("SQLErr13: %d, %s\n", rc, sqlite3_errmsg(m_db));
@@ -263,12 +267,7 @@ return resOK;
 
 ctagread::enResult ctagread::finalize(void)
 {
-	int rc=sqlite3_exec(m_db, "COMMIT;", NULL, 0, NULL);
-	if (rc != SQLITE_OK)
-	{
-		if (m_debug) printf("SQLErr14: %d, %s\n", rc, sqlite3_errmsg(m_db));
-		return resSQLError;
-	}
+	int rc;
 	std::string s;
 	s  = "BEGIN EXCLUSIVE;";
 	s += "CREATE INDEX groupIDIdx ON membertbl (groupID);";

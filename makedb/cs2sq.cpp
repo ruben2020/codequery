@@ -155,6 +155,8 @@ cs2sq::enResult cs2sq::setup_tables(void)
 	s+= "DROP INDEX IF EXISTS calledIDIdx;";
 	s+= "DROP INDEX IF EXISTS memberIDIdx;";
 	s+= "DROP INDEX IF EXISTS groupIDIdx;";
+	s+= "DROP INDEX IF EXISTS parentIDIdx;";
+	s+= "DROP INDEX IF EXISTS childIDIdx;";
 	s+= "DROP INDEX IF EXISTS lines_fileIDIDx;";
 	s+= "DROP INDEX IF EXISTS lines_linenumIDx;";
 	s+= "CREATE TABLE configtbl(configKey TEXT, configVal TEXT);";

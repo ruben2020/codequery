@@ -136,80 +136,92 @@
         <translation>转到所选行</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="310"/>
-    <location filename="../ui/mainWindow.ui" line="313"/>
+    <location filename="../ui/mainWindow.ui" line="297"/>
+    <location filename="../ui/mainWindow.ui" line="300"/>
+        <source>Reduce font size</source>
+        <translation type="finished">减小字体大小</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="314"/>
+    <location filename="../ui/mainWindow.ui" line="317"/>
+        <source>Increase font size</source>
+        <translation type="finished">增加字体大小</translation>
+    </message>
+    <message>
+    <location filename="../ui/mainWindow.ui" line="344"/>
+    <location filename="../ui/mainWindow.ui" line="347"/>
         <source>Copy, paste and search</source>
         <translation>复制、 粘贴和搜索</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="327"/>
-    <location filename="../ui/mainWindow.ui" line="330"/>
+    <location filename="../ui/mainWindow.ui" line="361"/>
+    <location filename="../ui/mainWindow.ui" line="364"/>
         <source>Symbol search only for paste and search</source>
         <translation>仅用于粘贴和搜索符号搜索</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="333"/>
+    <location filename="../ui/mainWindow.ui" line="367"/>
         <source>Symbol only</source>
         <translation>只有符号</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="352"/>
+    <location filename="../ui/mainWindow.ui" line="386"/>
         <source>FilePath:0</source>
         <translation>FilePath:0</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="364"/>
-    <location filename="../ui/mainWindow.ui" line="367"/>
+    <location filename="../ui/mainWindow.ui" line="401"/>
+    <location filename="../ui/mainWindow.ui" line="404"/>
         <source>CodeEditor</source>
         <translation>CodeEditor</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="393"/>
+    <location filename="../ui/mainWindow.ui" line="430"/>
         <source>File</source>
         <translation>文件</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="400"/>
+    <location filename="../ui/mainWindow.ui" line="437"/>
         <source>Options</source>
         <translation>选项</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="407"/>
+    <location filename="../ui/mainWindow.ui" line="444"/>
         <source>Help</source>
         <translation>帮助</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="419"/>
+    <location filename="../ui/mainWindow.ui" line="456"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="424"/>
+    <location filename="../ui/mainWindow.ui" line="461"/>
         <source>Open</source>
         <translation>开放</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="429"/>
+    <location filename="../ui/mainWindow.ui" line="466"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="434"/>
+    <location filename="../ui/mainWindow.ui" line="471"/>
         <source>External Editor</source>
         <translation>外部编辑器</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="439"/>
+    <location filename="../ui/mainWindow.ui" line="476"/>
         <source>Open CQ Database</source>
         <translation>打开 CQ 数据库</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="444"/>
+    <location filename="../ui/mainWindow.ui" line="481"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-    <location filename="../ui/mainWindow.ui" line="449"/>
+    <location filename="../ui/mainWindow.ui" line="486"/>
         <source>About Qt</source>
         <translation>关于 Qt</translation>
     </message>
@@ -241,47 +253,47 @@
     <context>
     <name>fileviewer</name>
     <message>
-    <location filename="../fileviewer.cpp" line="149"/>
+    <location filename="../fileviewer.cpp" line="157"/>
         <source>File not found</source>
         <translation>找不到文件</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="156"/>
+    <location filename="../fileviewer.cpp" line="164"/>
         <source>File could not be opened</source>
         <translation>不能打开文件</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="170"/>
+    <location filename="../fileviewer.cpp" line="178"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
-        <translation type="finished">要查看源文件是比 CodeQuery 数据库文件更新。建议您手动重新生成的 CodeQuery 数据库文件。</translation>
+        <translation>要查看源文件是比 CodeQuery 数据库文件更新。建议您手动重新生成的 CodeQuery 数据库文件。</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="358"/>
+    <location filename="../fileviewer.cpp" line="383"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="359"/>
+    <location filename="../fileviewer.cpp" line="384"/>
         <source>OK</source>
         <translation>还行</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="361"/>
+    <location filename="../fileviewer.cpp" line="386"/>
         <source>External Editor Configuration</source>
         <translation>外部编辑器配置</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="362"/>
+    <location filename="../fileviewer.cpp" line="387"/>
         <source>Please enter the path and arguments for the external editor. Use %f for filename and %n for line number. For example:</source>
         <translation>请输入路径和参数的外部编辑器。文件名和行号为 %n 使用 %f。例如：</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="388"/>
+    <location filename="../fileviewer.cpp" line="413"/>
         <source>File could not be opened!</source>
         <translation>不能打开文件 ！</translation>
     </message>
     <message>
-    <location filename="../fileviewer.cpp" line="413"/>
+    <location filename="../fileviewer.cpp" line="438"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>无法启动外部编辑器。请检查选项 ！</translation>
     </message>
@@ -312,27 +324,27 @@
     <context>
     <name>mainwindow</name>
     <message>
-    <location filename="../mainwindow.cpp" line="147"/>
+    <location filename="../mainwindow.cpp" line="149"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="148"/>
+    <location filename="../mainwindow.cpp" line="150"/>
         <source>OK</source>
         <translation>还行</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="150"/>
+    <location filename="../mainwindow.cpp" line="152"/>
         <source>Language</source>
         <translation>语言</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="151"/>
+    <location filename="../mainwindow.cpp" line="153"/>
         <source>Select language:</source>
         <translation>选择语言：</translation>
     </message>
     <message>
-    <location filename="../mainwindow.cpp" line="194"/>
+    <location filename="../mainwindow.cpp" line="196"/>
         <source>About</source>
         <translation>关于</translation>
     </message>

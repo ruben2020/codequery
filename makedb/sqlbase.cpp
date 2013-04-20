@@ -63,7 +63,7 @@ int sqlbase::vacuum(const char* fn, const bool& debug)
 int sqlbase::prepare_stmt(sqlite3_stmt** pStmt, const char* sqlquery)
 {
 	int rc;
-	rc = sqlite3_prepare(m_db, sqlquery, strlen(sqlquery), pStmt, NULL);
+	rc = sqlite3_prepare_v2(m_db, sqlquery, strlen(sqlquery), pStmt, NULL);
 	if (rc != SQLITE_OK)
 	{
 		if (m_debug) printf("SQLBaseErr001: %d, %s, line=%s\n", rc, sqlite3_errmsg(m_db), sqlquery);

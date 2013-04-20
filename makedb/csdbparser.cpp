@@ -208,7 +208,7 @@ csdbparser::csdbparser()
 ,m_state(stIDLE)
 ,m_trailer_start(0)
 ,m_bufsize(0)
-,m_debug(false)
+,m_debug(true)
 {
 }
 
@@ -453,21 +453,24 @@ while(loopcheck++ < 65500)
 		{
 			break; //EOL
 		}
-		else ungetc(ch, m_fp);
-		res = symbolread(&sd, pack);
-		if (res != resOK) return res;
-		pack->line_text += sd.symbname;
-		if (sd.valid) {pack->symbols.push_back(sd);}
+		else 
+		{
+			ungetc(ch, m_fp);
+			res = symbolread(&sd, pack);
+			if (res != resOK) return res;
+			pack->line_text += sd.symbname;
+			if (sd.valid) {pack->symbols.push_back(sd);}
+		}
 		// no-symbol line
 		ch = fgetc(m_fp);
-		if ((ch == 0x0A)&&(loopcheck > 0))
+		if ((ch == 0x0A)&&(loopcheck > 1)) {;}
+		else
 		{
-			break; //EOL
-		}
-		else ungetc(ch, m_fp);
-		if (fgets(m_buf, m_bufsize, m_fp) == NULL)
+			ungetc(ch, m_fp);
+			if (fgets(m_buf, m_bufsize, m_fp) == NULL)
 			{return resFILE_ACCESS_ERR;}
-		pack->line_text += chomp(m_buf);	
+			pack->line_text += chomp(m_buf);
+		}
 	}
 return resOK;
 }

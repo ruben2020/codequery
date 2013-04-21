@@ -13,7 +13,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Ohloh](http://www.ohloh.net/images/badges/mini.gif)](https://www.ohloh.net/p/codequery)
 
 
-## Latest version = v0.08
+## Latest version = v0.09
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 

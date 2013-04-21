@@ -39,7 +39,7 @@ cd build
 
 5. Run cmake, make and make install.
 ```bash
-cmake ..
+cmake -G "Unix Makefiles" ..
 make
 sudo make install
 ```

@@ -11,7 +11,7 @@ This HOWTO guide applies to Linux only
 cd ~/projects/myproject/src
 ```
 
-2. Create a cscope.files file with all the C/C++ source files listed in it. (optional step for C/C++, as cscope and ctags can autodetect files)
+2. Create a cscope.files file with all the C/C++ source files listed in it.
 ```bash
 find -iname "*.c"    > ./cscope.files
 find -iname "*.cpp" >> ./cscope.files
@@ -26,10 +26,9 @@ find -iname "*.hxx" >> ./cscope.files
 cscope -cbR
 ```
 
-4. Create a ctags database like this. The first line if cscope.files was created, otherwise the second line. (Only for C++ and Java)
+4. Create a ctags database like this.
 ```bash
 ctags --fields=+i -n -R -L ./cscope.files
-ctags --fields=+i -n -R
 ```
 
 5. Run cqmakedb to create a CodeQuery database out of the cscope and ctags databases, like this:
@@ -89,7 +88,7 @@ Use `cqmakedb -h` to get help on cqmakedb command line arguments.
 cd ~/projects/myproject/src
 ```
 
-2. Create a cscope.files file with all the C/C++ source files listed in it. (optional step for C/C++, as cscope and ctags can autodetect files)
+2. Create a cscope.files file with all the Python source files listed in it.
 ```bash
 find -iname "*.py"    > ./cscope.files
 ```

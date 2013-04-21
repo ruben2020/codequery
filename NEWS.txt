@@ -1,4 +1,8 @@
 
+Version 0.09 - Apr 20, 2013
+Fixed some cscope.out parser and SQL handling bugs
+Added font resize buttons for file viewer
+
 Version 0.08 - Apr 14, 2013
 Fixed Windows app icon and taskbar bugs
 

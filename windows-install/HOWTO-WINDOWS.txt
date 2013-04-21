@@ -11,8 +11,7 @@ cd c:\projects\myproject\src
 
 
 2. Create a cscope.files file with all the C/C++ source
-   files listed in it. (optional step for C/C++, as 
-   cscope and ctags can autodetect files)
+   files listed in it.
 
 dir /b/a/s *.c    > cscope.files   
 dir /b/a/s *.cpp >> cscope.files   
@@ -27,11 +26,9 @@ dir /b/a/s *.hxx >> cscope.files
 cscope -cbR
 
 
-4. Create a ctags database like this. The first line if cscope.files
-   was created, otherwise the second line. (Only for C++ and Java)
+4. Create a ctags database like this.
 
 ctags --fields=+i -n -R -L cscope.files
-ctags --fields=+i -n -R
 
 
 5. Run cqmakedb to create a CodeQuery database out of the
@@ -97,9 +94,8 @@ HOW TO USE CODEQUERY WITH PYTHON CODE?
 cd c:\projects\myproject\src
 
 
-2. Create a cscope.files file with all the C/C++ source
-   files listed in it. (optional step for C/C++, as 
-   cscope and ctags can autodetect files)
+2. Create a cscope.files file with all the Python source
+   files listed in it.
 
 dir /b/a/s *.py    > cscope.files  
 

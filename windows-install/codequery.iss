@@ -1,12 +1,12 @@
 [Files]
-Source: "C:\workspace\CodeQuery\build\cqmakedb.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "C:\workspace\CodeQuery\build\cqsearch.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "C:\workspace\CodeQuery\build\codequery.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "C:\workspace\CodeQuery\windows-install\README.txt"; DestDir: "{app}"; Flags: overwritereadonly isreadme
-Source: "C:\workspace\CodeQuery\windows-install\LICENSE.txt"; DestDir: "{app}"; Flags: overwritereadonly
-Source: "C:\workspace\CodeQuery\windows-install\HOWTO-WINDOWS.txt"; DestDir: "{app}"; Flags: overwritereadonly
-Source: "C:\workspace\CodeQuery\windows-install\cscope.exe"; DestDir: "{app}"; Flags: 32bit
-Source: "C:\workspace\CodeQuery\windows-install\ctags.exe"; DestDir: "{app}"; Flags: 32bit
+Source: "C:\workspace\codequery\build\cqmakedb.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "C:\workspace\codequery\build\cqsearch.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "C:\workspace\codequery\build\codequery.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "C:\workspace\codequery\windows-install\README.txt"; DestDir: "{app}"; Flags: overwritereadonly isreadme
+Source: "C:\workspace\codequery\windows-install\LICENSE.txt"; DestDir: "{app}"; Flags: overwritereadonly
+Source: "C:\workspace\codequery\windows-install\HOWTO-WINDOWS.txt"; DestDir: "{app}"; Flags: overwritereadonly
+Source: "C:\workspace\codequery\windows-install\cscope.exe"; DestDir: "{app}"; Flags: 32bit
+Source: "C:\workspace\codequery\windows-install\ctags.exe"; DestDir: "{app}"; Flags: 32bit
 Source: "C:\MinGW\bin\libgcc_s_dw2-1.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\MinGW\bin\libstdc++-6.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\MinGW\bin\mingwm10.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
@@ -25,10 +25,10 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 [Setup]
 ShowLanguageDialog=auto
 AppName=CodeQuery
-AppVersion=0.08
+AppVersion=0.09
 AppCopyright=Copyright 2013 (C) ruben2020
 AppId={{D95A3CC0-CC79-4CF1-A92B-50E909B60EF1}
-LicenseFile=C:\workspace\CodeQuery\windows-install\LICENSE.txt
+LicenseFile=C:\workspace\codequery\windows-install\LICENSE.txt
 DefaultDirName={pf}\CodeQuery
 AppPublisher=ruben2020
 AppPublisherURL=https://github.com/ruben2020/codequery

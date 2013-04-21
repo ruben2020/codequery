@@ -16,7 +16,9 @@ void *
 PoolObj::operator new( size_t size)
 {
     ASSERT( 0);
+#ifdef _MSC_VER
     return NULL;
+#endif
 }
 /**
  * Default operator 'delete' is disabled
@@ -33,7 +35,9 @@ void *
 PoolObj::operator new[]( size_t size)
 {
     ASSERT( 0);
+#ifdef _MSC_VER
     return NULL;
+#endif
 }
 /**
  * Default operator 'delete[]' is disabled

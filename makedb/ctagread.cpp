@@ -152,7 +152,7 @@ ctagread::enResult ctagread::process_ctags(void)
 			if (res != resOK) {return res;}
 			if (symIDs.empty() == false)
 			{
-				for (int i=0; i < symIDs.size(); i++)
+				for (unsigned int i=0; i < symIDs.size(); i++)
 					{
 						smallstr[0] = c;
 						rc=execstmt(m_insertstmt, classIDs[0].c_str(), symIDs[i].c_str(), smallstr);
@@ -178,7 +178,7 @@ ctagread::enResult ctagread::process_ctags(void)
 				parentClassIDs.clear();
 				parentClassIDs_temp.clear();
 				std::vector<std::string> vecstr = splitstr(classname.get(), ',');
-				for (int i=0; i<vecstr.size(); i++)
+				for (unsigned int i=0; i<vecstr.size(); i++)
 				{
 					res = getHListOfClassIDs(&parentClassIDs_temp, vecstr[i].c_str(), &listClsHist);
 					if (res != resOK) return res;
@@ -188,7 +188,7 @@ ctagread::enResult ctagread::process_ctags(void)
 						parentClassIDs_temp.pop_back();
 					}
 				}
-				for (int i=0; i<parentClassIDs.size(); i++)
+				for (unsigned int i=0; i<parentClassIDs.size(); i++)
 				{
 					rc=execstmt(m_insertinheritstmt, parentClassIDs[i].c_str(), classIDs[0].c_str());
 					if (rc!=0) return resSQLError;
@@ -204,7 +204,7 @@ ctagread::enResult ctagread::getHListOfClassIDs(strctagIDList* idlist, const cha
 {
 	enResult res = resOK;
 	idlist->clear();
-	for (int i=0; i<listClsHist->size(); i++)
+	for (unsigned int i=0; i<listClsHist->size(); i++)
 	{
 		if ((*listClsHist)[i].cls.compare(v1) == 0)
 		{idlist->push_back((*listClsHist)[i].id); break;}

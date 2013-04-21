@@ -63,7 +63,7 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QString& 
 
 	nodenum++;
 
-	for (int i=0; i < result1.resultlist.size(); i++)
+	for (unsigned int i=0; i < result1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result1.resultlist[i].symname.c_str()));
@@ -73,7 +73,7 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QString& 
 		dottext += QString("node%1 -> node1;\n").arg(nodenum);
 		nodenum++;
 	}
-	for (int i=0; i < result2.resultlist.size(); i++)
+	for (unsigned int i=0; i < result2.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result2.resultlist[i].symname.c_str()));
@@ -131,7 +131,7 @@ bool sqlqueryadv::search_classinheritgraph(QString searchstr, bool exactmatch, Q
 	unique_symnames(result_parent2);
 	unique_symnames(result_cousins1);
 	remove_symname(result_cousins1, qt2str(searchstr)); // I am not my own cousin
-	for (int i=0; i < result_children.resultlist.size(); i++)
+	for (unsigned int i=0; i < result_children.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result_children.resultlist[i].symname.c_str()));
@@ -141,7 +141,7 @@ bool sqlqueryadv::search_classinheritgraph(QString searchstr, bool exactmatch, Q
 		dottext += QString("node%1 -> node1 [arrowhead=\"empty\"];\n").arg(nodenum);
 		nodenum++;
 	}
-	for (int i=0; i < result_parent1.resultlist.size(); i++)
+	for (unsigned int i=0; i < result_parent1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result_parent1.resultlist[i].symname.c_str()));
@@ -152,7 +152,7 @@ bool sqlqueryadv::search_classinheritgraph(QString searchstr, bool exactmatch, Q
 		if (i == 0) parent1 = nodenum;
 		nodenum++;
 	}
-	for (int i=0; i < result_parent2.resultlist.size(); i++)
+	for (unsigned int i=0; i < result_parent2.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result_parent2.resultlist[i].symname.c_str()));
@@ -162,7 +162,7 @@ bool sqlqueryadv::search_classinheritgraph(QString searchstr, bool exactmatch, Q
 		dottext += QString("node%1 -> node%2 [arrowhead=\"empty\"];\n").arg(parent1).arg(nodenum);
 		nodenum++;
 	}
-	for (int i=0; i < result_cousins1.resultlist.size(); i++)
+	for (unsigned int i=0; i < result_cousins1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result_cousins1.resultlist[i].symname.c_str()));
@@ -185,7 +185,7 @@ void sqlqueryadv::unique_symnames(sqlqueryresultlist& res)
 	QSet<QString> setstr;
 	sqlqueryresultlist out;
 	sqlqueryresult item;
-	for(int i=0; i < res.resultlist.size(); i++)
+	for(unsigned int i=0; i < res.resultlist.size(); i++)
 	{
 		setstr.insert(str2qt(res.resultlist[i].symname));
 	}

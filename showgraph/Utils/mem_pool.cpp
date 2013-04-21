@@ -16,7 +16,7 @@ void *
 PoolObj::operator new( size_t size)
 {
     ASSERT( 0);
-    //return NULL;
+    return NULL;
 }
 /**
  * Default operator 'delete' is disabled
@@ -33,7 +33,7 @@ void *
 PoolObj::operator new[]( size_t size)
 {
     ASSERT( 0);
-    //return NULL;
+    return NULL;
 }
 /**
  * Default operator 'delete[]' is disabled

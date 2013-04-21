@@ -21,7 +21,7 @@
 // Cscope database parser
 
 #include <stdio.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include "csdbparser.h"
 #include "small_lib.h"
 //#include "packtext.h"
@@ -181,7 +181,7 @@ std::string symdata_pack::line_text_escaped(void)
 std::string symdata_pack::line_text_replacetab(void)
 {
 	std::string s;
-	int i;
+	unsigned int i;
 	for (i=0; i < line_text.length(); i++)
 	{
 		if (line_text[i] == '\t') s += ' ';
@@ -284,7 +284,7 @@ int hdr_len=0;
 std::string s;
 
 // Does the file exist?
-if (access(fn, F_OK) == -1) {return resFILE_NOT_FOUND;}
+if (check_fileExists(fn) == false) {return resFILE_NOT_FOUND;}
 
 // Try to open the file for reading
 fp = fopen(fn, "r");

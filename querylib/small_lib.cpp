@@ -24,8 +24,26 @@
 // IN THE SOFTWARE.
 //
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+#ifndef _MSC_VER
+#include <unistd.h>
+#endif
 
 #include "small_lib.h"
+
+bool check_fileExists(const char *fn)
+{
+#ifdef _MSC_VER
+	DWORD dwAttrib = GetFileAttributes(fn);  
+	return ((dwAttrib != INVALID_FILE_ATTRIBUTES) && 
+		!(dwAttrib & FILE_ATTRIBUTE_DIRECTORY));
+#else
+	return (access(fn, F_OK) != -1);
+#endif
+}
 
 // is the file path given (fp), absolute or relative?
 bool isAbsolutePath(tStr fp)
@@ -226,7 +244,7 @@ idxcounter::idxcounter(const idxcounter& idxc)
 		{
 			m_ctr = idxc.m_ctr;
 		}
-idxcounter& idxcounter::operator =(long unsigned int idx) {m_ctr = idx;}
+idxcounter& idxcounter::operator =(long unsigned int idx) {m_ctr = idx; return *this;}
 idxcounter& idxcounter::operator =(const idxcounter& idxc)
 		{
 			if (this != &idxc)
@@ -237,8 +255,8 @@ idxcounter& idxcounter::operator =(const idxcounter& idxc)
 		}
 void idxcounter::setCounterVal(long unsigned int i) {m_ctr = i;}
 void idxcounter::reset(void) {m_ctr = 0;}
-idxcounter& idxcounter::operator ++() {++m_ctr;sprintf(m_buf, "%lu", m_ctr);}
-idxcounter& idxcounter::operator --() {--m_ctr;sprintf(m_buf, "%lu", m_ctr);}
+idxcounter& idxcounter::operator ++() {++m_ctr;sprintf(m_buf, "%lu", m_ctr); return *this;}
+idxcounter& idxcounter::operator --() {--m_ctr;sprintf(m_buf, "%lu", m_ctr); return *this;}
 long unsigned int idxcounter::getInt(void) const {return m_ctr;}
 const char* idxcounter::getStr(void) const {return m_buf;}
 int idxcounter::getStrSize(void) const {return strlen(m_buf);}

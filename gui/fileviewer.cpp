@@ -385,11 +385,11 @@ void fileviewer::OptionsExtEditor_Triggered(bool checked)
 	qinp.setInputMode(QInputDialog::TextInput);
 	qinp.setWindowTitle(tr("External Editor Configuration"));
 	QString exted = tr("Please enter the path and arguments for the external editor. "
-			"Use \%f for filename and \%n for line number. For example:");
+			"Use %%f for filename and %%n for line number. For example:");
 #ifdef _WIN32
-	exted += "\n\"C:\\Program Files\\Notepad++\\notepad++.exe\" -n\%n \%f";
+	exted += "\n\"C:\\Program Files\\Notepad++\\notepad++.exe\" -n%%n %%f";
 #else
-	exted += "\ngedit \%f +\%n";
+	exted += "\ngedit %%f +%%n";
 #endif
 	qinp.setLabelText(exted);
 	qinp.setTextEchoMode(QLineEdit::Normal);

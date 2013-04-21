@@ -133,7 +133,7 @@ void cs2sq::close_db(void)
 cs2sq::enResult cs2sq::setup_tables(void)
 {
 	std::string s;
-	enResult res;
+	//enResult res;
 	int rc;
 	if (m_db == NULL) return resOTHER_ERR;
 	if (m_csdbp.isFileOpen() == false) return resOTHER_ERR;
@@ -237,7 +237,7 @@ cs2sq::enResult cs2sq::add_symbols(void)
 
 cs2sq::enResult cs2sq::add_symdata(symdatalist sdlist, const char* lineid, idxcounter* idx)
 {
-	enResult res;
+	//enResult res;
 	symdatalist::iterator it;
 	char smallstr[2];
 	int rc;

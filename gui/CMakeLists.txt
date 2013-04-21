@@ -19,6 +19,7 @@ project(CodeQueryGUI)
        mainwindow.cpp
        graphdialog.cpp
        main_gui.cpp
+       winmain.cpp
   )
   
   # another list, this time it includes all header files that should be treated with moc

@@ -122,7 +122,8 @@ option_t *GetOptList(int argc, char* argv[], char* options)
 {
     int nextArg;
     option_t *head, *tail;
-    int optIndex, argIndex;
+    int optIndex;
+	unsigned int argIndex;
 
     /* start with first argument and nothing found */
     nextArg = 1;

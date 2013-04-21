@@ -34,8 +34,8 @@
 #include "small_lib.h"
 
 // forward declaration
-class sqlite3;
-class sqlite3_stmt;
+struct sqlite3;
+struct sqlite3_stmt;
 
 class tempstmt
 {

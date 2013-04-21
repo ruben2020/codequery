@@ -245,7 +245,7 @@ int main(int argc, char *argv[])
 	}
 	if (bSqlite && bTerm)
 	{
-		bError = process_query(sqfn, term, param, bExact, bDebug);
+		bError = process_query(sqfn, term, param, bExact, bDebug) > 0;
 	}
 	if (bError)
 	{

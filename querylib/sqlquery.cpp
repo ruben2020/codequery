@@ -28,7 +28,7 @@
 //
 
 #include <stdio.h>
-#include <unistd.h>
+//#include <unistd.h>
 //#include <algorithm>
 #include <sqlite3.h>
 #include "small_lib.h"
@@ -124,7 +124,7 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 
 	smartFILE fp;
 	// Does the file exist?
-	if (access(dbfn.c_str(), F_OK) == -1) {return sqlfileOPENERROR;}
+	if (check_fileExists(dbfn.c_str()) == false) {return sqlfileOPENERROR;}
 	// Try to open the file for reading
 	fp = fopen(dbfn.c_str(), "r");
 	if (fp == NULL) {return sqlfileOPENERROR;}

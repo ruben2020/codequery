@@ -24,7 +24,7 @@
 QStringList strLst2qt(const tVecStr& inpLst)
 {
 	QStringList res;
-	for(int i=0; i < inpLst.size(); i++)
+	for(unsigned int i=0; i < inpLst.size(); i++)
 	{
 		res << str2qt(inpLst[i]);
 	}

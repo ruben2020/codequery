@@ -46,6 +46,7 @@
 typedef std::string tStr;
 typedef std::vector<std::string> tVecStr;
 
+bool check_fileExists(const char *fn);
 bool isAbsolutePath(tStr fp);
 std::vector<std::string> splitstr(const char* inpstr, const char delim);
 int replacechar(std::string::iterator i1, std::string::iterator i2,

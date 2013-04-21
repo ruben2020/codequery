@@ -57,6 +57,7 @@ int searchitem::compare(const searchitem& otheritem)
 		(exactmatch != otheritem.exactmatch) ||
 		(qtype != otheritem.qtype)) return 1;
 	if (rownum != otheritem.rownum) return 2;
+	return 0;
 }
 
 

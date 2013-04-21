@@ -95,7 +95,7 @@ void listhandler::requestToProvideResultCurrentListItemSymbolName()
 void listhandler::updateList(void)
 {
 	if (m_sqlist.resultlist.empty()) return;
-	for (int i=0; i < m_sqlist.resultlist.size(); i++)
+	for (unsigned int i=0; i < m_sqlist.resultlist.size(); i++)
 	{
 		QStringList strList;
 		if (m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)

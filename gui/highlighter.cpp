@@ -29,6 +29,8 @@
 
  #include "highlighter.h"
 
+ #define charAtPos(txt,i)      (i < uint(txt.size())) ? (txt[i].toAscii()) : ' '
+ 
  void Highlighter::setup_CPP(void)
  {
      HighlightingRule rule;
@@ -245,9 +247,9 @@
         {
            case 0:
                    if ((c1 == '/')&&(c2 == '/'))
-                      {mode = 1; startindex = i-1; c1=c2; c2 = text[i+1].toAscii(); i++;}
+                      {mode = 1; startindex = i-1; c1=c2; c2 = charAtPos(text,i+1); i++;}
                    else if ((c1 == '/')&&(c2 == '*'))
-                      {mode = 4; startindex = i-1; c1=c2; c2 = text[i+1].toAscii(); i++;}
+                      {mode = 4; startindex = i-1; c1=c2; c2 = charAtPos(text,i+1); i++;}
                    else if (c1 == '"')  {mode = 2; startindex = i-1;}
                    else if (c1 == '\'') {mode = 3; startindex = i-1;}
                    break;
@@ -261,14 +263,14 @@
                        }
                    break;
            case 2:
-                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
-                   else if ((c1 == '\\')&&(c2 == '"')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
+                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
+                   else if ((c1 == '\\')&&(c2 == '"')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
                    else if (c1 == '"')  {mode = 0; endindex = i-1;
                         setFormat(startindex, endindex - startindex + 1, quotationFormat);}
                    break;
            case 3:
-                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
-                   else if ((c1 == '\\')&&(c2 == '\'')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
+                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
+                   else if ((c1 == '\\')&&(c2 == '\'')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
                    else if (c1 == '\'')  {mode = 0; endindex = i-1;
                         setFormat(startindex, endindex - startindex + 1, singlequotationFormat);}
                    break;
@@ -278,7 +280,7 @@
                            mode = 0;
                            endindex = i;
                            setFormat(startindex, endindex - startindex + 1, multiLineCommentFormat);
-                           c1=c2; c2 = text[i+1].toAscii(); i++;
+                           c1=c2; c2 = charAtPos(text,i+1); i++;
                        }
                    break;
         }
@@ -343,14 +345,14 @@
                        }
                    break;
            case 2:
-                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
-                   else if ((c1 == '\\')&&(c2 == '"')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
+                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
+                   else if ((c1 == '\\')&&(c2 == '"')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
                    else if (c1 == '"')  {mode = 0; endindex = i-1;
                         setFormat(startindex, endindex - startindex + 1, quotationFormat);}
                    break;
            case 3:
-                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
-                   else if ((c1 == '\\')&&(c2 == '\'')) {c1=c2; c2 = text[i+1].toAscii(); i++;}
+                   if ((c1 == '\\')&&(c2 == '\\')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
+                   else if ((c1 == '\\')&&(c2 == '\'')) {c1=c2; c2 = charAtPos(text,i+1); i++;}
                    else if (c1 == '\'')  {mode = 0; endindex = i-1;
                         setFormat(startindex, endindex - startindex + 1, singlequotationFormat);}
                    break;

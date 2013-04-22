@@ -1,4 +1,3 @@
-
 /*
  * CodeQuery
  * Copyright (C) 2013 ruben2020 https://github.com/ruben2020/
@@ -175,6 +174,7 @@ ctagread::enResult ctagread::process_ctags(void)
 			{
 				res = getHListOfClassIDs(&classIDs, sym.get(), &listClsHist);
 				if (res != resOK) return res;
+				if (classIDs.empty()) continue;
 				parentClassIDs.clear();
 				parentClassIDs_temp.clear();
 				std::vector<std::string> vecstr = splitstr(classname.get(), ',');

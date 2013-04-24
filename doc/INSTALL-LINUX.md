@@ -1,4 +1,3 @@
-
 HOW TO INSTALL CODEQUERY IN LINUX
 =================================
 
@@ -42,6 +41,12 @@ cd build
 cmake -G "Unix Makefiles" ..
 make
 sudo make install
+```
+If you want to install to an alternative directory instead of the default one, use the following:
+```bash
+cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G "Unix Makefiles" ..
+make
+make install
 ```
 
 6. Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.

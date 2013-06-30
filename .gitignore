@@ -21,6 +21,7 @@ build/
 build32/
 build64/
 bin/
+html/
 
 # Ignore cscope and ctags files, and our db files
 cscope.files

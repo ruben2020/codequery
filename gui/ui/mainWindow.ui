@@ -404,7 +404,7 @@
              <string>CodeEditor</string>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: white</string>
+             <string notr="true">QPlainTextEdit{ background-color: white }</string>
             </property>
            </widget>
           </item>
@@ -422,7 +422,7 @@
      <x>0</x>
      <y>0</y>
      <width>629</width>
-     <height>23</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

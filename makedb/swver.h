@@ -52,6 +52,22 @@
 "You should have received a copy of the GNU General Public License " \
 "along with this program.  If not, see <http://www.gnu.org/licenses/>\n"
 
+/**
+ * \mainpage CodeQuery Documentation
+ *
+ * GitHub: https://github.com/ruben2020/codequery
+ * 
+ * Downloads: http://sourceforge.net/projects/codequery/files/
+ * 
+ * This is a tool to index, then query or search C, C++, Java and Python source code.
+ * It builds upon the databases of cscope and Exuberant ctags.
+ * The databases of cscope and ctags would be processed by the cqmakedb tool to
+ * generate the CodeQuery database file.
+ * The CodeQuery database file can be viewed and queried using the codequery GUI tool.
+ *
+ * This contains only the Doxygen documentation of the source code.
+ * For the rest, please see the Github page above.
+ */
 
 #endif // _SWVER_H
 

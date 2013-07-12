@@ -27,12 +27,20 @@
 #include "small_lib.h"
 
 inline QString str2qt(const tStr& inp)
+#ifdef CQ_NO_QTSQL
 	{return QString(inp.c_str());}
+#else
+	{return QString::fromStdString(inp);}
+#endif
 
 QStringList strLst2qt(const tVecStr& inpLst);
 
 inline tStr qt2str(const QString& inp)
+#ifdef CQ_NO_QTSQL
 	{return tStr((const char*) inp.toAscii().data());}
+#else
+	{return inp.toStdString();}
+#endif
 
 tVecStr qt2strLst(const QStringList& inpLst);
 

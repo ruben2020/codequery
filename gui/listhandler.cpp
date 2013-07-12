@@ -95,7 +95,8 @@ void listhandler::requestToProvideResultCurrentListItemSymbolName()
 void listhandler::updateList(void)
 {
 	if (m_sqlist.resultlist.empty()) return;
-	for (unsigned int i=0; i < m_sqlist.resultlist.size(); i++)
+	unsigned int n = m_sqlist.resultlist.size();
+	for (unsigned int i=0; i < n; i++)
 	{
 		QStringList strList;
 		if (m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)
@@ -136,7 +137,8 @@ void listhandler::updateListHeaders(void)
 
 void listhandler::resizeColumns(void)
 {
-	for(int i=0; i < m_treeWidgetSearchResults->columnCount(); i++)
+	int n = m_treeWidgetSearchResults->columnCount();
+	for(int i=0; i < n; i++)
 		{m_treeWidgetSearchResults->resizeColumnToContents(i);}
 }
 
@@ -144,7 +146,8 @@ void listhandler::clearList()
 {
 	bool noclick = m_noclick;
 	m_noclick = true;
-	for(int i=0; i<m_itemlist.size(); i++) delete m_itemlist[i];
+	int n = m_itemlist.size();
+	for(int i=0; i<n; i++) delete m_itemlist[i];
 	m_itemlist.clear();
 	m_treeWidgetSearchResults->clear();
 	m_noclick = noclick;

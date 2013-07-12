@@ -138,6 +138,13 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 		return sqlfileOPENERROR;
 	}
 	tempstmt stmt;
+
+	sqlite3_exec(m_db, "PRAGMA synchronous = OFF;"
+		"PRAGMA journal_mode = OFF;"
+		"PRAGMA locking_mode = EXCLUSIVE;"
+		"PRAGMA automatic_index = FALSE;"
+		"PRAGMA cache_size = 20000;", NULL, 0, NULL);
+
 	tStr majorver = read_configtbl("DB_MAJOR_VER", stmt.get());
 	tStr minorver = read_configtbl("DB_MINOR_VER", stmt.get());
 	if ((majorver.empty())||(minorver.empty()))
@@ -262,16 +269,25 @@ sqlqueryresultlist sqlquery::search(
 			result.sqlerrmsg = "Unknown search type";
 			return result;
 	}
-	tempstmt stmt;
-	rc = sqlite3_prepare_v2(m_db, sqlqry.c_str(),
-									sqlqry.size(),
-									&(stmt.m_stmt), NULL);
+
+	if (m_searchstmt.qry.compare(sqlqry) != 0)
+	{
+		sqlite3_finalize(m_searchstmt.get());
+		rc = sqlite3_prepare_v2(m_db, sqlqry.c_str(),
+					sqlqry.size(),
+					&(m_searchstmt.m_stmt), NULL);
+		m_searchstmt.qry = (rc == SQLITE_OK) ? sqlqry : "";
+	}
+	else
+	{
+		rc = sqlite3_reset(m_searchstmt.get());
+	}
 	if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
-	rc = sqlite3_bind_text(stmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_TRANSIENT);
+	rc = sqlite3_bind_text(m_searchstmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_TRANSIENT);
 	if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
-	if (resultType == sqlqueryresultlist::sqlresultFULL) result = search_full(stmt.get());
-	else if (resultType == sqlqueryresultlist::sqlresultFILE_LINE) result = search_file_line(stmt.get());
-	else if (resultType == sqlqueryresultlist::sqlresultFILE_ONLY) result = search_file_only(stmt.get());
+	if (resultType == sqlqueryresultlist::sqlresultFULL) result = search_full(m_searchstmt.get());
+	else if (resultType == sqlqueryresultlist::sqlresultFILE_LINE) result = search_file_line(m_searchstmt.get());
+	else if (resultType == sqlqueryresultlist::sqlresultFILE_ONLY) result = search_file_only(m_searchstmt.get());
 	return result;
 }	
 
@@ -309,12 +325,12 @@ sqlqueryresultlist sqlquery::search_full(sqlite3_stmt* stmt)
 	sqlqueryresultlist result;
 	tStr fp;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
+	sqlqueryresult item;
 	do
 	{
 		rc = sqlite3_step(stmt);
 		if (rc == SQLITE_ROW)
 		{
-			sqlqueryresult item;
 			item.symname  = (const char*) sqlite3_column_text(stmt, 0);
 			item.symtype  = (const char*) sqlite3_column_text(stmt, 1);
 			fp            = (const char*) sqlite3_column_text(stmt, 2);
@@ -349,12 +365,12 @@ sqlqueryresultlist sqlquery::search_file_line(sqlite3_stmt* stmt)
 	sqlqueryresultlist result;
 	tStr fp;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
+	sqlqueryresult item;
 	do
 	{
 		rc = sqlite3_step(stmt);
 		if (rc == SQLITE_ROW)
 		{
-			sqlqueryresult item;
 			fp            = (const char*) sqlite3_column_text(stmt, 0);
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 1);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 2);
@@ -387,12 +403,12 @@ sqlqueryresultlist sqlquery::search_file_only(sqlite3_stmt* stmt)
 	sqlqueryresultlist result;
 	tStr fp;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
+	sqlqueryresult item;
 	do
 	{
 		rc = sqlite3_step(stmt);
 		if (rc == SQLITE_ROW)
 		{
-			sqlqueryresult item;
 			fp            = (const char*) sqlite3_column_text(stmt, 0);
 			item.linenum  = "1";
 			item.filename = extract_filename(fp.c_str());

@@ -47,14 +47,39 @@ int sqlbase::vacuum(const char* fn, const bool& debug)
 		sqlite3_close(sqdb);
 		return rc;
 	}
-	rc=sqlite3_exec(sqdb, "PRAGMA synchronous = OFF;\
-		PRAGMA journal_mode = OFF;\
-		PRAGMA locking_mode = EXCLUSIVE;\
-		PRAGMA automatic_index = FALSE;\
-		VACUUM;", NULL, 0, NULL);
+	rc=sqlite3_exec(sqdb, "PRAGMA synchronous = OFF;"
+		"PRAGMA journal_mode = OFF;"
+		"PRAGMA locking_mode = EXCLUSIVE;"
+		"PRAGMA automatic_index = FALSE;"
+		"PRAGMA cache_size = 20000;"
+		"BEGIN;VACUUM;ANALYZE;COMMIT;", NULL, 0, NULL);
 	if (rc != SQLITE_OK)
 	{
 		if (debug) printf("SQLBaseErr099: %d, %s\n", rc, sqlite3_errmsg(sqdb));
+	}
+	sqlite3_close(sqdb);
+	return rc;
+}
+
+int sqlbase::analyze(const char* fn, const bool& debug)
+{
+	int rc;
+	sqlite3 *sqdb;
+	rc = sqlite3_open_v2(fn, &sqdb, SQLITE_OPEN_READWRITE, NULL);
+	if (rc != SQLITE_OK)
+	{
+		sqlite3_close(sqdb);
+		return rc;
+	}
+	rc=sqlite3_exec(sqdb, "PRAGMA synchronous = OFF;"
+		"PRAGMA journal_mode = OFF;"
+		"PRAGMA locking_mode = EXCLUSIVE;"
+		"PRAGMA automatic_index = FALSE;"
+		"PRAGMA cache_size = 20000;"
+		"ANALYZE;", NULL, 0, NULL);
+	if (rc != SQLITE_OK)
+	{
+		if (debug) printf("SQLBaseErr100: %d, %s\n", rc, sqlite3_errmsg(sqdb));
 	}
 	sqlite3_close(sqdb);
 	return rc;

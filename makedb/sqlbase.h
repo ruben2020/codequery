@@ -35,6 +35,7 @@ sqlbase();
 ~sqlbase();
 void setDebug(bool val);
 static int vacuum(const char* fn, const bool& debug);
+static int analyze(const char* fn, const bool& debug);
 int prepare_stmt(sqlite3_stmt** pStmt, const char* sqlquery);
 int execstmt(sqlite3_stmt* pstmt, const char* v1);
 int execstmt(sqlite3_stmt* pstmt, const char* v1, const char* v2);

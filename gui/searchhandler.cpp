@@ -432,7 +432,8 @@ void searchhandler::updateListItemRowNum(const int& row)
 void searchhandler::updateSearchHistory(const QString& searchtxt)
 {
 	m_comboBoxSearch->insertItem(0, searchtxt); // insert to top
-	for(int i=1; i < (m_comboBoxSearch->count()); i++)
+	int n = (m_comboBoxSearch->count());
+	for(int i=1; i < n; i++)
 	{
 		if (m_comboBoxSearch->itemText(i).compare(searchtxt) == 0)
 		{

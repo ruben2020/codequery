@@ -48,10 +48,11 @@ ctagread::enResult ctagread::open_files(const char* sqldb, const char* tagsfn)
 		sqlite3_close(m_db);
 		return resFILE_ACCESS_ERR;
 	}
-	rc=sqlite3_exec(m_db, "PRAGMA synchronous = OFF;\
-		PRAGMA journal_mode = OFF;\
-		PRAGMA locking_mode = EXCLUSIVE;\
-		PRAGMA automatic_index = FALSE;", NULL, 0, NULL);
+	rc=sqlite3_exec(m_db, "PRAGMA synchronous = OFF;"
+		"PRAGMA journal_mode = OFF;"
+		"PRAGMA locking_mode = EXCLUSIVE;"
+		"PRAGMA automatic_index = FALSE;"
+		"PRAGMA cache_size = 20000;", NULL, 0, NULL);
 	if (rc != SQLITE_OK) return resSQLError;
 	return resOK;
 }

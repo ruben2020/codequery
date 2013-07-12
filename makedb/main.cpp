@@ -297,6 +297,11 @@ int main(int argc, char *argv[])
 		if (sqlbase::vacuum(sqfn.c_str(), bDebug) != 0)
 			return 1;
 	}
+	else
+	{
+		if (sqlbase::analyze(sqfn.c_str(), bDebug) != 0)
+			return 1;
+	}
 	return 0;
 }
 

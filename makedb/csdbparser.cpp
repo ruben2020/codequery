@@ -182,7 +182,8 @@ std::string symdata_pack::line_text_replacetab(void)
 {
 	std::string s;
 	unsigned int i;
-	for (i=0; i < line_text.length(); i++)
+	unsigned int n = line_text.length();
+	for (i=0; i < n; i++)
 	{
 		if (line_text[i] == '\t') s += ' ';
 		else s += line_text[i];

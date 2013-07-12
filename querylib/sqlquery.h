@@ -41,6 +41,7 @@ class tempstmt
 {
 public:
 sqlite3_stmt *m_stmt;
+tStr qry;
 tempstmt();
 ~tempstmt();
 void finalize(void);
@@ -120,6 +121,7 @@ private:
 	sqlite3 *m_db;
 	tStr m_basepath;
 	tempstmt m_autocompstmt;
+	tempstmt m_searchstmt;
 	sqlqueryresultlist search_full(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_line(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_only(sqlite3_stmt* stmt);

@@ -141,6 +141,7 @@ cs2sq::enResult cs2sq::setup_tables(void)
 	s+= "PRAGMA journal_mode = OFF;";
 	s+= "PRAGMA locking_mode = EXCLUSIVE;";
 	s+= "PRAGMA automatic_index = FALSE;";
+	s+= "PRAGMA cache_size = 20000;";
 	s+= "BEGIN;";
 	s+= "DROP TABLE IF EXISTS symtbl;";
 	s+= "DROP TABLE IF EXISTS filestbl;";
@@ -298,7 +299,7 @@ cs2sq::enResult cs2sq::finalize(void)
 	s += "CREATE INDEX calledIDIdx ON calltbl (calledID);";
 	s += "CREATE INDEX lines_fileIDIDx ON linestbl (fileID);";
 	s += "CREATE INDEX lines_linenumIDx ON linestbl (linenum);";
-	s += "CREATE INDEX symNameIdx ON symtbl (symName);";
+	s += "CREATE INDEX symNameIdx ON symtbl (symName, symType);";
 	//s += "VACUUM;";
 	s += "COMMIT;";
 	rc=sqlite3_exec(m_db, s.c_str(), NULL, 0, NULL);

@@ -128,6 +128,7 @@ void mainwindow::setup_searchhandler(void)
 	m_searchhandler->m_comboBoxDB = ui->comboBoxDB;
 	m_searchhandler->m_checkBoxAutoComplete = ui->checkBoxAutoComplete;
 	m_searchhandler->m_checkBoxExactMatch = ui->checkBoxExactMatch;
+	m_searchhandler->m_checkBoxHeaderFilesOnly = ui->checkBoxHeaderFilesOnly;
 	m_searchhandler->m_pushButtonSearch = ui->pushButtonSearch;
 	m_searchhandler->m_pushButtonClipSearch = ui->pushButtonClipSearch;
 	m_searchhandler->m_comboBoxSearch = ui->comboBoxSearch;
@@ -213,6 +214,7 @@ void mainwindow::writeSettings()
 	settings.setValue("Maximized", isMaximized());
 	settings.setValue("AutoComplete", ui->checkBoxAutoComplete->isChecked());
 	settings.setValue("ExactMatch", ui->checkBoxExactMatch->isChecked());
+	settings.setValue("HeaderFilesOnly", ui->checkBoxHeaderFilesOnly->isChecked());
 	settings.setValue("SymbolOnly", ui->checkBoxSymbolOnly->isChecked());
 	settings.setValue("QueryType", ui->comboBoxQueryType->currentIndex());
 	settings.setValue("LastOpenDB", ui->comboBoxDB->currentIndex());
@@ -259,6 +261,7 @@ void mainwindow::readSettings()
 	else showNormal();
 	ui->checkBoxAutoComplete->setChecked(settings.value("AutoComplete", true).toBool());
 	ui->checkBoxExactMatch->setChecked(settings.value("ExactMatch", false).toBool());
+	ui->checkBoxHeaderFilesOnly->setChecked(settings.value("HeaderFilesOnly", false).toBool());
 	ui->checkBoxSymbolOnly->setChecked(settings.value("SymbolOnly", false).toBool());
 	ui->comboBoxQueryType->setCurrentIndex(settings.value("QueryType", 0).toInt());
 	ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());

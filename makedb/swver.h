@@ -23,6 +23,9 @@
 #define _SWVER_H
 
 #define CODEQUERY_SW_VERSION      "CodeQuery v0.09"
+#define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
+	CODEQUERY_SW_VERSION \
+	"</p><p><a href=\"https://github.com/ruben2020/codequery\">https://github.com/ruben2020/codequery</a></p>"
 
 #define CODEQUERY_SW_LICENSE  \
 "Copyright (C) 2013 ruben2020 https://github.com/ruben2020/\n\n" \
@@ -51,6 +54,20 @@
 "GNU General Public License for more details.\n\n" \
 "You should have received a copy of the GNU General Public License " \
 "along with this program.  If not, see <http://www.gnu.org/licenses/>\n"
+
+#define CODEQUERY_SW_LICENSE_PARA_LINK  \
+"<p>Copyright (C) 2013 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
+"<p>This program is free software: you can redistribute it and/or modify " \
+"it under the terms of the GNU General Public License as published by " \
+"the Free Software Foundation, either version 3 of the License, or " \
+"(at your option) any later version.</p>\n\n" \
+"<p>This program is distributed in the hope that it will be useful, " \
+"but WITHOUT ANY WARRANTY; without even the implied warranty of " \
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the " \
+"GNU General Public License for more details.</p>\n\n" \
+"<p>You should have received a copy of the GNU General Public License " \
+"along with this program.  If not, see <a href=\"http://www.gnu.org/licenses\">http://www.gnu.org/licenses</a></p>\n"
+
 
 /**
  * \mainpage CodeQuery Documentation

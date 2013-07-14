@@ -25,6 +25,7 @@
 #include "listhandler.h"
 #include "searchhandler.h"
 #include "langtable.h"
+#include "aboutdialog.h"
 #include "swver.h"
 
 #include <QInputDialog>
@@ -191,10 +192,9 @@ void mainwindow::AboutQtTriggered(bool checked)
 
 void mainwindow::AboutTriggered(bool checked)
 {
-	QString txt = CODEQUERY_SW_VERSION;
-	txt += "\n";
-	txt += CODEQUERY_SW_LICENSE_PARA;
-	QMessageBox::about(this, tr("About"), txt);
+	cqDialogAbout cqdg(this);
+	cqdg.setModal(true);
+	cqdg.exec();
 }
 
 void mainwindow::prepareToExit()

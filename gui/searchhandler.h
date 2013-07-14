@@ -53,6 +53,7 @@ QPushButton *m_pushButtonOpenDB;
 QComboBox *m_comboBoxDB;
 QCheckBox *m_checkBoxAutoComplete;
 QCheckBox *m_checkBoxExactMatch;
+QCheckBox *m_checkBoxHeaderFilesOnly;
 QPushButton *m_pushButtonSearch;
 QPushButton *m_pushButtonClipSearch;
 QPushButton *m_pushButtonSearchPrev;

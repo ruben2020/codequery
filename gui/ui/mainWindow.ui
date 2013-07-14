@@ -81,6 +81,20 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="Line" name="line_4">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxHeaderFilesOnly">
+          <property name="text">
+           <string>Header files only</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -499,6 +513,7 @@
   <tabstop>comboBoxDB</tabstop>
   <tabstop>checkBoxAutoComplete</tabstop>
   <tabstop>checkBoxExactMatch</tabstop>
+  <tabstop>checkBoxHeaderFilesOnly</tabstop>
   <tabstop>pushButtonSearchPrev</tabstop>
   <tabstop>pushButtonSearchNext</tabstop>
   <tabstop>comboBoxSearch</tabstop>

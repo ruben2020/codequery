@@ -68,6 +68,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_comboBoxDB(NULL)
 ,m_checkBoxAutoComplete(NULL)
 ,m_checkBoxExactMatch(NULL)
+,m_checkBoxHeaderFilesOnly(NULL)
 ,m_pushButtonSearch(NULL)
 ,m_comboBoxSearch(NULL)
 ,m_comboBoxQueryType(NULL)
@@ -328,6 +329,19 @@ void searchhandler::perform_search(QString searchtxt,
 	{
 		m_pushButtonGraph->setEnabled((querytype == sqlquery::sqlresultFUNC_MACRO)||
 			(querytype == sqlquery::sqlresultCLASS_STRUCT));
+		if (m_checkBoxHeaderFilesOnly->isChecked())
+		{
+			QRegExp rx1("\\.h([xp]{0,2})$", Qt::CaseInsensitive);
+			unsigned int n = sqlresultlist.resultlist.size();
+			int pos;
+			sqlqueryresultlist oldlist(sqlresultlist);
+			sqlresultlist.resultlist.clear();
+			for(unsigned int i=0; i<n; i++)
+			{
+				pos = rx1.indexIn(str2qt(oldlist.resultlist[i].filename));
+				if (pos != -1) sqlresultlist.resultlist.push_back(oldlist.resultlist[i]);
+			}
+		}
 		updateSearchHistory(searchtxt);
 		if (updSearchMemory) addToSearchMemory(searchtxt);
 		emit searchresults(sqlresultlist, selectitem);

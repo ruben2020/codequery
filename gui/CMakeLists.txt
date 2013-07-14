@@ -18,6 +18,7 @@ project(CodeQueryGUI)
        searchhandler.cpp
        mainwindow.cpp
        graphdialog.cpp
+       aboutdialog.cpp
        main_gui.cpp
        winmain.cpp
   )
@@ -31,12 +32,14 @@ project(CodeQueryGUI)
        searchhandler.h
        mainwindow.h
        graphdialog.h
+       aboutdialog.h
   )
   
   # some .ui files
   SET( CODEQUERY_UIS
        ui/mainWindow.ui
        ui/graphDialog.ui
+       ui/aboutDialog.ui
   )
   
   # and finally an resource file

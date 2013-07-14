@@ -252,6 +252,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum)
 
 void fileviewer::updateTextEdit(void)
 {
+	if (m_iter == m_fileDataList.end()) return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	m_textEditSource->clear();
         m_highlighter->m_intAddlRulesMode = 0; //reset additional rules mode

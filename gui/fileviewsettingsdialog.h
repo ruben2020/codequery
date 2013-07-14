@@ -18,28 +18,38 @@
  * 
  */
 
-#ifndef _ABOUTDIALOG_H
-#define _ABOUTDIALOG_H
+#ifndef _FILEVIEWSETTINGSDIALOG_H
+#define _FILEVIEWSETTINGSDIALOG_H
 
 #include <QtGui>
 
  namespace Ui {
-     class aboutDialog;
+     class fileViewSettingsDialog;
  }
 
-class cqDialogAbout : public QDialog
+class fileviewer;
+
+class cqDialogFileViewSettings : public QDialog
 {
   Q_OBJECT
 
 public:
-Ui::aboutDialog *dialog_ui;
-cqDialogAbout(QWidget *parent);
-virtual ~cqDialogAbout();
+Ui::fileViewSettingsDialog *dialog_ui;
 
+cqDialogFileViewSettings(QWidget *parent, fileviewer* fv, const QStringList& fontlst);
+virtual ~cqDialogFileViewSettings();
+void setCurrentFontType(const QString& fonttype);
+void setTabWidth(const int& width);
+
+public slots:
+
+
+private:
+QIntValidator m_tabwidthvalidator;
+fileviewer* m_fv;
 
 };
 
 
-#endif //_ABOUTDIALOG_H
-
+#endif //_FILEVIEWSETTINGSDIALOG_H
 

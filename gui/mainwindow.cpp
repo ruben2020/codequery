@@ -96,6 +96,8 @@ void mainwindow::init(void)
 			m_searchhandler, SLOT(OpenDB_ButtonClick(bool)));
 	connect(ui->actionOptionsExtEditor, SIGNAL(triggered(bool)),
 			m_fileviewer, SLOT(OptionsExtEditor_Triggered(bool)));
+	connect(ui->actionFileViewSettings, SIGNAL(triggered(bool)),
+			m_fileviewer, SLOT(fileViewSettings_Triggered(bool)));
 	m_app->setQuitOnLastWindowClosed(false);
 	connect(m_app, SIGNAL(lastWindowClosed()),
 			this, SLOT(prepareToExit()));
@@ -221,6 +223,9 @@ void mainwindow::writeSettings()
 	settings.setValue("Language", m_currentLanguage);
 	settings.setValue("ExtEditorPath", m_fileviewer->m_externalEditorPath);
 	settings.setValue("FileViewerFontSize", m_fileviewer->m_textEditSourceFont.pixelSize());
+	settings.setValue("FileViewerFontType", m_fileviewer->m_textEditSourceFont.family());
+	settings.setValue("FileViewerTabWidth", m_fileviewer->m_textEditSource->tabStopWidth() /
+						m_fileviewer->m_textEditSource->fontMetrics().width(' '));
 	settings.endGroup();
 
 	settings.beginWriteArray("OpenDBHistory");
@@ -270,7 +275,10 @@ void mainwindow::readSettings()
 	m_fileviewer->m_externalEditorPath =
 		settings.value("ExtEditorPath", m_fileviewer->m_externalEditorPath).toString();
 	m_fileviewer->m_textEditSourceFont.setPixelSize(settings.value("FileViewerFontSize", 12).toInt());
+	m_fileviewer->m_textEditSourceFont.setFamily(settings.value("FileViewerFontType", "Courier New").toString());
 	m_fileviewer->m_textEditSource->setFont(m_fileviewer->m_textEditSourceFont);
+	m_fileviewer->m_textEditSource->setTabStopWidth(settings.value("FileViewerTabWidth", 4).toInt() * 
+						m_fileviewer->m_textEditSource->fontMetrics().width(' '));
 	settings.endGroup();
 
 	/*sizee = settings.beginReadArray("SearchHistory");

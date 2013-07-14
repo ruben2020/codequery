@@ -19,6 +19,7 @@ project(CodeQueryGUI)
        mainwindow.cpp
        graphdialog.cpp
        aboutdialog.cpp
+       fileviewsettingsdialog.cpp
        main_gui.cpp
        winmain.cpp
   )
@@ -33,6 +34,7 @@ project(CodeQueryGUI)
        mainwindow.h
        graphdialog.h
        aboutdialog.h
+       fileviewsettingsdialog.h
   )
   
   # some .ui files
@@ -40,6 +42,7 @@ project(CodeQueryGUI)
        ui/mainWindow.ui
        ui/graphDialog.ui
        ui/aboutDialog.ui
+       ui/fileViewSettingsDialog.ui
   )
   
   # and finally an resource file

@@ -78,8 +78,11 @@ void OpenInEditor_ButtonClick(bool checked);
 void TextShrink_ButtonClick(bool checked);
 void TextEnlarge_ButtonClick(bool checked);
 void OptionsExtEditor_Triggered(bool checked);
+void fileViewSettings_Triggered(bool checked);
 void clearList();
 void recvDBtimestamp(QDateTime dt);
+void fontSelectionTemporary(const QString &fonttxt);
+void tabWidthSelectionTemporary(const QString &width);
 
 signals:
 void searchCopiedText();
@@ -92,6 +95,12 @@ QVector<filedata> m_fileDataList;
 QVector<filedata>::iterator m_iter;
 QDateTime m_DBtimestamp;
 bool m_timestampMismatchWarned;
+QStringList m_fontlist;
+QString m_fonttemp;
+int m_fontwidthtemp;
+
+void createFontList(void);
+void textSizeChange(int n);
 
 };
 

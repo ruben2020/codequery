@@ -21,11 +21,13 @@
 
 #include <QProcess>
 #include <QInputDialog>
+#include <QFontDatabase>
 
 #include "fileviewer.h"
 #include "mainwindow.h"
 #include "CodeEditor.h"
 #include "highlighter.h"
+#include "fileviewsettingsdialog.h"
 
 #ifdef _WIN32
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
@@ -93,6 +95,23 @@ fileviewer::~fileviewer()
 	if (m_highlighter != NULL) delete m_highlighter;
 }
 
+void fileviewer::createFontList(void)
+{
+	QFontDatabase fontdb;
+	QStringList fontlst = fontdb.families(QFontDatabase::Latin);
+	QStringList fixedpitch;
+	QStringList::iterator it;
+	for(it = fontlst.begin(); it != fontlst.end(); it++)
+	{
+		if (fontdb.isFixedPitch(*it))
+		{
+			fixedpitch << (*it);
+		}
+	}
+	fixedpitch.sort();
+	m_fontlist = fixedpitch;
+}
+
 void fileviewer::init(void)
 {
 	m_pushButtonPaste->setEnabled(false);
@@ -108,6 +127,7 @@ void fileviewer::init(void)
 	m_textEditSource->setWordWrapMode(QTextOption::NoWrap);
 	m_textEditSource->setReadOnly(true);
 	m_textEditSource->setCenterOnScroll(true);
+	createFontList();
 	m_highlighter = new Highlighter(m_textEditSource->document()); 
 	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),
 			this, SLOT(AbleToCopy(bool)));
@@ -375,6 +395,26 @@ void fileviewer::Paste_ButtonClick(bool checked)
 	}
 }
 
+void fileviewer::fileViewSettings_Triggered(bool checked)
+{
+	cqDialogFileViewSettings cqdg((QWidget*)mw, this, m_fontlist);
+	m_fonttemp = m_textEditSourceFont.family();
+	m_fontwidthtemp = (m_textEditSource->tabStopWidth() /
+			m_textEditSource->fontMetrics().width(' '));
+	cqdg.setCurrentFontType(m_fonttemp);
+	cqdg.setTabWidth(m_fontwidthtemp);
+	cqdg.setModal(true);
+	cqdg.exec();
+	if (cqdg.result() == QDialog::Accepted)
+	{
+		m_textEditSourceFont.setFamily(m_fonttemp);
+		m_textEditSource->setFont(m_textEditSourceFont);
+		m_textEditSource->setTabStopWidth(m_fontwidthtemp * 
+				m_textEditSource->fontMetrics().width(' '));
+		updateTextEdit();
+	}
+}
+
 void fileviewer::OptionsExtEditor_Triggered(bool checked)
 {
 	bool ok;
@@ -446,8 +486,7 @@ void fileviewer::TextShrink_ButtonClick(bool checked)
 {
 	if (!checked)
 	{
-		m_textEditSourceFont.setPixelSize(m_textEditSourceFont.pixelSize() - 2);
-		m_textEditSource->setFont(m_textEditSourceFont);
+		textSizeChange(0-2);
 	}
 }
 
@@ -455,8 +494,29 @@ void fileviewer::TextEnlarge_ButtonClick(bool checked)
 {
 	if (!checked)
 	{
-		m_textEditSourceFont.setPixelSize(m_textEditSourceFont.pixelSize() + 2);
-		m_textEditSource->setFont(m_textEditSourceFont);
+		textSizeChange(2);
 	}
 }
+
+void fileviewer::textSizeChange(int n)
+{
+	m_fontwidthtemp = (m_textEditSource->tabStopWidth() /
+		m_textEditSource->fontMetrics().width(' '));
+	m_textEditSourceFont.setPixelSize(m_textEditSourceFont.pixelSize() + n);
+	m_textEditSource->setFont(m_textEditSourceFont);
+	m_textEditSource->setTabStopWidth(m_fontwidthtemp * 
+			m_textEditSource->fontMetrics().width(' '));
+}
+
+void fileviewer::fontSelectionTemporary(const QString &fonttxt)
+{
+	m_fonttemp = fonttxt;
+}
+
+void fileviewer::tabWidthSelectionTemporary(const QString &width)
+{
+	m_fontwidthtemp = width.toInt();
+}
+
+
 

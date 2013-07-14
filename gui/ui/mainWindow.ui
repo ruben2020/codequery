@@ -452,6 +452,7 @@
     </property>
     <addaction name="actionOptionsExtEditor"/>
     <addaction name="actionLanguage"/>
+    <addaction name="actionFileViewSettings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -468,6 +469,9 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
    </property>
   </action>
   <action name="actionOpen">
@@ -498,6 +502,14 @@
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About Qt</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="actionFileViewSettings">
+   <property name="text">
+    <string>File Viewer Settings</string>
    </property>
   </action>
  </widget>

@@ -33,6 +33,10 @@ cqDialogFileViewSettings::cqDialogFileViewSettings(QWidget *parent,
 	dialog_ui->setupUi(this);
 	dialog_ui->lineEditTabWidth->setValidator(&m_tabwidthvalidator);
         dialog_ui->comboBoxFont->addItems(fontlst);
+	connect(dialog_ui->pushButtonOK, SIGNAL(clicked()),
+		this, SLOT(accept()));
+	connect(dialog_ui->pushButtonCancel, SIGNAL(clicked()),
+		this, SLOT(reject()));
 	connect(dialog_ui->comboBoxFont, SIGNAL(currentIndexChanged(const QString &)),
 			fv, SLOT(fontSelectionTemporary(const QString &)));
 	connect(dialog_ui->lineEditTabWidth, SIGNAL(textEdited(const QString &)),

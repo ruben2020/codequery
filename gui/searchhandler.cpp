@@ -215,10 +215,10 @@ void searchhandler::retranslateUi(void)
 				tr("Functions called by this function"),
 				QVariant(sqlquery::sqlresultCALLEDFUNC));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Class which owns this member/ method"),
+				tr("Class which owns this member or method"),
 				QVariant(sqlquery::sqlresultOWNERCLASS));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Members/ methods of this class"),
+				tr("Members or methods of this class"),
 				QVariant(sqlquery::sqlresultMEMBERS));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Parent of this class"),
@@ -233,7 +233,7 @@ void searchhandler::retranslateUi(void)
 				tr("Full path for file"),
 				QVariant(sqlquery::sqlresultFILEPATH));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Functions/ macros inside this file"),
+				tr("Functions or macros inside this file"),
 				QVariant(sqlquery::sqlresultFUNCSINFILE));
 	m_comboBoxQueryType->setCurrentIndex(curidx);
 

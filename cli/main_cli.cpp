@@ -57,7 +57,8 @@ void printhelp(const char* str)
 	printf("    8: Members and methods of this class\n");
 	printf("    9: Class which owns this member or method\n");
 	printf("   10: Children of this class (inheritance)\n");
-	printf("   11: Parent of this class (inheritance)\n\n");
+	printf("   11: Parent of this class (inheritance)\n");
+	printf("   12: Functions or macros inside this file\n\n");
 	printf("Example:\n%s -s myproject.db -p 6 -t read*file -f\n\n", str);
 
 }
@@ -121,7 +122,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool debug)
 			return 1;
 	}
 	int intParam = atoi(param.c_str()) - 1;
-	if ((intParam < 0) || (intParam > 10))
+	if ((intParam < 0) || (intParam > 11))
 	{
 		printf("Error: Parameter is out of range!\n");
 		return 1;	

@@ -232,6 +232,9 @@ void searchhandler::retranslateUi(void)
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Full path for file"),
 				QVariant(sqlquery::sqlresultFILEPATH));
+	m_comboBoxQueryType->addItem(QIcon(),
+				tr("Functions/ macros inside this file"),
+				QVariant(sqlquery::sqlresultFUNCSINFILE));
 	m_comboBoxQueryType->setCurrentIndex(curidx);
 
 }

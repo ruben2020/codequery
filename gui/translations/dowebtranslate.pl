@@ -42,7 +42,7 @@ close(FIL);
 
 foreach(@langfiles)
 {
-	system("lupdate ../*.cpp ../ui/*.ui -ts ./$_.ts");
+	system("lupdate -no-obsolete ../*.cpp ../ui/*.ui -ts ./$_.ts");
 }
 
 my $langout;

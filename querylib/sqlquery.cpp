@@ -47,6 +47,7 @@
 #define SQL_INCLUDE "SELECT filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName LIKE ? ESCAPE \";\" AND symType=\"~\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_FILEPATH "SELECT filePath FROM filestbl WHERE filePath LIKE ? ESCAPE \";\";"
 #define SQL_AUTOCOMPLETE "SELECT DISTINCT symName FROM symtbl WHERE symName LIKE ? ESCAPE \";\" ORDER BY symName;"
+#define SQL_FUNCSINFILE "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\" OR symtbl.symType=\"#\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 
 #define SQL_EM_SYM "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_EM_FUNC_MACRO "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) AND (symtbl.symType=\"$\" OR symtbl.symType=\"#\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
@@ -225,6 +226,7 @@ sqlqueryresultlist sqlquery::search(
 	if ((m_db == NULL)||(searchstr.empty())||(m_basepath.empty())) return result;
 	tStr sqlqry, srchterm;
 	sqlqueryresultlist::en_resultType resultType = sqlqueryresultlist::sqlresultFULL;
+	if (exactmatch && (querytype == sqlresultFUNCSINFILE)) {searchstr.insert(0, "%");}
 	srchterm = process_searchterm(searchstr.c_str(), exactmatch);
 	switch (querytype)
 	{
@@ -262,6 +264,9 @@ sqlqueryresultlist sqlquery::search(
 			break;
 		case sqlresultCHILDCLASS:
 			sqlqry = exactmatch ? SQL_EM_CHILDCLASS : SQL_CHILDCLASS;
+			break;
+		case sqlresultFUNCSINFILE:
+			sqlqry = SQL_FUNCSINFILE;
 			break;
 		case sqlresultAUTOCOMPLETE:
 			resultType = sqlqueryresultlist::sqlresultSYM_ONLY;

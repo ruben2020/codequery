@@ -25,7 +25,9 @@
 #define CODEQUERY_SW_VERSION      "CodeQuery v0.09"
 #define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
 	CODEQUERY_SW_VERSION \
-	"</p><p><a href=\"https://github.com/ruben2020/codequery\">https://github.com/ruben2020/codequery</a></p>"
+	"</p>"\
+	"<p><a href=\"http://ruben2020.github.io/codequery/\">Official Website</a></p>"\
+	"<p><a href=\"https://github.com/ruben2020/codequery\">GitHub Page</a></p>"
 
 #define CODEQUERY_SW_LICENSE  \
 "Copyright (C) 2013 ruben2020 https://github.com/ruben2020/\n\n" \

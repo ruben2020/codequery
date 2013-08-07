@@ -76,6 +76,7 @@ void tempstmt::finalize(void)
 {
 	sqlite3_finalize(m_stmt);
 	m_stmt = NULL;
+	qry.clear();
 }
 
 sqlite3_stmt* tempstmt::get(void)
@@ -140,10 +141,10 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 	}
 	tempstmt stmt;
 
-	sqlite3_exec(m_db, "PRAGMA synchronous = OFF;"
+	sqlite3_exec(m_db, /*"PRAGMA synchronous = OFF;"
 		"PRAGMA journal_mode = OFF;"
 		"PRAGMA locking_mode = EXCLUSIVE;"
-		"PRAGMA automatic_index = FALSE;"
+		"PRAGMA automatic_index = FALSE;"*/
 		"PRAGMA cache_size = 20000;", NULL, 0, NULL);
 
 	tStr majorver = read_configtbl("DB_MAJOR_VER", stmt.get());
@@ -163,6 +164,7 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 void sqlquery::close_dbfile(void)
 {
 	m_autocompstmt.finalize();
+	m_searchstmt.finalize();
 	sqlite3_close(m_db);
 	m_db = NULL;
 	m_basepath.clear();

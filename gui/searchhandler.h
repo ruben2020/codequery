@@ -62,6 +62,7 @@ QComboBox *m_comboBoxSearch;
 QComboBox *m_comboBoxQueryType;
 QPushButton *m_pushButtonGraph;
 QCompleter *m_completer;
+QFutureWatcher<QStringList> m_autocompFutureWatcher;
 
 searchhandler(mainwindow* pmw);
 ~searchhandler();
@@ -78,6 +79,7 @@ void goForwardInSearchMemory(void);
 void goBackInSearchMemory(void);
 void restoreSearchMemoryItem(void);
 void retranslateUi(void);
+static QStringList search_autocomplete_qt(QString searchtxt);
 
 public slots:
 void OpenDB_ButtonClick(bool checked);
@@ -95,6 +97,7 @@ void OpenDB_indexChanged(const int& idx);
 void QueryType_indexChanged(const int& idx);
 void updateListItemRowNum(const int& row);
 void resultCurrentListItemSymbolName(const QString symName);
+void autoCompleteFinished();
 
 signals:
 void searchresults(sqlqueryresultlist resultlist, int selectitem);
@@ -105,13 +108,15 @@ void getResultCurrentListItemSymbolName();
 
 private:
 mainwindow *mw;
-sqlqueryadv* sq;
+static sqlqueryadv* sq;
 QString m_graphdesc;
 int m_typeOfGraph; // 1 = Function Call, 2 = Class Inheritance
 QStringListModel m_srchStrLstModel;
 QString sqlerrormsg(sqlquery::en_filereadstatus status);
 QVector<searchitem> m_searchMemoryList;
 QVector<searchitem>::iterator m_iter;
+bool m_autocompBusy;
+QString m_autocompSrchTerm;
 
 };
 

@@ -195,7 +195,7 @@ tVecStr sqlquery::search_autocomplete(const char* searchstr)
 {
 	tVecStr result;
 	int ctr = 0;
-	if ((searchstr == NULL)||(strlen(searchstr) < 1)) return result;
+	if ((searchstr == NULL)||(strlen(searchstr) < 1)||(m_db == NULL)) return result;
 	tStr srchterm = process_searchterm_autocomplete(searchstr);
 	sqlite3_reset(m_autocompstmt.get());
 	int rc = sqlite3_bind_text(m_autocompstmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_STATIC);

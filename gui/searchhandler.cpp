@@ -23,6 +23,8 @@
 #include "graphdialog.h"
 #include "searchhandler.h"
 
+sqlqueryadv* searchhandler::sq = NULL;
+
 searchitem::searchitem()
 :exactmatch(false)
 ,qtype(sqlquery::sqlquerySYMBOL)
@@ -63,7 +65,6 @@ int searchitem::compare(const searchitem& otheritem)
 
 searchhandler::searchhandler(mainwindow* pmw)
 :mw(pmw)
-,sq(new sqlqueryadv)
 ,m_pushButtonOpenDB(NULL)
 ,m_comboBoxDB(NULL)
 ,m_checkBoxAutoComplete(NULL)
@@ -74,7 +75,9 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_comboBoxQueryType(NULL)
 ,m_srchStrLstModel(QStringList())
 ,m_typeOfGraph(1)
+,m_autocompBusy(false)
 {
+	sq = new sqlqueryadv;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
 	m_iter = m_searchMemoryList.begin();
 }
@@ -130,8 +133,41 @@ void searchhandler::searchTextEdited(const QString& searchtxt)
 {
 	if (m_checkBoxAutoComplete->isChecked())
 	{
-		m_srchStrLstModel.setStringList(strLst2qt(sq->search_autocomplete(searchtxt.toAscii().data())));
+		if (m_autocompBusy)
+		{
+			m_autocompSrchTerm = searchtxt;
+		}
+		else
+		{
+			m_autocompBusy = true;
+			m_autocompSrchTerm.clear();
+			m_autocompFutureWatcher.setFuture(
+				QtConcurrent::run(search_autocomplete_qt, searchtxt));
+		}
 	}
+	m_autocompBusy = (!m_autocompFutureWatcher.isFinished());
+}
+
+void searchhandler::autoCompleteFinished()
+{
+	if (!m_autocompBusy) return;
+	m_srchStrLstModel.setStringList(m_autocompFutureWatcher.result());
+	if (m_autocompSrchTerm.isEmpty())
+	{
+		m_autocompBusy = false;
+	}
+	else
+	{
+		m_autocompBusy = true;
+		m_autocompFutureWatcher.setFuture(
+			QtConcurrent::run(search_autocomplete_qt, m_autocompSrchTerm));
+		m_autocompSrchTerm.clear();
+	}
+}
+
+QStringList searchhandler::search_autocomplete_qt(QString searchtxt)
+{
+	return strLst2qt(sq->search_autocomplete(searchtxt.toAscii().data()));
 }
 
 void searchhandler::autoCompleteStateChanged(int state)
@@ -191,6 +227,8 @@ void searchhandler::init(void)
 			this, SLOT(PrevSearch_ButtonClick(bool)));
 	connect(m_pushButtonSearchNext, SIGNAL(clicked(bool)),
 			this, SLOT(NextSearch_ButtonClick(bool)));
+	connect(&m_autocompFutureWatcher, SIGNAL(finished()),
+			this, SLOT(autoCompleteFinished()));
 }
 
 void searchhandler::retranslateUi(void)
@@ -265,6 +303,8 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 {
 	if (idx < 0) return;
 	sqlquery::en_filereadstatus sqstatus;
+	if (m_autocompBusy) m_autocompFutureWatcher.waitForFinished();
+	m_autocompBusy = false;
 	sq->close_dbfile();
 	QFileInfo dbfile(m_comboBoxDB->itemText(idx));
 	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
@@ -316,6 +356,8 @@ void searchhandler::perform_search(QString searchtxt,
 	if (searchtxt.isEmpty()) return;
 	sqlqueryresultlist sqlresultlist;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	if (m_autocompBusy) m_autocompFutureWatcher.waitForFinished();
+	m_autocompBusy = false;
 	sqlquery::en_queryType querytype = qrytyp;
 	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
 		(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
@@ -371,6 +413,8 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 	QString grpxml, grpdot;
 	bool res;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+	if (m_autocompBusy) m_autocompFutureWatcher.waitForFinished();
+	m_autocompBusy = false;
 	if (m_typeOfGraph == 1)
 	res = sq->search_funcgraph(symName,
 			true,

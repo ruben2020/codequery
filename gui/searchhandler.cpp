@@ -303,8 +303,11 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 {
 	if (idx < 0) return;
 	sqlquery::en_filereadstatus sqstatus;
-	if (m_autocompBusy) m_autocompFutureWatcher.waitForFinished();
-	m_autocompBusy = false;
+	if (m_autocompBusy)
+	{
+		m_autocompBusy = false;
+		m_autocompFutureWatcher.waitForFinished();
+	}
 	sq->close_dbfile();
 	QFileInfo dbfile(m_comboBoxDB->itemText(idx));
 	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
@@ -356,8 +359,11 @@ void searchhandler::perform_search(QString searchtxt,
 	if (searchtxt.isEmpty()) return;
 	sqlqueryresultlist sqlresultlist;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	if (m_autocompBusy) m_autocompFutureWatcher.waitForFinished();
-	m_autocompBusy = false;
+	if (m_autocompBusy)
+	{
+		m_autocompBusy = false;
+		m_autocompFutureWatcher.waitForFinished();
+	}
 	sqlquery::en_queryType querytype = qrytyp;
 	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
 		(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
@@ -413,8 +419,11 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 	QString grpxml, grpdot;
 	bool res;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	if (m_autocompBusy) m_autocompFutureWatcher.waitForFinished();
-	m_autocompBusy = false;
+	if (m_autocompBusy)
+	{
+		m_autocompBusy = false;
+		m_autocompFutureWatcher.waitForFinished();
+	}
 	if (m_typeOfGraph == 1)
 	res = sq->search_funcgraph(symName,
 			true,

@@ -104,11 +104,13 @@ ctagread::enResult ctagread::process_ctags(void)
 	if (rc!=0) return resSQLError;
 	rc = prepare_stmt(&m_readclassstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"c\";");
 	if (rc!=0) return resSQLError;
-	rc = prepare_stmt(&m_readsymstmt, "SELECT symID FROM symtbl WHERE symName=? AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
+	//rc = prepare_stmt(&m_readsymstmt, "SELECT symID FROM symtbl WHERE symName=? AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
+	rc = prepare_stmt(&m_readsymstmt, "SELECT symtbl.symID FROM symtbl INNER JOIN linestbl ON (symtbl.symName=? AND symtbl.lineID = linestbl.lineID AND linestbl.linenum=?) INNER JOIN filestbl ON (linestbl.fileID = filestbl.fileID AND filePath LIKE ?);");
 	if (rc!=0) return resSQLError;
 	rc = prepare_stmt(&m_writedeststmt, "UPDATE symtbl SET symName=? WHERE symID=?;");
 	if (rc!=0) return resSQLError;
-	rc = prepare_stmt(&m_readsymfstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"$\" AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
+	//rc = prepare_stmt(&m_readsymfstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"$\" AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
+	rc = prepare_stmt(&m_readsymfstmt, "SELECT symtbl.symID FROM symtbl INNER JOIN linestbl ON (symtbl.symName=? AND symtbl.symType=\"$\" AND symtbl.lineID = linestbl.lineID AND linestbl.linenum=?) INNER JOIN filestbl ON (linestbl.fileID = filestbl.fileID AND filePath LIKE ?);");
 	if (rc!=0) return resSQLError;
 	rc=sqlite3_exec(m_db,  "BEGIN EXCLUSIVE;\
 				DROP INDEX IF EXISTS memberIDIdx;\
@@ -276,6 +278,7 @@ ctagread::enResult ctagread::finalize(void)
 	s += "CREATE INDEX parentIDIdx ON inherittbl (parentID);";
 	s += "CREATE INDEX childIDIdx ON inherittbl (childID);";
 	s += "REINDEX symNameIdx;";
+	s += "REINDEX symName2Idx;";
 	s += "COMMIT;";
 	rc=sqlite3_exec(m_db, s.c_str(), NULL, 0, NULL);
 	if (rc != SQLITE_OK)

@@ -151,7 +151,9 @@ cs2sq::enResult cs2sq::setup_tables(void)
 	s+= "DROP TABLE IF EXISTS configtbl;";
 	s+= "DROP TABLE IF EXISTS membertbl;";
 	s+= "DROP INDEX IF EXISTS symNameIdx;";
+	s+= "DROP INDEX IF EXISTS symName2Idx;";
 	s+= "DROP INDEX IF EXISTS filePathIdx;";
+	s+= "DROP INDEX IF EXISTS filePath2Idx;";
 	s+= "DROP INDEX IF EXISTS callerIDIdx;";
 	s+= "DROP INDEX IF EXISTS calledIDIdx;";
 	s+= "DROP INDEX IF EXISTS memberIDIdx;";
@@ -295,11 +297,13 @@ cs2sq::enResult cs2sq::finalize(void)
 	std::string s;
 	s  = "BEGIN EXCLUSIVE;";
 	s += "CREATE INDEX filePathIdx ON filestbl (filePath);";
+	s += "CREATE INDEX filePath2Idx ON filestbl (filePath COLLATE NOCASE);";
 	s += "CREATE INDEX callerIDIdx ON calltbl (callerID);";
 	s += "CREATE INDEX calledIDIdx ON calltbl (calledID);";
 	s += "CREATE INDEX lines_fileIDIDx ON linestbl (fileID);";
 	s += "CREATE INDEX lines_linenumIDx ON linestbl (linenum);";
 	s += "CREATE INDEX symNameIdx ON symtbl (symName, symType);";
+	s += "CREATE INDEX symName2Idx ON symtbl (symName COLLATE NOCASE, symType COLLATE NOCASE);";
 	//s += "VACUUM;";
 	s += "COMMIT;";
 	rc=sqlite3_exec(m_db, s.c_str(), NULL, 0, NULL);

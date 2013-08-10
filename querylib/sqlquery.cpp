@@ -46,7 +46,7 @@
 #define SQL_CHILDCLASS "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT childID FROM inherittbl WHERE parentID IN (SELECT symID FROM symtbl WHERE symName LIKE ? ESCAPE \";\")) INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_INCLUDE "SELECT filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName LIKE ? ESCAPE \";\" AND symType=\"~\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_FILEPATH "SELECT filePath FROM filestbl WHERE filePath LIKE ? ESCAPE \";\";"
-#define SQL_AUTOCOMPLETE "SELECT DISTINCT symName FROM symtbl WHERE symName LIKE ? ESCAPE \";\" ORDER BY symName LIMIT 20;"
+#define SQL_AUTOCOMPLETE "SELECT DISTINCT symName FROM symtbl WHERE symName LIKE ? ORDER BY symName LIMIT 20;"
 #define SQL_FUNCSINFILE "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\" OR symtbl.symType=\"#\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 
 #define SQL_EM_SYM "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
@@ -317,12 +317,11 @@ tStr sqlquery::process_searchterm(const char* searchterm, const bool& exactmatch
 
 tStr sqlquery::process_searchterm_autocomplete(const char* searchterm)
 {
-	tStr srchterm;//, srchterm2="%";
-	srchterm = add_escape_char(searchterm,         '%', ';').c_str();
-	srchterm = add_escape_char(  srchterm.c_str(), '_', ';').c_str();
+	tStr srchterm(searchterm);
 	srchterm += "%";
-	//srchterm2 += srchterm;
-	return srchterm;//2;
+	replacechar( srchterm.begin(), srchterm.end(), '*', '%');
+	replacechar( srchterm.begin(), srchterm.end(), '?', '_');
+	return srchterm;
 }
 
 

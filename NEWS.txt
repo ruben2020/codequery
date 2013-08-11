@@ -1,4 +1,10 @@
 
+Version 0.10 - Aug 10, 2013
+ctags file processing optimization
+New GUI features: Header files only, Functions inside this file, new About box
+New GUI features: Ability to change file viewer font and tab space width
+Autocomplete made asynchronous and optimized
+
 Version 0.09 - Apr 20, 2013
 Fixed some cscope.out parser and SQL handling bugs
 Added font resize buttons for file viewer

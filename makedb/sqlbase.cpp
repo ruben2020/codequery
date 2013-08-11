@@ -52,7 +52,7 @@ int sqlbase::vacuum(const char* fn, const bool& debug)
 		"PRAGMA locking_mode = EXCLUSIVE;"
 		"PRAGMA automatic_index = FALSE;"
 		"PRAGMA cache_size = 20000;"
-		"BEGIN;VACUUM;ANALYZE;COMMIT;", NULL, 0, NULL);
+		"VACUUM;ANALYZE;", NULL, 0, NULL);
 	if (rc != SQLITE_OK)
 	{
 		if (debug) printf("SQLBaseErr099: %d, %s\n", rc, sqlite3_errmsg(sqdb));

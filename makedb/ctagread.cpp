@@ -83,7 +83,7 @@ void ctagread::close_files(void)
 
 ctagread::enResult ctagread::process_ctags(void)
 {
-	tempbuf sym(200), fil(200), classname(200), numtxt(30), linetxt(2000), fil2(200);
+	tempbuf sym(400), fil(500), classname(400), numtxt(50), linetxt(4001), fil2(500);
 	long int num;
 	int numOfLines=0;
 	char* retval;
@@ -127,7 +127,7 @@ ctagread::enResult ctagread::process_ctags(void)
 	}
 	
 	do{
-		retval = fgets(linetxt.get(), 2000, f_tags);
+		retval = fgets(linetxt.get(), linetxt.size() - 1, f_tags);
 		if (retval != NULL)
 		{
 			chomp(linetxt.get());

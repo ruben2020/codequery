@@ -13,7 +13,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
 
 
-## Latest version = v0.09
+## Latest version = v0.10
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -63,6 +63,7 @@ In addition, [pycscope](https://github.com/portante/pycscope) is used to add sup
 * Children of this class (inheritance)
 * Files including this file
 * Full path for file
+* Functions and macros inside this file
 
 
 ## What does it look like?
@@ -127,7 +128,7 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 
 ## How can I be notified of new version releases?
 
-Subscribe to us on [our FreeCode page](https://freecode.com/projects/codequery) and you should receive emails notifying you of new version releases.
+Follow us on [our FreeCode page](https://freecode.com/projects/codequery) and you should receive emails notifying you of new version releases.
 
 And don't forget to up-vote CodeQuery on FreeCode and star it on [Github](https://github.com/ruben2020/codequery) if you like this project.
 

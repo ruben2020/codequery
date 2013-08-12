@@ -5,6 +5,7 @@ Source: "C:\workspace\codequery\build\codequery.exe"; DestDir: "{app}"; Flags: 3
 Source: "C:\workspace\codequery\windows-install\README.txt"; DestDir: "{app}"; Flags: overwritereadonly isreadme
 Source: "C:\workspace\codequery\windows-install\LICENSE.txt"; DestDir: "{app}"; Flags: overwritereadonly
 Source: "C:\workspace\codequery\windows-install\HOWTO-WINDOWS.txt"; DestDir: "{app}"; Flags: overwritereadonly
+Source: "C:\workspace\codequery\windows-install\updatesnoti.htm"; DestDir: "{app}"; Flags: overwritereadonly
 Source: "C:\workspace\codequery\windows-install\cscope.exe"; DestDir: "{app}"; Flags: 32bit
 Source: "C:\workspace\codequery\windows-install\ctags.exe"; DestDir: "{app}"; Flags: 32bit
 Source: "C:\MinGW\bin\libgcc_s_dw2-1.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
@@ -20,6 +21,7 @@ Name: "{group}\CodeQuery"; Filename: "{app}\codequery.exe"; WorkingDir: "{app}";
 Name: "{group}\README"; Filename: "{app}\README.txt"; WorkingDir: "{app}"
 Name: "{group}\LICENSE"; Filename: "{app}\LICENSE.txt"; WorkingDir: "{app}"
 Name: "{group}\How to Use CodeQuery"; Filename: "{app}\HOWTO-WINDOWS.txt"; WorkingDir: "{app}"
+Name: "{group}\Updates Notification"; Filename: "{app}\updatesnoti.htm"; WorkingDir: "{app}"
 Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 
 [Setup]
@@ -40,6 +42,10 @@ ChangesEnvironment=true
 [Tasks]
 Name: "modifypath"; Description: "Add application directory to your environmental path"; Flags:
 
+[Run]
+Filename: "{app}\updatesnoti.htm"; Flags: nowait shellexec skipifsilent
+Filename: "{app}\codequery.exe"; Description: "Launch application"; Flags: postinstall nowait skipifsilent unchecked
+
 [Code]
 const
     ModPathName = 'modifypath';
@@ -51,3 +57,4 @@ begin
     Result[0] := ExpandConstant('{app}');
 end;
 #include "modpath.iss"
+

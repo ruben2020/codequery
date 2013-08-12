@@ -9,6 +9,18 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
+[![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
+[![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
+
+
+## Latest version
+
+Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+
+To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
+
+Please read [NEWS](NEWS.txt) to find out more.
+
 
 ## How is it different from cscope and ctags? What are the advantages?
 
@@ -51,6 +63,7 @@ In addition, [pycscope](https://github.com/portante/pycscope) is used to add sup
 * Children of this class (inheritance)
 * Files including this file
 * Full path for file
+* Functions and macros inside this file
 
 
 ## What does it look like?
@@ -113,6 +126,13 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 ![CodeQuery workflow](doc/workflow.png)
 
 
+## How can I be notified of new version releases?
+
+Follow us on [our FreeCode page](https://freecode.com/projects/codequery) and you should receive emails notifying you of new version releases.
+
+And don't forget to up-vote CodeQuery on FreeCode and star it on [Github](https://github.com/ruben2020/codequery) if you like this project.
+
+
 ## How do I contact the authors for support, issues, bug reports, fix patches, feature requests etc.?
 
 Please see the email address below, and also the Issues tab in GitHub.
@@ -123,10 +143,23 @@ Email address:
 Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 
+## How can I contribute?
+
+* Report bugs
+* Provide feedback, new ideas, suggestions etc. What would you like to see?
+* Fix bugs (see Issues tab)
+* Update translations (Deutsch, Francais, Japanese etc.)
+* Port to MacOS or other platforms
+* Write plugins for Vim, emacs, eclipse, Notepad++ etc.
+* Write a web-based interface to CodeQuery's database
+* Add support for other languages e.g. Ruby
+
+
 ## List of Contributors
 
 ruben2020   
 (More welcomed)
+
 
 ## Credits
 

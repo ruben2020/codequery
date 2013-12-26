@@ -44,7 +44,7 @@ void zoomout();
 void zoomin();
 void savetoimagefile();
 void savetodotfile();
-void autoResizeChanged(int resizestate);
+//void autoResizeChanged(int resizestate);
 
 private:
 double m_scaleFactor;

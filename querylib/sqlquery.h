@@ -92,6 +92,7 @@ enum en_queryType
 		sqlresultFILEPATH,
 		sqlresultCALLINGFUNC,
 		sqlresultCALLEDFUNC,
+		sqlresultCALLSOFFUNC,
 		sqlresultMEMBERS,
 		sqlresultOWNERCLASS,
 		sqlresultCHILDCLASS,

@@ -38,7 +38,7 @@
         <x>0</x>
         <y>0</y>
         <width>892</width>
-        <height>472</height>
+        <height>468</height>
        </rect>
       </property>
       <property name="layoutDirection">
@@ -50,9 +50,6 @@
          <property name="text">
           <string/>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
         </widget>
        </item>
       </layout>
@@ -61,16 +58,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QCheckBox" name="checkBoxAutoResize">
-       <property name="text">
-        <string>Auto-resize</string>
-       </property>
-       <property name="checked">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="pushButtonZoomOut">
        <property name="toolTip">
@@ -167,7 +154,6 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>checkBoxAutoResize</tabstop>
   <tabstop>pushButtonZoomOut</tabstop>
   <tabstop>pushButtonZoomIn</tabstop>
   <tabstop>pushButtonSaveDot</tabstop>

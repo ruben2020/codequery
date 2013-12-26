@@ -241,7 +241,7 @@ void searchhandler::retranslateUi(void)
 				tr("Symbol"),
 				QVariant(sqlquery::sqlquerySYMBOL));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Function or macro (Graph available)"),
+				tr("Function or macro definition (Graph available)"),
 				QVariant(sqlquery::sqlresultFUNC_MACRO));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Class or struct (Graph available)"),
@@ -252,6 +252,9 @@ void searchhandler::retranslateUi(void)
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Functions called by this function"),
 				QVariant(sqlquery::sqlresultCALLEDFUNC));
+	m_comboBoxQueryType->addItem(QIcon(),
+				tr("Calls of this function or macro"),
+				QVariant(sqlquery::sqlresultCALLSOFFUNC));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Class which owns this member or method"),
 				QVariant(sqlquery::sqlresultOWNERCLASS));
@@ -445,8 +448,8 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 	}
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	cqDialogGraph cqdg((QWidget*)mw);
-	cqdg.setupGraphFromXML(grpxml, grpdot, m_graphdesc);
 	cqdg.setModal(true);
+	cqdg.setupGraphFromXML(grpxml, grpdot, m_graphdesc);
 	QApplication::restoreOverrideCursor();
 	cqdg.exec();
 }
@@ -511,8 +514,8 @@ void searchhandler::updateSearchHistory(const QString& searchtxt)
 			break;
 		}
 	}
-	// limit to 10 only
-	if (m_comboBoxSearch->count() > 10) m_comboBoxSearch->removeItem(m_comboBoxSearch->count() - 1);
+	// limit to 15 only
+	if (m_comboBoxSearch->count() > 15) m_comboBoxSearch->removeItem(m_comboBoxSearch->count() - 1);
 	m_comboBoxSearch->setCurrentIndex(0);
 }
 

@@ -26,7 +26,7 @@
 cqDialogGraph::cqDialogGraph(QWidget *parent)
 :QDialog(parent)
 ,dialog_ui(new Ui::DialogGraph)
-,m_scaleFactor(1.0)
+,m_scaleFactor(5.0)
  {
 	dialog_ui->setupUi(this);
 	connect(dialog_ui->pushButtonClose, SIGNAL(clicked()),
@@ -35,8 +35,8 @@ cqDialogGraph::cqDialogGraph(QWidget *parent)
 		this, SLOT(zoomout()));
 	connect(dialog_ui->pushButtonZoomIn, SIGNAL(clicked()),
 		this, SLOT(zoomin()));
-	connect(dialog_ui->checkBoxAutoResize, SIGNAL(stateChanged(int)),
-		this, SLOT(autoResizeChanged(int)));
+	/*connect(dialog_ui->checkBoxAutoResize, SIGNAL(stateChanged(int)),
+		this, SLOT(autoResizeChanged(int)));*/
 	connect(dialog_ui->pushButtonSave, SIGNAL(clicked()),
 		this, SLOT(savetoimagefile()));
 	connect(dialog_ui->pushButtonSaveDot, SIGNAL(clicked()),
@@ -58,16 +58,19 @@ void cqDialogGraph::setupGraphFromXML(QString grpxml, QString grpdot, QString de
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
 	dialog_ui->labelDesc->setText(desc);
+	show();
+	adjustScrollBar(dialog_ui->scrollArea->horizontalScrollBar(), m_scaleFactor/5);
+	adjustScrollBar(dialog_ui->scrollArea->verticalScrollBar(), m_scaleFactor/5);
 }
 
 void cqDialogGraph::zoomout()
 {
-     scaleImage(0.8);
+     scaleImage(-1);
 }
 
 void cqDialogGraph::zoomin()
 {
-     scaleImage(1.25);
+     scaleImage(1);
 }
 
 void cqDialogGraph::savetoimagefile()
@@ -116,11 +119,12 @@ void cqDialogGraph::savetodotfile()
 
 void cqDialogGraph::scaleImage(double factor)
 {
-     m_scaleFactor *= factor;
-     dialog_ui->labelGraph->resize(m_scaleFactor * dialog_ui->labelGraph->pixmap()->size());
-
-     adjustScrollBar(dialog_ui->scrollArea->horizontalScrollBar(), factor);
-     adjustScrollBar(dialog_ui->scrollArea->verticalScrollBar(), factor);
+     QPixmap p = QPixmap::fromImage(m_img);
+     m_scaleFactor += factor;
+     m_scaleFactor = (m_scaleFactor < 1.0) ? 1.0 : m_scaleFactor;
+     dialog_ui->labelGraph->setPixmap(p.scaled((m_scaleFactor/5) * p.size(), Qt::KeepAspectRatio));
+     adjustScrollBar(dialog_ui->scrollArea->horizontalScrollBar(), m_scaleFactor/5);
+     adjustScrollBar(dialog_ui->scrollArea->verticalScrollBar(), m_scaleFactor/5);
 }
 
 void cqDialogGraph::adjustScrollBar(QScrollBar *scrollBar, double factor)
@@ -129,10 +133,10 @@ void cqDialogGraph::adjustScrollBar(QScrollBar *scrollBar, double factor)
 	scrollBar->setValue((scrollBar->maximum() - minim)/2 + minim);
 }
 
-
+/*
 void cqDialogGraph::autoResizeChanged(int resizestate)
 {
 	dialog_ui->scrollArea->setWidgetResizable(resizestate == Qt::Checked);
-}
+}*/
 
 

@@ -122,6 +122,8 @@ void mainwindow::setup_fileviewer(void)
 void mainwindow::setup_listhandler(void)
 {
 	m_listhandler->m_treeWidgetSearchResults = ui->treeWidgetSearchResults;
+	m_listhandler->m_pushButtonUp = ui->pushButtonUp;
+	m_listhandler->m_pushButtonDown = ui->pushButtonDown;
 	m_listhandler->init();
 }
 

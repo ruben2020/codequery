@@ -24,6 +24,8 @@
 listhandler::listhandler(mainwindow* pmw)
 :mw(pmw)
 ,m_treeWidgetSearchResults(NULL)
+,m_pushButtonUp(NULL)
+,m_pushButtonDown(NULL)
 ,m_noclick(false)
 {
 }
@@ -46,7 +48,13 @@ void listhandler::prepareToExit(void)
 void listhandler::init(void)
 {
 	connect(m_treeWidgetSearchResults, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)),
-			this                     , SLOT(listItemClicked(QTreeWidgetItem *, QTreeWidgetItem *)));
+			this, SLOT(listItemClicked(QTreeWidgetItem *, QTreeWidgetItem *)));
+	connect(m_pushButtonUp, SIGNAL(clicked(bool)),
+			this, SLOT(Up_ButtonClick(bool)));
+	connect(m_pushButtonDown, SIGNAL(clicked(bool)),
+			this, SLOT(Down_ButtonClick(bool)));
+	m_pushButtonUp->setEnabled(false);
+	m_pushButtonDown->setEnabled(false);
 	m_treeWidgetSearchResults->setSelectionMode(QAbstractItemView::SingleSelection);
 	m_sqlist.resultlist.clear();
 	m_sqlist.result_type = sqlqueryresultlist::sqlresultFULL;
@@ -76,6 +84,7 @@ void listhandler::listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * p
 {
 	if (current == NULL) return;
 	if (m_noclick) return;
+	checkUpDown();
 	emit listRowNumUpdated(m_treeWidgetSearchResults->indexOfTopLevelItem(current));
 	emit openFile(str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].filepath),
 			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum));
@@ -96,9 +105,10 @@ void listhandler::updateList(void)
 {
 	if (m_sqlist.resultlist.empty()) return;
 	unsigned int n = m_sqlist.resultlist.size();
+	QStringList strList;
 	for (unsigned int i=0; i < n; i++)
 	{
-		QStringList strList;
+		strList.clear();
 		if (m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)
 			strList += str2qt(m_sqlist.resultlist[i].symname);
 		strList += str2qt(m_sqlist.resultlist[i].filename);
@@ -145,6 +155,8 @@ void listhandler::resizeColumns(void)
 void listhandler::clearList()
 {
 	bool noclick = m_noclick;
+	m_pushButtonUp->setEnabled(false);
+	m_pushButtonDown->setEnabled(false);
 	m_noclick = true;
 	int n = m_itemlist.size();
 	for(int i=0; i<n; i++) delete m_itemlist[i];
@@ -173,4 +185,97 @@ void listhandler::retranslateUi(void)
 	m_noclick = false;
 }
 
+void listhandler::Up_ButtonClick(bool checked)
+{
+	QTreeWidgetItem *item = NULL;
+	tStr curFilepath;
+	tStr itemFilepath;
+	if ((!checked)&&(m_treeWidgetSearchResults->topLevelItemCount() > 0))
+	{
+		item = m_treeWidgetSearchResults->currentItem();
+		curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+		while (item != NULL)
+		{
+			item = m_treeWidgetSearchResults->itemAbove(item);
+			if (item == NULL) break;
+			itemFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+			if (strrevcmp(curFilepath, itemFilepath))
+			{
+				m_treeWidgetSearchResults->setCurrentItem(item);
+				break;
+			}
+		}
+	}
+}
+
+void listhandler::Down_ButtonClick(bool checked)
+{
+	QTreeWidgetItem *item = NULL;
+	tStr curFilepath;
+	tStr itemFilepath;
+	if ((!checked)&&(m_treeWidgetSearchResults->topLevelItemCount() > 0))
+	{
+		item = m_treeWidgetSearchResults->currentItem();
+		curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+		while (item != NULL)
+		{
+			item = m_treeWidgetSearchResults->itemBelow(item);
+			if (item == NULL) break;
+			itemFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+			if (strrevcmp(curFilepath, itemFilepath))
+			{
+				m_treeWidgetSearchResults->setCurrentItem(item);
+				break;
+			}
+		}
+	}
+}
+
+void listhandler::checkUpDown(void)
+{
+	QTreeWidgetItem *item = NULL;
+	QTreeWidgetItem *curItem = NULL;
+	tStr curFilepath, itemFilepath;
+	bool upArrow=false, downArrow=false;
+	if (m_treeWidgetSearchResults->topLevelItemCount() <= 0) return;
+	item = m_treeWidgetSearchResults->currentItem();
+	curItem = item;
+	curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+
+	while (item != NULL)
+	{
+		item = m_treeWidgetSearchResults->itemAbove(item);
+		if (item == NULL) break;
+		itemFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+		if (strrevcmp(curFilepath, itemFilepath))
+		{
+			upArrow = true;
+			break;
+		}
+
+		// for now, assume items with same file path are grouped together
+		// This is to speed up the search
+		else break;
+	}
+
+	item = curItem;
+	while (item != NULL)
+	{
+		item = m_treeWidgetSearchResults->itemBelow(item);
+		if (item == NULL) break;
+		itemFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+		if (strrevcmp(curFilepath, itemFilepath))
+		{
+			downArrow = true;
+			break;
+		}
+
+		// for now, assume items with same file path are grouped together
+		// This is to speed up the search
+		else break;
+	}
+
+	m_pushButtonUp->setEnabled(upArrow);
+	m_pushButtonDown->setEnabled(downArrow);
+}
 

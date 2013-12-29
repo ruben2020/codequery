@@ -34,6 +34,8 @@ class listhandler : public QObject
 
 public:
 QTreeWidget *m_treeWidgetSearchResults;
+QPushButton *m_pushButtonUp;
+QPushButton *m_pushButtonDown;
 
 listhandler(mainwindow* pmw);
 ~listhandler();
@@ -43,12 +45,15 @@ void prepareToExit(void);
 void updateListHeaders(void);
 void resizeColumns(void);
 void retranslateUi(void);
+void checkUpDown(void);
 
 public slots:
 void populateList(sqlqueryresultlist resultlist, int selectitem);
 void listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * previous);
 void clearList();
 void requestToProvideResultCurrentListItemSymbolName();
+void Up_ButtonClick(bool checked);
+void Down_ButtonClick(bool checked);
 
 signals:
 void openFile(QString file, QString linenum);
@@ -65,3 +70,4 @@ bool m_noclick;
 
 
 #endif
+

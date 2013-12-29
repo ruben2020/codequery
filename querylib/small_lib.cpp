@@ -61,6 +61,23 @@ bool isAbsolutePath(tStr fp)
 	return result;
 }
 
+// reverse string compare
+bool strrevcmp(tStr str, tStr cmpstr)
+{
+	bool retval = (1 == 1);
+	int n = str.length();
+	if (n != cmpstr.length()) {retval = (1 == 0);}
+	else for (int i = (n - 1); i >= 0; i--)
+	{
+		if (str[i] != cmpstr[i])
+		{
+			retval = (1 == 0);
+			break;
+		}
+	}
+	return retval;
+}
+
 // split string into an array based on a delimiter
 std::vector<std::string> splitstr(const char* inpstr, const char delim)
 {

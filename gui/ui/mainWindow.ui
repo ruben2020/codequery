@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
+    <width>755</width>
     <height>600</height>
    </rect>
   </property>
@@ -340,6 +340,40 @@
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="pushButtonUp">
+              <property name="toolTip">
+               <string>Previous search result in this file</string>
+              </property>
+              <property name="statusTip">
+               <string>Previous search result in this file</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../codequery.qrc">
+                <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonDown">
+              <property name="toolTip">
+               <string>Next search result in this file</string>
+              </property>
+              <property name="statusTip">
+               <string>Next search result in this file</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../codequery.qrc">
+                <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="Line" name="line">
               <property name="frameShadow">
                <enum>QFrame::Sunken</enum>
@@ -435,7 +469,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>629</width>
+     <width>755</width>
      <height>27</height>
     </rect>
    </property>
@@ -540,6 +574,8 @@
   <tabstop>pushButtonGoToLine</tabstop>
   <tabstop>pushButtonTextShrink</tabstop>
   <tabstop>pushButtonTextEnlarge</tabstop>
+  <tabstop>pushButtonUp</tabstop>
+  <tabstop>pushButtonDown</tabstop>
   <tabstop>pushButtonPaste</tabstop>
   <tabstop>checkBoxSymbolOnly</tabstop>
   <tabstop>textEditSource</tabstop>

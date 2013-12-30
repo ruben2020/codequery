@@ -39,6 +39,7 @@ public:
 	int compare(const searchitem& otheritem);
 
 	QString searchterm;
+	QString filterterm;
 	bool exactmatch;
 	sqlquery::en_queryType qtype;
 	int rownum;
@@ -53,7 +54,6 @@ QPushButton *m_pushButtonOpenDB;
 QComboBox *m_comboBoxDB;
 QCheckBox *m_checkBoxAutoComplete;
 QCheckBox *m_checkBoxExactMatch;
-QCheckBox *m_checkBoxHeaderFilesOnly;
 QPushButton *m_pushButtonSearch;
 QPushButton *m_pushButtonClipSearch;
 QPushButton *m_pushButtonSearchPrev;
@@ -61,6 +61,8 @@ QPushButton *m_pushButtonSearchNext;
 QComboBox *m_comboBoxSearch;
 QComboBox *m_comboBoxQueryType;
 QPushButton *m_pushButtonGraph;
+QCheckBox *m_checkBoxFilter;
+QComboBox *m_comboBoxFilter;
 QCompleter *m_completer;
 QFutureWatcher<QStringList> m_autocompFutureWatcher;
 
@@ -71,10 +73,11 @@ void perform_open_db(void);
 void perform_search(QString searchtxt,
 			bool exactmatch,
 			sqlquery::en_queryType qrytyp = sqlquery::sqlresultDEFAULT,
+			QString filtertxt = "",
 			int selectitem = 0,
 			bool updSearchMemory = true);
 void updateSearchHistory(const QString& searchtxt);
-void addToSearchMemory(const QString& searchtxt);
+void addToSearchMemory(const QString& searchtxt, const QString& filtertxt);
 void goForwardInSearchMemory(void);
 void goBackInSearchMemory(void);
 void restoreSearchMemoryItem(void);

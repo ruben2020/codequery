@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>755</width>
+    <width>753</width>
     <height>600</height>
    </rect>
   </property>
@@ -47,6 +47,9 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
           </property>
          </widget>
         </item>
@@ -89,9 +92,43 @@
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBoxHeaderFilesOnly">
+         <widget class="QCheckBox" name="checkBoxFilter">
+          <property name="toolTip">
+           <string>File path filter</string>
+          </property>
+          <property name="statusTip">
+           <string>File path filter</string>
+          </property>
           <property name="text">
-           <string>Header files only</string>
+           <string>Filter</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBoxFilter">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>File path filter, wildcard searches (* and ?) are supported</string>
+          </property>
+          <property name="statusTip">
+           <string>File path filter, wildcard searches (* and ?) are supported</string>
+          </property>
+          <property name="editable">
+           <bool>true</bool>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::NoInsert</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
           </property>
          </widget>
         </item>
@@ -141,10 +178,10 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="statusTip">
+          <property name="toolTip">
            <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
           </property>
-          <property name="whatsThis">
+          <property name="statusTip">
            <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
           </property>
           <property name="editable">
@@ -152,6 +189,9 @@
           </property>
           <property name="insertPolicy">
            <enum>QComboBox::NoInsert</enum>
+          </property>
+          <property name="duplicatesEnabled">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -212,10 +252,16 @@
         <item>
          <widget class="QComboBox" name="comboBoxQueryType">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="insertPolicy">
+           <enum>QComboBox::NoInsert</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToContents</enum>
           </property>
          </widget>
         </item>
@@ -340,47 +386,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButtonUp">
-              <property name="toolTip">
-               <string>Previous search result in this file</string>
-              </property>
-              <property name="statusTip">
-               <string>Previous search result in this file</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonDown">
-              <property name="toolTip">
-               <string>Next search result in this file</string>
-              </property>
-              <property name="statusTip">
-               <string>Next search result in this file</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
-              </property>
-             </widget>
-            </item>
-            <item>
              <widget class="Line" name="line">
-              <property name="frameShadow">
-               <enum>QFrame::Sunken</enum>
-              </property>
-              <property name="lineWidth">
-               <number>1</number>
-              </property>
               <property name="orientation">
                <enum>Qt::Vertical</enum>
               </property>
@@ -413,6 +419,47 @@
               </property>
               <property name="text">
                <string>Symbol only</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="Line" name="line_5">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonUp">
+              <property name="toolTip">
+               <string>Previous search result in this file</string>
+              </property>
+              <property name="statusTip">
+               <string>Previous search result in this file</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../codequery.qrc">
+                <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonDown">
+              <property name="toolTip">
+               <string>Next search result in this file</string>
+              </property>
+              <property name="statusTip">
+               <string>Next search result in this file</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset resource="../codequery.qrc">
+                <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
               </property>
              </widget>
             </item>
@@ -469,7 +516,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>755</width>
+     <width>753</width>
      <height>27</height>
     </rect>
    </property>
@@ -559,7 +606,8 @@
   <tabstop>comboBoxDB</tabstop>
   <tabstop>checkBoxAutoComplete</tabstop>
   <tabstop>checkBoxExactMatch</tabstop>
-  <tabstop>checkBoxHeaderFilesOnly</tabstop>
+  <tabstop>checkBoxFilter</tabstop>
+  <tabstop>comboBoxFilter</tabstop>
   <tabstop>pushButtonSearchPrev</tabstop>
   <tabstop>pushButtonSearchNext</tabstop>
   <tabstop>comboBoxSearch</tabstop>
@@ -574,14 +622,31 @@
   <tabstop>pushButtonGoToLine</tabstop>
   <tabstop>pushButtonTextShrink</tabstop>
   <tabstop>pushButtonTextEnlarge</tabstop>
-  <tabstop>pushButtonUp</tabstop>
-  <tabstop>pushButtonDown</tabstop>
   <tabstop>pushButtonPaste</tabstop>
   <tabstop>checkBoxSymbolOnly</tabstop>
+  <tabstop>pushButtonUp</tabstop>
+  <tabstop>pushButtonDown</tabstop>
   <tabstop>textEditSource</tabstop>
  </tabstops>
  <resources>
   <include location="../codequery.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>checkBoxFilter</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>comboBoxFilter</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>586</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>620</x>
+     <y>58</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

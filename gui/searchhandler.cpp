@@ -35,6 +35,7 @@ searchitem::searchitem()
 searchitem::searchitem(const searchitem& otheritem)
 {
 	searchterm = otheritem.searchterm;
+	filterterm = otheritem.filterterm;
 	exactmatch = otheritem.exactmatch;
 	qtype = otheritem.qtype;
 	rownum = otheritem.rownum;
@@ -45,6 +46,7 @@ searchitem& searchitem::operator=(const searchitem& otheritem)
 	if (&otheritem != this)
 	{
 		searchterm = otheritem.searchterm;
+		filterterm = otheritem.filterterm;
 		exactmatch = otheritem.exactmatch;
 		qtype = otheritem.qtype;
 		rownum = otheritem.rownum;
@@ -55,9 +57,10 @@ searchitem& searchitem::operator=(const searchitem& otheritem)
 // return value: 0=same, 1=completely different, 2=only linenum changed
 int searchitem::compare(const searchitem& otheritem)
 {
-	if ((searchterm.compare(otheritem.searchterm) != 0) ||
+	if ((searchterm.compare(otheritem.searchterm, Qt::CaseSensitive) != 0) ||
 		(exactmatch != otheritem.exactmatch) ||
-		(qtype != otheritem.qtype)) return 1;
+		(qtype != otheritem.qtype) ||
+		(filterterm.compare(otheritem.filterterm, Qt::CaseSensitive) != 0)) return 1;
 	if (rownum != otheritem.rownum) return 2;
 	return 0;
 }
@@ -69,10 +72,11 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_comboBoxDB(NULL)
 ,m_checkBoxAutoComplete(NULL)
 ,m_checkBoxExactMatch(NULL)
-,m_checkBoxHeaderFilesOnly(NULL)
 ,m_pushButtonSearch(NULL)
 ,m_comboBoxSearch(NULL)
 ,m_comboBoxQueryType(NULL)
+,m_checkBoxFilter(NULL)
+,m_comboBoxFilter(NULL)
 ,m_srchStrLstModel(QStringList())
 ,m_typeOfGraph(1)
 ,m_autocompBusy(false)
@@ -292,7 +296,7 @@ void searchhandler::perform_open_db(void)
 		m_comboBoxDB->setCurrentIndex(0);
 		for (int i=1; i < (m_comboBoxDB->count()); i++)
 		{
-			if (fileName.compare(m_comboBoxDB->itemText(i)) == 0)
+			if (fileName.compare(m_comboBoxDB->itemText(i), Qt::CaseSensitive) == 0)
 			{
 				m_comboBoxDB->removeItem(i);
 				break;
@@ -355,6 +359,7 @@ void searchhandler::QueryType_indexChanged(const int& idx)
 void searchhandler::perform_search(QString searchtxt,
 			bool exactmatch,
 			sqlquery::en_queryType qrytyp,
+			QString filtertxt,
 			int selectitem,
 			bool updSearchMemory)
 {
@@ -370,8 +375,28 @@ void searchhandler::perform_search(QString searchtxt,
 	sqlquery::en_queryType querytype = qrytyp;
 	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
 		(sqlquery::en_queryType)m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
+	if ((filtertxt.isEmpty()) && (m_checkBoxFilter->isChecked()))
+	{
+		filtertxt = m_comboBoxFilter->lineEdit()->text().trimmed();
+		if ((updSearchMemory)&&(filtertxt.isEmpty() == false))
+		{
+			m_comboBoxFilter->insertItem(0, filtertxt);
+			m_comboBoxFilter->setCurrentIndex(0);
+			if (m_comboBoxFilter->count() > 7)
+				m_comboBoxFilter->removeItem(m_comboBoxFilter->count() - 1);
+			for(int i=1; i < m_comboBoxFilter->count(); i++)
+			{
+				if (m_comboBoxFilter->itemText(i).compare(filtertxt) == 0)
+				{
+					m_comboBoxFilter->removeItem(i);
+					break;
+				}
+			}
+		}
+	}
 	sqlresultlist = sq->search(searchtxt.toAscii().data(),
-				querytype, exactmatch);
+				querytype, exactmatch,
+				filtertxt.toAscii().data());
 	QApplication::restoreOverrideCursor();
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
@@ -383,21 +408,8 @@ void searchhandler::perform_search(QString searchtxt,
 	{
 		m_pushButtonGraph->setEnabled((querytype == sqlquery::sqlresultFUNC_MACRO)||
 			(querytype == sqlquery::sqlresultCLASS_STRUCT));
-		if (m_checkBoxHeaderFilesOnly->isChecked())
-		{
-			QRegExp rx1("\\.h([xp]{0,2})$", Qt::CaseInsensitive);
-			unsigned int n = sqlresultlist.resultlist.size();
-			int pos;
-			sqlqueryresultlist oldlist(sqlresultlist);
-			sqlresultlist.resultlist.clear();
-			for(unsigned int i=0; i<n; i++)
-			{
-				pos = rx1.indexIn(str2qt(oldlist.resultlist[i].filename));
-				if (pos != -1) sqlresultlist.resultlist.push_back(oldlist.resultlist[i]);
-			}
-		}
 		updateSearchHistory(searchtxt);
-		if (updSearchMemory) addToSearchMemory(searchtxt);
+		if (updSearchMemory) addToSearchMemory(searchtxt, filtertxt);
 		emit searchresults(sqlresultlist, selectitem);
 		QString str;
 		str = QString("%1").arg(sqlresultlist.resultlist.size());
@@ -454,10 +466,11 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 	cqdg.exec();
 }
 
-void searchhandler::addToSearchMemory(const QString& searchtxt)
+void searchhandler::addToSearchMemory(const QString& searchtxt, const QString& filtertxt)
 {
 	searchitem item;
 	item.searchterm = searchtxt;
+	item.filterterm = filtertxt;
 	item.exactmatch = m_checkBoxExactMatch->isChecked();
 	item.qtype = (sqlquery::en_queryType)
 		m_comboBoxQueryType->itemData(m_comboBoxQueryType->currentIndex()).toInt();
@@ -493,6 +506,7 @@ void searchhandler::restoreSearchMemoryItem(void)
 	perform_search(m_iter->searchterm,
 			m_iter->exactmatch,
 			m_iter->qtype,
+			m_iter->filterterm,
 			m_iter->rownum,
 			false);
 }
@@ -508,7 +522,7 @@ void searchhandler::updateSearchHistory(const QString& searchtxt)
 	int n = (m_comboBoxSearch->count());
 	for(int i=1; i < n; i++)
 	{
-		if (m_comboBoxSearch->itemText(i).compare(searchtxt) == 0)
+		if (m_comboBoxSearch->itemText(i).compare(searchtxt, Qt::CaseSensitive) == 0)
 		{
 			m_comboBoxSearch->removeItem(i); // remove duplicates
 			break;

@@ -133,7 +133,6 @@ void mainwindow::setup_searchhandler(void)
 	m_searchhandler->m_comboBoxDB = ui->comboBoxDB;
 	m_searchhandler->m_checkBoxAutoComplete = ui->checkBoxAutoComplete;
 	m_searchhandler->m_checkBoxExactMatch = ui->checkBoxExactMatch;
-	m_searchhandler->m_checkBoxHeaderFilesOnly = ui->checkBoxHeaderFilesOnly;
 	m_searchhandler->m_pushButtonSearch = ui->pushButtonSearch;
 	m_searchhandler->m_pushButtonClipSearch = ui->pushButtonClipSearch;
 	m_searchhandler->m_comboBoxSearch = ui->comboBoxSearch;
@@ -141,6 +140,8 @@ void mainwindow::setup_searchhandler(void)
 	m_searchhandler->m_pushButtonSearchPrev = ui->pushButtonSearchPrev;
 	m_searchhandler->m_pushButtonSearchNext = ui->pushButtonSearchNext;
 	m_searchhandler->m_pushButtonGraph = ui->pushButtonGraph;
+	m_searchhandler->m_checkBoxFilter = ui->checkBoxFilter;
+	m_searchhandler->m_comboBoxFilter = ui->comboBoxFilter;
 	m_searchhandler->init();
 }
 
@@ -218,8 +219,8 @@ void mainwindow::writeSettings()
 	settings.setValue("Maximized", isMaximized());
 	settings.setValue("AutoComplete", ui->checkBoxAutoComplete->isChecked());
 	settings.setValue("ExactMatch", ui->checkBoxExactMatch->isChecked());
-	settings.setValue("HeaderFilesOnly", ui->checkBoxHeaderFilesOnly->isChecked());
 	settings.setValue("SymbolOnly", ui->checkBoxSymbolOnly->isChecked());
+	settings.setValue("FilterCheckBox", ui->checkBoxFilter->isChecked());
 	settings.setValue("QueryType", ui->comboBoxQueryType->currentIndex());
 	settings.setValue("LastOpenDB", ui->comboBoxDB->currentIndex());
 	settings.setValue("Language", m_currentLanguage);
@@ -235,6 +236,14 @@ void mainwindow::writeSettings()
 	{
 		settings.setArrayIndex(i);
 		settings.setValue("db", ui->comboBoxDB->itemText(i));
+	}
+	settings.endArray();
+
+	settings.beginWriteArray("FilterHistory");
+	for (int i=0; i < ui->comboBoxFilter->count(); i++)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("filter", ui->comboBoxFilter->itemText(i));
 	}
 	settings.endArray();
 
@@ -261,6 +270,21 @@ void mainwindow::readSettings()
 	settings.endArray();
 	if (dbhist.isEmpty() == false) ui->comboBoxDB->addItems(dbhist);
 
+	int sizef = settings.beginReadArray("FilterHistory");
+	QStringList filterhist;
+	for (int i=0; i < sizef; i++)
+	{
+		settings.setArrayIndex(i);
+		filterhist << settings.value("filter").toString();
+	}
+	settings.endArray();
+	if (filterhist.isEmpty() == false)
+	{
+		ui->comboBoxFilter->addItems(filterhist);
+		ui->comboBoxFilter->setCurrentIndex(0);
+	}
+
+
 	settings.beginGroup("MainWindow");
 	resize(settings.value("Size", size()).toSize());
 	move(settings.value("Pos", pos()).toPoint());
@@ -268,8 +292,8 @@ void mainwindow::readSettings()
 	else showNormal();
 	ui->checkBoxAutoComplete->setChecked(settings.value("AutoComplete", true).toBool());
 	ui->checkBoxExactMatch->setChecked(settings.value("ExactMatch", false).toBool());
-	ui->checkBoxHeaderFilesOnly->setChecked(settings.value("HeaderFilesOnly", false).toBool());
 	ui->checkBoxSymbolOnly->setChecked(settings.value("SymbolOnly", false).toBool());
+	ui->checkBoxFilter->setChecked(settings.value("FilterCheckBox", false).toBool());
 	ui->comboBoxQueryType->setCurrentIndex(settings.value("QueryType", 0).toInt());
 	ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());
 	m_currentLanguage = settings.value("Language", QString("English")).toString();

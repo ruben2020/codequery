@@ -116,7 +116,8 @@ enum en_filereadstatus
 	void close_dbfile(void);
 	sqlqueryresultlist search(tStr searchstr,
 				en_queryType querytype = sqlquerySYMBOL,
-				bool exactmatch=false);
+				bool exactmatch=false,
+				tStr filterstr = "");
 	tVecStr search_autocomplete(const char* searchstr);
 
 private:

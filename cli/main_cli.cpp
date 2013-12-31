@@ -40,7 +40,7 @@ void printhelp(const char* str)
 	printf("  -e : Exact Match switched ON \n");
 	printf("       Case-sensitive\n");
 	printf("  -f : Exact Match switched OFF (fuzzy search)\n");
-	printf("       Case-insensitive with wild card search\n");
+	printf("       Case-insensitive with wild card search (default)\n");
 	printf("  -d : debug\n");
 	printf("  -v : version\n");
 	printf("  -h : help\n\n");

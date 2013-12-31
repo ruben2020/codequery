@@ -44,6 +44,7 @@ In addition, [pycscope](https://github.com/portante/pycscope) is used to add sup
 * Fast auto-completion of search term
 * Case-insensitive, partial keyword search - wildcard search supported * and ?
 * Exact match search
+* Filter search results by file path
 * File viewer with syntax highlighting
 * Ability to open viewed file in an external editor or IDE
 * Visualization of function call graph and class inheritance based on search term

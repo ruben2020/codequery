@@ -248,8 +248,8 @@ void searchhandler::retranslateUi(void)
 				tr("Function or macro definition (Graph available)"),
 				QVariant(sqlquery::sqlresultFUNC_MACRO));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Class or struct (Graph available)"),
-				QVariant(sqlquery::sqlresultCLASS_STRUCT));
+				tr("Calls of this function or macro"),
+				QVariant(sqlquery::sqlresultCALLSOFFUNC));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Functions calling this function"),
 				QVariant(sqlquery::sqlresultCALLINGFUNC));
@@ -257,8 +257,8 @@ void searchhandler::retranslateUi(void)
 				tr("Functions called by this function"),
 				QVariant(sqlquery::sqlresultCALLEDFUNC));
 	m_comboBoxQueryType->addItem(QIcon(),
-				tr("Calls of this function or macro"),
-				QVariant(sqlquery::sqlresultCALLSOFFUNC));
+				tr("Class or struct (Graph available)"),
+				QVariant(sqlquery::sqlresultCLASS_STRUCT));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Class which owns this member or method"),
 				QVariant(sqlquery::sqlresultOWNERCLASS));
@@ -343,13 +343,13 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 void searchhandler::QueryType_indexChanged(const int& idx)
 {
 	m_pushButtonGraph->setEnabled(false);
-	switch(idx)
+	switch(m_comboBoxQueryType->itemData(idx).toInt())
 	{
-		case 1: // function or macro
+		case sqlquery::sqlresultFUNC_MACRO: // function or macro
 			m_graphdesc = tr("Function Call Graph");
 			m_typeOfGraph = 1;
 			break;
-		case 2: // class or struct
+		case sqlquery::sqlresultCLASS_STRUCT: // class or struct
 			m_graphdesc = tr("Class Inheritance Graph");
 			m_typeOfGraph = 2;
 			break;

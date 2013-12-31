@@ -53,10 +53,11 @@ In addition, [pycscope](https://github.com/portante/pycscope) is used to add sup
 ## What types of query can I make?
 
 * Symbol
-* Function or macro
+* Function or macro definition
 * Class or struct
 * Functions calling this function
 * Functions called by this function
+* Calls of this function or macro
 * Class which owns this member or method
 * Members and methods of this class
 * Parent of this class (inheritance)

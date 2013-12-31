@@ -278,7 +278,7 @@ void mainwindow::readSettings()
 		filterhist << settings.value("filter").toString();
 	}
 	settings.endArray();
-	if (filterhist.isEmpty()) filterhist << "*.h" << "*.c";
+	if (filterhist.isEmpty()) filterhist << "*.h" << "*.c" << "src";
 	ui->comboBoxFilter->addItems(filterhist);
 	ui->comboBoxFilter->setCurrentIndex(0);
 

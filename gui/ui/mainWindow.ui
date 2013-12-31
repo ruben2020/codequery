@@ -121,6 +121,9 @@
           <property name="statusTip">
            <string>File path filter, wildcard searches (* and ?) are supported</string>
           </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
           <property name="editable">
            <bool>true</bool>
           </property>

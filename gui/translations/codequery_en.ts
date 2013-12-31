@@ -14,40 +14,35 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../ui/graphDialog.ui" line="64"/>
         <location filename="../ui/graphDialog.ui" line="67"/>
-        <source>Auto-resize</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/graphDialog.ui" line="77"/>
-        <location filename="../ui/graphDialog.ui" line="80"/>
         <source>Zoom Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="94"/>
-        <location filename="../ui/graphDialog.ui" line="97"/>
+        <location filename="../ui/graphDialog.ui" line="81"/>
+        <location filename="../ui/graphDialog.ui" line="84"/>
         <source>Zoom In</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="117"/>
-        <location filename="../ui/graphDialog.ui" line="120"/>
-        <location filename="../ui/graphDialog.ui" line="123"/>
+        <location filename="../ui/graphDialog.ui" line="104"/>
+        <location filename="../ui/graphDialog.ui" line="107"/>
+        <location filename="../ui/graphDialog.ui" line="110"/>
         <source>Save to DOT file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="136"/>
-        <location filename="../ui/graphDialog.ui" line="139"/>
-        <location filename="../ui/graphDialog.ui" line="142"/>
+        <location filename="../ui/graphDialog.ui" line="123"/>
+        <location filename="../ui/graphDialog.ui" line="126"/>
+        <location filename="../ui/graphDialog.ui" line="129"/>
         <source>Save Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="155"/>
-        <location filename="../ui/graphDialog.ui" line="158"/>
-        <location filename="../ui/graphDialog.ui" line="161"/>
+        <location filename="../ui/graphDialog.ui" line="142"/>
+        <location filename="../ui/graphDialog.ui" line="145"/>
+        <location filename="../ui/graphDialog.ui" line="148"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -66,172 +61,196 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="66"/>
+        <location filename="../ui/mainWindow.ui" line="69"/>
         <source>Auto-complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="80"/>
+        <location filename="../ui/mainWindow.ui" line="83"/>
         <source>Exact match</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="94"/>
-        <source>Header files only</source>
+        <location filename="../ui/mainWindow.ui" line="97"/>
+        <location filename="../ui/mainWindow.ui" line="100"/>
+        <source>File path filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="105"/>
-        <location filename="../ui/mainWindow.ui" line="108"/>
+        <location filename="../ui/mainWindow.ui" line="103"/>
+        <source>Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="119"/>
+        <location filename="../ui/mainWindow.ui" line="122"/>
+        <source>File path filter, wildcard searches (* and ?) are supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="142"/>
+        <location filename="../ui/mainWindow.ui" line="145"/>
         <source>Previous search term</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="122"/>
-        <location filename="../ui/mainWindow.ui" line="125"/>
+        <location filename="../ui/mainWindow.ui" line="159"/>
+        <location filename="../ui/mainWindow.ui" line="162"/>
         <source>Next search term</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="145"/>
-        <location filename="../ui/mainWindow.ui" line="148"/>
+        <location filename="../ui/mainWindow.ui" line="182"/>
+        <location filename="../ui/mainWindow.ui" line="185"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="161"/>
-        <location filename="../ui/mainWindow.ui" line="164"/>
+        <location filename="../ui/mainWindow.ui" line="201"/>
+        <location filename="../ui/mainWindow.ui" line="204"/>
         <source>Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="178"/>
-        <location filename="../ui/mainWindow.ui" line="181"/>
+        <location filename="../ui/mainWindow.ui" line="218"/>
+        <location filename="../ui/mainWindow.ui" line="221"/>
         <source>Paste and Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="198"/>
-        <location filename="../ui/mainWindow.ui" line="201"/>
+        <location filename="../ui/mainWindow.ui" line="238"/>
+        <location filename="../ui/mainWindow.ui" line="241"/>
         <source>Draw graph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="243"/>
-        <location filename="../ui/mainWindow.ui" line="246"/>
+        <location filename="../ui/mainWindow.ui" line="289"/>
+        <location filename="../ui/mainWindow.ui" line="292"/>
         <source>Previous File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="260"/>
-        <location filename="../ui/mainWindow.ui" line="263"/>
+        <location filename="../ui/mainWindow.ui" line="306"/>
+        <location filename="../ui/mainWindow.ui" line="309"/>
         <source>Next File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="277"/>
-        <location filename="../ui/mainWindow.ui" line="280"/>
+        <location filename="../ui/mainWindow.ui" line="323"/>
+        <location filename="../ui/mainWindow.ui" line="326"/>
         <source>Open in Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="294"/>
-        <location filename="../ui/mainWindow.ui" line="297"/>
+        <location filename="../ui/mainWindow.ui" line="340"/>
+        <location filename="../ui/mainWindow.ui" line="343"/>
         <source>Go to selected line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="311"/>
-        <location filename="../ui/mainWindow.ui" line="314"/>
+        <location filename="../ui/mainWindow.ui" line="357"/>
+        <location filename="../ui/mainWindow.ui" line="360"/>
         <source>Reduce font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="328"/>
-        <location filename="../ui/mainWindow.ui" line="331"/>
+        <location filename="../ui/mainWindow.ui" line="374"/>
+        <location filename="../ui/mainWindow.ui" line="377"/>
         <source>Increase font size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="358"/>
-        <location filename="../ui/mainWindow.ui" line="361"/>
+        <location filename="../ui/mainWindow.ui" line="398"/>
+        <location filename="../ui/mainWindow.ui" line="401"/>
         <source>Copy, paste and search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainWindow.ui" line="375"/>
-        <location filename="../ui/mainWindow.ui" line="378"/>
-        <source>Symbol search only for paste and search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainWindow.ui" line="381"/>
-        <source>Symbol only</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../ui/mainWindow.ui" line="400"/>
-        <source>FilePath:0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="415"/>
         <location filename="../ui/mainWindow.ui" line="418"/>
+        <source>Symbol search only for paste and search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="421"/>
+        <source>Symbol only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="435"/>
+        <location filename="../ui/mainWindow.ui" line="438"/>
+        <source>Previous search result in this file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="452"/>
+        <location filename="../ui/mainWindow.ui" line="455"/>
+        <source>Next search result in this file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="481"/>
+        <source>FilePath:0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="496"/>
+        <location filename="../ui/mainWindow.ui" line="499"/>
         <source>CodeEditor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="444"/>
+        <location filename="../ui/mainWindow.ui" line="525"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="451"/>
+        <location filename="../ui/mainWindow.ui" line="532"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="459"/>
+        <location filename="../ui/mainWindow.ui" line="540"/>
         <source>Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="471"/>
+        <location filename="../ui/mainWindow.ui" line="552"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="479"/>
+        <location filename="../ui/mainWindow.ui" line="560"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="484"/>
+        <location filename="../ui/mainWindow.ui" line="565"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="489"/>
+        <location filename="../ui/mainWindow.ui" line="570"/>
         <source>External Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="494"/>
+        <location filename="../ui/mainWindow.ui" line="575"/>
         <source>Open CQ Database</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="499"/>
+        <location filename="../ui/mainWindow.ui" line="580"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="504"/>
+        <location filename="../ui/mainWindow.ui" line="585"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="512"/>
+        <location filename="../ui/mainWindow.ui" line="593"/>
         <source>File Viewer Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -252,23 +271,23 @@
 <context>
     <name>cqDialogGraph</name>
     <message>
-        <location filename="../graphdialog.cpp" line="75"/>
+        <location filename="../graphdialog.cpp" line="78"/>
         <source>Images</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../graphdialog.cpp" line="78"/>
+        <location filename="../graphdialog.cpp" line="81"/>
         <source>Export Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../graphdialog.cpp" line="89"/>
-        <location filename="../graphdialog.cpp" line="108"/>
+        <location filename="../graphdialog.cpp" line="92"/>
+        <location filename="../graphdialog.cpp" line="111"/>
         <source>File could not be saved!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../graphdialog.cpp" line="97"/>
+        <location filename="../graphdialog.cpp" line="100"/>
         <source>Export DOT file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -340,16 +359,31 @@
     </message>
     <message>
         <location filename="../fileviewer.cpp" line="428"/>
-        <source>Please enter the path and arguments for the external editor. Use %%f for filename and %%n for line number. For example:</source>
+        <source>Please enter the path and arguments for the external editor. Replace as follows:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="454"/>
+        <location filename="../fileviewer.cpp" line="430"/>
+        <source>for file path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../fileviewer.cpp" line="432"/>
+        <source>for line number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../fileviewer.cpp" line="434"/>
+        <source>For example:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../fileviewer.cpp" line="459"/>
         <source>File could not be opened!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="479"/>
+        <location filename="../fileviewer.cpp" line="484"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -357,22 +391,22 @@
 <context>
     <name>listhandler</name>
     <message>
-        <location filename="../listhandler.cpp" line="118"/>
+        <location filename="../listhandler.cpp" line="128"/>
         <source>Symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listhandler.cpp" line="119"/>
+        <location filename="../listhandler.cpp" line="129"/>
         <source>File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listhandler.cpp" line="122"/>
+        <location filename="../listhandler.cpp" line="132"/>
         <source>Line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../listhandler.cpp" line="122"/>
+        <location filename="../listhandler.cpp" line="132"/>
         <source>Preview</source>
         <translation type="unfinished"></translation>
     </message>
@@ -380,22 +414,22 @@
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="153"/>
+        <location filename="../mainwindow.cpp" line="156"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="154"/>
+        <location filename="../mainwindow.cpp" line="157"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="156"/>
+        <location filename="../mainwindow.cpp" line="159"/>
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
+        <location filename="../mainwindow.cpp" line="160"/>
         <source>Select language:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -403,117 +437,122 @@
 <context>
     <name>searchhandler</name>
     <message>
-        <location filename="../searchhandler.cpp" line="203"/>
+        <location filename="../searchhandler.cpp" line="245"/>
         <source>Symbol</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="206"/>
-        <source>Function or macro (Graph available)</source>
+        <location filename="../searchhandler.cpp" line="248"/>
+        <source>Function or macro definition (Graph available)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="209"/>
+        <location filename="../searchhandler.cpp" line="251"/>
         <source>Class or struct (Graph available)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="212"/>
+        <location filename="../searchhandler.cpp" line="254"/>
         <source>Functions calling this function</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="215"/>
+        <location filename="../searchhandler.cpp" line="257"/>
         <source>Functions called by this function</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="218"/>
+        <location filename="../searchhandler.cpp" line="260"/>
+        <source>Calls of this function or macro</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../searchhandler.cpp" line="263"/>
         <source>Class which owns this member or method</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="221"/>
+        <location filename="../searchhandler.cpp" line="266"/>
         <source>Members or methods of this class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="224"/>
+        <location filename="../searchhandler.cpp" line="269"/>
         <source>Parent of this class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="227"/>
+        <location filename="../searchhandler.cpp" line="272"/>
         <source>Children of this class</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="230"/>
+        <location filename="../searchhandler.cpp" line="275"/>
         <source>Files including this file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="233"/>
+        <location filename="../searchhandler.cpp" line="278"/>
         <source>Full path for file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="236"/>
+        <location filename="../searchhandler.cpp" line="281"/>
         <source>Functions or macros inside this file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="244"/>
+        <location filename="../searchhandler.cpp" line="289"/>
         <source>CodeQuery DB Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="247"/>
+        <location filename="../searchhandler.cpp" line="292"/>
         <source>Open CQ database file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="299"/>
+        <location filename="../searchhandler.cpp" line="349"/>
         <source>Function Call Graph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="303"/>
+        <location filename="../searchhandler.cpp" line="353"/>
         <source>Class Inheritance Graph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="354"/>
+        <location filename="../searchhandler.cpp" line="417"/>
         <source>results found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="366"/>
+        <location filename="../searchhandler.cpp" line="429"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="471"/>
+        <location filename="../searchhandler.cpp" line="541"/>
         <source>File open error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="472"/>
+        <location filename="../searchhandler.cpp" line="542"/>
         <source>Wrong file format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="473"/>
+        <location filename="../searchhandler.cpp" line="543"/>
         <source>Incorrect CQ database version</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="474"/>
+        <location filename="../searchhandler.cpp" line="544"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="476"/>
+        <location filename="../searchhandler.cpp" line="546"/>
         <source>Unknown Error</source>
         <translation type="unfinished"></translation>
     </message>

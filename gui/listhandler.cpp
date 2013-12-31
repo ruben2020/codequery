@@ -172,6 +172,7 @@ void listhandler::retranslateUi(void)
 	{
 		m_sqlist.result_type = sqlqueryresultlist::sqlresultFULL;
 		updateListHeaders();
+		m_noclick = false;
 	}
 	else
 	{
@@ -181,8 +182,9 @@ void listhandler::retranslateUi(void)
 		updateList();
 		resizeColumns();
 		m_treeWidgetSearchResults->setCurrentItem(m_treeWidgetSearchResults->topLevelItem(curItemIdx));
+		m_noclick = false;
+		listItemClicked(m_treeWidgetSearchResults->topLevelItem(curItemIdx), NULL);
 	}
-	m_noclick = false;
 }
 
 void listhandler::Up_ButtonClick(bool checked)

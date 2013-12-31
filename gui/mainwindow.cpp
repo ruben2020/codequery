@@ -278,11 +278,9 @@ void mainwindow::readSettings()
 		filterhist << settings.value("filter").toString();
 	}
 	settings.endArray();
-	if (filterhist.isEmpty() == false)
-	{
-		ui->comboBoxFilter->addItems(filterhist);
-		ui->comboBoxFilter->setCurrentIndex(0);
-	}
+	if (filterhist.isEmpty()) filterhist << "*.h" << "*.c";
+	ui->comboBoxFilter->addItems(filterhist);
+	ui->comboBoxFilter->setCurrentIndex(0);
 
 
 	settings.beginGroup("MainWindow");

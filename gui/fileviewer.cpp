@@ -220,6 +220,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum)
 	else if (m_iter->compare(fd))
 	{
 		// the same filename and line number
+		updateFilePathLabel();
 		return;
 	}
 	else if (m_iter->compareFilenameOnly(fd))
@@ -425,12 +426,17 @@ void fileviewer::OptionsExtEditor_Triggered(bool checked)
 	qinp.setOkButtonText(tr("OK"));
 	qinp.setInputMode(QInputDialog::TextInput);
 	qinp.setWindowTitle(tr("External Editor Configuration"));
-	QString exted = tr("Please enter the path and arguments for the external editor. "
-			"Use %%f for filename and %%n for line number. For example:");
+	QString exted = tr("Please enter the path and arguments for the external editor. Replace as follows:");
+	exted += "\n%f - ";
+	exted += tr("for file path");
+	exted += "\n%n - ";
+	exted += tr("for line number");
+	exted += "\n";
+	exted += tr("For example:");
 #ifdef _WIN32
-	exted += "\n\"C:\\Program Files\\Notepad++\\notepad++.exe\" -n%%n %%f";
+	exted += "\n\"C:\\Program Files\\Notepad++\\notepad++.exe\" -n%n %f";
 #else
-	exted += "\ngedit %%f +%%n";
+	exted += "\ngedit %f +%n";
 #endif
 	qinp.setLabelText(exted);
 	qinp.setTextEchoMode(QLineEdit::Normal);

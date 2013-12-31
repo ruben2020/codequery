@@ -1,4 +1,11 @@
 
+Version 0.11 - Dec 31, 2013
+File path filter
+New query type: Calls of this function
+Search results traversing within same file
+Improvements on graph's initial size and zoom
+Bug fix on external editor settings text
+
 Version 0.10 - Aug 10, 2013
 ctags file processing optimization
 New GUI features: Header files only, Functions inside this file, new About box

@@ -260,6 +260,9 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="maxVisibleItems">
+           <number>15</number>
+          </property>
           <property name="insertPolicy">
            <enum>QComboBox::NoInsert</enum>
           </property>

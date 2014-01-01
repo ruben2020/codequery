@@ -378,21 +378,7 @@ void searchhandler::perform_search(QString searchtxt,
 	if ((filtertxt.isEmpty()) && (m_checkBoxFilter->isChecked()))
 	{
 		filtertxt = m_comboBoxFilter->lineEdit()->text().trimmed();
-		if ((updSearchMemory)&&(filtertxt.isEmpty() == false))
-		{
-			m_comboBoxFilter->insertItem(0, filtertxt);
-			m_comboBoxFilter->setCurrentIndex(0);
-			if (m_comboBoxFilter->count() > 7)
-				m_comboBoxFilter->removeItem(m_comboBoxFilter->count() - 1);
-			for(int i=1; i < m_comboBoxFilter->count(); i++)
-			{
-				if (m_comboBoxFilter->itemText(i).compare(filtertxt) == 0)
-				{
-					m_comboBoxFilter->removeItem(i);
-					break;
-				}
-			}
-		}
+		if (updSearchMemory) updateFilterHistory(filtertxt);
 	}
 	sqlresultlist = sq->search(searchtxt.toAscii().data(),
 				querytype, exactmatch,
@@ -416,6 +402,25 @@ void searchhandler::perform_search(QString searchtxt,
 		str += " ";
 		str += tr("results found");
 		emit updateStatus(str, 5000);
+	}
+}
+
+void searchhandler::updateFilterHistory(QString filtertxt)
+{
+	if (filtertxt.isEmpty()) return;
+	m_comboBoxFilter->insertItem(0, filtertxt);
+	m_comboBoxFilter->setCurrentIndex(0);
+	for(int i=1; i < m_comboBoxFilter->count(); i++)
+	{
+		if (m_comboBoxFilter->itemText(i).compare(filtertxt) == 0)
+		{
+			m_comboBoxFilter->removeItem(i);
+			break;
+		}
+	}
+	if (m_comboBoxFilter->count() > 7) // limit to 7
+	{
+		m_comboBoxFilter->removeItem(m_comboBoxFilter->count() - 1);
 	}
 }
 

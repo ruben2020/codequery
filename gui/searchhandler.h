@@ -121,6 +121,8 @@ QVector<searchitem>::iterator m_iter;
 bool m_autocompBusy;
 QString m_autocompSrchTerm;
 
+void updateFilterHistory(QString filtertxt);
+
 };
 
 

@@ -149,6 +149,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 * Report bugs
 * Provide feedback, new ideas, suggestions etc. What would you like to see?
+* Tell your friends, propose it on StackOverflow, write about it, tweet it
 * Fix bugs (see Issues tab)
 * Update translations (Deutsch, Francais, Japanese etc.)
 * Port to MacOS or other platforms

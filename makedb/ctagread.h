@@ -76,6 +76,7 @@ sqlite3_stmt* m_writedeststmt;
 enResult getListOfClassIDs(strctagIDList* idlist, const char* v1);
 enResult getHListOfClassIDs(strctagIDList* idlist, const char* v1, std::vector<stClsID> *listClsHist);
 enResult getListOfSymIDs(sqlite3_stmt* pstmt, strctagIDList* idlist, const char* v1, const char* v2, const char* v3);
+enResult prepare_cqdb(void);
 
 };
 

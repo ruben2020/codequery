@@ -78,6 +78,24 @@ bool strrevcmp(tStr str, tStr cmpstr)
 	return retval;
 }
 
+// return pointer to the last part of the string,
+// after the last occurrence of delimiter c
+char* get_last_part(char* str, int c)
+{
+	char* retval;
+	retval = strrchr(str, c);
+	if (retval == NULL)
+	{
+		// not found, just return whole string
+		retval = str;
+	}
+	else
+	{
+		retval += 1;
+	}
+	return retval;
+}
+
 // split string into an array based on a delimiter
 std::vector<std::string> splitstr(const char* inpstr, const char delim)
 {

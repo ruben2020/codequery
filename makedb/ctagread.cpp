@@ -81,6 +81,47 @@ void ctagread::close_files(void)
 	sqlite3_close(m_db);
 }
 
+ctagread::enResult ctagread::prepare_cqdb(void)
+{
+	int rc;
+
+	rc = prepare_stmt(&m_insertstmt, "INSERT INTO membertbl VALUES (?,?,?);");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	rc = prepare_stmt(&m_insertinheritstmt, "INSERT INTO inherittbl VALUES (?,?);");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	rc = prepare_stmt(&m_readclassstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"c\";");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	//rc = prepare_stmt(&m_readsymstmt, "SELECT symID FROM symtbl WHERE symName=? AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
+	rc = prepare_stmt(&m_readsymstmt, "SELECT symtbl.symID FROM symtbl INNER JOIN linestbl ON (symtbl.symName=? AND symtbl.lineID = linestbl.lineID AND linestbl.linenum=?) INNER JOIN filestbl ON (linestbl.fileID = filestbl.fileID AND filePath LIKE ?);");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	rc = prepare_stmt(&m_writedeststmt, "UPDATE symtbl SET symName=? WHERE symID=?;");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	//rc = prepare_stmt(&m_readsymfstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"$\" AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
+	rc = prepare_stmt(&m_readsymfstmt, "SELECT symtbl.symID FROM symtbl INNER JOIN linestbl ON (symtbl.symName=? AND symtbl.symType=\"$\" AND symtbl.lineID = linestbl.lineID AND linestbl.linenum=?) INNER JOIN filestbl ON (linestbl.fileID = filestbl.fileID AND filePath LIKE ?);");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	rc=sqlite3_exec(m_db,   "BEGIN EXCLUSIVE;"
+				"DROP INDEX IF EXISTS memberIDIdx;"
+				"DROP INDEX IF EXISTS groupIDIdx;"
+				"DROP INDEX IF EXISTS parentIDIdx;"
+				"DROP INDEX IF EXISTS childIDIdx;"
+				"DELETE FROM membertbl;"
+				"DELETE FROM inherittbl;"
+				"COMMIT;", NULL, 0, NULL);
+	if (rc != SQLITE_OK)
+	{
+		if (m_debug) printf("SQLErr13: %d, %s\n", rc, sqlite3_errmsg(m_db));
+		return resSQLError;
+	}
+
+	return resOK;
+}
+
 ctagread::enResult ctagread::process_ctags(void)
 {
 	tempbuf sym(400), fil(500), classname(400), numtxt(50), linetxt(4001), fil2(500);
@@ -95,36 +136,11 @@ ctagread::enResult ctagread::process_ctags(void)
 	strctagIDList classIDs, symIDs, parentClassIDs, parentClassIDs_temp;
 	enResult res;
 	std::vector<stClsID> listClsHist;
-	
+
 	*(fil.get()) = '%'; // for SQL LIKE pattern recognition
 	smallstr[1] = 0;
-	rc = prepare_stmt(&m_insertstmt, "INSERT INTO membertbl VALUES (?,?,?);");
-	if (rc!=0) return resSQLError;
-	rc = prepare_stmt(&m_insertinheritstmt, "INSERT INTO inherittbl VALUES (?,?);");
-	if (rc!=0) return resSQLError;
-	rc = prepare_stmt(&m_readclassstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"c\";");
-	if (rc!=0) return resSQLError;
-	//rc = prepare_stmt(&m_readsymstmt, "SELECT symID FROM symtbl WHERE symName=? AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
-	rc = prepare_stmt(&m_readsymstmt, "SELECT symtbl.symID FROM symtbl INNER JOIN linestbl ON (symtbl.symName=? AND symtbl.lineID = linestbl.lineID AND linestbl.linenum=?) INNER JOIN filestbl ON (linestbl.fileID = filestbl.fileID AND filePath LIKE ?);");
-	if (rc!=0) return resSQLError;
-	rc = prepare_stmt(&m_writedeststmt, "UPDATE symtbl SET symName=? WHERE symID=?;");
-	if (rc!=0) return resSQLError;
-	//rc = prepare_stmt(&m_readsymfstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"$\" AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
-	rc = prepare_stmt(&m_readsymfstmt, "SELECT symtbl.symID FROM symtbl INNER JOIN linestbl ON (symtbl.symName=? AND symtbl.symType=\"$\" AND symtbl.lineID = linestbl.lineID AND linestbl.linenum=?) INNER JOIN filestbl ON (linestbl.fileID = filestbl.fileID AND filePath LIKE ?);");
-	if (rc!=0) return resSQLError;
-	rc=sqlite3_exec(m_db,  "BEGIN EXCLUSIVE;\
-				DROP INDEX IF EXISTS memberIDIdx;\
-				DROP INDEX IF EXISTS groupIDIdx;\
-				DROP INDEX IF EXISTS parentIDIdx;\
-				DROP INDEX IF EXISTS childIDIdx;\
-				DELETE FROM membertbl;\
-				DELETE FROM inherittbl;\
-				COMMIT;", NULL, 0, NULL);
-	if (rc != SQLITE_OK)
-	{
-		if (m_debug) printf("SQLErr13: %d, %s\n", rc, sqlite3_errmsg(m_db));
-		return resSQLError;
-	}
+	res = prepare_cqdb();
+	if (res != resOK) return res;
 	
 	do{
 		retval = fgets(linetxt.get(), linetxt.size() - 1, f_tags);
@@ -137,7 +153,7 @@ ctagread::enResult ctagread::process_ctags(void)
 		{
 			strcpy(fil.get(), "%");
 			strcat(fil.get(), extract_filename(fil2.get()));
-			res = getHListOfClassIDs(&classIDs, classname.get(), &listClsHist);
+			res = getHListOfClassIDs(&classIDs, get_last_part(classname.get(), '.'), &listClsHist);
 			if (res != resOK) return res;
 			if (classIDs.empty()) continue;
 			cp = sym.get();
@@ -183,7 +199,8 @@ ctagread::enResult ctagread::process_ctags(void)
 				std::vector<std::string> vecstr = splitstr(classname.get(), ',');
 				for (unsigned int i=0; i<vecstr.size(); i++)
 				{
-					res = getHListOfClassIDs(&parentClassIDs_temp, vecstr[i].c_str(), &listClsHist);
+					res = getHListOfClassIDs(&parentClassIDs_temp, 
+						get_last_part((char*)vecstr[i].c_str(), '.'), &listClsHist);
 					if (res != resOK) return res;
 					while (parentClassIDs_temp.empty() == false)
 					{

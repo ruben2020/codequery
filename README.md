@@ -155,7 +155,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 * Port to MacOS or other platforms
 * Write plugins for Vim, emacs, eclipse, Notepad++ etc.
 * Write a web-based interface to CodeQuery's database
-* Add support for other languages e.g. Ruby
+* Add support for other languages e.g. Javascript
 
 
 ## List of Contributors

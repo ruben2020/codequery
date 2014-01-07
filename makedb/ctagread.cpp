@@ -124,9 +124,11 @@ ctagread::enResult ctagread::prepare_cqdb(void)
 
 ctagread::enResult ctagread::process_ctags(void)
 {
-	tempbuf sym(400), fil(500), classname(400), numtxt(50), linetxt(4001), fil2(500);
+	tempbuf sym(400), fil(500), classname(400), classname2(400);
+	tempbuf numtxt(50), linetxt(4001), fil2(500);
 	long int num;
 	int numOfLines=0;
+	int numOfLines2=0;
 	char* retval;
 	int scanretval = 0;
 	int rc;
@@ -136,6 +138,7 @@ ctagread::enResult ctagread::process_ctags(void)
 	strctagIDList classIDs, symIDs, parentClassIDs, parentClassIDs_temp;
 	enResult res;
 	std::vector<stClsID> listClsHist;
+	bool result;
 
 	*(fil.get()) = '%'; // for SQL LIKE pattern recognition
 	smallstr[1] = 0;
@@ -189,7 +192,22 @@ ctagread::enResult ctagread::process_ctags(void)
 		{
 			scanretval = sscanf(linetxt.get(),
 			"%s\t%s\t%ld;\"\t%c\tinherits:%s", sym.get(), fil2.get(), &num, &c, classname.get());
-			if ((scanretval == 5)&&(c == 'c'))
+			result = ((scanretval == 5)&&(c == 'c'));
+			if (!result)
+			{
+				scanretval = sscanf(linetxt.get(),
+				"%s\t%s\t%ld;\"\t%c\tfile:\tinherits:%s", sym.get(), fil2.get(),
+					&num, &c, classname.get());
+				result = ((scanretval == 5)&&(c == 'c'));
+			}
+			if (!result)
+			{
+				scanretval = sscanf(linetxt.get(),
+				"%s\t%s\t%ld;\"\t%c\tclass:%s\tinherits:%s", sym.get(), fil2.get(),
+					&num, &c, classname2.get(), classname.get());
+				result = ((scanretval == 6)&&(c == 'c'));
+			}
+			if (result)
 			{
 				res = getHListOfClassIDs(&classIDs, sym.get(), &listClsHist);
 				if (res != resOK) return res;
@@ -212,11 +230,13 @@ ctagread::enResult ctagread::process_ctags(void)
 				{
 					rc=execstmt(m_insertinheritstmt, parentClassIDs[i].c_str(), classIDs[0].c_str());
 					if (rc!=0) return resSQLError;
+					numOfLines2++;
 				}
 			}
 		}
 	} while (retval != NULL);
 	if (m_debug) printf ("Total membertbl records possible = %d\n", numOfLines);
+	if (m_debug) printf ("Total inherittbl records possible = %d\n", numOfLines2);
 	return resOK;
 }
 

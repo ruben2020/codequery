@@ -497,15 +497,12 @@
            </layout>
           </item>
           <item>
-           <widget class="CodeEditor" name="textEditSource">
+           <widget class="QsciScintilla" name="textEditSource">
             <property name="toolTip">
-             <string>CodeEditor</string>
+             <string/>
             </property>
             <property name="whatsThis">
-             <string>CodeEditor</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPlainTextEdit{ background-color: white }</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -602,9 +599,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CodeEditor</class>
-   <extends>QPlainTextEdit</extends>
-   <header>CodeEditor.h</header>
+   <class>QsciScintilla</class>
+   <extends>QFrame</extends>
+   <header>Qsci/qsciscintilla.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -632,7 +629,6 @@
   <tabstop>checkBoxSymbolOnly</tabstop>
   <tabstop>pushButtonUp</tabstop>
   <tabstop>pushButtonDown</tabstop>
-  <tabstop>textEditSource</tabstop>
  </tabstops>
  <resources>
   <include location="../codequery.qrc"/>

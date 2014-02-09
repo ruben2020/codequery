@@ -23,10 +23,14 @@
 #include <QInputDialog>
 #include <QFontDatabase>
 
+#include <Qsci/qsciscintilla.h>
+#include <Qsci/qscilexercpp.h>
+#include <Qsci/qscilexerpython.h>
+#include <Qsci/qscilexerjava.h>
+#include <Qsci/qscilexerruby.h>
+
 #include "fileviewer.h"
 #include "mainwindow.h"
-#include "CodeEditor.h"
-#include "highlighter.h"
 #include "fileviewsettingsdialog.h"
 
 #ifdef _WIN32
@@ -81,10 +85,11 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_pushButtonGoToLine(NULL)
 ,m_labelFilePath(NULL)
 ,m_textEditSource(NULL)
-,m_highlighter(NULL)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
+,m_lexer(NULL)
+,m_fontsize(0)
 {
 	m_iter = m_fileDataList.begin();
 	m_textEditSourceFont.setStyleHint(QFont::TypeWriter);	
@@ -92,7 +97,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 
 fileviewer::~fileviewer()
 {
-	if (m_highlighter != NULL) delete m_highlighter;
+	if (m_lexer != NULL) delete m_lexer;
 }
 
 void fileviewer::createFontList(void)
@@ -123,12 +128,13 @@ void fileviewer::init(void)
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
 	m_textEditSource->clear();
-	m_textEditSource->setFont(m_textEditSourceFont);
-	m_textEditSource->setWordWrapMode(QTextOption::NoWrap);
+	m_textEditSource->setWrapMode(QsciScintilla::WrapNone);
 	m_textEditSource->setReadOnly(true);
-	m_textEditSource->setCenterOnScroll(true);
-	createFontList();
-	m_highlighter = new Highlighter(m_textEditSource->document()); 
+	m_markerhandle = m_textEditSource->markerDefine(QsciScintilla::RightArrow);
+	m_textEditSource->setMarginType(0, QsciScintilla::NumberMargin);
+	m_textEditSource->setMarginType(1, QsciScintilla::SymbolMargin);
+	setLexer(enHighlightCPP);
+	createFontList(); 
 	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),
 			this, SLOT(AbleToCopy(bool)));
 	connect(m_pushButtonGoToLine, SIGNAL(clicked(bool)),
@@ -230,7 +236,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum)
 		m_iter = m_fileDataList.end() - 1;
 		m_pushButtonPrev->setEnabled(true);
 		m_pushButtonNext->setEnabled(false);
-		m_textEditSource->highlightLine(fd.linenum.toInt());
+		highlightLine(fd.linenum.toInt());
 		updateFilePathLabel();
 	}
 	else
@@ -256,7 +262,6 @@ void fileviewer::updateTextEdit(void)
 	if (m_iter == m_fileDataList.end()) return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	m_textEditSource->clear();
-        m_highlighter->m_intAddlRulesMode = 0; //reset additional rules mode
 
 	QFile file(m_iter->filename);
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -266,7 +271,7 @@ void fileviewer::updateTextEdit(void)
 	}
 	QTextStream in(&file);
 
-	int lang = enHighlightCPP;
+	int lang = enHighlightCPP; // default
 
 	QRegExp rx1("\\.py$", Qt::CaseInsensitive);
 	int pos = rx1.indexIn(m_iter->filename);
@@ -276,13 +281,20 @@ void fileviewer::updateTextEdit(void)
 	pos = rx2.indexIn(m_iter->filename);
 	if (pos != -1) lang = enHighlightJava;
 
-	m_highlighter->m_intLanguage = lang;
+	QRegExp rx3("\\.rb$", Qt::CaseInsensitive);
+	pos = rx2.indexIn(m_iter->filename);
+	if (pos != -1) lang = enHighlightRuby;
 
+	setLexer(lang);
+
+	QString alltext;
 	while (!in.atEnd())
 	{
-		m_textEditSource->insertPlainText(in.readAll());
+		alltext = in.readAll();
 	}
-	m_textEditSource->highlightLine(m_iter->linenum.toInt());
+	m_textEditSource->setText(alltext);
+	m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+	highlightLine(m_iter->linenum.toInt());
 	updateFilePathLabel();
 	m_pushButtonGoToLine->setEnabled(true);
 	m_pushButtonOpenInEditor->setEnabled(true);
@@ -307,7 +319,7 @@ void fileviewer::AbleToCopy(bool copy)
 
 void fileviewer::GoToLine_ButtonClick(bool checked)
 {
-	if (!checked) m_textEditSource->highlightLine();
+	if (!checked) highlightLine(m_iter->linenum.toInt());
 }
 
 void fileviewer::Prev_ButtonClick(bool checked)
@@ -329,7 +341,7 @@ void fileviewer::Prev_ButtonClick(bool checked)
 		m_iter--;
 		if ((it != m_fileDataList.end())&&(m_iter->compareFilenameOnly(*it)))
 		{
-			m_textEditSource->highlightLine(m_iter->linenum.toInt());
+			highlightLine(m_iter->linenum.toInt());
 			updateFilePathLabel();			
 		}
 		else
@@ -361,7 +373,7 @@ void fileviewer::Next_ButtonClick(bool checked)
 		m_iter++;
 		if (m_iter->compareFilenameOnly(*it))
 		{
-			m_textEditSource->highlightLine(m_iter->linenum.toInt());
+			highlightLine(m_iter->linenum.toInt());
 			updateFilePathLabel();			
 		}
 		else
@@ -378,7 +390,6 @@ void fileviewer::handleFileCannotBeOpenedCase(void)
 	m_textEditSource->clear();
 	m_pushButtonTextShrink->setEnabled(false);
 	m_pushButtonTextEnlarge->setEnabled(false);
-        m_highlighter->m_intAddlRulesMode = 0; //reset additional rules mode
 	m_pushButtonGoToLine->setEnabled(false);	
 	m_pushButtonNext->setEnabled(false);
 	m_pushButtonPrev->setEnabled(m_fileDataList.isEmpty() == false);
@@ -401,8 +412,7 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 {
 	cqDialogFileViewSettings cqdg((QWidget*)mw, this, m_fontlist);
 	m_fonttemp = m_textEditSourceFont.family();
-	m_fontwidthtemp = (m_textEditSource->tabStopWidth() /
-			m_textEditSource->fontMetrics().width(' '));
+	m_fontwidthtemp = (m_textEditSource->tabWidth());
 	cqdg.setCurrentFontType(m_fonttemp);
 	cqdg.setTabWidth(m_fontwidthtemp);
 	cqdg.setModal(true);
@@ -410,9 +420,9 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 	if (cqdg.result() == QDialog::Accepted)
 	{
 		m_textEditSourceFont.setFamily(m_fonttemp);
-		m_textEditSource->setFont(m_textEditSourceFont);
-		m_textEditSource->setTabStopWidth(m_fontwidthtemp * 
-				m_textEditSource->fontMetrics().width(' '));
+		m_lexer->setFont(m_textEditSourceFont);
+		m_textEditSource->setTabWidth(m_fontwidthtemp);
+		m_textEditSource->zoomTo(m_fontsize);
 		updateTextEdit();
 	}
 }
@@ -494,6 +504,7 @@ void fileviewer::TextShrink_ButtonClick(bool checked)
 	if (!checked)
 	{
 		textSizeChange(0-2);
+		//m_textEditSource->zoomOut();
 	}
 }
 
@@ -502,17 +513,18 @@ void fileviewer::TextEnlarge_ButtonClick(bool checked)
 	if (!checked)
 	{
 		textSizeChange(2);
+		//m_textEditSource->zoomIn();
 	}
 }
 
 void fileviewer::textSizeChange(int n)
 {
-	m_fontwidthtemp = (m_textEditSource->tabStopWidth() /
-		m_textEditSource->fontMetrics().width(' '));
-	m_textEditSourceFont.setPixelSize(m_textEditSourceFont.pixelSize() + n);
-	m_textEditSource->setFont(m_textEditSourceFont);
-	m_textEditSource->setTabStopWidth(m_fontwidthtemp * 
-			m_textEditSource->fontMetrics().width(' '));
+	m_fontwidthtemp = (m_textEditSource->tabWidth());
+	m_lexer->setFont(m_textEditSourceFont);
+	m_fontsize += n;
+	m_textEditSource->zoomTo(m_fontsize);
+	m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+	m_textEditSource->setTabWidth(m_fontwidthtemp);
 }
 
 void fileviewer::fontSelectionTemporary(const QString &fonttxt)
@@ -525,5 +537,90 @@ void fileviewer::tabWidthSelectionTemporary(const QString &width)
 	m_fontwidthtemp = width.toInt();
 }
 
+void fileviewer::highlightLine(unsigned int num)
+{
+	if (num <= 0)
+	{
+		num = 1;
+	}
+	else
+	{
+		num = num - 1; // not sure why it's one off
+		m_textEditSource->markerDeleteAll();
+		m_textEditSource->markerAdd(num, m_markerhandle);
+	}
+	m_textEditSource->ensureLineVisible(num);
+}
+
+void fileviewer::setLexer(int lang)
+{
+	if (m_lexer == NULL)
+	{
+		m_lexer = new QsciLexerCPP(m_textEditSource);
+		m_lexer->setFont(m_textEditSourceFont);
+		m_textEditSource->setLexer(m_lexer);
+		m_textEditSource->zoomTo(m_fontsize);
+	}
+
+	switch(lang)
+	{
+
+		case enHighlightCPP:
+			replaceLexer("C++", lang);
+			break;
+
+		case enHighlightPython:
+			replaceLexer("Python", lang);
+			break;
+
+		case enHighlightJava:
+			replaceLexer("Java", lang);
+			break;
+
+		case enHighlightRuby:
+			replaceLexer("Ruby", lang);
+			break;
+
+		default:
+			replaceLexer("C++", lang);
+			break;
+
+	}
+
+}
+
+void fileviewer::replaceLexer(const char* langstr, int lang)
+{
+	if (strcmp(m_lexer->language(), langstr) != 0)
+	{
+		m_textEditSource->setLexer(NULL);
+		delete m_lexer;
+		switch (lang)
+		{
+			case enHighlightCPP:
+				m_lexer = new QsciLexerCPP(m_textEditSource);
+				break;
+
+			case enHighlightPython:
+				m_lexer = new QsciLexerPython(m_textEditSource);
+				break;
+
+			case enHighlightJava:
+				m_lexer = new QsciLexerJava(m_textEditSource);
+				break;
+
+			case enHighlightRuby:
+				m_lexer = new QsciLexerRuby(m_textEditSource);
+				break;
+
+			default:
+				m_lexer = new QsciLexerCPP(m_textEditSource);
+				break;
+		}
+		m_lexer->setFont(m_textEditSourceFont);
+		m_textEditSource->setLexer(m_lexer);
+		m_textEditSource->zoomTo(m_fontsize);
+	}
+}
 
 

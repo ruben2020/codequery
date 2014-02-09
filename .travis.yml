@@ -5,7 +5,8 @@ compiler: gcc
 before_install:
  - uname -a
  - sudo apt-get update -qq
- - sudo apt-get install -qq cmake sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+ - sudo apt-get install -qq cmake sqlite3 libsqlite3-dev qt4-dev-tools
+ - sudo apt-get install -qq cscope exuberant-ctags qscintilla2
 
 before_script:
   - mkdir build

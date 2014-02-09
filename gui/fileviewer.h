@@ -25,8 +25,8 @@
 #include <QtGui>
 
 class mainwindow;
-class CodeEditor;
-class Highlighter;
+class QsciScintilla;
+class QsciLexer;
 
 class filedata
 {
@@ -56,9 +56,11 @@ QPushButton *m_pushButtonTextShrink;
 QPushButton *m_pushButtonTextEnlarge;
 QCheckBox   *m_checkBoxSymbolOnly;
 QLabel *m_labelFilePath;
-CodeEditor *m_textEditSource;
+QsciScintilla *m_textEditSource;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
+QsciLexer* m_lexer;
+int m_fontsize;
 
 fileviewer(mainwindow* pmw);
 ~fileviewer();
@@ -90,7 +92,6 @@ void searchCopiedTextSymbolOnly();
 
 private:
 mainwindow *mw;
-Highlighter *m_highlighter;
 QVector<filedata> m_fileDataList;
 QVector<filedata>::iterator m_iter;
 QDateTime m_DBtimestamp;
@@ -98,9 +99,23 @@ bool m_timestampMismatchWarned;
 QStringList m_fontlist;
 QString m_fonttemp;
 int m_fontwidthtemp;
+int m_markerhandle;
 
 void createFontList(void);
 void textSizeChange(int n);
+void highlightLine(unsigned int num = 0);
+void setLexer(int lang);
+void replaceLexer(const char* langstr, int lang);
+
+enum langtypes
+{
+	enHighlightNone,
+	enHighlightCPP,
+	enHighlightPython,
+	enHighlightJava,
+	enHighlightRuby,
+	enHighlightGo
+};
 
 };
 

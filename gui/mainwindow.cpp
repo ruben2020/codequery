@@ -229,6 +229,7 @@ void mainwindow::writeSettings()
 	settings.setValue("FileViewerFontSize", m_fileviewer->m_fontsize);
 	settings.setValue("FileViewerFontType", m_fileviewer->m_textEditSourceFont.family());
 	settings.setValue("FileViewerTabWidth", m_fileviewer->m_textEditSource->tabWidth());
+	settings.setValue("FileViewerTheme", m_fileviewer->m_theme);
 	settings.endGroup();
 
 	settings.beginWriteArray("OpenDBHistory");
@@ -304,6 +305,7 @@ void mainwindow::readSettings()
 	m_fileviewer->m_textEditSourceFont.setFamily(settings.value("FileViewerFontType", "Courier New").toString());
 	m_fileviewer->m_textEditSource->setFont(m_fileviewer->m_textEditSourceFont);
 	m_fileviewer->m_textEditSource->setTabWidth(settings.value("FileViewerTabWidth", 4).toInt());
+	m_fileviewer->m_theme = (settings.value("FileViewerTheme", "Eclipse Default").toString());
 	settings.endGroup();
 
 	/*sizee = settings.beginReadArray("SearchHistory");

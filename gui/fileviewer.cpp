@@ -32,6 +32,7 @@
 #include "fileviewer.h"
 #include "mainwindow.h"
 #include "fileviewsettingsdialog.h"
+#include "themes.h"
 
 #ifdef _WIN32
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
@@ -410,11 +411,14 @@ void fileviewer::Paste_ButtonClick(bool checked)
 
 void fileviewer::fileViewSettings_Triggered(bool checked)
 {
-	cqDialogFileViewSettings cqdg((QWidget*)mw, this, m_fontlist);
+	cqDialogFileViewSettings cqdg((QWidget*)mw, this,
+		m_fontlist, themes::getThemesList());
 	m_fonttemp = m_textEditSourceFont.family();
 	m_fontwidthtemp = (m_textEditSource->tabWidth());
+	m_themetemp = m_theme;
 	cqdg.setCurrentFontType(m_fonttemp);
 	cqdg.setTabWidth(m_fontwidthtemp);
+	cqdg.setCurrentTheme(m_themetemp);
 	cqdg.setModal(true);
 	cqdg.exec();
 	if (cqdg.result() == QDialog::Accepted)
@@ -423,6 +427,7 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 		m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setTabWidth(m_fontwidthtemp);
 		m_textEditSource->zoomTo(m_fontsize);
+		m_theme = m_themetemp;
 		updateTextEdit();
 	}
 }
@@ -503,7 +508,7 @@ void fileviewer::TextShrink_ButtonClick(bool checked)
 {
 	if (!checked)
 	{
-		textSizeChange(0-2);
+		textSizeChange(0-1);
 		//m_textEditSource->zoomOut();
 	}
 }
@@ -512,7 +517,7 @@ void fileviewer::TextEnlarge_ButtonClick(bool checked)
 {
 	if (!checked)
 	{
-		textSizeChange(2);
+		textSizeChange(1);
 		//m_textEditSource->zoomIn();
 	}
 }
@@ -532,6 +537,11 @@ void fileviewer::fontSelectionTemporary(const QString &fonttxt)
 	m_fonttemp = fonttxt;
 }
 
+void fileviewer::themeSelectionTemporary(const QString &themetxt)
+{
+	m_themetemp = themetxt;
+}
+
 void fileviewer::tabWidthSelectionTemporary(const QString &width)
 {
 	m_fontwidthtemp = width.toInt();
@@ -539,6 +549,7 @@ void fileviewer::tabWidthSelectionTemporary(const QString &width)
 
 void fileviewer::highlightLine(unsigned int num)
 {
+	m_textEditSource->markerDeleteAll();
 	if (num <= 0)
 	{
 		num = 1;
@@ -546,7 +557,6 @@ void fileviewer::highlightLine(unsigned int num)
 	else
 	{
 		num = num - 1; // not sure why it's one off
-		m_textEditSource->markerDeleteAll();
 		m_textEditSource->markerAdd(num, m_markerhandle);
 	}
 	m_textEditSource->ensureLineVisible(num);
@@ -560,6 +570,7 @@ void fileviewer::setLexer(int lang)
 		m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->zoomTo(m_fontsize);
+		m_themelast = "";
 	}
 
 	switch(lang)
@@ -620,6 +631,12 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 		m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->zoomTo(m_fontsize);
+		m_themelast = "";
+	}
+	if (m_themelast.compare(m_theme) != 0)
+	{
+		m_themelast = m_theme;
+		themes::setTheme(m_theme, lang, m_lexer);
 	}
 }
 

@@ -42,6 +42,17 @@ class filedata
 	filedata& operator=(const filedata& fd);
 };
 
+
+enum langtypes
+{
+	enHighlightNone = 0,
+	enHighlightCPP,
+	enHighlightPython,
+	enHighlightJava,
+	enHighlightRuby,
+	enHighlightGo
+};
+
 class fileviewer : public QObject
 {
   Q_OBJECT
@@ -61,6 +72,7 @@ QString m_externalEditorPath;
 QFont m_textEditSourceFont;
 QsciLexer* m_lexer;
 int m_fontsize;
+QString m_theme;
 
 fileviewer(mainwindow* pmw);
 ~fileviewer();
@@ -84,6 +96,7 @@ void fileViewSettings_Triggered(bool checked);
 void clearList();
 void recvDBtimestamp(QDateTime dt);
 void fontSelectionTemporary(const QString &fonttxt);
+void themeSelectionTemporary(const QString &themetxt);
 void tabWidthSelectionTemporary(const QString &width);
 
 signals:
@@ -98,6 +111,8 @@ QDateTime m_DBtimestamp;
 bool m_timestampMismatchWarned;
 QStringList m_fontlist;
 QString m_fonttemp;
+QString m_themetemp;
+QString m_themelast;
 int m_fontwidthtemp;
 int m_markerhandle;
 
@@ -106,16 +121,6 @@ void textSizeChange(int n);
 void highlightLine(unsigned int num = 0);
 void setLexer(int lang);
 void replaceLexer(const char* langstr, int lang);
-
-enum langtypes
-{
-	enHighlightNone,
-	enHighlightCPP,
-	enHighlightPython,
-	enHighlightJava,
-	enHighlightRuby,
-	enHighlightGo
-};
 
 };
 

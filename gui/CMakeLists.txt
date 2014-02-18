@@ -18,6 +18,7 @@ project(CodeQueryGUI)
        graphdialog.cpp
        aboutdialog.cpp
        fileviewsettingsdialog.cpp
+       themes.cpp
        main_gui.cpp
        winmain.cpp
   )

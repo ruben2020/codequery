@@ -24,7 +24,7 @@
 #include <QFontDatabase>
 
 cqDialogFileViewSettings::cqDialogFileViewSettings(QWidget *parent,
-		fileviewer* fv, const QStringList& fontlst)
+		fileviewer* fv, const QStringList& fontlst, const QStringList& themeslst)
 :QDialog(parent)
 ,m_fv(fv)
 ,dialog_ui(new Ui::fileViewSettingsDialog)
@@ -33,12 +33,15 @@ cqDialogFileViewSettings::cqDialogFileViewSettings(QWidget *parent,
 	dialog_ui->setupUi(this);
 	dialog_ui->lineEditTabWidth->setValidator(&m_tabwidthvalidator);
         dialog_ui->comboBoxFont->addItems(fontlst);
+        dialog_ui->comboBoxTheme->addItems(themeslst);
 	connect(dialog_ui->pushButtonOK, SIGNAL(clicked()),
 		this, SLOT(accept()));
 	connect(dialog_ui->pushButtonCancel, SIGNAL(clicked()),
 		this, SLOT(reject()));
 	connect(dialog_ui->comboBoxFont, SIGNAL(currentIndexChanged(const QString &)),
 			fv, SLOT(fontSelectionTemporary(const QString &)));
+	connect(dialog_ui->comboBoxTheme, SIGNAL(currentIndexChanged(const QString &)),
+			fv, SLOT(themeSelectionTemporary(const QString &)));
 	connect(dialog_ui->lineEditTabWidth, SIGNAL(textEdited(const QString &)),
 			fv, SLOT(tabWidthSelectionTemporary(const QString &)));
 	resize(sizeHint());
@@ -56,6 +59,12 @@ void cqDialogFileViewSettings::setCurrentFontType(const QString& fonttype)
 {
 	int idx = dialog_ui->comboBoxFont->findText(fonttype, Qt::MatchContains);
 	dialog_ui->comboBoxFont->setCurrentIndex(idx);
+}
+
+void cqDialogFileViewSettings::setCurrentTheme(const QString& theme)
+{
+	int idx = dialog_ui->comboBoxTheme->findText(theme, Qt::MatchContains);
+	dialog_ui->comboBoxTheme->setCurrentIndex(idx);
 }
 
 void cqDialogFileViewSettings::setTabWidth(const int& width)

@@ -18,40 +18,21 @@
  * 
  */
 
-#ifndef _FILEVIEWSETTINGSDIALOG_H
-#define _FILEVIEWSETTINGSDIALOG_H
+
+#ifndef _THEMES_H
+#define _THEMES_H
 
 #include <QtGui>
 
- namespace Ui {
-     class fileViewSettingsDialog;
- }
+class QsciLexer;
 
-class fileviewer;
-
-class cqDialogFileViewSettings : public QDialog
+class themes
 {
-  Q_OBJECT
-
 public:
-Ui::fileViewSettingsDialog *dialog_ui;
-
-cqDialogFileViewSettings(QWidget *parent, fileviewer* fv,
-const QStringList& fontlst, const QStringList& themeslst);
-virtual ~cqDialogFileViewSettings();
-void setCurrentFontType(const QString& fonttype);
-void setCurrentTheme(const QString& theme);
-void setTabWidth(const int& width);
-
-public slots:
-
-
-private:
-QIntValidator m_tabwidthvalidator;
-fileviewer* m_fv;
-
+	static QStringList getThemesList(void);
+	static void setTheme(const QString& theme, int lang, QsciLexer* lexer);
 };
 
 
-#endif //_FILEVIEWSETTINGSDIALOG_H
+#endif // _THEMES_H
 

@@ -30,7 +30,7 @@ class themes
 {
 public:
 	static QStringList getThemesList(void);
-	static void setTheme(const QString& theme, int lang, QsciLexer* lexer);
+	static void setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt);
 };
 
 

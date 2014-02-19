@@ -64,12 +64,16 @@ QStringList themes::getThemesList(void)
 	return lst;
 }
 
-void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer)
+void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt)
 {
 	langstyle *lngstyle = NULL;
 	lexstyle *lxstyle = NULL;
 	int i=0;
 	int lxstylesize=0;
+	QFont font1 = fontt;
+	//font1.setFixedPitch(true);
+	font1.setBold(false);
+	font1.setItalic(false);
 	switch(lang)
 	{
 		case enHighlightCPP:
@@ -100,6 +104,7 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer)
 			lxstylesize = lngstyle[i].lexstylesize;
 			lexer->setPaper(QColor(QString("#").append(QString(lngstyle[i].defaultbgcolor))));
 			lexer->setColor(QColor(QString("#").append(QString(lngstyle[i].defaultfgcolor))));
+			lexer->setFont(font1);
 			break;
 		}
 		i++;
@@ -108,7 +113,31 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer)
 	for(i=0; i<lxstylesize; i++)
 	{
 		lexer->setPaper(QColor(QString("#").append(QString(lxstyle[i].bgcolor))), lxstyle[i].styleid);
-		lexer->setColor(QColor(QString("#").append(QString(lxstyle[i].fgcolor))), lxstyle[i].styleid);	
+		lexer->setColor(QColor(QString("#").append(QString(lxstyle[i].fgcolor))), lxstyle[i].styleid);
+		switch(lxstyle[i].fontstyle)
+		{
+			case 1:
+				font1.setBold(true);
+				font1.setItalic(false);
+				break;
+
+			case 2:
+				font1.setBold(false);
+				font1.setItalic(true);
+				break;
+
+			case 3:
+				font1.setBold(true);
+				font1.setItalic(true);
+				break;
+
+			default:
+				font1.setBold(false);
+				font1.setItalic(false);
+				break;
+
+		}
+		lexer->setFont(font1, lxstyle[i].styleid);
 	}
 }
 

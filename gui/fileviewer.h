@@ -113,13 +113,14 @@ QStringList m_fontlist;
 QString m_fonttemp;
 QString m_themetemp;
 QString m_themelast;
+int m_currentlang;
 int m_fontwidthtemp;
 int m_markerhandle;
 
 void createFontList(void);
 void textSizeChange(int n);
 void highlightLine(unsigned int num = 0);
-void setLexer(int lang);
+void setLexer(int lang = -1);
 void replaceLexer(const char* langstr, int lang);
 
 };

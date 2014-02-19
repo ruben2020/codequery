@@ -91,6 +91,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_timestampMismatchWarned(false)
 ,m_lexer(NULL)
 ,m_fontsize(0)
+,m_currentlang(enHighlightCPP)
 {
 	m_iter = m_fileDataList.begin();
 	m_textEditSourceFont.setStyleHint(QFont::TypeWriter);	
@@ -153,6 +154,7 @@ void fileviewer::init(void)
 	connect(m_pushButtonTextEnlarge, SIGNAL(clicked(bool)),
 			this, SLOT(TextEnlarge_ButtonClick(bool)));
 	m_fileDataList.clear();
+	setLexer();
 }
 
 void fileviewer::clearList()
@@ -286,6 +288,7 @@ void fileviewer::updateTextEdit(void)
 	pos = rx2.indexIn(m_iter->filename);
 	if (pos != -1) lang = enHighlightRuby;
 
+	m_currentlang = lang;
 	setLexer(lang);
 
 	QString alltext;
@@ -424,11 +427,12 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 	if (cqdg.result() == QDialog::Accepted)
 	{
 		m_textEditSourceFont.setFamily(m_fonttemp);
-		m_lexer->setFont(m_textEditSourceFont);
+		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setTabWidth(m_fontwidthtemp);
 		m_textEditSource->zoomTo(m_fontsize);
 		m_theme = m_themetemp;
-		updateTextEdit();
+		m_themelast = "1234";
+		setLexer();
 	}
 }
 
@@ -524,12 +528,12 @@ void fileviewer::TextEnlarge_ButtonClick(bool checked)
 
 void fileviewer::textSizeChange(int n)
 {
-	m_fontwidthtemp = (m_textEditSource->tabWidth());
-	m_lexer->setFont(m_textEditSourceFont);
+	//m_fontwidthtemp = (m_textEditSource->tabWidth());
+	//m_lexer->setFont(m_textEditSourceFont);
 	m_fontsize += n;
 	m_textEditSource->zoomTo(m_fontsize);
-	m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
-	m_textEditSource->setTabWidth(m_fontwidthtemp);
+	//m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+	//m_textEditSource->setTabWidth(m_fontwidthtemp);
 }
 
 void fileviewer::fontSelectionTemporary(const QString &fonttxt)
@@ -564,13 +568,14 @@ void fileviewer::highlightLine(unsigned int num)
 
 void fileviewer::setLexer(int lang)
 {
+	if (lang == -1) lang = m_currentlang;
 	if (m_lexer == NULL)
 	{
 		m_lexer = new QsciLexerCPP(m_textEditSource);
-		m_lexer->setFont(m_textEditSourceFont);
+		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->zoomTo(m_fontsize);
-		m_themelast = "";
+		m_themelast = "1234";
 	}
 
 	switch(lang)
@@ -628,15 +633,18 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 				m_lexer = new QsciLexerCPP(m_textEditSource);
 				break;
 		}
-		m_lexer->setFont(m_textEditSourceFont);
+		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->zoomTo(m_fontsize);
-		m_themelast = "";
+		m_themelast = "1234";
 	}
 	if (m_themelast.compare(m_theme) != 0)
 	{
 		m_themelast = m_theme;
-		themes::setTheme(m_theme, lang, m_lexer);
+		themes::setTheme(m_theme, lang, m_lexer, m_textEditSourceFont);
+		//m_textEditSource->setLexer(m_lexer);
+		m_textEditSource->zoomTo(m_fontsize);
+		m_textEditSource->recolor();
 	}
 }
 

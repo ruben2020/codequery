@@ -2,7 +2,7 @@
  /* THIS FILE WAS AUTO_GENERATED USING parse_themes.pl */
  /* DO NOT CHANGE BY HAND                              */
 
-#define NUM_OF_THEMES   21
+#define NUM_OF_THEMES   22
 
 static const char* themelist[] = {
 	"Bespin",
@@ -17,6 +17,7 @@ static const char* themelist[] = {
 	"Monokai",
 	"MossyLawn",
 	"Navajo",
+	"NotepadPlusPlus",
 	"Obsidian",
 	"Plastic Code Wrap",
 	"Ruby Blue",
@@ -1377,6 +1378,84 @@ static const lexstyle ruby_Monokai[] = {
 	{ 24, "E6DB74", "272822",  }, // STRING Q
 };
 
+static const lexstyle cpp_NotepadPlusPlus[] = {
+	{ 9, "804000", "FFFFFF", 0 }, // PREPROCESSOR
+	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION WORD
+	{ 16, "8000FF", "FFFFFF", 0 }, // TYPE WORD
+	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
+	{ 6, "808080", "FFFFFF", 0 }, // STRING
+	{ 7, "808080", "FFFFFF", 0 }, // CHARACTER
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 13, "000000", "FFFFFF", 0 }, // VERBATIM
+	{ 14, "000000", "FFFFFF", 1 }, // REGEX
+	{ 1, "008000", "FFFFFF", 0 }, // COMMENT
+	{ 2, "008000", "FFFFFF", 0 }, // COMMENT LINE
+	{ 3, "008080", "FFFFFF", 0 }, // COMMENT DOC
+	{ 15, "008080", "FFFFFF", 0 }, // COMMENT LINE DOC
+	{ 17, "008080", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "008080", "FFFFFF", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_NotepadPlusPlus[] = {
+	{ 9, "804000", "FFFFFF", 0 }, // PREPROCESSOR
+	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION WORD
+	{ 16, "8000FF", "FFFFFF", 0 }, // TYPE WORD
+	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
+	{ 6, "808080", "FFFFFF", 0 }, // STRING
+	{ 7, "808080", "FFFFFF", 0 }, // CHARACTER
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 13, "000000", "FFFFFF", 0 }, // VERBATIM
+	{ 14, "000000", "FFFFFF", 1 }, // REGEX
+	{ 1, "008000", "FFFFFF", 0 }, // COMMENT
+	{ 2, "008000", "FFFFFF", 0 }, // COMMENT LINE
+	{ 3, "008080", "FFFFFF", 0 }, // COMMENT DOC
+	{ 15, "008080", "FFFFFF", 0 }, // COMMENT LINE DOC
+	{ 17, "008080", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "008080", "FFFFFF", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_NotepadPlusPlus[] = {
+	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 1, "008000", "FFFFFF", 0 }, // COMMENTLINE
+	{ 2, "FF0000", "FFFFFF", 0 }, // NUMBER
+	{ 3, "808080", "FFFFFF", 0 }, // STRING
+	{ 4, "808080", "FFFFFF", 0 }, // CHARACTER
+	{ 5, "0000FF", "FFFFFF", 1 }, // KEYWORDS
+	{ 6, "FF8000", "FFFFFF", 0 }, // TRIPLE
+	{ 7, "FF8000", "FFFFFF", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "FFFFFF", 1 }, // CLASSNAME
+	{ 9, "FF00FF", "FFFFFF", 0 }, // DEFNAME
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
+	{ 12, "008000", "FFFFFF", 0 }, // COMMENTBLOCK
+};
+
+static const lexstyle ruby_NotepadPlusPlus[] = {
+	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 1, "000000", "FFFFFF", 0 }, // ERROR
+	{ 2, "008000", "FFFFFF", 0 }, // COMMENTLINE
+	{ 3, "004000", "C0FFC0", 0 }, // POD
+	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
+	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION
+	{ 6, "808080", "FFFFFF", 0 }, // STRING
+	{ 7, "808000", "FFFFFF", 0 }, // CHARACTER
+	{ 8, "0080C0", "FFFFFF", 1 }, // CLASS NAME
+	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
+	{ 12, "0080FF", "FFFFFF", 0 }, // REGEX
+	{ 13, "000080", "FFFFFF", 1 }, // GLOBAL
+	{ 14, "000000", "FFFFFF", 0 }, // SYMBOL
+	{ 15, "804000", "FFFFFF", 1 }, // MODULE NAME
+	{ 16, "000000", "FFFFFF", 0 }, // INSTANCE VAR
+	{ 17, "000000", "FFFFFF", 0 }, // CLASS VAR
+	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
+	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
+	{ 24, "808080", "FFFFFF", 0 }, // STRING Q
+};
+
 static const lexstyle cpp_Hello_Kitty[] = {
 	{ 9, "804000", "FFB0FF", 0 }, // PREPROCESSOR
 	{ 11, "000000", "FFB0FF", 0 }, // DEFAULT
@@ -1711,6 +1790,7 @@ static const langstyle cppstyle[] = {
 	{ "Ruby Blue", "FFFFFF", "112435", cpp_Ruby_Blue, 16 },
 	{ "Vibrant Ink", "FFFFFF", "000000", cpp_Vibrant_Ink, 16 },
 	{ "Monokai", "F8F8F2", "272822", cpp_Monokai, 16 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", cpp_NotepadPlusPlus, 16 },
 	{ "Hello Kitty", "000000", "FFB0FF", cpp_Hello_Kitty, 16 },
 	{ "Mono Industrial", "FFFFFF", "222C28", cpp_Mono_Industrial, 16 },
 	{ "Navajo", "000000", "BA9C80", cpp_Navajo, 16 },
@@ -1736,6 +1816,7 @@ static const langstyle javastyle[] = {
 	{ "Ruby Blue", "FFFFFF", "112435", java_Ruby_Blue, 16 },
 	{ "Vibrant Ink", "FFFFFF", "000000", java_Vibrant_Ink, 16 },
 	{ "Monokai", "F8F8F2", "272822", java_Monokai, 16 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", java_NotepadPlusPlus, 16 },
 	{ "Hello Kitty", "000000", "FFB0FF", java_Hello_Kitty, 16 },
 	{ "Mono Industrial", "FFFFFF", "222C28", java_Mono_Industrial, 16 },
 	{ "Navajo", "000000", "BA9C80", java_Navajo, 16 },
@@ -1761,6 +1842,7 @@ static const langstyle pythonstyle[] = {
 	{ "Ruby Blue", "FFFFFF", "112435", python_Ruby_Blue, 14 },
 	{ "Vibrant Ink", "FFFFFF", "000000", python_Vibrant_Ink, 14 },
 	{ "Monokai", "F8F8F2", "272822", python_Monokai, 14 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", python_NotepadPlusPlus, 13 },
 	{ "Hello Kitty", "000000", "FFB0FF", python_Hello_Kitty, 14 },
 	{ "Mono Industrial", "FFFFFF", "222C28", python_Mono_Industrial, 14 },
 	{ "Navajo", "000000", "BA9C80", python_Navajo, 14 },
@@ -1786,6 +1868,7 @@ static const langstyle rubystyle[] = {
 	{ "Ruby Blue", "FFFFFF", "112435", ruby_Ruby_Blue, 21 },
 	{ "Vibrant Ink", "FFFFFF", "000000", ruby_Vibrant_Ink, 21 },
 	{ "Monokai", "F8F8F2", "272822", ruby_Monokai, 21 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", ruby_NotepadPlusPlus, 21 },
 	{ "Hello Kitty", "000000", "FFB0FF", ruby_Hello_Kitty, 21 },
 	{ "Mono Industrial", "FFFFFF", "222C28", ruby_Mono_Industrial, 21 },
 	{ "Navajo", "000000", "BA9C80", ruby_Navajo, 22 },

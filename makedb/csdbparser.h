@@ -20,8 +20,8 @@
 
 // Cscope database parser
 
-#ifndef _CSDBPARSER_H
-#define _CSDBPARSER_H
+#ifndef CSDBPARSER_H_CQ
+#define CSDBPARSER_H_CQ
 
 #include <string>
 #include <memory>
@@ -171,6 +171,6 @@ enResult symbolread(sym_data* data, symdata_pack* pack);
 }; // class csdbparser
 
 
-#endif //_CSDBPARSER_H
+#endif //CSDBPARSER_H_CQ
 
 

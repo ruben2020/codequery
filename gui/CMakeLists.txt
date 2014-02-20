@@ -78,7 +78,7 @@ translations/codequery_zh-CHT.ts
   
   # add some useful macros and variables
   # (QT_USE_FILE is a variable defined by FIND_PACKAGE( Qt4 ) that contains a path to CMake script)
-  INCLUDE( ${QT_USE_FILE} )
+  INCLUDE( "${QT_USE_FILE}" )
 
   QT4_ADD_TRANSLATION( QM ${CODEQUERY_TRANS} )  
   
@@ -88,8 +88,8 @@ translations/codequery_zh-CHT.ts
 
 
   SET( CODEQUERY_RC_NAME codequery )
-  SET( CODEQUERY_RC_QRC ${CMAKE_CURRENT_SOURCE_DIR}/${CODEQUERY_RC_NAME}.qrc)
-  SET( CODEQUERY_RC_SRCS ${CMAKE_CURRENT_BINARY_DIR}/qrc_${CODEQUERY_RC_NAME}.cxx)
+  SET( CODEQUERY_RC_QRC "${CMAKE_CURRENT_SOURCE_DIR}/${CODEQUERY_RC_NAME}.qrc")
+  SET( CODEQUERY_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_${CODEQUERY_RC_NAME}.cxx")
 
   # Run the resource compiler (rcc_options should already be set). We can't
   # use QT4_ADD_RESOURCES because the qrc file may not exist yet.
@@ -108,9 +108,9 @@ translations/codequery_zh-CHT.ts
 
   # we need this to be able to include headers produced by uic in our code
   # (CMAKE_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
-  INCLUDE_DIRECTORIES( ${SQLITE_INCLUDE_DIR} )
-  INCLUDE_DIRECTORIES( ${QSCINTILLA_INCLUDE_DIRS} )
-  INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
+  INCLUDE_DIRECTORIES( "${SQLITE_INCLUDE_DIR}" )
+  INCLUDE_DIRECTORIES( "${QSCINTILLA_INCLUDE_DIRS}" )
+  INCLUDE_DIRECTORIES( "${CMAKE_CURRENT_BINARY_DIR}" )
   INCLUDE_DIRECTORIES( "." )
   INCLUDE_DIRECTORIES( "./translations" )
   INCLUDE_DIRECTORIES( "../querylib" )

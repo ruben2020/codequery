@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _CSCOMMON_H
-#define _CSCOMMON_H
+#ifndef CSCOMMON_H_CQ
+#define CSCOMMON_H_CQ
 
 #define CSFuncCall				'`'
 #define CSDirectAssgnIncrDecr	'='
@@ -39,4 +39,5 @@
 #define CSNoType				'X'
 
 
-#endif // _CSCOMMON_H
+#endif // CSCOMMON_H_CQ
+

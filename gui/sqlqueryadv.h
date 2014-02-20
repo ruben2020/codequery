@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _SQLQUERYADV_H
-#define _SQLQUERYADV_H
+#ifndef SQLQUERYADV_H_CQ
+#define SQLQUERYADV_H_CQ
 
 #include "sqlquery.h"
 
@@ -41,7 +41,7 @@ void remove_symname(sqlqueryresultlist& res, tStr name);
 
 };
 
-#endif //_SQLQUERYADV_H
+#endif //SQLQUERYADV_H_CQ
 
 
 

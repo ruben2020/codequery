@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _SEARCHHANDLER_H
-#define _SEARCHHANDLER_H
+#ifndef SEARCHHANDLER_H_CQ
+#define SEARCHHANDLER_H_CQ
 
 #include <QtGui>
 #include "sqlqueryadv.h"
@@ -127,3 +127,4 @@ void updateFilterHistory(QString filtertxt);
 
 
 #endif
+

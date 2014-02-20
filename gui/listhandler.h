@@ -20,8 +20,8 @@
 
 
 
-#ifndef _LISTHANDLER_H
-#define _LISTHANDLER_H
+#ifndef LISTHANDLER_H_CQ
+#define LISTHANDLER_H_CQ
 
 #include <QtGui>
 #include "sqlquery.h"

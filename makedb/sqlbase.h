@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _SQLBASE_H
-#define _SQLBASE_H
+#ifndef SQLBASE_H_CQ
+#define SQLBASE_H_CQ
 
 #include <stdio.h>
 #include <string.h>
@@ -53,3 +53,4 @@ sqlite3 *m_db;
 };
 
 #endif
+

@@ -8,7 +8,7 @@ find_package(Sqlite REQUIRED)
 include_directories( "." )
 include_directories( "../makedb" )
 include_directories( "../querylib" )
-include_directories( ${SQLITE_INCLUDE_DIR} )
+include_directories( "${SQLITE_INCLUDE_DIR}" )
 
 set( CQSEARCH_SRCS
      main_cli.cpp

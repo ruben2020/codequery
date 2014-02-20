@@ -28,8 +28,8 @@
 //
 
 
-#ifndef _SQLQUERY_H
-#define _SQLQUERY_H
+#ifndef SQLQUERY_H_CQ
+#define SQLQUERY_H_CQ
 
 #include "small_lib.h"
 
@@ -134,3 +134,4 @@ private:
 };
 
 #endif
+

@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _FILEVIEWER_H
-#define _FILEVIEWER_H
+#ifndef FILEVIEWER_H_CQ
+#define FILEVIEWER_H_CQ
 
 #include <QtGui>
 

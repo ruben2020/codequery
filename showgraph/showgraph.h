@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _SHOWGRAPH_H
-#define _SHOWGRAPH_H
+#ifndef SHOWGRAPH_H_CQ
+#define SHOWGRAPH_H_CQ
 
 #include <QtGui>
 
@@ -32,6 +32,6 @@ public:
 };
 
 
-#endif //_SHOWGRAPH_H
+#endif //SHOWGRAPH_H_CQ
 
 

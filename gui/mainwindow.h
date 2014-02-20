@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _MAINWINDOW_H
-#define _MAINWINDOW_H
+#ifndef MAINWINDOW_H_CQ
+#define MAINWINDOW_H_CQ
 
 #include <QtGui>
 

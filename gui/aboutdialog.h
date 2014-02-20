@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _ABOUTDIALOG_H
-#define _ABOUTDIALOG_H
+#ifndef ABOUTDIALOG_H_CQ
+#define ABOUTDIALOG_H_CQ
 
 #include <QtGui>
 
@@ -40,6 +40,6 @@ virtual ~cqDialogAbout();
 };
 
 
-#endif //_ABOUTDIALOG_H
+#endif //ABOUTDIALOG_H_CQ
 
 

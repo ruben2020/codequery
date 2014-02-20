@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _CTAGREAD_H
-#define _CTAGREAD_H
+#ifndef CTAGREAD_H_CQ
+#define CTAGREAD_H_CQ
 
 #include <string>
 #include <memory>
@@ -81,3 +81,4 @@ enResult prepare_cqdb(void);
 };
 
 #endif
+

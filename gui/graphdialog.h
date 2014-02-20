@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _GRAPHDIALOG_H
-#define _GRAPHDIALOG_H
+#ifndef GRAPHDIALOG_H_CQ
+#define GRAPHDIALOG_H_CQ
 
 #include <QtGui>
 
@@ -54,6 +54,6 @@ QString m_dot;
 };
 
 
-#endif //_GRAPHDIALOG_H
+#endif //GRAPHDIALOG_H_CQ
 
 

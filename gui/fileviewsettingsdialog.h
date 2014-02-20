@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _FILEVIEWSETTINGSDIALOG_H
-#define _FILEVIEWSETTINGSDIALOG_H
+#ifndef FILEVIEWSETTINGSDIALOG_H_CQ
+#define FILEVIEWSETTINGSDIALOG_H_CQ
 
 #include <QtGui>
 
@@ -53,5 +53,5 @@ fileviewer* m_fv;
 };
 
 
-#endif //_FILEVIEWSETTINGSDIALOG_H
+#endif //FILEVIEWSETTINGSDIALOG_H_CQ
 

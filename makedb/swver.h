@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _SWVER_H
-#define _SWVER_H
+#ifndef SWVER_H_CQ
+#define SWVER_H_CQ
 
 #define CODEQUERY_SW_VERSION      "CodeQuery v0.11"
 #define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
@@ -88,6 +88,6 @@
  * For the rest, please see the Github page above.
  */
 
-#endif // _SWVER_H
+#endif // SWVER_H_CQ
 
 

@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _LANGTABLE_H
-#define _LANGTABLE_H
+#ifndef LANGTABLE_H_CQ
+#define LANGTABLE_H_CQ
 
 // Forward declarations
 class QString;
@@ -34,5 +34,5 @@ static QString getLangFilePath(const QString& lang);
 
 };
 
-#endif // _LANGTABLE_H
+#endif // LANGTABLE_H_CQ
 

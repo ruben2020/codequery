@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _STD2QT_H
-#define _STD2QT_H
+#ifndef STD2QT_H_CQ
+#define STD2QT_H_CQ
 
 #include <QString>
 #include <QStringList>
@@ -44,5 +44,5 @@ inline tStr qt2str(const QString& inp)
 
 tVecStr qt2strLst(const QStringList& inpLst);
 
-#endif //_STD2QT_H
+#endif //STD2QT_H_CQ
 

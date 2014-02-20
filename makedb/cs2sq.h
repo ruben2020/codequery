@@ -18,8 +18,8 @@
  * 
  */
 
-#ifndef _CS2SQ_H
-#define _CS2SQ_H
+#ifndef CS2SQ_H_CQ
+#define CS2SQ_H_CQ
 
 #include <stdio.h>
 #include <sqlite3.h>
@@ -80,3 +80,4 @@ enResult add_symdata(symdatalist sdlist, const char* lineid, idxcounter* idx);
 }; // class cs2sq
 
 #endif
+

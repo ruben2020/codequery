@@ -25,8 +25,8 @@
 //
 
 
-#ifndef _SMALL_LIB_H
-#define _SMALL_LIB_H
+#ifndef SMALL_LIB_H_CQ
+#define SMALL_LIB_H_CQ
 
 #include <stdio.h>
 #include <string>
@@ -123,5 +123,5 @@ const char* getStr(void) const;
 int getStrSize(void) const;
 }; //class idxcounter
 
-#endif //_SMALL_LIB_H
+#endif //SMALL_LIB_H_CQ
 

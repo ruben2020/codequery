@@ -19,8 +19,8 @@
  */
 
 
-#ifndef _THEMES_H
-#define _THEMES_H
+#ifndef THEMES_H_CQ
+#define THEMES_H_CQ
 
 #include <QtGui>
 
@@ -34,5 +34,5 @@ public:
 };
 
 
-#endif // _THEMES_H
+#endif // THEMES_H_CQ
 

@@ -52,7 +52,7 @@ project(ShowGraph)
   
   # add some useful macros and variables
   # (QT_USE_FILE is a variable defined by FIND_PACKAGE( Qt4 ) that contains a path to CMake script)
-  INCLUDE( ${QT_USE_FILE} )
+  INCLUDE( "${QT_USE_FILE}" )
   
   # this command will generate rules that will run rcc on all files from CODEQUERY_RCS
   # in result CODEQUERY_RC_SRCS variable will contain paths to files produced by rcc
@@ -63,7 +63,7 @@ project(ShowGraph)
 
   # we need this to be able to include headers produced by uic in our code
   # (CMAKE_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
-  INCLUDE_DIRECTORIES( ${CMAKE_CURRENT_BINARY_DIR} )
+  INCLUDE_DIRECTORIES( "${CMAKE_CURRENT_BINARY_DIR}" )
   INCLUDE_DIRECTORIES( "." )
   INCLUDE_DIRECTORIES( "./Graph" )
   INCLUDE_DIRECTORIES( "./GraphView" )

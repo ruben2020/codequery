@@ -1,6 +1,7 @@
 
 Version 0.12 - Feb 23, 2014
 QScintilla used for code editing widget
+Imported a number of syntax highlight themes from Notepad++
 Ruby and Go now officially supported through starscope
 RPM packages will now be generated also
 

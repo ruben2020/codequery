@@ -532,7 +532,7 @@ void fileviewer::textSizeChange(int n)
 	//m_lexer->setFont(m_textEditSourceFont);
 	m_fontsize += n;
 	m_textEditSource->zoomTo(m_fontsize);
-	//m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+	m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
 	//m_textEditSource->setTabWidth(m_fontwidthtemp);
 }
 
@@ -642,8 +642,10 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 	{
 		m_themelast = m_theme;
 		themes::setTheme(m_theme, lang, m_lexer, m_textEditSourceFont);
+		m_textEditSource->setMarginsFont(m_textEditSourceFont);
 		//m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->zoomTo(m_fontsize);
+		m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
 		m_textEditSource->recolor();
 	}
 }

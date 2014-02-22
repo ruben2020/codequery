@@ -1,4 +1,9 @@
 
+Version 0.12 - Feb 23, 2014
+QScintilla used for code editing widget
+Ruby and Go now officially supported through starscope
+RPM packages will now be generated also
+
 Version 0.11 - Dec 31, 2013
 File path filter
 New query type: Calls of this function

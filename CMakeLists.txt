@@ -27,19 +27,29 @@ if (UNIX)
 
   if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
     set( CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64" )
+    set( CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64" )
   else( CMAKE_SIZEOF_VOID_P EQUAL 8 )
     set( CPACK_DEBIAN_PACKAGE_ARCHITECTURE "i386" )
+    set( CPACK_RPM_PACKAGE_ARCHITECTURE "i686" )
   endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
 
-set( CPACK_GENERATOR "DEB;TGZ")
+
+set( CPACK_GENERATOR "DEB;RPM;TGZ")
 set( CPACK_PACKAGE_NAME "codequery" )
-set( CPACK_PACKAGE_VERSION  "0.11" )
+set( CPACK_PACKAGE_VERSION  "0.12" )
 set( CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-Linux-${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}" ) 
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtgui4 (>= 4.7.0) , libqt4-xml (>= 4.7.0) , libsqlite3-0 (>= 3.7.0) , cscope , exuberant-ctags")
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtgui4 (>= 4.7.0) , libqt4-xml (>= 4.7.0) , libsqlite3 (>= 3.7.0) , libqscintilla2 (>= 2.6.0) , cscope , exuberant-ctags")
 set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "Code understanding and searching tool")
 set( CPACK_PACKAGE_DESCRIPTION "Code understanding and searching tool")
 set( CPACK_DEBIAN_PACKAGE_SECTION "devel" )
-set( CPACK_PACKAGE_CONTACT "ruben2020 ruben2020-git@users.sourceforge.net")
+set( CPACK_DEBIAN_PACKAGE_MAINTAINER "ruben2020 ruben2020-git@users.sourceforge.net")
+set( CPACK_RPM_PACKAGE_LICENSE "GPLv3+")
+set( CPACK_RPM_PACKAGE_GROUP "Development/Tools")
+set( CPACK_PACKAGE_VENDOR "ruben2020")
+set( CPACK_RPM_PACKAGE_REQUIRES "ruben2020 ruben2020-git@users.sourceforge.net")
+set( CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://ruben2020.github.io/codequery/")
+set( CPACK_RPM_PACKAGE_REQUIRES "qt >= 4.7,sqlite >= 3.7,qscintilla >= 2.6,cscope,ctags")
+
 
 include(CPack)
 

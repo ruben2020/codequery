@@ -15,6 +15,7 @@ Source: "C:\MinGW\bin\sqlite3.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\Qt\4.8.5\bin\QtCore4.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\Qt\4.8.5\bin\QtGui4.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 Source: "C:\Qt\4.8.5\bin\QtXml4.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
+Source: "C:\Qt\4.8.5\bin\qscintilla2.dll"; DestDir: "{sys}"; Flags: 32bit sharedfile
 
 [Icons]
 Name: "{group}\CodeQuery"; Filename: "{app}\codequery.exe"; WorkingDir: "{app}"; IconFilename: "{app}\codequery.exe"
@@ -27,7 +28,7 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 [Setup]
 ShowLanguageDialog=auto
 AppName=CodeQuery
-AppVersion=0.11
+AppVersion=0.12
 AppCopyright=Copyright 2013 (C) ruben2020
 AppId={{D95A3CC0-CC79-4CF1-A92B-50E909B60EF1}
 LicenseFile=C:\workspace\codequery\windows-install\LICENSE.txt

@@ -29,10 +29,10 @@
       </header>
       <section>
         <h1>
-<a name="" class="anchor" href="#"><span class="octicon octicon-link"></span></a><img src="https://raw.github.com/ruben2020/codequery/master/doc/logotitle.png" alt="CodeQuery">
+<a name="" class="anchor" href="#"><span class="octicon octicon-link"></span></a><img src="https://github.com/ruben2020/codequery/blob/master/doc/logotitle.png" alt="CodeQuery">
 </h1>
 
-<p>This is a tool to index, then query or search C, C++, Java and Python source code.</p>
+<p>This is a tool to index, then query or search C, C++, Java, Python, Ruby and Go source code.</p>
 
 <p>It builds upon the databases of <a href="http://cscope.sourceforge.net/">cscope</a> and <a href="http://ctags.sourceforge.net/">Exuberant ctags</a>.</p>
 
@@ -44,7 +44,7 @@
 <a href="https://www.ohloh.net/p/codequery"><img src="https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif" alt="Ohloh"></a></p>
 
 <h2>
-<a name="latest-version--v011" class="anchor" href="#latest-version--v011"><span class="octicon octicon-link"></span></a>Latest version = v0.11</h2>
+<a name="latest-version--v012" class="anchor" href="#latest-version--v012"><span class="octicon octicon-link"></span></a>Latest version = v0.12</h2>
 
 <p>Windows and Linux binaries available here for download: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a></p>
 
@@ -66,6 +66,8 @@
 <p>CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.</p>
 
 <p>In addition, <a href="https://github.com/portante/pycscope">pycscope</a> is used to add support for Python, in place of cscope.</p>
+
+<p>In addition, <a href="https://github.com/eapache/starscope">starscope</a> is used to add support for Ruby and Go, in place of cscope.</p>
 
 <h2>
 <a name="what-features-does-codequery-have" class="anchor" href="#what-features-does-codequery-have"><span class="octicon octicon-link"></span></a>What features does CodeQuery have?</h2>
@@ -102,12 +104,12 @@
 </ul><h2>
 <a name="what-does-it-look-like" class="anchor" href="#what-does-it-look-like"><span class="octicon octicon-link"></span></a>What does it look like?</h2>
 
-<p><img src="https://raw.github.com/ruben2020/codequery/master/doc/screenshot.png" alt="CodeQuery screenshot"></p>
+<p><img src="https://github.com/ruben2020/codequery/blob/master/doc/screenshot.png" alt="CodeQuery screenshot"></p>
 
 <h2>
 <a name="how-does-the-visualization-look-like" class="anchor" href="#how-does-the-visualization-look-like"><span class="octicon octicon-link"></span></a>How does the visualization look like?</h2>
 
-<p>Here's a function call graph based on the search term of "updateFilePathLabel". A -&gt; B means A calls B:<br><img src="https://raw.github.com/ruben2020/codequery/master/doc/screenshot2.png" alt="Visualization screenshot"></p>
+<p>Here's a function call graph based on the search term of "updateFilePathLabel". A -&gt; B means A calls B:<br><img src="https://github.com/ruben2020/codequery/blob/master/doc/screenshot2.png" alt="Visualization screenshot"></p>
 
 <h2>
 <a name="what-does-it-cost-how-is-it-licensed" class="anchor" href="#what-does-it-cost-how-is-it-licensed"><span class="octicon octicon-link"></span></a>What does it cost? How is it licensed?</h2>
@@ -126,7 +128,7 @@
 <h2>
 <a name="which-platforms-are-supported" class="anchor" href="#which-platforms-are-supported"><span class="octicon octicon-link"></span></a>Which platforms are supported?</h2>
 
-<p>It has been tested on Windows 7, Windows XP, Ubuntu Linux 64-bit and Ubuntu Linux 32-bit.</p>
+<p>It has been tested on Windows 7 64-bit, Windows XP, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.</p>
 
 <p>Contributions are welcomed to attempt ports to Mac OS and other operating systems.</p>
 
@@ -140,9 +142,9 @@
 <h2>
 <a name="how-to-install-it" class="anchor" href="#how-to-install-it"><span class="octicon octicon-link"></span></a>How to install it?</h2>
 
-<p>On Windows, EXE setup packages will be provided here: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a>. The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, <a href="https://github.com/portante/pycscope">pycscope</a> (optional - only for Python) is not bundled together with this setup package and needs to be installed separately.</p>
+<p>On Windows, EXE setup packages will be provided here: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a>. The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, <a href="https://github.com/portante/pycscope">pycscope</a> (optional - only for Python) and <a href="https://github.com/eapache/starscope">starscope</a> (optional - only for Ruby and Go) are not bundled together with this setup package and need to be installed separately.</p>
 
-<p>On Linux, tar.gz and Debian package installations will be provided here: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a>.</p>
+<p>On Linux, tar.gz, RPM and Debian package installations will be provided here: <a href="https://sourceforge.net/projects/codequery/files/">CodeQuery@sourceforge downloads</a>.</p>
 
 <p>To build on Linux, please read the <a href="https://github.com/ruben2020/codequery/blob/master/doc/INSTALL-LINUX.md">INSTALL-LINUX</a> file.</p>
 
@@ -156,7 +158,7 @@
 <p>On Linux: <a href="https://github.com/ruben2020/codequery/blob/master/doc/HOWTO-LINUX.md">HOWTO-LINUX</a></p>
 
 <p>Please read the HOWTO file provided for each platform. The workflow looks like this:
-<img src="https://raw.github.com/ruben2020/codequery/master/doc/workflow.png" alt="CodeQuery workflow"></p>
+<img src="https://github.com/ruben2020/codequery/blob/master/doc/workflow.png" alt="CodeQuery workflow"></p>
 
 <h2>
 <a name="how-can-i-be-notified-of-new-version-releases" class="anchor" href="#how-can-i-be-notified-of-new-version-releases"><span class="octicon octicon-link"></span></a>How can I be notified of new version releases?</h2>
@@ -170,7 +172,7 @@
 
 <p>Please see the email address below, and also the Issues tab in GitHub.</p>
 
-<p>Email address:<br><img src="https://raw.github.com/ruben2020/codequery/master/doc/emailaddr.png" alt="Contact address"></p>
+<p>Email address:<br><img src="https://github.com/ruben2020/codequery/blob/master/doc/emailaddr.png" alt="Contact address"></p>
 
 <p>Website: <a href="https://github.com/ruben2020/codequery">CodeQuery website</a></p>
 
@@ -196,7 +198,7 @@
 <h2>
 <a name="credits" class="anchor" href="#credits"><span class="octicon octicon-link"></span></a>Credits</h2>
 
-<p>We thank the people behind the following projects:<br><a href="http://cscope.sourceforge.net/">cscope</a> - our database is derived from this<br><a href="http://ctags.sourceforge.net/">Exuberant ctags</a>- our database is derived from this<br><a href="https://github.com/portante/pycscope">pycscope</a> - our database (for Python) is derived from this<br><a href="http://www.sqlite.org/">sqlite3</a> - our database is using this format<br><a href="http://www.cmake.org/">CMake</a> - cross-platform build toolchain for CodeQuery<br><a href="http://qt-project.org/">Qt open source</a> - GUI toolkit used to build CodeQuery<br><a href="http://michael.dipperstein.com/optlist/index.html">optlist</a> - cqmakedb uses this to parse command line options<br><a href="http://code.google.com/p/showgraph/">showgraph</a> - visualization done using this library<br><a href="http://www.axialis.com/iconworkshop">Axialis</a> - free images for CodeQuery and this website</p>
+<p>We thank the people behind the following projects:<br><a href="http://cscope.sourceforge.net/">cscope</a> - our database is derived from this<br><a href="http://ctags.sourceforge.net/">Exuberant ctags</a>- our database is derived from this<br><a href="https://github.com/portante/pycscope">pycscope</a> - our database (for Python) is derived from this<br><a href="https://github.com/eapache/starscope">starscope</a> - our database (for Ruby and Go) is derived from this<br><a href="http://www.sqlite.org/">sqlite3</a> - our database is using this format<br><a href="http://www.cmake.org/">CMake</a> - cross-platform build toolchain for CodeQuery<br><a href="http://qt-project.org/">Qt open source</a> - GUI toolkit used to build CodeQuery<br><a href="http://michael.dipperstein.com/optlist/index.html">optlist</a> - cqmakedb uses this to parse command line options<br><a href="http://code.google.com/p/showgraph/">showgraph</a> - visualization done using this library<br><a href="http://www.scintilla.org/">scintilla</a> - our code editing widget (in the form of QScintilla)<br><a href="http://www.axialis.com/iconworkshop">Axialis</a> - free images for CodeQuery and this website</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/ruben2020">ruben2020</a></p>

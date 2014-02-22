@@ -1,7 +1,7 @@
 ![CodeQuery](doc/logotitle.png)
 ===============================
 
-This is a tool to index, then query or search C, C++, Java and Python source code.
+This is a tool to index, then query or search C, C++, Java, Python, Ruby and Go source code.
 
 It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Exuberant ctags](http://ctags.sourceforge.net/).
 
@@ -13,7 +13,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
 
 
-## Latest version = v0.11
+## Latest version = v0.12
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -35,6 +35,9 @@ So both these tools have their pros and cons, but complement each other.
 CodeQuery is a project that attempts to combine the features available from both cscope and ctags, provide faster database access compared to cscope (because it uses sqlite) and provides a nice GUI tool as well. Due to this faster database access, fast auto-completion of search terms and multiple complex queries to perform visualization is possible.
 
 In addition, [pycscope](https://github.com/portante/pycscope) is used to add support for Python, in place of cscope.
+
+In addition, [starscope](https://github.com/eapache/starscope) is used to add support for Ruby and Go, in place of cscope.
+
 
 ## What features does CodeQuery have?
 
@@ -95,7 +98,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7, Windows XP, Ubuntu Linux 64-bit and Ubuntu Linux 32-bit.
+It has been tested on Windows 7 64-bit, Windows XP, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
 
 Contributions are welcomed to attempt ports to Mac OS and other operating systems.
 
@@ -109,9 +112,9 @@ Contributions are welcomed to update or provide new translations.
 
 ## How to install it?
 
-On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) is not bundled together with this setup package and needs to be installed separately.
+On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby and Go) is not bundled together with this setup package and needs to be installed separately.
 
-On Linux, tar.gz and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
+On Linux, tar.gz, RPM and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
@@ -170,10 +173,12 @@ We thank the people behind the following projects:
 [cscope](http://cscope.sourceforge.net/) - our database is derived from this   
 [Exuberant ctags](http://ctags.sourceforge.net/)- our database is derived from this   
 [pycscope](https://github.com/portante/pycscope) - our database (for Python) is derived from this    
+[starscope](https://github.com/eapache/starscope) - our database (for Ruby and Go) is derived from this    
 [sqlite3](http://www.sqlite.org/) - our database is using this format    
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
 [optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
+[scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website
 

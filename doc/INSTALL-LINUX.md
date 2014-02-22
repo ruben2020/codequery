@@ -8,15 +8,17 @@ This INSTALL guide applies to Linux only
 
 ## HOW TO INSTALL IN LINUX?
 
-1. Install CMake (>2.7), sqlite3, Qt4 (>4.7), cscope (15.8a or higher), ctags. If you have Ubuntu installed, most of these should be obtainable through the Synaptic Package Manager. Note that the cscope version on the Ubuntu repositories may not be the latest one. It's better to have the latest version of cscope installed.   
+1. Install CMake (>2.7), sqlite3, Qt4 (>4.7), QScintilla (2.6 or higher), cscope (15.8a or higher), ctags. If you have Ubuntu, Linux Mint, Debian or Fedora installed, most of these should be obtainable through the package managers. Note that the cscope version on the Ubuntu repositories may not be the latest one. It's better to have the latest version of cscope installed.   
 [CMake](http://www.cmake.org/)   
 [sqlite3](http://www.sqlite.org/)   
 [Qt4](http://qt-project.org/)   
 [cscope](http://cscope.sourceforge.net/)   
 [ctags](http://ctags.sourceforge.net/)    
-[pycscope](https://github.com/portante/pycscope)
+[pycscope](https://github.com/portante/pycscope)    
+[QScintilla](http://www.riverbankcomputing.com/software/qscintilla/intro)
 ```bash
-sudo apt-get install git cmake sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+sudo apt-get install git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags
+sudo yum install git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags
 ```
 
 2. Download the repository as a ZIP file from github or clone git repository:

@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -15,17 +16,18 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1>CodeQuery</h1>
-        <p>A code-understanding,  code-browsing or code-search tool. This is a tool to index, then query or search C, C++ and Java source code. It builds upon the databases of cscope and ctags, and provides a nice GUI tool.</p>
-
-        <p class="view"><a href="https://github.com/ruben2020/codequery">View the Project on GitHub <small>ruben2020/codequery</small></a></p>
-
+        <h1 class="header">CodeQuery</h1>
+        <p class="header">A code-understanding,  code-browsing or code-search tool. This is a tool to index, then query or search C, C++ and Java source code. It builds upon the databases of cscope and ctags, and provides a nice GUI tool.</p>
 
         <ul>
-          <li><a href="https://github.com/ruben2020/codequery/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ruben2020/codequery/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ruben2020/codequery">View On <strong>GitHub</strong></a></li>
+          <li class="download"><a class="buttons" href="https://github.com/ruben2020/codequery/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/ruben2020/codequery/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/ruben2020/codequery">View On GitHub</a></li>
         </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/ruben2020">ruben2020</a></p>
+
+
       </header>
       <section>
         <h1>
@@ -201,11 +203,10 @@
 <p>We thank the people behind the following projects:<br><a href="http://cscope.sourceforge.net/">cscope</a> - our database is derived from this<br><a href="http://ctags.sourceforge.net/">Exuberant ctags</a>- our database is derived from this<br><a href="https://github.com/portante/pycscope">pycscope</a> - our database (for Python) is derived from this<br><a href="https://github.com/eapache/starscope">starscope</a> - our database (for Ruby and Go) is derived from this<br><a href="http://www.sqlite.org/">sqlite3</a> - our database is using this format<br><a href="http://www.cmake.org/">CMake</a> - cross-platform build toolchain for CodeQuery<br><a href="http://qt-project.org/">Qt open source</a> - GUI toolkit used to build CodeQuery<br><a href="http://michael.dipperstein.com/optlist/index.html">optlist</a> - cqmakedb uses this to parse command line options<br><a href="http://code.google.com/p/showgraph/">showgraph</a> - visualization done using this library<br><a href="http://www.scintilla.org/">scintilla</a> - our code editing widget (in the form of QScintilla)<br><a href="http://www.axialis.com/iconworkshop">Axialis</a> - free images for CodeQuery and this website</p>
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/ruben2020">ruben2020</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
   </body>
 </html>

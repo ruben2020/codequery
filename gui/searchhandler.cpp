@@ -543,12 +543,12 @@ QString searchhandler::sqlerrormsg(sqlquery::en_filereadstatus status)
 	QString str;
 	switch(status)
 	{
-		case sqlquery::sqlfileOPENERROR: str = tr("File open error");
-		case sqlquery::sqlfileNOTCORRECTDB: str = tr("Wrong file format");
-		case sqlquery::sqlfileINCORRECTVER: str = tr("Incorrect CQ database version");
-		case sqlquery::sqlfileOK: str = tr("OK");
+		case sqlquery::sqlfileOPENERROR: str = tr("File open error"); break;
+		case sqlquery::sqlfileNOTCORRECTDB: str = tr("Wrong file format"); break;
+		case sqlquery::sqlfileINCORRECTVER: str = tr("Incorrect CQ database version"); break;
+		case sqlquery::sqlfileOK: str = tr("OK"); break;
 		case sqlquery::sqlfileUNKNOWNERROR:
-		default: str = tr("Unknown Error");
+		default: str = tr("Unknown Error"); break;
 	}
 	return str;
 }

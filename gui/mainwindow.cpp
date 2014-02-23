@@ -232,6 +232,14 @@ void mainwindow::writeSettings()
 	settings.setValue("FileViewerTheme", m_fileviewer->m_theme);
 	settings.endGroup();
 
+	settings.beginWriteArray("SearchHistory");
+	for (int i=0; i < ui->comboBoxSearch->count(); i++)
+	{
+		settings.setArrayIndex(i);
+		settings.setValue("hist", ui->comboBoxSearch->itemText(i));
+	}
+	settings.endArray();
+
 	settings.beginWriteArray("OpenDBHistory");
 	for (int i=0; i < ui->comboBoxDB->count(); i++)
 	{
@@ -248,13 +256,6 @@ void mainwindow::writeSettings()
 	}
 	settings.endArray();
 
-	/*settings.beginWriteArray("SearchHistory");
-	for (int i=0; i < ui->comboBoxSearch->count(); i++)
-	{
-		settings.setArrayIndex(i);
-		settings.setValue("phrase", ui->comboBoxSearch->itemText(i));
-	}
-	settings.endArray();*/
 }
 
 void mainwindow::readSettings()
@@ -283,7 +284,6 @@ void mainwindow::readSettings()
 	ui->comboBoxFilter->addItems(filterhist);
 	ui->comboBoxFilter->setCurrentIndex(0);
 
-
 	settings.beginGroup("MainWindow");
 	resize(settings.value("Size", size()).toSize());
 	move(settings.value("Pos", pos()).toPoint());
@@ -308,19 +308,19 @@ void mainwindow::readSettings()
 	m_fileviewer->m_theme = (settings.value("FileViewerTheme", "Eclipse Default").toString());
 	settings.endGroup();
 
-	/*sizee = settings.beginReadArray("SearchHistory");
-	QStringList srchhist;
-	for (int i=0; i < sizee; i++)
+	int sizeh = settings.beginReadArray("SearchHistory");
+	QStringList searchhist;
+	for (int i=0; i < sizeh; i++)
 	{
 		settings.setArrayIndex(i);
-		srchhist << settings.value("phrase").toString();
+		searchhist << settings.value("hist").toString();
 	}
 	settings.endArray();
-	if (srchhist.isEmpty() == false)
+	if (searchhist.isEmpty() == false)
 	{
-		ui->comboBoxSearch->addItems(srchhist);
-		ui->comboBoxSearch->setCurrentIndex(0);
-	}*/
+		ui->comboBoxSearch->addItems(searchhist);
+		ui->comboBoxSearch->setCurrentIndex(-1);
+	}
 
 }
 

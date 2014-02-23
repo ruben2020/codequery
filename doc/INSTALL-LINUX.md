@@ -17,8 +17,8 @@ This INSTALL guide applies to Linux only
 [pycscope](https://github.com/portante/pycscope)    
 [QScintilla](http://www.riverbankcomputing.com/software/qscintilla/intro)
 ```bash
-sudo apt-get install git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags
-sudo yum install git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags
+sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags
+sudo yum install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags
 ```
 
 2. Download the repository as a ZIP file from github or clone git repository:

@@ -181,6 +181,9 @@ void fileviewer::recvDBtimestamp(QDateTime dt)
 void fileviewer::fileToBeOpened(QString filename, QString linenum)
 {
 	filename.replace(QString("$HOME"), QDir::homePath());
+#ifdef _WIN32
+	filename.replace("/", "\\");
+#endif
 	if (!(QFile::exists(filename)))
 	{
 		m_labelFilePath->setText(tr("File not found"));

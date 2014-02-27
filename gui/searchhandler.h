@@ -65,6 +65,8 @@ QCheckBox *m_checkBoxFilter;
 QComboBox *m_comboBoxFilter;
 QCompleter *m_completer;
 QFutureWatcher<QStringList> m_autocompFutureWatcher;
+static bool m_grepExactMatch;
+static QRegExp m_grepRegExp;
 
 searchhandler(mainwindow* pmw);
 ~searchhandler();
@@ -83,6 +85,9 @@ void goBackInSearchMemory(void);
 void restoreSearchMemoryItem(void);
 void retranslateUi(void);
 static QStringList search_autocomplete_qt(QString searchtxt);
+static sqlqueryresultlist doGrep(const QString &fp);
+static void collateGrep(sqlqueryresultlist &result,
+			const sqlqueryresultlist &intermediate);
 
 public slots:
 void OpenDB_ButtonClick(bool checked);
@@ -122,6 +127,7 @@ bool m_autocompBusy;
 QString m_autocompSrchTerm;
 
 void updateFilterHistory(QString filtertxt);
+sqlqueryresultlist perform_grep(QString searchtxt, sqlqueryresultlist searchlist, bool exactmatch);
 
 };
 

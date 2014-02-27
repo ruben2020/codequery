@@ -26,7 +26,7 @@
 
 sqlqueryadv* searchhandler::sq = NULL;
 bool searchhandler::m_grepExactMatch = false;
-QRegExp searchhandler::m_grepRegExp;
+QRegExp* searchhandler::m_grepRegExp = NULL;
 
 searchitem::searchitem()
 :exactmatch(false)
@@ -86,6 +86,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 {
 	sq = new sqlqueryadv;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
+	m_grepRegExp = new QRegExp();
 	m_iter = m_searchMemoryList.begin();
 }
 
@@ -94,6 +95,7 @@ searchhandler::~searchhandler()
 	disconnect();
 	delete sq;
 	delete m_completer;
+	delete m_grepRegExp;
 }
 
 void searchhandler::OpenDB_ButtonClick(bool checked)
@@ -445,8 +447,8 @@ sqlqueryresultlist searchhandler::perform_grep(QString searchtxt, sqlqueryresult
 	QObject::connect(&futureWatcher, SIGNAL(progressRangeChanged(int,int)), &dialog, SLOT(setRange(int,int)));
 	QObject::connect(&futureWatcher, SIGNAL(progressValueChanged(int)), &dialog, SLOT(setValue(int)));
 	m_grepExactMatch = exactmatch;
-	m_grepRegExp = QRegExp(searchtxt.toAscii().data(), Qt::CaseInsensitive);
-	m_grepRegExp.setPatternSyntax(QRegExp::RegExp2);
+	(*m_grepRegExp) = QRegExp(searchtxt.toAscii().data(), Qt::CaseInsensitive);
+	m_grepRegExp->setPatternSyntax(QRegExp::RegExp2);
 	futureWatcher.setFuture(QtConcurrent::mappedReduced(strvec, doGrep,
 				collateGrep, QtConcurrent::SequentialReduce));
 	dialog.exec();
@@ -464,7 +466,7 @@ sqlqueryresultlist searchhandler::doGrep(const QString &fp)
 	tStr fpstr, fn;
 	int pos, linenumber=0;
 	char numtext[10];
-	QRegExp rx1(m_grepRegExp);
+	QRegExp rx1(*m_grepRegExp);
 	reslist.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
 	fp2 = fp;
 	fp2.replace(QString("$HOME"), QDir::homePath());

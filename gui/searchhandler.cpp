@@ -19,11 +19,14 @@
  */
 
 
+#include <QVector>
 #include "std2qt.h"
 #include "graphdialog.h"
 #include "searchhandler.h"
 
 sqlqueryadv* searchhandler::sq = NULL;
+bool searchhandler::m_grepExactMatch = false;
+QRegExp searchhandler::m_grepRegExp;
 
 searchitem::searchitem()
 :exactmatch(false)
@@ -280,6 +283,9 @@ void searchhandler::retranslateUi(void)
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Functions or macros inside this file"),
 				QVariant(sqlquery::sqlresultFUNCSINFILE));
+	m_comboBoxQueryType->addItem(QIcon(),
+				"Grep",
+				QVariant(sqlquery::sqlresultGREP));
 	m_comboBoxQueryType->setCurrentIndex(curidx);
 
 }
@@ -380,9 +386,18 @@ void searchhandler::perform_search(QString searchtxt,
 		filtertxt = m_comboBoxFilter->lineEdit()->text().trimmed();
 		if (updSearchMemory) updateFilterHistory(filtertxt);
 	}
-	sqlresultlist = sq->search(searchtxt.toAscii().data(),
+	if (querytype == sqlquery::sqlresultGREP)
+	{
+		if (filtertxt.isEmpty()) filtertxt = "*";
+		sqlresultlist = sq->search(filtertxt.toAscii().data(),
+				sqlquery::sqlresultFILEPATH, false);
+	}
+	else
+	{
+		sqlresultlist = sq->search(searchtxt.toAscii().data(),
 				querytype, exactmatch,
 				filtertxt.toAscii().data());
+	}
 	QApplication::restoreOverrideCursor();
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
@@ -396,12 +411,102 @@ void searchhandler::perform_search(QString searchtxt,
 			(querytype == sqlquery::sqlresultCLASS_STRUCT));
 		updateSearchHistory(searchtxt);
 		if (updSearchMemory) addToSearchMemory(searchtxt, filtertxt);
+		if (querytype == sqlquery::sqlresultGREP)
+		{
+			sqlresultlist = perform_grep(searchtxt, sqlresultlist, exactmatch);
+		}
 		emit searchresults(sqlresultlist, selectitem);
 		QString str;
 		str = QString("%1").arg(sqlresultlist.resultlist.size());
 		str += " ";
 		str += tr("results found");
 		emit updateStatus(str, 5000);
+	}
+}
+
+sqlqueryresultlist searchhandler::perform_grep(QString searchtxt, sqlqueryresultlist searchlist, bool exactmatch)
+{
+	QVector<QString> strvec;
+	sqlqueryresultlist resultlist;
+	QFutureWatcher<sqlqueryresultlist> futureWatcher;
+	QProgressDialog dialog;
+	unsigned int n = searchlist.resultlist.size();
+	if (n == 0) return resultlist;
+	strvec.resize(n);
+	for (unsigned int i=0; i < n; i++)
+	{
+		strvec.replace(i, str2qt(searchlist.resultlist[i].filepath));
+	}
+	dialog.setAutoReset(false);
+	dialog.setLabelText(QString("Grep ").append(QString(tr("in progress"))).append(QString(" ...")));
+	dialog.setCancelButtonText(tr("Cancel"));
+	QObject::connect(&futureWatcher, SIGNAL(finished()), &dialog, SLOT(reset()));
+	QObject::connect(&dialog, SIGNAL(canceled()), &futureWatcher, SLOT(cancel()));
+	QObject::connect(&futureWatcher, SIGNAL(progressRangeChanged(int,int)), &dialog, SLOT(setRange(int,int)));
+	QObject::connect(&futureWatcher, SIGNAL(progressValueChanged(int)), &dialog, SLOT(setValue(int)));
+	m_grepExactMatch = exactmatch;
+	m_grepRegExp = QRegExp(searchtxt.toAscii().data(), Qt::CaseInsensitive);
+	m_grepRegExp.setPatternSyntax(QRegExp::RegExp2);
+	futureWatcher.setFuture(QtConcurrent::mappedReduced(strvec, doGrep,
+				collateGrep, QtConcurrent::SequentialReduce));
+	dialog.exec();
+	futureWatcher.waitForFinished();
+	if (futureWatcher.isCanceled() == false)
+		resultlist = futureWatcher.result();
+	return resultlist;
+}
+
+sqlqueryresultlist searchhandler::doGrep(const QString &fp)
+{
+	sqlqueryresultlist reslist;
+	sqlqueryresult res;
+	QString str, fp2;
+	tStr fpstr, fn;
+	int pos, linenumber=0;
+	char numtext[10];
+	QRegExp rx1(m_grepRegExp);
+	reslist.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
+	fp2 = fp;
+	fp2.replace(QString("$HOME"), QDir::homePath());
+#ifdef _WIN32
+	fp2.replace("/", "\\");
+#endif
+	fpstr = qt2str(fp2);
+	fn = extract_filename(fpstr.c_str());
+	QFile file(fp2);
+	QTextStream in(&file);
+	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+	{
+		return reslist;
+	}
+	while (!in.atEnd())
+	{
+		linenumber++;
+		str = in.readLine();
+		pos = rx1.indexIn(str);
+		if (pos != -1)
+		{
+			res.filepath = fpstr;
+			res.filename = fn;
+			sprintf(numtext, "%d", linenumber);
+			res.linenum = numtext;
+			res.linetext = qt2str(str.trimmed().left(80));
+			reslist.resultlist.push_back(res);
+		}
+	}
+	return reslist;
+}
+
+void searchhandler::collateGrep(sqlqueryresultlist &result,
+			const sqlqueryresultlist &intermediate)
+{
+	unsigned int i, n;
+	n = intermediate.resultlist.size();
+	result.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
+	result.resultlist.reserve(n);
+	for(i=0; i<n; i++)
+	{
+		result.resultlist.push_back(intermediate.resultlist[i]);
 	}
 }
 

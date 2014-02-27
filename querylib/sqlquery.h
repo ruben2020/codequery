@@ -98,6 +98,7 @@ enum en_queryType
 		sqlresultCHILDCLASS,
 		sqlresultPARENTCLASS,
 		sqlresultFUNCSINFILE,
+		sqlresultGREP,
 		sqlresultAUTOCOMPLETE,
 		sqlresultDEFAULT = 100
 	};

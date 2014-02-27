@@ -66,7 +66,7 @@ QComboBox *m_comboBoxFilter;
 QCompleter *m_completer;
 QFutureWatcher<QStringList> m_autocompFutureWatcher;
 static bool m_grepExactMatch;
-static QRegExp m_grepRegExp;
+static QRegExp* m_grepRegExp;
 
 searchhandler(mainwindow* pmw);
 ~searchhandler();

@@ -11,7 +11,6 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 
 [![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
 [![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ruben2020/codequery/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 
 ## Latest version = v0.12

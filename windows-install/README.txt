@@ -69,6 +69,7 @@ In addition, [starscope](https://github.com/eapache/starscope) is used to add su
 * Files including this file
 * Full path for file
 * Functions and macros inside this file
+* Grep
 
 
 ## What does it look like?

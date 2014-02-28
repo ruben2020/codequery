@@ -13,7 +13,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
 
 
-## Latest version = v0.12
+## Latest version = v0.13
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -69,6 +69,7 @@ In addition, [starscope](https://github.com/eapache/starscope) is used to add su
 * Files including this file
 * Full path for file
 * Functions and macros inside this file
+* Grep
 
 
 ## What does it look like?

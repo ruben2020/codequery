@@ -1,4 +1,8 @@
 
+Version 0.13 - Mar 1, 2014
+Grep feature added
+Last search history stored persistently
+
 Version 0.12 - Feb 23, 2014
 QScintilla used for code editing widget
 Imported a number of syntax highlight themes from Notepad++

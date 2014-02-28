@@ -350,8 +350,10 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 
 void searchhandler::QueryType_indexChanged(const int& idx)
 {
+	int qrytype;
 	m_pushButtonGraph->setEnabled(false);
-	switch(m_comboBoxQueryType->itemData(idx).toInt())
+	qrytype = m_comboBoxQueryType->itemData(idx).toInt();
+	switch(qrytype)
 	{
 		case sqlquery::sqlresultFUNC_MACRO: // function or macro
 			m_graphdesc = tr("Function Call Graph");
@@ -361,6 +363,24 @@ void searchhandler::QueryType_indexChanged(const int& idx)
 			m_graphdesc = tr("Class Inheritance Graph");
 			m_typeOfGraph = 2;
 			break;
+	}
+	if (qrytype == sqlquery::sqlresultGREP)
+	{
+#ifndef QT_NO_TOOLTIP
+        m_comboBoxSearch->setToolTip("Grep: QRegExp regular expressions");
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        m_comboBoxSearch->setStatusTip("Grep: QRegExp regular expressions");
+#endif // QT_NO_STATUSTIP
+	}
+	else
+	{
+#ifndef QT_NO_TOOLTIP
+        m_comboBoxSearch->setToolTip(tr("If Exact Match is switched off, wildcard searches (* and ?) are supported"));
+#endif // QT_NO_TOOLTIP
+#ifndef QT_NO_STATUSTIP
+        m_comboBoxSearch->setStatusTip(tr("If Exact Match is switched off, wildcard searches (* and ?) are supported"));
+#endif // QT_NO_STATUSTIP
 	}
 }
 

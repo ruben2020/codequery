@@ -132,7 +132,14 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 ![CodeQuery workflow](doc/workflow.png)
 
 
-## How can I be notified of new version releases?
+## Are there any known limitations?
+
+For C and C++, [inline assembly code](http://en.wikipedia.org/wiki/Inline_assembler) is not supported by all the tools. This mainly affects embedded software, OS and driver code.
+
+Please exclude files with inline assembly code from the list of files (cscope.files) to be scanned.
+
+
+### How can I be notified of new version releases?
 
 Follow us on [our FreeCode page](https://freecode.com/projects/codequery) and you should receive emails notifying you of new version releases.
 

@@ -16,13 +16,14 @@ This INSTALL guide applies to Linux only
 [ctags](http://ctags.sourceforge.net/)    
 [pycscope](https://github.com/portante/pycscope)    
 [QScintilla](http://www.riverbankcomputing.com/software/qscintilla/intro)    
+
 In Ubuntu, do the following:    
 ```bash
-sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags
+sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags rpm
 ```
 In Fedora, do the following:    
 ```bash
-sudo yum install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags
+sudo yum install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags rpm-build
 ```
 
 2. Download the repository as a ZIP file from github or clone git repository:

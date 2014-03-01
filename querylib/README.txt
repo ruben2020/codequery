@@ -7,7 +7,7 @@ for editors, IDEs and other software without license restrictions
 
 This license applies only to this directory and below.
 
-Copyright (c) 2011 ruben2020 https:github.com/ruben2020/
+Copyright (c) 2011 ruben2020 https://github.com/ruben2020/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to

@@ -16,9 +16,11 @@ cd ~/projects/myproject/src
 find -iname "*.c"    > ./cscope.files
 find -iname "*.cpp" >> ./cscope.files
 find -iname "*.cxx" >> ./cscope.files
+find -iname "*.cc " >> ./cscope.files
 find -iname "*.h"   >> ./cscope.files
 find -iname "*.hpp" >> ./cscope.files
 find -iname "*.hxx" >> ./cscope.files
+find -iname "*.hh " >> ./cscope.files
 ```
 
 3. Create a cscope database like this:

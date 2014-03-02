@@ -10,8 +10,9 @@ HOW TO USE CODEQUERY WITH C/C++ CODE?
 cd c:\projects\myproject\src
 
 
-2. Create a cscope.files file with all the C/C++ source
-   files listed in it.
+2. Create a cscope.files file with all the C/C++ source files listed
+   in it. Files with inline assembly code should be excluded from
+   this list. See: http://en.wikipedia.org/wiki/Inline_assembler
 
 dir /b/a/s *.c    > cscope.files   
 dir /b/a/s *.cpp >> cscope.files   
@@ -25,7 +26,7 @@ dir /b/a/s *.hh  >> cscope.files
 
 3. Create a cscope database like this:
 
-cscope -cbR
+cscope -cb
 
 
 4. Create a ctags database like this.

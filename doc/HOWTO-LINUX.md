@@ -11,7 +11,7 @@ This HOWTO guide applies to Linux only
 cd ~/projects/myproject/src
 ```
 
-2. Create a cscope.files file with all the C/C++ source files listed in it.
+2. Create a cscope.files file with all the C/C++ source files listed in it. Files with [inline assembly code](http://en.wikipedia.org/wiki/Inline_assembler) should be excluded from this list.
 ```bash
 find -iname "*.c"    > ./cscope.files
 find -iname "*.cpp" >> ./cscope.files
@@ -25,7 +25,7 @@ find -iname "*.hh " >> ./cscope.files
 
 3. Create a cscope database like this:
 ```bash
-cscope -cbR
+cscope -cb
 ```
 
 4. Create a ctags database like this.

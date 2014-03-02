@@ -16,9 +16,11 @@ cd c:\projects\myproject\src
 dir /b/a/s *.c    > cscope.files   
 dir /b/a/s *.cpp >> cscope.files   
 dir /b/a/s *.cxx >> cscope.files   
+dir /b/a/s *.cc  >> cscope.files   
 dir /b/a/s *.h   >> cscope.files   
 dir /b/a/s *.hpp >> cscope.files   
 dir /b/a/s *.hxx >> cscope.files   
+dir /b/a/s *.hh  >> cscope.files   
 
 
 3. Create a cscope database like this:

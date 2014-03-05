@@ -51,6 +51,9 @@
           <property name="layoutDirection">
            <enum>Qt::RightToLeft</enum>
           </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+          </property>
          </widget>
         </item>
         <item>
@@ -131,7 +134,7 @@
            <enum>QComboBox::NoInsert</enum>
           </property>
           <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
+           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
           </property>
          </widget>
         </item>
@@ -192,6 +195,9 @@
           </property>
           <property name="insertPolicy">
            <enum>QComboBox::NoInsert</enum>
+          </property>
+          <property name="sizeAdjustPolicy">
+           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
           </property>
           <property name="duplicatesEnabled">
            <bool>true</bool>
@@ -267,7 +273,7 @@
            <enum>QComboBox::NoInsert</enum>
           </property>
           <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToContents</enum>
+           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
           </property>
          </widget>
         </item>

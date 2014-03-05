@@ -288,7 +288,7 @@ void fileviewer::updateTextEdit(void)
 	if (pos != -1) lang = enHighlightJava;
 
 	QRegExp rx3("\\.rb$", Qt::CaseInsensitive);
-	pos = rx2.indexIn(m_iter->filename);
+	pos = rx3.indexIn(m_iter->filename);
 	if (pos != -1) lang = enHighlightRuby;
 
 	m_currentlang = lang;

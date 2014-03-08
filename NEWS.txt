@@ -1,4 +1,8 @@
 
+Version 0.14 - Mar 9, 2014
+Fixed Java and Ruby syntax highlight bug
+Fixed bug where database file combobox becomes too large due to very long filename
+
 Version 0.13 - Mar 1, 2014
 Grep feature added
 Last search history stored persistently

@@ -22,7 +22,7 @@
 #ifndef SWVER_H_CQ
 #define SWVER_H_CQ
 
-#define CODEQUERY_SW_VERSION      "CodeQuery v0.13"
+#define CODEQUERY_SW_VERSION      "CodeQuery v0.14"
 #define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
 	CODEQUERY_SW_VERSION \
 	"</p>"\

@@ -11,6 +11,7 @@ include_directories( "${SQLITE_INCLUDE_DIR}" )
 
 set( CQMAKEDB_SRCS
      sqlbase.cpp
+     csdbheader.cpp
      csdbparser.cpp
      cs2sq.cpp
      ctagread.cpp

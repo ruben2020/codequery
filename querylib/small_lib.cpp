@@ -33,6 +33,7 @@
 #endif
 
 #include "small_lib.h"
+#include <new>
 
 bool check_fileExists(const char *fn)
 {
@@ -241,11 +242,20 @@ void smartFILE::close_file(void)
 tempbuf::tempbuf(unsigned int n)
 	{
 		if (n < 10) n = 10;
-		m_buffer = new char[n];
-		*m_buffer = 0;
+		m_buffer = new (std::nothrow) char[n];
+		if (m_buffer != NULL)
+		{
+			*m_buffer = 0;
+		}
 		m_size = n;
 	}
-tempbuf::~tempbuf() {delete[] m_buffer;}
+tempbuf::~tempbuf()
+	{
+		if (m_buffer != NULL)
+		{ 
+			delete[] m_buffer;
+		}
+	}
 char* tempbuf::operator() () {return m_buffer;}
 char* tempbuf::get(void) {return m_buffer;}
 char  tempbuf::operator[] (unsigned int i)

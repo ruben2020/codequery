@@ -23,6 +23,7 @@
 #include <stdio.h>
 //#include <unistd.h>
 #include "csdbparser.h"
+#include "csdbheader.h"
 #include "small_lib.h"
 //#include "packtext.h"
 
@@ -281,8 +282,9 @@ csdbparser::enResult csdbparser::file_sanity_check(const char *fn)
 {
 smartFILE fp;
 tempbuf buf(20000);
-int hdr_len=0;
+int i;
 std::string s;
+bool chkok;
 
 // Does the file exist?
 if (check_fileExists(fn) == false) {return resFILE_NOT_FOUND;}
@@ -296,23 +298,35 @@ if (fgets(buf.get(), 20000, fp.get()) == NULL) {return resFILE_ACCESS_ERR;}
 chomp(buf.get());
 
 s = static_cast<const char*>(buf.get());
-hdr_len = strlen(buf.get());
+csdbheader hdr;
 
-// Header should be at least 19 bytes long and starts with "cscope "
-if ((hdr_len<19)||(s.compare(0, strlen("cscope "), "cscope ") != 0))
+hdr.set_header(s);
+if (hdr.parse() == false)
      {return resUNRECOG_FORMAT;}
 
 // Compare the cscope version used to build the database
-if (s.compare(7, strlen(CSDBP_SUPPORTED_VER), CSDBP_SUPPORTED_VER) != 0)
+if (hdr.get_version() != CSDBP_SUPPORTED_VER_NUM)
      {return resINCORRECT_VER;}
 
 // Compare the parameters used to build the database with the supported one
-if (s.compare(hdr_len - 28, strlen(CSDBP_SUP_PARAM), CSDBP_SUP_PARAM) != 0)
-if (s.compare(hdr_len - 14, strlen(CSDBP_SUP_PARAM2), CSDBP_SUP_PARAM2) != 0)
-     {return resUNSUPPORTED_PARAM;}
+// We must have "c", we don't mind "q" and we cannot have any other
+chkok = false;
+tVecStr vs = hdr.get_param_list();
+for(i=0; i< vs.size(); i++)
+{
+	if (vs[i].compare("c") == 0) chkok = true;
+}
+if (chkok == false) {return resUNSUPPORTED_PARAM;}
+
+for(i=0; i< vs.size(); i++)
+{
+	if ((vs[i].compare("c") != 0) && 
+		(vs[i].compare("q") != 0)) chkok = false;
+}
+if (chkok == false) {return resUNSUPPORTED_PARAM;}
 
 // Trailer offset should be a positive number, normally > 20
-if (atol(s.substr(hdr_len - 10).c_str()) < 20) {return resUNRECOG_FORMAT;}
+if (hdr.get_trailer_start() < 20) {return resUNRECOG_FORMAT;}
 
 // Header looks OK so far!
 
@@ -331,23 +345,21 @@ m_calling_func.clear();
 m_calling_macro.clear();
 m_current_srcfile.clear();
 
+csdbheader hdr;
+
 // Read out the first line i.e. the header
 if (fgets(m_buf, CSDBP_MINIM_BUFSIZE, m_fp) == NULL) {return resFILE_ACCESS_ERR;}
 slen = strlen(chomp(m_buf));
 
 std::string s(static_cast<const char*>(m_buf));
-m_trailer_start = atol(s.substr(slen - 10).c_str());
 
-// Remove the part of the string after the base path
-if (s.compare(slen - 28, strlen(CSDBP_SUP_PARAM), CSDBP_SUP_PARAM) == 0)
-	m_buf[slen - 28] = 0; 
-else m_buf[slen - 14] = 0;
+hdr.set_header(s);
+if (hdr.parse() == false)
+	{return resUNRECOG_FORMAT;}
 
-//slen = strlen(m_buf);
+m_trailer_start = hdr.get_trailer_start();
+m_base_path = hdr.get_base_path();
 
-s = static_cast<const char*>(m_buf);
-m_base_path = s.substr(strlen("cscope ") + strlen(CSDBP_SUPPORTED_VER) + 1);
-if (*(m_base_path.rbegin()) == '\"') m_base_path.erase(m_base_path.end() - 1);
 
 return resOK;
 }

@@ -23,7 +23,7 @@ find -iname "*.hxx" >> ./cscope.files
 find -iname "*.hh " >> ./cscope.files
 ```
 
-3. Create a cscope database like this:
+3. Create a cscope database like this (add `k`, if you don't want standard include paths like for stdio.h):
 ```bash
 cscope -cb
 ```

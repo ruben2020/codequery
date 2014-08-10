@@ -116,6 +116,7 @@ translations/codequery_zh-CHT.ts
   INCLUDE_DIRECTORIES( "../querylib" )
   INCLUDE_DIRECTORIES( "../makedb" )
   INCLUDE_DIRECTORIES( "../showgraph" )
+  INCLUDE_DIRECTORIES( "/usr/local/include" )
 
 if(WIN32)
   SET(CQ_WIN_RCS cqwin32.rc)

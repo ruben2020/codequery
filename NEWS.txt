@@ -1,4 +1,9 @@
 
+Version 0.15 - Aug 12, 2014
+Added support for Mac OS
+Allowed -q in cscope.out header
+Added info to HOWTOs on how to exclude standard include paths
+
 Version 0.14 - Mar 9, 2014
 Fixed Java and Ruby syntax highlight bug
 Fixed bug where database file combobox becomes too large due to very long filename

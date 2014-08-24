@@ -173,9 +173,9 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 ## List of Contributors
 
-@ruben2020    
-@naseer    
-@bruno-    
+[ruben2020](https://github.com/ruben2020)    
+[naseer](https://github.com/naseer)    
+[bruno-](https://github.com/bruno-)    
 (More welcomed)
 
 

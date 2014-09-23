@@ -9,12 +9,12 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
-[![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
-![](https://reposs.herokuapp.com/?path=ruben2020/codequery)
-![](http://img.shields.io/badge/version-0.15-brightgreen.svg)
-![](http://img.shields.io/badge/license-GPLv3-yellow.svg)
-![](http://img.shields.io/badge/platform-win | linux | osx-blue.svg)
+[![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)    
+[![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)    
+![](https://reposs.herokuapp.com/?path=ruben2020/codequery)     
+![](http://img.shields.io/badge/version-0.15-brightgreen.svg)   
+![](http://img.shields.io/badge/license-GPLv3-yellow.svg)   
+![](http://img.shields.io/badge/platform-win | linux | osx-blue.svg)       
 
 ## Latest version = v0.15
 

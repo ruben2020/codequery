@@ -12,9 +12,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)    
 [![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)    
 ![](https://reposs.herokuapp.com/?path=ruben2020/codequery)     
-![](http://img.shields.io/badge/version-0.15-brightgreen.svg)   
-![](http://img.shields.io/badge/license-GPLv3-yellow.svg)   
-![](http://img.shields.io/badge/platform-win | linux | osx-blue.svg)       
+      
 
 ## Latest version = v0.15
 
@@ -135,6 +133,15 @@ On Linux and Mac: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
 
 Please read the HOWTO file provided for each platform. The workflow looks like this:
 ![CodeQuery workflow](doc/workflow.png)
+
+
+## How do I generate whole-program call graphs or UML class diagrams?
+
+CodeQuery cannot do this at the moment.
+
+To generate whole-program call graphs, please use [GNU cflow](https://www.gnu.org/software/cflow/) or [CodeViz](http://www.csn.ul.ie/~mel/projects/codeviz/) for C and C++. For Java, there is [Javashot](http://code.google.com/p/javashot/). 
+
+To generate whole-program UML class diagrams for various object-oriented languages, please use [tags2uml](https://github.com/ruben2020/tags2uml). 
 
 
 ## Are there any known limitations?

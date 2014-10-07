@@ -166,6 +166,15 @@
 <img src="https://raw2.github.com/ruben2020/codequery/master/doc/workflow.png" alt="CodeQuery workflow"></p>
 
 <h2>
+<a name="how-do-i-generate-whole-program-call-graphs-or-uml-class-diagrams" class="anchor" href="#how-do-i-generate-whole-program-call-graphs-or-uml-class-diagrams"><span class="octicon octicon-link"></span></a>How do I generate whole-program call graphs or UML class diagrams?</h2>
+
+<p>CodeQuery cannot do this at the moment.</p>
+
+<p>To generate whole-program call graphs, please use <a href="https://www.gnu.org/software/cflow/">GNU cflow</a> or <a href="http://www.csn.ul.ie/%7Emel/projects/codeviz/">CodeViz</a> for C and C++. For Java, there is <a href="http://code.google.com/p/javashot/">Javashot</a>. </p>
+
+<p>To generate whole-program UML class diagrams for various object-oriented languages, please use <a href="https://github.com/ruben2020/tags2uml">tags2uml</a>. </p>
+
+<h2>
 <a name="are-there-any-known-limitations" class="anchor" href="#are-there-any-known-limitations"><span class="octicon octicon-link"></span></a>Are there any known limitations?</h2>
 
 <p>For C and C++, <a href="http://en.wikipedia.org/wiki/Inline_assembler">inline assembly code</a> is not supported by all the tools. This mainly affects embedded software, OS and driver code.</p>

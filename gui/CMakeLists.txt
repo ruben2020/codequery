@@ -69,6 +69,7 @@ translations/codequery_zh-CHT.ts
   # other modules must be enabled like this:
   #SET( QT_USE_QTXML TRUE )
   #SET( QT_USE_QTSQL TRUE )
+  SET( QT_DONT_USE_QTGUI FALSE )
   
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4

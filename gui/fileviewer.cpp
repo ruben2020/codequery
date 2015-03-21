@@ -132,9 +132,11 @@ void fileviewer::init(void)
 	m_textEditSource->clear();
 	m_textEditSource->setWrapMode(QsciScintilla::WrapNone);
 	m_textEditSource->setReadOnly(true);
-	m_markerhandle = m_textEditSource->markerDefine(QsciScintilla::RightArrow);
+	m_markerhandle = m_textEditSource->markerDefine(QsciScintilla::Background);
+	m_markerhandle2 = m_textEditSource->markerDefine(QsciScintilla::RightArrow);
 	m_textEditSource->setMarginType(0, QsciScintilla::NumberMargin);
 	m_textEditSource->setMarginType(1, QsciScintilla::SymbolMargin);
+	m_textEditSource->setBraceMatching(QsciScintilla::SloppyBraceMatch);
 	setLexer(enHighlightCPP);
 	createFontList(); 
 	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),
@@ -565,6 +567,7 @@ void fileviewer::highlightLine(unsigned int num)
 	{
 		num = num - 1; // not sure why it's one off
 		m_textEditSource->markerAdd(num, m_markerhandle);
+		m_textEditSource->markerAdd(num, m_markerhandle2);
 	}
 	m_textEditSource->ensureLineVisible(num);
 }
@@ -610,6 +613,8 @@ void fileviewer::setLexer(int lang)
 
 void fileviewer::replaceLexer(const char* langstr, int lang)
 {
+	QColor markerlinebgcolor;
+	QColor linenumfgcolor;
 	if (strcmp(m_lexer->language(), langstr) != 0)
 	{
 		m_textEditSource->setLexer(NULL);
@@ -644,7 +649,9 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 	if (m_themelast.compare(m_theme) != 0)
 	{
 		m_themelast = m_theme;
-		themes::setTheme(m_theme, lang, m_lexer, m_textEditSourceFont);
+		themes::setTheme(m_theme, lang, m_lexer, m_textEditSourceFont, markerlinebgcolor, linenumfgcolor);
+		m_textEditSource->setMarkerBackgroundColor(markerlinebgcolor, m_markerhandle);
+		m_textEditSource->setMarkerBackgroundColor(linenumfgcolor, m_markerhandle2);
 		m_textEditSource->setMarginsFont(m_textEditSourceFont);
 		//m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->zoomTo(m_fontsize);

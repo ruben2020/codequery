@@ -26,11 +26,22 @@
 
 class QsciLexer;
 
+typedef struct
+{
+	int styleid;
+	const char *fgcolor;
+	const char *bgcolor;
+	int fontstyle;
+}lexstyle;
+
 class themes
 {
 public:
 	static QStringList getThemesList(void);
-	static void setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt);
+	static void setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor);
+
+private:
+	static void setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1);
 };
 
 

@@ -30,244 +30,220 @@ static const char* themelist[] = {
 };
 
 
-static const lexstyle cpp_HotFudgeSundae[] = {
-	{ 9, "C11418", "2b0f01", 0 }, // PREPROCESSOR
-	{ 11, "B7975D", "2b0f01", 0 }, // DEFAULT
-	{ 5, "42A658", "2b0f01", 0 }, // INSTRUCTION WORD
-	{ 16, "cfba28", "2b0f01", 0 }, // TYPE WORD
-	{ 4, "AFA7D6", "2b0f01", 0 }, // NUMBER
-	{ 6, "BCBB80", "2b0f01", 0 }, // STRING
-	{ 7, "BCBB80", "2b0f01", 0 }, // CHARACTER
-	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
-	{ 13, "BCBB80", "2b0f01", 0 }, // VERBATIM
-	{ 14, "0088CE", "2b0f01", 0 }, // REGEX
-	{ 1, "255C08", "2b0f01", 2 }, // COMMENT
-	{ 2, "255C08", "2b0f01", 2 }, // COMMENT LINE
-	{ 3, "255C08", "2b0f01", 2 }, // COMMENT DOC
-	{ 15, "255C08", "2b0f01", 2 }, // COMMENT LINE DOC
-	{ 17, "255C08", "2b0f01", 3 }, // COMMENT DOC KEYWORD
-	{ 18, "ff00ff", "2b0f01", 3 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle global_Monokai[] = {
+	{ 32, "F8F8F2", "272822", 0 }, // Default Style
+	{ 37, "888A85", "272822", 0 }, // Indent guideline style
+	{ 34, "FCE94F", "272822", 1 }, // Brace highlight style
+	{ 35, "EF2929", "272822", 0 }, // Bad brace colour
+	{ 2069, "F8F8F0", "272822", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "EEEEEC", "2E3436", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "F8F8F2", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "F8F8F2", "FF8000", 0 }, // Mark Style 2
+	{ 23, "F8F8F2", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "F8F8F2", "8000FF", 0 }, // Mark Style 4
+	{ 21, "F8F8F2", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
 };
 
-static const lexstyle java_HotFudgeSundae[] = {
-	{ 9, "C11418", "2b0f01", 0 }, // PREPROCESSOR
-	{ 11, "B7975D", "2b0f01", 0 }, // DEFAULT
-	{ 5, "42A658", "2b0f01", 0 }, // INSTRUCTION WORD
-	{ 16, "cfba28", "2b0f01", 0 }, // TYPE WORD
-	{ 4, "AFA7D6", "2b0f01", 0 }, // NUMBER
-	{ 6, "BCBB80", "2b0f01", 0 }, // STRING
-	{ 7, "BCBB80", "2b0f01", 0 }, // CHARACTER
-	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
-	{ 13, "BCBB80", "2b0f01", 0 }, // VERBATIM
-	{ 14, "0088CE", "2b0f01", 0 }, // REGEX
-	{ 1, "255C08", "2b0f01", 2 }, // COMMENT
-	{ 2, "255C08", "2b0f01", 2 }, // COMMENT LINE
-	{ 3, "255C08", "2b0f01", 2 }, // COMMENT DOC
-	{ 15, "255C08", "2b0f01", 2 }, // COMMENT LINE DOC
-	{ 17, "0088CE", "2b0f01", 3 }, // COMMENT DOC KEYWORD
-	{ 18, "ff00ff", "2b0f01", 3 }, // COMMENT DOC KEYWORD ERROR
+
+static const lexstyle cpp_Monokai[] = {
+	{ 9, "F92672", "272822", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F2", "272822", 0 }, // DEFAULT
+	{ 5, "66D9EF", "272822", 0 }, // INSTRUCTION WORD
+	{ 16, "F92672", "272822", 0 }, // TYPE WORD
+	{ 4, "AE81FF", "272822", 0 }, // NUMBER
+	{ 6, "E6DB74", "272822", 0 }, // STRING
+	{ 7, "E6DB74", "272822", 0 }, // CHARACTER
+	{ 10, "F92672", "272822", 0 }, // OPERATOR
+	{ 13, "AE81FF", "272822", 0 }, // VERBATIM
+	{ 14, "E6DB74", "272822", 0 }, // REGEX
+	{ 1, "75715E", "272822", 0 }, // COMMENT
+	{ 2, "75715E", "272822", 0 }, // COMMENT LINE
+	{ 3, "75715E", "272822", 0 }, // COMMENT DOC
+	{ 15, "75715E", "272822", 0 }, // COMMENT LINE DOC
+	{ 17, "75715E", "272822", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "75715E", "272822", 0 }, // COMMENT DOC KEYWORD ERROR
 };
 
-static const lexstyle python_HotFudgeSundae[] = {
-	{ 0, "B7975D", "2b0f01", 0 }, // DEFAULT
-	{ 1, "255C08", "2b0f01", 2 }, // COMMENTLINE
-	{ 2, "AFA7D6", "2b0f01", 0 }, // NUMBER
-	{ 3, "BCBB80", "2b0f01", 0 }, // STRING
-	{ 4, "BCBB80", "2b0f01", 0 }, // CHARACTER
-	{ 5, "42A658", "2b0f01", 0 }, // KEYWORDS
-	{ 6, "BCBB80", "2b0f01", 0 }, // TRIPLE
-	{ 7, "BCBB80", "2b0f01", 0 }, // TRIPLEDOUBLE
-	{ 8, "d92b10", "2b0f01", 0 }, // CLASSNAME
-	{ 9, "d92b10", "2b0f01", 0 }, // DEFNAME
-	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
-	{ 11, "cfba28", "2b0f01", 0 }, // IDENTIFIER
-	{ 12, "255C08", "2b0f01", 2 }, // COMMENTBLOCK
-	{ 12, "255C08", "2b0f01", 0 }, // STRINGEOL
+static const lexstyle java_Monokai[] = {
+	{ 9, "F92672", "272822", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F2", "272822", 0 }, // DEFAULT
+	{ 5, "66D9EF", "272822", 0 }, // INSTRUCTION WORD
+	{ 16, "F92672", "272822", 0 }, // TYPE WORD
+	{ 4, "AE81FF", "272822", 0 }, // NUMBER
+	{ 6, "E6DB74", "272822", 0 }, // STRING
+	{ 7, "E6DB74", "272822", 0 }, // CHARACTER
+	{ 10, "F92672", "272822", 0 }, // OPERATOR
+	{ 13, "AE81FF", "272822", 0 }, // VERBATIM
+	{ 14, "E6DB74", "272822", 0 }, // REGEX
+	{ 1, "75715E", "272822", 0 }, // COMMENT
+	{ 2, "75715E", "272822", 0 }, // COMMENT LINE
+	{ 3, "75715E", "272822", 0 }, // COMMENT DOC
+	{ 15, "75715E", "272822", 0 }, // COMMENT LINE DOC
+	{ 17, "75715E", "272822", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "75715E", "272822", 0 }, // COMMENT DOC KEYWORD ERROR
 };
 
-static const lexstyle ruby_HotFudgeSundae[] = {
-	{ 0, "B7975D", "2b0f01", 0 }, // DEFAULT
-	{ 1, "C11418", "2b0f01", 0 }, // ERROR
-	{ 2, "255C08", "2b0f01", 2 }, // COMMENTLINE
-	{ 3, "B7975D", "2b0f01", 2 }, // POD
-	{ 4, "AFA7D6", "2b0f01", 0 }, // NUMBER
-	{ 5, "42A658", "2b0f01", 0 }, // INSTRUCTION
-	{ 6, "BCBB80", "2b0f01", 0 }, // STRING
-	{ 7, "BCBB80", "2b0f01", 0 }, // CHARACTER
-	{ 8, "cfba28", "2b0f01", 0 }, // CLASS NAME
-	{ 9, "0088CE", "2b0f01", 0 }, // DEF NAME
-	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
-	{ 11, "cfba28", "2b0f01", 0 }, // IDENTIFIER
-	{ 12, "0088CE", "2b0f01", 0 }, // REGEX
-	{ 13, "cfba28", "2b0f01", 0 }, // GLOBAL
-	{ 14, "B7975D", "2b0f01", 0 }, // SYMBOL
-	{ 15, "d92b10", "2b0f01", 0 }, // MODULE NAME
-	{ 16, "cfba28", "2b0f01", 0 }, // INSTANCE VAR
-	{ 17, "B7975D", "2b0f01", 0 }, // CLASS VAR
-	{ 18, "98AE66", "602F1A", 0 }, // BACKTICKS
-	{ 19, "BCBB80", "2b0f01", 0 }, // DATA SECTION
-	{ 24, "BCBB80", "2b0f01", 0 }, // STRING Q
-	{ 25, "0088CE", "2b0f01", 0 }, // BOOLEAN
+static const lexstyle python_Monokai[] = {
+	{ 0, "F8F8F2", "272822", 0 }, // DEFAULT
+	{ 1, "75715E", "272822", 0 }, // COMMENTLINE
+	{ 2, "AE81FF", "272822", 0 }, // NUMBER
+	{ 3, "E6DB74", "272822", 0 }, // STRING
+	{ 4, "E6DB74", "272822", 0 }, // CHARACTER
+	{ 5, "F92672", "272822", 0 }, // KEYWORDS
+	{ 6, "F8F8F2", "272822", 0 }, // TRIPLE
+	{ 7, "F8F8F2", "272822", 0 }, // TRIPLEDOUBLE
+	{ 8, "F8F8F2", "272822", 0 }, // CLASSNAME
+	{ 9, "F8F8F2", "272822", 0 }, // DEFNAME
+	{ 10, "F92672", "272822", 0 }, // OPERATOR
+	{ 11, "66D9EF", "272822", 0 }, // IDENTIFIER
+	{ 12, "75715E", "272822", 0 }, // COMMENTBLOCK
+	{ 12, "E6DB74", "272822", 0 }, // STRINGEOL
 };
 
-static const lexstyle cpp_Solarized_light[] = {
-	{ 9, "DC322F", "FDF6E3", 0 }, // PREPROCESSOR
-	{ 11, "657B83", "FDF6E3", 0 }, // DEFAULT
-	{ 5, "859900", "FDF6E3", 0 }, // INSTRUCTION WORD
-	{ 16, "B58900", "FDF6E3", 0 }, // TYPE WORD
-	{ 4, "2AA198", "FDF6E3", 0 }, // NUMBER
-	{ 6, "2AA198", "FDF6E3", 0 }, // STRING
-	{ 7, "2AA198", "FDF6E3", 0 }, // CHARACTER
-	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
-	{ 13, "2AA198", "FDF6E3", 0 }, // VERBATIM
-	{ 14, "268BD2", "FDF6E3", 0 }, // REGEX
-	{ 1, "93A1A1", "FDF6E3", 2 }, // COMMENT
-	{ 2, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE
-	{ 3, "93A1A1", "FDF6E3", 2 }, // COMMENT DOC
-	{ 15, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE DOC
-	{ 17, "93A1A1", "FDF6E3", 3 }, // COMMENT DOC KEYWORD
-	{ 18, "D33682", "FDF6E3", 3 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle ruby_Monokai[] = {
+	{ 0, "F8F8F2", "272822", 0 }, // DEFAULT
+	{ 1, "F8F8F2", "272822", 0 }, // ERROR
+	{ 2, "75715E", "272822", 0 }, // COMMENTLINE
+	{ 3, "F8F8F2", "272822", 0 }, // POD
+	{ 4, "AE81FF", "272822", 0 }, // NUMBER
+	{ 5, "F92672", "272822", 0 }, // INSTRUCTION
+	{ 6, "E6DB74", "272822", 0 }, // STRING
+	{ 7, "E6DB74", "272822", 0 }, // CHARACTER
+	{ 8, "F8F8F2", "272822", 0 }, // CLASS NAME
+	{ 9, "A6E22E", "272822", 0 }, // DEF NAME
+	{ 10, "F92672", "272822", 0 }, // OPERATOR
+	{ 11, "66D9EF", "272822", 0 }, // IDENTIFIER
+	{ 12, "E6DB74", "272822", 0 }, // REGEX
+	{ 13, "F8F8F2", "272822", 0 }, // GLOBAL
+	{ 14, "F8F8F2", "272822", 0 }, // SYMBOL
+	{ 15, "F8F8F2", "272822", 0 }, // MODULE NAME
+	{ 16, "F8F8F2", "272822", 0 }, // INSTANCE VAR
+	{ 17, "F8F8F2", "272822", 0 }, // CLASS VAR
+	{ 18, "F8F8F2", "272822", 0 }, // BACKTICKS
+	{ 19, "F8F8F2", "272822", 0 }, // DATA SECTION
+	{ 24, "E6DB74", "272822", 0 }, // STRING Q
 };
 
-static const lexstyle java_Solarized_light[] = {
-	{ 9, "DC322F", "FDF6E3", 0 }, // PREPROCESSOR
-	{ 11, "657B83", "FDF6E3", 0 }, // DEFAULT
-	{ 5, "859900", "FDF6E3", 0 }, // INSTRUCTION WORD
-	{ 16, "B58900", "FDF6E3", 0 }, // TYPE WORD
-	{ 4, "2AA198", "FDF6E3", 0 }, // NUMBER
-	{ 6, "2AA198", "FDF6E3", 0 }, // STRING
-	{ 7, "2AA198", "FDF6E3", 0 }, // CHARACTER
-	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
-	{ 13, "2AA198", "FDF6E3", 0 }, // VERBATIM
-	{ 14, "268BD2", "FDF6E3", 0 }, // REGEX
-	{ 1, "93A1A1", "FDF6E3", 2 }, // COMMENT
-	{ 2, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE
-	{ 3, "93A1A1", "FDF6E3", 2 }, // COMMENT DOC
-	{ 15, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE DOC
-	{ 17, "268BD2", "FDF6E3", 3 }, // COMMENT DOC KEYWORD
-	{ 18, "D33682", "FDF6E3", 3 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle global_Bespin[] = {
+	{ 32, "BDAE9D", "2A211C", 0 }, // Default Style
+	{ 37, "888A85", "2A211C", 0 }, // Indent guideline style
+	{ 34, "E5C138", "2A211C", 1 }, // Brace highlight style
+	{ 35, "EF2929", "2A211C", 0 }, // Bad brace colour
+	{ 2069, "37A8ED", "80FF00", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "E5C138", "4C4A41", 0 }, // Line number margin
+	{ 29, "555753", "FF0080", 0 }, // Smart HighLighting
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 25, "BDAE9D", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "FAAA3C", "FF8000", 0 }, // Mark Style 2
+	{ 23, "FFFF80", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "000000", "8000FF", 0 }, // Mark Style 4
+	{ 21, "808080", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "808000", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "808080", 0 }, // Tags attribute
 };
 
-static const lexstyle python_Solarized_light[] = {
-	{ 0, "657B83", "FDF6E3", 0 }, // DEFAULT
-	{ 1, "93A1A1", "FDF6E3", 2 }, // COMMENTLINE
-	{ 2, "2AA198", "FDF6E3", 0 }, // NUMBER
-	{ 3, "2AA198", "FDF6E3", 0 }, // STRING
-	{ 4, "2AA198", "FDF6E3", 0 }, // CHARACTER
-	{ 5, "859900", "FDF6E3", 0 }, // KEYWORDS
-	{ 6, "2AA198", "FDF6E3", 0 }, // TRIPLE
-	{ 7, "2AA198", "FDF6E3", 0 }, // TRIPLEDOUBLE
-	{ 8, "CB4B16", "FDF6E3", 0 }, // CLASSNAME
-	{ 9, "CB4B16", "FDF6E3", 0 }, // DEFNAME
-	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
-	{ 11, "B58900", "FDF6E3", 0 }, // IDENTIFIER
-	{ 12, "93A1A1", "FDF6E3", 2 }, // COMMENTBLOCK
-	{ 12, "93A1A1", "FDF6E3", 0 }, // STRINGEOL
+
+static const lexstyle cpp_Bespin[] = {
+	{ 9, "FFAA00", "2A211C", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F8", "2A211C", 0 }, // DEFAULT
+	{ 5, "F6F080", "2A211C", 0 }, // INSTRUCTION WORD
+	{ 16, "FFAA00", "2A211C", 0 }, // TYPE WORD
+	{ 4, "FF3A83", "2A211C", 0 }, // NUMBER
+	{ 6, "55E439", "2A211C", 0 }, // STRING
+	{ 7, "55E439", "2A211C", 0 }, // CHARACTER
+	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
+	{ 13, "FF3A83", "2A211C", 0 }, // VERBATIM
+	{ 14, "FFB454", "2A211C", 0 }, // REGEX
+	{ 1, "1E9AE0", "2A211C", 0 }, // COMMENT
+	{ 2, "1E9AE0", "2A211C", 0 }, // COMMENT LINE
+	{ 3, "1E9AE0", "2A211C", 0 }, // COMMENT DOC
+	{ 15, "1E9AE0", "2A211C", 0 }, // COMMENT LINE DOC
+	{ 17, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD ERROR
 };
 
-static const lexstyle ruby_Solarized_light[] = {
-	{ 0, "657B83", "FDF6E3", 0 }, // DEFAULT
-	{ 1, "DC322F", "FDF6E3", 0 }, // ERROR
-	{ 2, "93A1A1", "FDF6E3", 2 }, // COMMENTLINE
-	{ 3, "657B83", "FDF6E3", 2 }, // POD
-	{ 4, "2AA198", "FDF6E3", 0 }, // NUMBER
-	{ 5, "859900", "FDF6E3", 0 }, // INSTRUCTION
-	{ 6, "2AA198", "FDF6E3", 0 }, // STRING
-	{ 7, "2AA198", "FDF6E3", 0 }, // CHARACTER
-	{ 8, "B58900", "FDF6E3", 0 }, // CLASS NAME
-	{ 9, "268BD2", "FDF6E3", 0 }, // DEF NAME
-	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
-	{ 11, "B58900", "FDF6E3", 0 }, // IDENTIFIER
-	{ 12, "268BD2", "FDF6E3", 0 }, // REGEX
-	{ 13, "B58900", "FDF6E3", 0 }, // GLOBAL
-	{ 14, "657B83", "FDF6E3", 0 }, // SYMBOL
-	{ 15, "CB4B16", "FDF6E3", 0 }, // MODULE NAME
-	{ 16, "B58900", "FDF6E3", 0 }, // INSTANCE VAR
-	{ 17, "657B83", "FDF6E3", 0 }, // CLASS VAR
-	{ 18, "073642", "6C71C4", 0 }, // BACKTICKS
-	{ 19, "2AA198", "FDF6E3", 0 }, // DATA SECTION
-	{ 24, "2AA198", "FDF6E3", 0 }, // STRING Q
-	{ 25, "268BD2", "FDF6E3", 0 }, // BOOLEAN
+static const lexstyle java_Bespin[] = {
+	{ 9, "FFAA00", "2A211C", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F8", "2A211C", 0 }, // DEFAULT
+	{ 5, "F6F080", "2A211C", 0 }, // INSTRUCTION WORD
+	{ 16, "FFAA00", "2A211C", 0 }, // TYPE WORD
+	{ 4, "FF3A83", "2A211C", 0 }, // NUMBER
+	{ 6, "55E439", "2A211C", 0 }, // STRING
+	{ 7, "55E439", "2A211C", 0 }, // CHARACTER
+	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
+	{ 13, "FF3A83", "2A211C", 0 }, // VERBATIM
+	{ 14, "FFB454", "2A211C", 0 }, // REGEX
+	{ 1, "1E9AE0", "2A211C", 0 }, // COMMENT
+	{ 2, "1E9AE0", "2A211C", 0 }, // COMMENT LINE
+	{ 3, "1E9AE0", "2A211C", 0 }, // COMMENT DOC
+	{ 15, "1E9AE0", "2A211C", 0 }, // COMMENT LINE DOC
+	{ 17, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD ERROR
 };
 
-static const lexstyle cpp_Obsidian[] = {
-	{ 9, "A082BD", "293134", 0 }, // PREPROCESSOR
-	{ 11, "E0E2E4", "293134", 0 }, // DEFAULT
-	{ 5, "93C763", "293134", 1 }, // INSTRUCTION WORD
-	{ 16, "678CB1", "293134", 0 }, // TYPE WORD
-	{ 4, "FFCD22", "293134", 0 }, // NUMBER
-	{ 6, "EC7600", "293134", 0 }, // STRING
-	{ 7, "FF8409", "293134", 0 }, // CHARACTER
-	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
-	{ 13, "E0E2E4", "293134", 0 }, // VERBATIM
-	{ 14, "D39745", "293134", 0 }, // REGEX
-	{ 1, "66747B", "293134", 0 }, // COMMENT
-	{ 2, "66747B", "293134", 0 }, // COMMENT LINE
-	{ 3, "6C788C", "293134", 0 }, // COMMENT DOC
-	{ 15, "6C788C", "293134", 0 }, // COMMENT LINE DOC
-	{ 17, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle python_Bespin[] = {
+	{ 0, "F8F8F8", "2A211C", 0 }, // DEFAULT
+	{ 1, "1E9AE0", "2A211C", 0 }, // COMMENTLINE
+	{ 2, "FF3A83", "2A211C", 0 }, // NUMBER
+	{ 3, "55E439", "2A211C", 0 }, // STRING
+	{ 4, "55E439", "2A211C", 0 }, // CHARACTER
+	{ 5, "FFAA00", "2A211C", 0 }, // KEYWORDS
+	{ 6, "000000", "2A211C", 0 }, // TRIPLE
+	{ 7, "000000", "2A211C", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "2A211C", 0 }, // CLASSNAME
+	{ 9, "000000", "2A211C", 0 }, // DEFNAME
+	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
+	{ 11, "EB939A", "2A211C", 0 }, // IDENTIFIER
+	{ 12, "1E9AE0", "2A211C", 0 }, // COMMENTBLOCK
+	{ 12, "55E439", "2A211C", 0 }, // STRINGEOL
 };
 
-static const lexstyle java_Obsidian[] = {
-	{ 9, "A082BD", "293134", 0 }, // PREPROCESSOR
-	{ 11, "E0E2E4", "293134", 0 }, // DEFAULT
-	{ 5, "93C763", "293134", 1 }, // INSTRUCTION WORD
-	{ 16, "678CB1", "293134", 0 }, // TYPE WORD
-	{ 4, "FFCD22", "293134", 0 }, // NUMBER
-	{ 6, "EC7600", "293134", 0 }, // STRING
-	{ 7, "FF8409", "293134", 0 }, // CHARACTER
-	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
-	{ 13, "E0E2E4", "293134", 0 }, // VERBATIM
-	{ 14, "D39745", "293134", 0 }, // REGEX
-	{ 1, "66747B", "293134", 0 }, // COMMENT
-	{ 2, "66747B", "293134", 0 }, // COMMENT LINE
-	{ 3, "6C788C", "293134", 0 }, // COMMENT DOC
-	{ 15, "6C788C", "293134", 0 }, // COMMENT LINE DOC
-	{ 17, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle ruby_Bespin[] = {
+	{ 0, "F8F8F8", "2A211C", 0 }, // DEFAULT
+	{ 1, "000000", "2A211C", 0 }, // ERROR
+	{ 2, "1E9AE0", "2A211C", 0 }, // COMMENTLINE
+	{ 3, "000000", "2A211C", 0 }, // POD
+	{ 4, "FF3A83", "2A211C", 0 }, // NUMBER
+	{ 5, "FFAA00", "2A211C", 0 }, // INSTRUCTION
+	{ 6, "55E439", "2A211C", 0 }, // STRING
+	{ 7, "55E439", "2A211C", 0 }, // CHARACTER
+	{ 8, "EFE900", "2A211C", 0 }, // CLASS NAME
+	{ 9, "EFE900", "2A211C", 0 }, // DEF NAME
+	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
+	{ 11, "EB939A", "2A211C", 0 }, // IDENTIFIER
+	{ 12, "FFB454", "2A211C", 0 }, // REGEX
+	{ 13, "FB9A4B", "2A211C", 0 }, // GLOBAL
+	{ 14, "F8F8F8", "2A211C", 0 }, // SYMBOL
+	{ 15, "000000", "2A211C", 0 }, // MODULE NAME
+	{ 16, "FB9A4B", "2A211C", 0 }, // INSTANCE VAR
+	{ 17, "000000", "2A211C", 0 }, // CLASS VAR
+	{ 18, "000000", "2A211C", 0 }, // BACKTICKS
+	{ 19, "000000", "2A211C", 0 }, // DATA SECTION
+	{ 24, "55E439", "2A211C", 0 }, // STRING Q
 };
 
-static const lexstyle python_Obsidian[] = {
-	{ 0, "E0E2E4", "293134", 0 }, // DEFAULT
-	{ 1, "66747B", "293134", 0 }, // COMMENTLINE
-	{ 2, "FFCD22", "293134", 0 }, // NUMBER
-	{ 3, "EC7600", "293134", 0 }, // STRING
-	{ 4, "FF8409", "293134", 0 }, // CHARACTER
-	{ 5, "93C763", "293134", 1 }, // KEYWORDS
-	{ 6, "66747B", "293134", 0 }, // TRIPLE
-	{ 7, "66747B", "293134", 0 }, // TRIPLEDOUBLE
-	{ 8, "A082BD", "293134", 1 }, // CLASSNAME
-	{ 9, "678CB1", "293134", 1 }, // DEFNAME
-	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
-	{ 11, "E0E2E4", "293134", 0 }, // IDENTIFIER
-	{ 12, "66747B", "293134", 0 }, // COMMENTBLOCK
-	{ 12, "E0E2E4", "293134", 0 }, // STRINGEOL
+static const lexstyle global_vim_Dark_Blue[] = {
+	{ 32, "FFFFBF", "000040", 0 }, // Default Style
+	{ 37, "808080", "000040", 0 }, // Indent guideline style
+	{ 34, "80FF80", "000040", 1 }, // Brace highlight style
+	{ 35, "FF8000", "000040", 0 }, // Bad brace colour
+	{ 2069, "FFFF00", "000040", 0 }, // Caret colour
+	{ 31, "FFFF00", "000040", 1 }, // Find Mark Style
+	{ 33, "FFFFFF", "000040", 0 }, // Line number margin
+	{ 29, "FFFFBF", "2050D0", 0 }, // Smart HighLighting
+	{ 28, "FFFFBF", "008000", 0 }, // Incremental highlight all
+	{ 27, "FFFFBF", "000040", 0 }, // Tags match highlighting
+	{ 26, "FFFFBF", "000040", 0 }, // Tags attribute
 };
 
-static const lexstyle ruby_Obsidian[] = {
-	{ 0, "E0E2E4", "293134", 0 }, // DEFAULT
-	{ 1, "E0E2E4", "293134", 0 }, // ERROR
-	{ 2, "66747B", "293134", 0 }, // COMMENTLINE
-	{ 3, "E0E2E4", "293134", 0 }, // POD
-	{ 4, "FFCD22", "293134", 0 }, // NUMBER
-	{ 5, "93C763", "293134", 1 }, // INSTRUCTION
-	{ 6, "EC7600", "293134", 0 }, // STRING
-	{ 7, "FF8409", "293134", 0 }, // CHARACTER
-	{ 8, "A082BD", "293134", 1 }, // CLASS NAME
-	{ 9, "678CB1", "293134", 1 }, // DEF NAME
-	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
-	{ 11, "E0E2E4", "293134", 0 }, // IDENTIFIER
-	{ 12, "D39745", "293134", 0 }, // REGEX
-	{ 13, "E0E2E4", "293134", 0 }, // GLOBAL
-	{ 14, "E0E2E4", "293134", 0 }, // SYMBOL
-	{ 15, "E0E2E4", "293134", 0 }, // MODULE NAME
-	{ 16, "B6C8DA", "293134", 0 }, // INSTANCE VAR
-	{ 17, "E0E2E4", "293134", 0 }, // CLASS VAR
-	{ 18, "E0E2E4", "293134", 0 }, // BACKTICKS
-	{ 19, "E0E2E4", "293134", 0 }, // DATA SECTION
-	{ 24, "E0E2E4", "293134", 0 }, // STRING Q
-};
 
 static const lexstyle cpp_vim_Dark_Blue[] = {
 	{ 9, "FFFFFF", "000040", 0 }, // PREPROCESSOR
@@ -347,6 +323,126 @@ static const lexstyle ruby_vim_Dark_Blue[] = {
 	{ 19, "600000", "000040", 0 }, // DATA SECTION
 	{ 24, "808080", "000040", 0 }, // STRING Q
 };
+
+static const lexstyle global_Black_board[] = {
+	{ 32, "F8F8F8", "0C1021", 0 }, // Default Style
+	{ 37, "888A85", "0C1021", 0 }, // Indent guideline style
+	{ 34, "FCE94F", "0C1021", 1 }, // Brace highlight style
+	{ 35, "EF2929", "0C1021", 0 }, // Bad brace colour
+	{ 2069, "FFFFFF", "112435", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "EEEEEC", "2E3436", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "F8F8F8", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "F8F8F8", "FF8000", 0 }, // Mark Style 2
+	{ 23, "F8F8F8", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "F8F8F8", "8000FF", 0 }, // Mark Style 4
+	{ 21, "F8F8F8", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Black_board[] = {
+	{ 9, "FBDE2D", "0C1021", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F8", "0C1021", 0 }, // DEFAULT
+	{ 5, "FBDE2D", "0C1021", 0 }, // INSTRUCTION WORD
+	{ 16, "FBDE2D", "0C1021", 0 }, // TYPE WORD
+	{ 4, "D8FA3C", "0C1021", 0 }, // NUMBER
+	{ 6, "61CE3C", "0C1021", 0 }, // STRING
+	{ 7, "61CE3C", "0C1021", 0 }, // CHARACTER
+	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
+	{ 13, "D8FA3C", "0C1021", 0 }, // VERBATIM
+	{ 14, "61CE3C", "0C1021", 0 }, // REGEX
+	{ 1, "AEAEAE", "0C1021", 0 }, // COMMENT
+	{ 2, "AEAEAE", "0C1021", 0 }, // COMMENT LINE
+	{ 3, "AEAEAE", "0C1021", 0 }, // COMMENT DOC
+	{ 15, "AEAEAE", "0C1021", 0 }, // COMMENT LINE DOC
+	{ 17, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Black_board[] = {
+	{ 9, "FBDE2D", "0C1021", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F8", "0C1021", 0 }, // DEFAULT
+	{ 5, "FBDE2D", "0C1021", 0 }, // INSTRUCTION WORD
+	{ 16, "FBDE2D", "0C1021", 0 }, // TYPE WORD
+	{ 4, "D8FA3C", "0C1021", 0 }, // NUMBER
+	{ 6, "61CE3C", "0C1021", 0 }, // STRING
+	{ 7, "61CE3C", "0C1021", 0 }, // CHARACTER
+	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
+	{ 13, "D8FA3C", "0C1021", 0 }, // VERBATIM
+	{ 14, "61CE3C", "0C1021", 0 }, // REGEX
+	{ 1, "AEAEAE", "0C1021", 0 }, // COMMENT
+	{ 2, "AEAEAE", "0C1021", 0 }, // COMMENT LINE
+	{ 3, "AEAEAE", "0C1021", 0 }, // COMMENT DOC
+	{ 15, "AEAEAE", "0C1021", 0 }, // COMMENT LINE DOC
+	{ 17, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Black_board[] = {
+	{ 0, "F8F8F8", "0C1021", 0 }, // DEFAULT
+	{ 1, "AEAEAE", "0C1021", 0 }, // COMMENTLINE
+	{ 2, "D8FA3C", "0C1021", 0 }, // NUMBER
+	{ 3, "61CE3C", "0C1021", 0 }, // STRING
+	{ 4, "61CE3C", "0C1021", 0 }, // CHARACTER
+	{ 5, "FBDE2D", "0C1021", 0 }, // KEYWORDS
+	{ 6, "000000", "0C1021", 0 }, // TRIPLE
+	{ 7, "000000", "0C1021", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "0C1021", 0 }, // CLASSNAME
+	{ 9, "000000", "0C1021", 0 }, // DEFNAME
+	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
+	{ 11, "8DA6CE", "0C1021", 0 }, // IDENTIFIER
+	{ 12, "AEAEAE", "0C1021", 0 }, // COMMENTBLOCK
+	{ 12, "61CE3C", "0C1021", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Black_board[] = {
+	{ 0, "F8F8F8", "0C1021", 0 }, // DEFAULT
+	{ 1, "000000", "0C1021", 0 }, // ERROR
+	{ 2, "AEAEAE", "0C1021", 0 }, // COMMENTLINE
+	{ 3, "000000", "0C1021", 0 }, // POD
+	{ 4, "D8FA3C", "0C1021", 0 }, // NUMBER
+	{ 5, "FBDE2D", "0C1021", 0 }, // INSTRUCTION
+	{ 6, "61CE3C", "0C1021", 0 }, // STRING
+	{ 7, "61CE3C", "0C1021", 0 }, // CHARACTER
+	{ 8, "FF6400", "0C1021", 0 }, // CLASS NAME
+	{ 9, "FF6400", "0C1021", 0 }, // DEF NAME
+	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
+	{ 11, "8DA6CE", "0C1021", 0 }, // IDENTIFIER
+	{ 12, "61CE3C", "0C1021", 0 }, // REGEX
+	{ 13, "F8F8F8", "0C1021", 0 }, // GLOBAL
+	{ 14, "F8F8F8", "0C1021", 0 }, // SYMBOL
+	{ 15, "000000", "0C1021", 0 }, // MODULE NAME
+	{ 16, "F8F8F8", "0C1021", 0 }, // INSTANCE VAR
+	{ 17, "000000", "0C1021", 0 }, // CLASS VAR
+	{ 18, "000000", "0C1021", 0 }, // BACKTICKS
+	{ 19, "000000", "0C1021", 0 }, // DATA SECTION
+	{ 24, "61CE3C", "0C1021", 0 }, // STRING Q
+};
+
+static const lexstyle global_Solarized[] = {
+	{ 32, "839496", "002B36", 0 }, // Default Style
+	{ 37, "586E75", "002B36", 0 }, // Indent guideline style
+	{ 34, "DC322F", "859900", 1 }, // Brace highlight style
+	{ 35, "D33682", "002B36", 0 }, // Bad brace colour
+	{ 2069, "EEE8D5", "002B36", 0 }, // Caret colour
+	{ 33, "586E75", "073642", 0 }, // Line number margin
+	{ 29, "839496", "FDF6E3", 0 }, // Smart HighLighting
+	{ 31, "839496", "6C71C4", 0 }, // Find Mark Style
+	{ 25, "839496", "DC322F", 0 }, // Mark Style 1
+	{ 24, "839496", "268BD2", 0 }, // Mark Style 2
+	{ 23, "839496", "2AA198", 0 }, // Mark Style 3
+	{ 22, "839496", "859900", 0 }, // Mark Style 4
+	{ 21, "839496", "B58900", 0 }, // Mark Style 5
+	{ 28, "839496", "002B36", 0 }, // Incremental highlight all
+	{ 27, "839496", "CB4B16", 0 }, // Tags match highlighting
+	{ 26, "839496", "CB4B16", 0 }, // Tags attribute
+};
+
 
 static const lexstyle cpp_Solarized[] = {
 	{ 9, "DC322F", "002B36", 0 }, // PREPROCESSOR
@@ -428,480 +524,25 @@ static const lexstyle ruby_Solarized[] = {
 	{ 25, "268BD2", "002B36", 0 }, // BOOLEAN
 };
 
-static const lexstyle cpp_Twilight[] = {
-	{ 9, "8996A8", "141414", 0 }, // PREPROCESSOR
-	{ 11, "F8F8F8", "141414", 0 }, // DEFAULT
-	{ 5, "F9EE98", "141414", 0 }, // INSTRUCTION WORD
-	{ 16, "CDA869", "141414", 0 }, // TYPE WORD
-	{ 4, "CF6A4C", "141414", 0 }, // NUMBER
-	{ 6, "8F9D6A", "141414", 0 }, // STRING
-	{ 7, "8F9D6A", "141414", 0 }, // CHARACTER
-	{ 10, "CDA869", "141414", 0 }, // OPERATOR
-	{ 13, "CF6A4C", "141414", 0 }, // VERBATIM
-	{ 14, "E9C062", "141414", 0 }, // REGEX
-	{ 1, "5F5A60", "141414", 0 }, // COMMENT
-	{ 2, "5F5A60", "141414", 0 }, // COMMENT LINE
-	{ 3, "5F5A60", "141414", 0 }, // COMMENT DOC
-	{ 15, "5F5A60", "141414", 0 }, // COMMENT LINE DOC
-	{ 17, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle global_khaki[] = {
+	{ 32, "5f5f00", "d7d7af", 0 }, // Default Style
+	{ 37, "afaf87", "d7d7af", 0 }, // Indent guideline style
+	{ 34, "d7d7af", "005f00", 1 }, // Brace highlight style
+	{ 35, "ff005f", "d7d7af", 0 }, // Bad brace colour
+	{ 2069, "5f5f00", "d7d7af", 0 }, // Caret colour
+	{ 33, "5f5f00", "afaf87", 0 }, // Line number margin
+	{ 29, "5f5f00", "d7ff87", 0 }, // Smart HighLighting
+	{ 31, "5f5f00", "d7ff87", 0 }, // Find Mark Style
+	{ 25, "5f5f00", "af5f00", 0 }, // Mark Style 1
+	{ 24, "5f5f00", "005f5f", 0 }, // Mark Style 2
+	{ 23, "5f5f00", "afaf87", 0 }, // Mark Style 3
+	{ 22, "5f5f00", "87005f", 0 }, // Mark Style 4
+	{ 21, "5f5f00", "d7ff87", 0 }, // Mark Style 5
+	{ 28, "5f5f00", "d7ff87", 0 }, // Incremental highlight all
+	{ 27, "5f5f00", "afff87", 0 }, // Tags match highlighting
+	{ 26, "5f5f00", "5faf5f", 0 }, // Tags attribute
 };
 
-static const lexstyle java_Twilight[] = {
-	{ 9, "8996A8", "141414", 0 }, // PREPROCESSOR
-	{ 11, "F8F8F8", "141414", 0 }, // DEFAULT
-	{ 5, "F9EE98", "141414", 0 }, // INSTRUCTION WORD
-	{ 16, "CDA869", "141414", 0 }, // TYPE WORD
-	{ 4, "CF6A4C", "141414", 0 }, // NUMBER
-	{ 6, "8F9D6A", "141414", 0 }, // STRING
-	{ 7, "8F9D6A", "141414", 0 }, // CHARACTER
-	{ 10, "CDA869", "141414", 0 }, // OPERATOR
-	{ 13, "CF6A4C", "141414", 0 }, // VERBATIM
-	{ 14, "E9C062", "141414", 0 }, // REGEX
-	{ 1, "5F5A60", "141414", 0 }, // COMMENT
-	{ 2, "5F5A60", "141414", 0 }, // COMMENT LINE
-	{ 3, "5F5A60", "141414", 0 }, // COMMENT DOC
-	{ 15, "5F5A60", "141414", 0 }, // COMMENT LINE DOC
-	{ 17, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Twilight[] = {
-	{ 0, "F8F8F8", "141414", 0 }, // DEFAULT
-	{ 1, "5F5A60", "141414", 0 }, // COMMENTLINE
-	{ 2, "CF6A4C", "141414", 0 }, // NUMBER
-	{ 3, "8F9D6A", "141414", 0 }, // STRING
-	{ 4, "8F9D6A", "141414", 0 }, // CHARACTER
-	{ 5, "CDA869", "141414", 0 }, // KEYWORDS
-	{ 6, "8F9D6A", "141414", 0 }, // TRIPLE
-	{ 7, "8F9D6A", "141414", 0 }, // TRIPLEDOUBLE
-	{ 8, "F8F8F8", "141414", 0 }, // CLASSNAME
-	{ 9, "F8F8F8", "141414", 0 }, // DEFNAME
-	{ 10, "CDA869", "141414", 0 }, // OPERATOR
-	{ 11, "CF6A4C", "141414", 0 }, // IDENTIFIER
-	{ 12, "5F5A60", "141414", 0 }, // COMMENTBLOCK
-	{ 12, "8F9D6A", "141414", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Twilight[] = {
-	{ 0, "F8F8F8", "141414", 0 }, // DEFAULT
-	{ 1, "000000", "141414", 0 }, // ERROR
-	{ 2, "5F5A60", "141414", 0 }, // COMMENTLINE
-	{ 3, "000000", "141414", 0 }, // POD
-	{ 4, "CF6A4C", "141414", 0 }, // NUMBER
-	{ 5, "CDA869", "141414", 0 }, // INSTRUCTION
-	{ 6, "8F9D6A", "141414", 0 }, // STRING
-	{ 7, "8F9D6A", "141414", 0 }, // CHARACTER
-	{ 8, "9B703F", "141414", 0 }, // CLASS NAME
-	{ 9, "9B703F", "141414", 0 }, // DEF NAME
-	{ 10, "CDA869", "141414", 0 }, // OPERATOR
-	{ 11, "CF6A4C", "141414", 0 }, // IDENTIFIER
-	{ 12, "E9C062", "141414", 0 }, // REGEX
-	{ 13, "7587A6", "141414", 0 }, // GLOBAL
-	{ 14, "F8F8F8", "141414", 0 }, // SYMBOL
-	{ 15, "9B703F", "141414", 0 }, // MODULE NAME
-	{ 16, "7587A6", "141414", 0 }, // INSTANCE VAR
-	{ 17, "000000", "141414", 0 }, // CLASS VAR
-	{ 18, "000000", "141414", 0 }, // BACKTICKS
-	{ 19, "000000", "141414", 0 }, // DATA SECTION
-	{ 24, "8F9D6A", "141414", 0 }, // STRING Q
-};
-
-static const lexstyle cpp_MossyLawn[] = {
-	{ 9, "a32129", "6c7d51", 0 }, // PREPROCESSOR
-	{ 11, "f2c476", "6c7d51", 0 }, // DEFAULT
-	{ 5, "cbe248", "6c7d51", 0 }, // INSTRUCTION WORD
-	{ 16, "efc53d", "6c7d51", 0 }, // TYPE WORD
-	{ 4, "ffdc87", "6c7d51", 0 }, // NUMBER
-	{ 6, "ffdc87", "6c7d51", 0 }, // STRING
-	{ 7, "ffdc87", "6c7d51", 0 }, // CHARACTER
-	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
-	{ 13, "ffdc87", "6c7d51", 0 }, // VERBATIM
-	{ 14, "afcf90", "6c7d51", 0 }, // REGEX
-	{ 1, "2a390e", "6c7d51", 2 }, // COMMENT
-	{ 2, "2a390e", "6c7d51", 2 }, // COMMENT LINE
-	{ 3, "2a390e", "6c7d51", 2 }, // COMMENT DOC
-	{ 15, "2a390e", "6c7d51", 2 }, // COMMENT LINE DOC
-	{ 17, "2a390e", "6c7d51", 3 }, // COMMENT DOC KEYWORD
-	{ 18, "981f0e", "fdd64a", 3 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_MossyLawn[] = {
-	{ 9, "a32129", "6c7d51", 0 }, // PREPROCESSOR
-	{ 11, "f2c476", "6c7d51", 0 }, // DEFAULT
-	{ 5, "cbe248", "6c7d51", 0 }, // INSTRUCTION WORD
-	{ 16, "efc53d", "6c7d51", 0 }, // TYPE WORD
-	{ 4, "ffdc87", "6c7d51", 0 }, // NUMBER
-	{ 6, "ffdc87", "6c7d51", 0 }, // STRING
-	{ 7, "ffdc87", "6c7d51", 0 }, // CHARACTER
-	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
-	{ 13, "ffdc87", "6c7d51", 0 }, // VERBATIM
-	{ 14, "afcf90", "6c7d51", 0 }, // REGEX
-	{ 1, "2a390e", "6c7d51", 2 }, // COMMENT
-	{ 2, "2a390e", "6c7d51", 2 }, // COMMENT LINE
-	{ 3, "2a390e", "6c7d51", 2 }, // COMMENT DOC
-	{ 15, "2a390e", "6c7d51", 2 }, // COMMENT LINE DOC
-	{ 17, "afcf90", "6c7d51", 3 }, // COMMENT DOC KEYWORD
-	{ 18, "981f0e", "fdd64a", 3 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_MossyLawn[] = {
-	{ 0, "f2c476", "6c7d51", 0 }, // DEFAULT
-	{ 1, "2a390e", "6c7d51", 2 }, // COMMENTLINE
-	{ 2, "ffdc87", "6c7d51", 0 }, // NUMBER
-	{ 3, "ffdc87", "6c7d51", 0 }, // STRING
-	{ 4, "ffdc87", "6c7d51", 0 }, // CHARACTER
-	{ 5, "cbe248", "6c7d51", 0 }, // KEYWORDS
-	{ 6, "ffdc87", "6c7d51", 0 }, // TRIPLE
-	{ 7, "ffdc87", "6c7d51", 0 }, // TRIPLEDOUBLE
-	{ 8, "a32129", "6c7d51", 0 }, // CLASSNAME
-	{ 9, "a32129", "6c7d51", 0 }, // DEFNAME
-	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
-	{ 11, "efc53d", "6c7d51", 0 }, // IDENTIFIER
-	{ 12, "2a390e", "6c7d51", 2 }, // COMMENTBLOCK
-	{ 12, "2a390e", "6c7d51", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_MossyLawn[] = {
-	{ 0, "f2c476", "6c7d51", 0 }, // DEFAULT
-	{ 1, "a32129", "6c7d51", 0 }, // ERROR
-	{ 2, "2a390e", "6c7d51", 2 }, // COMMENTLINE
-	{ 3, "f2c476", "6c7d51", 2 }, // POD
-	{ 4, "ffdc87", "6c7d51", 0 }, // NUMBER
-	{ 5, "cbe248", "6c7d51", 0 }, // INSTRUCTION
-	{ 6, "ffdc87", "6c7d51", 0 }, // STRING
-	{ 7, "ffdc87", "6c7d51", 0 }, // CHARACTER
-	{ 8, "efc53d", "6c7d51", 0 }, // CLASS NAME
-	{ 9, "afcf90", "6c7d51", 0 }, // DEF NAME
-	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
-	{ 11, "efc53d", "6c7d51", 0 }, // IDENTIFIER
-	{ 12, "afcf90", "6c7d51", 0 }, // REGEX
-	{ 13, "efc53d", "6c7d51", 0 }, // GLOBAL
-	{ 14, "f2c476", "6c7d51", 0 }, // SYMBOL
-	{ 15, "a32129", "6c7d51", 0 }, // MODULE NAME
-	{ 16, "efc53d", "6c7d51", 0 }, // INSTANCE VAR
-	{ 17, "f2c476", "6c7d51", 0 }, // CLASS VAR
-	{ 18, "bfb8c4", "7e8a28", 0 }, // BACKTICKS
-	{ 19, "ffdc87", "6c7d51", 0 }, // DATA SECTION
-	{ 24, "ffdc87", "6c7d51", 0 }, // STRING Q
-	{ 25, "afcf90", "6c7d51", 0 }, // BOOLEAN
-};
-
-static const lexstyle cpp_Black_board[] = {
-	{ 9, "FBDE2D", "0C1021", 0 }, // PREPROCESSOR
-	{ 11, "F8F8F8", "0C1021", 0 }, // DEFAULT
-	{ 5, "FBDE2D", "0C1021", 0 }, // INSTRUCTION WORD
-	{ 16, "FBDE2D", "0C1021", 0 }, // TYPE WORD
-	{ 4, "D8FA3C", "0C1021", 0 }, // NUMBER
-	{ 6, "61CE3C", "0C1021", 0 }, // STRING
-	{ 7, "61CE3C", "0C1021", 0 }, // CHARACTER
-	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
-	{ 13, "D8FA3C", "0C1021", 0 }, // VERBATIM
-	{ 14, "61CE3C", "0C1021", 0 }, // REGEX
-	{ 1, "AEAEAE", "0C1021", 0 }, // COMMENT
-	{ 2, "AEAEAE", "0C1021", 0 }, // COMMENT LINE
-	{ 3, "AEAEAE", "0C1021", 0 }, // COMMENT DOC
-	{ 15, "AEAEAE", "0C1021", 0 }, // COMMENT LINE DOC
-	{ 17, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_Black_board[] = {
-	{ 9, "FBDE2D", "0C1021", 0 }, // PREPROCESSOR
-	{ 11, "F8F8F8", "0C1021", 0 }, // DEFAULT
-	{ 5, "FBDE2D", "0C1021", 0 }, // INSTRUCTION WORD
-	{ 16, "FBDE2D", "0C1021", 0 }, // TYPE WORD
-	{ 4, "D8FA3C", "0C1021", 0 }, // NUMBER
-	{ 6, "61CE3C", "0C1021", 0 }, // STRING
-	{ 7, "61CE3C", "0C1021", 0 }, // CHARACTER
-	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
-	{ 13, "D8FA3C", "0C1021", 0 }, // VERBATIM
-	{ 14, "61CE3C", "0C1021", 0 }, // REGEX
-	{ 1, "AEAEAE", "0C1021", 0 }, // COMMENT
-	{ 2, "AEAEAE", "0C1021", 0 }, // COMMENT LINE
-	{ 3, "AEAEAE", "0C1021", 0 }, // COMMENT DOC
-	{ 15, "AEAEAE", "0C1021", 0 }, // COMMENT LINE DOC
-	{ 17, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "AEAEAE", "0C1021", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Black_board[] = {
-	{ 0, "F8F8F8", "0C1021", 0 }, // DEFAULT
-	{ 1, "AEAEAE", "0C1021", 0 }, // COMMENTLINE
-	{ 2, "D8FA3C", "0C1021", 0 }, // NUMBER
-	{ 3, "61CE3C", "0C1021", 0 }, // STRING
-	{ 4, "61CE3C", "0C1021", 0 }, // CHARACTER
-	{ 5, "FBDE2D", "0C1021", 0 }, // KEYWORDS
-	{ 6, "000000", "0C1021", 0 }, // TRIPLE
-	{ 7, "000000", "0C1021", 0 }, // TRIPLEDOUBLE
-	{ 8, "000000", "0C1021", 0 }, // CLASSNAME
-	{ 9, "000000", "0C1021", 0 }, // DEFNAME
-	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
-	{ 11, "8DA6CE", "0C1021", 0 }, // IDENTIFIER
-	{ 12, "AEAEAE", "0C1021", 0 }, // COMMENTBLOCK
-	{ 12, "61CE3C", "0C1021", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Black_board[] = {
-	{ 0, "F8F8F8", "0C1021", 0 }, // DEFAULT
-	{ 1, "000000", "0C1021", 0 }, // ERROR
-	{ 2, "AEAEAE", "0C1021", 0 }, // COMMENTLINE
-	{ 3, "000000", "0C1021", 0 }, // POD
-	{ 4, "D8FA3C", "0C1021", 0 }, // NUMBER
-	{ 5, "FBDE2D", "0C1021", 0 }, // INSTRUCTION
-	{ 6, "61CE3C", "0C1021", 0 }, // STRING
-	{ 7, "61CE3C", "0C1021", 0 }, // CHARACTER
-	{ 8, "FF6400", "0C1021", 0 }, // CLASS NAME
-	{ 9, "FF6400", "0C1021", 0 }, // DEF NAME
-	{ 10, "FBDE2D", "0C1021", 0 }, // OPERATOR
-	{ 11, "8DA6CE", "0C1021", 0 }, // IDENTIFIER
-	{ 12, "61CE3C", "0C1021", 0 }, // REGEX
-	{ 13, "F8F8F8", "0C1021", 0 }, // GLOBAL
-	{ 14, "F8F8F8", "0C1021", 0 }, // SYMBOL
-	{ 15, "000000", "0C1021", 0 }, // MODULE NAME
-	{ 16, "F8F8F8", "0C1021", 0 }, // INSTANCE VAR
-	{ 17, "000000", "0C1021", 0 }, // CLASS VAR
-	{ 18, "000000", "0C1021", 0 }, // BACKTICKS
-	{ 19, "000000", "0C1021", 0 }, // DATA SECTION
-	{ 24, "61CE3C", "0C1021", 0 }, // STRING Q
-};
-
-static const lexstyle cpp_Deep_Black[] = {
-	{ 9, "C0C0C0", "000000", 0 }, // PREPROCESSOR
-	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
-	{ 16, "00FFFF", "000000", 1 }, // TYPE WORD
-	{ 4, "FF8000", "000000", 0 }, // NUMBER
-	{ 6, "FFFF00", "000000", 0 }, // STRING
-	{ 7, "FF8080", "000000", 0 }, // CHARACTER
-	{ 10, "FFCC00", "000000", 0 }, // OPERATOR
-	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
-	{ 14, "FFFFFF", "000000", 1 }, // REGEX
-	{ 1, "00FF00", "000000", 2 }, // COMMENT
-	{ 2, "00FF00", "000000", 2 }, // COMMENT LINE
-	{ 3, "00FF00", "000000", 2 }, // COMMENT DOC
-	{ 15, "00FF00", "000000", 2 }, // COMMENT LINE DOC
-	{ 17, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD
-	{ 18, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_Deep_Black[] = {
-	{ 9, "EDF8F9", "000000", 0 }, // PREPROCESSOR
-	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
-	{ 16, "66FF00", "000000", 0 }, // TYPE WORD
-	{ 4, "FF8000", "000000", 0 }, // NUMBER
-	{ 6, "66FF00", "000000", 0 }, // STRING
-	{ 7, "66FF00", "000000", 0 }, // CHARACTER
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
-	{ 14, "FFFFFF", "000000", 1 }, // REGEX
-	{ 1, "00FF00", "000000", 2 }, // COMMENT
-	{ 2, "00FF00", "000000", 2 }, // COMMENT LINE
-	{ 3, "00FF00", "000000", 2 }, // COMMENT DOC
-	{ 15, "00FF00", "000000", 2 }, // COMMENT LINE DOC
-	{ 17, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD
-	{ 18, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Deep_Black[] = {
-	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 1, "00FF00", "000000", 2 }, // COMMENTLINE
-	{ 2, "99CC99", "000000", 0 }, // NUMBER
-	{ 3, "66FF00", "000000", 0 }, // STRING
-	{ 4, "66FF00", "000000", 0 }, // CHARACTER
-	{ 5, "FF6600", "000000", 1 }, // KEYWORDS
-	{ 6, "FF8000", "000000", 0 }, // TRIPLE
-	{ 7, "FFFFFF", "000000", 0 }, // TRIPLEDOUBLE
-	{ 8, "FFFFFF", "000000", 1 }, // CLASSNAME
-	{ 9, "FF00FF", "000000", 0 }, // DEFNAME
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
-	{ 12, "00FF00", "000000", 2 }, // COMMENTBLOCK
-	{ 12, "FFFF00", "000000", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Deep_Black[] = {
-	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 1, "FFFFFF", "000000", 0 }, // ERROR
-	{ 2, "00FF00", "000000", 2 }, // COMMENTLINE
-	{ 3, "004000", "C0FFC0", 0 }, // POD
-	{ 4, "FF8000", "000000", 0 }, // NUMBER
-	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION
-	{ 6, "66FF00", "000000", 0 }, // STRING
-	{ 7, "808000", "000000", 0 }, // CHARACTER
-	{ 8, "0080C0", "000000", 1 }, // CLASS NAME
-	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
-	{ 12, "339999", "000000", 0 }, // REGEX
-	{ 13, "FFCC00", "000000", 1 }, // GLOBAL
-	{ 14, "FFFFFF", "000000", 0 }, // SYMBOL
-	{ 15, "EDF8F9", "000000", 1 }, // MODULE NAME
-	{ 16, "FFFFFF", "000000", 0 }, // INSTANCE VAR
-	{ 17, "FFFFFF", "000000", 0 }, // CLASS VAR
-	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
-	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
-	{ 24, "66FF00", "000000", 0 }, // STRING Q
-};
-
-static const lexstyle cpp_Choco[] = {
-	{ 9, "8996A8", "1A0F0B", 0 }, // PREPROCESSOR
-	{ 11, "C3BE98", "1A0F0B", 0 }, // DEFAULT
-	{ 5, "F1E694", "1A0F0B", 0 }, // INSTRUCTION WORD
-	{ 16, "B3935C", "1A0F0B", 0 }, // TYPE WORD
-	{ 4, "DA5659", "1A0F0B", 0 }, // NUMBER
-	{ 6, "7CA563", "1A0F0B", 0 }, // STRING
-	{ 7, "7CA563", "1A0F0B", 0 }, // CHARACTER
-	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
-	{ 13, "DA5659", "1A0F0B", 0 }, // VERBATIM
-	{ 14, "E9C062", "1A0F0B", 0 }, // REGEX
-	{ 1, "679D47", "1A0F0B", 0 }, // COMMENT
-	{ 2, "679D47", "1A0F0B", 0 }, // COMMENT LINE
-	{ 3, "679D47", "1A0F0B", 0 }, // COMMENT DOC
-	{ 15, "679D47", "1A0F0B", 0 }, // COMMENT LINE DOC
-	{ 17, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_Choco[] = {
-	{ 9, "8996A8", "1A0F0B", 0 }, // PREPROCESSOR
-	{ 11, "C3BE98", "1A0F0B", 0 }, // DEFAULT
-	{ 5, "F1E694", "1A0F0B", 0 }, // INSTRUCTION WORD
-	{ 16, "B3935C", "1A0F0B", 0 }, // TYPE WORD
-	{ 4, "DA5659", "1A0F0B", 0 }, // NUMBER
-	{ 6, "7CA563", "1A0F0B", 0 }, // STRING
-	{ 7, "7CA563", "1A0F0B", 0 }, // CHARACTER
-	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
-	{ 13, "DA5659", "1A0F0B", 0 }, // VERBATIM
-	{ 14, "E9C062", "1A0F0B", 0 }, // REGEX
-	{ 1, "679D47", "1A0F0B", 0 }, // COMMENT
-	{ 2, "679D47", "1A0F0B", 0 }, // COMMENT LINE
-	{ 3, "679D47", "1A0F0B", 0 }, // COMMENT DOC
-	{ 15, "679D47", "1A0F0B", 0 }, // COMMENT LINE DOC
-	{ 17, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Choco[] = {
-	{ 0, "C3BE98", "1A0F0B", 0 }, // DEFAULT
-	{ 1, "679D47", "1A0F0B", 0 }, // COMMENTLINE
-	{ 2, "DA5659", "1A0F0B", 0 }, // NUMBER
-	{ 3, "7CA563", "1A0F0B", 0 }, // STRING
-	{ 4, "7CA563", "1A0F0B", 0 }, // CHARACTER
-	{ 5, "B3935C", "1A0F0B", 0 }, // KEYWORDS
-	{ 6, "000000", "1A0F0B", 0 }, // TRIPLE
-	{ 7, "000000", "1A0F0B", 0 }, // TRIPLEDOUBLE
-	{ 8, "000000", "1A0F0B", 0 }, // CLASSNAME
-	{ 9, "000000", "1A0F0B", 0 }, // DEFNAME
-	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
-	{ 11, "D77261", "1A0F0B", 0 }, // IDENTIFIER
-	{ 12, "679D47", "1A0F0B", 0 }, // COMMENTBLOCK
-	{ 12, "7CA563", "1A0F0B", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Choco[] = {
-	{ 0, "C3BE98", "1A0F0B", 0 }, // DEFAULT
-	{ 1, "000000", "1A0F0B", 0 }, // ERROR
-	{ 2, "679D47", "1A0F0B", 0 }, // COMMENTLINE
-	{ 3, "000000", "1A0F0B", 0 }, // POD
-	{ 4, "DA5659", "1A0F0B", 0 }, // NUMBER
-	{ 5, "B3935C", "1A0F0B", 0 }, // INSTRUCTION
-	{ 6, "7CA563", "1A0F0B", 0 }, // STRING
-	{ 7, "7CA563", "1A0F0B", 0 }, // CHARACTER
-	{ 8, "6D4C2F", "1A0F0B", 0 }, // CLASS NAME
-	{ 9, "6D4C2F", "1A0F0B", 0 }, // DEF NAME
-	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
-	{ 11, "D77261", "1A0F0B", 0 }, // IDENTIFIER
-	{ 12, "E9C062", "1A0F0B", 0 }, // REGEX
-	{ 13, "7989A6", "1A0F0B", 0 }, // GLOBAL
-	{ 14, "C3BE98", "1A0F0B", 0 }, // SYMBOL
-	{ 15, "000000", "1A0F0B", 0 }, // MODULE NAME
-	{ 16, "7989A6", "1A0F0B", 0 }, // INSTANCE VAR
-	{ 17, "000000", "1A0F0B", 0 }, // CLASS VAR
-	{ 18, "000000", "1A0F0B", 0 }, // BACKTICKS
-	{ 19, "000000", "1A0F0B", 0 }, // DATA SECTION
-	{ 24, "7CA563", "1A0F0B", 0 }, // STRING Q
-};
-
-static const lexstyle cpp_Eclipse_Default[] = {
-	{ 9, "7F7F9F", "FFFFFF", 1 }, // PREPROCESSOR
-	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 5, "7F0055", "FFFFFF", 1 }, // INSTRUCTION WORD
-	{ 16, "7F0055", "FFFFFF", 1 }, // TYPE WORD
-	{ 4, "000000", "FFFFFF", 0 }, // NUMBER
-	{ 6, "2A00FF", "FFFFFF", 0 }, // STRING
-	{ 7, "2A00FF", "FFFFFF", 0 }, // CHARACTER
-	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
-	{ 13, "646464", "FFFFFF", 0 }, // VERBATIM
-	{ 14, "646464", "FFFFFF", 0 }, // REGEX
-	{ 1, "3F7F5F", "FFFFFF", 0 }, // COMMENT
-	{ 2, "3F7F5F", "FFFFFF", 0 }, // COMMENT LINE
-	{ 3, "3F5FBF", "FFFFFF", 0 }, // COMMENT DOC
-	{ 15, "3F5FBF", "FFFFFF", 0 }, // COMMENT LINE DOC
-	{ 17, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_Eclipse_Default[] = {
-	{ 9, "7F7F9F", "FFFFFF", 1 }, // PREPROCESSOR
-	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 5, "7F0055", "FFFFFF", 1 }, // INSTRUCTION WORD
-	{ 16, "7F0055", "FFFFFF", 1 }, // TYPE WORD
-	{ 4, "000000", "FFFFFF", 0 }, // NUMBER
-	{ 6, "2A00FF", "FFFFFF", 0 }, // STRING
-	{ 7, "2A00FF", "FFFFFF", 0 }, // CHARACTER
-	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
-	{ 13, "646464", "FFFFFF", 0 }, // VERBATIM
-	{ 14, "646464", "FFFFFF", 0 }, // REGEX
-	{ 1, "3F7F5F", "FFFFFF", 0 }, // COMMENT
-	{ 2, "3F7F5F", "FFFFFF", 0 }, // COMMENT LINE
-	{ 3, "3F5FBF", "FFFFFF", 0 }, // COMMENT DOC
-	{ 15, "3F5FBF", "FFFFFF", 0 }, // COMMENT LINE DOC
-	{ 17, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Eclipse_Default[] = {
-	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 1, "3F7F5F", "FFFFFF", 0 }, // COMMENTLINE
-	{ 2, "000000", "FFFFFF", 0 }, // NUMBER
-	{ 3, "2A00FF", "FFFFFF", 0 }, // STRING
-	{ 4, "2A00FF", "FFFFFF", 0 }, // CHARACTER
-	{ 5, "7F0055", "FFFFFF", 1 }, // KEYWORDS
-	{ 6, "646464", "FFFFFF", 0 }, // TRIPLE
-	{ 7, "000000", "FFFFFF", 0 }, // TRIPLEDOUBLE
-	{ 8, "000000", "FFFFFF", 0 }, // CLASSNAME
-	{ 9, "3F5FBF", "FFFFFF", 1 }, // DEFNAME
-	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
-	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
-	{ 12, "3F7F5F", "FFFFFF", 0 }, // COMMENTBLOCK
-	{ 12, "2A00FF", "FFFFFF", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Eclipse_Default[] = {
-	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 1, "FF0000", "FFFFFF", 0 }, // ERROR
-	{ 2, "3F7F5F", "FFFFFF", 0 }, // COMMENTLINE
-	{ 3, "000000", "FFFFFF", 0 }, // POD
-	{ 4, "000000", "FFFFFF", 0 }, // NUMBER
-	{ 5, "7F0055", "FFFFFF", 1 }, // INSTRUCTION
-	{ 6, "2A00FF", "FFFFFF", 0 }, // STRING
-	{ 7, "2A00FF", "FFFFFF", 0 }, // CHARACTER
-	{ 8, "000000", "FFFFFF", 0 }, // CLASS NAME
-	{ 9, "3F5FBF", "FFFFFF", 1 }, // DEF NAME
-	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
-	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
-	{ 12, "646464", "FFFFFF", 0 }, // REGEX
-	{ 13, "0000C0", "FFFFFF", 0 }, // GLOBAL
-	{ 14, "000000", "FFFFFF", 0 }, // SYMBOL
-	{ 15, "7F7F9F", "FFFFFF", 1 }, // MODULE NAME
-	{ 16, "000000", "FFFFFF", 0 }, // INSTANCE VAR
-	{ 17, "000000", "FFFFFF", 0 }, // CLASS VAR
-	{ 18, "000000", "FFFFFF", 0 }, // BACKTICKS
-	{ 19, "646464", "FFFFFF", 0 }, // DATA SECTION
-	{ 24, "2A00FF", "FFFFFF", 0 }, // STRING Q
-};
 
 static const lexstyle cpp_khaki[] = {
 	{ 9, "5f0000", "d7d7af", 0 }, // PREPROCESSOR
@@ -983,84 +624,26 @@ static const lexstyle ruby_khaki[] = {
 	{ 25, "005f5f", "d7d7af", 0 }, // BOOLEAN
 };
 
-static const lexstyle cpp_Bespin[] = {
-	{ 9, "FFAA00", "2A211C", 0 }, // PREPROCESSOR
-	{ 11, "F8F8F8", "2A211C", 0 }, // DEFAULT
-	{ 5, "F6F080", "2A211C", 0 }, // INSTRUCTION WORD
-	{ 16, "FFAA00", "2A211C", 0 }, // TYPE WORD
-	{ 4, "FF3A83", "2A211C", 0 }, // NUMBER
-	{ 6, "55E439", "2A211C", 0 }, // STRING
-	{ 7, "55E439", "2A211C", 0 }, // CHARACTER
-	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
-	{ 13, "FF3A83", "2A211C", 0 }, // VERBATIM
-	{ 14, "FFB454", "2A211C", 0 }, // REGEX
-	{ 1, "1E9AE0", "2A211C", 0 }, // COMMENT
-	{ 2, "1E9AE0", "2A211C", 0 }, // COMMENT LINE
-	{ 3, "1E9AE0", "2A211C", 0 }, // COMMENT DOC
-	{ 15, "1E9AE0", "2A211C", 0 }, // COMMENT LINE DOC
-	{ 17, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle global_Plastic_Code_Wrap[] = {
+	{ 32, "F8F8F8", "0B161D", 0 }, // Default Style
+	{ 37, "888A85", "0B161D", 0 }, // Indent guideline style
+	{ 34, "FCE94F", "0B161D", 1 }, // Brace highlight style
+	{ 35, "EF2929", "0B161D", 0 }, // Bad brace colour
+	{ 2069, "8BA7A7", "0B161D", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "EEEEEC", "2E3436", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "F8F8F8", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "F8F8F8", "FF8000", 0 }, // Mark Style 2
+	{ 23, "F8F8F8", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "F8F8F8", "8000FF", 0 }, // Mark Style 4
+	{ 21, "F8F8F8", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
 };
 
-static const lexstyle java_Bespin[] = {
-	{ 9, "FFAA00", "2A211C", 0 }, // PREPROCESSOR
-	{ 11, "F8F8F8", "2A211C", 0 }, // DEFAULT
-	{ 5, "F6F080", "2A211C", 0 }, // INSTRUCTION WORD
-	{ 16, "FFAA00", "2A211C", 0 }, // TYPE WORD
-	{ 4, "FF3A83", "2A211C", 0 }, // NUMBER
-	{ 6, "55E439", "2A211C", 0 }, // STRING
-	{ 7, "55E439", "2A211C", 0 }, // CHARACTER
-	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
-	{ 13, "FF3A83", "2A211C", 0 }, // VERBATIM
-	{ 14, "FFB454", "2A211C", 0 }, // REGEX
-	{ 1, "1E9AE0", "2A211C", 0 }, // COMMENT
-	{ 2, "1E9AE0", "2A211C", 0 }, // COMMENT LINE
-	{ 3, "1E9AE0", "2A211C", 0 }, // COMMENT DOC
-	{ 15, "1E9AE0", "2A211C", 0 }, // COMMENT LINE DOC
-	{ 17, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "1E9AE0", "2A211C", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Bespin[] = {
-	{ 0, "F8F8F8", "2A211C", 0 }, // DEFAULT
-	{ 1, "1E9AE0", "2A211C", 0 }, // COMMENTLINE
-	{ 2, "FF3A83", "2A211C", 0 }, // NUMBER
-	{ 3, "55E439", "2A211C", 0 }, // STRING
-	{ 4, "55E439", "2A211C", 0 }, // CHARACTER
-	{ 5, "FFAA00", "2A211C", 0 }, // KEYWORDS
-	{ 6, "000000", "2A211C", 0 }, // TRIPLE
-	{ 7, "000000", "2A211C", 0 }, // TRIPLEDOUBLE
-	{ 8, "000000", "2A211C", 0 }, // CLASSNAME
-	{ 9, "000000", "2A211C", 0 }, // DEFNAME
-	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
-	{ 11, "EB939A", "2A211C", 0 }, // IDENTIFIER
-	{ 12, "1E9AE0", "2A211C", 0 }, // COMMENTBLOCK
-	{ 12, "55E439", "2A211C", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Bespin[] = {
-	{ 0, "F8F8F8", "2A211C", 0 }, // DEFAULT
-	{ 1, "000000", "2A211C", 0 }, // ERROR
-	{ 2, "1E9AE0", "2A211C", 0 }, // COMMENTLINE
-	{ 3, "000000", "2A211C", 0 }, // POD
-	{ 4, "FF3A83", "2A211C", 0 }, // NUMBER
-	{ 5, "FFAA00", "2A211C", 0 }, // INSTRUCTION
-	{ 6, "55E439", "2A211C", 0 }, // STRING
-	{ 7, "55E439", "2A211C", 0 }, // CHARACTER
-	{ 8, "EFE900", "2A211C", 0 }, // CLASS NAME
-	{ 9, "EFE900", "2A211C", 0 }, // DEF NAME
-	{ 10, "FFAA00", "2A211C", 0 }, // OPERATOR
-	{ 11, "EB939A", "2A211C", 0 }, // IDENTIFIER
-	{ 12, "FFB454", "2A211C", 0 }, // REGEX
-	{ 13, "FB9A4B", "2A211C", 0 }, // GLOBAL
-	{ 14, "F8F8F8", "2A211C", 0 }, // SYMBOL
-	{ 15, "000000", "2A211C", 0 }, // MODULE NAME
-	{ 16, "FB9A4B", "2A211C", 0 }, // INSTANCE VAR
-	{ 17, "000000", "2A211C", 0 }, // CLASS VAR
-	{ 18, "000000", "2A211C", 0 }, // BACKTICKS
-	{ 19, "000000", "2A211C", 0 }, // DATA SECTION
-	{ 24, "55E439", "2A211C", 0 }, // STRING Q
-};
 
 static const lexstyle cpp_Plastic_Code_Wrap[] = {
 	{ 9, "FFAA00", "0B161D", 0 }, // PREPROCESSOR
@@ -1141,6 +724,226 @@ static const lexstyle ruby_Plastic_Code_Wrap[] = {
 	{ 24, "55E439", "0B161D", 0 }, // STRING Q
 };
 
+static const lexstyle global_Solarized_light[] = {
+	{ 32, "657B83", "FDF6E3", 0 }, // Default Style
+	{ 37, "93A1A1", "FDF6E3", 0 }, // Indent guideline style
+	{ 34, "DC322F", "859900", 1 }, // Brace highlight style
+	{ 35, "D33682", "FDF6E3", 0 }, // Bad brace colour
+	{ 2069, "073642", "FDF6E3", 0 }, // Caret colour
+	{ 33, "93A1A1", "EEE8D5", 0 }, // Line number margin
+	{ 29, "657B83", "002B36", 0 }, // Smart HighLighting
+	{ 31, "657B83", "6C71C4", 0 }, // Find Mark Style
+	{ 25, "657B83", "DC322F", 0 }, // Mark Style 1
+	{ 24, "657B83", "268BD2", 0 }, // Mark Style 2
+	{ 23, "657B83", "2AA198", 0 }, // Mark Style 3
+	{ 22, "657B83", "859900", 0 }, // Mark Style 4
+	{ 21, "657B83", "B58900", 0 }, // Mark Style 5
+	{ 28, "657B83", "FDF6E3", 0 }, // Incremental highlight all
+	{ 27, "657B83", "CB4B16", 0 }, // Tags match highlighting
+	{ 26, "657B83", "CB4B16", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Solarized_light[] = {
+	{ 9, "DC322F", "FDF6E3", 0 }, // PREPROCESSOR
+	{ 11, "657B83", "FDF6E3", 0 }, // DEFAULT
+	{ 5, "859900", "FDF6E3", 0 }, // INSTRUCTION WORD
+	{ 16, "B58900", "FDF6E3", 0 }, // TYPE WORD
+	{ 4, "2AA198", "FDF6E3", 0 }, // NUMBER
+	{ 6, "2AA198", "FDF6E3", 0 }, // STRING
+	{ 7, "2AA198", "FDF6E3", 0 }, // CHARACTER
+	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
+	{ 13, "2AA198", "FDF6E3", 0 }, // VERBATIM
+	{ 14, "268BD2", "FDF6E3", 0 }, // REGEX
+	{ 1, "93A1A1", "FDF6E3", 2 }, // COMMENT
+	{ 2, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE
+	{ 3, "93A1A1", "FDF6E3", 2 }, // COMMENT DOC
+	{ 15, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE DOC
+	{ 17, "93A1A1", "FDF6E3", 3 }, // COMMENT DOC KEYWORD
+	{ 18, "D33682", "FDF6E3", 3 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Solarized_light[] = {
+	{ 9, "DC322F", "FDF6E3", 0 }, // PREPROCESSOR
+	{ 11, "657B83", "FDF6E3", 0 }, // DEFAULT
+	{ 5, "859900", "FDF6E3", 0 }, // INSTRUCTION WORD
+	{ 16, "B58900", "FDF6E3", 0 }, // TYPE WORD
+	{ 4, "2AA198", "FDF6E3", 0 }, // NUMBER
+	{ 6, "2AA198", "FDF6E3", 0 }, // STRING
+	{ 7, "2AA198", "FDF6E3", 0 }, // CHARACTER
+	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
+	{ 13, "2AA198", "FDF6E3", 0 }, // VERBATIM
+	{ 14, "268BD2", "FDF6E3", 0 }, // REGEX
+	{ 1, "93A1A1", "FDF6E3", 2 }, // COMMENT
+	{ 2, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE
+	{ 3, "93A1A1", "FDF6E3", 2 }, // COMMENT DOC
+	{ 15, "93A1A1", "FDF6E3", 2 }, // COMMENT LINE DOC
+	{ 17, "268BD2", "FDF6E3", 3 }, // COMMENT DOC KEYWORD
+	{ 18, "D33682", "FDF6E3", 3 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Solarized_light[] = {
+	{ 0, "657B83", "FDF6E3", 0 }, // DEFAULT
+	{ 1, "93A1A1", "FDF6E3", 2 }, // COMMENTLINE
+	{ 2, "2AA198", "FDF6E3", 0 }, // NUMBER
+	{ 3, "2AA198", "FDF6E3", 0 }, // STRING
+	{ 4, "2AA198", "FDF6E3", 0 }, // CHARACTER
+	{ 5, "859900", "FDF6E3", 0 }, // KEYWORDS
+	{ 6, "2AA198", "FDF6E3", 0 }, // TRIPLE
+	{ 7, "2AA198", "FDF6E3", 0 }, // TRIPLEDOUBLE
+	{ 8, "CB4B16", "FDF6E3", 0 }, // CLASSNAME
+	{ 9, "CB4B16", "FDF6E3", 0 }, // DEFNAME
+	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
+	{ 11, "B58900", "FDF6E3", 0 }, // IDENTIFIER
+	{ 12, "93A1A1", "FDF6E3", 2 }, // COMMENTBLOCK
+	{ 12, "93A1A1", "FDF6E3", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Solarized_light[] = {
+	{ 0, "657B83", "FDF6E3", 0 }, // DEFAULT
+	{ 1, "DC322F", "FDF6E3", 0 }, // ERROR
+	{ 2, "93A1A1", "FDF6E3", 2 }, // COMMENTLINE
+	{ 3, "657B83", "FDF6E3", 2 }, // POD
+	{ 4, "2AA198", "FDF6E3", 0 }, // NUMBER
+	{ 5, "859900", "FDF6E3", 0 }, // INSTRUCTION
+	{ 6, "2AA198", "FDF6E3", 0 }, // STRING
+	{ 7, "2AA198", "FDF6E3", 0 }, // CHARACTER
+	{ 8, "B58900", "FDF6E3", 0 }, // CLASS NAME
+	{ 9, "268BD2", "FDF6E3", 0 }, // DEF NAME
+	{ 10, "586E75", "FDF6E3", 0 }, // OPERATOR
+	{ 11, "B58900", "FDF6E3", 0 }, // IDENTIFIER
+	{ 12, "268BD2", "FDF6E3", 0 }, // REGEX
+	{ 13, "B58900", "FDF6E3", 0 }, // GLOBAL
+	{ 14, "657B83", "FDF6E3", 0 }, // SYMBOL
+	{ 15, "CB4B16", "FDF6E3", 0 }, // MODULE NAME
+	{ 16, "B58900", "FDF6E3", 0 }, // INSTANCE VAR
+	{ 17, "657B83", "FDF6E3", 0 }, // CLASS VAR
+	{ 18, "073642", "6C71C4", 0 }, // BACKTICKS
+	{ 19, "2AA198", "FDF6E3", 0 }, // DATA SECTION
+	{ 24, "2AA198", "FDF6E3", 0 }, // STRING Q
+	{ 25, "268BD2", "FDF6E3", 0 }, // BOOLEAN
+};
+
+static const lexstyle global_Obsidian[] = {
+	{ 32, "E0E2E4", "293134", 0 }, // Default Style
+	{ 37, "394448", "293134", 0 }, // Indent guideline style
+	{ 34, "F3DB2E", "293134", 1 }, // Brace highlight style
+	{ 35, "FB0000", "293134", 0 }, // Bad brace colour
+	{ 2069, "C1CBD2", "6699CC", 0 }, // Caret colour
+	{ 33, "81969A", "3F4B4E", 0 }, // Line number margin
+	{ 29, "222222", "56676D", 0 }, // Smart HighLighting
+	{ 31, "E0E2E4", "6B8189", 1 }, // Find Mark Style
+	{ 25, "E0E2E4", "00659B", 0 }, // Mark Style 1
+	{ 24, "E0E2E4", "00880B", 0 }, // Mark Style 2
+	{ 23, "E0E2E4", "A6AA00", 0 }, // Mark Style 3
+	{ 22, "E0E2E4", "8A0B0B", 0 }, // Mark Style 4
+	{ 21, "E0E2E4", "44116F", 0 }, // Mark Style 5
+	{ 28, "FFFF80", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "E0E2E4", "4D5C62", 0 }, // Tags match highlighting
+	{ 26, "FFCAB0", "93975E", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Obsidian[] = {
+	{ 9, "A082BD", "293134", 0 }, // PREPROCESSOR
+	{ 11, "E0E2E4", "293134", 0 }, // DEFAULT
+	{ 5, "93C763", "293134", 1 }, // INSTRUCTION WORD
+	{ 16, "678CB1", "293134", 0 }, // TYPE WORD
+	{ 4, "FFCD22", "293134", 0 }, // NUMBER
+	{ 6, "EC7600", "293134", 0 }, // STRING
+	{ 7, "FF8409", "293134", 0 }, // CHARACTER
+	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
+	{ 13, "E0E2E4", "293134", 0 }, // VERBATIM
+	{ 14, "D39745", "293134", 0 }, // REGEX
+	{ 1, "66747B", "293134", 0 }, // COMMENT
+	{ 2, "66747B", "293134", 0 }, // COMMENT LINE
+	{ 3, "6C788C", "293134", 0 }, // COMMENT DOC
+	{ 15, "6C788C", "293134", 0 }, // COMMENT LINE DOC
+	{ 17, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Obsidian[] = {
+	{ 9, "A082BD", "293134", 0 }, // PREPROCESSOR
+	{ 11, "E0E2E4", "293134", 0 }, // DEFAULT
+	{ 5, "93C763", "293134", 1 }, // INSTRUCTION WORD
+	{ 16, "678CB1", "293134", 0 }, // TYPE WORD
+	{ 4, "FFCD22", "293134", 0 }, // NUMBER
+	{ 6, "EC7600", "293134", 0 }, // STRING
+	{ 7, "FF8409", "293134", 0 }, // CHARACTER
+	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
+	{ 13, "E0E2E4", "293134", 0 }, // VERBATIM
+	{ 14, "D39745", "293134", 0 }, // REGEX
+	{ 1, "66747B", "293134", 0 }, // COMMENT
+	{ 2, "66747B", "293134", 0 }, // COMMENT LINE
+	{ 3, "6C788C", "293134", 0 }, // COMMENT DOC
+	{ 15, "6C788C", "293134", 0 }, // COMMENT LINE DOC
+	{ 17, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "6C788C", "293134", 1 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Obsidian[] = {
+	{ 0, "E0E2E4", "293134", 0 }, // DEFAULT
+	{ 1, "66747B", "293134", 0 }, // COMMENTLINE
+	{ 2, "FFCD22", "293134", 0 }, // NUMBER
+	{ 3, "EC7600", "293134", 0 }, // STRING
+	{ 4, "FF8409", "293134", 0 }, // CHARACTER
+	{ 5, "93C763", "293134", 1 }, // KEYWORDS
+	{ 6, "66747B", "293134", 0 }, // TRIPLE
+	{ 7, "66747B", "293134", 0 }, // TRIPLEDOUBLE
+	{ 8, "A082BD", "293134", 1 }, // CLASSNAME
+	{ 9, "678CB1", "293134", 1 }, // DEFNAME
+	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
+	{ 11, "E0E2E4", "293134", 0 }, // IDENTIFIER
+	{ 12, "66747B", "293134", 0 }, // COMMENTBLOCK
+	{ 12, "E0E2E4", "293134", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Obsidian[] = {
+	{ 0, "E0E2E4", "293134", 0 }, // DEFAULT
+	{ 1, "E0E2E4", "293134", 0 }, // ERROR
+	{ 2, "66747B", "293134", 0 }, // COMMENTLINE
+	{ 3, "E0E2E4", "293134", 0 }, // POD
+	{ 4, "FFCD22", "293134", 0 }, // NUMBER
+	{ 5, "93C763", "293134", 1 }, // INSTRUCTION
+	{ 6, "EC7600", "293134", 0 }, // STRING
+	{ 7, "FF8409", "293134", 0 }, // CHARACTER
+	{ 8, "A082BD", "293134", 1 }, // CLASS NAME
+	{ 9, "678CB1", "293134", 1 }, // DEF NAME
+	{ 10, "E8E2B7", "293134", 0 }, // OPERATOR
+	{ 11, "E0E2E4", "293134", 0 }, // IDENTIFIER
+	{ 12, "D39745", "293134", 0 }, // REGEX
+	{ 13, "E0E2E4", "293134", 0 }, // GLOBAL
+	{ 14, "E0E2E4", "293134", 0 }, // SYMBOL
+	{ 15, "E0E2E4", "293134", 0 }, // MODULE NAME
+	{ 16, "B6C8DA", "293134", 0 }, // INSTANCE VAR
+	{ 17, "E0E2E4", "293134", 0 }, // CLASS VAR
+	{ 18, "E0E2E4", "293134", 0 }, // BACKTICKS
+	{ 19, "E0E2E4", "293134", 0 }, // DATA SECTION
+	{ 24, "E0E2E4", "293134", 0 }, // STRING Q
+};
+
+static const lexstyle global_Ruby_Blue[] = {
+	{ 32, "FFFFFF", "112435", 0 }, // Default Style
+	{ 37, "0080FF", "112435", 1 }, // Indent guideline style
+	{ 34, "FFFFFF", "112435", 0 }, // Brace highlight style
+	{ 35, "FFFFFF", "112435", 0 }, // Bad brace colour
+	{ 2069, "FFFFFF", "6699CC", 0 }, // Caret colour
+	{ 31, "FFFFFF", "112435", 0 }, // Find Mark Style
+	{ 33, "FFFFFF", "1F4661", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "FFFFFF", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "FFFFFF", "FF8000", 0 }, // Mark Style 2
+	{ 23, "FFFFFF", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "FFFFFF", "8000FF", 0 }, // Mark Style 4
+	{ 21, "FFFFFF", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
+};
+
+
 static const lexstyle cpp_Ruby_Blue[] = {
 	{ 9, "FFFFFF", "112435", 0 }, // PREPROCESSOR
 	{ 11, "FFFFFF", "112435", 0 }, // DEFAULT
@@ -1220,241 +1023,25 @@ static const lexstyle ruby_Ruby_Blue[] = {
 	{ 24, "FFFFFF", "112435", 0 }, // STRING Q
 };
 
-static const lexstyle cpp_Vibrant_Ink[] = {
-	{ 9, "EDF8F9", "000000", 0 }, // PREPROCESSOR
-	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
-	{ 16, "66FF00", "000000", 0 }, // TYPE WORD
-	{ 4, "FF8000", "000000", 0 }, // NUMBER
-	{ 6, "66FF00", "000000", 0 }, // STRING
-	{ 7, "66FF00", "000000", 0 }, // CHARACTER
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
-	{ 14, "FFFFFF", "000000", 1 }, // REGEX
-	{ 1, "9933CC", "000000", 0 }, // COMMENT
-	{ 2, "9933CC", "000000", 0 }, // COMMENT LINE
-	{ 3, "9933CC", "000000", 0 }, // COMMENT DOC
-	{ 15, "9933CC", "000000", 0 }, // COMMENT LINE DOC
-	{ 17, "9933CC", "000000", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "9933CC", "000000", 0 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle global_Hello_Kitty[] = {
+	{ 32, "000000", "FFB0FF", 0 }, // Default Style
+	{ 37, "C0C0C0", "FFB0FF", 0 }, // Indent guideline style
+	{ 34, "FF0000", "FFB0FF", 1 }, // Brace highlight style
+	{ 35, "800000", "FFB0FF", 0 }, // Bad brace colour
+	{ 2069, "FFFFFF", "372017", 0 }, // Caret colour
+	{ 33, "FFFFFF", "FF80FF", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "000000", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "000000", "FF8000", 0 }, // Mark Style 2
+	{ 23, "000000", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "000000", "8000FF", 0 }, // Mark Style 4
+	{ 21, "FAAA3C", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
 };
 
-static const lexstyle java_Vibrant_Ink[] = {
-	{ 9, "EDF8F9", "000000", 0 }, // PREPROCESSOR
-	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
-	{ 16, "66FF00", "000000", 0 }, // TYPE WORD
-	{ 4, "FF8000", "000000", 0 }, // NUMBER
-	{ 6, "66FF00", "000000", 0 }, // STRING
-	{ 7, "66FF00", "000000", 0 }, // CHARACTER
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
-	{ 14, "FFFFFF", "000000", 1 }, // REGEX
-	{ 1, "9933CC", "000000", 0 }, // COMMENT
-	{ 2, "9933CC", "000000", 0 }, // COMMENT LINE
-	{ 3, "9933CC", "000000", 0 }, // COMMENT DOC
-	{ 15, "9933CC", "000000", 0 }, // COMMENT LINE DOC
-	{ 17, "9933CC", "000000", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "9933CC", "000000", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Vibrant_Ink[] = {
-	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 1, "9933CC", "000000", 0 }, // COMMENTLINE
-	{ 2, "99CC99", "000000", 0 }, // NUMBER
-	{ 3, "66FF00", "000000", 0 }, // STRING
-	{ 4, "66FF00", "000000", 0 }, // CHARACTER
-	{ 5, "FF6600", "000000", 1 }, // KEYWORDS
-	{ 6, "FF8000", "000000", 0 }, // TRIPLE
-	{ 7, "FFFFFF", "000000", 0 }, // TRIPLEDOUBLE
-	{ 8, "FFFFFF", "000000", 1 }, // CLASSNAME
-	{ 9, "FF00FF", "000000", 0 }, // DEFNAME
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
-	{ 12, "9933CC", "000000", 0 }, // COMMENTBLOCK
-	{ 12, "FFFF00", "000000", 0 }, // STRINGEOL
-};
-
-static const lexstyle ruby_Vibrant_Ink[] = {
-	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
-	{ 1, "FFFFFF", "000000", 0 }, // ERROR
-	{ 2, "9933CC", "000000", 0 }, // COMMENTLINE
-	{ 3, "004000", "C0FFC0", 0 }, // POD
-	{ 4, "FF8000", "000000", 0 }, // NUMBER
-	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION
-	{ 6, "66FF00", "000000", 0 }, // STRING
-	{ 7, "808000", "000000", 0 }, // CHARACTER
-	{ 8, "0080C0", "000000", 1 }, // CLASS NAME
-	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
-	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
-	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
-	{ 12, "339999", "000000", 0 }, // REGEX
-	{ 13, "FFCC00", "000000", 1 }, // GLOBAL
-	{ 14, "FFFFFF", "000000", 0 }, // SYMBOL
-	{ 15, "EDF8F9", "000000", 1 }, // MODULE NAME
-	{ 16, "FFFFFF", "000000", 0 }, // INSTANCE VAR
-	{ 17, "FFFFFF", "000000", 0 }, // CLASS VAR
-	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
-	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
-	{ 24, "66FF00", "000000", 0 }, // STRING Q
-};
-
-static const lexstyle cpp_Monokai[] = {
-	{ 9, "F92672", "272822",  }, // PREPROCESSOR
-	{ 11, "F8F8F2", "272822",  }, // DEFAULT
-	{ 5, "66D9EF", "272822",  }, // INSTRUCTION WORD
-	{ 16, "F92672", "272822",  }, // TYPE WORD
-	{ 4, "AE81FF", "272822",  }, // NUMBER
-	{ 6, "E6DB74", "272822",  }, // STRING
-	{ 7, "E6DB74", "272822",  }, // CHARACTER
-	{ 10, "F92672", "272822",  }, // OPERATOR
-	{ 13, "AE81FF", "272822",  }, // VERBATIM
-	{ 14, "E6DB74", "272822",  }, // REGEX
-	{ 1, "75715E", "272822",  }, // COMMENT
-	{ 2, "75715E", "272822",  }, // COMMENT LINE
-	{ 3, "75715E", "272822",  }, // COMMENT DOC
-	{ 15, "75715E", "272822",  }, // COMMENT LINE DOC
-	{ 17, "75715E", "272822",  }, // COMMENT DOC KEYWORD
-	{ 18, "75715E", "272822",  }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_Monokai[] = {
-	{ 9, "F92672", "272822",  }, // PREPROCESSOR
-	{ 11, "F8F8F2", "272822",  }, // DEFAULT
-	{ 5, "66D9EF", "272822",  }, // INSTRUCTION WORD
-	{ 16, "F92672", "272822",  }, // TYPE WORD
-	{ 4, "AE81FF", "272822",  }, // NUMBER
-	{ 6, "E6DB74", "272822",  }, // STRING
-	{ 7, "E6DB74", "272822",  }, // CHARACTER
-	{ 10, "F92672", "272822",  }, // OPERATOR
-	{ 13, "AE81FF", "272822",  }, // VERBATIM
-	{ 14, "E6DB74", "272822",  }, // REGEX
-	{ 1, "75715E", "272822",  }, // COMMENT
-	{ 2, "75715E", "272822",  }, // COMMENT LINE
-	{ 3, "75715E", "272822",  }, // COMMENT DOC
-	{ 15, "75715E", "272822",  }, // COMMENT LINE DOC
-	{ 17, "75715E", "272822",  }, // COMMENT DOC KEYWORD
-	{ 18, "75715E", "272822",  }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_Monokai[] = {
-	{ 0, "F8F8F2", "272822",  }, // DEFAULT
-	{ 1, "75715E", "272822",  }, // COMMENTLINE
-	{ 2, "AE81FF", "272822",  }, // NUMBER
-	{ 3, "E6DB74", "272822",  }, // STRING
-	{ 4, "E6DB74", "272822",  }, // CHARACTER
-	{ 5, "F92672", "272822",  }, // KEYWORDS
-	{ 6, "", "272822",  }, // TRIPLE
-	{ 7, "", "272822",  }, // TRIPLEDOUBLE
-	{ 8, "", "272822",  }, // CLASSNAME
-	{ 9, "", "272822",  }, // DEFNAME
-	{ 10, "F92672", "272822",  }, // OPERATOR
-	{ 11, "66D9EF", "272822",  }, // IDENTIFIER
-	{ 12, "75715E", "272822",  }, // COMMENTBLOCK
-	{ 12, "E6DB74", "272822",  }, // STRINGEOL
-};
-
-static const lexstyle ruby_Monokai[] = {
-	{ 0, "F8F8F2", "272822",  }, // DEFAULT
-	{ 1, "", "272822",  }, // ERROR
-	{ 2, "75715E", "272822",  }, // COMMENTLINE
-	{ 3, "", "272822",  }, // POD
-	{ 4, "AE81FF", "272822",  }, // NUMBER
-	{ 5, "F92672", "272822",  }, // INSTRUCTION
-	{ 6, "E6DB74", "272822",  }, // STRING
-	{ 7, "E6DB74", "272822",  }, // CHARACTER
-	{ 8, "F8F8F2", "272822",  }, // CLASS NAME
-	{ 9, "A6E22E", "272822",  }, // DEF NAME
-	{ 10, "F92672", "272822",  }, // OPERATOR
-	{ 11, "66D9EF", "272822",  }, // IDENTIFIER
-	{ 12, "E6DB74", "272822",  }, // REGEX
-	{ 13, "F8F8F2", "272822",  }, // GLOBAL
-	{ 14, "F8F8F2", "272822",  }, // SYMBOL
-	{ 15, "", "272822",  }, // MODULE NAME
-	{ 16, "F8F8F2", "272822",  }, // INSTANCE VAR
-	{ 17, "", "272822",  }, // CLASS VAR
-	{ 18, "", "272822",  }, // BACKTICKS
-	{ 19, "", "272822",  }, // DATA SECTION
-	{ 24, "E6DB74", "272822",  }, // STRING Q
-};
-
-static const lexstyle cpp_NotepadPlusPlus[] = {
-	{ 9, "804000", "FFFFFF", 0 }, // PREPROCESSOR
-	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION WORD
-	{ 16, "8000FF", "FFFFFF", 0 }, // TYPE WORD
-	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
-	{ 6, "808080", "FFFFFF", 0 }, // STRING
-	{ 7, "808080", "FFFFFF", 0 }, // CHARACTER
-	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
-	{ 13, "000000", "FFFFFF", 0 }, // VERBATIM
-	{ 14, "000000", "FFFFFF", 1 }, // REGEX
-	{ 1, "008000", "FFFFFF", 0 }, // COMMENT
-	{ 2, "008000", "FFFFFF", 0 }, // COMMENT LINE
-	{ 3, "008080", "FFFFFF", 0 }, // COMMENT DOC
-	{ 15, "008080", "FFFFFF", 0 }, // COMMENT LINE DOC
-	{ 17, "008080", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "008080", "FFFFFF", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle java_NotepadPlusPlus[] = {
-	{ 9, "804000", "FFFFFF", 0 }, // PREPROCESSOR
-	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION WORD
-	{ 16, "8000FF", "FFFFFF", 0 }, // TYPE WORD
-	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
-	{ 6, "808080", "FFFFFF", 0 }, // STRING
-	{ 7, "808080", "FFFFFF", 0 }, // CHARACTER
-	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
-	{ 13, "000000", "FFFFFF", 0 }, // VERBATIM
-	{ 14, "000000", "FFFFFF", 1 }, // REGEX
-	{ 1, "008000", "FFFFFF", 0 }, // COMMENT
-	{ 2, "008000", "FFFFFF", 0 }, // COMMENT LINE
-	{ 3, "008080", "FFFFFF", 0 }, // COMMENT DOC
-	{ 15, "008080", "FFFFFF", 0 }, // COMMENT LINE DOC
-	{ 17, "008080", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
-	{ 18, "008080", "FFFFFF", 0 }, // COMMENT DOC KEYWORD ERROR
-};
-
-static const lexstyle python_NotepadPlusPlus[] = {
-	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 1, "008000", "FFFFFF", 0 }, // COMMENTLINE
-	{ 2, "FF0000", "FFFFFF", 0 }, // NUMBER
-	{ 3, "808080", "FFFFFF", 0 }, // STRING
-	{ 4, "808080", "FFFFFF", 0 }, // CHARACTER
-	{ 5, "0000FF", "FFFFFF", 1 }, // KEYWORDS
-	{ 6, "FF8000", "FFFFFF", 0 }, // TRIPLE
-	{ 7, "FF8000", "FFFFFF", 0 }, // TRIPLEDOUBLE
-	{ 8, "000000", "FFFFFF", 1 }, // CLASSNAME
-	{ 9, "FF00FF", "FFFFFF", 0 }, // DEFNAME
-	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
-	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
-	{ 12, "008000", "FFFFFF", 0 }, // COMMENTBLOCK
-};
-
-static const lexstyle ruby_NotepadPlusPlus[] = {
-	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
-	{ 1, "000000", "FFFFFF", 0 }, // ERROR
-	{ 2, "008000", "FFFFFF", 0 }, // COMMENTLINE
-	{ 3, "004000", "C0FFC0", 0 }, // POD
-	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
-	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION
-	{ 6, "808080", "FFFFFF", 0 }, // STRING
-	{ 7, "808000", "FFFFFF", 0 }, // CHARACTER
-	{ 8, "0080C0", "FFFFFF", 1 }, // CLASS NAME
-	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
-	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
-	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
-	{ 12, "0080FF", "FFFFFF", 0 }, // REGEX
-	{ 13, "000080", "FFFFFF", 1 }, // GLOBAL
-	{ 14, "000000", "FFFFFF", 0 }, // SYMBOL
-	{ 15, "804000", "FFFFFF", 1 }, // MODULE NAME
-	{ 16, "000000", "FFFFFF", 0 }, // INSTANCE VAR
-	{ 17, "000000", "FFFFFF", 0 }, // CLASS VAR
-	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
-	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
-	{ 24, "808080", "FFFFFF", 0 }, // STRING Q
-};
 
 static const lexstyle cpp_Hello_Kitty[] = {
 	{ 9, "804000", "FFB0FF", 0 }, // PREPROCESSOR
@@ -1535,84 +1122,213 @@ static const lexstyle ruby_Hello_Kitty[] = {
 	{ 24, "808080", "FFB0FF", 0 }, // STRING Q
 };
 
-static const lexstyle cpp_Mono_Industrial[] = {
-	{ 9, "A39E64", "222C28", 0 }, // PREPROCESSOR
-	{ 11, "FFFFFF", "222C28", 0 }, // DEFAULT
-	{ 5, "C23B00", "222C28", 0 }, // INSTRUCTION WORD
-	{ 16, "A39E64", "222C28", 0 }, // TYPE WORD
-	{ 4, "E98800", "222C28", 0 }, // NUMBER
-	{ 6, "FFFFFF", "222C28", 0 }, // STRING
-	{ 7, "FFFFFF", "222C28", 0 }, // CHARACTER
-	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
-	{ 13, "E98800", "222C28", 0 }, // VERBATIM
-	{ 14, "FFFFFF", "222C28", 0 }, // REGEX
-	{ 1, "666C68", "222C28", 0 }, // COMMENT
-	{ 2, "666C68", "222C28", 0 }, // COMMENT LINE
-	{ 3, "666C68", "222C28", 0 }, // COMMENT DOC
-	{ 15, "666C68", "222C28", 0 }, // COMMENT LINE DOC
-	{ 17, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD ERROR
+static const lexstyle global_Deep_Black[] = {
+	{ 32, "FFFFFF", "000000", 0 }, // Default Style
+	{ 37, "C0C0C0", "000000", 0 }, // Indent guideline style
+	{ 34, "00FF00", "000000", 1 }, // Brace highlight style
+	{ 35, "FF0000", "000000", 1 }, // Bad brace colour
+	{ 2069, "FFFFFF", "253B76", 0 }, // Caret colour
+	{ 33, "C0C0C0", "333333", 0 }, // Line number margin
+	{ 29, "555753", "80FF00", 0 }, // Smart HighLighting
+	{ 31, "FFFF00", "FF0000", 1 }, // Find Mark Style
+	{ 28, "555753", "FF8000", 0 }, // Incremental highlight all
+	{ 27, "FCAF3E", "0080FF", 0 }, // Tags match highlighting
+	{ 26, "FFFFFF", "808080", 0 }, // Tags attribute
 };
 
-static const lexstyle java_Mono_Industrial[] = {
-	{ 9, "A39E64", "222C28", 0 }, // PREPROCESSOR
-	{ 11, "FFFFFF", "222C28", 0 }, // DEFAULT
-	{ 5, "C23B00", "222C28", 0 }, // INSTRUCTION WORD
-	{ 16, "A39E64", "222C28", 0 }, // TYPE WORD
-	{ 4, "E98800", "222C28", 0 }, // NUMBER
-	{ 6, "FFFFFF", "222C28", 0 }, // STRING
-	{ 7, "FFFFFF", "222C28", 0 }, // CHARACTER
-	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
-	{ 13, "E98800", "222C28", 0 }, // VERBATIM
-	{ 14, "FFFFFF", "222C28", 0 }, // REGEX
-	{ 1, "666C68", "222C28", 0 }, // COMMENT
-	{ 2, "666C68", "222C28", 0 }, // COMMENT LINE
-	{ 3, "666C68", "222C28", 0 }, // COMMENT DOC
-	{ 15, "666C68", "222C28", 0 }, // COMMENT LINE DOC
-	{ 17, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD
-	{ 18, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD ERROR
+
+static const lexstyle cpp_Deep_Black[] = {
+	{ 9, "C0C0C0", "000000", 0 }, // PREPROCESSOR
+	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
+	{ 16, "00FFFF", "000000", 1 }, // TYPE WORD
+	{ 4, "FF8000", "000000", 0 }, // NUMBER
+	{ 6, "FFFF00", "000000", 0 }, // STRING
+	{ 7, "FF8080", "000000", 0 }, // CHARACTER
+	{ 10, "FFCC00", "000000", 0 }, // OPERATOR
+	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
+	{ 14, "FFFFFF", "000000", 1 }, // REGEX
+	{ 1, "00FF00", "000000", 2 }, // COMMENT
+	{ 2, "00FF00", "000000", 2 }, // COMMENT LINE
+	{ 3, "00FF00", "000000", 2 }, // COMMENT DOC
+	{ 15, "00FF00", "000000", 2 }, // COMMENT LINE DOC
+	{ 17, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD
+	{ 18, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD ERROR
 };
 
-static const lexstyle python_Mono_Industrial[] = {
-	{ 0, "FFFFFF", "222C28", 0 }, // DEFAULT
-	{ 1, "666C68", "222C28", 0 }, // COMMENTLINE
-	{ 2, "E98800", "222C28", 0 }, // NUMBER
-	{ 3, "FFFFFF", "222C28", 0 }, // STRING
-	{ 4, "FFFFFF", "222C28", 0 }, // CHARACTER
-	{ 5, "A8B3AB", "222C28", 0 }, // KEYWORDS
-	{ 6, "000000", "222C28", 0 }, // TRIPLE
-	{ 7, "000000", "222C28", 0 }, // TRIPLEDOUBLE
-	{ 8, "000000", "222C28", 0 }, // CLASSNAME
-	{ 9, "000000", "222C28", 0 }, // DEFNAME
-	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
-	{ 11, "C87500", "222C28", 0 }, // IDENTIFIER
-	{ 12, "666C68", "222C28", 0 }, // COMMENTBLOCK
-	{ 12, "FFFFFF", "222C28", 0 }, // STRINGEOL
+static const lexstyle java_Deep_Black[] = {
+	{ 9, "EDF8F9", "000000", 0 }, // PREPROCESSOR
+	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
+	{ 16, "66FF00", "000000", 0 }, // TYPE WORD
+	{ 4, "FF8000", "000000", 0 }, // NUMBER
+	{ 6, "66FF00", "000000", 0 }, // STRING
+	{ 7, "66FF00", "000000", 0 }, // CHARACTER
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
+	{ 14, "FFFFFF", "000000", 1 }, // REGEX
+	{ 1, "00FF00", "000000", 2 }, // COMMENT
+	{ 2, "00FF00", "000000", 2 }, // COMMENT LINE
+	{ 3, "00FF00", "000000", 2 }, // COMMENT DOC
+	{ 15, "00FF00", "000000", 2 }, // COMMENT LINE DOC
+	{ 17, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD
+	{ 18, "00FF00", "000000", 2 }, // COMMENT DOC KEYWORD ERROR
 };
 
-static const lexstyle ruby_Mono_Industrial[] = {
-	{ 0, "FFFFFF", "222C28", 0 }, // DEFAULT
-	{ 1, "000000", "222C28", 0 }, // ERROR
-	{ 2, "666C68", "222C28", 0 }, // COMMENTLINE
-	{ 3, "000000", "222C28", 0 }, // POD
-	{ 4, "E98800", "222C28", 0 }, // NUMBER
-	{ 5, "A39E64", "222C28", 0 }, // INSTRUCTION
-	{ 6, "FFFFFF", "222C28", 0 }, // STRING
-	{ 7, "FFFFFF", "222C28", 0 }, // CHARACTER
-	{ 8, "FFFFFF", "222C28", 0 }, // CLASS NAME
-	{ 9, "A8B3AB", "222C28", 0 }, // DEF NAME
-	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
-	{ 11, "C87500", "222C28", 0 }, // IDENTIFIER
-	{ 12, "FFFFFF", "222C28", 0 }, // REGEX
-	{ 13, "648BD2", "222C28", 0 }, // GLOBAL
-	{ 14, "FFFFFF", "222C28", 0 }, // SYMBOL
-	{ 15, "000000", "222C28", 0 }, // MODULE NAME
-	{ 16, "648BD2", "222C28", 0 }, // INSTANCE VAR
-	{ 17, "000000", "222C28", 0 }, // CLASS VAR
-	{ 18, "000000", "222C28", 0 }, // BACKTICKS
-	{ 19, "000000", "222C28", 0 }, // DATA SECTION
-	{ 24, "FFFFFF", "222C28", 0 }, // STRING Q
+static const lexstyle python_Deep_Black[] = {
+	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 1, "00FF00", "000000", 2 }, // COMMENTLINE
+	{ 2, "99CC99", "000000", 0 }, // NUMBER
+	{ 3, "66FF00", "000000", 0 }, // STRING
+	{ 4, "66FF00", "000000", 0 }, // CHARACTER
+	{ 5, "FF6600", "000000", 1 }, // KEYWORDS
+	{ 6, "FF8000", "000000", 0 }, // TRIPLE
+	{ 7, "FFFFFF", "000000", 0 }, // TRIPLEDOUBLE
+	{ 8, "FFFFFF", "000000", 1 }, // CLASSNAME
+	{ 9, "FF00FF", "000000", 0 }, // DEFNAME
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
+	{ 12, "00FF00", "000000", 2 }, // COMMENTBLOCK
+	{ 12, "FFFF00", "000000", 0 }, // STRINGEOL
 };
+
+static const lexstyle ruby_Deep_Black[] = {
+	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 1, "FFFFFF", "000000", 0 }, // ERROR
+	{ 2, "00FF00", "000000", 2 }, // COMMENTLINE
+	{ 3, "004000", "C0FFC0", 0 }, // POD
+	{ 4, "FF8000", "000000", 0 }, // NUMBER
+	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION
+	{ 6, "66FF00", "000000", 0 }, // STRING
+	{ 7, "808000", "000000", 0 }, // CHARACTER
+	{ 8, "0080C0", "000000", 1 }, // CLASS NAME
+	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
+	{ 12, "339999", "000000", 0 }, // REGEX
+	{ 13, "FFCC00", "000000", 1 }, // GLOBAL
+	{ 14, "FFFFFF", "000000", 0 }, // SYMBOL
+	{ 15, "EDF8F9", "000000", 1 }, // MODULE NAME
+	{ 16, "FFFFFF", "000000", 0 }, // INSTANCE VAR
+	{ 17, "FFFFFF", "000000", 0 }, // CLASS VAR
+	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
+	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
+	{ 24, "66FF00", "000000", 0 }, // STRING Q
+};
+
+static const lexstyle global_Eclipse_Default[] = {
+	{ 32, "000000", "FFFFFF", 0 }, // Default Style
+	{ 37, "C0C0C0", "FFFFFF", 0 }, // Indent guideline style
+	{ 34, "FF0000", "FFFFFF", 1 }, // Brace highlight style
+	{ 35, "800000", "FFFFFF", 1 }, // Bad brace colour
+	{ 2069, "000000", "FFFFFF", 0 }, // Caret colour
+	{ 33, "808080", "E4E4E4", 0 }, // Line number margin
+	{ 29, "000000", "A3A3A3", 0 }, // Smart HighLighting
+	{ 31, "000000", "FF0000", 0 }, // Find Mark Style
+	{ 28, "000000", "FFFF00", 0 }, // Incremental highlight all
+	{ 27, "000000", "FFFF00", 0 }, // Tags match highlighting
+	{ 26, "000000", "FFFFFF", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Eclipse_Default[] = {
+	{ 9, "7F7F9F", "FFFFFF", 1 }, // PREPROCESSOR
+	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 5, "7F0055", "FFFFFF", 1 }, // INSTRUCTION WORD
+	{ 16, "7F0055", "FFFFFF", 1 }, // TYPE WORD
+	{ 4, "000000", "FFFFFF", 0 }, // NUMBER
+	{ 6, "2A00FF", "FFFFFF", 0 }, // STRING
+	{ 7, "2A00FF", "FFFFFF", 0 }, // CHARACTER
+	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
+	{ 13, "646464", "FFFFFF", 0 }, // VERBATIM
+	{ 14, "646464", "FFFFFF", 0 }, // REGEX
+	{ 1, "3F7F5F", "FFFFFF", 0 }, // COMMENT
+	{ 2, "3F7F5F", "FFFFFF", 0 }, // COMMENT LINE
+	{ 3, "3F5FBF", "FFFFFF", 0 }, // COMMENT DOC
+	{ 15, "3F5FBF", "FFFFFF", 0 }, // COMMENT LINE DOC
+	{ 17, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Eclipse_Default[] = {
+	{ 9, "7F7F9F", "FFFFFF", 1 }, // PREPROCESSOR
+	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 5, "7F0055", "FFFFFF", 1 }, // INSTRUCTION WORD
+	{ 16, "7F0055", "FFFFFF", 1 }, // TYPE WORD
+	{ 4, "000000", "FFFFFF", 0 }, // NUMBER
+	{ 6, "2A00FF", "FFFFFF", 0 }, // STRING
+	{ 7, "2A00FF", "FFFFFF", 0 }, // CHARACTER
+	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
+	{ 13, "646464", "FFFFFF", 0 }, // VERBATIM
+	{ 14, "646464", "FFFFFF", 0 }, // REGEX
+	{ 1, "3F7F5F", "FFFFFF", 0 }, // COMMENT
+	{ 2, "3F7F5F", "FFFFFF", 0 }, // COMMENT LINE
+	{ 3, "3F5FBF", "FFFFFF", 0 }, // COMMENT DOC
+	{ 15, "3F5FBF", "FFFFFF", 0 }, // COMMENT LINE DOC
+	{ 17, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "7F9FBF", "FFFFFF", 1 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Eclipse_Default[] = {
+	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 1, "3F7F5F", "FFFFFF", 0 }, // COMMENTLINE
+	{ 2, "000000", "FFFFFF", 0 }, // NUMBER
+	{ 3, "2A00FF", "FFFFFF", 0 }, // STRING
+	{ 4, "2A00FF", "FFFFFF", 0 }, // CHARACTER
+	{ 5, "7F0055", "FFFFFF", 1 }, // KEYWORDS
+	{ 6, "646464", "FFFFFF", 0 }, // TRIPLE
+	{ 7, "000000", "FFFFFF", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "FFFFFF", 0 }, // CLASSNAME
+	{ 9, "3F5FBF", "FFFFFF", 1 }, // DEFNAME
+	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
+	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
+	{ 12, "3F7F5F", "FFFFFF", 0 }, // COMMENTBLOCK
+	{ 12, "2A00FF", "FFFFFF", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Eclipse_Default[] = {
+	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 1, "FF0000", "FFFFFF", 0 }, // ERROR
+	{ 2, "3F7F5F", "FFFFFF", 0 }, // COMMENTLINE
+	{ 3, "000000", "FFFFFF", 0 }, // POD
+	{ 4, "000000", "FFFFFF", 0 }, // NUMBER
+	{ 5, "7F0055", "FFFFFF", 1 }, // INSTRUCTION
+	{ 6, "2A00FF", "FFFFFF", 0 }, // STRING
+	{ 7, "2A00FF", "FFFFFF", 0 }, // CHARACTER
+	{ 8, "000000", "FFFFFF", 0 }, // CLASS NAME
+	{ 9, "3F5FBF", "FFFFFF", 1 }, // DEF NAME
+	{ 10, "000000", "FFFFFF", 0 }, // OPERATOR
+	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
+	{ 12, "646464", "FFFFFF", 0 }, // REGEX
+	{ 13, "0000C0", "FFFFFF", 0 }, // GLOBAL
+	{ 14, "000000", "FFFFFF", 0 }, // SYMBOL
+	{ 15, "7F7F9F", "FFFFFF", 1 }, // MODULE NAME
+	{ 16, "000000", "FFFFFF", 0 }, // INSTANCE VAR
+	{ 17, "000000", "FFFFFF", 0 }, // CLASS VAR
+	{ 18, "000000", "FFFFFF", 0 }, // BACKTICKS
+	{ 19, "646464", "FFFFFF", 0 }, // DATA SECTION
+	{ 24, "2A00FF", "FFFFFF", 0 }, // STRING Q
+};
+
+static const lexstyle global_Navajo[] = {
+	{ 32, "000000", "BA9C80", 0 }, // Default Style
+	{ 37, "181880", "BA9C80", 0 }, // Indent guideline style
+	{ 34, "000000", "00FFFF", 1 }, // Brace highlight style
+	{ 35, "BCBCBC", "5F0000", 0 }, // Bad brace colour
+	{ 2069, "FFFFFF", "BA9C80", 0 }, // Caret colour
+	{ 33, "000000", "808080", 0 }, // Line number margin
+	{ 29, "000000", "BCBCBC", 0 }, // Smart HighLighting
+	{ 31, "000000", "3b4092", 0 }, // Find Mark Style
+	{ 25, "000000", "870087", 0 }, // Mark Style 1
+	{ 24, "000000", "C00058", 0 }, // Mark Style 2
+	{ 23, "000000", "181880", 0 }, // Mark Style 3
+	{ 22, "000000", "804040", 0 }, // Mark Style 4
+	{ 21, "000000", "106060", 0 }, // Mark Style 5
+	{ 28, "000000", "BA9C80", 0 }, // Incremental highlight all
+	{ 27, "000000", "D92B10", 0 }, // Tags match highlighting
+	{ 26, "000000", "D92B10", 0 }, // Tags attribute
+};
+
 
 static const lexstyle cpp_Navajo[] = {
 	{ 9, "870087", "BA9C80", 0 }, // PREPROCESSOR
@@ -1694,6 +1410,326 @@ static const lexstyle ruby_Navajo[] = {
 	{ 25, "C00058", "BA9C80", 0 }, // BOOLEAN
 };
 
+static const lexstyle global_Choco[] = {
+	{ 32, "C3BE98", "1A0F0B", 0 }, // Default Style
+	{ 37, "888A85", "1A0F0B", 0 }, // Indent guideline style
+	{ 34, "FCE94F", "1A0F0B", 1 }, // Brace highlight style
+	{ 35, "EF2929", "1A0F0B", 0 }, // Bad brace colour
+	{ 2069, "A7A7A7", "112435", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "EEEEEC", "2E3436", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 25, "80D4B2", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "3FBA89", "FF8000", 0 }, // Mark Style 2
+	{ 23, "101010", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "808080", "8000FF", 0 }, // Mark Style 4
+	{ 21, "FAAA3C", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "972FFF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Choco[] = {
+	{ 9, "8996A8", "1A0F0B", 0 }, // PREPROCESSOR
+	{ 11, "C3BE98", "1A0F0B", 0 }, // DEFAULT
+	{ 5, "F1E694", "1A0F0B", 0 }, // INSTRUCTION WORD
+	{ 16, "B3935C", "1A0F0B", 0 }, // TYPE WORD
+	{ 4, "DA5659", "1A0F0B", 0 }, // NUMBER
+	{ 6, "7CA563", "1A0F0B", 0 }, // STRING
+	{ 7, "7CA563", "1A0F0B", 0 }, // CHARACTER
+	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
+	{ 13, "DA5659", "1A0F0B", 0 }, // VERBATIM
+	{ 14, "E9C062", "1A0F0B", 0 }, // REGEX
+	{ 1, "679D47", "1A0F0B", 0 }, // COMMENT
+	{ 2, "679D47", "1A0F0B", 0 }, // COMMENT LINE
+	{ 3, "679D47", "1A0F0B", 0 }, // COMMENT DOC
+	{ 15, "679D47", "1A0F0B", 0 }, // COMMENT LINE DOC
+	{ 17, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Choco[] = {
+	{ 9, "8996A8", "1A0F0B", 0 }, // PREPROCESSOR
+	{ 11, "C3BE98", "1A0F0B", 0 }, // DEFAULT
+	{ 5, "F1E694", "1A0F0B", 0 }, // INSTRUCTION WORD
+	{ 16, "B3935C", "1A0F0B", 0 }, // TYPE WORD
+	{ 4, "DA5659", "1A0F0B", 0 }, // NUMBER
+	{ 6, "7CA563", "1A0F0B", 0 }, // STRING
+	{ 7, "7CA563", "1A0F0B", 0 }, // CHARACTER
+	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
+	{ 13, "DA5659", "1A0F0B", 0 }, // VERBATIM
+	{ 14, "E9C062", "1A0F0B", 0 }, // REGEX
+	{ 1, "679D47", "1A0F0B", 0 }, // COMMENT
+	{ 2, "679D47", "1A0F0B", 0 }, // COMMENT LINE
+	{ 3, "679D47", "1A0F0B", 0 }, // COMMENT DOC
+	{ 15, "679D47", "1A0F0B", 0 }, // COMMENT LINE DOC
+	{ 17, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "679D47", "1A0F0B", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Choco[] = {
+	{ 0, "C3BE98", "1A0F0B", 0 }, // DEFAULT
+	{ 1, "679D47", "1A0F0B", 0 }, // COMMENTLINE
+	{ 2, "DA5659", "1A0F0B", 0 }, // NUMBER
+	{ 3, "7CA563", "1A0F0B", 0 }, // STRING
+	{ 4, "7CA563", "1A0F0B", 0 }, // CHARACTER
+	{ 5, "B3935C", "1A0F0B", 0 }, // KEYWORDS
+	{ 6, "000000", "1A0F0B", 0 }, // TRIPLE
+	{ 7, "000000", "1A0F0B", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "1A0F0B", 0 }, // CLASSNAME
+	{ 9, "000000", "1A0F0B", 0 }, // DEFNAME
+	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
+	{ 11, "D77261", "1A0F0B", 0 }, // IDENTIFIER
+	{ 12, "679D47", "1A0F0B", 0 }, // COMMENTBLOCK
+	{ 12, "7CA563", "1A0F0B", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Choco[] = {
+	{ 0, "C3BE98", "1A0F0B", 0 }, // DEFAULT
+	{ 1, "000000", "1A0F0B", 0 }, // ERROR
+	{ 2, "679D47", "1A0F0B", 0 }, // COMMENTLINE
+	{ 3, "000000", "1A0F0B", 0 }, // POD
+	{ 4, "DA5659", "1A0F0B", 0 }, // NUMBER
+	{ 5, "B3935C", "1A0F0B", 0 }, // INSTRUCTION
+	{ 6, "7CA563", "1A0F0B", 0 }, // STRING
+	{ 7, "7CA563", "1A0F0B", 0 }, // CHARACTER
+	{ 8, "6D4C2F", "1A0F0B", 0 }, // CLASS NAME
+	{ 9, "6D4C2F", "1A0F0B", 0 }, // DEF NAME
+	{ 10, "B3935C", "1A0F0B", 0 }, // OPERATOR
+	{ 11, "D77261", "1A0F0B", 0 }, // IDENTIFIER
+	{ 12, "E9C062", "1A0F0B", 0 }, // REGEX
+	{ 13, "7989A6", "1A0F0B", 0 }, // GLOBAL
+	{ 14, "C3BE98", "1A0F0B", 0 }, // SYMBOL
+	{ 15, "000000", "1A0F0B", 0 }, // MODULE NAME
+	{ 16, "7989A6", "1A0F0B", 0 }, // INSTANCE VAR
+	{ 17, "000000", "1A0F0B", 0 }, // CLASS VAR
+	{ 18, "000000", "1A0F0B", 0 }, // BACKTICKS
+	{ 19, "000000", "1A0F0B", 0 }, // DATA SECTION
+	{ 24, "7CA563", "1A0F0B", 0 }, // STRING Q
+};
+
+static const lexstyle global_Twilight[] = {
+	{ 32, "F8F8F8", "141414", 0 }, // Default Style
+	{ 37, "888A85", "141414", 0 }, // Indent guideline style
+	{ 34, "FCE94F", "141414", 1 }, // Brace highlight style
+	{ 35, "EF2929", "141414", 0 }, // Bad brace colour
+	{ 2069, "A7A7A7", "141414", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "EEEEEC", "2E3436", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "F8F8F8", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "F8F8F8", "FF8000", 0 }, // Mark Style 2
+	{ 23, "F8F8F8", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "F8F8F8", "8000FF", 0 }, // Mark Style 4
+	{ 21, "F8F8F8", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Twilight[] = {
+	{ 9, "8996A8", "141414", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F8", "141414", 0 }, // DEFAULT
+	{ 5, "F9EE98", "141414", 0 }, // INSTRUCTION WORD
+	{ 16, "CDA869", "141414", 0 }, // TYPE WORD
+	{ 4, "CF6A4C", "141414", 0 }, // NUMBER
+	{ 6, "8F9D6A", "141414", 0 }, // STRING
+	{ 7, "8F9D6A", "141414", 0 }, // CHARACTER
+	{ 10, "CDA869", "141414", 0 }, // OPERATOR
+	{ 13, "CF6A4C", "141414", 0 }, // VERBATIM
+	{ 14, "E9C062", "141414", 0 }, // REGEX
+	{ 1, "5F5A60", "141414", 0 }, // COMMENT
+	{ 2, "5F5A60", "141414", 0 }, // COMMENT LINE
+	{ 3, "5F5A60", "141414", 0 }, // COMMENT DOC
+	{ 15, "5F5A60", "141414", 0 }, // COMMENT LINE DOC
+	{ 17, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Twilight[] = {
+	{ 9, "8996A8", "141414", 0 }, // PREPROCESSOR
+	{ 11, "F8F8F8", "141414", 0 }, // DEFAULT
+	{ 5, "F9EE98", "141414", 0 }, // INSTRUCTION WORD
+	{ 16, "CDA869", "141414", 0 }, // TYPE WORD
+	{ 4, "CF6A4C", "141414", 0 }, // NUMBER
+	{ 6, "8F9D6A", "141414", 0 }, // STRING
+	{ 7, "8F9D6A", "141414", 0 }, // CHARACTER
+	{ 10, "CDA869", "141414", 0 }, // OPERATOR
+	{ 13, "CF6A4C", "141414", 0 }, // VERBATIM
+	{ 14, "E9C062", "141414", 0 }, // REGEX
+	{ 1, "5F5A60", "141414", 0 }, // COMMENT
+	{ 2, "5F5A60", "141414", 0 }, // COMMENT LINE
+	{ 3, "5F5A60", "141414", 0 }, // COMMENT DOC
+	{ 15, "5F5A60", "141414", 0 }, // COMMENT LINE DOC
+	{ 17, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "5F5A60", "141414", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Twilight[] = {
+	{ 0, "F8F8F8", "141414", 0 }, // DEFAULT
+	{ 1, "5F5A60", "141414", 0 }, // COMMENTLINE
+	{ 2, "CF6A4C", "141414", 0 }, // NUMBER
+	{ 3, "8F9D6A", "141414", 0 }, // STRING
+	{ 4, "8F9D6A", "141414", 0 }, // CHARACTER
+	{ 5, "CDA869", "141414", 0 }, // KEYWORDS
+	{ 6, "8F9D6A", "141414", 0 }, // TRIPLE
+	{ 7, "8F9D6A", "141414", 0 }, // TRIPLEDOUBLE
+	{ 8, "F8F8F8", "141414", 0 }, // CLASSNAME
+	{ 9, "F8F8F8", "141414", 0 }, // DEFNAME
+	{ 10, "CDA869", "141414", 0 }, // OPERATOR
+	{ 11, "CF6A4C", "141414", 0 }, // IDENTIFIER
+	{ 12, "5F5A60", "141414", 0 }, // COMMENTBLOCK
+	{ 12, "8F9D6A", "141414", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Twilight[] = {
+	{ 0, "F8F8F8", "141414", 0 }, // DEFAULT
+	{ 1, "000000", "141414", 0 }, // ERROR
+	{ 2, "5F5A60", "141414", 0 }, // COMMENTLINE
+	{ 3, "000000", "141414", 0 }, // POD
+	{ 4, "CF6A4C", "141414", 0 }, // NUMBER
+	{ 5, "CDA869", "141414", 0 }, // INSTRUCTION
+	{ 6, "8F9D6A", "141414", 0 }, // STRING
+	{ 7, "8F9D6A", "141414", 0 }, // CHARACTER
+	{ 8, "9B703F", "141414", 0 }, // CLASS NAME
+	{ 9, "9B703F", "141414", 0 }, // DEF NAME
+	{ 10, "CDA869", "141414", 0 }, // OPERATOR
+	{ 11, "CF6A4C", "141414", 0 }, // IDENTIFIER
+	{ 12, "E9C062", "141414", 0 }, // REGEX
+	{ 13, "7587A6", "141414", 0 }, // GLOBAL
+	{ 14, "F8F8F8", "141414", 0 }, // SYMBOL
+	{ 15, "9B703F", "141414", 0 }, // MODULE NAME
+	{ 16, "7587A6", "141414", 0 }, // INSTANCE VAR
+	{ 17, "000000", "141414", 0 }, // CLASS VAR
+	{ 18, "000000", "141414", 0 }, // BACKTICKS
+	{ 19, "000000", "141414", 0 }, // DATA SECTION
+	{ 24, "8F9D6A", "141414", 0 }, // STRING Q
+};
+
+static const lexstyle global_Vibrant_Ink[] = {
+	{ 32, "FFFFFF", "000000", 0 }, // Default Style
+	{ 37, "C0C0C0", "000000", 0 }, // Indent guideline style
+	{ 34, "99CC99", "000000", 1 }, // Brace highlight style
+	{ 35, "CCFF33", "000000", 0 }, // Bad brace colour
+	{ 2069, "FFFFFF", "112435", 0 }, // Caret colour
+	{ 31, "FFFF00", "FF0000", 1 }, // Find Mark Style
+	{ 33, "E4E4E4", "333333", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "FFFFFF", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "FFFFFF", "FF8000", 0 }, // Mark Style 2
+	{ 23, "FFFFFF", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "FFFFFF", "8000FF", 0 }, // Mark Style 4
+	{ 21, "FFFFFF", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Vibrant_Ink[] = {
+	{ 9, "EDF8F9", "000000", 0 }, // PREPROCESSOR
+	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
+	{ 16, "66FF00", "000000", 0 }, // TYPE WORD
+	{ 4, "FF8000", "000000", 0 }, // NUMBER
+	{ 6, "66FF00", "000000", 0 }, // STRING
+	{ 7, "66FF00", "000000", 0 }, // CHARACTER
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
+	{ 14, "FFFFFF", "000000", 1 }, // REGEX
+	{ 1, "9933CC", "000000", 0 }, // COMMENT
+	{ 2, "9933CC", "000000", 0 }, // COMMENT LINE
+	{ 3, "9933CC", "000000", 0 }, // COMMENT DOC
+	{ 15, "9933CC", "000000", 0 }, // COMMENT LINE DOC
+	{ 17, "9933CC", "000000", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "9933CC", "000000", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Vibrant_Ink[] = {
+	{ 9, "EDF8F9", "000000", 0 }, // PREPROCESSOR
+	{ 11, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION WORD
+	{ 16, "66FF00", "000000", 0 }, // TYPE WORD
+	{ 4, "FF8000", "000000", 0 }, // NUMBER
+	{ 6, "66FF00", "000000", 0 }, // STRING
+	{ 7, "66FF00", "000000", 0 }, // CHARACTER
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 13, "FFFFFF", "000000", 0 }, // VERBATIM
+	{ 14, "FFFFFF", "000000", 1 }, // REGEX
+	{ 1, "9933CC", "000000", 0 }, // COMMENT
+	{ 2, "9933CC", "000000", 0 }, // COMMENT LINE
+	{ 3, "9933CC", "000000", 0 }, // COMMENT DOC
+	{ 15, "9933CC", "000000", 0 }, // COMMENT LINE DOC
+	{ 17, "9933CC", "000000", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "9933CC", "000000", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Vibrant_Ink[] = {
+	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 1, "9933CC", "000000", 0 }, // COMMENTLINE
+	{ 2, "99CC99", "000000", 0 }, // NUMBER
+	{ 3, "66FF00", "000000", 0 }, // STRING
+	{ 4, "66FF00", "000000", 0 }, // CHARACTER
+	{ 5, "FF6600", "000000", 1 }, // KEYWORDS
+	{ 6, "FF8000", "000000", 0 }, // TRIPLE
+	{ 7, "FFFFFF", "000000", 0 }, // TRIPLEDOUBLE
+	{ 8, "FFFFFF", "000000", 1 }, // CLASSNAME
+	{ 9, "FF00FF", "000000", 0 }, // DEFNAME
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
+	{ 12, "9933CC", "000000", 0 }, // COMMENTBLOCK
+	{ 12, "FFFF00", "000000", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Vibrant_Ink[] = {
+	{ 0, "FFFFFF", "000000", 0 }, // DEFAULT
+	{ 1, "FFFFFF", "000000", 0 }, // ERROR
+	{ 2, "9933CC", "000000", 0 }, // COMMENTLINE
+	{ 3, "004000", "C0FFC0", 0 }, // POD
+	{ 4, "FF8000", "000000", 0 }, // NUMBER
+	{ 5, "FF6600", "000000", 1 }, // INSTRUCTION
+	{ 6, "66FF00", "000000", 0 }, // STRING
+	{ 7, "808000", "000000", 0 }, // CHARACTER
+	{ 8, "0080C0", "000000", 1 }, // CLASS NAME
+	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
+	{ 10, "FFCC00", "000000", 1 }, // OPERATOR
+	{ 11, "FFFFFF", "000000", 0 }, // IDENTIFIER
+	{ 12, "339999", "000000", 0 }, // REGEX
+	{ 13, "FFCC00", "000000", 1 }, // GLOBAL
+	{ 14, "FFFFFF", "000000", 0 }, // SYMBOL
+	{ 15, "EDF8F9", "000000", 1 }, // MODULE NAME
+	{ 16, "FFFFFF", "000000", 0 }, // INSTANCE VAR
+	{ 17, "FFFFFF", "000000", 0 }, // CLASS VAR
+	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
+	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
+	{ 24, "66FF00", "000000", 0 }, // STRING Q
+};
+
+static const lexstyle global_Zenburn[] = {
+	{ 32, "DCDCCC", "3F3F3F", 0 }, // Default Style
+	{ 37, "4F5F5F", "3F3F3F", 0 }, // Indent guideline style
+	{ 34, "F0F9F9", "3F3F3F", 1 }, // Brace highlight style
+	{ 35, "F09F9F", "3F3F3F", 0 }, // Bad brace colour
+	{ 2069, "8FAF9F", "3F3F3F", 0 }, // Caret colour
+	{ 33, "8A8A8A", "0C0C0C", 0 }, // Line number margin
+	{ 29, "DCDCCC", "358A35", 0 }, // Smart HighLighting
+	{ 31, "DCDCCC", "FF0000", 0 }, // Find Mark Style
+	{ 25, "DCDCCC", "88B090", 0 }, // Mark Style 1
+	{ 24, "DCDCCC", "F8F893", 0 }, // Mark Style 2
+	{ 23, "DCDCCC", "F18C96", 0 }, // Mark Style 3
+	{ 22, "DCDCCC", "408040", 0 }, // Mark Style 4
+	{ 21, "DCDCCC", "968CF1", 0 }, // Mark Style 5
+	{ 28, "DCDCCC", "C3BF9F", 0 }, // Incremental highlight all
+	{ 27, "DCDCCC", "C6C600", 0 }, // Tags match highlighting
+	{ 26, "DCDCCC", "78926F", 0 }, // Tags attribute
+};
+
+
 static const lexstyle cpp_Zenburn[] = {
 	{ 9, "FFCFAF", "3F3F3F", 0 }, // PREPROCESSOR
 	{ 11, "DCDCCC", "3F3F3F", 0 }, // DEFAULT
@@ -1772,107 +1808,505 @@ static const lexstyle ruby_Zenburn[] = {
 	{ 24, "C89191", "3F3F3F", 0 }, // STRING Q
 };
 
+static const lexstyle global_Mono_Industrial[] = {
+	{ 32, "FFFFFF", "222C28", 0 }, // Default Style
+	{ 37, "888A85", "222C28", 0 }, // Indent guideline style
+	{ 34, "FCE94F", "222C28", 1 }, // Brace highlight style
+	{ 35, "EF2929", "222C28", 0 }, // Bad brace colour
+	{ 2069, "FFFFFF", "222C28", 0 }, // Caret colour
+	{ 31, "CC0000", "EDD400", 0 }, // Find Mark Style
+	{ 33, "EEEEEC", "2E3436", 0 }, // Line number margin
+	{ 29, "555753", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "FCAF3E", "FF0000", 0 }, // Find Mark Style
+	{ 25, "FFFFFF", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "FFFFFF", "FF8000", 0 }, // Mark Style 2
+	{ 23, "FFFFFF", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "FFFFFF", "8000FF", 0 }, // Mark Style 4
+	{ 21, "FFFFFF", "008000", 0 }, // Mark Style 5
+	{ 28, "FFCAB0", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "8080C0", "FFFF00", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_Mono_Industrial[] = {
+	{ 9, "A39E64", "222C28", 0 }, // PREPROCESSOR
+	{ 11, "FFFFFF", "222C28", 0 }, // DEFAULT
+	{ 5, "C23B00", "222C28", 0 }, // INSTRUCTION WORD
+	{ 16, "A39E64", "222C28", 0 }, // TYPE WORD
+	{ 4, "E98800", "222C28", 0 }, // NUMBER
+	{ 6, "FFFFFF", "222C28", 0 }, // STRING
+	{ 7, "FFFFFF", "222C28", 0 }, // CHARACTER
+	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
+	{ 13, "E98800", "222C28", 0 }, // VERBATIM
+	{ 14, "FFFFFF", "222C28", 0 }, // REGEX
+	{ 1, "666C68", "222C28", 0 }, // COMMENT
+	{ 2, "666C68", "222C28", 0 }, // COMMENT LINE
+	{ 3, "666C68", "222C28", 0 }, // COMMENT DOC
+	{ 15, "666C68", "222C28", 0 }, // COMMENT LINE DOC
+	{ 17, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_Mono_Industrial[] = {
+	{ 9, "A39E64", "222C28", 0 }, // PREPROCESSOR
+	{ 11, "FFFFFF", "222C28", 0 }, // DEFAULT
+	{ 5, "C23B00", "222C28", 0 }, // INSTRUCTION WORD
+	{ 16, "A39E64", "222C28", 0 }, // TYPE WORD
+	{ 4, "E98800", "222C28", 0 }, // NUMBER
+	{ 6, "FFFFFF", "222C28", 0 }, // STRING
+	{ 7, "FFFFFF", "222C28", 0 }, // CHARACTER
+	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
+	{ 13, "E98800", "222C28", 0 }, // VERBATIM
+	{ 14, "FFFFFF", "222C28", 0 }, // REGEX
+	{ 1, "666C68", "222C28", 0 }, // COMMENT
+	{ 2, "666C68", "222C28", 0 }, // COMMENT LINE
+	{ 3, "666C68", "222C28", 0 }, // COMMENT DOC
+	{ 15, "666C68", "222C28", 0 }, // COMMENT LINE DOC
+	{ 17, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD
+	{ 18, "666C68", "222C28", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_Mono_Industrial[] = {
+	{ 0, "FFFFFF", "222C28", 0 }, // DEFAULT
+	{ 1, "666C68", "222C28", 0 }, // COMMENTLINE
+	{ 2, "E98800", "222C28", 0 }, // NUMBER
+	{ 3, "FFFFFF", "222C28", 0 }, // STRING
+	{ 4, "FFFFFF", "222C28", 0 }, // CHARACTER
+	{ 5, "A8B3AB", "222C28", 0 }, // KEYWORDS
+	{ 6, "000000", "222C28", 0 }, // TRIPLE
+	{ 7, "000000", "222C28", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "222C28", 0 }, // CLASSNAME
+	{ 9, "000000", "222C28", 0 }, // DEFNAME
+	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
+	{ 11, "C87500", "222C28", 0 }, // IDENTIFIER
+	{ 12, "666C68", "222C28", 0 }, // COMMENTBLOCK
+	{ 12, "FFFFFF", "222C28", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_Mono_Industrial[] = {
+	{ 0, "FFFFFF", "222C28", 0 }, // DEFAULT
+	{ 1, "000000", "222C28", 0 }, // ERROR
+	{ 2, "666C68", "222C28", 0 }, // COMMENTLINE
+	{ 3, "000000", "222C28", 0 }, // POD
+	{ 4, "E98800", "222C28", 0 }, // NUMBER
+	{ 5, "A39E64", "222C28", 0 }, // INSTRUCTION
+	{ 6, "FFFFFF", "222C28", 0 }, // STRING
+	{ 7, "FFFFFF", "222C28", 0 }, // CHARACTER
+	{ 8, "FFFFFF", "222C28", 0 }, // CLASS NAME
+	{ 9, "A8B3AB", "222C28", 0 }, // DEF NAME
+	{ 10, "A8B3AB", "222C28", 0 }, // OPERATOR
+	{ 11, "C87500", "222C28", 0 }, // IDENTIFIER
+	{ 12, "FFFFFF", "222C28", 0 }, // REGEX
+	{ 13, "648BD2", "222C28", 0 }, // GLOBAL
+	{ 14, "FFFFFF", "222C28", 0 }, // SYMBOL
+	{ 15, "000000", "222C28", 0 }, // MODULE NAME
+	{ 16, "648BD2", "222C28", 0 }, // INSTANCE VAR
+	{ 17, "000000", "222C28", 0 }, // CLASS VAR
+	{ 18, "000000", "222C28", 0 }, // BACKTICKS
+	{ 19, "000000", "222C28", 0 }, // DATA SECTION
+	{ 24, "FFFFFF", "222C28", 0 }, // STRING Q
+};
+
+static const lexstyle global_HotFudgeSundae[] = {
+	{ 32, "B7975D", "2b0f01", 0 }, // Default Style
+	{ 37, "8B642B", "2b0f01", 0 }, // Indent guideline style
+	{ 34, "2b0f01", "EC6221", 1 }, // Brace highlight style
+	{ 35, "ff00ff", "2b0f01", 0 }, // Bad brace colour
+	{ 2069, "faf1c6", "2b0f01", 0 }, // Caret colour
+	{ 33, "8B642B", "43250b", 0 }, // Line number margin
+	{ 29, "B7975D", "008947", 0 }, // Smart HighLighting
+	{ 31, "B7975D", "7578DB", 0 }, // Find Mark Style
+	{ 25, "B7975D", "C11418", 0 }, // Mark Style 1
+	{ 24, "B7975D", "0088CE", 0 }, // Mark Style 2
+	{ 23, "B7975D", "BCBB80", 0 }, // Mark Style 3
+	{ 22, "B7975D", "42A658", 0 }, // Mark Style 4
+	{ 21, "B7975D", "cfba28", 0 }, // Mark Style 5
+	{ 28, "B7975D", "2b0f01", 0 }, // Incremental highlight all
+	{ 27, "B7975D", "990000", 0 }, // Tags match highlighting
+	{ 26, "B7975D", "3D0B0C", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_HotFudgeSundae[] = {
+	{ 9, "C11418", "2b0f01", 0 }, // PREPROCESSOR
+	{ 11, "B7975D", "2b0f01", 0 }, // DEFAULT
+	{ 5, "42A658", "2b0f01", 0 }, // INSTRUCTION WORD
+	{ 16, "cfba28", "2b0f01", 0 }, // TYPE WORD
+	{ 4, "AFA7D6", "2b0f01", 0 }, // NUMBER
+	{ 6, "BCBB80", "2b0f01", 0 }, // STRING
+	{ 7, "BCBB80", "2b0f01", 0 }, // CHARACTER
+	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
+	{ 13, "BCBB80", "2b0f01", 0 }, // VERBATIM
+	{ 14, "0088CE", "2b0f01", 0 }, // REGEX
+	{ 1, "255C08", "2b0f01", 2 }, // COMMENT
+	{ 2, "255C08", "2b0f01", 2 }, // COMMENT LINE
+	{ 3, "255C08", "2b0f01", 2 }, // COMMENT DOC
+	{ 15, "255C08", "2b0f01", 2 }, // COMMENT LINE DOC
+	{ 17, "255C08", "2b0f01", 3 }, // COMMENT DOC KEYWORD
+	{ 18, "ff00ff", "2b0f01", 3 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_HotFudgeSundae[] = {
+	{ 9, "C11418", "2b0f01", 0 }, // PREPROCESSOR
+	{ 11, "B7975D", "2b0f01", 0 }, // DEFAULT
+	{ 5, "42A658", "2b0f01", 0 }, // INSTRUCTION WORD
+	{ 16, "cfba28", "2b0f01", 0 }, // TYPE WORD
+	{ 4, "AFA7D6", "2b0f01", 0 }, // NUMBER
+	{ 6, "BCBB80", "2b0f01", 0 }, // STRING
+	{ 7, "BCBB80", "2b0f01", 0 }, // CHARACTER
+	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
+	{ 13, "BCBB80", "2b0f01", 0 }, // VERBATIM
+	{ 14, "0088CE", "2b0f01", 0 }, // REGEX
+	{ 1, "255C08", "2b0f01", 2 }, // COMMENT
+	{ 2, "255C08", "2b0f01", 2 }, // COMMENT LINE
+	{ 3, "255C08", "2b0f01", 2 }, // COMMENT DOC
+	{ 15, "255C08", "2b0f01", 2 }, // COMMENT LINE DOC
+	{ 17, "0088CE", "2b0f01", 3 }, // COMMENT DOC KEYWORD
+	{ 18, "ff00ff", "2b0f01", 3 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_HotFudgeSundae[] = {
+	{ 0, "B7975D", "2b0f01", 0 }, // DEFAULT
+	{ 1, "255C08", "2b0f01", 2 }, // COMMENTLINE
+	{ 2, "AFA7D6", "2b0f01", 0 }, // NUMBER
+	{ 3, "BCBB80", "2b0f01", 0 }, // STRING
+	{ 4, "BCBB80", "2b0f01", 0 }, // CHARACTER
+	{ 5, "42A658", "2b0f01", 0 }, // KEYWORDS
+	{ 6, "BCBB80", "2b0f01", 0 }, // TRIPLE
+	{ 7, "BCBB80", "2b0f01", 0 }, // TRIPLEDOUBLE
+	{ 8, "d92b10", "2b0f01", 0 }, // CLASSNAME
+	{ 9, "d92b10", "2b0f01", 0 }, // DEFNAME
+	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
+	{ 11, "cfba28", "2b0f01", 0 }, // IDENTIFIER
+	{ 12, "255C08", "2b0f01", 2 }, // COMMENTBLOCK
+	{ 12, "255C08", "2b0f01", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_HotFudgeSundae[] = {
+	{ 0, "B7975D", "2b0f01", 0 }, // DEFAULT
+	{ 1, "C11418", "2b0f01", 0 }, // ERROR
+	{ 2, "255C08", "2b0f01", 2 }, // COMMENTLINE
+	{ 3, "B7975D", "2b0f01", 2 }, // POD
+	{ 4, "AFA7D6", "2b0f01", 0 }, // NUMBER
+	{ 5, "42A658", "2b0f01", 0 }, // INSTRUCTION
+	{ 6, "BCBB80", "2b0f01", 0 }, // STRING
+	{ 7, "BCBB80", "2b0f01", 0 }, // CHARACTER
+	{ 8, "cfba28", "2b0f01", 0 }, // CLASS NAME
+	{ 9, "0088CE", "2b0f01", 0 }, // DEF NAME
+	{ 10, "D6C479", "2b0f01", 0 }, // OPERATOR
+	{ 11, "cfba28", "2b0f01", 0 }, // IDENTIFIER
+	{ 12, "0088CE", "2b0f01", 0 }, // REGEX
+	{ 13, "cfba28", "2b0f01", 0 }, // GLOBAL
+	{ 14, "B7975D", "2b0f01", 0 }, // SYMBOL
+	{ 15, "d92b10", "2b0f01", 0 }, // MODULE NAME
+	{ 16, "cfba28", "2b0f01", 0 }, // INSTANCE VAR
+	{ 17, "B7975D", "2b0f01", 0 }, // CLASS VAR
+	{ 18, "98AE66", "602F1A", 0 }, // BACKTICKS
+	{ 19, "BCBB80", "2b0f01", 0 }, // DATA SECTION
+	{ 24, "BCBB80", "2b0f01", 0 }, // STRING Q
+	{ 25, "0088CE", "2b0f01", 0 }, // BOOLEAN
+};
+
+static const lexstyle global_MossyLawn[] = {
+	{ 32, "f2c476", "6c7d51", 0 }, // Default Style
+	{ 37, "003709", "6c7d51", 0 }, // Indent guideline style
+	{ 34, "561e0f", "9ece3c", 1 }, // Brace highlight style
+	{ 35, "981f0e", "6c7d51", 0 }, // Bad brace colour
+	{ 2069, "ffc973", "6c7d51", 0 }, // Caret colour
+	{ 33, "603d13", "7e8a28", 0 }, // Line number margin
+	{ 29, "f2c476", "bf8830", 0 }, // Smart HighLighting
+	{ 31, "f2c476", "6a1a01", 0 }, // Find Mark Style
+	{ 25, "f2c476", "fdd64a", 0 }, // Mark Style 1
+	{ 24, "f2c476", "afcf90", 0 }, // Mark Style 2
+	{ 23, "f2c476", "ffdc87", 0 }, // Mark Style 3
+	{ 22, "f2c476", "cbe248", 0 }, // Mark Style 4
+	{ 21, "f2c476", "8abbe4", 0 }, // Mark Style 5
+	{ 28, "f2c476", "6a1a01", 0 }, // Incremental highlight all
+	{ 27, "f2c476", "92983e", 0 }, // Tags match highlighting
+	{ 26, "f2c476", "dab57e", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_MossyLawn[] = {
+	{ 9, "a32129", "6c7d51", 0 }, // PREPROCESSOR
+	{ 11, "f2c476", "6c7d51", 0 }, // DEFAULT
+	{ 5, "cbe248", "6c7d51", 0 }, // INSTRUCTION WORD
+	{ 16, "efc53d", "6c7d51", 0 }, // TYPE WORD
+	{ 4, "ffdc87", "6c7d51", 0 }, // NUMBER
+	{ 6, "ffdc87", "6c7d51", 0 }, // STRING
+	{ 7, "ffdc87", "6c7d51", 0 }, // CHARACTER
+	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
+	{ 13, "ffdc87", "6c7d51", 0 }, // VERBATIM
+	{ 14, "afcf90", "6c7d51", 0 }, // REGEX
+	{ 1, "2a390e", "6c7d51", 2 }, // COMMENT
+	{ 2, "2a390e", "6c7d51", 2 }, // COMMENT LINE
+	{ 3, "2a390e", "6c7d51", 2 }, // COMMENT DOC
+	{ 15, "2a390e", "6c7d51", 2 }, // COMMENT LINE DOC
+	{ 17, "2a390e", "6c7d51", 3 }, // COMMENT DOC KEYWORD
+	{ 18, "981f0e", "fdd64a", 3 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_MossyLawn[] = {
+	{ 9, "a32129", "6c7d51", 0 }, // PREPROCESSOR
+	{ 11, "f2c476", "6c7d51", 0 }, // DEFAULT
+	{ 5, "cbe248", "6c7d51", 0 }, // INSTRUCTION WORD
+	{ 16, "efc53d", "6c7d51", 0 }, // TYPE WORD
+	{ 4, "ffdc87", "6c7d51", 0 }, // NUMBER
+	{ 6, "ffdc87", "6c7d51", 0 }, // STRING
+	{ 7, "ffdc87", "6c7d51", 0 }, // CHARACTER
+	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
+	{ 13, "ffdc87", "6c7d51", 0 }, // VERBATIM
+	{ 14, "afcf90", "6c7d51", 0 }, // REGEX
+	{ 1, "2a390e", "6c7d51", 2 }, // COMMENT
+	{ 2, "2a390e", "6c7d51", 2 }, // COMMENT LINE
+	{ 3, "2a390e", "6c7d51", 2 }, // COMMENT DOC
+	{ 15, "2a390e", "6c7d51", 2 }, // COMMENT LINE DOC
+	{ 17, "afcf90", "6c7d51", 3 }, // COMMENT DOC KEYWORD
+	{ 18, "981f0e", "fdd64a", 3 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_MossyLawn[] = {
+	{ 0, "f2c476", "6c7d51", 0 }, // DEFAULT
+	{ 1, "2a390e", "6c7d51", 2 }, // COMMENTLINE
+	{ 2, "ffdc87", "6c7d51", 0 }, // NUMBER
+	{ 3, "ffdc87", "6c7d51", 0 }, // STRING
+	{ 4, "ffdc87", "6c7d51", 0 }, // CHARACTER
+	{ 5, "cbe248", "6c7d51", 0 }, // KEYWORDS
+	{ 6, "ffdc87", "6c7d51", 0 }, // TRIPLE
+	{ 7, "ffdc87", "6c7d51", 0 }, // TRIPLEDOUBLE
+	{ 8, "a32129", "6c7d51", 0 }, // CLASSNAME
+	{ 9, "a32129", "6c7d51", 0 }, // DEFNAME
+	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
+	{ 11, "efc53d", "6c7d51", 0 }, // IDENTIFIER
+	{ 12, "2a390e", "6c7d51", 2 }, // COMMENTBLOCK
+	{ 12, "2a390e", "6c7d51", 0 }, // STRINGEOL
+};
+
+static const lexstyle ruby_MossyLawn[] = {
+	{ 0, "f2c476", "6c7d51", 0 }, // DEFAULT
+	{ 1, "a32129", "6c7d51", 0 }, // ERROR
+	{ 2, "2a390e", "6c7d51", 2 }, // COMMENTLINE
+	{ 3, "f2c476", "6c7d51", 2 }, // POD
+	{ 4, "ffdc87", "6c7d51", 0 }, // NUMBER
+	{ 5, "cbe248", "6c7d51", 0 }, // INSTRUCTION
+	{ 6, "ffdc87", "6c7d51", 0 }, // STRING
+	{ 7, "ffdc87", "6c7d51", 0 }, // CHARACTER
+	{ 8, "efc53d", "6c7d51", 0 }, // CLASS NAME
+	{ 9, "afcf90", "6c7d51", 0 }, // DEF NAME
+	{ 10, "ffee88", "6c7d51", 1 }, // OPERATOR
+	{ 11, "efc53d", "6c7d51", 0 }, // IDENTIFIER
+	{ 12, "afcf90", "6c7d51", 0 }, // REGEX
+	{ 13, "efc53d", "6c7d51", 0 }, // GLOBAL
+	{ 14, "f2c476", "6c7d51", 0 }, // SYMBOL
+	{ 15, "a32129", "6c7d51", 0 }, // MODULE NAME
+	{ 16, "efc53d", "6c7d51", 0 }, // INSTANCE VAR
+	{ 17, "f2c476", "6c7d51", 0 }, // CLASS VAR
+	{ 18, "bfb8c4", "7e8a28", 0 }, // BACKTICKS
+	{ 19, "ffdc87", "6c7d51", 0 }, // DATA SECTION
+	{ 24, "ffdc87", "6c7d51", 0 }, // STRING Q
+	{ 25, "afcf90", "6c7d51", 0 }, // BOOLEAN
+};
+
+static const lexstyle global_NotepadPlusPlus[] = {
+	{ 32, "000000", "FFFFFF", 0 }, // Default Style
+	{ 37, "C0C0C0", "FFFFFF", 0 }, // Indent guideline style
+	{ 34, "FF0000", "FFFFFF", 1 }, // Brace highlight style
+	{ 35, "800000", "FFFFFF", 0 }, // Bad brace colour
+	{ 2069, "8000FF", "FFFFFF", 0 }, // Caret colour
+	{ 33, "808080", "E4E4E4", 0 }, // Line number margin
+	{ 29, "000000", "00FF00", 0 }, // Smart HighLighting
+	{ 31, "000000", "FF0000", 0 }, // Find Mark Style
+	{ 25, "000000", "00FFFF", 0 }, // Mark Style 1
+	{ 24, "000000", "FF8000", 0 }, // Mark Style 2
+	{ 23, "000000", "FFFF00", 0 }, // Mark Style 3
+	{ 22, "000000", "8000FF", 0 }, // Mark Style 4
+	{ 21, "000000", "008000", 0 }, // Mark Style 5
+	{ 28, "000000", "0080FF", 0 }, // Incremental highlight all
+	{ 27, "000000", "8000FF", 0 }, // Tags match highlighting
+	{ 26, "000000", "FFFF00", 0 }, // Tags attribute
+};
+
+
+static const lexstyle cpp_NotepadPlusPlus[] = {
+	{ 9, "804000", "FFFFFF", 0 }, // PREPROCESSOR
+	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION WORD
+	{ 16, "8000FF", "FFFFFF", 0 }, // TYPE WORD
+	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
+	{ 6, "808080", "FFFFFF", 0 }, // STRING
+	{ 7, "808080", "FFFFFF", 0 }, // CHARACTER
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 13, "000000", "FFFFFF", 0 }, // VERBATIM
+	{ 14, "000000", "FFFFFF", 1 }, // REGEX
+	{ 1, "008000", "FFFFFF", 0 }, // COMMENT
+	{ 2, "008000", "FFFFFF", 0 }, // COMMENT LINE
+	{ 3, "008080", "FFFFFF", 0 }, // COMMENT DOC
+	{ 15, "008080", "FFFFFF", 0 }, // COMMENT LINE DOC
+	{ 17, "008080", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "008080", "FFFFFF", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle java_NotepadPlusPlus[] = {
+	{ 9, "804000", "FFFFFF", 0 }, // PREPROCESSOR
+	{ 11, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION WORD
+	{ 16, "8000FF", "FFFFFF", 0 }, // TYPE WORD
+	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
+	{ 6, "808080", "FFFFFF", 0 }, // STRING
+	{ 7, "808080", "FFFFFF", 0 }, // CHARACTER
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 13, "000000", "FFFFFF", 0 }, // VERBATIM
+	{ 14, "000000", "FFFFFF", 1 }, // REGEX
+	{ 1, "008000", "FFFFFF", 0 }, // COMMENT
+	{ 2, "008000", "FFFFFF", 0 }, // COMMENT LINE
+	{ 3, "008080", "FFFFFF", 0 }, // COMMENT DOC
+	{ 15, "008080", "FFFFFF", 0 }, // COMMENT LINE DOC
+	{ 17, "008080", "FFFFFF", 1 }, // COMMENT DOC KEYWORD
+	{ 18, "008080", "FFFFFF", 0 }, // COMMENT DOC KEYWORD ERROR
+};
+
+static const lexstyle python_NotepadPlusPlus[] = {
+	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 1, "008000", "FFFFFF", 0 }, // COMMENTLINE
+	{ 2, "FF0000", "FFFFFF", 0 }, // NUMBER
+	{ 3, "808080", "FFFFFF", 0 }, // STRING
+	{ 4, "808080", "FFFFFF", 0 }, // CHARACTER
+	{ 5, "0000FF", "FFFFFF", 1 }, // KEYWORDS
+	{ 6, "FF8000", "FFFFFF", 0 }, // TRIPLE
+	{ 7, "FF8000", "FFFFFF", 0 }, // TRIPLEDOUBLE
+	{ 8, "000000", "FFFFFF", 1 }, // CLASSNAME
+	{ 9, "FF00FF", "FFFFFF", 0 }, // DEFNAME
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
+	{ 12, "008000", "FFFFFF", 0 }, // COMMENTBLOCK
+};
+
+static const lexstyle ruby_NotepadPlusPlus[] = {
+	{ 0, "000000", "FFFFFF", 0 }, // DEFAULT
+	{ 1, "000000", "FFFFFF", 0 }, // ERROR
+	{ 2, "008000", "FFFFFF", 0 }, // COMMENTLINE
+	{ 3, "004000", "C0FFC0", 0 }, // POD
+	{ 4, "FF8000", "FFFFFF", 0 }, // NUMBER
+	{ 5, "0000FF", "FFFFFF", 1 }, // INSTRUCTION
+	{ 6, "808080", "FFFFFF", 0 }, // STRING
+	{ 7, "808000", "FFFFFF", 0 }, // CHARACTER
+	{ 8, "0080C0", "FFFFFF", 1 }, // CLASS NAME
+	{ 9, "8080FF", "FFFFCC", 1 }, // DEF NAME
+	{ 10, "000080", "FFFFFF", 1 }, // OPERATOR
+	{ 11, "000000", "FFFFFF", 0 }, // IDENTIFIER
+	{ 12, "0080FF", "FFFFFF", 0 }, // REGEX
+	{ 13, "000080", "FFFFFF", 1 }, // GLOBAL
+	{ 14, "000000", "FFFFFF", 0 }, // SYMBOL
+	{ 15, "804000", "FFFFFF", 1 }, // MODULE NAME
+	{ 16, "000000", "FFFFFF", 0 }, // INSTANCE VAR
+	{ 17, "000000", "FFFFFF", 0 }, // CLASS VAR
+	{ 18, "FFFF00", "A08080", 0 }, // BACKTICKS
+	{ 19, "600000", "FFF0D8", 0 }, // DATA SECTION
+	{ 24, "808080", "FFFFFF", 0 }, // STRING Q
+};
+
 static const langstyle cppstyle[] = {
-	{ "HotFudgeSundae", "B7975D", "2b0f01", cpp_HotFudgeSundae, 16 },
-	{ "Solarized light", "657B83", "FDF6E3", cpp_Solarized_light, 16 },
-	{ "Obsidian", "E0E2E4", "293134", cpp_Obsidian, 16 },
-	{ "vim Dark Blue", "FFFFFF", "000040", cpp_vim_Dark_Blue, 16 },
-	{ "Solarized", "839496", "002B36", cpp_Solarized, 16 },
-	{ "Twilight", "F8F8F8", "141414", cpp_Twilight, 16 },
-	{ "MossyLawn", "f2c476", "6c7d51", cpp_MossyLawn, 16 },
-	{ "Black board", "F8F8F8", "0C1021", cpp_Black_board, 16 },
-	{ "Deep Black", "FFFFFF", "000000", cpp_Deep_Black, 16 },
-	{ "Choco", "C3BE98", "1A0F0B", cpp_Choco, 16 },
-	{ "Eclipse Default", "000000", "FFFFFF", cpp_Eclipse_Default, 16 },
-	{ "khaki", "5f5f00", "d7d7af", cpp_khaki, 16 },
-	{ "Bespin", "F8F8F8", "2A211C", cpp_Bespin, 16 },
-	{ "Plastic Code Wrap", "F8F8F8", "0B161D", cpp_Plastic_Code_Wrap, 16 },
-	{ "Ruby Blue", "FFFFFF", "112435", cpp_Ruby_Blue, 16 },
-	{ "Vibrant Ink", "FFFFFF", "000000", cpp_Vibrant_Ink, 16 },
-	{ "Monokai", "F8F8F2", "272822", cpp_Monokai, 16 },
-	{ "NotepadPlusPlus", "000000", "FFFFFF", cpp_NotepadPlusPlus, 16 },
-	{ "Hello Kitty", "000000", "FFB0FF", cpp_Hello_Kitty, 16 },
-	{ "Mono Industrial", "FFFFFF", "222C28", cpp_Mono_Industrial, 16 },
-	{ "Navajo", "000000", "BA9C80", cpp_Navajo, 16 },
-	{ "Zenburn", "DCDCCC", "3F3F3F", cpp_Zenburn, 16 },
+	{ "Monokai", "F8F8F2", "272822", "3E3D32", "EEEEEC", cpp_Monokai, global_Monokai, 16, 17 },
+	{ "Bespin", "F8F8F8", "2A211C", "4B3C34", "E5C138", cpp_Bespin, global_Bespin, 16, 17 },
+	{ "vim Dark Blue", "FFFFFF", "000040", "000040", "FFFFFF", cpp_vim_Dark_Blue, global_vim_Dark_Blue, 16, 11 },
+	{ "Black board", "F8F8F8", "0C1021", "121830", "EEEEEC", cpp_Black_board, global_Black_board, 16, 17 },
+	{ "Solarized", "839496", "002B36", "073642", "586E75", cpp_Solarized, global_Solarized, 16, 16 },
+	{ "khaki", "5f5f00", "d7d7af", "afaf87", "5f5f00", cpp_khaki, global_khaki, 16, 16 },
+	{ "Plastic Code Wrap", "F8F8F8", "0B161D", "11222D", "EEEEEC", cpp_Plastic_Code_Wrap, global_Plastic_Code_Wrap, 16, 17 },
+	{ "Solarized light", "657B83", "FDF6E3", "EEE8D5", "93A1A1", cpp_Solarized_light, global_Solarized_light, 16, 16 },
+	{ "Obsidian", "E0E2E4", "293134", "2F393C", "81969A", cpp_Obsidian, global_Obsidian, 16, 16 },
+	{ "Ruby Blue", "FFFFFF", "112435", "273A4B", "FFFFFF", cpp_Ruby_Blue, global_Ruby_Blue, 16, 17 },
+	{ "Hello Kitty", "000000", "FFB0FF", "FF80C0", "FFFFFF", cpp_Hello_Kitty, global_Hello_Kitty, 16, 16 },
+	{ "Deep Black", "FFFFFF", "000000", "333333", "C0C0C0", cpp_Deep_Black, global_Deep_Black, 16, 11 },
+	{ "Eclipse Default", "000000", "FFFFFF", "E8F2FE", "808080", cpp_Eclipse_Default, global_Eclipse_Default, 16, 11 },
+	{ "Navajo", "000000", "BA9C80", "B39674", "000000", cpp_Navajo, global_Navajo, 16, 16 },
+	{ "Choco", "C3BE98", "1A0F0B", "281711", "EEEEEC", cpp_Choco, global_Choco, 16, 17 },
+	{ "Twilight", "F8F8F8", "141414", "292929", "EEEEEC", cpp_Twilight, global_Twilight, 16, 17 },
+	{ "Vibrant Ink", "FFFFFF", "000000", "333333", "E4E4E4", cpp_Vibrant_Ink, global_Vibrant_Ink, 16, 17 },
+	{ "Zenburn", "DCDCCC", "3F3F3F", "101010", "8A8A8A", cpp_Zenburn, global_Zenburn, 16, 16 },
+	{ "Mono Industrial", "FFFFFF", "222C28", "2C3833", "EEEEEC", cpp_Mono_Industrial, global_Mono_Industrial, 16, 17 },
+	{ "HotFudgeSundae", "B7975D", "2b0f01", "432c13", "8B642B", cpp_HotFudgeSundae, global_HotFudgeSundae, 16, 16 },
+	{ "MossyLawn", "f2c476", "6c7d51", "858e4d", "603d13", cpp_MossyLawn, global_MossyLawn, 16, 16 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", "E8E8FF", "808080", cpp_NotepadPlusPlus, global_NotepadPlusPlus, 16, 16 },
 	{ NULL, NULL, NULL, 0 }
 };
 
 static const langstyle javastyle[] = {
-	{ "HotFudgeSundae", "B7975D", "2b0f01", java_HotFudgeSundae, 16 },
-	{ "Solarized light", "657B83", "FDF6E3", java_Solarized_light, 16 },
-	{ "Obsidian", "E0E2E4", "293134", java_Obsidian, 16 },
-	{ "vim Dark Blue", "FFFFFF", "000040", java_vim_Dark_Blue, 16 },
-	{ "Solarized", "839496", "002B36", java_Solarized, 16 },
-	{ "Twilight", "F8F8F8", "141414", java_Twilight, 16 },
-	{ "MossyLawn", "f2c476", "6c7d51", java_MossyLawn, 16 },
-	{ "Black board", "F8F8F8", "0C1021", java_Black_board, 16 },
-	{ "Deep Black", "FFFFFF", "000000", java_Deep_Black, 16 },
-	{ "Choco", "C3BE98", "1A0F0B", java_Choco, 16 },
-	{ "Eclipse Default", "000000", "FFFFFF", java_Eclipse_Default, 16 },
-	{ "khaki", "5f5f00", "d7d7af", java_khaki, 16 },
-	{ "Bespin", "F8F8F8", "2A211C", java_Bespin, 16 },
-	{ "Plastic Code Wrap", "F8F8F8", "0B161D", java_Plastic_Code_Wrap, 16 },
-	{ "Ruby Blue", "FFFFFF", "112435", java_Ruby_Blue, 16 },
-	{ "Vibrant Ink", "FFFFFF", "000000", java_Vibrant_Ink, 16 },
-	{ "Monokai", "F8F8F2", "272822", java_Monokai, 16 },
-	{ "NotepadPlusPlus", "000000", "FFFFFF", java_NotepadPlusPlus, 16 },
-	{ "Hello Kitty", "000000", "FFB0FF", java_Hello_Kitty, 16 },
-	{ "Mono Industrial", "FFFFFF", "222C28", java_Mono_Industrial, 16 },
-	{ "Navajo", "000000", "BA9C80", java_Navajo, 16 },
-	{ "Zenburn", "DCDCCC", "3F3F3F", java_Zenburn, 16 },
+	{ "Monokai", "F8F8F2", "272822", "3E3D32", "EEEEEC", java_Monokai, global_Monokai, 16, 17 },
+	{ "Bespin", "F8F8F8", "2A211C", "4B3C34", "E5C138", java_Bespin, global_Bespin, 16, 17 },
+	{ "vim Dark Blue", "FFFFFF", "000040", "000040", "FFFFFF", java_vim_Dark_Blue, global_vim_Dark_Blue, 16, 11 },
+	{ "Black board", "F8F8F8", "0C1021", "121830", "EEEEEC", java_Black_board, global_Black_board, 16, 17 },
+	{ "Solarized", "839496", "002B36", "073642", "586E75", java_Solarized, global_Solarized, 16, 16 },
+	{ "khaki", "5f5f00", "d7d7af", "afaf87", "5f5f00", java_khaki, global_khaki, 16, 16 },
+	{ "Plastic Code Wrap", "F8F8F8", "0B161D", "11222D", "EEEEEC", java_Plastic_Code_Wrap, global_Plastic_Code_Wrap, 16, 17 },
+	{ "Solarized light", "657B83", "FDF6E3", "EEE8D5", "93A1A1", java_Solarized_light, global_Solarized_light, 16, 16 },
+	{ "Obsidian", "E0E2E4", "293134", "2F393C", "81969A", java_Obsidian, global_Obsidian, 16, 16 },
+	{ "Ruby Blue", "FFFFFF", "112435", "273A4B", "FFFFFF", java_Ruby_Blue, global_Ruby_Blue, 16, 17 },
+	{ "Hello Kitty", "000000", "FFB0FF", "FF80C0", "FFFFFF", java_Hello_Kitty, global_Hello_Kitty, 16, 16 },
+	{ "Deep Black", "FFFFFF", "000000", "333333", "C0C0C0", java_Deep_Black, global_Deep_Black, 16, 11 },
+	{ "Eclipse Default", "000000", "FFFFFF", "E8F2FE", "808080", java_Eclipse_Default, global_Eclipse_Default, 16, 11 },
+	{ "Navajo", "000000", "BA9C80", "B39674", "000000", java_Navajo, global_Navajo, 16, 16 },
+	{ "Choco", "C3BE98", "1A0F0B", "281711", "EEEEEC", java_Choco, global_Choco, 16, 17 },
+	{ "Twilight", "F8F8F8", "141414", "292929", "EEEEEC", java_Twilight, global_Twilight, 16, 17 },
+	{ "Vibrant Ink", "FFFFFF", "000000", "333333", "E4E4E4", java_Vibrant_Ink, global_Vibrant_Ink, 16, 17 },
+	{ "Zenburn", "DCDCCC", "3F3F3F", "101010", "8A8A8A", java_Zenburn, global_Zenburn, 16, 16 },
+	{ "Mono Industrial", "FFFFFF", "222C28", "2C3833", "EEEEEC", java_Mono_Industrial, global_Mono_Industrial, 16, 17 },
+	{ "HotFudgeSundae", "B7975D", "2b0f01", "432c13", "8B642B", java_HotFudgeSundae, global_HotFudgeSundae, 16, 16 },
+	{ "MossyLawn", "f2c476", "6c7d51", "858e4d", "603d13", java_MossyLawn, global_MossyLawn, 16, 16 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", "E8E8FF", "808080", java_NotepadPlusPlus, global_NotepadPlusPlus, 16, 16 },
 	{ NULL, NULL, NULL, 0 }
 };
 
 static const langstyle pythonstyle[] = {
-	{ "HotFudgeSundae", "B7975D", "2b0f01", python_HotFudgeSundae, 14 },
-	{ "Solarized light", "657B83", "FDF6E3", python_Solarized_light, 14 },
-	{ "Obsidian", "E0E2E4", "293134", python_Obsidian, 14 },
-	{ "vim Dark Blue", "FFFFFF", "000040", python_vim_Dark_Blue, 14 },
-	{ "Solarized", "839496", "002B36", python_Solarized, 14 },
-	{ "Twilight", "F8F8F8", "141414", python_Twilight, 14 },
-	{ "MossyLawn", "f2c476", "6c7d51", python_MossyLawn, 14 },
-	{ "Black board", "F8F8F8", "0C1021", python_Black_board, 14 },
-	{ "Deep Black", "FFFFFF", "000000", python_Deep_Black, 14 },
-	{ "Choco", "C3BE98", "1A0F0B", python_Choco, 14 },
-	{ "Eclipse Default", "000000", "FFFFFF", python_Eclipse_Default, 14 },
-	{ "khaki", "5f5f00", "d7d7af", python_khaki, 14 },
-	{ "Bespin", "F8F8F8", "2A211C", python_Bespin, 14 },
-	{ "Plastic Code Wrap", "F8F8F8", "0B161D", python_Plastic_Code_Wrap, 14 },
-	{ "Ruby Blue", "FFFFFF", "112435", python_Ruby_Blue, 14 },
-	{ "Vibrant Ink", "FFFFFF", "000000", python_Vibrant_Ink, 14 },
-	{ "Monokai", "F8F8F2", "272822", python_Monokai, 14 },
-	{ "NotepadPlusPlus", "000000", "FFFFFF", python_NotepadPlusPlus, 13 },
-	{ "Hello Kitty", "000000", "FFB0FF", python_Hello_Kitty, 14 },
-	{ "Mono Industrial", "FFFFFF", "222C28", python_Mono_Industrial, 14 },
-	{ "Navajo", "000000", "BA9C80", python_Navajo, 14 },
-	{ "Zenburn", "DCDCCC", "3F3F3F", python_Zenburn, 13 },
+	{ "Monokai", "F8F8F2", "272822", "3E3D32", "EEEEEC", python_Monokai, global_Monokai, 14, 17 },
+	{ "Bespin", "F8F8F8", "2A211C", "4B3C34", "E5C138", python_Bespin, global_Bespin, 14, 17 },
+	{ "vim Dark Blue", "FFFFFF", "000040", "000040", "FFFFFF", python_vim_Dark_Blue, global_vim_Dark_Blue, 14, 11 },
+	{ "Black board", "F8F8F8", "0C1021", "121830", "EEEEEC", python_Black_board, global_Black_board, 14, 17 },
+	{ "Solarized", "839496", "002B36", "073642", "586E75", python_Solarized, global_Solarized, 14, 16 },
+	{ "khaki", "5f5f00", "d7d7af", "afaf87", "5f5f00", python_khaki, global_khaki, 14, 16 },
+	{ "Plastic Code Wrap", "F8F8F8", "0B161D", "11222D", "EEEEEC", python_Plastic_Code_Wrap, global_Plastic_Code_Wrap, 14, 17 },
+	{ "Solarized light", "657B83", "FDF6E3", "EEE8D5", "93A1A1", python_Solarized_light, global_Solarized_light, 14, 16 },
+	{ "Obsidian", "E0E2E4", "293134", "2F393C", "81969A", python_Obsidian, global_Obsidian, 14, 16 },
+	{ "Ruby Blue", "FFFFFF", "112435", "273A4B", "FFFFFF", python_Ruby_Blue, global_Ruby_Blue, 14, 17 },
+	{ "Hello Kitty", "000000", "FFB0FF", "FF80C0", "FFFFFF", python_Hello_Kitty, global_Hello_Kitty, 14, 16 },
+	{ "Deep Black", "FFFFFF", "000000", "333333", "C0C0C0", python_Deep_Black, global_Deep_Black, 14, 11 },
+	{ "Eclipse Default", "000000", "FFFFFF", "E8F2FE", "808080", python_Eclipse_Default, global_Eclipse_Default, 14, 11 },
+	{ "Navajo", "000000", "BA9C80", "B39674", "000000", python_Navajo, global_Navajo, 14, 16 },
+	{ "Choco", "C3BE98", "1A0F0B", "281711", "EEEEEC", python_Choco, global_Choco, 14, 17 },
+	{ "Twilight", "F8F8F8", "141414", "292929", "EEEEEC", python_Twilight, global_Twilight, 14, 17 },
+	{ "Vibrant Ink", "FFFFFF", "000000", "333333", "E4E4E4", python_Vibrant_Ink, global_Vibrant_Ink, 14, 17 },
+	{ "Zenburn", "DCDCCC", "3F3F3F", "101010", "8A8A8A", python_Zenburn, global_Zenburn, 13, 16 },
+	{ "Mono Industrial", "FFFFFF", "222C28", "2C3833", "EEEEEC", python_Mono_Industrial, global_Mono_Industrial, 14, 17 },
+	{ "HotFudgeSundae", "B7975D", "2b0f01", "432c13", "8B642B", python_HotFudgeSundae, global_HotFudgeSundae, 14, 16 },
+	{ "MossyLawn", "f2c476", "6c7d51", "858e4d", "603d13", python_MossyLawn, global_MossyLawn, 14, 16 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", "E8E8FF", "808080", python_NotepadPlusPlus, global_NotepadPlusPlus, 13, 16 },
 	{ NULL, NULL, NULL, 0 }
 };
 
 static const langstyle rubystyle[] = {
-	{ "HotFudgeSundae", "B7975D", "2b0f01", ruby_HotFudgeSundae, 22 },
-	{ "Solarized light", "657B83", "FDF6E3", ruby_Solarized_light, 22 },
-	{ "Obsidian", "E0E2E4", "293134", ruby_Obsidian, 21 },
-	{ "vim Dark Blue", "FFFFFF", "000040", ruby_vim_Dark_Blue, 21 },
-	{ "Solarized", "839496", "002B36", ruby_Solarized, 22 },
-	{ "Twilight", "F8F8F8", "141414", ruby_Twilight, 21 },
-	{ "MossyLawn", "f2c476", "6c7d51", ruby_MossyLawn, 22 },
-	{ "Black board", "F8F8F8", "0C1021", ruby_Black_board, 21 },
-	{ "Deep Black", "FFFFFF", "000000", ruby_Deep_Black, 21 },
-	{ "Choco", "C3BE98", "1A0F0B", ruby_Choco, 21 },
-	{ "Eclipse Default", "000000", "FFFFFF", ruby_Eclipse_Default, 21 },
-	{ "khaki", "5f5f00", "d7d7af", ruby_khaki, 22 },
-	{ "Bespin", "F8F8F8", "2A211C", ruby_Bespin, 21 },
-	{ "Plastic Code Wrap", "F8F8F8", "0B161D", ruby_Plastic_Code_Wrap, 21 },
-	{ "Ruby Blue", "FFFFFF", "112435", ruby_Ruby_Blue, 21 },
-	{ "Vibrant Ink", "FFFFFF", "000000", ruby_Vibrant_Ink, 21 },
-	{ "Monokai", "F8F8F2", "272822", ruby_Monokai, 21 },
-	{ "NotepadPlusPlus", "000000", "FFFFFF", ruby_NotepadPlusPlus, 21 },
-	{ "Hello Kitty", "000000", "FFB0FF", ruby_Hello_Kitty, 21 },
-	{ "Mono Industrial", "FFFFFF", "222C28", ruby_Mono_Industrial, 21 },
-	{ "Navajo", "000000", "BA9C80", ruby_Navajo, 22 },
-	{ "Zenburn", "DCDCCC", "3F3F3F", ruby_Zenburn, 21 },
+	{ "Monokai", "F8F8F2", "272822", "3E3D32", "EEEEEC", ruby_Monokai, global_Monokai, 21, 17 },
+	{ "Bespin", "F8F8F8", "2A211C", "4B3C34", "E5C138", ruby_Bespin, global_Bespin, 21, 17 },
+	{ "vim Dark Blue", "FFFFFF", "000040", "000040", "FFFFFF", ruby_vim_Dark_Blue, global_vim_Dark_Blue, 21, 11 },
+	{ "Black board", "F8F8F8", "0C1021", "121830", "EEEEEC", ruby_Black_board, global_Black_board, 21, 17 },
+	{ "Solarized", "839496", "002B36", "073642", "586E75", ruby_Solarized, global_Solarized, 22, 16 },
+	{ "khaki", "5f5f00", "d7d7af", "afaf87", "5f5f00", ruby_khaki, global_khaki, 22, 16 },
+	{ "Plastic Code Wrap", "F8F8F8", "0B161D", "11222D", "EEEEEC", ruby_Plastic_Code_Wrap, global_Plastic_Code_Wrap, 21, 17 },
+	{ "Solarized light", "657B83", "FDF6E3", "EEE8D5", "93A1A1", ruby_Solarized_light, global_Solarized_light, 22, 16 },
+	{ "Obsidian", "E0E2E4", "293134", "2F393C", "81969A", ruby_Obsidian, global_Obsidian, 21, 16 },
+	{ "Ruby Blue", "FFFFFF", "112435", "273A4B", "FFFFFF", ruby_Ruby_Blue, global_Ruby_Blue, 21, 17 },
+	{ "Hello Kitty", "000000", "FFB0FF", "FF80C0", "FFFFFF", ruby_Hello_Kitty, global_Hello_Kitty, 21, 16 },
+	{ "Deep Black", "FFFFFF", "000000", "333333", "C0C0C0", ruby_Deep_Black, global_Deep_Black, 21, 11 },
+	{ "Eclipse Default", "000000", "FFFFFF", "E8F2FE", "808080", ruby_Eclipse_Default, global_Eclipse_Default, 21, 11 },
+	{ "Navajo", "000000", "BA9C80", "B39674", "000000", ruby_Navajo, global_Navajo, 22, 16 },
+	{ "Choco", "C3BE98", "1A0F0B", "281711", "EEEEEC", ruby_Choco, global_Choco, 21, 17 },
+	{ "Twilight", "F8F8F8", "141414", "292929", "EEEEEC", ruby_Twilight, global_Twilight, 21, 17 },
+	{ "Vibrant Ink", "FFFFFF", "000000", "333333", "E4E4E4", ruby_Vibrant_Ink, global_Vibrant_Ink, 21, 17 },
+	{ "Zenburn", "DCDCCC", "3F3F3F", "101010", "8A8A8A", ruby_Zenburn, global_Zenburn, 21, 16 },
+	{ "Mono Industrial", "FFFFFF", "222C28", "2C3833", "EEEEEC", ruby_Mono_Industrial, global_Mono_Industrial, 21, 17 },
+	{ "HotFudgeSundae", "B7975D", "2b0f01", "432c13", "8B642B", ruby_HotFudgeSundae, global_HotFudgeSundae, 22, 16 },
+	{ "MossyLawn", "f2c476", "6c7d51", "858e4d", "603d13", ruby_MossyLawn, global_MossyLawn, 22, 16 },
+	{ "NotepadPlusPlus", "000000", "FFFFFF", "E8E8FF", "808080", ruby_NotepadPlusPlus, global_NotepadPlusPlus, 21, 16 },
 	{ NULL, NULL, NULL, 0 }
 };
 

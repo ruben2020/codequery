@@ -46,6 +46,9 @@ my $themename2;
 my @themes;
 my $defaultbgcolor;
 my $defaultfgcolor;
+my $defaultfontstyle;
+my $currentlinebgcolor;
+my $linenumfgcolor;
 my $stylename;
 my $styleid;
 my $fgcolor;
@@ -120,6 +123,48 @@ $parser = XML::LibXML->new();
 $xmldoc = $parser->parse_file($filename);
 my $lstyle;
 my $numofstyles=0;
+my $numofglobalstyles=0;
+$currentlinebgcolor = '';
+$linenumfgcolor = '';
+
+foreach my $sample ( $xmldoc->findnodes('/NotepadPlus/GlobalStyles') )
+{
+	$lexstyle .= "\nstatic const lexstyle global_".$themename."[] = {\n";
+	$defaultbgcolor = '';
+	$defaultfgcolor = '';
+	$defaultfontstyle = '';
+	$numofglobalstyles = 0;
+	foreach my $child ( $sample->getChildnodes )
+	{
+		if (( $child->nodeType() == XML_ELEMENT_NODE )&&($child->nodeName() eq 'WidgetStyle'))
+		{
+			$stylename = '';
+			$styleid = '';
+			$fgcolor = '';
+			$bgcolor = '';
+			$fontstyle = '';
+			$stylename = $child->getAttribute('name') if ($child->hasAttribute('name'));
+			$styleid = $child->getAttribute('styleID') if ($child->hasAttribute('styleID'));
+			$fgcolor = $child->getAttribute('fgColor') if ($child->hasAttribute('fgColor'));
+			$bgcolor = $child->getAttribute('bgColor') if ($child->hasAttribute('bgColor'));
+			$fontstyle = $child->getAttribute('fontStyle') if ($child->hasAttribute('fontStyle'));
+			if ($stylename eq 'Current line background colour') {$currentlinebgcolor = $bgcolor;}
+			if ($styleid eq '33') {$linenumfgcolor = $fgcolor;}
+			if ($styleid eq '0') {next;}
+			$defaultbgcolor = $bgcolor if ($stylename eq 'Default Style');
+			$defaultfgcolor = $fgcolor if ($stylename eq 'Default Style');
+			$defaultfontstyle = $fontstyle if ($stylename eq 'Default Style');
+			$defaultfontstyle = "0" if (length($defaultfontstyle) == 0);
+			$bgcolor = $defaultbgcolor if (length($bgcolor) == 0);
+			$fgcolor = $defaultfgcolor if (length($fgcolor) == 0);
+			$fontstyle = $defaultfontstyle if (length($fontstyle) == 0);
+			print "$stylename, $styleid, $fgcolor, $bgcolor, $fontstyle\n" if ($debug);
+			$lexstyle .= "\t{ $styleid, \"$fgcolor\", \"$bgcolor\", $fontstyle }, // $stylename\n";
+			$numofglobalstyles++;
+        	}
+	}
+	$lexstyle .= "};\n\n";
+}
 
 foreach my $sample ( $xmldoc->findnodes('/NotepadPlus/LexerStyles/LexerType') )
 {
@@ -131,8 +176,6 @@ foreach my $sample ( $xmldoc->findnodes('/NotepadPlus/LexerStyles/LexerType') )
 
 	print "\n$langname, $langdesc\n" if ($debug);
 	$lexstyle .= "\nstatic const lexstyle ".$langname."_".$themename."[] = {\n";
-	$defaultbgcolor = '';
-	$defaultfgcolor = '';
 	$numofstyles = 0;
 	foreach my $child ( $sample->getChildnodes )
 	{
@@ -150,13 +193,18 @@ foreach my $sample ( $xmldoc->findnodes('/NotepadPlus/LexerStyles/LexerType') )
 			$fontstyle = $child->getAttribute('fontStyle') if ($child->hasAttribute('fontStyle'));
 			$defaultbgcolor = $bgcolor if ($stylename eq 'DEFAULT');
 			$defaultfgcolor = $fgcolor if ($stylename eq 'DEFAULT');
+			$defaultfontstyle = $fontstyle if ($stylename eq 'DEFAULT');
+			$defaultfontstyle = "0" if (length($defaultfontstyle) == 0);
+			$bgcolor = $defaultbgcolor if (length($bgcolor) == 0);
+			$fgcolor = $defaultfgcolor if (length($fgcolor) == 0);
+			$fontstyle = $defaultfontstyle if (length($fontstyle) == 0);
 			print "$stylename, $styleid, $fgcolor, $bgcolor, $fontstyle\n" if ($debug);
 			$lexstyle .= "\t{ $styleid, \"$fgcolor\", \"$bgcolor\", $fontstyle }, // $stylename\n";
 			$numofstyles++;
         	}
 	}
 	$lexstyle .= "};\n";
-	$lstyle = "	{ \"$themename2\", \"$defaultfgcolor\", \"$defaultbgcolor\", ".$langname."_".$themename.", $numofstyles },\n";
+	$lstyle = "	{ \"$themename2\", \"$defaultfgcolor\", \"$defaultbgcolor\", \"$currentlinebgcolor\", \"$linenumfgcolor\", ".$langname."_".$themename.", global_".$themename.", $numofstyles, $numofglobalstyles },\n";
 	$cppstyle    .= $lstyle if ($langdesc eq 'C++');
 	$javastyle   .= $lstyle if ($langdesc eq 'Java');
 	$pythonstyle .= $lstyle if ($langdesc eq 'Python');

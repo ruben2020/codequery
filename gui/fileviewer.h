@@ -116,6 +116,7 @@ QString m_themelast;
 int m_currentlang;
 int m_fontwidthtemp;
 int m_markerhandle;
+int m_markerhandle2;
 
 void createFontList(void);
 void textSizeChange(int n);

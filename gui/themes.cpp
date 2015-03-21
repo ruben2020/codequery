@@ -33,22 +33,17 @@
 #include "themes.h"
 
 
-
-typedef struct
-{
-	int styleid;
-	const char *fgcolor;
-	const char *bgcolor;
-	int fontstyle;
-}lexstyle;
-
 typedef struct
 {
 	const char *themename;
 	const char *defaultfgcolor;
 	const char *defaultbgcolor;
+	const char *currentlinebgcolor;
+	const char *linenumfgcolor;
 	const lexstyle *lexstyletable;
+	const lexstyle *globallexstyletable;
 	int lexstylesize;
+	int globallexstylesize;
 }langstyle;
 
 
@@ -64,12 +59,14 @@ QStringList themes::getThemesList(void)
 	return lst;
 }
 
-void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt)
+void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor)
 {
 	langstyle *lngstyle = NULL;
 	lexstyle *lxstyle = NULL;
+	lexstyle *globallxstyle = NULL;
 	int i=0;
 	int lxstylesize=0;
+	int globallxstylesize=0;
 	QFont font1 = fontt;
 	//font1.setFixedPitch(true);
 	font1.setBold(false);
@@ -101,7 +98,9 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 		if (theme.compare(QString(lngstyle[i].themename)) == 0)
 		{
 			lxstyle = (lexstyle *) lngstyle[i].lexstyletable;
+			globallxstyle = (lexstyle *) lngstyle[i].globallexstyletable;
 			lxstylesize = lngstyle[i].lexstylesize;
+			globallxstylesize = lngstyle[i].globallexstylesize;
 			lexer->setPaper(QColor(QString("#").append(QString(lngstyle[i].defaultbgcolor))));
 			lexer->setColor(QColor(QString("#").append(QString(lngstyle[i].defaultfgcolor))));
 			lexer->setFont(font1);
@@ -109,6 +108,15 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 		}
 		i++;
 	}
+	setThemeStyle(lexer, globallxstyle, globallxstylesize, font1);
+	setThemeStyle(lexer, lxstyle      , lxstylesize      , font1);
+	curlinebgcolor = QColor(QString("#").append(QString(lngstyle[i].currentlinebgcolor)));
+	linenumbgcolor = QColor(QString("#").append(QString(lngstyle[i].linenumfgcolor)));
+}
+
+void themes::setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1)
+{
+	int i;
 	if (lxstyle != NULL)
 	for(i=0; i<lxstylesize; i++)
 	{

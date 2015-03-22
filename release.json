@@ -1,0 +1,8 @@
+{
+    "version": "0.15",
+    "state": "stable",
+    "scope": "minor feature",
+    "changes": "Added support for Mac OS, Allowed -q in cscope.out header, Added info to HOWTOs on how to exclude standard include paths",
+    "download": "https://sourceforge.net/projects/codequery/files/"
+}
+

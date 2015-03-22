@@ -98,10 +98,12 @@ void recvDBtimestamp(QDateTime dt);
 void fontSelectionTemporary(const QString &fonttxt);
 void themeSelectionTemporary(const QString &themetxt);
 void tabWidthSelectionTemporary(const QString &width);
+void annotate(QString annotstr);
 
 signals:
 void searchCopiedText();
 void searchCopiedTextSymbolOnly();
+void requestAnnotation(QString searchstr);
 
 private:
 mainwindow *mw;
@@ -117,6 +119,8 @@ int m_currentlang;
 int m_fontwidthtemp;
 int m_markerhandle;
 int m_markerhandle2;
+long m_currentline;
+long m_annotline;
 
 void createFontList(void);
 void textSizeChange(int n);

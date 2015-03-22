@@ -120,10 +120,12 @@ enum en_filereadstatus
 				bool exactmatch=false,
 				tStr filterstr = "");
 	tVecStr search_autocomplete(const char* searchstr);
+	sqlqueryresultlist search_declaration(const char* searchstr);
 
 private:
 	sqlite3 *m_db;
 	tStr m_basepath;
+	tempstmt m_declarationstmt;
 	tempstmt m_autocompstmt;
 	tempstmt m_searchstmt;
 	sqlqueryresultlist search_full(sqlite3_stmt* stmt);

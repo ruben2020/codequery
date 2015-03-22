@@ -62,6 +62,7 @@
 #define SQL_EM_CHILDCLASS "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT childID FROM inherittbl WHERE parentID IN (SELECT symID FROM symtbl WHERE symName=?)) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 #define SQL_EM_INCLUDE "SELECT filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=? AND symType=\"~\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_EM_FILEPATH "SELECT DISTINCT filePath FROM filestbl WHERE filePath=?;"
+#define SQL_DECLARATION "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) AND (symtbl.symType=\"$\" OR symtbl.symType=\"#\" OR symtbl.symType=\"c\" OR symtbl.symType=\"s\") AND symtbl.lineID=linestbl.lineID INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID) LIMIT 1;"
 
 
 tempstmt::tempstmt()
@@ -159,12 +160,15 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 	if (m_basepath.empty()) {return sqlfileNOTCORRECTDB;}
 	rc = sqlite3_prepare_v2(m_db, SQL_AUTOCOMPLETE, strlen(SQL_AUTOCOMPLETE),
 							&(m_autocompstmt.m_stmt), NULL);
+	rc = sqlite3_prepare_v2(m_db, SQL_DECLARATION, strlen(SQL_DECLARATION),
+							&(m_declarationstmt.m_stmt), NULL);
 	if (rc != SQLITE_OK) {return sqlfileNOTCORRECTDB;}
 	return sqlfileOK;
 }
 
 void sqlquery::close_dbfile(void)
 {
+	m_declarationstmt.finalize();
 	m_autocompstmt.finalize();
 	m_searchstmt.finalize();
 	sqlite3_close(m_db);
@@ -341,6 +345,51 @@ tStr sqlquery::process_searchterm_autocomplete(const char* searchterm)
 	replacechar( srchterm.begin(), srchterm.end(), '*', '%');
 	replacechar( srchterm.begin(), srchterm.end(), '?', '_');
 	return srchterm;
+}
+
+sqlqueryresultlist sqlquery::search_declaration(const char* searchstr)
+{
+	int rc;
+	sqlqueryresultlist result;
+	tStr fp;
+	sqlite3_stmt* stmt = m_declarationstmt.get();
+	if ((searchstr == NULL)||(strlen(searchstr) < 1)||(m_db == NULL)) return result;
+	result.result_type = sqlqueryresultlist::sqlresultERROR;
+	sqlqueryresult item;
+	sqlite3_reset(stmt);
+	rc = sqlite3_bind_text(stmt, 1, searchstr, strlen(searchstr), SQLITE_STATIC);
+	if (rc != SQLITE_OK) {printf("Err: %s\n", sqlite3_errmsg(m_db)); return result;}
+	do
+	{
+		rc = sqlite3_step(stmt);
+		if (rc == SQLITE_ROW)
+		{
+			item.symname  = (const char*) sqlite3_column_text(stmt, 0);
+			item.symtype  = (const char*) sqlite3_column_text(stmt, 1);
+			fp            = (const char*) sqlite3_column_text(stmt, 2);
+			item.linenum  = (const char*) sqlite3_column_text(stmt, 3);
+			item.linetext = (const char*) sqlite3_column_text(stmt, 4);
+			item.filename = extract_filename(fp.c_str());
+			if (isAbsolutePath(fp) == false)
+			{
+				item.filepath = m_basepath;
+				item.filepath += DIRSEP;
+				item.filepath += fp;
+			}
+			else item.filepath = fp;
+			result.resultlist.push_back(item);
+		}
+	} while (rc == SQLITE_ROW);
+	if (rc != SQLITE_DONE)
+	{
+		result.result_type = sqlqueryresultlist::sqlresultERROR;
+		result.sqlerrmsg = sqlite3_errmsg(m_db);
+	}
+	else
+	{
+		result.result_type = sqlqueryresultlist::sqlresultFULL;
+	}
+	return result;
 }
 
 

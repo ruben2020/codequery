@@ -83,6 +83,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_srchStrLstModel(QStringList())
 ,m_typeOfGraph(1)
 ,m_autocompBusy(false)
+,m_declarBusy(false)
 {
 	sq = new sqlqueryadv;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
@@ -142,7 +143,7 @@ void searchhandler::searchTextEdited(const QString& searchtxt)
 {
 	if (m_checkBoxAutoComplete->isChecked())
 	{
-		if (m_autocompBusy)
+		if ((m_autocompBusy)||(m_declarBusy))
 		{
 			m_autocompSrchTerm = searchtxt;
 		}
@@ -172,6 +173,37 @@ void searchhandler::autoCompleteFinished()
 			QtConcurrent::run(search_autocomplete_qt, m_autocompSrchTerm));
 		m_autocompSrchTerm.clear();
 	}
+}
+
+void searchhandler::declarSearchFinished()
+{
+	QString str = m_declarFutureWatcher.result();
+	if (str.length() > 0)
+		emit searchDeclarationResultsReady(m_declarFutureWatcher.result());
+	m_declarBusy = false;
+}
+
+void searchhandler::searchDeclaration(QString searchstr)
+{
+	if ((!m_declarBusy)&&(!m_autocompBusy))
+	{
+		m_declarBusy = true;
+		m_declarFutureWatcher.setFuture(
+			QtConcurrent::run(search_declaration_qt, searchstr));
+	}
+}
+
+QString searchhandler::search_declaration_qt(QString searchtxt)
+{
+	QString str;
+	sqlqueryresultlist reslst = sq->search_declaration(searchtxt.toAscii().data());
+	if (reslst.resultlist.size() > 0)
+	str.append(reslst.resultlist[0].filename.c_str())
+		.append(":")
+		.append(reslst.resultlist[0].linenum.c_str())
+		.append(" ==> ")
+		.append(reslst.resultlist[0].linetext.c_str());
+	return str;
 }
 
 QStringList searchhandler::search_autocomplete_qt(QString searchtxt)
@@ -238,6 +270,8 @@ void searchhandler::init(void)
 			this, SLOT(NextSearch_ButtonClick(bool)));
 	connect(&m_autocompFutureWatcher, SIGNAL(finished()),
 			this, SLOT(autoCompleteFinished()));
+	connect(&m_declarFutureWatcher, SIGNAL(finished()),
+			this, SLOT(declarSearchFinished()));
 }
 
 void searchhandler::retranslateUi(void)
@@ -323,6 +357,11 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 		m_autocompBusy = false;
 		m_autocompFutureWatcher.waitForFinished();
 	}
+	if (m_declarBusy)
+	{
+		m_declarBusy = false;
+		m_declarFutureWatcher.waitForFinished();
+	}
 	sq->close_dbfile();
 	QFileInfo dbfile(m_comboBoxDB->itemText(idx));
 	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
@@ -399,6 +438,11 @@ void searchhandler::perform_search(QString searchtxt,
 	{
 		m_autocompBusy = false;
 		m_autocompFutureWatcher.waitForFinished();
+	}
+	if (m_declarBusy)
+	{
+		m_declarBusy = false;
+		m_declarFutureWatcher.waitForFinished();
 	}
 	sqlquery::en_queryType querytype = qrytyp;
 	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
@@ -570,6 +614,11 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 	{
 		m_autocompBusy = false;
 		m_autocompFutureWatcher.waitForFinished();
+	}
+	if (m_declarBusy)
+	{
+		m_declarBusy = false;
+		m_declarFutureWatcher.waitForFinished();
 	}
 	if (m_typeOfGraph == 1)
 	res = sq->search_funcgraph(symName,

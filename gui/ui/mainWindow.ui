@@ -38,6 +38,12 @@
            <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Database.png</normaloff>:/mainwindow/images/Database.png</iconset>
           </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
          </widget>
         </item>
         <item>
@@ -157,6 +163,12 @@
            <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
           </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
          </widget>
         </item>
         <item>
@@ -173,6 +185,12 @@
           <property name="icon">
            <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -219,6 +237,12 @@
            <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Search.png</normaloff>:/mainwindow/images/Search.png</iconset>
           </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
+          </property>
          </widget>
         </item>
         <item>
@@ -235,6 +259,12 @@
           <property name="icon">
            <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -255,6 +285,12 @@
           <property name="icon">
            <iconset resource="../codequery.qrc">
             <normaloff>:/mainwindow/images/Graph.png</normaloff>:/mainwindow/images/Graph.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -310,6 +346,12 @@
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
               </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
              </widget>
             </item>
             <item>
@@ -326,6 +368,12 @@
               <property name="icon">
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -344,6 +392,12 @@
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Document2.png</normaloff>:/mainwindow/images/Document2.png</iconset>
               </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
              </widget>
             </item>
             <item>
@@ -360,6 +414,12 @@
               <property name="icon">
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Flag.png</normaloff>:/mainwindow/images/Flag.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -378,6 +438,12 @@
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Text_Minus.png</normaloff>:/mainwindow/images/Text_Minus.png</iconset>
               </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
              </widget>
             </item>
             <item>
@@ -394,6 +460,12 @@
               <property name="icon">
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Text_Plus.png</normaloff>:/mainwindow/images/Text_Plus.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -418,6 +490,12 @@
               <property name="icon">
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -456,6 +534,12 @@
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
               </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
+              </property>
              </widget>
             </item>
             <item>
@@ -472,6 +556,12 @@
               <property name="icon">
                <iconset resource="../codequery.qrc">
                 <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -526,7 +616,7 @@
      <x>0</x>
      <y>0</y>
      <width>753</width>
-     <height>27</height>
+     <height>31</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

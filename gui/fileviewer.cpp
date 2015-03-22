@@ -92,6 +92,8 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_lexer(NULL)
 ,m_fontsize(0)
 ,m_currentlang(enHighlightCPP)
+,m_currentline(1)
+,m_annotline(1)
 {
 	m_iter = m_fileDataList.begin();
 	m_textEditSourceFont.setStyleHint(QFont::TypeWriter);	
@@ -137,6 +139,7 @@ void fileviewer::init(void)
 	m_textEditSource->setMarginType(0, QsciScintilla::NumberMargin);
 	m_textEditSource->setMarginType(1, QsciScintilla::SymbolMargin);
 	m_textEditSource->setBraceMatching(QsciScintilla::SloppyBraceMatch);
+	m_textEditSource->setAnnotationDisplay(QsciScintilla::AnnotationBoxed);
 	setLexer(enHighlightCPP);
 	createFontList(); 
 	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),
@@ -323,7 +326,18 @@ void fileviewer::updateFilePathLabel(void)
 
 void fileviewer::AbleToCopy(bool copy)
 {
+	int lineFrom, indexFrom, lineTo, indexTo;
 	m_pushButtonPaste->setEnabled(copy);
+	if (copy)
+	{
+		m_textEditSource->copy();
+		m_textEditSource->getSelection(&lineFrom, &indexFrom, &lineTo, &indexTo);
+		m_annotline = lineTo;
+		QString str = (QApplication::clipboard())->text();
+		m_textEditSource->clearAnnotations();
+		if (str.length() > 0)
+			emit requestAnnotation(str);
+	}
 }
 
 void fileviewer::GoToLine_ButtonClick(bool checked)
@@ -570,6 +584,7 @@ void fileviewer::highlightLine(unsigned int num)
 		m_textEditSource->markerAdd(num, m_markerhandle2);
 	}
 	m_textEditSource->ensureLineVisible(num);
+	m_currentline = num;
 }
 
 void fileviewer::setLexer(int lang)
@@ -658,6 +673,12 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 		m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
 		m_textEditSource->recolor();
 	}
+}
+
+void fileviewer::annotate(QString annotstr)
+{
+	m_textEditSource->clearAnnotations();
+	m_textEditSource->annotate(m_annotline, annotstr, 29);
 }
 
 

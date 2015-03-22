@@ -1,5 +1,5 @@
 {
-    "version": "0.15",
+    "version": "0.15.0",
     "state": "stable",
     "scope": "minor feature",
     "changes": "Added support for Mac OS, Allowed -q in cscope.out header, Added info to HOWTOs on how to exclude standard include paths",

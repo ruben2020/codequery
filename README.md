@@ -149,13 +149,6 @@ For C and C++, [inline assembly code](http://en.wikipedia.org/wiki/Inline_assemb
 Please exclude files with inline assembly code from the list of files (cscope.files) to be scanned.
 
 
-## How can I be notified of new version releases?
-
-Follow us on [our FreeCode page](https://freecode.com/projects/codequery) and you should receive emails notifying you of new version releases.
-
-And don't forget to up-vote CodeQuery on FreeCode and star it on [Github](https://github.com/ruben2020/codequery) if you like this project.
-
-
 ## How do I contact the authors for support, issues, bug reports, fix patches, feature requests etc.?
 
 Please see the email address below, and also the Issues tab in GitHub.

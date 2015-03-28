@@ -21,7 +21,7 @@
 #ifndef SHOWGRAPH_H_CQ
 #define SHOWGRAPH_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 
 class showgraph
 {

@@ -680,7 +680,7 @@ GraphView::mouseDoubleClickEvent(QMouseEvent *ev)
     if( ev->button() & Qt::LeftButton)
     {
         QPoint p = ev->pos();
-        if ( isEditable() && !scene()->itemAt( mapToScene( ev->pos())))
+        if ( isEditable() && !scene()->itemAt( mapToScene( ev->pos()), QTransform()))
         {
             GNode* node = graph()->newNode();
             QString text = QString("Node %1").arg( node->id());
@@ -690,7 +690,7 @@ GraphView::mouseDoubleClickEvent(QMouseEvent *ev)
     } else if( isEditable() 
                && ev->button() & Qt::RightButton)
     {
-        QGraphicsItem *node = scene()->itemAt( mapToScene( ev->pos()));
+        QGraphicsItem *node = scene()->itemAt( mapToScene( ev->pos()), QTransform());
         if ( isNotNullP( node) && qgraphicsitem_cast<NodeItem *>( node))
         {
             graph()->emptySelection();
@@ -742,7 +742,7 @@ GraphView::mouseReleaseEvent( QMouseEvent *ev)
     {
         if ( createEdge)
         {
-            QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()));
+            QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()), QTransform());
             if ( isNotNullP( item) && qgraphicsitem_cast<NodeItem *>(item))
             {
                 if ( tmpSrc != qgraphicsitem_cast<NodeItem *>(item)->node())
@@ -755,7 +755,7 @@ GraphView::mouseReleaseEvent( QMouseEvent *ev)
                     }
 				}
             }
-        } else if ( !scene()->itemAt( mapToScene( ev->pos())))
+        } else if ( !scene()->itemAt( mapToScene( ev->pos()), QTransform()))
         {
             QMenu *menu = new QMenu( tr( "&View Menu"));
             menu->addAction( editableSwitchAct);
@@ -777,7 +777,7 @@ GraphView::mouseMoveEvent(QMouseEvent *ev)
 {
     if ( createEdge)
     {
-        QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()));
+        QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()), QTransform());
         if ( isNotNullP( item))
         {
             NodeItem *node_item = qgraphicsitem_cast<NodeItem *>(item);

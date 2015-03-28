@@ -22,7 +22,7 @@
 #ifndef THEMES_H_CQ
 #define THEMES_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 
 class QsciLexer;
 

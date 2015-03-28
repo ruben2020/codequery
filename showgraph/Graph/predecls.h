@@ -11,7 +11,7 @@
 
 #include <QDomDocument>
 #include <QtGlobal>
-#include <QtGui>
+#include <QtWidgets>
 #include <QList>
 #include <QLinkedList>
 #include <QVector>

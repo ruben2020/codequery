@@ -23,8 +23,9 @@ class AuxEdge;
 class AuxGraph;
 class Level;
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QList>
+#include <QtConcurrent/QtConcurrent>
 
 /** Spacing between simple nodes */
 const qreal NODE_NODE_MARGIN = 30;

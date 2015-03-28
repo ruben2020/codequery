@@ -21,7 +21,7 @@
 #ifndef ABOUTDIALOG_H_CQ
 #define ABOUTDIALOG_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 
  namespace Ui {
      class aboutDialog;

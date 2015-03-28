@@ -22,7 +22,7 @@
 #ifndef MAINWINDOW_H_CQ
 #define MAINWINDOW_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 
  namespace Ui {
      class MainWindow;

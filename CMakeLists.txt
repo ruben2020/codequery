@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.9)
 project(CodeQuery)
 
 IF(MSVC)
@@ -9,7 +9,7 @@ SET( CMAKE_CXX_FLAGS_DEBUG  "-O2 -Wno-unused-result" )
 SET( CMAKE_CXX_FLAGS_RELEASE  "-O2 -Wno-unused-result" )
 ENDIF(MSVC)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/helper/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
 
 set( EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR} )
 

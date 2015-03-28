@@ -22,7 +22,7 @@
 #ifndef SEARCHHANDLER_H_CQ
 #define SEARCHHANDLER_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 #include "sqlqueryadv.h"
 
 class mainwindow;

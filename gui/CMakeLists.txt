@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.9)
 project(CodeQueryGUI)
 
 #ADD_DEFINITIONS( -Wall )
@@ -65,28 +65,26 @@ translations/codequery_zh-CHT.ts
 
   add_definitions( -DNO_QDESIGNER_WIDGET_EXPORT )
   
-  # by default only QtCore and QtGui modules are enabled
-  # other modules must be enabled like this:
-  #SET( QT_USE_QTXML TRUE )
-  #SET( QT_USE_QTSQL TRUE )
-  SET( QT_DONT_USE_QTGUI FALSE )
   
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
-  FIND_PACKAGE( Qt4 REQUIRED )
+  FIND_PACKAGE( Qt5Widgets 5.3.0 REQUIRED )
+  FIND_PACKAGE( Qt5Concurrent REQUIRED )
+  FIND_PACKAGE( Qt5Xml REQUIRED )
+  FIND_PACKAGE( Qt5LinguistTools REQUIRED )
   FIND_PACKAGE( Sqlite REQUIRED )
-  FIND_PACKAGE( QScintilla REQUIRED )
-  
-  # add some useful macros and variables
-  # (QT_USE_FILE is a variable defined by FIND_PACKAGE( Qt4 ) that contains a path to CMake script)
-  INCLUDE( "${QT_USE_FILE}" )
+  FIND_PACKAGE( Qt5QScintilla REQUIRED )
 
-  QT4_ADD_TRANSLATION( QM ${CODEQUERY_TRANS} )  
+  SET(CMAKE_AUTOMOC ON)
+  SET(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+  get_target_property(QT_RCC_EXECUTABLE Qt5::rcc LOCATION)
+
+  QT5_ADD_TRANSLATION( QM ${CODEQUERY_TRANS} )  
   
   # this command will generate rules that will run rcc on all files from CODEQUERY_RCS
   # in result CODEQUERY_RC_SRCS variable will contain paths to files produced by rcc
   # QT4_ADD_RESOURCES( CODEQUERY_RC_SRCS ${CODEQUERY_RCS} )
-
 
   SET( CODEQUERY_RC_NAME codequery )
   SET( CODEQUERY_RC_QRC "${CMAKE_CURRENT_SOURCE_DIR}/${CODEQUERY_RC_NAME}.qrc")
@@ -102,15 +100,14 @@ translations/codequery_zh-CHT.ts
     )
 
   # this will run uic on .ui files:
-  QT4_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
+  QT5_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
   
-  # and finally this will run moc:
-  QT4_WRAP_CPP( CODEQUERY_MOC_SRCS ${CODEQUERY_MOC_HDRS} )
 
   # we need this to be able to include headers produced by uic in our code
   # (CMAKE_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
+  INCLUDE_DIRECTORIES( "${Qt5Widgets_INCLUDE_DIRS}" )
   INCLUDE_DIRECTORIES( "${SQLITE_INCLUDE_DIR}" )
-  INCLUDE_DIRECTORIES( "${QSCINTILLA_INCLUDE_DIRS}" )
+  INCLUDE_DIRECTORIES( "${QT5QSCINTILLA_INCLUDE_DIRS}" )
   INCLUDE_DIRECTORIES( "${CMAKE_CURRENT_BINARY_DIR}" )
   INCLUDE_DIRECTORIES( "." )
   INCLUDE_DIRECTORIES( "./translations" )
@@ -126,7 +123,7 @@ else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
 endif()
 
-  target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} ${QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph)
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 

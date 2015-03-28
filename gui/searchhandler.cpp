@@ -20,6 +20,7 @@
 
 
 #include <QVector>
+#include <QtConcurrent/QtConcurrent>
 #include "std2qt.h"
 #include "graphdialog.h"
 #include "searchhandler.h"
@@ -106,7 +107,7 @@ void searchhandler::OpenDB_ButtonClick(bool checked)
 
 void searchhandler::Search_ButtonClick(bool checked)
 {
-	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().trimmed().toAscii().data(),
+	if (!checked) perform_search(m_comboBoxSearch->lineEdit()->text().trimmed().toLatin1().data(),
 					m_checkBoxExactMatch->isChecked());
 }
 
@@ -135,7 +136,7 @@ void searchhandler::NextSearch_ButtonClick(bool checked)
 
 void searchhandler::Search_EnterKeyPressed()
 {
-	perform_search(m_comboBoxSearch->lineEdit()->text().trimmed().toAscii().data(),
+	perform_search(m_comboBoxSearch->lineEdit()->text().trimmed().toLatin1().data(),
 			m_checkBoxExactMatch->isChecked());
 }
 
@@ -196,7 +197,7 @@ void searchhandler::searchDeclaration(QString searchstr)
 QString searchhandler::search_declaration_qt(QString searchtxt)
 {
 	QString str;
-	sqlqueryresultlist reslst = sq->search_declaration(searchtxt.toAscii().data());
+	sqlqueryresultlist reslst = sq->search_declaration(searchtxt.toLatin1().data());
 	if (reslst.resultlist.size() > 0)
 	str.append(reslst.resultlist[0].filename.c_str())
 		.append(":")
@@ -208,7 +209,7 @@ QString searchhandler::search_declaration_qt(QString searchtxt)
 
 QStringList searchhandler::search_autocomplete_qt(QString searchtxt)
 {
-	return strLst2qt(sq->search_autocomplete(searchtxt.toAscii().data()));
+	return strLst2qt(sq->search_autocomplete(searchtxt.toLatin1().data()));
 }
 
 void searchhandler::autoCompleteStateChanged(int state)
@@ -455,14 +456,14 @@ void searchhandler::perform_search(QString searchtxt,
 	if (querytype == sqlquery::sqlresultGREP)
 	{
 		if (filtertxt.isEmpty()) filtertxt = "*";
-		sqlresultlist = sq->search(filtertxt.toAscii().data(),
+		sqlresultlist = sq->search(filtertxt.toLatin1().data(),
 				sqlquery::sqlresultFILEPATH, false);
 	}
 	else
 	{
-		sqlresultlist = sq->search(searchtxt.toAscii().data(),
+		sqlresultlist = sq->search(searchtxt.toLatin1().data(),
 				querytype, exactmatch,
-				filtertxt.toAscii().data());
+				filtertxt.toLatin1().data());
 	}
 	QApplication::restoreOverrideCursor();
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
@@ -511,7 +512,7 @@ sqlqueryresultlist searchhandler::perform_grep(QString searchtxt, sqlqueryresult
 	QObject::connect(&futureWatcher, SIGNAL(progressRangeChanged(int,int)), &dialog, SLOT(setRange(int,int)));
 	QObject::connect(&futureWatcher, SIGNAL(progressValueChanged(int)), &dialog, SLOT(setValue(int)));
 	m_grepExactMatch = exactmatch;
-	(*m_grepRegExp) = QRegExp(searchtxt.toAscii().data(), Qt::CaseInsensitive);
+	(*m_grepRegExp) = QRegExp(searchtxt.toLatin1().data(), Qt::CaseInsensitive);
 	m_grepRegExp->setPatternSyntax(QRegExp::RegExp2);
 	futureWatcher.setFuture(QtConcurrent::mappedReduced(strvec, doGrep,
 				collateGrep, QtConcurrent::SequentialReduce));

@@ -21,7 +21,7 @@
 #ifndef FILEVIEWSETTINGSDIALOG_H_CQ
 #define FILEVIEWSETTINGSDIALOG_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 
  namespace Ui {
      class fileViewSettingsDialog;

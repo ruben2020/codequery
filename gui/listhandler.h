@@ -23,7 +23,7 @@
 #ifndef LISTHANDLER_H_CQ
 #define LISTHANDLER_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 #include "sqlquery.h"
 
 class mainwindow;

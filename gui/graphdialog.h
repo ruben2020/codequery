@@ -21,7 +21,7 @@
 #ifndef GRAPHDIALOG_H_CQ
 #define GRAPHDIALOG_H_CQ
 
-#include <QtGui>
+#include <QtWidgets>
 
  namespace Ui {
      class DialogGraph;

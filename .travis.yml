@@ -4,8 +4,11 @@ compiler: gcc
 
 before_install:
  - uname -a
+ - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
+ - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main"
  - sudo apt-get update -qq
- - sudo apt-get install -qq cmake sqlite3 libsqlite3-dev qt5-default qtbase5-dev-tools cscope exuberant-ctags libqt5scintilla2-dev rpm
+ - sudo apt-get install qdbus qmlscene qt5-default qt5-qmake qtbase5-dev-tools qtchooser qtdeclarative5-dev xbitmaps xterm libqt5svg5-dev qttools5-dev qtscript5-dev qtdeclarative5-folderlistmodel-plugin qtdeclarative5-controls-plugin -y
+ - sudo apt-get install -qq cmake sqlite3 libsqlite3-dev cscope exuberant-ctags rpm
 
 before_script:
   - mkdir build

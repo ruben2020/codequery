@@ -68,7 +68,7 @@ translations/codequery_zh-CHT.ts
   
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
-  FIND_PACKAGE( Qt5Widgets 5.3.0 REQUIRED )
+  FIND_PACKAGE( Qt5Widgets 5.2.1 REQUIRED )
   FIND_PACKAGE( Qt5Concurrent REQUIRED )
   FIND_PACKAGE( Qt5Xml REQUIRED )
   FIND_PACKAGE( Qt5LinguistTools REQUIRED )

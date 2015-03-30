@@ -34,10 +34,10 @@ int main(int argc, char *argv[])
 	mw.show();
 
 #ifdef _WIN32
-	ShowWindow(mw.winId(), SW_HIDE);
-	SetWindowLongPtr(mw.winId(), GWL_EXSTYLE, 
-			GetWindowLongPtr(mw.winId(), GWL_EXSTYLE) | WS_EX_APPWINDOW);
-	ShowWindow(mw.winId(), SW_SHOW);
+	ShowWindow( (HWND) mw.winId(), SW_HIDE);
+	SetWindowLongPtr( (HWND) mw.winId(), GWL_EXSTYLE, 
+			GetWindowLongPtr( (HWND) mw.winId(), GWL_EXSTYLE) | WS_EX_APPWINDOW);
+	ShowWindow( (HWND) mw.winId(), SW_SHOW);
 #endif
 
 	return app.exec();

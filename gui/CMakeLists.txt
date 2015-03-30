@@ -69,12 +69,15 @@ translations/codequery_zh-CHT.ts
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
   FIND_PACKAGE( Qt5Widgets 5.2.1 REQUIRED )
+  FIND_PACKAGE( Qt5Core REQUIRED )
   FIND_PACKAGE( Qt5Concurrent REQUIRED )
   FIND_PACKAGE( Qt5Xml REQUIRED )
   FIND_PACKAGE( Qt5LinguistTools REQUIRED )
   FIND_PACKAGE( Sqlite REQUIRED )
   FIND_PACKAGE( Qt5QScintilla REQUIRED )
 
+  set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+  
   SET(CMAKE_AUTOMOC ON)
   SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -119,11 +122,11 @@ translations/codequery_zh-CHT.ts
 if(WIN32)
   SET(CQ_WIN_RCS cqwin32.rc)
   add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph)
 else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
-endif()
-
   target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph)
+endif()
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 

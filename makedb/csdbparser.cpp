@@ -282,7 +282,7 @@ csdbparser::enResult csdbparser::file_sanity_check(const char *fn)
 {
 smartFILE fp;
 tempbuf buf(20000);
-int i;
+unsigned int i;
 std::string s;
 bool chkok;
 

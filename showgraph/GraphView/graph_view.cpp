@@ -333,7 +333,7 @@ void GGraph::findContext()
     foreach( GNode *n, sel_nodes)
     {
         n->mark( m);
-        n->setPriority( MAX_PRIORITY);
+        n->setPriority( GVIEW_MAX_PRIORITY);
         //n->setStable( true);
         border.enqueue( n);
     }
@@ -404,7 +404,7 @@ void GGraph::findContext()
                 n->setForPlacement( true);
             } else
             {
-                if ( n->priority() < MAX_PRIORITY)
+                if ( n->priority() < GVIEW_MAX_PRIORITY)
                 {
                     n->setPriority( 0);
                     n->setForPlacement( false);

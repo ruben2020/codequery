@@ -144,7 +144,7 @@ return m_trailer_start;
 
 void csdbheader::print_contents(void)
 {
-	int i;
+	unsigned int i;
 	printf("Ver= %lu\nPath= \"%s\"\nTrailer start= %lu\nParam list= ", m_csdbver, m_base_path.c_str(), m_trailer_start);
 	for (i=0; i< m_param_list.size(); i++)
 	{

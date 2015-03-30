@@ -31,7 +31,7 @@ IF ( UNIX )
 ELSE ( UNIX )
 
    FIND_PATH( SQLITE_INCLUDE_DIR sqlite3.h 
-              "/mingw/include" )
+              "/sqlite3/include")
 
    FIND_LIBRARY( SQLITE_LIBRARY_RELEASE NAMES sqlite3 )
 

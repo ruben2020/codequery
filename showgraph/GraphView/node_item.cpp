@@ -700,7 +700,7 @@ bool NodeItem::advance()
     if ( !isVisible())
         return false;
 
-    qreal target_opacity = ((qreal)node()->priority())/ MAX_PRIORITY;
+    qreal target_opacity = ((qreal)node()->priority())/ GVIEW_MAX_PRIORITY;
     
     if ( target_opacity > opacityLevel() + OPACITY_STEP)
     {

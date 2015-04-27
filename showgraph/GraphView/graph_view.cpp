@@ -680,7 +680,11 @@ GraphView::mouseDoubleClickEvent(QMouseEvent *ev)
     if( ev->button() & Qt::LeftButton)
     {
         QPoint p = ev->pos();
+#ifdef USE_QT5
         if ( isEditable() && !scene()->itemAt( mapToScene( ev->pos()), QTransform()))
+#else
+        if ( isEditable() && !scene()->itemAt( mapToScene( ev->pos())))
+#endif
         {
             GNode* node = graph()->newNode();
             QString text = QString("Node %1").arg( node->id());
@@ -690,7 +694,11 @@ GraphView::mouseDoubleClickEvent(QMouseEvent *ev)
     } else if( isEditable() 
                && ev->button() & Qt::RightButton)
     {
+#ifdef USE_QT5
         QGraphicsItem *node = scene()->itemAt( mapToScene( ev->pos()), QTransform());
+#else
+        QGraphicsItem *node = scene()->itemAt( mapToScene( ev->pos()));
+#endif
         if ( isNotNullP( node) && qgraphicsitem_cast<NodeItem *>( node))
         {
             graph()->emptySelection();
@@ -742,7 +750,11 @@ GraphView::mouseReleaseEvent( QMouseEvent *ev)
     {
         if ( createEdge)
         {
+#ifdef USE_QT5
             QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()), QTransform());
+#else
+            QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()));
+#endif
             if ( isNotNullP( item) && qgraphicsitem_cast<NodeItem *>(item))
             {
                 if ( tmpSrc != qgraphicsitem_cast<NodeItem *>(item)->node())
@@ -755,7 +767,11 @@ GraphView::mouseReleaseEvent( QMouseEvent *ev)
                     }
 				}
             }
+#ifdef USE_QT5
         } else if ( !scene()->itemAt( mapToScene( ev->pos()), QTransform()))
+#else
+        } else if ( !scene()->itemAt( mapToScene( ev->pos())))
+#endif
         {
             QMenu *menu = new QMenu( tr( "&View Menu"));
             menu->addAction( editableSwitchAct);

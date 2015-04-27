@@ -31,7 +31,11 @@ class EdgeItem;
 class GraphView;
 class StyleEdit;
 
+#ifdef USE_QT5
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
 #include <QList>
 #include <QGraphicsItem>
 #include <QGraphicsScene>

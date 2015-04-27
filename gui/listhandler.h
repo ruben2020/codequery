@@ -23,7 +23,12 @@
 #ifndef LISTHANDLER_H_CQ
 #define LISTHANDLER_H_CQ
 
+#ifdef USE_QT5
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+
 #include "sqlquery.h"
 
 class mainwindow;

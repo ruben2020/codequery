@@ -11,7 +11,11 @@
 
 #include <QDomDocument>
 #include <QtGlobal>
+#ifdef USE_QT5
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
 #include <QList>
 #include <QLinkedList>
 #include <QVector>

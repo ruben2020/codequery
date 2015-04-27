@@ -22,7 +22,12 @@
 #ifndef FILEVIEWER_H_CQ
 #define FILEVIEWER_H_CQ
 
+#ifdef USE_QT5
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+
 
 class mainwindow;
 class QsciScintilla;

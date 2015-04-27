@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(CodeQuery)
 
+
+option(BUILD_QT5 OFF)
+
+
 IF(MSVC)
 ADD_DEFINITIONS(/D _CRT_SECURE_NO_WARNINGS)
 ELSE(MSVC)

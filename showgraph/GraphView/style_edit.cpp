@@ -54,12 +54,21 @@ StyleEdit::StyleEdit( QWidget *parent, bool show_additional)
     line_color_label->setBuddy( line_color_button);
 
     line_style_combo = new QComboBox( this);
+#ifdef USE_QT5
     line_style_combo->addItem(tr("Solid"), QPen(Qt::SolidLine));
     line_style_combo->addItem(tr("Dash"), QPen(Qt::DashLine));
     line_style_combo->addItem(tr("Dot"), QPen(Qt::DotLine));
     line_style_combo->addItem(tr("Dash Dot"), QPen(Qt::DashDotLine));
     line_style_combo->addItem(tr("Dash Dot Dot"), QPen(Qt::DashDotDotLine));
     line_style_combo->addItem(tr("None"), QPen(Qt::NoPen));
+#else
+    line_style_combo->addItem(tr("Solid"), Qt::SolidLine);
+    line_style_combo->addItem(tr("Dash"), Qt::DashLine);
+    line_style_combo->addItem(tr("Dot"), Qt::DotLine);
+    line_style_combo->addItem(tr("Dash Dot"), Qt::DashDotLine);
+    line_style_combo->addItem(tr("Dash Dot Dot"), Qt::DashDotDotLine);
+    line_style_combo->addItem(tr("None"), Qt::NoPen);
+#endif
 
     line_style_label = new QLabel( "Line style:", this);
     line_style_label->setBuddy( line_style_combo);
@@ -229,6 +238,10 @@ void StyleEdit::setGStyle( GStyle *st)
             fill_color_button->setColor( color);
         }
     }
+#ifdef USE_QT5
     line_style_combo->setCurrentIndex( line_style_combo->findData( QPen(gstyle->pen().style())));
+#else
+    line_style_combo->setCurrentIndex( line_style_combo->findData( gstyle->pen().style()));
+#endif
     line_width_spin->setValue( gstyle->pen().widthF());
 }

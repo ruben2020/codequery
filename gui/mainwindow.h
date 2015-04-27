@@ -22,7 +22,12 @@
 #ifndef MAINWINDOW_H_CQ
 #define MAINWINDOW_H_CQ
 
+#ifdef USE_QT5
 #include <QtWidgets>
+#else
+#include <QtGui>
+#endif
+
 
  namespace Ui {
      class MainWindow;

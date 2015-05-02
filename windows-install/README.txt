@@ -9,9 +9,8 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://travis-ci.org/ruben2020/codequery.png)](https://travis-ci.org/ruben2020/codequery)
-[![Ohloh](https://www.ohloh.net/p/codequery/widgets/project_thin_badge.gif)](https://www.ohloh.net/p/codequery)
-
+[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)
+      
 
 ## Latest version
 
@@ -99,9 +98,9 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7 64-bit, Windows XP, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
+It has been tested on Windows 7 64-bit, Windows XP, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
 
-Contributions are welcomed to attempt ports to Mac OS and other operating systems.
+Contributions are welcomed to attempt ports to other operating systems.
 
 
 ## Is the software available in other languages?
@@ -117,7 +116,9 @@ On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge dow
 
 On Linux, tar.gz, RPM and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
 
-To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
+On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
+
+To build on Linux and Mac, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 Version 15.8a of [cscope](http://cscope.sourceforge.net/) or higher, works best with CodeQuery.
 
@@ -126,10 +127,19 @@ Version 15.8a of [cscope](http://cscope.sourceforge.net/) or higher, works best 
 
 On Windows: [HOWTO-WINDOWS](windows-install/HOWTO-WINDOWS.txt). This file is included in the EXE setup package.
 
-On Linux: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
+On Linux and Mac: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
 
 Please read the HOWTO file provided for each platform. The workflow looks like this:
 ![CodeQuery workflow](doc/workflow.png)
+
+
+## How do I generate whole-program call graphs or UML class diagrams?
+
+CodeQuery cannot do this at the moment.
+
+To generate whole-program call graphs, please use [GNU cflow](https://www.gnu.org/software/cflow/) or [CodeViz](http://www.csn.ul.ie/~mel/projects/codeviz/) for C and C++. For Java, there is [Javashot](http://code.google.com/p/javashot/). 
+
+To generate whole-program UML class diagrams for various object-oriented languages, please use [tags2uml](https://github.com/ruben2020/tags2uml). 
 
 
 ## Are there any known limitations?
@@ -137,13 +147,6 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 For C and C++, [inline assembly code](http://en.wikipedia.org/wiki/Inline_assembler) is not supported by all the tools. This mainly affects embedded software, OS and driver code.
 
 Please exclude files with inline assembly code from the list of files (cscope.files) to be scanned.
-
-
-### How can I be notified of new version releases?
-
-Follow us on [our FreeCode page](https://freecode.com/projects/codequery) and you should receive emails notifying you of new version releases.
-
-And don't forget to up-vote CodeQuery on FreeCode and star it on [Github](https://github.com/ruben2020/codequery) if you like this project.
 
 
 ## How do I contact the authors for support, issues, bug reports, fix patches, feature requests etc.?
@@ -163,7 +166,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 * Tell your friends, propose it on StackOverflow, write about it, tweet it
 * Fix bugs (see Issues tab)
 * Update translations (Deutsch, Francais, Japanese etc.)
-* Port to MacOS or other platforms
+* Port to other platforms
 * Write plugins for Vim, emacs, eclipse, Notepad++ etc.
 * Write a web-based interface to CodeQuery's database
 * Add support for other languages e.g. Javascript
@@ -171,7 +174,9 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 ## List of Contributors
 
-ruben2020   
+[ruben2020](https://github.com/ruben2020)    
+[naseer](https://github.com/naseer)    
+[bruno-](https://github.com/bruno-)    
 (More welcomed)
 
 
@@ -188,5 +193,7 @@ We thank the people behind the following projects:
 [optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
 [scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
-[Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website
+[Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
+[brew](http://brew.sh/) - binaries for Mac here    
+
 

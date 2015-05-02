@@ -22,7 +22,7 @@
 #ifndef SWVER_H_CQ
 #define SWVER_H_CQ
 
-#define CODEQUERY_SW_VERSION      "CodeQuery v0.15"
+#define CODEQUERY_SW_VERSION      "CodeQuery 0.16.0"
 #define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
 	CODEQUERY_SW_VERSION \
 	"</p>"\
@@ -30,7 +30,7 @@
 	"<p><a href=\"https://github.com/ruben2020/codequery\">GitHub Page</a></p>"
 
 #define CODEQUERY_SW_LICENSE  \
-"Copyright (C) 2013-2014 ruben2020 https://github.com/ruben2020/\n\n" \
+"Copyright (C) 2013-2015 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
 "This program is free software: you can redistribute it and/or modify\n" \
 "it under the terms of the GNU General Public License as published by\n" \
@@ -44,7 +44,7 @@
 "along with this program.  If not, see <http://www.gnu.org/licenses/>\n\n"
 
 #define CODEQUERY_SW_LICENSE_PARA  \
-"Copyright (C) 2013-2014 ruben2020 https://github.com/ruben2020/\n\n" \
+"Copyright (C) 2013-2015 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
 "This program is free software: you can redistribute it and/or modify " \
 "it under the terms of the GNU General Public License as published by " \
@@ -58,7 +58,7 @@
 "along with this program.  If not, see <http://www.gnu.org/licenses/>\n"
 
 #define CODEQUERY_SW_LICENSE_PARA_LINK  \
-"<p>Copyright (C) 2013-2014 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
+"<p>Copyright (C) 2013-2015 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
 "<p>This program is free software: you can redistribute it and/or modify " \
 "it under the terms of the GNU General Public License as published by " \
 "the Free Software Foundation, either version 3 of the License, or " \

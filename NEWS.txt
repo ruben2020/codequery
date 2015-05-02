@@ -1,4 +1,11 @@
 
+Version 0.16.0 - May 2, 2015
+Brace matching on the file viewer
+Better handling for current line highlight
+Annotation in file viewer to quickly and easily identify the selected item
+Changed version to the semantic versioning scheme MAJOR.MINOR.PATCH
+Qt4 (default) and Qt5 now supported by CMake build option
+
 Version 0.15 - Aug 12, 2014
 Added support for Mac OS
 Allowed -q in cscope.out header

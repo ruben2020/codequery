@@ -26,8 +26,8 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 [Setup]
 ShowLanguageDialog=auto
 AppName=CodeQuery
-AppVersion=0.15
-AppCopyright=Copyright 2013-2014 (C) ruben2020
+AppVersion=0.16.0
+AppCopyright=Copyright 2013-2015 (C) ruben2020
 AppId={{D95A3CC0-CC79-4CF1-A92B-50E909B60EF1}
 LicenseFile=\workspace\codequery\windows-install\LICENSE.txt
 DefaultDirName={pf}\CodeQuery

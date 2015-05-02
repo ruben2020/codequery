@@ -1,8 +1,8 @@
 {
-    "version": "0.15.0",
+    "version": "0.16.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Added support for Mac OS, Allowed -q in cscope.out header, Added info to HOWTOs on how to exclude standard include paths",
+    "changes": "Brace matching on the file viewer, Better handling for current line highlight, Annotation in file viewer to quickly and easily identify the selected item",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

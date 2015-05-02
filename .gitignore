@@ -20,6 +20,8 @@
 build/
 build32/
 build64/
+output/
+Output/
 bin/
 html/
 

@@ -18,6 +18,8 @@ Windows and Linux binaries available here for download: [CodeQuery@sourceforge d
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
 
+On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
+
 Please read [NEWS](NEWS.txt) to find out more.
 
 
@@ -98,7 +100,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7 64-bit, Windows XP, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
+It has been tested on Windows 7 64-bit, Windows XP 32-bit, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
 
 Contributions are welcomed to attempt ports to other operating systems.
 

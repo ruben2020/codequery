@@ -28,6 +28,7 @@
 #include <Qsci/qscilexerpython.h>
 #include <Qsci/qscilexerjava.h>
 #include <Qsci/qscilexerruby.h>
+#include <Qsci/qscilexerjavascript.h>
 
 #include "fileviewer.h"
 #include "mainwindow.h"
@@ -295,6 +296,10 @@ void fileviewer::updateTextEdit(void)
 	QRegExp rx3("\\.rb$", Qt::CaseInsensitive);
 	pos = rx3.indexIn(m_iter->filename);
 	if (pos != -1) lang = enHighlightRuby;
+
+	QRegExp rx4("\\.js$", Qt::CaseInsensitive);
+	pos = rx4.indexIn(m_iter->filename);
+	if (pos != -1) lang = enHighlightJavascript;
 
 	m_currentlang = lang;
 	setLexer(lang);
@@ -618,6 +623,10 @@ void fileviewer::setLexer(int lang)
 			replaceLexer("Ruby", lang);
 			break;
 
+		case enHighlightJavascript:
+			replaceLexer("JavaScript", lang);
+			break;
+
 		default:
 			replaceLexer("C++", lang);
 			break;
@@ -650,6 +659,10 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 
 			case enHighlightRuby:
 				m_lexer = new QsciLexerRuby(m_textEditSource);
+				break;
+
+			case enHighlightJavascript:
+				m_lexer = new QsciLexerJavaScript(m_textEditSource);
 				break;
 
 			default:

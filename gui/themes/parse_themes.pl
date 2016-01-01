@@ -38,6 +38,7 @@ my $cppstyle;
 my $javastyle;
 my $pythonstyle;
 my $rubystyle;
+my $javascriptstyle;
 
 my $langname;
 my $langdesc;
@@ -60,7 +61,8 @@ my %acceptedlang =
 	'C++' => 'cpp',
 	'Java' => 'java',
 	'Python' => 'python',
-	'Ruby' => 'ruby'
+	'Ruby' => 'ruby',
+	'Javascript' => 'javascript'
 );
 
 my $filename;
@@ -73,6 +75,7 @@ $cppstyle .= "static const langstyle cppstyle[] = {\n";
 $javastyle .= "static const langstyle javastyle[] = {\n";
 $pythonstyle .= "static const langstyle pythonstyle[] = {\n";
 $rubystyle .= "static const langstyle rubystyle[] = {\n";
+$javascriptstyle .= "static const langstyle javascriptstyle[] = {\n";
 
 opendir(DIR1, '.');
 while($filename = readdir(DIR1))
@@ -99,10 +102,11 @@ foreach my $them(@themes)
 $themelist .= "};\n\n";
 
 
-$cppstyle    .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
-$javastyle   .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
-$pythonstyle .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
-$rubystyle   .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
+$cppstyle          .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
+$javastyle         .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
+$pythonstyle       .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
+$rubystyle         .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
+$javascriptstyle   .= "\t{ NULL, NULL, NULL, 0 }\n};\n\n";
 open(FILO,">themes_gen.cpp");
 print FILO "\n /* THIS FILE WAS AUTO_GENERATED USING parse_themes.pl */";
 print FILO "\n /* DO NOT CHANGE BY HAND                              */\n\n";
@@ -113,6 +117,7 @@ print FILO $cppstyle;
 print FILO $javastyle;
 print FILO $pythonstyle;
 print FILO $rubystyle;
+print FILO $javascriptstyle;
 close(FILO);
 
 ################################################
@@ -205,10 +210,11 @@ foreach my $sample ( $xmldoc->findnodes('/NotepadPlus/LexerStyles/LexerType') )
 	}
 	$lexstyle .= "};\n";
 	$lstyle = "	{ \"$themename2\", \"$defaultfgcolor\", \"$defaultbgcolor\", \"$currentlinebgcolor\", \"$linenumfgcolor\", ".$langname."_".$themename.", global_".$themename.", $numofstyles, $numofglobalstyles },\n";
-	$cppstyle    .= $lstyle if ($langdesc eq 'C++');
-	$javastyle   .= $lstyle if ($langdesc eq 'Java');
-	$pythonstyle .= $lstyle if ($langdesc eq 'Python');
-	$rubystyle   .= $lstyle if ($langdesc eq 'Ruby');
+	$cppstyle          .= $lstyle if ($langdesc eq 'C++');
+	$javastyle         .= $lstyle if ($langdesc eq 'Java');
+	$pythonstyle       .= $lstyle if ($langdesc eq 'Python');
+	$rubystyle         .= $lstyle if ($langdesc eq 'Ruby');
+	$javascriptstyle   .= $lstyle if ($langdesc eq 'Javascript');
 }
 
 }

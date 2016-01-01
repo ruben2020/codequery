@@ -26,6 +26,7 @@
 #include <Qsci/qscilexerpython.h>
 #include <Qsci/qscilexerjava.h>
 #include <Qsci/qscilexerruby.h>
+#include <Qsci/qscilexerjavascript.h>
 
 
 #include "small_lib.h"
@@ -87,6 +88,11 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 
 		case enHighlightRuby:
 		lngstyle = (langstyle *) rubystyle;
+		break;
+
+		case enHighlightJavascript:
+		lngstyle = (langstyle *) cppstyle;
+//		lngstyle = (langstyle *) javascriptstyle;
 		break;
 
 		default:

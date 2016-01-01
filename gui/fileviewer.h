@@ -55,7 +55,8 @@ enum langtypes
 	enHighlightPython,
 	enHighlightJava,
 	enHighlightRuby,
-	enHighlightGo
+	enHighlightGo,
+	enHighlightJavascript
 };
 
 class fileviewer : public QObject

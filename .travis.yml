@@ -4,6 +4,7 @@ compiler: gcc
 
 before_install:
  - uname -a
+ - export DEBIAN_FRONTEND=noninteractive
  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main"
  - sudo apt-get update -qq

@@ -119,17 +119,18 @@ Use `cqmakedb -h` to get help on cqmakedb command line arguments.
 
 
 
-## HOW TO USE CODEQUERY WITH RUBY AND GO CODE?
+## HOW TO USE CODEQUERY WITH RUBY, GO AND JAVASCRIPT CODE?
 
 1. Change directory to the base folder of your source code like this:
 ```bash
 cd ~/projects/myproject/src
 ```
 
-2. Create a cscope.files file with all the Ruby or Go source files listed in it.
+2. Create a cscope.files file with all the Ruby, Go or Javascript source files listed in it.
 ```bash
 find -iname "*.rb"    > ./cscope.files
 find -iname "*.go"    > ./cscope.files
+find -iname "*.js"    > ./cscope.files
 ```
 
 3. Create a cscope database like this:

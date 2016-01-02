@@ -639,7 +639,8 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 {
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
-	if (strcmp(m_lexer->language(), langstr) != 0)
+	if ((strlen(m_lexer->language()) != strlen(langstr)) ||
+		(strcmp(m_lexer->language(), langstr) != 0))
 	{
 		m_textEditSource->setLexer(NULL);
 		delete m_lexer;

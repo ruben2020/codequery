@@ -1,7 +1,7 @@
 ![CodeQuery](doc/logotitle.png)
 ===============================
 
-This is a tool to index, then query or search C, C++, Java, Python, Ruby and Go source code.
+This is a tool to index, then query or search C, C++, Java, Python, Ruby, Go and Javascript source code.
 
 It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Exuberant ctags](http://ctags.sourceforge.net/).
 
@@ -37,7 +37,7 @@ CodeQuery is a project that attempts to combine the features available from both
 
 In addition, [pycscope](https://github.com/portante/pycscope) is used to add support for Python, in place of cscope.
 
-In addition, [starscope](https://github.com/eapache/starscope) is used to add support for Ruby and Go, in place of cscope.
+In addition, [starscope](https://github.com/eapache/starscope) is used to add support for Ruby, Go and Javascript, in place of cscope.
 
 
 ## What features does CodeQuery have?
@@ -114,7 +114,7 @@ Contributions are welcomed to update or provide new translations.
 
 ## How to install it?
 
-On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby and Go) are not bundled together with this setup package and need to be installed separately.
+On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby, Go and Javascript) are not bundled together with this setup package and need to be installed separately.
 
 On Linux, tar.gz, RPM and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
 
@@ -188,7 +188,7 @@ We thank the people behind the following projects:
 [cscope](http://cscope.sourceforge.net/) - our database is derived from this   
 [Exuberant ctags](http://ctags.sourceforge.net/)- our database is derived from this   
 [pycscope](https://github.com/portante/pycscope) - our database (for Python) is derived from this    
-[starscope](https://github.com/eapache/starscope) - our database (for Ruby and Go) is derived from this    
+[starscope](https://github.com/eapache/starscope) - our database (for Ruby, Go and Javascript) is derived from this    
 [sqlite3](http://www.sqlite.org/) - our database is using this format    
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    

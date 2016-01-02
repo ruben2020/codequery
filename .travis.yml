@@ -8,8 +8,8 @@ before_install:
  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
  - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main"
  - sudo apt-get update -qq
- - sudo apt-get install -qq qdbus qmlscene qt5-default qt5-qmake qtbase5-dev-tools qtchooser qtdeclarative5-dev xbitmaps xterm libqt5svg5-dev qttools5-dev qtscript5-dev qtdeclarative5-folderlistmodel-plugin qtdeclarative5-controls-plugin qttools5-dev-tools -y
- - sudo apt-get install -qq cmake sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev
+ - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq qdbus qmlscene qt5-default qt5-qmake qtbase5-dev-tools qtchooser qtdeclarative5-dev xbitmaps xterm libqt5svg5-dev qttools5-dev qtscript5-dev qtdeclarative5-folderlistmodel-plugin qtdeclarative5-controls-plugin qttools5-dev-tools
+ - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq cmake sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev
 
 script: 
   - mkdir build

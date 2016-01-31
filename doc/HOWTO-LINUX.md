@@ -13,14 +13,14 @@ cd ~/projects/myproject/src
 
 2. Create a cscope.files file with all the C/C++ source files listed in it. Files with [inline assembly code](http://en.wikipedia.org/wiki/Inline_assembler) should be excluded from this list.
 ```bash
-find -iname "*.c"    > ./cscope.files
-find -iname "*.cpp" >> ./cscope.files
-find -iname "*.cxx" >> ./cscope.files
-find -iname "*.cc " >> ./cscope.files
-find -iname "*.h"   >> ./cscope.files
-find -iname "*.hpp" >> ./cscope.files
-find -iname "*.hxx" >> ./cscope.files
-find -iname "*.hh " >> ./cscope.files
+find . -iname "*.c"    > ./cscope.files
+find . -iname "*.cpp" >> ./cscope.files
+find . -iname "*.cxx" >> ./cscope.files
+find . -iname "*.cc " >> ./cscope.files
+find . -iname "*.h"   >> ./cscope.files
+find . -iname "*.hpp" >> ./cscope.files
+find . -iname "*.hxx" >> ./cscope.files
+find . -iname "*.hh " >> ./cscope.files
 ```
 
 3. Create a cscope database like this (add `k`, if you don't want standard include paths like for stdio.h):
@@ -56,7 +56,7 @@ cd ~/projects/myproject/src
 
 2. Create a cscope.files file with all the Java source files listed in it.
 ```bash
-find -iname "*.java" > ./cscope.files
+find . -iname "*.java" > ./cscope.files
 ```
 
 3. Create a cscope database like this:
@@ -92,7 +92,7 @@ cd ~/projects/myproject/src
 
 2. Create a cscope.files file with all the Python source files listed in it.
 ```bash
-find -iname "*.py"    > ./cscope.files
+find . -iname "*.py"    > ./cscope.files
 ```
 
 3. Create a cscope database like this:
@@ -128,9 +128,9 @@ cd ~/projects/myproject/src
 
 2. Create a cscope.files file with all the Ruby, Go or Javascript source files listed in it.
 ```bash
-find -iname "*.rb"    > ./cscope.files
-find -iname "*.go"    > ./cscope.files
-find -iname "*.js"    > ./cscope.files
+find . -iname "*.rb"    > ./cscope.files
+find . -iname "*.go"    > ./cscope.files
+find . -iname "*.js"    > ./cscope.files
 ```
 
 3. Create a cscope database like this:

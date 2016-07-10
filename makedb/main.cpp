@@ -95,8 +95,9 @@ int process_cscope(const char* cscopefn, const char* sqfn, bool debug)
 	dbmaker.setDebug(debug);
 	
 	int k = csdbparser::file_sanity_check(cscopefn);
-	printf("cscope.out sanity check %s\n",(k==0 ? "OK" : "Error"));
-	if (k != 0) return 1;
+	printf("cscope.out sanity check %s\n",(k==csdbparser::resOK ? "OK" : "Error"));
+	if (k == csdbparser::resUNSUPPORTED_PARAM) printf("Unsupported cscope parameters: -c is required. -q, -b and -R are optional. The rest should not be used.\n");
+	if (k != csdbparser::resOK) return 1;
 
 	dbmaker.open_csdb(cscopefn);
 	

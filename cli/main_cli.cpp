@@ -29,7 +29,7 @@
 
 void printhelp(const char* str)
 {
-	printf("Usage: %s [-s <sqdbfile> [-p <n>] [-t <term>] -[e|f] ] [-d] [-v] [-h]\n\n", str);
+	printf("Usage: %s [-s <sqdbfile> [-p <n>] [-t <term>] -[e|f] ] [-u] [-d] [-v] [-h]\n\n", str);
 	printf("options:\n");
 	printf("  -s : CodeQuery sqlite3 db file path\n");
 	printf("  -p : parameter is a number denoted by n\n");
@@ -41,10 +41,11 @@ void printhelp(const char* str)
 	printf("       Case-sensitive\n");
 	printf("  -f : Exact Match switched OFF (fuzzy search)\n");
 	printf("       Case-insensitive with wild card search (default)\n");
+	printf("  -u : show full file path instead of file name\n");
 	printf("  -d : debug\n");
 	printf("  -v : version\n");
 	printf("  -h : help\n\n");
-	printf("The combinations possible are -s -t -e, -s -t -f\n");
+	printf("The combinations possible are -s -t -e, -s -t -f -u\n");
 	printf("The additional optional arguments are -d\n\n");
 	printf("The possible values for n are:\n");
 	printf("    1: Symbol (default)\n");
@@ -99,7 +100,7 @@ void process_argwithopt(option_t* thisOpt, bool& err, tStr& fnstr, bool filemust
 	}
 }
 
-int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool debug)
+int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool debug)
 {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
@@ -141,12 +142,17 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool debug)
 		switch(resultlst.result_type)
 		{
 			case sqlqueryresultlist::sqlresultFULL:
-				printf("%s\t%s:%s\t%s\n", it->symname.c_str(), 
-				it->filename.c_str(), it->linenum.c_str(), it->linetext.c_str());
+				printf("%s\t%s:%s\t%s\n", 
+						it->symname.c_str(), 
+						(full ? it->filepath.c_str() : it->filename.c_str()),
+						it->linenum.c_str(),
+						it->linetext.c_str());
 				break;	
 			case sqlqueryresultlist::sqlresultFILE_LINE:
-				printf("%s:%s\t%s\n", it->filename.c_str(), it->linenum.c_str(),
-				 it->linetext.c_str());
+				printf("%s:%s\t%s\n",
+						(full ? it->filepath.c_str() : it->filename.c_str()),
+						it->linenum.c_str(),
+						it->linetext.c_str());
 				break;	
 			case sqlqueryresultlist::sqlresultFILE_ONLY:
 				printf("%s\n", it->filepath.c_str());
@@ -159,12 +165,13 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool debug)
 int main(int argc, char *argv[])
 {
     option_t *optList=NULL, *thisOpt=NULL;
-    bool bSqlite, bParam, bTerm, bExact, bDebug, bVersion, bHelp, bError;
+    bool bSqlite, bParam, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
     int countExact = 0;
 	bSqlite = false;
 	bParam = false;
 	bTerm = false;
 	bExact = false;
+	bFull = false;
 	bDebug = false;
 	bVersion = false;
 	bHelp = (argc <= 1);
@@ -172,7 +179,7 @@ int main(int argc, char *argv[])
 	tStr sqfn, param = "1", term;
 
     /* get list of command line options and their arguments */
-    optList = GetOptList(argc, argv, (char*)"s:p:t:efdvh");
+    optList = GetOptList(argc, argv, (char*)"s:p:t:efudvh");
 
     /* display results of parsing */
     while (optList != NULL)
@@ -212,6 +219,9 @@ int main(int argc, char *argv[])
 				bTerm = true;
 				term = thisOpt->argument;
 				break;
+			case 'u':
+				bFull = true;
+				break;
 			case 'd':
 				bDebug = true;
 				break;
@@ -247,7 +257,7 @@ int main(int argc, char *argv[])
 	}
 	if (bSqlite && bTerm)
 	{
-		bError = process_query(sqfn, term, param, bExact, bDebug) > 0;
+		bError = process_query(sqfn, term, param, bExact, bFull, bDebug) > 0;
 	}
 	if (bError)
 	{

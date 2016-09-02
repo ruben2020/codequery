@@ -2,6 +2,12 @@ language: cpp
 
 compiler: gcc
 
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "ev1xh15/xbYiElXyiC5yEwPiP99Vp9jO7zNjk9AVrH76MZNlHOp90bdDYF7zkgRMKBWORcQubTF8h9iM1EFYXwxWVapuKrFlISQKHuErOo+hjKFzMvJcdYhBd2BZCbkQmowv1U860QlZGx+oW6hhG1sJmWfzm/AANQuc6/+qozI="
+
 before_install:
  - uname -a
  - export DEBIAN_FRONTEND=noninteractive
@@ -38,10 +44,18 @@ script:
   - cqmakedb -s cq.db -c cscope.out -t tags -p -d
   - cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION
 
+addons:
+  coverity_scan:
+    project:
+      name: "ruben2020/codequery"
+      description: "Build submitted via Travis CI"
+    notification_email: ruben2020-git@users.sourceforge.net
+    build_command_prepend: "mkdir build-cov; cd build-cov; cmake .."
+    build_command:   "make; cd .."
+    branch_pattern: coverity_scan
+
 notifications:
   email:
     - ruben2020-git@users.sourceforge.net
   on_success: change
   on_failure: always
-
-

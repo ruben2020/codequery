@@ -18,8 +18,9 @@ before_install:
  - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq cmake sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev
 
 script: 
-  - mkdir build
+  - mkdir -p build
   - cd build
+  - rm -rf *
   - cmake -G "Unix Makefiles" ..
   - make package
   - sudo make install
@@ -50,7 +51,7 @@ addons:
       name: "ruben2020/codequery"
       description: "Build submitted via Travis CI"
     notification_email: ruben2020-git@users.sourceforge.net
-    build_command_prepend: "mkdir build-cov; cd build-cov; cmake .."
+    build_command_prepend: "mkdir -p build; cd build; rm -rf *; cmake .."
     build_command:   "make" 
     branch_pattern: master
 

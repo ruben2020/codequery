@@ -51,7 +51,7 @@ addons:
       description: "Build submitted via Travis CI"
     notification_email: ruben2020-git@users.sourceforge.net
     build_command_prepend: "mkdir build-cov; cd build-cov; cmake .."
-    build_command:   "make; cd .."
+    build_command:   "make" 
     branch_pattern: master
 
 notifications:

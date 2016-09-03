@@ -53,7 +53,7 @@ addons:
     notification_email: ruben2020-git@users.sourceforge.net
     build_command_prepend: "mkdir -p build; cd build; rm -rf *; cmake .."
     build_command:   "make" 
-    branch_pattern: master
+    branch_pattern: coverity_scan
 
 notifications:
   email:

@@ -1,4 +1,11 @@
 
+Version 0.17.0 - Sept 25, 2016
+Now Javascript is officially supported through starscope
+The full file path option is added to the command-line version of the tool for vim support
+HOWTO documentation updated for compatibility with Mac OS
+CodeQuery now officially built using Qt5 for Mac OS, but still in Qt4 for Windows and Linux
+Travis script updated to include Coverity scanning
+
 Version 0.16.0 - May 2, 2015
 Brace matching on the file viewer
 Better handling for current line highlight

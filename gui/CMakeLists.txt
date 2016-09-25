@@ -128,14 +128,14 @@ if (BUILD_QT5)
 
 if(WIN32)
   SET(CQ_WIN_RCS cqwin32.rc)
-  add_executable( codequery-qt5 WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
-  target_link_libraries( codequery-qt5 Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5)
+  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5)
 else()
-  add_executable( codequery-qt5 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
-  target_link_libraries( codequery-qt5 Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5)
+  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5)
 endif()
   
-  install(TARGETS codequery-qt5 RUNTIME DESTINATION bin)
+  install(TARGETS codequery RUNTIME DESTINATION bin)
 
 
 else (BUILD_QT5)

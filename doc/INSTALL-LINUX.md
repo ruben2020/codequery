@@ -1,7 +1,7 @@
 HOW TO INSTALL CODEQUERY IN LINUX
 =================================
 
-This INSTALL guide applies to Linux only
+This INSTALL guide applies to Linux and Mac only
 
 (For Windows, a SETUP EXE package will be provided)
 
@@ -17,32 +17,28 @@ This INSTALL guide applies to Linux only
 [pycscope](https://github.com/portante/pycscope)    
 [QScintilla](http://www.riverbankcomputing.com/software/qscintilla/intro)    
 
-In Ubuntu, do the following:    
+In Ubuntu or Linux Mint, do the following:    
 ```bash
 sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags rpm
 ```
-In Fedora, do the following:    
+In Fedora or Debian, do the following:    
 ```bash
-sudo yum install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags rpm-build
+sudo dnf install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags rpm-build
 ```
-
 2. Download the repository as a ZIP file from github or clone git repository:
 [codequery@github](https://github.com/ruben2020/codequery)
 ```bash
 git clone https://github.com/ruben2020/codequery.git
 ```
-
 3. Unzip to a directory and change to that directory.
 ```bash
 cd ~/workspace/codequery
 ```
-
 4. Create a directory called build and change to it.
 ```bash
 mkdir build
 cd build
 ```
-
 5. Run cmake, make and make install.
 ```bash
 cmake -G "Unix Makefiles" ..
@@ -55,6 +51,5 @@ cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G "Unix Makefiles" ..
 make
 make install
 ```
-
 6. Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
 

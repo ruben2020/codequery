@@ -12,11 +12,11 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)     [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.16.0
+## Latest version = 0.17.0
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
-To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
+To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
 
@@ -84,6 +84,11 @@ Here's a function call graph based on the search term of "updateFilePathLabel". 
 ![Visualization screenshot](doc/screenshot2.png)
 
 
+## Are other editors like vim or emacs supported?
+
+Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.com/devjoe/vim-codequery) by [devjoe](https://github.com/devjoe). We welcome contributors to develop plugins for other editors too.
+
+
 ## What does it cost? How is it licensed?
 
 It's freeware and free open source software.
@@ -139,7 +144,7 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 
 CodeQuery cannot do this at the moment.
 
-To generate whole-program call graphs, please use [GNU cflow](https://www.gnu.org/software/cflow/) or [CodeViz](http://www.csn.ul.ie/~mel/projects/codeviz/) for C and C++. For Java, there is [Javashot](http://code.google.com/p/javashot/). 
+To generate whole-program call graphs, please use [GNU cflow](https://www.gnu.org/software/cflow/) or [CodeViz](https://github.com/petersenna/codeviz) for C and C++. For Java, there is [Javashot](http://code.google.com/p/javashot/). 
 
 To generate whole-program UML class diagrams for various object-oriented languages, please use [tags2uml](https://github.com/ruben2020/tags2uml). 
 
@@ -169,7 +174,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 * Fix bugs (see Issues tab)
 * Update translations (Deutsch, Francais, Japanese etc.)
 * Port to other platforms
-* Write plugins for Vim, emacs, eclipse, Notepad++ etc.
+* Write plugins for emacs, eclipse, Notepad++ etc.
 * Write a web-based interface to CodeQuery's database
 * Add support for other languages e.g. Javascript
 
@@ -179,6 +184,10 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 [ruben2020](https://github.com/ruben2020)    
 [naseer](https://github.com/naseer)    
 [bruno-](https://github.com/bruno-)    
+[devjoe](https://github.com/devjoe)    
+[jonashaag](https://github.com/jonashaag)    
+[ilovezfs](https://github.com/ilovezfs)    
+[JCount](https://github.com/JCount)    
 (More welcomed)
 
 
@@ -195,6 +204,7 @@ We thank the people behind the following projects:
 [optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
 [scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
+[vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    
 

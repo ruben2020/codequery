@@ -21,7 +21,7 @@ In Ubuntu or Linux Mint, do the following:
 ```bash
 sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags rpm
 ```
-In Fedora or Debian, do the following:    
+In Fedora or Red Hat, do the following:    
 ```bash
 sudo dnf install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags rpm-build
 ```

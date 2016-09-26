@@ -1,7 +1,7 @@
 ![CodeQuery](doc/logotitle.png)
 ===============================
 
-This is a tool to index, then query or search C, C++, Java, Python, Ruby and Go source code.
+This is a tool to index, then query or search C, C++, Java, Python, Ruby, Go and Javascript source code.
 
 It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Exuberant ctags](http://ctags.sourceforge.net/).
 
@@ -9,14 +9,16 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)
+[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)     [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
 ## Latest version
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
-To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file. The latest git version (HEAD on master branch) can be used.
+To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
+
+On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
 
 Please read [NEWS](NEWS.txt) to find out more.
 
@@ -35,7 +37,7 @@ CodeQuery is a project that attempts to combine the features available from both
 
 In addition, [pycscope](https://github.com/portante/pycscope) is used to add support for Python, in place of cscope.
 
-In addition, [starscope](https://github.com/eapache/starscope) is used to add support for Ruby and Go, in place of cscope.
+In addition, [starscope](https://github.com/eapache/starscope) is used to add support for Ruby, Go and Javascript, in place of cscope.
 
 
 ## What features does CodeQuery have?
@@ -82,6 +84,11 @@ Here's a function call graph based on the search term of "updateFilePathLabel". 
 ![Visualization screenshot](doc/screenshot2.png)
 
 
+## Are other editors like vim or emacs supported?
+
+Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.com/devjoe/vim-codequery) by [devjoe](https://github.com/devjoe). We welcome contributors to develop plugins for other editors too.
+
+
 ## What does it cost? How is it licensed?
 
 It's freeware and free open source software.
@@ -98,7 +105,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7 64-bit, Windows XP, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
+It has been tested on Windows 7 64-bit, Windows XP 32-bit, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
 
 Contributions are welcomed to attempt ports to other operating systems.
 
@@ -112,7 +119,7 @@ Contributions are welcomed to update or provide new translations.
 
 ## How to install it?
 
-On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby and Go) are not bundled together with this setup package and need to be installed separately.
+On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby, Go and Javascript) are not bundled together with this setup package and need to be installed separately.
 
 On Linux, tar.gz, RPM and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
 
@@ -137,7 +144,7 @@ Please read the HOWTO file provided for each platform. The workflow looks like t
 
 CodeQuery cannot do this at the moment.
 
-To generate whole-program call graphs, please use [GNU cflow](https://www.gnu.org/software/cflow/) or [CodeViz](http://www.csn.ul.ie/~mel/projects/codeviz/) for C and C++. For Java, there is [Javashot](http://code.google.com/p/javashot/). 
+To generate whole-program call graphs, please use [GNU cflow](https://www.gnu.org/software/cflow/) or [CodeViz](https://github.com/petersenna/codeviz) for C and C++. For Java, there is [Javashot](http://code.google.com/p/javashot/). 
 
 To generate whole-program UML class diagrams for various object-oriented languages, please use [tags2uml](https://github.com/ruben2020/tags2uml). 
 
@@ -167,7 +174,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 * Fix bugs (see Issues tab)
 * Update translations (Deutsch, Francais, Japanese etc.)
 * Port to other platforms
-* Write plugins for Vim, emacs, eclipse, Notepad++ etc.
+* Write plugins for emacs, eclipse, Notepad++ etc.
 * Write a web-based interface to CodeQuery's database
 * Add support for other languages e.g. Javascript
 
@@ -177,6 +184,10 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 [ruben2020](https://github.com/ruben2020)    
 [naseer](https://github.com/naseer)    
 [bruno-](https://github.com/bruno-)    
+[devjoe](https://github.com/devjoe)    
+[jonashaag](https://github.com/jonashaag)    
+[ilovezfs](https://github.com/ilovezfs)    
+[JCount](https://github.com/JCount)    
 (More welcomed)
 
 
@@ -186,13 +197,14 @@ We thank the people behind the following projects:
 [cscope](http://cscope.sourceforge.net/) - our database is derived from this   
 [Exuberant ctags](http://ctags.sourceforge.net/)- our database is derived from this   
 [pycscope](https://github.com/portante/pycscope) - our database (for Python) is derived from this    
-[starscope](https://github.com/eapache/starscope) - our database (for Ruby and Go) is derived from this    
+[starscope](https://github.com/eapache/starscope) - our database (for Ruby, Go and Javascript) is derived from this    
 [sqlite3](http://www.sqlite.org/) - our database is using this format    
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
 [optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
 [scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
+[vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    
 

@@ -104,7 +104,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
-	std::auto_ptr<sqlquery> sq(new sqlquery);
+	std::unique_ptr<sqlquery> sq(new sqlquery);
 	sqlquery::en_filereadstatus filestatus = sq->open_dbfile(sqfn);
 	switch (filestatus)
 	{

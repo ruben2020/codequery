@@ -316,7 +316,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QSplitter" name="splitter">
+       <widget class="QSplitter" name="splitter_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
@@ -593,13 +593,38 @@
            </layout>
           </item>
           <item>
-           <widget class="QsciScintilla" name="textEditSource">
-            <property name="toolTip">
-             <string/>
+           <widget class="QSplitter" name="splitter">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="whatsThis">
-             <string/>
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
             </property>
+            <widget class="QListWidget" name="listWidgetFunc">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>1</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+            <widget class="QsciScintilla" name="textEditSource">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+               <horstretch>4</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string/>
+             </property>
+             <property name="whatsThis">
+              <string/>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -616,7 +641,7 @@
      <x>0</x>
      <y>0</y>
      <width>753</width>
-     <height>31</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

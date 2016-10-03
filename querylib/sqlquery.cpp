@@ -50,6 +50,8 @@
 #define SQL_AUTOCOMPLETE "SELECT DISTINCT symName FROM symtbl WHERE symName LIKE ? ORDER BY symName LIMIT 20;"
 #define SQL_FUNCSINFILE "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\" OR symtbl.symType=\"#\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 
+#define SQL_FUNCSINONEFILE "SELECT symtbl.symName,filestbl.filePath,linestbl.linenum FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\") ORDER BY linestbl.linenum ASC;"
+
 #define SQL_EM_SYM "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 #define SQL_EM_FUNC_MACRO "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) AND (symtbl.symType=\"$\" OR symtbl.symType=\"#\") INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 #define SQL_EM_CLASS_STRUCT "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) AND (symtbl.symType=\"c\" OR symtbl.symType=\"s\") INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
@@ -160,6 +162,8 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 	if (m_basepath.empty()) {return sqlfileNOTCORRECTDB;}
 	rc = sqlite3_prepare_v2(m_db, SQL_AUTOCOMPLETE, strlen(SQL_AUTOCOMPLETE),
 							&(m_autocompstmt.m_stmt), NULL);
+	rc = sqlite3_prepare_v2(m_db, SQL_FUNCSINONEFILE, strlen(SQL_FUNCSINONEFILE),
+							&(m_funcliststmt.m_stmt), NULL);
 	rc = sqlite3_prepare_v2(m_db, SQL_DECLARATION, strlen(SQL_DECLARATION),
 							&(m_declarationstmt.m_stmt), NULL);
 	if (rc != SQLITE_OK) {return sqlfileNOTCORRECTDB;}
@@ -170,6 +174,7 @@ void sqlquery::close_dbfile(void)
 {
 	m_declarationstmt.finalize();
 	m_autocompstmt.finalize();
+	m_funcliststmt.finalize();
 	m_searchstmt.finalize();
 	sqlite3_close(m_db);
 	m_db = NULL;
@@ -197,10 +202,24 @@ tStr sqlquery::read_configtbl(const char *key, sqlite3_stmt *stmt)
 	return result;
 }
 
+sqlqueryresultlist sqlquery::search_funclist(const char* searchstr)
+{
+	sqlqueryresultlist result;
+	result.result_type = sqlqueryresultlist::sqlresultERROR;
+	tStr srchterm("%");
+	srchterm.append(searchstr);
+	if ((searchstr == NULL)||(strlen(searchstr) < 1)||(m_db == NULL)) return result;
+	sqlite3_reset(m_funcliststmt.get());
+	int rc = sqlite3_bind_text(m_funcliststmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_STATIC);
+	if (rc != SQLITE_OK) {printf("Err: %s\n", sqlite3_errmsg(m_db)); return result;}
+	result = search_func_in_one_file(m_funcliststmt.get());
+	return result;
+}
+
 tVecStr sqlquery::search_autocomplete(const char* searchstr)
 {
 	tVecStr result;
-	int ctr = 0;
+	//int ctr = 0;
 	if ((searchstr == NULL)||(strlen(searchstr) < 1)||(m_db == NULL)) return result;
 	tStr srchterm = process_searchterm_autocomplete(searchstr);
 	sqlite3_reset(m_autocompstmt.get());
@@ -221,7 +240,6 @@ tVecStr sqlquery::search_autocomplete(const char* searchstr)
 	}
 	return result;
 }
-
 
 sqlqueryresultlist sqlquery::search(
 						tStr searchstr,
@@ -429,6 +447,44 @@ sqlqueryresultlist sqlquery::search_full(sqlite3_stmt* stmt)
 	else
 	{
 		result.result_type = sqlqueryresultlist::sqlresultFULL;
+	}
+	return result;
+}
+
+sqlqueryresultlist sqlquery::search_func_in_one_file(sqlite3_stmt* stmt)
+{
+	int rc;
+	sqlqueryresultlist result;
+	tStr fp;
+	result.result_type = sqlqueryresultlist::sqlresultERROR;
+	sqlqueryresult item;
+	do
+	{
+		rc = sqlite3_step(stmt);
+		if (rc == SQLITE_ROW)
+		{
+			item.symname  = (const char*) sqlite3_column_text(stmt, 0);
+			fp            = (const char*) sqlite3_column_text(stmt, 1);
+			item.linenum  = (const char*) sqlite3_column_text(stmt, 2);
+			item.filename = extract_filename(fp.c_str());
+			if (isAbsolutePath(fp) == false)
+			{
+				item.filepath = m_basepath;
+				item.filepath += DIRSEP;
+				item.filepath += fp;
+			}
+			else item.filepath = fp;
+			result.resultlist.push_back(item);
+		}
+	} while (rc == SQLITE_ROW);
+	if (rc != SQLITE_DONE)
+	{
+		result.result_type = sqlqueryresultlist::sqlresultERROR;
+		result.sqlerrmsg = sqlite3_errmsg(m_db);
+	}
+	else
+	{
+		result.result_type = sqlqueryresultlist::sqlresultFUNC_IN_ONE_FILE;
 	}
 	return result;
 }

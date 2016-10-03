@@ -19,6 +19,8 @@
  */
 
 
+#include <stdlib.h>
+#include <string.h>
 #include <QProcess>
 #include <QInputDialog>
 #include <QFontDatabase>
@@ -34,6 +36,13 @@
 #include "mainwindow.h"
 #include "fileviewsettingsdialog.h"
 #include "themes.h"
+#include "std2qt.h"
+
+#ifdef USE_QT5
+#define QT45_TOASCII(x) toLatin1(x)
+#else
+#define QT45_TOASCII(x) toAscii(x)
+#endif
 
 #ifdef _WIN32
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
@@ -57,9 +66,16 @@ bool filedata::compare(const filedata& fd)
 			(filename.compare(fd.filename) == 0));
 }
 
-bool filedata::compareFilenameOnly(const filedata& fd)
+bool filedata::compareFilePathOnly(const filedata& fd)
 {
 	return (filename.compare(fd.filename) == 0);
+}
+
+bool filedata::compareFileNameOnly(const filedata& fd)
+{
+	return (strcmp(
+		extract_filename(filename.QT45_TOASCII().data()),
+		extract_filename(fd.filename.QT45_TOASCII().data())) == 0);
 }
 
 filedata::filedata(const filedata& fd)
@@ -159,6 +175,8 @@ void fileviewer::init(void)
 			this, SLOT(TextShrink_ButtonClick(bool)));
 	connect(m_pushButtonTextEnlarge, SIGNAL(clicked(bool)),
 			this, SLOT(TextEnlarge_ButtonClick(bool)));
+	connect(m_listWidgetFunc, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
+			this, SLOT(funcItemSelected(QListWidgetItem *, QListWidgetItem *)));
 	m_fileDataList.clear();
 	setLexer();
 }
@@ -177,6 +195,7 @@ void fileviewer::clearList()
 	m_fileDataList.clear();
 	m_iter = m_fileDataList.begin();
 	m_timestampMismatchWarned = false;
+	m_listWidgetFunc->clear();
 }
 
 void fileviewer::recvDBtimestamp(QDateTime dt)
@@ -241,7 +260,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum)
 		updateFilePathLabel();
 		return;
 	}
-	else if (m_iter->compareFilenameOnly(fd))
+	else if (m_iter->compareFilePathOnly(fd))
 	{
 		// same file, different line number
 		m_fileDataList.push_back(fd);
@@ -317,6 +336,8 @@ void fileviewer::updateTextEdit(void)
 	m_pushButtonOpenInEditor->setEnabled(true);
 	m_pushButtonTextShrink->setEnabled(true);
 	m_pushButtonTextEnlarge->setEnabled(true);
+	m_listWidgetFunc->clear();
+	emit requestFuncList(m_iter->filename);
 	QApplication::restoreOverrideCursor();
 }
 
@@ -367,7 +388,7 @@ void fileviewer::Prev_ButtonClick(bool checked)
 	{
 		QVector<filedata>::iterator it = m_iter;
 		m_iter--;
-		if ((it != m_fileDataList.end())&&(m_iter->compareFilenameOnly(*it)))
+		if ((it != m_fileDataList.end())&&(m_iter->compareFilePathOnly(*it)))
 		{
 			highlightLine(m_iter->linenum.toInt());
 			updateFilePathLabel();			
@@ -399,7 +420,7 @@ void fileviewer::Next_ButtonClick(bool checked)
 	{
 		QVector<filedata>::iterator it = m_iter;
 		m_iter++;
-		if (m_iter->compareFilenameOnly(*it))
+		if (m_iter->compareFilePathOnly(*it))
 		{
 			highlightLine(m_iter->linenum.toInt());
 			updateFilePathLabel();			
@@ -695,4 +716,37 @@ void fileviewer::annotate(QString annotstr)
 	m_textEditSource->annotate(m_annotline, annotstr, 29);
 }
 
+void fileviewer::recvFuncList(sqlqueryresultlist reslist)
+{
+	m_listWidgetFunc->clear();
+	if (m_fileDataList.isEmpty()) return;
+	filedata fd(str2qt(reslist.resultlist[0].filename), "1");
+	if (m_iter->compareFileNameOnly(fd) == false)
+	{
+		emit requestFuncList(m_iter->filename);
+		return;
+	}
+	int i;
+	for (i=0; i<reslist.resultlist.size(); i++)
+	{
+		m_listWidgetFunc->addItem(new QListWidgetItem(
+			str2qt(reslist.resultlist[i].symname), 0, 
+			atoi(reslist.resultlist[i].linenum.c_str())));
+	}
+}
+
+void fileviewer::funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem)
+{
+	int num = 1;
+	if (curitem != NULL) num = curitem->type();
+	if (num <= 0)
+	{
+		num = 1;
+	}
+	else
+	{
+		num = num - 1; // not sure why it's one off
+	}
+	m_textEditSource->ensureLineVisible(num);
+}
 

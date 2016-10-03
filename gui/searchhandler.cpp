@@ -91,6 +91,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_typeOfGraph(1)
 ,m_autocompBusy(false)
 ,m_declarBusy(false)
+,m_funcListBusy(false)
 {
 	sq = new sqlqueryadv;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
@@ -150,7 +151,7 @@ void searchhandler::searchTextEdited(const QString& searchtxt)
 {
 	if (m_checkBoxAutoComplete->isChecked())
 	{
-		if ((m_autocompBusy)||(m_declarBusy))
+		if ((m_autocompBusy)||(m_declarBusy)||(m_funcListBusy))
 		{
 			m_autocompSrchTerm = searchtxt;
 		}
@@ -186,18 +187,44 @@ void searchhandler::declarSearchFinished()
 {
 	QString str = m_declarFutureWatcher.result();
 	if (str.length() > 0)
-		emit searchDeclarationResultsReady(m_declarFutureWatcher.result());
+		emit searchDeclarationResultsReady(str);
 	m_declarBusy = false;
 }
 
 void searchhandler::searchDeclaration(QString searchstr)
 {
-	if ((!m_declarBusy)&&(!m_autocompBusy))
+	if ((!m_declarBusy)&&(!m_autocompBusy)&&(!m_funcListBusy))
 	{
 		m_declarBusy = true;
 		m_declarFutureWatcher.setFuture(
 			QtConcurrent::run(search_declaration_qt, searchstr));
 	}
+}
+
+void searchhandler::funcListSearchFinished()
+{
+	sqlqueryresultlist res = m_listFuncFutureWatcher.result();
+	if ((res.result_type == sqlqueryresultlist::sqlresultFUNC_IN_ONE_FILE) &&
+		(res.resultlist.empty() == false))
+	{
+		emit searchListFuncResultsReady(res);
+	}
+	m_funcListBusy = false;
+}
+
+void searchhandler::searchFuncList(QString searchstr)
+{
+	if ((searchstr.isEmpty() == false)&&(!m_declarBusy)&&(!m_autocompBusy)&&(!m_funcListBusy))
+	{
+		m_funcListBusy = true;
+		m_listFuncFutureWatcher.setFuture(
+			QtConcurrent::run(search_funclist_qt, searchstr));
+	}
+}
+
+sqlqueryresultlist searchhandler::search_funclist_qt(QString searchtxt)
+{
+	return sq->search_funclist(extract_filename(searchtxt.QT45_TOASCII().data()));
 }
 
 QString searchhandler::search_declaration_qt(QString searchtxt)
@@ -279,6 +306,8 @@ void searchhandler::init(void)
 			this, SLOT(autoCompleteFinished()));
 	connect(&m_declarFutureWatcher, SIGNAL(finished()),
 			this, SLOT(declarSearchFinished()));
+	connect(&m_listFuncFutureWatcher, SIGNAL(finished()),
+			this, SLOT(funcListSearchFinished()));
 }
 
 void searchhandler::retranslateUi(void)
@@ -369,6 +398,11 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 		m_declarBusy = false;
 		m_declarFutureWatcher.waitForFinished();
 	}
+	if (m_funcListBusy)
+	{
+		m_funcListBusy = false;
+		m_listFuncFutureWatcher.waitForFinished();
+	}
 	sq->close_dbfile();
 	QFileInfo dbfile(m_comboBoxDB->itemText(idx));
 	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
@@ -450,6 +484,11 @@ void searchhandler::perform_search(QString searchtxt,
 	{
 		m_declarBusy = false;
 		m_declarFutureWatcher.waitForFinished();
+	}
+	if (m_funcListBusy)
+	{
+		m_funcListBusy = false;
+		m_listFuncFutureWatcher.waitForFinished();
 	}
 	sqlquery::en_queryType querytype = qrytyp;
 	if (querytype == sqlquery::sqlresultDEFAULT) querytype = 
@@ -626,6 +665,11 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 	{
 		m_declarBusy = false;
 		m_declarFutureWatcher.waitForFinished();
+	}
+	if (m_funcListBusy)
+	{
+		m_funcListBusy = false;
+		m_listFuncFutureWatcher.waitForFinished();
 	}
 	if (m_typeOfGraph == 1)
 	res = sq->search_funcgraph(symName,

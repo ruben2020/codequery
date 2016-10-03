@@ -69,6 +69,7 @@ enum en_resultType
 		sqlresultFILE_LINE,
 		sqlresultFILE_ONLY,
 		sqlresultSYM_ONLY,
+		sqlresultFUNC_IN_ONE_FILE,
 		sqlresultERROR
 	};
 	en_resultType result_type;
@@ -119,6 +120,7 @@ enum en_filereadstatus
 				en_queryType querytype = sqlquerySYMBOL,
 				bool exactmatch=false,
 				tStr filterstr = "");
+	sqlqueryresultlist search_funclist(const char* searchstr);
 	tVecStr search_autocomplete(const char* searchstr);
 	sqlqueryresultlist search_declaration(const char* searchstr);
 
@@ -127,10 +129,12 @@ private:
 	tStr m_basepath;
 	tempstmt m_declarationstmt;
 	tempstmt m_autocompstmt;
+	tempstmt m_funcliststmt;
 	tempstmt m_searchstmt;
 	sqlqueryresultlist search_full(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_line(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_only(sqlite3_stmt* stmt);
+	sqlqueryresultlist search_func_in_one_file(sqlite3_stmt* stmt);
 	tStr read_configtbl(const char *key, sqlite3_stmt *stmt);
 	tStr process_searchterm(const char* searchterm, const bool& exactmatch);
 	tStr process_searchterm_autocomplete(const char* searchstr);

@@ -88,6 +88,10 @@ void mainwindow::init(void)
 			m_fileviewer, SLOT(annotate(QString)));
 	connect(m_fileviewer, SIGNAL(requestAnnotation(QString)),
 			m_searchhandler, SLOT(searchDeclaration(QString)));
+	connect(m_searchhandler, SIGNAL(searchListFuncResultsReady(sqlqueryresultlist)),
+			m_fileviewer, SLOT(recvFuncList(sqlqueryresultlist)));
+	connect(m_fileviewer, SIGNAL(requestFuncList(QString)),
+			m_searchhandler, SLOT(searchFuncList(QString)));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
 			this, SLOT(ExitTriggered(bool)));
 	connect(ui->actionAbout, SIGNAL(triggered(bool)),
@@ -119,6 +123,7 @@ void mainwindow::setup_fileviewer(void)
 	m_fileviewer->m_pushButtonGoToLine = ui->pushButtonGoToLine;
 	m_fileviewer->m_labelFilePath = ui->labelFilePath;
 	m_fileviewer->m_textEditSource = ui->textEditSource;
+	m_fileviewer->m_listWidgetFunc = ui->listWidgetFunc;
 	m_fileviewer->m_checkBoxSymbolOnly = ui->checkBoxSymbolOnly;
 	m_fileviewer->init();
 }

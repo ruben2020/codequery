@@ -28,10 +28,14 @@
 #include <QtGui>
 #endif
 
+#include "sqlquery.h"
+Q_DECLARE_METATYPE(sqlqueryresultlist)
+
 
 class mainwindow;
 class QsciScintilla;
 class QsciLexer;
+
 
 class filedata
 {
@@ -43,7 +47,8 @@ class filedata
 	filedata(const QString& fn, const QString& ln);
 	filedata(const filedata& fd);
 	bool compare(const filedata& fd);
-	bool compareFilenameOnly(const filedata& fd);
+	bool compareFilePathOnly(const filedata& fd);
+	bool compareFileNameOnly(const filedata& fd);
 	filedata& operator=(const filedata& fd);
 };
 
@@ -74,6 +79,7 @@ QPushButton *m_pushButtonTextEnlarge;
 QCheckBox   *m_checkBoxSymbolOnly;
 QLabel *m_labelFilePath;
 QsciScintilla *m_textEditSource;
+QListWidget *m_listWidgetFunc;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
 QsciLexer* m_lexer;
@@ -105,11 +111,14 @@ void fontSelectionTemporary(const QString &fonttxt);
 void themeSelectionTemporary(const QString &themetxt);
 void tabWidthSelectionTemporary(const QString &width);
 void annotate(QString annotstr);
+void recvFuncList(sqlqueryresultlist reslist);
+void funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem);
 
 signals:
 void searchCopiedText();
 void searchCopiedTextSymbolOnly();
 void requestAnnotation(QString searchstr);
+void requestFuncList(QString searchstr);
 
 private:
 mainwindow *mw;

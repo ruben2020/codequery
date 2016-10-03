@@ -71,6 +71,7 @@ QComboBox *m_comboBoxFilter;
 QCompleter *m_completer;
 QFutureWatcher<QStringList> m_autocompFutureWatcher;
 QFutureWatcher<QString> m_declarFutureWatcher;
+QFutureWatcher<sqlqueryresultlist> m_listFuncFutureWatcher;
 static bool m_grepExactMatch;
 static QRegExp* m_grepRegExp;
 
@@ -92,6 +93,7 @@ void restoreSearchMemoryItem(void);
 void retranslateUi(void);
 static QStringList search_autocomplete_qt(QString searchtxt);
 static QString search_declaration_qt(QString searchtxt);
+static sqlqueryresultlist search_funclist_qt(QString searchtxt);
 static sqlqueryresultlist doGrep(const QString &fp);
 static void collateGrep(sqlqueryresultlist &result,
 			const sqlqueryresultlist &intermediate);
@@ -113,8 +115,10 @@ void QueryType_indexChanged(const int& idx);
 void updateListItemRowNum(const int& row);
 void resultCurrentListItemSymbolName(const QString symName);
 void searchDeclaration(QString searchstr);
+void searchFuncList(QString searchstr);
 void autoCompleteFinished();
 void declarSearchFinished();
+void funcListSearchFinished();
 
 signals:
 void searchresults(sqlqueryresultlist resultlist, int selectitem);
@@ -123,6 +127,7 @@ void DBreset();
 void sendDBtimestamp(QDateTime dt);
 void getResultCurrentListItemSymbolName();
 void searchDeclarationResultsReady(QString resdeclar);
+void searchListFuncResultsReady(sqlqueryresultlist res);
 
 private:
 mainwindow *mw;
@@ -135,6 +140,7 @@ QVector<searchitem> m_searchMemoryList;
 QVector<searchitem>::iterator m_iter;
 bool m_autocompBusy;
 bool m_declarBusy;
+bool m_funcListBusy;
 QString m_autocompSrchTerm;
 
 void updateFilterHistory(QString filtertxt);

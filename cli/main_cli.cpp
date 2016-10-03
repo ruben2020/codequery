@@ -104,8 +104,8 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
-	std::unique_ptr<sqlquery> sq(new sqlquery);
-	sqlquery::en_filereadstatus filestatus = sq->open_dbfile(sqfn);
+	sqlquery sq;
+	sqlquery::en_filereadstatus filestatus = sq.open_dbfile(sqfn);
 	switch (filestatus)
 	{
 		case sqlquery::sqlfileOK:
@@ -130,7 +130,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 		return 1;	
 	}
 	sqlqueryresultlist resultlst;
-	resultlst = sq->search(term, (sqlquery::en_queryType) intParam, exact);
+	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact);
 	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
 		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());

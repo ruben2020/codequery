@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>753</width>
-    <height>600</height>
+    <width>967</width>
+    <height>813</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,620 +18,636 @@
     <normaloff>:/mainwindow/images/logo.png</normaloff>:/mainwindow/images/logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_4">
+   <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QPushButton" name="pushButtonOpenDB">
-          <property name="toolTip">
-           <string>Open Database</string>
-          </property>
-          <property name="statusTip">
-           <string>Open Database</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../codequery.qrc">
-            <normaloff>:/mainwindow/images/Database.png</normaloff>:/mainwindow/images/Database.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxDB">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxAutoComplete">
-          <property name="layoutDirection">
-           <enum>Qt::LeftToRight</enum>
-          </property>
-          <property name="text">
-           <string>Auto-complete</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxExactMatch">
-          <property name="text">
-           <string>Exact match</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_4">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="checkBoxFilter">
-          <property name="toolTip">
-           <string>File path filter</string>
-          </property>
-          <property name="statusTip">
-           <string>File path filter</string>
-          </property>
-          <property name="text">
-           <string>Filter</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxFilter">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>File path filter, wildcard searches (* and ?) are supported</string>
-          </property>
-          <property name="statusTip">
-           <string>File path filter, wildcard searches (* and ?) are supported</string>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-          <property name="insertPolicy">
-           <enum>QComboBox::NoInsert</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QPushButton" name="pushButtonOpenDB">
+        <property name="toolTip">
+         <string>Open Database</string>
+        </property>
+        <property name="statusTip">
+         <string>Open Database</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Database.png</normaloff>:/mainwindow/images/Database.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QPushButton" name="pushButtonSearchPrev">
-          <property name="toolTip">
-           <string>Previous search term</string>
-          </property>
-          <property name="statusTip">
-           <string>Previous search term</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../codequery.qrc">
-            <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonSearchNext">
-          <property name="toolTip">
-           <string>Next search term</string>
-          </property>
-          <property name="statusTip">
-           <string>Next search term</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../codequery.qrc">
-            <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxSearch">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
-          </property>
-          <property name="statusTip">
-           <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
-          </property>
-          <property name="editable">
-           <bool>true</bool>
-          </property>
-          <property name="insertPolicy">
-           <enum>QComboBox::NoInsert</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-          </property>
-          <property name="duplicatesEnabled">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonSearch">
-          <property name="toolTip">
-           <string>Search</string>
-          </property>
-          <property name="statusTip">
-           <string>Search</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../codequery.qrc">
-            <normaloff>:/mainwindow/images/Search.png</normaloff>:/mainwindow/images/Search.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonClipSearch">
-          <property name="toolTip">
-           <string>Paste and Search</string>
-          </property>
-          <property name="statusTip">
-           <string>Paste and Search</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../codequery.qrc">
-            <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButtonGraph">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="toolTip">
-           <string>Draw graph</string>
-          </property>
-          <property name="statusTip">
-           <string>Draw graph</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="../codequery.qrc">
-            <normaloff>:/mainwindow/images/Graph.png</normaloff>:/mainwindow/images/Graph.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>24</width>
-            <height>24</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBoxQueryType">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maxVisibleItems">
-           <number>15</number>
-          </property>
-          <property name="insertPolicy">
-           <enum>QComboBox::NoInsert</enum>
-          </property>
-          <property name="sizeAdjustPolicy">
-           <enum>QComboBox::AdjustToMinimumContentsLength</enum>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <widget class="QComboBox" name="comboBoxDB">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+        </property>
+       </widget>
       </item>
       <item>
-       <widget class="QSplitter" name="splitter_2">
+       <widget class="Line" name="line_2">
         <property name="orientation">
          <enum>Qt::Vertical</enum>
         </property>
-        <widget class="QTreeWidget" name="treeWidgetSearchResults">
-         <column>
-          <property name="text">
-           <string notr="true">1</string>
-          </property>
-         </column>
-        </widget>
-        <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="verticalLayout">
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxAutoComplete">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Auto-complete</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxExactMatch">
+        <property name="text">
+         <string>Exact match</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="Line" name="line_4">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkBoxFilter">
+        <property name="toolTip">
+         <string>File path filter</string>
+        </property>
+        <property name="statusTip">
+         <string>File path filter</string>
+        </property>
+        <property name="text">
+         <string>Filter</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxFilter">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>File path filter, wildcard searches (* and ?) are supported</string>
+        </property>
+        <property name="statusTip">
+         <string>File path filter, wildcard searches (* and ?) are supported</string>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::NoInsert</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushButtonSearchPrev">
+        <property name="toolTip">
+         <string>Previous search term</string>
+        </property>
+        <property name="statusTip">
+         <string>Previous search term</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonSearchNext">
+        <property name="toolTip">
+         <string>Next search term</string>
+        </property>
+        <property name="statusTip">
+         <string>Next search term</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxSearch">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
+        </property>
+        <property name="statusTip">
+         <string>If Exact Match is switched off, wildcard searches (* and ?) are supported</string>
+        </property>
+        <property name="editable">
+         <bool>true</bool>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::NoInsert</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+        </property>
+        <property name="duplicatesEnabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonSearch">
+        <property name="toolTip">
+         <string>Search</string>
+        </property>
+        <property name="statusTip">
+         <string>Search</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Search.png</normaloff>:/mainwindow/images/Search.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonClipSearch">
+        <property name="toolTip">
+         <string>Paste and Search</string>
+        </property>
+        <property name="statusTip">
+         <string>Paste and Search</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButtonGraph">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Draw graph</string>
+        </property>
+        <property name="statusTip">
+         <string>Draw graph</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Graph.png</normaloff>:/mainwindow/images/Graph.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxQueryType">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maxVisibleItems">
+         <number>15</number>
+        </property>
+        <property name="insertPolicy">
+         <enum>QComboBox::NoInsert</enum>
+        </property>
+        <property name="sizeAdjustPolicy">
+         <enum>QComboBox::AdjustToMinimumContentsLength</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QTreeWidget" name="treeWidgetSearchResults">
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
+      </widget>
+      <widget class="QWidget" name="layoutWidget1">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QPushButton" name="pushButtonPrev">
-              <property name="toolTip">
-               <string>Previous File</string>
-              </property>
-              <property name="statusTip">
-               <string>Previous File</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonNext">
-              <property name="toolTip">
-               <string>Next File</string>
-              </property>
-              <property name="statusTip">
-               <string>Next File</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonOpenInEditor">
-              <property name="toolTip">
-               <string>Open in Editor</string>
-              </property>
-              <property name="statusTip">
-               <string>Open in Editor</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Document2.png</normaloff>:/mainwindow/images/Document2.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonGoToLine">
-              <property name="toolTip">
-               <string>Go to selected line</string>
-              </property>
-              <property name="statusTip">
-               <string>Go to selected line</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Flag.png</normaloff>:/mainwindow/images/Flag.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonTextShrink">
-              <property name="toolTip">
-               <string>Reduce font size</string>
-              </property>
-              <property name="statusTip">
-               <string>Reduce font size</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Text_Minus.png</normaloff>:/mainwindow/images/Text_Minus.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonTextEnlarge">
-              <property name="toolTip">
-               <string>Increase font size</string>
-              </property>
-              <property name="statusTip">
-               <string>Increase font size</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Text_Plus.png</normaloff>:/mainwindow/images/Text_Plus.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonPaste">
-              <property name="toolTip">
-               <string>Copy, paste and search</string>
-              </property>
-              <property name="statusTip">
-               <string>Copy, paste and search</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QCheckBox" name="checkBoxSymbolOnly">
-              <property name="toolTip">
-               <string>Symbol search only for paste and search</string>
-              </property>
-              <property name="statusTip">
-               <string>Symbol search only for paste and search</string>
-              </property>
-              <property name="text">
-               <string>Symbol only</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="Line" name="line_5">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonUp">
-              <property name="toolTip">
-               <string>Previous search result in this file</string>
-              </property>
-              <property name="statusTip">
-               <string>Previous search result in this file</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButtonDown">
-              <property name="toolTip">
-               <string>Next search result in this file</string>
-              </property>
-              <property name="statusTip">
-               <string>Next search result in this file</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="../codequery.qrc">
-                <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>24</width>
-                <height>24</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLabel" name="labelFilePath">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="frameShape">
-               <enum>QFrame::Box</enum>
-              </property>
-              <property name="frameShadow">
-               <enum>QFrame::Sunken</enum>
-              </property>
-              <property name="text">
-               <string>FilePath:0</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-              <property name="textInteractionFlags">
-               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QPushButton" name="pushButtonPrev">
+            <property name="toolTip">
+             <string>Previous File</string>
+            </property>
+            <property name="statusTip">
+             <string>Previous File</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item>
-           <widget class="QSplitter" name="splitter">
+           <widget class="QPushButton" name="pushButtonNext">
+            <property name="toolTip">
+             <string>Next File</string>
+            </property>
+            <property name="statusTip">
+             <string>Next File</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonOpenInEditor">
+            <property name="toolTip">
+             <string>Open in Editor</string>
+            </property>
+            <property name="statusTip">
+             <string>Open in Editor</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Document2.png</normaloff>:/mainwindow/images/Document2.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonGoToLine">
+            <property name="toolTip">
+             <string>Go to selected line</string>
+            </property>
+            <property name="statusTip">
+             <string>Go to selected line</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Flag.png</normaloff>:/mainwindow/images/Flag.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonTextShrink">
+            <property name="toolTip">
+             <string>Reduce font size</string>
+            </property>
+            <property name="statusTip">
+             <string>Reduce font size</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Text_Minus.png</normaloff>:/mainwindow/images/Text_Minus.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonTextEnlarge">
+            <property name="toolTip">
+             <string>Increase font size</string>
+            </property>
+            <property name="statusTip">
+             <string>Increase font size</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Text_Plus.png</normaloff>:/mainwindow/images/Text_Plus.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonPaste">
+            <property name="toolTip">
+             <string>Copy, paste and search</string>
+            </property>
+            <property name="statusTip">
+             <string>Copy, paste and search</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QCheckBox" name="checkBoxSymbolOnly">
+            <property name="toolTip">
+             <string>Symbol search only for paste and search</string>
+            </property>
+            <property name="statusTip">
+             <string>Symbol search only for paste and search</string>
+            </property>
+            <property name="text">
+             <string>Symbol only</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="Line" name="line_5">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonUp">
+            <property name="toolTip">
+             <string>Previous search result in this file</string>
+            </property>
+            <property name="statusTip">
+             <string>Previous search result in this file</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonDown">
+            <property name="toolTip">
+             <string>Next search result in this file</string>
+            </property>
+            <property name="statusTip">
+             <string>Next search result in this file</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="../codequery.qrc">
+              <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>24</width>
+              <height>24</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelFilePath">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+            <property name="frameShape">
+             <enum>QFrame::Box</enum>
             </property>
-            <widget class="QListWidget" name="listWidgetFunc">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>1</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-            </widget>
-            <widget class="QsciScintilla" name="textEditSource">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-               <horstretch>4</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string/>
-             </property>
-             <property name="whatsThis">
-              <string/>
-             </property>
-            </widget>
+            <property name="frameShadow">
+             <enum>QFrame::Sunken</enum>
+            </property>
+            <property name="text">
+             <string>FilePath:0</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+            </property>
            </widget>
           </item>
          </layout>
-        </widget>
-       </widget>
-      </item>
-     </layout>
+        </item>
+        <item>
+         <widget class="QSplitter" name="splitter">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QWidget" name="layoutWidget2">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QComboBox" name="comboBoxFuncListSort">
+              <property name="maxCount">
+               <number>100</number>
+              </property>
+              <property name="insertPolicy">
+               <enum>QComboBox::NoInsert</enum>
+              </property>
+              <item>
+               <property name="text">
+                <string>Sort by line number</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Sort by name</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QListWidget" name="listWidgetFunc">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                <horstretch>1</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QsciScintilla" name="textEditSource">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>4</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="toolTip">
+            <string/>
+           </property>
+           <property name="whatsThis">
+            <string/>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -640,7 +656,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>753</width>
+     <width>967</width>
      <height>28</height>
     </rect>
    </property>
@@ -762,12 +778,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>586</x>
-     <y>51</y>
+     <x>675</x>
+     <y>65</y>
     </hint>
     <hint type="destinationlabel">
-     <x>620</x>
-     <y>58</y>
+     <x>956</x>
+     <y>68</y>
     </hint>
    </hints>
   </connection>

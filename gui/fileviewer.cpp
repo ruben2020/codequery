@@ -727,6 +727,7 @@ void fileviewer::recvFuncList(sqlqueryresultlist reslist)
 		return;
 	}
 	int i;
+	reslist.sort_by_name();
 	for (i=0; i<reslist.resultlist.size(); i++)
 	{
 		m_listWidgetFunc->addItem(new QListWidgetItem(

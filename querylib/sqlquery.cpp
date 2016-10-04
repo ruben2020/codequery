@@ -29,7 +29,7 @@
 
 #include <stdio.h>
 //#include <unistd.h>
-//#include <algorithm>
+#include <algorithm>
 #include <sqlite3.h>
 #include "small_lib.h"
 #include "sqlquery.h"
@@ -50,7 +50,7 @@
 #define SQL_AUTOCOMPLETE "SELECT DISTINCT symName FROM symtbl WHERE symName LIKE ? ORDER BY symName LIMIT 20;"
 #define SQL_FUNCSINFILE "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\" OR symtbl.symType=\"#\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 
-#define SQL_FUNCSINONEFILE "SELECT symtbl.symName,filestbl.filePath,linestbl.linenum FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\") ORDER BY linestbl.linenum ASC;"
+#define SQL_FUNCSINONEFILE "SELECT symtbl.symName,filestbl.filePath,linestbl.linenum FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE (symtbl.symType=\"$\")) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 
 #define SQL_EM_SYM "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
 #define SQL_EM_FUNC_MACRO "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) AND (symtbl.symType=\"$\" OR symtbl.symType=\"#\") INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID AND filestbl.filePath LIKE ? ESCAPE \";\");"
@@ -65,6 +65,20 @@
 #define SQL_EM_INCLUDE "SELECT filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.lineID=linestbl.lineID AND symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=? AND symType=\"~\") INNER JOIN filestbl ON linestbl.fileID=filestbl.fileID;"
 #define SQL_EM_FILEPATH "SELECT DISTINCT filePath FROM filestbl WHERE filePath=?;"
 #define SQL_DECLARATION "SELECT symtbl.symName,symtbl.symType,filestbl.filePath,linestbl.linenum,linestbl.linetext FROM symtbl INNER JOIN linestbl ON symtbl.symID IN (SELECT symID FROM symtbl WHERE symName=?) AND (symtbl.symType=\"$\" OR symtbl.symType=\"#\" OR symtbl.symType=\"c\" OR symtbl.symType=\"s\") AND symtbl.lineID=linestbl.lineID INNER JOIN filestbl ON (linestbl.fileID=filestbl.fileID) LIMIT 1;"
+
+struct nameasc
+{
+    bool operator()( const sqlqueryresult& lx, const sqlqueryresult& rx ) const {
+    	return lx.symname2.compare(rx.symname2) < 0;
+    }
+};
+
+struct numasc
+{
+    bool operator()( const sqlqueryresult& lx, const sqlqueryresult& rx ) const {
+    	return lx.intLinenum < rx.intLinenum;
+    }
+};
 
 
 tempstmt::tempstmt()
@@ -112,6 +126,16 @@ sqlqueryresultlist& sqlqueryresultlist::operator= (const sqlqueryresultlist& cop
 		resultlist = copy.resultlist;
 	}
 	return *this;
+}
+
+void sqlqueryresultlist::sort_by_name(void)
+{
+	std::sort(resultlist.begin(), resultlist.end(), nameasc());
+}
+
+void sqlqueryresultlist::sort_by_linenum(void)
+{
+	std::sort(resultlist.begin(), resultlist.end(), numasc());
 }
 
 sqlquery::sqlquery()
@@ -467,6 +491,9 @@ sqlqueryresultlist sqlquery::search_func_in_one_file(sqlite3_stmt* stmt)
 			fp            = (const char*) sqlite3_column_text(stmt, 1);
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 2);
 			item.filename = extract_filename(fp.c_str());
+			item.intLinenum = atoi(item.linenum.c_str());
+			item.symname2 = item.symname;
+			std::transform(item.symname2.begin(), item.symname2.end(), item.symname2.begin(), ::tolower);
 			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;

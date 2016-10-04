@@ -52,8 +52,10 @@ class sqlqueryresult
 {
 public:
 	tStr symname;
+	tStr symname2;
 	tStr symtype;
 	tStr linenum;
+	unsigned int intLinenum;
 	tStr filename;
 	tStr filepath;
 	tStr linetext;
@@ -77,6 +79,8 @@ enum en_resultType
 	sqlqueryresultlist();
 	sqlqueryresultlist(const sqlqueryresultlist& copy);
 	sqlqueryresultlist& operator= (const sqlqueryresultlist& copy);
+	void sort_by_name(void);
+	void sort_by_linenum(void);
 	tStr sqlerrmsg;
 };
 

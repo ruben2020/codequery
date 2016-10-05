@@ -55,196 +55,206 @@
         <translation>CodeQuery</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="29"/>
-        <location filename="../ui/mainWindow.ui" line="32"/>
+        <location filename="../ui/mainWindow.ui" line="27"/>
+        <location filename="../ui/mainWindow.ui" line="30"/>
         <source>Open Database</source>
         <translation>Buka Database</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="69"/>
+        <location filename="../ui/mainWindow.ui" line="76"/>
         <source>Auto-complete</source>
         <translation>Auto-lengkap</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="83"/>
+        <location filename="../ui/mainWindow.ui" line="90"/>
         <source>Exact match</source>
         <translation>Pencocokan sama persis</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="97"/>
-        <location filename="../ui/mainWindow.ui" line="100"/>
+        <location filename="../ui/mainWindow.ui" line="104"/>
+        <location filename="../ui/mainWindow.ui" line="107"/>
         <source>File path filter</source>
         <translation>File path filter</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="103"/>
+        <location filename="../ui/mainWindow.ui" line="110"/>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="119"/>
-        <location filename="../ui/mainWindow.ui" line="122"/>
+        <location filename="../ui/mainWindow.ui" line="126"/>
+        <location filename="../ui/mainWindow.ui" line="129"/>
         <source>File path filter, wildcard searches (* and ?) are supported</source>
         <translation>File path filter, pencarian wildcard (* dan?) yang didukung</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="145"/>
-        <location filename="../ui/mainWindow.ui" line="148"/>
+        <location filename="../ui/mainWindow.ui" line="152"/>
+        <location filename="../ui/mainWindow.ui" line="155"/>
         <source>Previous search term</source>
         <translation>Istilah penelusuran sebelumnya</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="162"/>
-        <location filename="../ui/mainWindow.ui" line="165"/>
+        <location filename="../ui/mainWindow.ui" line="175"/>
+        <location filename="../ui/mainWindow.ui" line="178"/>
         <source>Next search term</source>
         <translation>Istilah pencarian berikutnya</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="185"/>
-        <location filename="../ui/mainWindow.ui" line="188"/>
+        <location filename="../ui/mainWindow.ui" line="204"/>
+        <location filename="../ui/mainWindow.ui" line="207"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
         <translation>Jika pencocokan sama persis dimatikan, pencarian wildcard (* dan?) yang didukung</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="204"/>
-        <location filename="../ui/mainWindow.ui" line="207"/>
+        <location filename="../ui/mainWindow.ui" line="226"/>
+        <location filename="../ui/mainWindow.ui" line="229"/>
         <source>Search</source>
         <translation>Cari</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="221"/>
-        <location filename="../ui/mainWindow.ui" line="224"/>
+        <location filename="../ui/mainWindow.ui" line="249"/>
+        <location filename="../ui/mainWindow.ui" line="252"/>
         <source>Paste and Search</source>
         <translation>Tempel dan telusuri</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="241"/>
-        <location filename="../ui/mainWindow.ui" line="244"/>
+        <location filename="../ui/mainWindow.ui" line="275"/>
+        <location filename="../ui/mainWindow.ui" line="278"/>
         <source>Draw graph</source>
         <translation>Menggambar grafik</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="295"/>
-        <location filename="../ui/mainWindow.ui" line="298"/>
+        <location filename="../ui/mainWindow.ui" line="335"/>
+        <location filename="../ui/mainWindow.ui" line="338"/>
         <source>Previous File</source>
         <translation>File sebelumnya</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="312"/>
-        <location filename="../ui/mainWindow.ui" line="315"/>
+        <location filename="../ui/mainWindow.ui" line="358"/>
+        <location filename="../ui/mainWindow.ui" line="361"/>
         <source>Next File</source>
         <translation>Sebelumnya/berikutnya</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="329"/>
-        <location filename="../ui/mainWindow.ui" line="332"/>
+        <location filename="../ui/mainWindow.ui" line="381"/>
+        <location filename="../ui/mainWindow.ui" line="384"/>
         <source>Open in Editor</source>
         <translation>Terbuka di Editor</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="346"/>
-        <location filename="../ui/mainWindow.ui" line="349"/>
+        <location filename="../ui/mainWindow.ui" line="404"/>
+        <location filename="../ui/mainWindow.ui" line="407"/>
         <source>Go to selected line</source>
         <translation>Pergi ke saluran yang dipilih</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="363"/>
-        <location filename="../ui/mainWindow.ui" line="366"/>
+        <location filename="../ui/mainWindow.ui" line="427"/>
+        <location filename="../ui/mainWindow.ui" line="430"/>
         <source>Reduce font size</source>
         <translation>Mengurangi ukuran font</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="380"/>
-        <location filename="../ui/mainWindow.ui" line="383"/>
+        <location filename="../ui/mainWindow.ui" line="450"/>
+        <location filename="../ui/mainWindow.ui" line="453"/>
         <source>Increase font size</source>
         <translation>Meningkatkan ukuran font</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="404"/>
-        <location filename="../ui/mainWindow.ui" line="407"/>
+        <location filename="../ui/mainWindow.ui" line="480"/>
+        <location filename="../ui/mainWindow.ui" line="483"/>
         <source>Copy, paste and search</source>
         <translation>Salin, Tempel dan telusuri</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="421"/>
-        <location filename="../ui/mainWindow.ui" line="424"/>
+        <location filename="../ui/mainWindow.ui" line="503"/>
+        <location filename="../ui/mainWindow.ui" line="506"/>
         <source>Symbol search only for paste and search</source>
         <translation>Simbol pencarian hanya untuk Tempel dan telusuri</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="427"/>
+        <location filename="../ui/mainWindow.ui" line="509"/>
         <source>Symbol only</source>
         <translation>Simbol hanya</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="441"/>
-        <location filename="../ui/mainWindow.ui" line="444"/>
+        <location filename="../ui/mainWindow.ui" line="523"/>
+        <location filename="../ui/mainWindow.ui" line="526"/>
         <source>Previous search result in this file</source>
         <translation>Hasil penelusuran sebelumnya dalam file ini</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="458"/>
-        <location filename="../ui/mainWindow.ui" line="461"/>
+        <location filename="../ui/mainWindow.ui" line="546"/>
+        <location filename="../ui/mainWindow.ui" line="549"/>
         <source>Next search result in this file</source>
         <translation>Hasil pencarian berikutnya dalam file ini</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="487"/>
+        <location filename="../ui/mainWindow.ui" line="581"/>
         <source>FilePath:0</source>
         <translation>FilePath:0</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="528"/>
+        <location filename="../ui/mainWindow.ui" line="610"/>
+        <source>Sort by line number</source>
+        <translation>Urut berdasarkan nomor baris</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="615"/>
+        <source>Sort by name</source>
+        <translation>Urut berdasarkan nama</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="665"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="535"/>
+        <location filename="../ui/mainWindow.ui" line="672"/>
         <source>Options</source>
         <translation>Pilihan</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="543"/>
+        <location filename="../ui/mainWindow.ui" line="680"/>
         <source>Help</source>
         <translation>Tolong</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="555"/>
+        <location filename="../ui/mainWindow.ui" line="692"/>
         <source>Exit</source>
         <translation>Keluar</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="563"/>
+        <location filename="../ui/mainWindow.ui" line="700"/>
         <source>Open</source>
         <translation>Buka</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="568"/>
+        <location filename="../ui/mainWindow.ui" line="705"/>
         <source>About</source>
         <translation>Tentang</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="573"/>
+        <location filename="../ui/mainWindow.ui" line="710"/>
         <source>External Editor</source>
         <translation>Editor eksternal</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="578"/>
+        <location filename="../ui/mainWindow.ui" line="715"/>
         <source>Open CQ Database</source>
         <translation>CQ buka Database</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="583"/>
+        <location filename="../ui/mainWindow.ui" line="720"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="588"/>
+        <location filename="../ui/mainWindow.ui" line="725"/>
         <source>About Qt</source>
         <translation>Tentang Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="596"/>
+        <location filename="../ui/mainWindow.ui" line="733"/>
         <source>File Viewer Settings</source>
         <translation>Pengaturan file Viewer</translation>
     </message>
@@ -322,62 +332,62 @@
 <context>
     <name>fileviewer</name>
     <message>
-        <location filename="../fileviewer.cpp" line="189"/>
+        <location filename="../fileviewer.cpp" line="216"/>
         <source>File not found</source>
         <translation>File tidak ditemukan</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="196"/>
+        <location filename="../fileviewer.cpp" line="223"/>
         <source>File could not be opened</source>
         <translation>File tidak bisa dibuka</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="210"/>
+        <location filename="../fileviewer.cpp" line="237"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
         <translation>File sumber untuk dilihat lebih baru daripada CodeQuery database file. Anda disarankan untuk secara manual regenerasi CodeQuery database file.</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="447"/>
+        <location filename="../fileviewer.cpp" line="491"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="448"/>
+        <location filename="../fileviewer.cpp" line="492"/>
         <source>OK</source>
         <translation>Oke</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="450"/>
+        <location filename="../fileviewer.cpp" line="494"/>
         <source>External Editor Configuration</source>
         <translation>Konfigurasi eksternal Editor</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="451"/>
+        <location filename="../fileviewer.cpp" line="495"/>
         <source>Please enter the path and arguments for the external editor. Replace as follows:</source>
         <translation>Harap masukkan path dan argumen untuk editor eksternal. Ganti sebagai berikut:</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="453"/>
+        <location filename="../fileviewer.cpp" line="497"/>
         <source>for file path</source>
         <translation>untuk file path</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="455"/>
+        <location filename="../fileviewer.cpp" line="499"/>
         <source>for line number</source>
         <translation>untuk nomor baris</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="457"/>
+        <location filename="../fileviewer.cpp" line="501"/>
         <source>For example:</source>
         <translation>Sebagai contoh:</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="482"/>
+        <location filename="../fileviewer.cpp" line="526"/>
         <source>File could not be opened!</source>
         <translation>File tidak bisa dibuka!</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="507"/>
+        <location filename="../fileviewer.cpp" line="551"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>Editor eksternal tidak dapat dimulai. Silakan periksa pilihan!</translation>
     </message>
@@ -408,22 +418,22 @@
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="156"/>
+        <location filename="../mainwindow.cpp" line="166"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
+        <location filename="../mainwindow.cpp" line="167"/>
         <source>OK</source>
         <translation>Oke</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="159"/>
+        <location filename="../mainwindow.cpp" line="169"/>
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="160"/>
+        <location filename="../mainwindow.cpp" line="170"/>
         <source>Select language:</source>
         <translation>Pilih bahasa:</translation>
     </message>
@@ -431,138 +441,138 @@
 <context>
     <name>searchhandler</name>
     <message>
-        <location filename="../searchhandler.cpp" line="250"/>
+        <location filename="../searchhandler.cpp" line="320"/>
         <source>Symbol</source>
         <translation>Simbol</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="253"/>
+        <location filename="../searchhandler.cpp" line="323"/>
         <source>Function or macro definition (Graph available)</source>
         <translation>Definisi fungsi atau makro (grafik tersedia)</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="265"/>
+        <location filename="../searchhandler.cpp" line="335"/>
         <source>Class or struct (Graph available)</source>
         <translation>Kelas atau struct (grafik tersedia)</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="259"/>
+        <location filename="../searchhandler.cpp" line="329"/>
         <source>Functions calling this function</source>
         <translation>Fungsi-fungsi yang memanggil fungsi ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="262"/>
+        <location filename="../searchhandler.cpp" line="332"/>
         <source>Functions called by this function</source>
         <translation>Fungsi-fungsi yang disebut oleh fungsi ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="256"/>
+        <location filename="../searchhandler.cpp" line="326"/>
         <source>Calls of this function or macro</source>
         <translation>Panggilan ini fungsi atau makro</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="268"/>
+        <location filename="../searchhandler.cpp" line="338"/>
         <source>Class which owns this member or method</source>
         <translation>Kelas yang memiliki anggota atau metode ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="271"/>
+        <location filename="../searchhandler.cpp" line="341"/>
         <source>Members or methods of this class</source>
         <translation>Anggota atau metode kelas ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="274"/>
+        <location filename="../searchhandler.cpp" line="344"/>
         <source>Parent of this class</source>
         <translation>Orang tua dari kelas ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="277"/>
+        <location filename="../searchhandler.cpp" line="347"/>
         <source>Children of this class</source>
         <translation>Anak-anak kelas ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="280"/>
+        <location filename="../searchhandler.cpp" line="350"/>
         <source>Files including this file</source>
         <translation>File termasuk file ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="283"/>
+        <location filename="../searchhandler.cpp" line="353"/>
         <source>Full path for file</source>
         <translation>Path lengkap untuk file</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="286"/>
+        <location filename="../searchhandler.cpp" line="356"/>
         <source>Functions or macros inside this file</source>
         <translation>Fungsi atau Macro di dalam file ini</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="297"/>
+        <location filename="../searchhandler.cpp" line="367"/>
         <source>CodeQuery DB Files</source>
         <translation>CodeQuery DB file</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="300"/>
+        <location filename="../searchhandler.cpp" line="370"/>
         <source>Open CQ database file</source>
         <translation>Buka file database CQ</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="359"/>
+        <location filename="../searchhandler.cpp" line="439"/>
         <source>Function Call Graph</source>
         <translation>Grafik fungsi panggilan</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="363"/>
+        <location filename="../searchhandler.cpp" line="443"/>
         <source>Class Inheritance Graph</source>
         <translation>Kelas warisan grafik</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="379"/>
-        <location filename="../searchhandler.cpp" line="382"/>
+        <location filename="../searchhandler.cpp" line="459"/>
+        <location filename="../searchhandler.cpp" line="462"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
         <translation>Jika pencocokan sama persis dimatikan, pencarian wildcard (* dan?) yang didukung</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="444"/>
+        <location filename="../searchhandler.cpp" line="534"/>
         <source>results found</source>
         <translation>hasil ditemukan</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="463"/>
+        <location filename="../searchhandler.cpp" line="553"/>
         <source>in progress</source>
         <translation>sedang berlangsung</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="464"/>
+        <location filename="../searchhandler.cpp" line="554"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="561"/>
+        <location filename="../searchhandler.cpp" line="651"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation>Anda harus memilih dulu item dari daftar sebelum menekan tombol grafik.</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="673"/>
+        <location filename="../searchhandler.cpp" line="773"/>
         <source>File open error</source>
         <translation>Buka file kesalahan</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="674"/>
+        <location filename="../searchhandler.cpp" line="774"/>
         <source>Wrong file format</source>
         <translation>Format file salah</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="675"/>
+        <location filename="../searchhandler.cpp" line="775"/>
         <source>Incorrect CQ database version</source>
         <translation>Salah CQ database versi</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="676"/>
+        <location filename="../searchhandler.cpp" line="776"/>
         <source>OK</source>
         <translation>Oke</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="678"/>
+        <location filename="../searchhandler.cpp" line="778"/>
         <source>Unknown Error</source>
         <translation>Error tidak diketahui</translation>
     </message>

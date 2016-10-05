@@ -55,196 +55,206 @@
         <translation>CodeQuery</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="29"/>
-        <location filename="../ui/mainWindow.ui" line="32"/>
+        <location filename="../ui/mainWindow.ui" line="27"/>
+        <location filename="../ui/mainWindow.ui" line="30"/>
         <source>Open Database</source>
         <translation>Database aperto</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="69"/>
+        <location filename="../ui/mainWindow.ui" line="76"/>
         <source>Auto-complete</source>
         <translation>Completamento automatico</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="83"/>
+        <location filename="../ui/mainWindow.ui" line="90"/>
         <source>Exact match</source>
         <translation>Corrispondenza esatta</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="97"/>
-        <location filename="../ui/mainWindow.ui" line="100"/>
+        <location filename="../ui/mainWindow.ui" line="104"/>
+        <location filename="../ui/mainWindow.ui" line="107"/>
         <source>File path filter</source>
         <translation>Filtro percorso file</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="103"/>
+        <location filename="../ui/mainWindow.ui" line="110"/>
         <source>Filter</source>
         <translation>Filtro</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="119"/>
-        <location filename="../ui/mainWindow.ui" line="122"/>
+        <location filename="../ui/mainWindow.ui" line="126"/>
+        <location filename="../ui/mainWindow.ui" line="129"/>
         <source>File path filter, wildcard searches (* and ?) are supported</source>
         <translation>Filtro percorso file, ricerche con caratteri jolly (* e?) sono supportati</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="145"/>
-        <location filename="../ui/mainWindow.ui" line="148"/>
+        <location filename="../ui/mainWindow.ui" line="152"/>
+        <location filename="../ui/mainWindow.ui" line="155"/>
         <source>Previous search term</source>
         <translation>Termine di ricerca precedente</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="162"/>
-        <location filename="../ui/mainWindow.ui" line="165"/>
+        <location filename="../ui/mainWindow.ui" line="175"/>
+        <location filename="../ui/mainWindow.ui" line="178"/>
         <source>Next search term</source>
         <translation>Successivo al termine di ricerca</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="185"/>
-        <location filename="../ui/mainWindow.ui" line="188"/>
+        <location filename="../ui/mainWindow.ui" line="204"/>
+        <location filename="../ui/mainWindow.ui" line="207"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
         <translation>Se la corrispondenza esatta è spento, ricerche con caratteri jolly (* e?) sono supportati</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="204"/>
-        <location filename="../ui/mainWindow.ui" line="207"/>
+        <location filename="../ui/mainWindow.ui" line="226"/>
+        <location filename="../ui/mainWindow.ui" line="229"/>
         <source>Search</source>
         <translation>Ricerca</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="221"/>
-        <location filename="../ui/mainWindow.ui" line="224"/>
+        <location filename="../ui/mainWindow.ui" line="249"/>
+        <location filename="../ui/mainWindow.ui" line="252"/>
         <source>Paste and Search</source>
         <translation>Incolla e ricerca</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="241"/>
-        <location filename="../ui/mainWindow.ui" line="244"/>
+        <location filename="../ui/mainWindow.ui" line="275"/>
+        <location filename="../ui/mainWindow.ui" line="278"/>
         <source>Draw graph</source>
         <translation>Disegnare il grafico</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="295"/>
-        <location filename="../ui/mainWindow.ui" line="298"/>
+        <location filename="../ui/mainWindow.ui" line="335"/>
+        <location filename="../ui/mainWindow.ui" line="338"/>
         <source>Previous File</source>
         <translation>Precedente File</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="312"/>
-        <location filename="../ui/mainWindow.ui" line="315"/>
+        <location filename="../ui/mainWindow.ui" line="358"/>
+        <location filename="../ui/mainWindow.ui" line="361"/>
         <source>Next File</source>
         <translation>File successivo</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="329"/>
-        <location filename="../ui/mainWindow.ui" line="332"/>
+        <location filename="../ui/mainWindow.ui" line="381"/>
+        <location filename="../ui/mainWindow.ui" line="384"/>
         <source>Open in Editor</source>
         <translation>Aperto nell&apos;Editor</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="346"/>
-        <location filename="../ui/mainWindow.ui" line="349"/>
+        <location filename="../ui/mainWindow.ui" line="404"/>
+        <location filename="../ui/mainWindow.ui" line="407"/>
         <source>Go to selected line</source>
         <translation>Vai alla riga selezionata.</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="363"/>
-        <location filename="../ui/mainWindow.ui" line="366"/>
+        <location filename="../ui/mainWindow.ui" line="427"/>
+        <location filename="../ui/mainWindow.ui" line="430"/>
         <source>Reduce font size</source>
         <translation>Ridurre la dimensione del carattere</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="380"/>
-        <location filename="../ui/mainWindow.ui" line="383"/>
+        <location filename="../ui/mainWindow.ui" line="450"/>
+        <location filename="../ui/mainWindow.ui" line="453"/>
         <source>Increase font size</source>
         <translation>Aumentare la dimensione del carattere</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="404"/>
-        <location filename="../ui/mainWindow.ui" line="407"/>
+        <location filename="../ui/mainWindow.ui" line="480"/>
+        <location filename="../ui/mainWindow.ui" line="483"/>
         <source>Copy, paste and search</source>
         <translation>Copia, incolla e ricerca</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="421"/>
-        <location filename="../ui/mainWindow.ui" line="424"/>
+        <location filename="../ui/mainWindow.ui" line="503"/>
+        <location filename="../ui/mainWindow.ui" line="506"/>
         <source>Symbol search only for paste and search</source>
         <translation>Simbolo cerca solo pasta e ricerca</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="427"/>
+        <location filename="../ui/mainWindow.ui" line="509"/>
         <source>Symbol only</source>
         <translation>Unico simbolo</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="441"/>
-        <location filename="../ui/mainWindow.ui" line="444"/>
+        <location filename="../ui/mainWindow.ui" line="523"/>
+        <location filename="../ui/mainWindow.ui" line="526"/>
         <source>Previous search result in this file</source>
         <translation>Risultato della ricerca precedente in questo file</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="458"/>
-        <location filename="../ui/mainWindow.ui" line="461"/>
+        <location filename="../ui/mainWindow.ui" line="546"/>
+        <location filename="../ui/mainWindow.ui" line="549"/>
         <source>Next search result in this file</source>
         <translation>Risultati di ricerca successivo in questo file</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="487"/>
+        <location filename="../ui/mainWindow.ui" line="581"/>
         <source>FilePath:0</source>
         <translation>FilePath:0</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="528"/>
+        <location filename="../ui/mainWindow.ui" line="610"/>
+        <source>Sort by line number</source>
+        <translation>Ordina per numero di riga</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="615"/>
+        <source>Sort by name</source>
+        <translation>Ordina per nome</translation>
+    </message>
+    <message>
+        <location filename="../ui/mainWindow.ui" line="665"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="535"/>
+        <location filename="../ui/mainWindow.ui" line="672"/>
         <source>Options</source>
         <translation>Opzioni</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="543"/>
+        <location filename="../ui/mainWindow.ui" line="680"/>
         <source>Help</source>
         <translation>Guida</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="555"/>
+        <location filename="../ui/mainWindow.ui" line="692"/>
         <source>Exit</source>
         <translation>Uscita</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="563"/>
+        <location filename="../ui/mainWindow.ui" line="700"/>
         <source>Open</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="568"/>
+        <location filename="../ui/mainWindow.ui" line="705"/>
         <source>About</source>
         <translation>Info su</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="573"/>
+        <location filename="../ui/mainWindow.ui" line="710"/>
         <source>External Editor</source>
         <translation>Editor esterno</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="578"/>
+        <location filename="../ui/mainWindow.ui" line="715"/>
         <source>Open CQ Database</source>
         <translation>CQ Open Database</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="583"/>
+        <location filename="../ui/mainWindow.ui" line="720"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="588"/>
+        <location filename="../ui/mainWindow.ui" line="725"/>
         <source>About Qt</source>
         <translation>Info su Qt</translation>
     </message>
     <message>
-        <location filename="../ui/mainWindow.ui" line="596"/>
+        <location filename="../ui/mainWindow.ui" line="733"/>
         <source>File Viewer Settings</source>
         <translation>Impostazioni del file Viewer</translation>
     </message>
@@ -322,62 +332,62 @@
 <context>
     <name>fileviewer</name>
     <message>
-        <location filename="../fileviewer.cpp" line="189"/>
+        <location filename="../fileviewer.cpp" line="216"/>
         <source>File not found</source>
         <translation>File non trovato</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="196"/>
+        <location filename="../fileviewer.cpp" line="223"/>
         <source>File could not be opened</source>
         <translation>File non può essere aperto</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="210"/>
+        <location filename="../fileviewer.cpp" line="237"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
         <translation>Il file di origine per essere visualizzati è più recente rispetto al file di database CodeQuery. Si raccomanda di rigenerare manualmente il file di database CodeQuery.</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="447"/>
+        <location filename="../fileviewer.cpp" line="491"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="448"/>
+        <location filename="../fileviewer.cpp" line="492"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="450"/>
+        <location filename="../fileviewer.cpp" line="494"/>
         <source>External Editor Configuration</source>
         <translation>Configurazione Editor esterno</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="451"/>
+        <location filename="../fileviewer.cpp" line="495"/>
         <source>Please enter the path and arguments for the external editor. Replace as follows:</source>
         <translation>Inserisci il percorso e gli argomenti per l&apos;editor esterno. Sostituire come segue:</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="453"/>
+        <location filename="../fileviewer.cpp" line="497"/>
         <source>for file path</source>
         <translation>per il percorso del file</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="455"/>
+        <location filename="../fileviewer.cpp" line="499"/>
         <source>for line number</source>
         <translation>per numero di riga</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="457"/>
+        <location filename="../fileviewer.cpp" line="501"/>
         <source>For example:</source>
         <translation>Ad esempio:</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="482"/>
+        <location filename="../fileviewer.cpp" line="526"/>
         <source>File could not be opened!</source>
         <translation>File non può essere aperto!</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="507"/>
+        <location filename="../fileviewer.cpp" line="551"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>Editor esterno potrebbe non essere avviato. Si prega di controllare le opzioni!</translation>
     </message>
@@ -408,22 +418,22 @@
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="156"/>
+        <location filename="../mainwindow.cpp" line="166"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="157"/>
+        <location filename="../mainwindow.cpp" line="167"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="159"/>
+        <location filename="../mainwindow.cpp" line="169"/>
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="160"/>
+        <location filename="../mainwindow.cpp" line="170"/>
         <source>Select language:</source>
         <translation>Seleziona lingua:</translation>
     </message>
@@ -431,138 +441,138 @@
 <context>
     <name>searchhandler</name>
     <message>
-        <location filename="../searchhandler.cpp" line="250"/>
+        <location filename="../searchhandler.cpp" line="320"/>
         <source>Symbol</source>
         <translation>Simbolo</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="253"/>
+        <location filename="../searchhandler.cpp" line="323"/>
         <source>Function or macro definition (Graph available)</source>
         <translation>Definizione di funzione o macro (grafico disponibile)</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="265"/>
+        <location filename="../searchhandler.cpp" line="335"/>
         <source>Class or struct (Graph available)</source>
         <translation>Classe o struttura (grafico disponibile)</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="259"/>
+        <location filename="../searchhandler.cpp" line="329"/>
         <source>Functions calling this function</source>
         <translation>Funzioni di chiamata a questa funzione</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="262"/>
+        <location filename="../searchhandler.cpp" line="332"/>
         <source>Functions called by this function</source>
         <translation>Funzioni chiamate da questa funzione</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="256"/>
+        <location filename="../searchhandler.cpp" line="326"/>
         <source>Calls of this function or macro</source>
         <translation>Chiamate di questa funzione o macro</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="268"/>
+        <location filename="../searchhandler.cpp" line="338"/>
         <source>Class which owns this member or method</source>
         <translation>Classe che possiede questo membro o metodo.</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="271"/>
+        <location filename="../searchhandler.cpp" line="341"/>
         <source>Members or methods of this class</source>
         <translation>Membri o i metodi di questa classe</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="274"/>
+        <location filename="../searchhandler.cpp" line="344"/>
         <source>Parent of this class</source>
         <translation>Padre di questa classe</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="277"/>
+        <location filename="../searchhandler.cpp" line="347"/>
         <source>Children of this class</source>
         <translation>Bambini di questa classe</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="280"/>
+        <location filename="../searchhandler.cpp" line="350"/>
         <source>Files including this file</source>
         <translation>File incluso questo file</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="283"/>
+        <location filename="../searchhandler.cpp" line="353"/>
         <source>Full path for file</source>
         <translation>Percorso completo per il file</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="286"/>
+        <location filename="../searchhandler.cpp" line="356"/>
         <source>Functions or macros inside this file</source>
         <translation>Macro o funzioni all&apos;interno di questo file.</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="297"/>
+        <location filename="../searchhandler.cpp" line="367"/>
         <source>CodeQuery DB Files</source>
         <translation>CodeQuery DB file</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="300"/>
+        <location filename="../searchhandler.cpp" line="370"/>
         <source>Open CQ database file</source>
         <translation>Aprire il file database CQ</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="359"/>
+        <location filename="../searchhandler.cpp" line="439"/>
         <source>Function Call Graph</source>
         <translation>Funzione Call Graph</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="363"/>
+        <location filename="../searchhandler.cpp" line="443"/>
         <source>Class Inheritance Graph</source>
         <translation>Grafico di ereditarietà di classe</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="379"/>
-        <location filename="../searchhandler.cpp" line="382"/>
+        <location filename="../searchhandler.cpp" line="459"/>
+        <location filename="../searchhandler.cpp" line="462"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
         <translation>Se la corrispondenza esatta è spento, ricerche con caratteri jolly (* e?) sono supportati</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="444"/>
+        <location filename="../searchhandler.cpp" line="534"/>
         <source>results found</source>
         <translation>risultati trovati</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="463"/>
+        <location filename="../searchhandler.cpp" line="553"/>
         <source>in progress</source>
         <translation>in corso</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="464"/>
+        <location filename="../searchhandler.cpp" line="554"/>
         <source>Cancel</source>
         <translation>Annulla</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="561"/>
+        <location filename="../searchhandler.cpp" line="651"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation>È necessario innanzitutto selezionare un elemento dall&apos;elenco prima di spingere il pulsante grafico.</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="673"/>
+        <location filename="../searchhandler.cpp" line="773"/>
         <source>File open error</source>
         <translation>Errore di file aperti</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="674"/>
+        <location filename="../searchhandler.cpp" line="774"/>
         <source>Wrong file format</source>
         <translation>Formato di file sbagliato</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="675"/>
+        <location filename="../searchhandler.cpp" line="775"/>
         <source>Incorrect CQ database version</source>
         <translation>Versione del database corretto CQ</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="676"/>
+        <location filename="../searchhandler.cpp" line="776"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="678"/>
+        <location filename="../searchhandler.cpp" line="778"/>
         <source>Unknown Error</source>
         <translation>Errore sconosciuto</translation>
     </message>

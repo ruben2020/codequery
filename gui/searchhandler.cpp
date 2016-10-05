@@ -207,7 +207,7 @@ void searchhandler::funcListSearchFinished()
 	if ((res.result_type == sqlqueryresultlist::sqlresultFUNC_IN_ONE_FILE) &&
 		(res.resultlist.empty() == false))
 	{
-		emit searchListFuncResultsReady(res);
+		emit searchListFuncResultsReady(&res);
 	}
 	m_funcListBusy = false;
 }

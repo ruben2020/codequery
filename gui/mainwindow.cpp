@@ -88,8 +88,8 @@ void mainwindow::init(void)
 			m_fileviewer, SLOT(annotate(QString)));
 	connect(m_fileviewer, SIGNAL(requestAnnotation(QString)),
 			m_searchhandler, SLOT(searchDeclaration(QString)));
-	connect(m_searchhandler, SIGNAL(searchListFuncResultsReady(sqlqueryresultlist)),
-			m_fileviewer, SLOT(recvFuncList(sqlqueryresultlist)));
+	connect(m_searchhandler, SIGNAL(searchListFuncResultsReady(sqlqueryresultlist*)),
+			m_fileviewer, SLOT(recvFuncList(sqlqueryresultlist*)));
 	connect(m_fileviewer, SIGNAL(requestFuncList(QString)),
 			m_searchhandler, SLOT(searchFuncList(QString)));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
@@ -124,6 +124,7 @@ void mainwindow::setup_fileviewer(void)
 	m_fileviewer->m_labelFilePath = ui->labelFilePath;
 	m_fileviewer->m_textEditSource = ui->textEditSource;
 	m_fileviewer->m_listWidgetFunc = ui->listWidgetFunc;
+	m_fileviewer->m_comboBoxFuncListSort = ui->comboBoxFuncListSort;
 	m_fileviewer->m_checkBoxSymbolOnly = ui->checkBoxSymbolOnly;
 	m_fileviewer->init();
 }
@@ -239,6 +240,7 @@ void mainwindow::writeSettings()
 	settings.setValue("FileViewerFontType", m_fileviewer->m_textEditSourceFont.family());
 	settings.setValue("FileViewerTabWidth", m_fileviewer->m_textEditSource->tabWidth());
 	settings.setValue("FileViewerTheme", m_fileviewer->m_theme);
+	settings.setValue("FuncListSortType", ui->comboBoxFuncListSort->currentIndex());
 	settings.endGroup();
 
 	settings.beginWriteArray("SearchHistory");
@@ -315,6 +317,8 @@ void mainwindow::readSettings()
 	m_fileviewer->m_textEditSource->setFont(m_fileviewer->m_textEditSourceFont);
 	m_fileviewer->m_textEditSource->setTabWidth(settings.value("FileViewerTabWidth", 4).toInt());
 	m_fileviewer->m_theme = (settings.value("FileViewerTheme", "Eclipse Default").toString());
+	ui->comboBoxFuncListSort->setCurrentIndex(settings.value("FuncListSortType", ui->comboBoxFuncListSort->currentIndex()).toInt());
+
 	settings.endGroup();
 
 	int sizeh = settings.beginReadArray("SearchHistory");

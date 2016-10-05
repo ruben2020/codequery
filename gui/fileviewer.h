@@ -29,7 +29,7 @@
 #endif
 
 #include "sqlquery.h"
-Q_DECLARE_METATYPE(sqlqueryresultlist)
+Q_DECLARE_METATYPE(sqlqueryresultlist*)
 
 
 class mainwindow;
@@ -80,6 +80,7 @@ QCheckBox   *m_checkBoxSymbolOnly;
 QLabel *m_labelFilePath;
 QsciScintilla *m_textEditSource;
 QListWidget *m_listWidgetFunc;
+QComboBox *m_comboBoxFuncListSort;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
 QsciLexer* m_lexer;
@@ -111,8 +112,9 @@ void fontSelectionTemporary(const QString &fonttxt);
 void themeSelectionTemporary(const QString &themetxt);
 void tabWidthSelectionTemporary(const QString &width);
 void annotate(QString annotstr);
-void recvFuncList(sqlqueryresultlist reslist);
+void recvFuncList(sqlqueryresultlist* reslist);
 void funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem);
+void FuncListSort_indexChanged(const int& idx);
 
 signals:
 void searchCopiedText();
@@ -136,6 +138,7 @@ int m_markerhandle;
 int m_markerhandle2;
 long m_currentline;
 long m_annotline;
+sqlqueryresultlist m_funclist;
 
 void createFontList(void);
 void textSizeChange(int n);

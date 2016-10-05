@@ -127,7 +127,7 @@ void DBreset();
 void sendDBtimestamp(QDateTime dt);
 void getResultCurrentListItemSymbolName();
 void searchDeclarationResultsReady(QString resdeclar);
-void searchListFuncResultsReady(sqlqueryresultlist res);
+void searchListFuncResultsReady(sqlqueryresultlist* res);
 
 private:
 mainwindow *mw;

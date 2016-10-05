@@ -177,6 +177,8 @@ void fileviewer::init(void)
 			this, SLOT(TextEnlarge_ButtonClick(bool)));
 	connect(m_listWidgetFunc, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
 			this, SLOT(funcItemSelected(QListWidgetItem *, QListWidgetItem *)));
+	connect(m_comboBoxFuncListSort, SIGNAL(currentIndexChanged(int)),
+			this, SLOT(FuncListSort_indexChanged(int)));
 	m_fileDataList.clear();
 	setLexer();
 }
@@ -716,30 +718,33 @@ void fileviewer::annotate(QString annotstr)
 	m_textEditSource->annotate(m_annotline, annotstr, 29);
 }
 
-void fileviewer::recvFuncList(sqlqueryresultlist reslist)
+void fileviewer::recvFuncList(sqlqueryresultlist* reslist)
 {
 	m_listWidgetFunc->clear();
 	if (m_fileDataList.isEmpty()) return;
-	filedata fd(str2qt(reslist.resultlist[0].filename), "1");
+	m_funclist = *reslist;
+	filedata fd(str2qt(m_funclist.resultlist[0].filename), "1");
 	if (m_iter->compareFileNameOnly(fd) == false)
 	{
 		emit requestFuncList(m_iter->filename);
 		return;
 	}
-	int i;
-	reslist.sort_by_name();
-	for (i=0; i<reslist.resultlist.size(); i++)
+	if (m_comboBoxFuncListSort->currentIndex() == 0)
+		{m_funclist.sort_by_linenum();}
+	else
+		{m_funclist.sort_by_name();}
+	for (int i=0; i < m_funclist.resultlist.size(); i++)
 	{
 		m_listWidgetFunc->addItem(new QListWidgetItem(
-			str2qt(reslist.resultlist[i].symname), 0, 
-			atoi(reslist.resultlist[i].linenum.c_str())));
+			str2qt(m_funclist.resultlist[i].symname), 0, 
+			atoi(m_funclist.resultlist[i].linenum.c_str())));
 	}
 }
 
 void fileviewer::funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem)
 {
-	int num = 1;
-	if (curitem != NULL) num = curitem->type();
+	if (curitem == NULL) return;
+	int num = curitem->type();
 	if (num <= 0)
 	{
 		num = 1;
@@ -749,5 +754,10 @@ void fileviewer::funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * p
 		num = num - 1; // not sure why it's one off
 	}
 	m_textEditSource->ensureLineVisible(num);
+}
+
+void fileviewer::FuncListSort_indexChanged(const int& idx)
+{
+	recvFuncList(&m_funclist);
 }
 

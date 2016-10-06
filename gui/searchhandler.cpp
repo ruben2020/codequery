@@ -212,19 +212,34 @@ void searchhandler::funcListSearchFinished()
 	m_funcListBusy = false;
 }
 
-void searchhandler::searchFuncList(QString searchstr)
+void searchhandler::searchFuncList_filename(QString filename)
 {
-	if ((searchstr.isEmpty() == false)&&(!m_declarBusy)&&(!m_autocompBusy)&&(!m_funcListBusy))
+	if ((filename.isEmpty() == false)&&(!m_declarBusy)&&(!m_autocompBusy)&&(!m_funcListBusy))
 	{
 		m_funcListBusy = true;
 		m_listFuncFutureWatcher.setFuture(
-			QtConcurrent::run(search_funclist_qt, searchstr));
+			QtConcurrent::run(search_funclist_qt_filename, filename));
 	}
 }
 
-sqlqueryresultlist searchhandler::search_funclist_qt(QString searchtxt)
+void searchhandler::searchFuncList_fileid(int fileid)
 {
-	return sq->search_funclist(extract_filename(searchtxt.QT45_TOASCII().data()));
+	if ((fileid >= 0)&&(!m_declarBusy)&&(!m_autocompBusy)&&(!m_funcListBusy))
+	{
+		m_funcListBusy = true;
+		m_listFuncFutureWatcher.setFuture(
+			QtConcurrent::run(search_funclist_qt_fileid, fileid));
+	}
+}
+
+sqlqueryresultlist searchhandler::search_funclist_qt_filename(QString filename)
+{
+	return sq->search_funclist_filename(extract_filename(filename.QT45_TOASCII().data()));
+}
+
+sqlqueryresultlist searchhandler::search_funclist_qt_fileid(int fileid)
+{
+	return sq->search_funclist_fileid(fileid);
 }
 
 QString searchhandler::search_declaration_qt(QString searchtxt)

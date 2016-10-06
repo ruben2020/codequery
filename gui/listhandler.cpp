@@ -87,7 +87,8 @@ void listhandler::listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * p
 	checkUpDown();
 	emit listRowNumUpdated(m_treeWidgetSearchResults->indexOfTopLevelItem(current));
 	emit openFile(str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].filepath),
-			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum));
+			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].linenum),
+			m_sqlist.resultlist[current->data(0,Qt::UserRole).toInt()].fileid);
 }
 
 void listhandler::requestToProvideResultCurrentListItemSymbolName()

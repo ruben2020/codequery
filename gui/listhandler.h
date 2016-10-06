@@ -61,7 +61,7 @@ void Up_ButtonClick(bool checked);
 void Down_ButtonClick(bool checked);
 
 signals:
-void openFile(QString file, QString linenum);
+void openFile(QString file, QString linenum, int fileid);
 void listRowNumUpdated(int row);
 void sendResultCurrentListItemSymbolName(const QString symName);
 

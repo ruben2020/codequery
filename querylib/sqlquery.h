@@ -58,8 +58,9 @@ public:
 	unsigned int intLinenum;
 	tStr filename;
 	tStr filepath;
+	int fileid;
 	tStr linetext;
-	sqlqueryresult() : linenum((const char*)"1"){}
+	sqlqueryresult() : linenum((const char*)"1"), fileid(-99){}
 };
 
 class sqlqueryresultlist
@@ -124,7 +125,8 @@ enum en_filereadstatus
 				en_queryType querytype = sqlquerySYMBOL,
 				bool exactmatch=false,
 				tStr filterstr = "");
-	sqlqueryresultlist search_funclist(const char* searchstr);
+	sqlqueryresultlist search_funclist_filename(const char* searchstr);
+	sqlqueryresultlist search_funclist_fileid(int& fileid);
 	tVecStr search_autocomplete(const char* searchstr);
 	sqlqueryresultlist search_declaration(const char* searchstr);
 
@@ -133,7 +135,8 @@ private:
 	tStr m_basepath;
 	tempstmt m_declarationstmt;
 	tempstmt m_autocompstmt;
-	tempstmt m_funcliststmt;
+	tempstmt m_funclistfilenamestmt;
+	tempstmt m_funclistfileidstmt;
 	tempstmt m_searchstmt;
 	sqlqueryresultlist search_full(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_line(sqlite3_stmt* stmt);

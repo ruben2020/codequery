@@ -42,9 +42,10 @@ class filedata
 	public:
 	QString filename;
 	QString linenum;
+	int fileid;
 	
 	filedata();
-	filedata(const QString& fn, const QString& ln);
+	filedata(const QString& fn, const QString& ln, const int& fi);
 	filedata(const filedata& fd);
 	bool compare(const filedata& fd);
 	bool compareFilePathOnly(const filedata& fd);
@@ -95,7 +96,7 @@ void updateFilePathLabel(void);
 void handleFileCannotBeOpenedCase(void);
 
 public slots:
-void fileToBeOpened(QString filename, QString linenum);
+void fileToBeOpened(QString filename, QString linenum, int fileid);
 void AbleToCopy(bool copy);
 void GoToLine_ButtonClick(bool checked);
 void Paste_ButtonClick(bool checked);
@@ -120,7 +121,8 @@ signals:
 void searchCopiedText();
 void searchCopiedTextSymbolOnly();
 void requestAnnotation(QString searchstr);
-void requestFuncList(QString searchstr);
+void requestFuncList_filename(QString filename);
+void requestFuncList_fileid(int fileid);
 
 private:
 mainwindow *mw;

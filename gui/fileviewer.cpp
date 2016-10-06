@@ -53,11 +53,13 @@
 filedata::filedata()
 {
 	linenum = "1";
+	fileid = -99;
 }
-filedata::filedata(const QString& fn, const QString& ln)
+filedata::filedata(const QString& fn, const QString& ln, const int& fi)
 {
 	linenum = ln;
 	filename = fn;
+	fileid = fi;
 }
 
 bool filedata::compare(const filedata& fd)
@@ -82,6 +84,7 @@ filedata::filedata(const filedata& fd)
 {
 	linenum = fd.linenum;
 	filename = fd.filename;
+	fileid = fd.fileid;
 }
 
 filedata& filedata::operator=(const filedata& fd)
@@ -90,6 +93,7 @@ filedata& filedata::operator=(const filedata& fd)
 	{
 		linenum = fd.linenum;
 		filename = fd.filename;
+		fileid = fd.fileid;
 	}
 	return *this;
 }
@@ -205,7 +209,7 @@ void fileviewer::recvDBtimestamp(QDateTime dt)
 	m_DBtimestamp = dt;
 }
 
-void fileviewer::fileToBeOpened(QString filename, QString linenum)
+void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 {
 	filename.replace(QString("$HOME"), QDir::homePath());
 #ifdef _WIN32
@@ -237,7 +241,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum)
 		msgBox.setText(tr("The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file."));
 		msgBox.exec();
 	}
-	filedata fd(filename, linenum);
+	filedata fd(filename, linenum, fileid);
 	if (m_fileDataList.isEmpty())
 	{
 		m_fileDataList.push_back(fd);
@@ -339,7 +343,8 @@ void fileviewer::updateTextEdit(void)
 	m_pushButtonTextShrink->setEnabled(true);
 	m_pushButtonTextEnlarge->setEnabled(true);
 	m_listWidgetFunc->clear();
-	emit requestFuncList(m_iter->filename);
+	if (m_iter->fileid < 0)	{emit requestFuncList_filename(m_iter->filename);}
+	else {emit requestFuncList_fileid(m_iter->fileid);}
 	QApplication::restoreOverrideCursor();
 }
 
@@ -723,10 +728,11 @@ void fileviewer::recvFuncList(sqlqueryresultlist* reslist)
 	m_listWidgetFunc->clear();
 	if (m_fileDataList.isEmpty()) return;
 	m_funclist = *reslist;
-	filedata fd(str2qt(m_funclist.resultlist[0].filename), "1");
+	filedata fd(str2qt(m_funclist.resultlist[0].filename), "1", -99);
 	if (m_iter->compareFileNameOnly(fd) == false)
 	{
-		emit requestFuncList(m_iter->filename);
+		if (m_iter->fileid < 0)	{emit requestFuncList_filename(m_iter->filename);}
+		else {emit requestFuncList_fileid(m_iter->fileid);}
 		return;
 	}
 	if (m_comboBoxFuncListSort->currentIndex() == 0)

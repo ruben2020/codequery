@@ -70,8 +70,8 @@ void mainwindow::init(void)
 			m_fileviewer, SLOT(recvDBtimestamp(QDateTime)));
 	connect(m_searchhandler, SIGNAL(DBreset()),
 			m_listhandler, SLOT(clearList()));
-	connect(m_listhandler, SIGNAL(openFile(QString, QString)),
-			m_fileviewer, SLOT(fileToBeOpened(QString, QString)));
+	connect(m_listhandler, SIGNAL(openFile(QString, QString, int)),
+			m_fileviewer, SLOT(fileToBeOpened(QString, QString, int)));
 	connect(m_listhandler, SIGNAL(listRowNumUpdated(int)),
 			m_searchhandler, SLOT(updateListItemRowNum(int)));
 	connect(m_fileviewer, SIGNAL(searchCopiedText()),
@@ -90,8 +90,10 @@ void mainwindow::init(void)
 			m_searchhandler, SLOT(searchDeclaration(QString)));
 	connect(m_searchhandler, SIGNAL(searchListFuncResultsReady(sqlqueryresultlist*)),
 			m_fileviewer, SLOT(recvFuncList(sqlqueryresultlist*)));
-	connect(m_fileviewer, SIGNAL(requestFuncList(QString)),
-			m_searchhandler, SLOT(searchFuncList(QString)));
+	connect(m_fileviewer, SIGNAL(requestFuncList_filename(QString)),
+			m_searchhandler, SLOT(searchFuncList_filename(QString)));
+	connect(m_fileviewer, SIGNAL(requestFuncList_fileid(int)),
+			m_searchhandler, SLOT(searchFuncList_fileid(int)));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
 			this, SLOT(ExitTriggered(bool)));
 	connect(ui->actionAbout, SIGNAL(triggered(bool)),

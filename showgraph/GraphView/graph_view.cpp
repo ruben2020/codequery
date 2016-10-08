@@ -793,7 +793,11 @@ GraphView::mouseMoveEvent(QMouseEvent *ev)
 {
     if ( createEdge)
     {
+#ifdef USE_QT5
         QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()), QTransform());
+#else
+        QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()));
+#endif
         if ( isNotNullP( item))
         {
             NodeItem *node_item = qgraphicsitem_cast<NodeItem *>(item);

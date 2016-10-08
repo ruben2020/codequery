@@ -19,7 +19,7 @@
 
 
 #include <string>
-#include "optlist.h"
+#include "getopt2.h"
 #include "csdbparser.h"
 #include "cs2sq.h"
 #include "ctagread.h"
@@ -178,11 +178,11 @@ bool fileexists(const char* fn)
 	return retval;
 }
 
-void process_argwithopt(option_t* thisOpt, bool& err, std::string& fnstr, bool filemustexist)
+void process_argwithopt(char* thisOpt, int option, bool& err, std::string& fnstr, bool filemustexist)
 {
-	if (thisOpt->argument != NULL)
+	if (thisOpt != NULL)
 	{
-		fnstr = thisOpt->argument;
+		fnstr = thisOpt;
 		if (filemustexist && (fileexists(fnstr.c_str()) == false))
 		{
 			printf("Error: File %s doesn't exist.\n", fnstr.c_str());
@@ -191,14 +191,14 @@ void process_argwithopt(option_t* thisOpt, bool& err, std::string& fnstr, bool f
 	}
 	else
 	{
-		printf("Error: -%c used without file option.\n", thisOpt->option);
+		printf("Error: -%c used without file option.\n", option);
 		err = true;
 	}
 }
 
 int main(int argc, char *argv[])
 {
-    option_t *optList=NULL, *thisOpt=NULL;
+    int c;
     bool bHelp, bSqlite, bCscope, bCtags, bDebug, bError, bVacuum, bVersion;
 	bHelp = (argc <= 1);
 	bVersion = false;
@@ -210,16 +210,9 @@ int main(int argc, char *argv[])
 	bVacuum = false;
 	std::string sqfn, csfn, ctfn;
 
-    /* get list of command line options and their arguments */
-    optList = GetOptList(argc, argv, (char*)"s:c:t:pdvh");
-
-    /* display results of parsing */
-    while (optList != NULL)
+    while ((c = getopt2(argc, argv, "s:c:t:pdvh")) != -1)
     {
-        thisOpt = optList;
-        optList = optList->next;
-		
-		switch(thisOpt->option)
+		switch(c)
 		{
 			case 'v':
 				bVersion = true;
@@ -229,15 +222,15 @@ int main(int argc, char *argv[])
 				break;
 			case 's':
 				bSqlite = true;
-				process_argwithopt(thisOpt, bError, sqfn, false);
+				process_argwithopt(optarg, c, bError, sqfn, false);
 				break;
 			case 'c':
 				bCscope = true;
-				process_argwithopt(thisOpt, bError, csfn, true);
+				process_argwithopt(optarg, c, bError, csfn, true);
 				break;
 			case 't':
 				bCtags = true;
-				process_argwithopt(thisOpt, bError, ctfn, true);
+				process_argwithopt(optarg, c, bError, ctfn, true);
 				break;
 			case 'd':
 				bDebug = true;
@@ -245,10 +238,12 @@ int main(int argc, char *argv[])
 			case 'p':
 				bVacuum = true;
 				break;
+			case '?':
+				bError = true;
+				break;
 			default:
 				break;
 		}
-        free(thisOpt);    /* done with this item, free it */
     }
 
 	if (bVersion)

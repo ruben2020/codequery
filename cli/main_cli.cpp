@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <memory>
 #include "small_lib.h"
-#include "optlist.h"
+#include "getopt2.h"
 #include "sqlquery.h"
 #include "swver.h"
 
@@ -82,11 +82,11 @@ bool fileexists(const char* fn)
 	return retval;
 }
 
-void process_argwithopt(option_t* thisOpt, bool& err, tStr& fnstr, bool filemustexist)
+void process_argwithopt(char* thisOpt, int option, bool& err, tStr& fnstr, bool filemustexist)
 {
-	if (thisOpt->argument != NULL)
+	if (thisOpt != NULL)
 	{
-		fnstr = thisOpt->argument;
+		fnstr = thisOpt;
 		if (filemustexist && (fileexists(fnstr.c_str()) == false))
 		{
 			printf("Error: File %s doesn't exist.\n", fnstr.c_str());
@@ -95,7 +95,7 @@ void process_argwithopt(option_t* thisOpt, bool& err, tStr& fnstr, bool filemust
 	}
 	else
 	{
-		printf("Error: -%c used without file option.\n", thisOpt->option);
+		printf("Error: -%c used without file option.\n", option);
 		err = true;
 	}
 }
@@ -164,7 +164,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 
 int main(int argc, char *argv[])
 {
-    option_t *optList=NULL, *thisOpt=NULL;
+    int c;
     bool bSqlite, bParam, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
     int countExact = 0;
 	bSqlite = false;
@@ -178,16 +178,9 @@ int main(int argc, char *argv[])
 	bError = false;
 	tStr sqfn, param = "1", term;
 
-    /* get list of command line options and their arguments */
-    optList = GetOptList(argc, argv, (char*)"s:p:t:efudvh");
-
-    /* display results of parsing */
-    while (optList != NULL)
+    while ((c = getopt2(argc, argv, "s:p:t:efudvh")) != -1)
     {
-        thisOpt = optList;
-        optList = optList->next;
-		
-		switch(thisOpt->option)
+		switch(c)
 		{
 			case 'v':
 				bVersion = true;
@@ -209,15 +202,15 @@ int main(int argc, char *argv[])
 				break;
 			case 's':
 				bSqlite = true;
-				process_argwithopt(thisOpt, bError, sqfn, true);
+				process_argwithopt(optarg, c, bError, sqfn, true);
 				break;
 			case 'p':
 				bParam = true;
-				param = thisOpt->argument;
+				param = optarg;
 				break;
 			case 't':
 				bTerm = true;
-				term = thisOpt->argument;
+				term = optarg;
 				break;
 			case 'u':
 				bFull = true;
@@ -225,10 +218,12 @@ int main(int argc, char *argv[])
 			case 'd':
 				bDebug = true;
 				break;
+			case '?':
+				bError = true;
+				break;
 			default:
 				break;
 		}
-        free(thisOpt);    /* done with this item, free it */
     }
 	if (bVersion)
 	{

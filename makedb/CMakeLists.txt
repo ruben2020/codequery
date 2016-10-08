@@ -19,7 +19,7 @@ set( CQMAKEDB_SRCS
    )
 
 add_executable( cqmakedb ${CQMAKEDB_SRCS} )
-target_link_libraries( cqmakedb ${SQLITE_LIBRARIES} small_lib optlist_lib)
+target_link_libraries( cqmakedb ${SQLITE_LIBRARIES} small_lib )
 
 install(TARGETS cqmakedb RUNTIME DESTINATION bin)
 

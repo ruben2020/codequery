@@ -15,7 +15,7 @@ set( CQSEARCH_SRCS
    )
 
 add_executable( cqsearch ${CQSEARCH_SRCS} )
-target_link_libraries( cqsearch ${SQLITE_LIBRARIES} small_lib optlist_lib sqlquery_lib )
+target_link_libraries( cqsearch ${SQLITE_LIBRARIES} small_lib sqlquery_lib )
 
 install(TARGETS cqsearch RUNTIME DESTINATION bin)
 

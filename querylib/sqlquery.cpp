@@ -233,7 +233,7 @@ tStr sqlquery::read_configtbl(const char *key, sqlite3_stmt *stmt)
 
 sqlqueryresultlist sqlquery::search_funclist_filename(const char* searchstr)
 {
-	printf("search_funclist_filename %s\n", searchstr);
+	//printf("search_funclist_filename %s\n", searchstr);
 	sqlqueryresultlist result;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
 	tStr srchterm("%");
@@ -248,7 +248,7 @@ sqlqueryresultlist sqlquery::search_funclist_filename(const char* searchstr)
 
 sqlqueryresultlist sqlquery::search_funclist_fileid(int& fileid)
 {
-	printf("search_funclist_fileid %d\n", fileid);
+	//printf("search_funclist_fileid %d\n", fileid);
 	sqlqueryresultlist result;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
 	if ((fileid < 0)||(m_db == NULL)) return result;

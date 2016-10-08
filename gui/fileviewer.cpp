@@ -64,20 +64,48 @@ filedata::filedata(const QString& fn, const QString& ln, const int& fi)
 
 bool filedata::compare(const filedata& fd)
 {
-	return ((linenum.compare(fd.linenum) == 0)&&
+	bool cmp;
+	if ((fileid < 0)||(fd.fileid < 0))
+	{
+		cmp = ((linenum.compare(fd.linenum) == 0)&&
 			(filename.compare(fd.filename) == 0));
+	}
+	else
+	{
+		cmp = ((linenum.compare(fd.linenum) == 0)&&
+			(fileid == fd.fileid));
+	}
+	return cmp;
 }
 
 bool filedata::compareFilePathOnly(const filedata& fd)
 {
-	return (filename.compare(fd.filename) == 0);
+	bool cmp;
+	if ((fileid < 0)||(fd.fileid < 0))
+	{
+		cmp = (filename.compare(fd.filename) == 0);
+	}
+	else
+	{
+		cmp = (fileid == fd.fileid);
+	}
+	return cmp;
 }
 
 bool filedata::compareFileNameOnly(const filedata& fd)
 {
-	return (strcmp(
+	bool cmp;
+	if ((fileid < 0)||(fd.fileid < 0))
+	{
+		cmp =(strcmp(
 		extract_filename(filename.QT45_TOASCII().data()),
 		extract_filename(fd.filename.QT45_TOASCII().data())) == 0);
+	}
+	else
+	{
+		cmp = (fileid == fd.fileid);
+	}
+	return cmp;
 }
 
 filedata::filedata(const filedata& fd)
@@ -122,6 +150,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 
 fileviewer::~fileviewer()
 {
+	disconnect();
 	if (m_lexer != NULL) delete m_lexer;
 }
 
@@ -189,6 +218,7 @@ void fileviewer::init(void)
 
 void fileviewer::clearList()
 {
+	//printf("Fileview clearlist\n");
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);
@@ -244,6 +274,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 	filedata fd(filename, linenum, fileid);
 	if (m_fileDataList.isEmpty())
 	{
+		//printf("Fileviewer: empty list\n");
 		m_fileDataList.push_back(fd);
 		m_iter = m_fileDataList.end() - 1;
 		m_pushButtonPrev->setEnabled(false);
@@ -254,6 +285,7 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 	else if (m_iter == m_fileDataList.end())
 	{
 		// previous file not found
+		//printf("Fileviewer: previous file not found %d, %d\n", m_fileDataList.end(), m_fileDataList.end() - 1);
 		m_fileDataList.push_back(fd);
 		m_iter = m_fileDataList.end() - 1;
 		m_pushButtonPrev->setEnabled(m_iter != m_fileDataList.begin());
@@ -263,12 +295,14 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 	else if (m_iter->compare(fd))
 	{
 		// the same filename and line number
+		//printf("Fileviewer: same filename and line number\n");
 		updateFilePathLabel();
 		return;
 	}
 	else if (m_iter->compareFilePathOnly(fd))
 	{
 		// same file, different line number
+		//printf("Fileviewer: same file, different line number\n");
 		m_fileDataList.push_back(fd);
 		m_iter = m_fileDataList.end() - 1;
 		m_pushButtonPrev->setEnabled(true);
@@ -279,19 +313,22 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 	else
 	{
 		// different file
+		//printf("Fileviewer: different file\n");
 		m_fileDataList.push_back(fd);
 		m_iter = m_fileDataList.end() - 1;
 		m_pushButtonPrev->setEnabled(true);
 		m_pushButtonNext->setEnabled(false);
 		updateTextEdit();
 	}
+	if ((m_fileDataList.isEmpty())||(m_iter == m_fileDataList.end())) return;
 	QVector<filedata>::iterator it = m_fileDataList.begin();
 	while ((it != m_fileDataList.end() - 1)&&(it != m_fileDataList.end()))
 	{
-		if (it->compare(fd)) m_fileDataList.erase(it);
+		if (it->compare(fd)) it = m_fileDataList.erase(it);
 		else it++;
 	}
 	if (m_fileDataList.size() > 20) m_fileDataList.erase(m_fileDataList.begin());
+	m_iter = m_fileDataList.end() - 1;
 }
 
 void fileviewer::updateTextEdit(void)
@@ -443,6 +480,7 @@ void fileviewer::Next_ButtonClick(bool checked)
 
 void fileviewer::handleFileCannotBeOpenedCase(void)
 {
+	//printf("handleFileCannotBeOpenedCase\n");
 	m_textEditSource->clear();
 	m_pushButtonTextShrink->setEnabled(false);
 	m_pushButtonTextEnlarge->setEnabled(false);
@@ -726,7 +764,7 @@ void fileviewer::annotate(QString annotstr)
 void fileviewer::recvFuncList(sqlqueryresultlist* reslist)
 {
 	m_listWidgetFunc->clear();
-	if (m_fileDataList.isEmpty()) return;
+	if ((m_fileDataList.isEmpty())||(m_iter == m_fileDataList.end())) return;
 	m_funclist = *reslist;
 	filedata fd(str2qt(m_funclist.resultlist[0].filename), "1", -99);
 	if (m_iter->compareFileNameOnly(fd) == false)

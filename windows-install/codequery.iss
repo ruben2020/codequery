@@ -37,6 +37,7 @@ AppSupportURL=https://github.com/ruben2020/codequery
 AppUpdatesURL=https://github.com/ruben2020/codequery
 DefaultGroupName=CodeQuery
 ChangesEnvironment=true
+DisableStartupPrompt=False
 
 [Tasks]
 Name: "modifypath"; Description: "Add application directory to your environmental path"; Flags:

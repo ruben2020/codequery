@@ -201,7 +201,6 @@ We thank the people behind the following projects:
 [sqlite3](http://www.sqlite.org/) - our database is using this format    
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
-[optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
 [scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    

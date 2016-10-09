@@ -1,4 +1,11 @@
 
+Version 0.18.0 - Oct 9, 2016
+Migrated from GPLv3 to GPLv2 because some companies ban GPLv3 software
+List of functions in the file viewer area is a major new feature
+Replaced Dipperstein's optlist with Sittler's getopt replacement (MIT licensed), to avoid LGPLv3
+Updated showgraph (now BSD licensed), with rebase from the git repo
+Various bug fixes for the file viewer
+
 Version 0.17.0 - Sept 25, 2016
 Now Javascript is officially supported through starscope
 The full file path option is added to the command-line version of the tool for vim support

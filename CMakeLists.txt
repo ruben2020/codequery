@@ -40,7 +40,7 @@ if (UNIX)
 
 set( CPACK_GENERATOR "DEB;RPM;TGZ")
 set( CPACK_PACKAGE_NAME "codequery" )
-set( CPACK_PACKAGE_VERSION  "0.17.0" )
+set( CPACK_PACKAGE_VERSION  "0.18.0" )
 set( CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-Linux-${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}" ) 
 set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) , libqscintilla2-9 (>= 2.6.0) , cscope , exuberant-ctags")
 set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "Code understanding and searching tool")

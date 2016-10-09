@@ -1,8 +1,8 @@
 {
-    "version": "0.17.0",
+    "version": "0.18.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Now Javascript is officially supported through starscope, The full file path option is added to the command-line version of the tool for vim support, HOWTO documentation updated for compatibility with Mac OS, CodeQuery now officially built using Qt5 for Mac OS, but still in Qt4 for Windows and Linux, Travis script updated to include Coverity scan",
+    "changes": "Migrated from GPLv3 to GPLv2 because some companies ban GPLv3 software, List of functions in the file viewer area is a major new feature",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

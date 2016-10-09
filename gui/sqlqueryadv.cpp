@@ -38,11 +38,11 @@ sqlqueryadv::~sqlqueryadv()
 // returns true if successful, false if failed
 bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QString& xmlout, QString& dotout)
 {
-
-	sqlqueryresultlist result1, result2;
+	unsigned int i, j;
+	sqlqueryresultlist result1, result2, result;
 	QString xmltext = "<graph>";
 	QString dottext = "digraph graphname {\n";
-	int nodenum = 1;
+	unsigned int nodenum = 1, subrootnum;
 
 	result1 = search(qt2str(searchstr), sqlresultCALLINGFUNC, exactmatch);
 	result2 = search(qt2str(searchstr), sqlresultCALLEDFUNC, exactmatch);
@@ -63,7 +63,7 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QString& 
 
 	nodenum++;
 
-	for (unsigned int i=0; i < result1.resultlist.size(); i++)
+	for (i=0; i < result1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result1.resultlist[i].symname.c_str()));
@@ -71,9 +71,23 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QString& 
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
 			arg(nodenum).arg(QString(result1.resultlist[i].symname.c_str()));
 		dottext += QString("node%1 -> node1;\n").arg(nodenum);
+		subrootnum = nodenum;
 		nodenum++;
+/*
+		result = search(qt2str(result1.resultlist[i].symname.c_str()), sqlresultCALLINGFUNC, exactmatch);
+		for (j=0; j < result.resultlist.size(); j++)
+		{
+			xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
+				arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+			xmltext += QString("<edge target=\"%1\" source=\"%2\"/>").arg(subrootnum).arg(nodenum);
+			dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
+				arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+			dottext += QString("node%1 -> node%2;\n").arg(nodenum).arg(subrootnum);
+			nodenum++;
+		}
+*/
 	}
-	for (unsigned int i=0; i < result2.resultlist.size(); i++)
+	for (i=0; i < result2.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
 			arg(nodenum).arg(QString(result2.resultlist[i].symname.c_str()));
@@ -81,7 +95,21 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QString& 
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
 			arg(nodenum).arg(QString(result2.resultlist[i].symname.c_str()));
 		dottext += QString("node1 -> node%1;\n").arg(nodenum);
+		subrootnum = nodenum;
 		nodenum++;
+/*
+		result = search(qt2str(result2.resultlist[i].symname.c_str()), sqlresultCALLEDFUNC, exactmatch);
+		for (j=0; j < result.resultlist.size(); j++)
+		{
+			xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
+				arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+			xmltext += QString("<edge target=\"%1\" source=\"%2\"/>").arg(nodenum).arg(subrootnum);
+			dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
+				arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+			dottext += QString("node%1 -> node%2;\n").arg(subrootnum).arg(nodenum);
+			nodenum++;
+		}
+*/
 	}
 	xmltext += "</graph>";
 	dottext += "}\n";

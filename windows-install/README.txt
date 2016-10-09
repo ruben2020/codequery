@@ -93,7 +93,7 @@ Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.c
 
 It's freeware and free open source software.
 
-This software is licensed under the [GNU GPL v3](http://www.gnu.org/licenses/gpl.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+This software is licensed under the [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
 
 Files under the `querylib` directory are licensed under the [MIT license](http://opensource.org/licenses/MIT). See [QueryLib README](querylib/README.txt). This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without license restrictions. It's only dependency is on sqlite3.
 
@@ -201,7 +201,6 @@ We thank the people behind the following projects:
 [sqlite3](http://www.sqlite.org/) - our database is using this format    
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
-[optlist](http://michael.dipperstein.com/optlist/index.html) - cqmakedb uses this to parse command line options   
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
 [scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    

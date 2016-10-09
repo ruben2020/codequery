@@ -30,9 +30,7 @@
 class showgraph
 {
 public:
-	showgraph();
-	~showgraph();
-	QImage convertToImage(QString grpxml);
+	static QImage convertToImage(QString grpxml);
 };
 
 

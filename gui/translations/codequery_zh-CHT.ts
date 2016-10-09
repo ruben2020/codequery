@@ -14,35 +14,40 @@
         <translation>請稍候。。。</translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="64"/>
-        <location filename="../ui/graphDialog.ui" line="67"/>
+        <location filename="../ui/graphDialog.ui" line="70"/>
+        <location filename="../ui/graphDialog.ui" line="73"/>
         <source>Zoom Out</source>
         <translation>縮小</translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="81"/>
-        <location filename="../ui/graphDialog.ui" line="84"/>
+        <location filename="../ui/graphDialog.ui" line="93"/>
+        <location filename="../ui/graphDialog.ui" line="96"/>
         <source>Zoom In</source>
         <translation>放大</translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="104"/>
-        <location filename="../ui/graphDialog.ui" line="107"/>
-        <location filename="../ui/graphDialog.ui" line="110"/>
+        <location filename="../ui/graphDialog.ui" line="123"/>
+        <source>Number of levels:</source>
+        <translation>級別數:</translation>
+    </message>
+    <message>
+        <location filename="../ui/graphDialog.ui" line="153"/>
+        <location filename="../ui/graphDialog.ui" line="156"/>
+        <location filename="../ui/graphDialog.ui" line="159"/>
         <source>Save to DOT file</source>
         <translation>將保存到點檔</translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="123"/>
-        <location filename="../ui/graphDialog.ui" line="126"/>
-        <location filename="../ui/graphDialog.ui" line="129"/>
+        <location filename="../ui/graphDialog.ui" line="172"/>
+        <location filename="../ui/graphDialog.ui" line="175"/>
+        <location filename="../ui/graphDialog.ui" line="178"/>
         <source>Save Image</source>
         <translation>保存圖像</translation>
     </message>
     <message>
-        <location filename="../ui/graphDialog.ui" line="142"/>
-        <location filename="../ui/graphDialog.ui" line="145"/>
-        <location filename="../ui/graphDialog.ui" line="148"/>
+        <location filename="../ui/graphDialog.ui" line="191"/>
+        <location filename="../ui/graphDialog.ui" line="194"/>
+        <location filename="../ui/graphDialog.ui" line="197"/>
         <source>Close</source>
         <translation>關閉</translation>
     </message>
@@ -275,23 +280,23 @@
 <context>
     <name>cqDialogGraph</name>
     <message>
-        <location filename="../graphdialog.cpp" line="78"/>
+        <location filename="../graphdialog.cpp" line="89"/>
         <source>Images</source>
         <translation>圖像</translation>
     </message>
     <message>
-        <location filename="../graphdialog.cpp" line="81"/>
+        <location filename="../graphdialog.cpp" line="92"/>
         <source>Export Image</source>
         <translation>匯出圖像</translation>
     </message>
     <message>
-        <location filename="../graphdialog.cpp" line="92"/>
-        <location filename="../graphdialog.cpp" line="111"/>
+        <location filename="../graphdialog.cpp" line="103"/>
+        <location filename="../graphdialog.cpp" line="122"/>
         <source>File could not be saved!</source>
         <translation>無法保存檔 ！</translation>
     </message>
     <message>
-        <location filename="../graphdialog.cpp" line="100"/>
+        <location filename="../graphdialog.cpp" line="111"/>
         <source>Export DOT file</source>
         <translation>出口點檔</translation>
     </message>
@@ -332,62 +337,62 @@
 <context>
     <name>fileviewer</name>
     <message>
-        <location filename="../fileviewer.cpp" line="216"/>
+        <location filename="../fileviewer.cpp" line="249"/>
         <source>File not found</source>
         <translation>找不到檔</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="223"/>
+        <location filename="../fileviewer.cpp" line="256"/>
         <source>File could not be opened</source>
         <translation>不能打開檔</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="237"/>
+        <location filename="../fileviewer.cpp" line="270"/>
         <source>The source file to be viewed is newer than the CodeQuery database file. You are recommended to manually regenerate the CodeQuery database file.</source>
         <translation>要查看原始檔案是比 CodeQuery 資料庫檔案更新。建議您手動重新生成的 CodeQuery 資料庫檔案。</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="491"/>
+        <location filename="../fileviewer.cpp" line="533"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="492"/>
+        <location filename="../fileviewer.cpp" line="534"/>
         <source>OK</source>
         <translation>還行</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="494"/>
+        <location filename="../fileviewer.cpp" line="536"/>
         <source>External Editor Configuration</source>
         <translation>外部編輯器配置</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="495"/>
+        <location filename="../fileviewer.cpp" line="537"/>
         <source>Please enter the path and arguments for the external editor. Replace as follows:</source>
         <translation>請輸入路徑和參數的外部編輯器。替換，如下所示：</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="497"/>
+        <location filename="../fileviewer.cpp" line="539"/>
         <source>for file path</source>
         <translation>檔路徑</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="499"/>
+        <location filename="../fileviewer.cpp" line="541"/>
         <source>for line number</source>
         <translation>為行號</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="501"/>
+        <location filename="../fileviewer.cpp" line="543"/>
         <source>For example:</source>
         <translation>例如：</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="526"/>
+        <location filename="../fileviewer.cpp" line="568"/>
         <source>File could not be opened!</source>
         <translation>不能打開檔 ！</translation>
     </message>
     <message>
-        <location filename="../fileviewer.cpp" line="551"/>
+        <location filename="../fileviewer.cpp" line="593"/>
         <source>External editor could not be started. Please check Options!</source>
         <translation>無法啟動外部編輯器。請檢查選項 ！</translation>
     </message>
@@ -395,22 +400,22 @@
 <context>
     <name>listhandler</name>
     <message>
-        <location filename="../listhandler.cpp" line="128"/>
+        <location filename="../listhandler.cpp" line="129"/>
         <source>Symbol</source>
         <translation>符號</translation>
     </message>
     <message>
-        <location filename="../listhandler.cpp" line="129"/>
+        <location filename="../listhandler.cpp" line="130"/>
         <source>File</source>
         <translation>檔</translation>
     </message>
     <message>
-        <location filename="../listhandler.cpp" line="132"/>
+        <location filename="../listhandler.cpp" line="133"/>
         <source>Line</source>
         <translation>行</translation>
     </message>
     <message>
-        <location filename="../listhandler.cpp" line="132"/>
+        <location filename="../listhandler.cpp" line="133"/>
         <source>Preview</source>
         <translation>預覽</translation>
     </message>
@@ -418,22 +423,22 @@
 <context>
     <name>mainwindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="166"/>
+        <location filename="../mainwindow.cpp" line="168"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="167"/>
+        <location filename="../mainwindow.cpp" line="169"/>
         <source>OK</source>
         <translation>還行</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="169"/>
+        <location filename="../mainwindow.cpp" line="171"/>
         <source>Language</source>
         <translation>語言</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="170"/>
+        <location filename="../mainwindow.cpp" line="172"/>
         <source>Select language:</source>
         <translation>選擇語言：</translation>
     </message>
@@ -441,138 +446,138 @@
 <context>
     <name>searchhandler</name>
     <message>
-        <location filename="../searchhandler.cpp" line="320"/>
+        <location filename="../searchhandler.cpp" line="334"/>
         <source>Symbol</source>
         <translation>符號</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="323"/>
+        <location filename="../searchhandler.cpp" line="337"/>
         <source>Function or macro definition (Graph available)</source>
         <translation>函數或宏的定義 （Graph 中可用)</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="335"/>
+        <location filename="../searchhandler.cpp" line="349"/>
         <source>Class or struct (Graph available)</source>
         <translation>類或結構 （Graph 中可用）</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="329"/>
+        <location filename="../searchhandler.cpp" line="343"/>
         <source>Functions calling this function</source>
         <translation>調用此函數的函數</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="332"/>
+        <location filename="../searchhandler.cpp" line="346"/>
         <source>Functions called by this function</source>
         <translation>此函式呼叫的函數</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="326"/>
+        <location filename="../searchhandler.cpp" line="340"/>
         <source>Calls of this function or macro</source>
         <translation>此函數或宏的調用</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="338"/>
+        <location filename="../searchhandler.cpp" line="352"/>
         <source>Class which owns this member or method</source>
         <translation>擁有此成員或方法的類</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="341"/>
+        <location filename="../searchhandler.cpp" line="355"/>
         <source>Members or methods of this class</source>
         <translation>此類方法或成員</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="344"/>
+        <location filename="../searchhandler.cpp" line="358"/>
         <source>Parent of this class</source>
         <translation>此類的父</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="347"/>
+        <location filename="../searchhandler.cpp" line="361"/>
         <source>Children of this class</source>
         <translation>兒童的此類</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="350"/>
+        <location filename="../searchhandler.cpp" line="364"/>
         <source>Files including this file</source>
         <translation>此檔包括檔</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="353"/>
+        <location filename="../searchhandler.cpp" line="367"/>
         <source>Full path for file</source>
         <translation>檔的完整路徑</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="356"/>
+        <location filename="../searchhandler.cpp" line="370"/>
         <source>Functions or macros inside this file</source>
         <translation>函數或此檔中的宏</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="367"/>
+        <location filename="../searchhandler.cpp" line="381"/>
         <source>CodeQuery DB Files</source>
         <translation>CodeQuery DB 檔</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="370"/>
+        <location filename="../searchhandler.cpp" line="384"/>
         <source>Open CQ database file</source>
         <translation>打開 CQ 資料庫檔案</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="439"/>
+        <location filename="../searchhandler.cpp" line="453"/>
         <source>Function Call Graph</source>
         <translation>函數的調用關係圖</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="443"/>
+        <location filename="../searchhandler.cpp" line="457"/>
         <source>Class Inheritance Graph</source>
         <translation>類繼承關係圖</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="459"/>
-        <location filename="../searchhandler.cpp" line="462"/>
+        <location filename="../searchhandler.cpp" line="473"/>
+        <location filename="../searchhandler.cpp" line="476"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
         <translation>如果精確匹配關掉，萬用字元搜尋 （* 和?） 支援</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="534"/>
+        <location filename="../searchhandler.cpp" line="548"/>
         <source>results found</source>
         <translation>找到的結果</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="553"/>
+        <location filename="../searchhandler.cpp" line="567"/>
         <source>in progress</source>
         <translation>在進行中</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="554"/>
+        <location filename="../searchhandler.cpp" line="568"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="651"/>
+        <location filename="../searchhandler.cpp" line="665"/>
         <source>You have to first select an item from the list before pushing the Graph button.</source>
         <translation>您必須先推圖形按鈕之前從清單中選擇一個項。</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="773"/>
+        <location filename="../searchhandler.cpp" line="794"/>
         <source>File open error</source>
         <translation>檔打開錯誤</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="774"/>
+        <location filename="../searchhandler.cpp" line="795"/>
         <source>Wrong file format</source>
         <translation>錯誤的檔案格式</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="775"/>
+        <location filename="../searchhandler.cpp" line="796"/>
         <source>Incorrect CQ database version</source>
         <translation>CQ 資料庫版本不正確</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="776"/>
+        <location filename="../searchhandler.cpp" line="797"/>
         <source>OK</source>
         <translation>還行</translation>
     </message>
     <message>
-        <location filename="../searchhandler.cpp" line="778"/>
+        <location filename="../searchhandler.cpp" line="799"/>
         <source>Unknown Error</source>
         <translation>未知的錯誤</translation>
     </message>

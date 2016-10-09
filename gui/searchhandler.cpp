@@ -667,7 +667,7 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 		return;
 	}	
 
-	QString grpxml, grpdot;
+	QStringList grpxml, grpdot;
 	bool res;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
 	if (m_autocompBusy)
@@ -686,13 +686,20 @@ void searchhandler::resultCurrentListItemSymbolName(const QString symName)
 		m_listFuncFutureWatcher.waitForFinished();
 	}
 	if (m_typeOfGraph == 1)
-	res = sq->search_funcgraph(symName,
-			true,
-			grpxml, grpdot);
+	{
+		res = sq->search_funcgraph(symName,
+				true,
+				grpxml, grpdot);
+		res = sq->search_funcgraph(symName,
+				true,
+				grpxml, grpdot, 2);
+	}
 	else if (m_typeOfGraph == 2)
-	res = sq->search_classinheritgraph(symName,
-			true,
-			grpxml, grpdot);
+	{
+		res = sq->search_classinheritgraph(symName,
+				true,
+				grpxml, grpdot);
+	}
 	else {QApplication::restoreOverrideCursor(); return;}
 	QApplication::restoreOverrideCursor();
 	QMessageBox msgBox((QWidget*)mw);

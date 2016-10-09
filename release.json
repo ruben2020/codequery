@@ -2,7 +2,7 @@
     "version": "0.18.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Migrated from GPLv3 to GPLv2 because some companies ban GPLv3 software, List of functions in the file viewer area is a major new feature",
+    "changes": "Migrated from GPLv3 to GPLv2 because some companies ban GPLv3 software, List of functions in the file viewer area is a major new feature, Now the selection of one or two levels has been added for function call graphs",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

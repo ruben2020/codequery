@@ -35,12 +35,12 @@ cqDialogGraph::cqDialogGraph(QWidget *parent)
 		this, SLOT(zoomout()));
 	connect(dialog_ui->pushButtonZoomIn, SIGNAL(clicked()),
 		this, SLOT(zoomin()));
-	/*connect(dialog_ui->checkBoxAutoResize, SIGNAL(stateChanged(int)),
-		this, SLOT(autoResizeChanged(int)));*/
 	connect(dialog_ui->pushButtonSave, SIGNAL(clicked()),
 		this, SLOT(savetoimagefile()));
 	connect(dialog_ui->pushButtonSaveDot, SIGNAL(clicked()),
 		this, SLOT(savetodotfile()));
+	connect(dialog_ui->comboBoxNbrOfLevels, SIGNAL(currentIndexChanged(int)),
+		this, SLOT(numberOfLevelsChanged(int)));
 
 }
 
@@ -50,15 +50,26 @@ cqDialogGraph::~cqDialogGraph()
 	delete dialog_ui;
  }
 
-void cqDialogGraph::setupGraphFromXML(QString grpxml, QString grpdot, QString desc)
+void cqDialogGraph::setupGraphFromXML(QStringList& grpxml, QStringList& grpdot, QString& desc)
 {
-	showgraph sg;
-	m_dot = grpdot;
-	m_img = sg.convertToImage(grpxml);
+	m_grpxml = grpxml;
+	m_grpdot = grpdot;
+	m_img = showgraph::convertToImage(grpxml[0]);
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
-	dialog_ui->labelDesc->setText(desc);
+	if (desc.length() > 0) dialog_ui->labelDesc->setText(desc);
+	for (unsigned int i=0; i < grpxml.size(); i++) dialog_ui->comboBoxNbrOfLevels->addItem(QString::number(i+1));
+	dialog_ui->comboBoxNbrOfLevels->setCurrentIndex(0);
 	show();
+	adjustScrollBar(dialog_ui->scrollArea->horizontalScrollBar(), m_scaleFactor/5);
+	adjustScrollBar(dialog_ui->scrollArea->verticalScrollBar(), m_scaleFactor/5);
+}
+
+void cqDialogGraph::numberOfLevelsChanged(int num)
+{
+	m_img = showgraph::convertToImage(m_grpxml[dialog_ui->comboBoxNbrOfLevels->currentIndex()]);
+	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
+	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
 	adjustScrollBar(dialog_ui->scrollArea->horizontalScrollBar(), m_scaleFactor/5);
 	adjustScrollBar(dialog_ui->scrollArea->verticalScrollBar(), m_scaleFactor/5);
 }
@@ -113,7 +124,7 @@ void cqDialogGraph::savetodotfile()
 		return;
 	}
 	QTextStream out(&outfile);
-	out << m_dot;
+	out << m_grpdot[dialog_ui->comboBoxNbrOfLevels->currentIndex()];
 	outfile.close();
 }
 
@@ -132,11 +143,4 @@ void cqDialogGraph::adjustScrollBar(QScrollBar *scrollBar, double factor)
 	int minim = scrollBar->minimum();
 	scrollBar->setValue((scrollBar->maximum() - minim)/2 + minim);
 }
-
-/*
-void cqDialogGraph::autoResizeChanged(int resizestate)
-{
-	dialog_ui->scrollArea->setWidgetResizable(resizestate == Qt::Checked);
-}*/
-
 

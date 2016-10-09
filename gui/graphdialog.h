@@ -40,7 +40,7 @@ public:
 Ui::DialogGraph *dialog_ui;
 cqDialogGraph(QWidget *parent);
 virtual ~cqDialogGraph();
-void setupGraphFromXML(QString grpxml, QString grpdot, QString desc);
+void setupGraphFromXML(QStringList& grpxml, QStringList& grpdot, QString& desc);
 void scaleImage(double factor);
 void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
@@ -49,12 +49,14 @@ void zoomout();
 void zoomin();
 void savetoimagefile();
 void savetodotfile();
-//void autoResizeChanged(int resizestate);
+void numberOfLevelsChanged(int num);
 
 private:
 double m_scaleFactor;
 QImage m_img;
 QString m_dot;
+QStringList m_grpxml;
+QStringList m_grpdot;
 
 };
 

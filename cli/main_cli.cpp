@@ -156,6 +156,8 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 				break;	
 			case sqlqueryresultlist::sqlresultFILE_ONLY:
 				printf("%s\n", it->filepath.c_str());
+				break;
+			default:
 				break;	
 		}
 	}

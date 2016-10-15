@@ -52,7 +52,7 @@ namespace MemImpl
         /** private constructors, assignment and destructor */
         MemInfo();
         MemInfo( const MemInfo&){};
-        MemInfo& operator =( const MemInfo&){};
+        MemInfo& operator =( const MemInfo&){return *this;}
         ~MemInfo(){};
         /** Needed for singleton creation */
         friend class Single< MemImpl::MemInfo>;

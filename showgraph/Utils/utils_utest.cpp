@@ -26,7 +26,7 @@ private:
     /** private constructors, assignment and destructor */
     classA(){};
     classA( const classA&){};
-    classA& operator =( const classA&){};
+    classA& operator =( const classA&){return *this;}
     ~classA(){};
     /** Needed for singleton creation */
     friend class Single< classA>;

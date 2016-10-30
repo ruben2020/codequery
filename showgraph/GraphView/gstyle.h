@@ -60,7 +60,7 @@ nodeShape2Str( NodeShape shape)
         ASSERTD( 0);
         return QString(); 
     }
-    return QString();
+    //return QString();
 }
 
 /**

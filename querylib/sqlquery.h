@@ -60,7 +60,7 @@ public:
 	tStr filepath;
 	int fileid;
 	tStr linetext;
-	sqlqueryresult() : linenum((const char*)"1"), fileid(-99){}
+	sqlqueryresult() : linenum((const char*)"1"), fileid(-99), intLinenum(0){}
 };
 
 class sqlqueryresultlist

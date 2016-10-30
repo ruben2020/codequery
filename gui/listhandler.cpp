@@ -196,7 +196,8 @@ void listhandler::Up_ButtonClick(bool checked)
 	if ((!checked)&&(m_treeWidgetSearchResults->topLevelItemCount() > 0))
 	{
 		item = m_treeWidgetSearchResults->currentItem();
-		curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+		if (item != NULL)
+			curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
 		while (item != NULL)
 		{
 			item = m_treeWidgetSearchResults->itemAbove(item);
@@ -219,7 +220,8 @@ void listhandler::Down_ButtonClick(bool checked)
 	if ((!checked)&&(m_treeWidgetSearchResults->topLevelItemCount() > 0))
 	{
 		item = m_treeWidgetSearchResults->currentItem();
-		curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+		if (item != NULL)
+			curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
 		while (item != NULL)
 		{
 			item = m_treeWidgetSearchResults->itemBelow(item);
@@ -243,7 +245,8 @@ void listhandler::checkUpDown(void)
 	if (m_treeWidgetSearchResults->topLevelItemCount() <= 0) return;
 	item = m_treeWidgetSearchResults->currentItem();
 	curItem = item;
-	curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
+	if (item != NULL)
+		curFilepath = m_sqlist.resultlist[item->data(0,Qt::UserRole).toInt()].filepath;
 
 	while (item != NULL)
 	{

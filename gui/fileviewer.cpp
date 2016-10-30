@@ -142,6 +142,14 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_currentlang(enHighlightCPP)
 ,m_currentline(1)
 ,m_annotline(1)
+,m_pushButtonTextShrink(NULL)
+,m_pushButtonTextEnlarge(NULL)
+,m_checkBoxSymbolOnly(NULL)
+,m_listWidgetFunc(NULL)
+,m_comboBoxFuncListSort(NULL)
+,m_fontwidthtemp(1)
+,m_markerhandle(1)
+,m_markerhandle2(2)
 {
 	m_iter = m_fileDataList.begin();
 	m_textEditSourceFont.setStyleHint(QFont::TypeWriter);	

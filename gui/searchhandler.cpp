@@ -91,6 +91,10 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_autocompBusy(false)
 ,m_declarBusy(false)
 ,m_funcListBusy(false)
+,m_pushButtonClipSearch(NULL)
+,m_pushButtonSearchPrev(NULL)
+,m_pushButtonSearchNext(NULL)
+,m_pushButtonGraph(NULL)
 {
 	sq = new sqlqueryadv;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);

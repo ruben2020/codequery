@@ -109,7 +109,7 @@ bool NodeNav::isPointInDir( QPointF point, QPointF ref, NavDirection dir)
     default:
         return false;
     }
-    return false;
+    //return false;
 }
 
 /**
@@ -131,7 +131,7 @@ qreal NodeNav::deltaInDir( QPointF point, QPointF ref, NavDirection dir)
     default:
         return 0;
     }
-    return 0;
+    //return 0;
 }
 /** Get edge to the left of given edge */
 GEdge *

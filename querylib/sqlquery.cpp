@@ -236,6 +236,7 @@ sqlqueryresultlist sqlquery::search_funclist_filename(const char* searchstr)
 {
 	//printf("search_funclist_filename %s\n", searchstr);
 	sqlqueryresultlist result;
+	if (searchstr == NULL) return result;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
 	tStr srchterm("%");
 	srchterm.append(searchstr);

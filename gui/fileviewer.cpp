@@ -197,6 +197,7 @@ void fileviewer::init(void)
 	m_textEditSource->setMarginType(1, QsciScintilla::SymbolMargin);
 	m_textEditSource->setBraceMatching(QsciScintilla::SloppyBraceMatch);
 	m_textEditSource->setAnnotationDisplay(QsciScintilla::AnnotationBoxed);
+	m_textEditSource->setUtf8(true);
 	setLexer(enHighlightCPP);
 	createFontList(); 
 	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),

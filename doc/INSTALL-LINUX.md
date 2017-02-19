@@ -8,48 +8,62 @@ This INSTALL guide applies to Linux and Mac only
 
 ## HOW TO INSTALL IN LINUX?
 
-1. Install CMake (>2.7), sqlite3, Qt4 (>4.7), QScintilla (2.6 or higher), cscope (15.8a or higher), ctags. If you have Ubuntu, Linux Mint, Debian or Fedora installed, most of these should be obtainable through the package managers. Note that the cscope version on the Ubuntu repositories may not be the latest one. It's better to have the latest version of cscope installed.   
+Step 1: Install CMake (>2.7), sqlite3, Qt4 (>4.7) or Qt5 (>5.7), QScintilla (2.6 or higher) for Qt4 or Qt5, cscope (15.8a or higher), ctags. If you have Ubuntu, Linux Mint, Debian or Fedora installed, most of these should be obtainable through the package managers. Note that the cscope version on the Ubuntu repositories may not be the latest one. It's better to have the latest version of cscope installed.   
 [CMake](http://www.cmake.org/)   
 [sqlite3](http://www.sqlite.org/)   
-[Qt4](http://qt-project.org/)   
+[Qt4 or Qt5](http://qt-project.org/)   
 [cscope](http://cscope.sourceforge.net/)   
 [ctags](http://ctags.sourceforge.net/)    
 [pycscope](https://github.com/portante/pycscope)    
-[QScintilla](http://www.riverbankcomputing.com/software/qscintilla/intro)    
+[QScintilla for Qt4 or Qt5](http://www.riverbankcomputing.com/software/qscintilla/intro)    
 
-In Ubuntu or Linux Mint, do the following:    
+In Ubuntu or Linux Mint, do the following (first row for Qt5 OR second row for Qt4):    
 ```bash
+sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt5-default qttools5-dev qttools5-dev-tools libqt5scintilla2-dev cscope exuberant-ctags rpm
 sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags rpm
 ```
+
 In Fedora or Red Hat, do the following:    
 ```bash
 sudo dnf install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags rpm-build
 ```
-2. Download the repository as a ZIP file from github or clone git repository:
+
+Step 2: Download the repository as a ZIP file from github or clone git repository:
 [codequery@github](https://github.com/ruben2020/codequery)
 ```bash
+cd ~/workspace
 git clone https://github.com/ruben2020/codequery.git
 ```
-3. Unzip to a directory and change to that directory.
+
+Step 3: Unzip to a directory and change to that directory.
 ```bash
 cd ~/workspace/codequery
 ```
-4. Create a directory called build and change to it.
+
+Step 4: Create a directory called build and change to it.
 ```bash
 mkdir build
 cd build
 ```
-5. Run cmake, make and make install.
+
+Step 5: Run cmake (first row for Qt5 OR second row for Qt4)
 ```bash
-cmake -G "Unix Makefiles" ..
+cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
+cmake -G "Unix Makefiles" -DBUILD_QT5=OFF ..
+```
+
+Step 6: Run make and make install.
+```bash
 make
 sudo make install
 ```
+
 If you want to install to an alternative directory instead of the default one, use the following:
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G "Unix Makefiles" ..
+cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G "Unix Makefiles" -DBUILD_QT5=ON ..
 make
 make install
 ```
-6. Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
+
+Step 7: Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
 

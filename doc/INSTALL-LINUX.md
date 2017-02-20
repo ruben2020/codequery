@@ -17,9 +17,9 @@ Step 1: Install CMake (>2.7), sqlite3, Qt4 (>4.7) or Qt5 (>5.7), QScintilla (2.6
 [pycscope](https://github.com/portante/pycscope)    
 [QScintilla for Qt4 or Qt5](http://www.riverbankcomputing.com/software/qscintilla/intro)    
 
-In Ubuntu or Linux Mint, do the following (first row for Qt5 OR second row for Qt4):    
+In Ubuntu or Linux Mint, do the following (first line for Qt5 OR second line for Qt4):    
 ```bash
-sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt5-default qttools5-dev qttools5-dev-tools libqt5scintilla2-dev cscope exuberant-ctags rpm
+sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools libqt5scintilla2-dev cscope exuberant-ctags rpm
 sudo apt-get install g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools libqscintilla2-dev cscope exuberant-ctags rpm
 ```
 
@@ -28,37 +28,37 @@ In Fedora or Red Hat, do the following:
 sudo dnf install gcc-c++ git cmake sqlite sqlite-devel qt-devel qscintilla-devel cscope ctags rpm-build
 ```
 
-Step 2: Download the repository as a ZIP file from github or clone git repository:
-[codequery@github](https://github.com/ruben2020/codequery)
+Step 2: Download the repository as a ZIP file from github or clone git repository:     
+[codequery@github](https://github.com/ruben2020/codequery)     
 ```bash
 cd ~/workspace
 git clone https://github.com/ruben2020/codequery.git
 ```
 
-Step 3: Unzip to a directory and change to that directory.
+Step 3: Unzip to a directory and change to that directory.     
 ```bash
 cd ~/workspace/codequery
 ```
 
-Step 4: Create a directory called build and change to it.
+Step 4: Create a directory called build and change to it.     
 ```bash
 mkdir build
 cd build
 ```
 
-Step 5: Run cmake (first row for Qt5 OR second row for Qt4)
+Step 5: Run cmake (first line for Qt5 OR second line for Qt4).     
 ```bash
 cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
 cmake -G "Unix Makefiles" -DBUILD_QT5=OFF ..
 ```
 
-Step 6: Run make and make install.
+Step 6: Run make and make install.     
 ```bash
 make
 sudo make install
 ```
 
-If you want to install to an alternative directory instead of the default one, use the following:
+If you want to install to an alternative directory instead of the default one, use the following:     
 ```bash
 cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G "Unix Makefiles" -DBUILD_QT5=ON ..
 make

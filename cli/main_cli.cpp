@@ -37,9 +37,9 @@ void printhelp(const char* str)
 	printf("  -t : search term without spaces\n");
 	printf("       if Exact Match is switched off, wild card\n");
 	printf("       searches are possible. Use * and ?\n");
-	printf("  -l : limited line length for source code preview text\n");
-	printf("       By default it is 0 or limitless\n");
-	printf("       Accepted range: 0 - 32767\n");
+	printf("  -l : limited line length for truncated source code preview text\n");
+	printf("       Accepted range: 0 - 800 (use 0 for limitless)\n");
+	printf("       By default it is 80\n");
 	printf("  -e : Exact Match switched ON \n");
 	printf("       Case-sensitive\n");
 	printf("  -f : Exact Match switched OFF (fuzzy search)\n");
@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
 	int c;
 	bool bSqlite, bParam, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
 	int countExact = 0;
-	int limitlen = 0;
+	int limitlen = 80;
 	bSqlite = false;
 	bParam = false;
 	bTerm = false;

@@ -1,8 +1,8 @@
 {
-    "version": "0.18.0",
+    "version": "0.19.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Migrated from GPLv3 to GPLv2 because some companies ban GPLv3 software, List of functions in the file viewer area is a major new feature, Now the selection of one or two levels has been added for function call graphs",
+    "changes": "Now officially supporting Qt5 for Linux and Mac, UTF-8 files viewable on GUI, Source code preview text line length now unlimited",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

@@ -30,12 +30,12 @@ if (UNIX)
 if (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt5" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) , libqscintilla2-9 (>= 2.6.0) , cscope , exuberant-ctags")
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.4.0) , libsqlite3-0 (>= 3.7.0) , libqt5scintilla2-12v5 (>= 2.6.0)" )
 
 else (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt4" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) , libqscintilla2-9 (>= 2.6.0) , cscope , exuberant-ctags")
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtcore4 (>= 4.8.0), libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) , libqscintilla2-12v5 (>= 2.6.0)" )
 
 endif (BUILD_QT5)
 
@@ -47,11 +47,12 @@ endif (BUILD_QT5)
   endif( CMAKE_SIZEOF_VOID_P EQUAL 8 )
 
 set( CPACK_GENERATOR "DEB;TGZ")
-set( CPACK_PACKAGE_VERSION  "0.18.0" )
+set( CPACK_PACKAGE_VERSION  "0.19.0" )
 set( CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-Linux-${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}" ) 
 set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "Code understanding and searching tool")
 set( CPACK_PACKAGE_DESCRIPTION "Code understanding and searching tool")
 set( CPACK_PACKAGE_VENDOR "ruben2020")
+set( CPACK_DEBIAN_PACKAGE_RECOMMENDS "cscope , exuberant-ctags" )
 set( CPACK_DEBIAN_PACKAGE_SECTION "devel" )
 set( CPACK_DEBIAN_PACKAGE_MAINTAINER "ruben2020 ruben2020-git@users.sourceforge.net")
 set( CPACK_DEBIAN_PACKAGE_HOMEPAGE "http://ruben2020.github.io/codequery/")

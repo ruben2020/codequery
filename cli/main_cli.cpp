@@ -116,6 +116,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
 	sqlquery sq;
+	tStr lstr;
 	sqlquery::en_filereadstatus filestatus = sq.open_dbfile(sqfn);
 	switch (filestatus)
 	{
@@ -150,7 +151,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 	for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
 		it != resultlst.resultlist.end(); it++)
 	{
-		tStr lstr = limitcstr(limitlen, it->linetext);
+		lstr = limitcstr(limitlen, it->linetext);
 		switch(resultlst.result_type)
 		{
 			case sqlqueryresultlist::sqlresultFULL:

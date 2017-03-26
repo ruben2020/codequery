@@ -29,7 +29,7 @@
 
 void printhelp(const char* str)
 {
-	printf("Usage: %s [-s <sqdbfile> [-p <n>] [-t <term>] -[e|f] ] [-u] [-d] [-v] [-h]\n\n", str);
+	printf("Usage: %s [-s <sqdbfile> [-p <n>] [-t <term>] [-l <len>] -[e|f] [-u] ]  [-d] [-v] [-h]\n\n", str);
 	printf("options:\n");
 	printf("  -s : CodeQuery sqlite3 db file path\n");
 	printf("  -p : parameter is a number denoted by n\n");
@@ -37,6 +37,9 @@ void printhelp(const char* str)
 	printf("  -t : search term without spaces\n");
 	printf("       if Exact Match is switched off, wild card\n");
 	printf("       searches are possible. Use * and ?\n");
+	printf("  -l : limited line length for source code preview text\n");
+	printf("       By default it is 0 or limitless\n");
+	printf("       Accepted range: 0 - 32767\n");
 	printf("  -e : Exact Match switched ON \n");
 	printf("       Case-sensitive\n");
 	printf("  -f : Exact Match switched OFF (fuzzy search)\n");
@@ -100,7 +103,15 @@ void process_argwithopt(char* thisOpt, int option, bool& err, tStr& fnstr, bool 
 	}
 }
 
-int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool debug)
+tStr limitcstr(int limitlen, tStr str)
+{
+	if (limitlen <= 0)
+		return str;
+	else
+		return str.substr(0,limitlen);
+}
+
+int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool debug, int limitlen)
 {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
@@ -139,6 +150,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 	for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
 		it != resultlst.resultlist.end(); it++)
 	{
+		tStr lstr = limitcstr(limitlen, it->linetext);
 		switch(resultlst.result_type)
 		{
 			case sqlqueryresultlist::sqlresultFULL:
@@ -146,13 +158,13 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 						it->symname.c_str(), 
 						(full ? it->filepath.c_str() : it->filename.c_str()),
 						it->linenum.c_str(),
-						it->linetext.c_str());
+						lstr.c_str());
 				break;	
 			case sqlqueryresultlist::sqlresultFILE_LINE:
 				printf("%s:%s\t%s\n",
 						(full ? it->filepath.c_str() : it->filename.c_str()),
 						it->linenum.c_str(),
-						it->linetext.c_str());
+						lstr.c_str());
 				break;	
 			case sqlqueryresultlist::sqlresultFILE_ONLY:
 				printf("%s\n", it->filepath.c_str());
@@ -166,9 +178,10 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 
 int main(int argc, char *argv[])
 {
-    int c;
-    bool bSqlite, bParam, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
-    int countExact = 0;
+	int c;
+	bool bSqlite, bParam, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
+	int countExact = 0;
+	int limitlen = 0;
 	bSqlite = false;
 	bParam = false;
 	bTerm = false;
@@ -180,7 +193,7 @@ int main(int argc, char *argv[])
 	bError = false;
 	tStr sqfn, param = "1", term;
 
-    while ((c = getopt2(argc, argv, "s:p:t:efudvh")) != -1)
+    while ((c = getopt2(argc, argv, "s:p:t:l:efudvh")) != -1)
     {
 		switch(c)
 		{
@@ -213,6 +226,9 @@ int main(int argc, char *argv[])
 			case 't':
 				bTerm = true;
 				term = optarg;
+				break;
+			case 'l':
+				limitlen = atoi(optarg);
 				break;
 			case 'u':
 				bFull = true;
@@ -254,7 +270,7 @@ int main(int argc, char *argv[])
 	}
 	if (bSqlite && bTerm)
 	{
-		bError = process_query(sqfn, term, param, bExact, bFull, bDebug) > 0;
+		bError = process_query(sqfn, term, param, bExact, bFull, bDebug, limitlen) > 0;
 	}
 	if (bError)
 	{

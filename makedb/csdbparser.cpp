@@ -21,11 +21,11 @@
 // Cscope database parser
 
 #include <stdio.h>
-//#include <unistd.h>
 #include "csdbparser.h"
 #include "csdbheader.h"
 #include "small_lib.h"
-//#include "packtext.h"
+
+#define MAX_TEXT_LINE_LEN     (800)
 
 #define CSDBP_GENERAL_CHK()   if ((m_fp == NULL) || \
                                   (m_trailer_start <= 0) || \
@@ -176,7 +176,7 @@ std::string symdata_pack::line_num_str(void)
 
 std::string symdata_pack::line_text_escaped(void)
 {
-	return add_escape_char(line_text.substr(0, 80) , '"', '"');
+	return add_escape_char(line_text.substr(0, MAX_TEXT_LINE_LEN) , '"', '"');
 }
 
 std::string symdata_pack::line_text_replacetab(void)
@@ -189,14 +189,14 @@ std::string symdata_pack::line_text_replacetab(void)
 		if (line_text[i] == '\t') s += ' ';
 		else s += line_text[i];
 	}
-	s = s.substr(0, 80);
+	s = s.substr(0, MAX_TEXT_LINE_LEN);
 	return s;
 }
 
 std::string symdata_pack::line_text_blob(void)
 {
 	tempbuf buf(20000);
-	strcpy(buf.get(), line_text.substr(0, 80).c_str());
+	strcpy(buf.get(), line_text.substr(0, MAX_TEXT_LINE_LEN).c_str());
 	//packtext(buf.get(), true);
 	std::string s(buf.get());
 	return s;

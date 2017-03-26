@@ -149,6 +149,7 @@ void listhandler::updateListHeaders(void)
 void listhandler::resizeColumns(void)
 {
 	int n = m_treeWidgetSearchResults->columnCount();
+	if (n > 1) n--;
 	for(int i=0; i < n; i++)
 		{m_treeWidgetSearchResults->resizeColumnToContents(i);}
 }

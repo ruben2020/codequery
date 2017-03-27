@@ -24,12 +24,7 @@
 #include <QInputDialog>
 #include <QFontDatabase>
 
-#include <Qsci/qsciscintilla.h>
-#include <Qsci/qscilexercpp.h>
-#include <Qsci/qscilexerpython.h>
-#include <Qsci/qscilexerjava.h>
-#include <Qsci/qscilexerruby.h>
-#include <Qsci/qscilexerjavascript.h>
+#include "ScintillaEdit.h"
 
 #include "fileviewer.h"
 #include "mainwindow.h"
@@ -137,7 +132,9 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
+#ifdef CQ_LEXER
 ,m_lexer(NULL)
+#endif
 ,m_fontsize(0)
 ,m_currentlang(enHighlightCPP)
 ,m_currentline(1)
@@ -158,7 +155,9 @@ fileviewer::fileviewer(mainwindow* pmw)
 fileviewer::~fileviewer()
 {
 	disconnect();
+#ifdef CQ_LEXER
 	if (m_lexer != NULL) delete m_lexer;
+#endif
 }
 
 void fileviewer::createFontList(void)
@@ -189,15 +188,17 @@ void fileviewer::init(void)
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
 	m_textEditSource->clear();
-	m_textEditSource->setWrapMode(QsciScintilla::WrapNone);
+	m_textEditSource->setWrapMode(SC_WRAP_NONE);
 	m_textEditSource->setReadOnly(true);
-	m_markerhandle = m_textEditSource->markerDefine(QsciScintilla::Background);
-	m_markerhandle2 = m_textEditSource->markerDefine(QsciScintilla::RightArrow);
-	m_textEditSource->setMarginType(0, QsciScintilla::NumberMargin);
-	m_textEditSource->setMarginType(1, QsciScintilla::SymbolMargin);
-	m_textEditSource->setBraceMatching(QsciScintilla::SloppyBraceMatch);
-	m_textEditSource->setAnnotationDisplay(QsciScintilla::AnnotationBoxed);
-	m_textEditSource->setUtf8(true);
+	m_markerhandle = 0;
+	m_markerhandle2 = 1;
+	m_textEditSource->markerDefine(m_markerhandle, SC_MARK_BACKGROUND);
+	m_textEditSource->markerDefine(m_markerhandle2, SC_MARK_ARROW);
+	m_textEditSource->setMarginTypeN(0, SC_MARGIN_NUMBER);
+	m_textEditSource->setMarginTypeN(1, SC_MARGIN_SYMBOL);
+	//m_textEditSource->setBraceMatching(ScintillaEdit::SloppyBraceMatch);
+	m_textEditSource->annotationSetVisible(ANNOTATION_BOXED);
+	m_textEditSource->setCodePage(SC_CP_UTF8);
 	setLexer(enHighlightCPP);
 	createFontList(); 
 	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),
@@ -379,8 +380,8 @@ void fileviewer::updateTextEdit(void)
 	{
 		alltext = in.readAll();
 	}
-	m_textEditSource->setText(alltext);
-	m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+	m_textEditSource->setText(alltext.toUtf8().data());
+	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
 	highlightLine(m_iter->linenum.toInt());
 	updateFilePathLabel();
 	m_pushButtonGoToLine->setEnabled(true);
@@ -404,15 +405,15 @@ void fileviewer::updateFilePathLabel(void)
 
 void fileviewer::AbleToCopy(bool copy)
 {
-	int lineFrom, indexFrom, lineTo, indexTo;
+	//int lineFrom, indexFrom, lineTo, indexTo;
 	m_pushButtonPaste->setEnabled(copy);
 	if (copy)
 	{
 		m_textEditSource->copy();
-		m_textEditSource->getSelection(&lineFrom, &indexFrom, &lineTo, &indexTo);
-		m_annotline = lineTo;
+		//m_textEditSource->getSelection(&lineFrom, &indexFrom, &lineTo, &indexTo);
+		m_annotline = m_textEditSource->lineFromPosition(m_textEditSource->selectionEnd());
 		QString str = (QApplication::clipboard())->text();
-		m_textEditSource->clearAnnotations();
+		m_textEditSource->annotationClearAll();
 		if (str.length() > 0)
 			emit requestAnnotation(str);
 	}
@@ -527,7 +528,7 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 		m_textEditSourceFont.setFamily(m_fonttemp);
 		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setTabWidth(m_fontwidthtemp);
-		m_textEditSource->zoomTo(m_fontsize);
+		m_textEditSource->setZoom(m_fontsize);
 		m_theme = m_themetemp;
 		m_themelast = "1234";
 		setLexer();
@@ -629,8 +630,8 @@ void fileviewer::textSizeChange(int n)
 	//m_fontwidthtemp = (m_textEditSource->tabWidth());
 	//m_lexer->setFont(m_textEditSourceFont);
 	m_fontsize += n;
-	m_textEditSource->zoomTo(m_fontsize);
-	m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+	m_textEditSource->setZoom(m_fontsize);
+	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
 	//m_textEditSource->setTabWidth(m_fontwidthtemp);
 }
 
@@ -651,7 +652,7 @@ void fileviewer::tabWidthSelectionTemporary(const QString &width)
 
 void fileviewer::highlightLine(unsigned int num)
 {
-	m_textEditSource->markerDeleteAll();
+	m_textEditSource->markerDeleteAll(-1);
 	if (num <= 0)
 	{
 		num = 1;
@@ -662,19 +663,20 @@ void fileviewer::highlightLine(unsigned int num)
 		m_textEditSource->markerAdd(num, m_markerhandle);
 		m_textEditSource->markerAdd(num, m_markerhandle2);
 	}
-	m_textEditSource->ensureLineVisible(num);
+	m_textEditSource->ensureVisible(num);
 	m_currentline = num;
 }
 
 void fileviewer::setLexer(int lang)
 {
+#ifdef CQ_LEXER
 	if (lang == -1) lang = m_currentlang;
 	if (m_lexer == NULL)
 	{
 		m_lexer = new QsciLexerCPP(m_textEditSource);
 		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
-		m_textEditSource->zoomTo(m_fontsize);
+		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
 	}
 
@@ -706,11 +708,12 @@ void fileviewer::setLexer(int lang)
 			break;
 
 	}
-
+#endif
 }
 
 void fileviewer::replaceLexer(const char* langstr, int lang)
 {
+#ifdef CQ_LEXER
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
 	if ((strlen(m_lexer->language()) != strlen(langstr)) ||
@@ -746,7 +749,7 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 		}
 		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
-		m_textEditSource->zoomTo(m_fontsize);
+		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
 	}
 	if (m_themelast.compare(m_theme) != 0)
@@ -757,16 +760,18 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 		m_textEditSource->setMarkerBackgroundColor(linenumfgcolor, m_markerhandle2);
 		m_textEditSource->setMarginsFont(m_textEditSourceFont);
 		//m_textEditSource->setLexer(m_lexer);
-		m_textEditSource->zoomTo(m_fontsize);
-		m_textEditSource->setMarginWidth(0,  QString::number(m_textEditSource->lines() * 10));
+		m_textEditSource->setZoom(m_fontsize);
+		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
 		m_textEditSource->recolor();
 	}
+#endif
 }
 
 void fileviewer::annotate(QString annotstr)
 {
-	m_textEditSource->clearAnnotations();
-	m_textEditSource->annotate(m_annotline, annotstr, 29);
+	m_textEditSource->annotationClearAll();
+	m_textEditSource->annotationSetText(m_annotline, annotstr.toUtf8().data());
+	m_textEditSource->annotationSetStyle(m_annotline, 29);
 }
 
 void fileviewer::recvFuncList(sqlqueryresultlist* reslist)
@@ -805,7 +810,7 @@ void fileviewer::funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * p
 	{
 		num = num - 1; // not sure why it's one off
 	}
-	m_textEditSource->ensureLineVisible(num);
+	m_textEditSource->ensureVisible(num);
 }
 
 void fileviewer::FuncListSort_indexChanged(const int& idx)

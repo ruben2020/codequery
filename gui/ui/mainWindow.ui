@@ -629,7 +629,7 @@
             </item>
            </layout>
           </widget>
-          <widget class="QsciScintilla" name="textEditSource">
+          <widget class="ScintillaEdit" name="textEditSource">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>4</horstretch>
@@ -736,9 +736,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QsciScintilla</class>
+   <class>ScintillaEdit</class>
    <extends>QFrame</extends>
-   <header>Qsci/qsciscintilla.h</header>
+   <header>ScintillaEdit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

@@ -32,8 +32,7 @@ Q_DECLARE_METATYPE(sqlqueryresultlist*)
 
 
 class mainwindow;
-class QsciScintilla;
-class QsciLexer;
+class ScintillaEdit;
 
 
 class filedata
@@ -78,12 +77,14 @@ QPushButton *m_pushButtonTextShrink;
 QPushButton *m_pushButtonTextEnlarge;
 QCheckBox   *m_checkBoxSymbolOnly;
 QLabel *m_labelFilePath;
-QsciScintilla *m_textEditSource;
+ScintillaEdit *m_textEditSource;
 QListWidget *m_listWidgetFunc;
 QComboBox *m_comboBoxFuncListSort;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
+#ifdef CQ_LEXER
 QsciLexer* m_lexer;
+#endif
 int m_fontsize;
 QString m_theme;
 

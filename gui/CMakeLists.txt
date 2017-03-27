@@ -64,7 +64,12 @@ translations/codequery_zh-CHT.ts
   )  
 
   add_definitions( -DNO_QDESIGNER_WIDGET_EXPORT )
-  
+
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
+  INCLUDE_DIRECTORIES( "../scintilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/src" )
+  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
   INCLUDE_DIRECTORIES( "${SQLITE_INCLUDE_DIR}" )
   INCLUDE_DIRECTORIES( "${CMAKE_CURRENT_BINARY_DIR}" )
   INCLUDE_DIRECTORIES( "." )
@@ -87,7 +92,6 @@ if (BUILD_QT5)
   FIND_PACKAGE( Qt5Concurrent REQUIRED )
   FIND_PACKAGE( Qt5Xml REQUIRED )
   FIND_PACKAGE( Qt5LinguistTools REQUIRED )
-  FIND_PACKAGE( Qt5QScintilla REQUIRED )
 
   add_definitions( -DUSE_QT5 )
 
@@ -124,15 +128,14 @@ if (BUILD_QT5)
   # we need this to be able to include headers produced by uic in our code
   # (CMAKE_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
   INCLUDE_DIRECTORIES( "${Qt5Widgets_INCLUDE_DIRS}" )
-  INCLUDE_DIRECTORIES( "${QT5QSCINTILLA_INCLUDE_DIRS}" )
 
 if(WIN32)
   SET(CQ_WIN_RCS cqwin32.rc)
   add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
-  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5 scintillaedit)
 else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
-  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} ${QT5QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5 scintillaedit)
 endif()
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
@@ -149,7 +152,6 @@ else (BUILD_QT5)
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
   FIND_PACKAGE( Qt4 REQUIRED )
-  FIND_PACKAGE( QScintilla REQUIRED )
   
   # add some useful macros and variables
   # (QT_USE_FILE is a variable defined by FIND_PACKAGE( Qt4 ) that contains a path to CMake script)
@@ -189,7 +191,7 @@ else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
 endif()
 
-  target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} ${QSCINTILLA_LIBRARIES} sqlquery_lib small_lib cqshowgraph)
+  target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph scintillaedit)
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 

@@ -380,7 +380,9 @@ void fileviewer::updateTextEdit(void)
 	{
 		alltext = in.readAll();
 	}
+	m_textEditSource->setReadOnly(false);
 	m_textEditSource->setText(alltext.toUtf8().data());
+	m_textEditSource->setReadOnly(true);
 	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
 	highlightLine(m_iter->linenum.toInt());
 	updateFilePathLabel();
@@ -663,7 +665,7 @@ void fileviewer::highlightLine(unsigned int num)
 		m_textEditSource->markerAdd(num, m_markerhandle);
 		m_textEditSource->markerAdd(num, m_markerhandle2);
 	}
-	m_textEditSource->ensureVisible(num);
+	m_textEditSource->setFirstVisibleLine(num);
 	m_currentline = num;
 }
 

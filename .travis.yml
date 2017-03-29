@@ -2,6 +2,10 @@ language: cpp
 
 compiler: gcc
 
+dist: trusty
+
+sudo: require
+
 env:
   global:
    # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
@@ -10,15 +14,13 @@ env:
 
 before_install:
  - uname -a
- - export DEBIAN_FRONTEND=noninteractive
- - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty universe"
- - sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu trusty main"
- - sudo apt-get update -qq
  - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq qdbus qmlscene qt5-default qt5-qmake qtbase5-dev-tools qtchooser qtdeclarative5-dev xbitmaps xterm libqt5svg5-dev qttools5-dev qtscript5-dev qtdeclarative5-folderlistmodel-plugin qtdeclarative5-controls-plugin qttools5-dev-tools
- - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq cmake sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev clang
- - cmake --version
+ - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev clang
 
 script: 
+  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+  - gcc -v && g++ -v && clang -v && cmake --version
   - mkdir -p build
   - cd build
   - rm -rf *
@@ -63,6 +65,13 @@ script:
   - cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
 
 addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-6
+      - g++-6
+      - cmake
   coverity_scan:
     project:
       name: "ruben2020/codequery"

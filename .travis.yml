@@ -16,6 +16,7 @@ before_install:
  - sudo apt-get update -qq
  - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq qdbus qmlscene qt5-default qt5-qmake qtbase5-dev-tools qtchooser qtdeclarative5-dev xbitmaps xterm libqt5svg5-dev qttools5-dev qtscript5-dev qtdeclarative5-folderlistmodel-plugin qtdeclarative5-controls-plugin qttools5-dev-tools
  - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq cmake sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev clang
+ - cmake --version
 
 script: 
   - mkdir -p build

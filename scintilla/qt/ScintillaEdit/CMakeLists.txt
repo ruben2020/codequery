@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 2.8.12)
 project(ScintillaEdit)
 
+SET( CMAKE_CXX_STANDARD 11 )
+SET( CMAKE_CXX_STANDARD_REQUIRED ON )
+
   SET(SCINTILLA_SRCS
     ScintillaEdit.cpp
     ScintillaDocument.cpp

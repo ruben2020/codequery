@@ -21,13 +21,6 @@
 #include <QString>
 #include <QStringList>
 
-#include <Qsci/qsciscintilla.h>
-#include <Qsci/qscilexercpp.h>
-#include <Qsci/qscilexerpython.h>
-#include <Qsci/qscilexerjava.h>
-#include <Qsci/qscilexerruby.h>
-#include <Qsci/qscilexerjavascript.h>
-
 
 #include "small_lib.h"
 #include "fileviewer.h"
@@ -60,6 +53,7 @@ QStringList themes::getThemesList(void)
 	return lst;
 }
 
+#ifdef CQ_LEXER
 void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor)
 {
 	langstyle *lngstyle = NULL;
@@ -119,7 +113,9 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 	curlinebgcolor = QColor(QString("#").append(QString(lngstyle[i].currentlinebgcolor)));
 	linenumbgcolor = QColor(QString("#").append(QString(lngstyle[i].linenumfgcolor)));
 }
+#endif
 
+#ifdef CQ_LEXER
 void themes::setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1)
 {
 	int i;
@@ -154,4 +150,5 @@ void themes::setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize,
 		lexer->setFont(font1, lxstyle[i].styleid);
 	}
 }
+#endif
 

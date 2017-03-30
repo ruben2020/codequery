@@ -28,8 +28,9 @@
 #include <QtGui>
 #endif
 
-
+#ifdef CQ_LEXER
 class QsciLexer;
+#endif
 
 typedef struct
 {
@@ -43,10 +44,12 @@ class themes
 {
 public:
 	static QStringList getThemesList(void);
+#ifdef CQ_LEXER
 	static void setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor);
 
 private:
 	static void setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1);
+#endif
 };
 
 

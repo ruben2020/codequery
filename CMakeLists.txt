@@ -1,9 +1,11 @@
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.2.2)
 project(CodeQuery)
 
 
 option(BUILD_QT5 OFF)
 
+SET( CMAKE_CXX_STANDARD 11 )
+SET( CMAKE_CXX_STANDARD_REQUIRED ON )
 
 IF(MSVC)
 ADD_DEFINITIONS(/D _CRT_SECURE_NO_WARNINGS)

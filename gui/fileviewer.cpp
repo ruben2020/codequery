@@ -179,6 +179,7 @@ void fileviewer::createFontList(void)
 
 void fileviewer::init(void)
 {
+	Scintilla_LinkLexers();
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);

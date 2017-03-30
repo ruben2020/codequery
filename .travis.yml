@@ -18,8 +18,8 @@ before_install:
  - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq sqlite3 libsqlite3-dev cscope exuberant-ctags rpm libqt5scintilla2-dev qt4-dev-tools libqscintilla2-dev clang
 
 script: 
-  - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+  - sudo ln -s /usr/bin/gcc-4.8 /usr/local/bin/gcc
+  - sudo ln -s /usr/bin/g++-4.8 /usr/local/bin/g++
   - gcc -v && g++ -v && clang -v && cmake --version
   - mkdir -p build
   - cd build
@@ -69,8 +69,8 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-6
-      - g++-6
+      - gcc-4.8
+      - g++-4.8
       - cmake
   coverity_scan:
     project:

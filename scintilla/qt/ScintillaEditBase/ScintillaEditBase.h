@@ -85,6 +85,7 @@ signals:
 	void key(int key);
 	void doubleClick(int position, int line);
 	void updateUi();
+	void selectionChanged(bool copyavail); // CodeQuery
 	void modified(int type, int position, int length, int linesAdded,
 	              const QByteArray &text, int line, int foldNow, int foldPrev);
 	void macroRecord(int message, uptr_t wParam, sptr_t lParam);

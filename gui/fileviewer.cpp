@@ -201,8 +201,9 @@ void fileviewer::init(void)
 	m_textEditSource->annotationSetVisible(ANNOTATION_BOXED);
 	m_textEditSource->setCodePage(SC_CP_UTF8);
 	setLexer(enHighlightCPP);
-	createFontList(); 
-	connect(m_textEditSource, SIGNAL(copyAvailable(bool)),
+	createFontList();
+	ScintillaEditBase *textEditSourceBase = m_textEditSource;
+	connect(textEditSourceBase, SIGNAL(selectionChanged(bool)),
 			this, SLOT(AbleToCopy(bool)));
 	connect(m_pushButtonGoToLine, SIGNAL(clicked(bool)),
 			this, SLOT(GoToLine_ButtonClick(bool)));
@@ -408,15 +409,13 @@ void fileviewer::updateFilePathLabel(void)
 
 void fileviewer::AbleToCopy(bool copy)
 {
-	//int lineFrom, indexFrom, lineTo, indexTo;
 	m_pushButtonPaste->setEnabled(copy);
+	m_textEditSource->annotationClearAll();
 	if (copy)
 	{
 		m_textEditSource->copy();
-		//m_textEditSource->getSelection(&lineFrom, &indexFrom, &lineTo, &indexTo);
 		m_annotline = m_textEditSource->lineFromPosition(m_textEditSource->selectionEnd());
 		QString str = (QApplication::clipboard())->text();
-		m_textEditSource->annotationClearAll();
 		if (str.length() > 0)
 			emit requestAnnotation(str);
 	}

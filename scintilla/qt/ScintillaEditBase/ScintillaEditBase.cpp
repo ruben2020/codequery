@@ -670,6 +670,7 @@ QVariant ScintillaEditBase::inputMethodQuery(Qt::InputMethodQuery query) const
 
 void ScintillaEditBase::notifyParent(SCNotification scn)
 {
+	unsigned char updatedchar;
 	emit notify(&scn);
 	switch (scn.nmhdr.code) {
 		case SCN_STYLENEEDED:
@@ -702,6 +703,12 @@ void ScintillaEditBase::notifyParent(SCNotification scn)
 
 		case SCN_UPDATEUI:
 			emit updateUi();
+			// CodeQuery
+			updatedchar = (unsigned char) scn.updated;
+			if ((updatedchar & (SC_UPDATE_SELECTION)) == (SC_UPDATE_SELECTION))
+			{
+				emit selectionChanged(send(SCI_GETSELTEXT, 0, 0) > 1);
+			}
 			break;
 
 		case SCN_MODIFIED:

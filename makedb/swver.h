@@ -1,21 +1,12 @@
 
 /*
  * CodeQuery
- * Copyright (C) 2013-2016 ruben2020 https://github.com/ruben2020/
+ * Copyright (C) 2013-2017 ruben2020 https://github.com/ruben2020/
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
  */
 
 
@@ -29,46 +20,47 @@
 	"<p><a href=\"http://ruben2020.github.io/codequery/\">Official Website</a></p>"\
 	"<p><a href=\"https://github.com/ruben2020/codequery\">GitHub Page</a></p>"
 
+
 #define CODEQUERY_SW_LICENSE  \
 "Copyright (C) 2013-2017 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
-"This program is free software: you can redistribute it and/or modify\n" \
-"it under the terms of the GNU General Public License as published by\n" \
-"the Free Software Foundation, either version 2 of the License, or\n" \
-"(at your option) any later version.\n\n" \
-"This program is distributed in the hope that it will be useful,\n" \
+"The Source Code Form and the Executable Form of this software\n" \
+"are subject to the terms of the Mozilla Public License, v. 2.0.\n" \
+"If a copy of the MPL was not distributed with this software,\n" \
+"You can obtain one at http://mozilla.org/MPL/2.0/.\n\n" \
+"The Source Code Form of this software can be obtained from:\n" \
+"https://github.com/ruben2020/codequery\n\n" \
+"This software is distributed in the hope that it will be useful,\n" \
 "but WITHOUT ANY WARRANTY; without even the implied warranty of\n" \
 "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" \
-"GNU General Public License for more details.\n\n" \
-"You should have received a copy of the GNU General Public License\n" \
-"along with this program.  If not, see <http://www.gnu.org/licenses/>\n\n"
+"Mozilla Public License, v. 2.0 for more details.\n\n" \
 
 #define CODEQUERY_SW_LICENSE_PARA  \
 "Copyright (C) 2013-2017 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
-"This program is free software: you can redistribute it and/or modify " \
-"it under the terms of the GNU General Public License as published by " \
-"the Free Software Foundation, either version 2 of the License, or " \
-"(at your option) any later version.\n\n" \
-"This program is distributed in the hope that it will be useful, " \
+"The Source Code Form and the Executable Form of this software " \
+"are subject to the terms of the Mozilla Public License, v. 2.0. " \
+"If a copy of the MPL was not distributed with this software, " \
+"You can obtain one at http://mozilla.org/MPL/2.0/.\n\n" \
+"The Source Code Form of this software can be obtained from: " \
+"https://github.com/ruben2020/codequery\n\n" \
+"This software is distributed in the hope that it will be useful, " \
 "but WITHOUT ANY WARRANTY; without even the implied warranty of " \
 "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the " \
-"GNU General Public License for more details.\n\n" \
-"You should have received a copy of the GNU General Public License " \
-"along with this program.  If not, see <http://www.gnu.org/licenses/>\n"
+"Mozilla Public License, v. 2.0 for more details.\n\n" \
 
 #define CODEQUERY_SW_LICENSE_PARA_LINK  \
 "<p>Copyright (C) 2013-2017 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
-"<p>This program is free software: you can redistribute it and/or modify " \
-"it under the terms of the GNU General Public License as published by " \
-"the Free Software Foundation, either version 2 of the License, or " \
-"(at your option) any later version.</p>\n\n" \
-"<p>This program is distributed in the hope that it will be useful, " \
+"<p>The Source Code Form and the Executable Form of this software " \
+"are subject to the terms of the Mozilla Public License, v. 2.0. " \
+"If a copy of the MPL was not distributed with this software, " \
+"You can obtain one at <a href=\"http://mozilla.org/MPL/2.0/\">http://mozilla.org/MPL/2.0/</a>.</p>\n\n" \
+"<p>The Source Code Form of this software can be obtained from: " \
+"<a href=\"https://github.com/ruben2020/codequery\">https://github.com/ruben2020/codequery</a></p>\n\n" \
+"<p>This software is distributed in the hope that it will be useful, " \
 "but WITHOUT ANY WARRANTY; without even the implied warranty of " \
 "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the " \
-"GNU General Public License for more details.</p>\n\n" \
-"<p>You should have received a copy of the GNU General Public License " \
-"along with this program.  If not, see <a href=\"http://www.gnu.org/licenses\">http://www.gnu.org/licenses</a></p>\n"
+"Mozilla Public License, v. 2.0 for more details.</p>\n\n" \
 
 
 /**

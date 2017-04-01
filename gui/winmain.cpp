@@ -1,12 +1,12 @@
 
-#ifdef _MSC_VER
-
 /*
 
 Taken from:
-https://github.com/jlnr/gosu/blob/master/GosuImpl/WinMain.cpp
+https://github.com/gosu/gosu/blob/master/src/WinMain.cpp
 
-Copyright (C) 2004-2013 Julian Raschke, Jan Lücker and all contributors.
+This license applies only to this file:
+
+Copyright (C) 2001-2017 Julian Raschke, Jan Lücker and all contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -30,6 +30,8 @@ DEALINGS IN THE SOFTWARE.
                         http://www.libgosu.org/
 
 */
+
+#ifdef _MSC_VER
 
 #include <windows.h>
 #include <exception>
@@ -100,3 +102,4 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 }
 
 #endif
+

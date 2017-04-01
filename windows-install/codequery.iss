@@ -7,7 +7,6 @@ Source: "\workspace\codequery\windows-install\LICENSE.txt"; DestDir: "{app}"; Fl
 Source: "\workspace\codequery\windows-install\HOWTO-WINDOWS.txt"; DestDir: "{app}"; Flags: overwritereadonly
 Source: "\workspace\codequery\windows-install\cscope.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\workspace\codequery\windows-install\ctags.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "\Qt\4.8.6\bin\qscintilla2.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\Qt\4.8.6\bin\QtCore4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\Qt\4.8.6\bin\QtGui4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\Qt\4.8.6\bin\QtXml4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly

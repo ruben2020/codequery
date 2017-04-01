@@ -202,7 +202,7 @@ We thank the people behind the following projects:
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
-[scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
+[scintilla](http://www.scintilla.org/) - our code editing widget    
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    

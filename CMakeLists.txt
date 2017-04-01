@@ -33,12 +33,12 @@ if (UNIX)
 if (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt5" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.4.0) , libsqlite3-0 (>= 3.7.0) , libqt5scintilla2-12v5 (>= 2.6.0)" )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.4.0) , libsqlite3-0 (>= 3.7.0) " )
 
 else (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt4" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtcore4 (>= 4.8.0), libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) , libqscintilla2-12v5 (>= 2.6.0)" )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtcore4 (>= 4.8.0), libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) " )
 
 endif (BUILD_QT5)
 

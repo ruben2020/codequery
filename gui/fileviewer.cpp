@@ -184,7 +184,7 @@ void fileviewer::init(void)
 	m_pushButtonGoToLine->setEnabled(false);
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
-	m_textEditSource->clear();
+	clearTextEdit();
 	m_textEditSource->setWrapMode(SC_WRAP_NONE);
 	m_textEditSource->setReadOnly(true);
 	m_markerhandle = 0;
@@ -233,7 +233,7 @@ void fileviewer::clearList()
 	m_pushButtonGoToLine->setEnabled(false);
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
-	m_textEditSource->clear();
+	clearTextEdit();
 	m_fileDataList.clear();
 	m_iter = m_fileDataList.begin();
 	m_timestampMismatchWarned = false;
@@ -337,11 +337,18 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 	m_iter = m_fileDataList.end() - 1;
 }
 
+void fileviewer::clearTextEdit(void)
+{
+	m_textEditSource->setReadOnly(false);
+	m_textEditSource->clearAll();
+	m_textEditSource->setReadOnly(true);
+}
+
 void fileviewer::updateTextEdit(void)
 {
 	if (m_iter == m_fileDataList.end()) return;
 	QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
-	m_textEditSource->clear();
+	clearTextEdit();
 
 	QFile file(m_iter->filename);
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -370,7 +377,6 @@ void fileviewer::updateTextEdit(void)
 	if (pos != -1) lang = enHighlightJavascript;
 
 	m_currentlang = lang;
-	setLexer(lang);
 
 	QString alltext;
 	while (!in.atEnd())
@@ -390,6 +396,7 @@ void fileviewer::updateTextEdit(void)
 	m_listWidgetFunc->clear();
 	if (m_iter->fileid < 0)	{emit requestFuncList_filename(m_iter->filename);}
 	else {emit requestFuncList_fileid(m_iter->fileid);}
+	setLexer(lang);
 	QApplication::restoreOverrideCursor();
 }
 
@@ -487,7 +494,7 @@ void fileviewer::Next_ButtonClick(bool checked)
 void fileviewer::handleFileCannotBeOpenedCase(void)
 {
 	//printf("handleFileCannotBeOpenedCase\n");
-	m_textEditSource->clear();
+	clearTextEdit();
 	m_pushButtonTextShrink->setEnabled(false);
 	m_pushButtonTextEnlarge->setEnabled(false);
 	m_pushButtonGoToLine->setEnabled(false);	
@@ -793,7 +800,7 @@ void fileviewer::funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * p
 	{
 		num = num - 1; // not sure why it's one off
 	}
-	m_textEditSource->ensureVisible(num);
+	m_textEditSource->setFirstVisibleLine(num);
 }
 
 void fileviewer::FuncListSort_indexChanged(const int& idx)

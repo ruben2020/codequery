@@ -705,6 +705,8 @@ void ScintillaEditBase::notifyParent(SCNotification scn)
 			emit updateUi();
 			// CodeQuery
 			updatedchar = (unsigned char) scn.updated;
+			/*static int i=0;
+			printf("Something happened %d ==> %d\n", i++, updatedchar);*/
 			if ((updatedchar & (SC_UPDATE_SELECTION)) == (SC_UPDATE_SELECTION))
 			{
 				emit selectionChanged(send(SCI_GETSELTEXT, 0, 0) > 1);

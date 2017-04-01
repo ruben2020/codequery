@@ -146,6 +146,7 @@ void highlightLine(unsigned int num = 0);
 void setLexer(int lang = -1);
 void replaceLexer(int sclang, int lang);
 void clearTextEdit(void);
+void braceMatchCheck(void);
 
 };
 

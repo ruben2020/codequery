@@ -184,7 +184,6 @@ void fileviewer::init(void)
 	m_pushButtonGoToLine->setEnabled(false);
 	m_pushButtonOpenInEditor->setEnabled(false);
 	m_labelFilePath->clear();
-	clearTextEdit();
 	m_textEditSource->setWrapMode(SC_WRAP_NONE);
 	m_textEditSource->setReadOnly(true);
 	m_markerhandle = 0;
@@ -193,9 +192,9 @@ void fileviewer::init(void)
 	m_textEditSource->markerDefine(m_markerhandle2, SC_MARK_ARROW);
 	m_textEditSource->setMarginTypeN(0, SC_MARGIN_NUMBER);
 	m_textEditSource->setMarginTypeN(1, SC_MARGIN_SYMBOL);
-	//m_textEditSource->setBraceMatching(ScintillaEdit::SloppyBraceMatch);
 	m_textEditSource->annotationSetVisible(ANNOTATION_BOXED);
 	m_textEditSource->setCodePage(SC_CP_UTF8);
+	m_textEditSource->setCaretPeriod(0);
 	createFontList();
 	ScintillaEditBase *textEditSourceBase = m_textEditSource;
 	connect(textEditSourceBase, SIGNAL(selectionChanged(bool)),
@@ -219,6 +218,7 @@ void fileviewer::init(void)
 	connect(m_comboBoxFuncListSort, SIGNAL(currentIndexChanged(int)),
 			this, SLOT(FuncListSort_indexChanged(int)));
 	m_fileDataList.clear();
+	clearTextEdit();
 	setLexer();
 }
 
@@ -409,10 +409,24 @@ void fileviewer::updateFilePathLabel(void)
 	m_pushButtonGoToLine->setEnabled(true);
 }
 
+void fileviewer::braceMatchCheck(void)
+{
+	long cpos, matchpos;
+	cpos     = m_textEditSource->currentPos();
+	matchpos = m_textEditSource->braceMatch(cpos, 0);
+	if (matchpos == -1)
+	{
+		cpos--;
+		matchpos = m_textEditSource->braceMatch(cpos, 0);
+	}
+	if (matchpos != -1) m_textEditSource->braceHighlight(cpos, matchpos);
+}
+
 void fileviewer::AbleToCopy(bool copy)
 {
 	m_pushButtonPaste->setEnabled(copy);
 	m_textEditSource->annotationClearAll();
+	braceMatchCheck();
 	if (copy)
 	{
 		m_textEditSource->copy();
@@ -738,6 +752,7 @@ void fileviewer::replaceLexer(int sclang, int lang)
 				break;
 		}
 		m_textEditSource->setLexer(m_lexer);
+		m_textEditSource->clearDocumentStyle();
 		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
 	}

@@ -248,6 +248,7 @@ void themes::setTheme(const QString& theme, int lang, ScintillaEdit* lexer, cons
 			lexer->styleSetBold(  STYLE_DEFAULT, false);
 			lexer->styleSetItalic(STYLE_DEFAULT, false);
 			lexer->styleClearAll();
+			lexer->setCaretFore(deffgcolor);
 			break;
 		}
 		i++;

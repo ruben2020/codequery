@@ -21,10 +21,17 @@
 #include <QString>
 #include <QStringList>
 
+#include "ScintillaEdit.h"
 
 #include "small_lib.h"
 #include "fileviewer.h"
 #include "themes.h"
+
+#ifdef USE_QT5
+#define QT45_TOASCII(x) toLatin1(x)
+#else
+#define QT45_TOASCII(x) toAscii(x)
+#endif
 
 
 typedef struct
@@ -53,8 +60,16 @@ QStringList themes::getThemesList(void)
 	return lst;
 }
 
-#ifdef CQ_LEXER
-void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor)
+long themes::QC2SC(QColor colour)
+{
+	long retval;
+	retval  =  (long) colour.red();
+	retval |= ((long) colour.green()) << 8;
+	retval |= ((long) colour.blue())  << 16;
+	return  retval;
+}
+
+void themes::setTheme(const QString& theme, int lang, ScintillaEdit* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor)
 {
 	langstyle *lngstyle = NULL;
 	lexstyle *lxstyle = NULL;
@@ -62,6 +77,8 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 	int i=0;
 	int lxstylesize=0;
 	int globallxstylesize=0;
+	long defbgcolor;
+	long deffgcolor;
 	QFont font1 = fontt;
 	//font1.setFixedPitch(true);
 	font1.setBold(false);
@@ -101,9 +118,14 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 			globallxstyle = (lexstyle *) lngstyle[i].globallexstyletable;
 			lxstylesize = lngstyle[i].lexstylesize;
 			globallxstylesize = lngstyle[i].globallexstylesize;
-			lexer->setPaper(QColor(QString("#").append(QString(lngstyle[i].defaultbgcolor))));
-			lexer->setColor(QColor(QString("#").append(QString(lngstyle[i].defaultfgcolor))));
-			lexer->setFont(font1);
+			defbgcolor = QC2SC(QColor(QString("#").append(QString(lngstyle[i].defaultbgcolor))));
+			deffgcolor = QC2SC(QColor(QString("#").append(QString(lngstyle[i].defaultfgcolor))));
+			lexer->styleSetBack(  STYLE_DEFAULT, defbgcolor);
+			lexer->styleSetFore(  STYLE_DEFAULT, deffgcolor);
+			lexer->styleSetFont(  STYLE_DEFAULT, font1.family().QT45_TOASCII().data());
+			lexer->styleSetBold(  STYLE_DEFAULT, false);
+			lexer->styleSetItalic(STYLE_DEFAULT, false);
+			lexer->styleClearAll();
 			break;
 		}
 		i++;
@@ -113,42 +135,40 @@ void themes::setTheme(const QString& theme, int lang, QsciLexer* lexer, const QF
 	curlinebgcolor = QColor(QString("#").append(QString(lngstyle[i].currentlinebgcolor)));
 	linenumbgcolor = QColor(QString("#").append(QString(lngstyle[i].linenumfgcolor)));
 }
-#endif
 
-#ifdef CQ_LEXER
-void themes::setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1)
+void themes::setThemeStyle(ScintillaEdit* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1)
 {
 	int i;
 	if (lxstyle != NULL)
 	for(i=0; i<lxstylesize; i++)
 	{
-		lexer->setPaper(QColor(QString("#").append(QString(lxstyle[i].bgcolor))), lxstyle[i].styleid);
-		lexer->setColor(QColor(QString("#").append(QString(lxstyle[i].fgcolor))), lxstyle[i].styleid);
+		if ((lxstyle[i].styleid == 0) || (lxstyle[i].styleid == STYLE_DEFAULT)) continue;
+		lexer->styleSetBack(lxstyle[i].styleid, QC2SC(QColor(QString("#").append(QString(lxstyle[i].bgcolor)))));
+		lexer->styleSetFore(lxstyle[i].styleid, QC2SC(QColor(QString("#").append(QString(lxstyle[i].fgcolor)))));
+		lexer->styleSetFont(lxstyle[i].styleid, font1.family().QT45_TOASCII().data());
 		switch(lxstyle[i].fontstyle)
 		{
 			case 1:
-				font1.setBold(true);
-				font1.setItalic(false);
+				lexer->styleSetBold(lxstyle[i].styleid, true);
+				lexer->styleSetItalic(lxstyle[i].styleid, false);
 				break;
 
 			case 2:
-				font1.setBold(false);
-				font1.setItalic(true);
+				lexer->styleSetBold(lxstyle[i].styleid, false);
+				lexer->styleSetItalic(lxstyle[i].styleid, true);
 				break;
 
 			case 3:
-				font1.setBold(true);
-				font1.setItalic(true);
+				lexer->styleSetBold(lxstyle[i].styleid, true);
+				lexer->styleSetItalic(lxstyle[i].styleid, true);
 				break;
 
 			default:
-				font1.setBold(false);
-				font1.setItalic(false);
+				lexer->styleSetBold(lxstyle[i].styleid, false);
+				lexer->styleSetItalic(lxstyle[i].styleid, false);
 				break;
 
 		}
-		lexer->setFont(font1, lxstyle[i].styleid);
 	}
 }
-#endif
 

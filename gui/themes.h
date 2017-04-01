@@ -28,9 +28,7 @@
 #include <QtGui>
 #endif
 
-#ifdef CQ_LEXER
-class QsciLexer;
-#endif
+class ScintillaEdit;
 
 typedef struct
 {
@@ -44,12 +42,11 @@ class themes
 {
 public:
 	static QStringList getThemesList(void);
-#ifdef CQ_LEXER
-	static void setTheme(const QString& theme, int lang, QsciLexer* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor);
+	static void setTheme(const QString& theme, int lang, ScintillaEdit* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor);
+	static long QC2SC(QColor colour);
 
 private:
-	static void setThemeStyle(QsciLexer* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1);
-#endif
+	static void setThemeStyle(ScintillaEdit* lexer, lexstyle *lxstyle, int lxstylesize, QFont& font1);
 };
 
 

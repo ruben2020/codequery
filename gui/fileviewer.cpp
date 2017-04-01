@@ -25,6 +25,7 @@
 #include <QFontDatabase>
 
 #include "ScintillaEdit.h"
+#include "SciLexer.h"
 
 #include "fileviewer.h"
 #include "mainwindow.h"
@@ -132,9 +133,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
-#ifdef CQ_LEXER
-,m_lexer(NULL)
-#endif
+,m_lexer(SCLEX_NULL)
 ,m_fontsize(0)
 ,m_currentlang(enHighlightCPP)
 ,m_currentline(1)
@@ -155,9 +154,6 @@ fileviewer::fileviewer(mainwindow* pmw)
 fileviewer::~fileviewer()
 {
 	disconnect();
-#ifdef CQ_LEXER
-	if (m_lexer != NULL) delete m_lexer;
-#endif
 }
 
 void fileviewer::createFontList(void)
@@ -671,85 +667,70 @@ void fileviewer::highlightLine(unsigned int num)
 
 void fileviewer::setLexer(int lang)
 {
-#ifdef CQ_LEXER
 	if (lang == -1) lang = m_currentlang;
-	if (m_lexer == NULL)
-	{
-		m_lexer = new QsciLexerCPP(m_textEditSource);
-		//m_lexer->setFont(m_textEditSourceFont);
-		m_textEditSource->setLexer(m_lexer);
-		m_textEditSource->setZoom(m_fontsize);
-		m_themelast = "1234";
-	}
 
 	switch(lang)
 	{
 
 		case enHighlightCPP:
-			replaceLexer("C++", lang);
+			replaceLexer(SCLEX_CPP, lang);
 			break;
 
 		case enHighlightPython:
-			replaceLexer("Python", lang);
+			replaceLexer(SCLEX_PYTHON, lang);
 			break;
 
 		case enHighlightJava:
-			replaceLexer("Java", lang);
+			replaceLexer(SCLEX_CPP, lang);
 			break;
 
 		case enHighlightRuby:
-			replaceLexer("Ruby", lang);
+			replaceLexer(SCLEX_RUBY, lang);
 			break;
 
 		case enHighlightJavascript:
-			replaceLexer("JavaScript", lang);
+			replaceLexer(SCLEX_CPP, lang);
 			break;
 
 		default:
-			replaceLexer("C++", lang);
+			replaceLexer(SCLEX_CPP, lang);
 			break;
 
 	}
-#endif
 }
 
-void fileviewer::replaceLexer(const char* langstr, int lang)
+void fileviewer::replaceLexer(int sclang, int lang)
 {
-#ifdef CQ_LEXER
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
-	if ((strlen(m_lexer->language()) != strlen(langstr)) ||
-		(strcmp(m_lexer->language(), langstr) != 0))
+	if (m_lexer != sclang)
 	{
-		m_textEditSource->setLexer(NULL);
-		delete m_lexer;
 		switch (lang)
 		{
 			case enHighlightCPP:
-				m_lexer = new QsciLexerCPP(m_textEditSource);
+				m_lexer = SCLEX_CPP;
 				break;
 
 			case enHighlightPython:
-				m_lexer = new QsciLexerPython(m_textEditSource);
+				m_lexer = SCLEX_PYTHON;
 				break;
 
 			case enHighlightJava:
-				m_lexer = new QsciLexerJava(m_textEditSource);
+				m_lexer = SCLEX_CPP;
 				break;
 
 			case enHighlightRuby:
-				m_lexer = new QsciLexerRuby(m_textEditSource);
+				m_lexer = SCLEX_RUBY;
 				break;
 
 			case enHighlightJavascript:
-				m_lexer = new QsciLexerJavaScript(m_textEditSource);
+				m_lexer = SCLEX_CPP;
 				break;
 
 			default:
-				m_lexer = new QsciLexerCPP(m_textEditSource);
+				m_lexer = SCLEX_CPP;
 				break;
 		}
-		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setLexer(m_lexer);
 		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
@@ -757,16 +738,16 @@ void fileviewer::replaceLexer(const char* langstr, int lang)
 	if (m_themelast.compare(m_theme) != 0)
 	{
 		m_themelast = m_theme;
-		themes::setTheme(m_theme, lang, m_lexer, m_textEditSourceFont, markerlinebgcolor, linenumfgcolor);
-		m_textEditSource->setMarkerBackgroundColor(markerlinebgcolor, m_markerhandle);
-		m_textEditSource->setMarkerBackgroundColor(linenumfgcolor, m_markerhandle2);
-		m_textEditSource->setMarginsFont(m_textEditSourceFont);
-		//m_textEditSource->setLexer(m_lexer);
+		themes::setTheme(m_theme, lang, m_textEditSource, m_textEditSourceFont, markerlinebgcolor, linenumfgcolor);
+		m_textEditSource->markerSetBack(m_markerhandle, themes::QC2SC(markerlinebgcolor));
+		m_textEditSource->markerSetBack(m_markerhandle2, themes::QC2SC(linenumfgcolor));
+		m_textEditSource->markerSetAlpha(m_markerhandle, SC_ALPHA_NOALPHA);
+		m_textEditSource->markerSetAlpha(m_markerhandle2, SC_ALPHA_NOALPHA);
+		m_textEditSource->styleSetFont(STYLE_LINENUMBER, m_textEditSourceFont.family().QT45_TOASCII().data());
 		m_textEditSource->setZoom(m_fontsize);
 		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
-		m_textEditSource->recolor();
+		m_textEditSource->colourise(0, -1);
 	}
-#endif
 }
 
 void fileviewer::annotate(QString annotstr)

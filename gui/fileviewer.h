@@ -82,9 +82,7 @@ QListWidget *m_listWidgetFunc;
 QComboBox *m_comboBoxFuncListSort;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
-#ifdef CQ_LEXER
-QsciLexer* m_lexer;
-#endif
+int m_lexer;
 int m_fontsize;
 QString m_theme;
 
@@ -146,7 +144,7 @@ void createFontList(void);
 void textSizeChange(int n);
 void highlightLine(unsigned int num = 0);
 void setLexer(int lang = -1);
-void replaceLexer(const char* langstr, int lang);
+void replaceLexer(int sclang, int lang);
 
 };
 

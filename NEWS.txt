@@ -1,5 +1,6 @@
 
-Version 0.19.0 - Mar 26, 2017
+Version 0.19.0 - Apr 2, 2017
+Migrated from GPLv2 to MPLv2 because of incompatibility with Qt5's license
 Now officially supporting Qt5 for Linux and Mac, but Qt4 for Windows
 Unicode UTF-8 files now viewable on CodeQuery GUI
 Source code preview text line length now unlimited in database

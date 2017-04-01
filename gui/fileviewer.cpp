@@ -196,7 +196,6 @@ void fileviewer::init(void)
 	//m_textEditSource->setBraceMatching(ScintillaEdit::SloppyBraceMatch);
 	m_textEditSource->annotationSetVisible(ANNOTATION_BOXED);
 	m_textEditSource->setCodePage(SC_CP_UTF8);
-	setLexer(enHighlightCPP);
 	createFontList();
 	ScintillaEditBase *textEditSourceBase = m_textEditSource;
 	connect(textEditSourceBase, SIGNAL(selectionChanged(bool)),
@@ -703,7 +702,7 @@ void fileviewer::replaceLexer(int sclang, int lang)
 {
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
-	if (m_lexer != sclang)
+	//if (m_lexer != sclang)
 	{
 		switch (lang)
 		{
@@ -735,7 +734,7 @@ void fileviewer::replaceLexer(int sclang, int lang)
 		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
 	}
-	if (m_themelast.compare(m_theme) != 0)
+	//if (m_themelast.compare(m_theme) != 0)
 	{
 		m_themelast = m_theme;
 		themes::setTheme(m_theme, lang, m_textEditSource, m_textEditSourceFont, markerlinebgcolor, linenumfgcolor);
@@ -746,6 +745,7 @@ void fileviewer::replaceLexer(int sclang, int lang)
 		m_textEditSource->styleSetFont(STYLE_LINENUMBER, m_textEditSourceFont.family().QT45_TOASCII().data());
 		m_textEditSource->setZoom(m_fontsize);
 		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
+		themes::setKeywords(lang, m_textEditSource);
 		m_textEditSource->colourise(0, -1);
 	}
 }

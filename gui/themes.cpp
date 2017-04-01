@@ -33,7 +33,6 @@
 #define QT45_TOASCII(x) toAscii(x)
 #endif
 
-
 typedef struct
 {
 	const char *themename;
@@ -50,6 +49,92 @@ typedef struct
 
 #include "themes_gen.cpp"
 
+// Keywords lists below taken from langs.model.xml of Notepad++
+
+const char* python_keywords =
+"and as assert break class continue def "
+"del elif else except exec False finally "
+"for from global if import in is lambda "
+"None not or pass print raise return "
+"True try while with yield async await";
+
+const char* ruby_keywords =
+"ARGF ARGV BEGIN END ENV FALSE DATA NIL "
+"RUBY_PATCHLEVEL RUBY_PLATFORM RUBY_RELEASE_DATE "
+"RUBY_VERSION PLATFORM RELEASE_DATE STDERR STDIN "
+"STDOUT TOPLEVEL_BINDING TRUE __ENCODING__ "
+"__END__ __FILE__ __LINE__ alias and begin break "
+"case class def defined? do else elsif end ensure "
+"false for if in module next nil not or redo rescue "
+"retry return self super then true undef "
+"unless until when while yield";
+
+const char* js_keywords =
+"abstract async await boolean break byte case catch "
+"char class const continue debugger default delete do "
+"double else enum export extends final finally float "
+"for from function goto if implements import in instanceof "
+"int interface let long native new null of package private "
+"protected public return short static super switch synchronized "
+"this throw throws transient try typeof var void "
+"volatile while with true false prototype yield";
+
+const char* js_types =
+"Array Date eval hasOwnProperty Infinity isFinite isNaN "
+"isPrototypeOf Math NaN Number Object prototype "
+"String toString undefined valueOf";
+
+const char* java_keywords =
+"instanceof assert if else switch case default break goto "
+"return for while do continue new throw throws try catch "
+"finally this super extends implements import true false null";
+
+const char* java_types =
+"package transient strictfp void char short int long double "
+"float const static volatile byte boolean class interface "
+"native private protected public final abstract synchronized enum";
+
+const char* cpp_keywords =
+"alignof and and_eq bitand bitor break case catch compl const_cast "
+"continue default delete do dynamic_cast else false for goto if "
+"namespace new not not_eq nullptr operator or or_eq reinterpret_cast "
+"return sizeof static_assert static_cast switch this "
+"throw true try typedef typeid using while xor xor_eq NULL";
+
+const char* cpp_types =
+"alignas asm auto bool char char16_t char32_t class clock_t "
+"const constexpr decltype double enum explicit export extern "
+"final float friend inline int int8_t int16_t int32_t int64_t "
+"int_fast8_t int_fast16_t int_fast32_t int_fast64_t intmax_t "
+"intptr_t long mutable noexcept override private protected "
+"ptrdiff_t public register short signed size_t ssize_t static "
+"struct template thread_local time_t typename uint8_t uint16_t "
+"uint32_t uint64_t uint_fast8_t uint_fast16_t uint_fast32_t "
+"uint_fast64_t uintmax_t uintptr_t union "
+"unsigned virtual void volatile wchar_t";
+
+const char* cpp_docwords =
+"a addindex addtogroup anchor arg attention author authors b brief "
+"bug c callergraph callgraph category cite class code cond "
+"copybrief copydetails copydoc copyright date def defgroup deprecated "
+"details diafile dir docbookonly dontinclude dot dotfile e else elseif "
+"em endcode endcond enddocbookonly enddot endhtmlonly endif endinternal "
+"endlatexonly endlink endmanonly endmsc endparblock endrtfonly "
+"endsecreflist enduml endverbatim endxmlonly enum example exception "
+"extends f$ f[ f] file fn f{ f} headerfile hidecallergraph hidecallgraph "
+"hideinitializer htmlinclude htmlonly idlexcept if ifnot image "
+"implements include includelineno ingroup interface internal invariant "
+"latexinclude latexonly li line link mainpage manonly memberof msc mscfile "
+"n name namespace nosubgrouping note overload p package page par paragraph "
+"param parblock post pre private privatesection property protected "
+"protectedsection protocol public publicsection pure ref refitem related "
+"relatedalso relates relatesalso remark remarks result return returns "
+"retval rtfonly sa secreflist section see short showinitializer since "
+"skip skipline snippet startuml struct subpage subsection subsubsection "
+"tableofcontents test throw throws todo tparam typedef union until var "
+"verbatim verbinclude version vhdlflow warning weakgroup xmlonly xrefitem";
+
+
 QStringList themes::getThemesList(void)
 {
 	QStringList lst;
@@ -58,6 +143,41 @@ QStringList themes::getThemesList(void)
 		lst << QString::fromLatin1(themelist[i]);
 	}
 	return lst;
+}
+
+void themes::setKeywords(int lang, ScintillaEdit* lexer)
+{
+	int i;
+	for (i=1; i <= 2; i++) lexer->setKeyWords(i, " ");
+	switch(lang)
+	{
+		case enHighlightPython:
+		lexer->setKeyWords(0, python_keywords);
+		break;
+
+		case enHighlightJava:
+		lexer->setKeyWords(0, java_keywords);
+		lexer->setKeyWords(1, java_types);
+		break;
+
+		case enHighlightRuby:
+		lexer->setKeyWords(0, ruby_keywords);
+		break;
+
+		case enHighlightJavascript:
+		lexer->setKeyWords(0, js_keywords);
+		lexer->setKeyWords(1, js_types);
+		break;
+
+		case enHighlightCPP:
+			// fall through
+		default:
+		lexer->setKeyWords(0, cpp_keywords);
+		lexer->setKeyWords(1, cpp_types);
+		lexer->setKeyWords(2, cpp_docwords);
+		break;
+	}
+
 }
 
 long themes::QC2SC(QColor colour)
@@ -83,6 +203,7 @@ void themes::setTheme(const QString& theme, int lang, ScintillaEdit* lexer, cons
 	//font1.setFixedPitch(true);
 	font1.setBold(false);
 	font1.setItalic(false);
+	for (i=0; i < 4; i++) lexer->setKeyWords(i, "");
 	switch(lang)
 	{
 		case enHighlightCPP:
@@ -103,13 +224,14 @@ void themes::setTheme(const QString& theme, int lang, ScintillaEdit* lexer, cons
 
 		case enHighlightJavascript:
 		lngstyle = (langstyle *) cppstyle;
-//		lngstyle = (langstyle *) javascriptstyle;
+		//lngstyle = (langstyle *) javascriptstyle;
 		break;
 
 		default:
 		lngstyle = (langstyle *) cppstyle;
 		break;
 	}
+	i = 0;
 	while (lngstyle[i].lexstylesize > 0)
 	{
 		if (theme.compare(QString(lngstyle[i].themename)) == 0)
@@ -142,7 +264,10 @@ void themes::setThemeStyle(ScintillaEdit* lexer, lexstyle *lxstyle, int lxstyles
 	if (lxstyle != NULL)
 	for(i=0; i<lxstylesize; i++)
 	{
-		if ((lxstyle[i].styleid == 0) || (lxstyle[i].styleid == STYLE_DEFAULT)) continue;
+		if (
+			(lxstyle[i].styleid == 0) ||
+			(lxstyle[i].styleid == STYLE_DEFAULT))
+				continue;
 		lexer->styleSetBack(lxstyle[i].styleid, QC2SC(QColor(QString("#").append(QString(lxstyle[i].bgcolor)))));
 		lexer->styleSetFore(lxstyle[i].styleid, QC2SC(QColor(QString("#").append(QString(lxstyle[i].fgcolor)))));
 		lexer->styleSetFont(lxstyle[i].styleid, font1.family().QT45_TOASCII().data());

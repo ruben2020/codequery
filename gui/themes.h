@@ -43,6 +43,7 @@ class themes
 public:
 	static QStringList getThemesList(void);
 	static void setTheme(const QString& theme, int lang, ScintillaEdit* lexer, const QFont& fontt, QColor& curlinebgcolor, QColor& linenumbgcolor);
+	static void setKeywords(int lang, ScintillaEdit* lexer);
 	static long QC2SC(QColor colour);
 
 private:

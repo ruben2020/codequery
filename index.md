@@ -93,7 +93,7 @@ Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.c
 
 It's freeware and free open source software.
 
-This software is licensed under the [Mozilla Public License, version 2.0](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+This software is licensed under the [Mozilla Public License, version 2.0](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE.md](./LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
 
 Files under the `querylib` directory are licensed under the [MIT license](http://opensource.org/licenses/MIT). See [QueryLib README](querylib/README.txt). This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without license restrictions. It's only dependency is on sqlite3.
 

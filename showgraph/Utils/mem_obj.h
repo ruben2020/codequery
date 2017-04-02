@@ -75,10 +75,11 @@ namespace Mem
         }
 
 		/** Constructor */
-		inline Obj() 
+		inline Obj():
 #ifdef USE_REF_COUNTERS
-		:ref_count( 0)
+		ref_count( 0),
 #endif
+		_pool(NULL)
 		{
 		
 		}

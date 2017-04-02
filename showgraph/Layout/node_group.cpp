@@ -147,7 +147,7 @@ void NodeGroup::merge( NodeGroup *grp)
         prev_type = node->type();
         num++;
     }
-    nodes_barycenter = nodes_barycenter / num;
+    if (num != 0) nodes_barycenter = nodes_barycenter / num;
 
     /* 3. set borders */
     setLeft( center - nodes_barycenter);

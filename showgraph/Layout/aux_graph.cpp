@@ -30,6 +30,9 @@ AuxGraph::AuxGraph( bool create_pools):
     Graph( false),
     ranking_valid( false),
     levels(),
+    cur_level(0),
+    cur_pass(0),
+    max_rank(0),
     layout_in_process( false) 
 {
     ranking = newNum();

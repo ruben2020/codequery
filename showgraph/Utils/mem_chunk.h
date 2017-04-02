@@ -89,6 +89,7 @@ namespace MemImpl
     /** Constructor */
     template <class Data> 
     Chunk< Data>::Chunk()
+    :dummy_ptr(NULL)
     {
         Entry<Data> *e = NULL;
         

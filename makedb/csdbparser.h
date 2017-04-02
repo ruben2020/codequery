@@ -155,7 +155,7 @@ std::string m_calling_macro;
 std::string m_current_srcfile;
 bool m_debug;
 
-void create_buf(int size = CSDBP_MINIM_BUFSIZE);
+void create_buf(long int size = CSDBP_MINIM_BUFSIZE);
 void destroy_buf(void);
 enResult parse_headers(void);
 enResult single_line_symbol(bool& endOfSymbData, bool& foundSomething);

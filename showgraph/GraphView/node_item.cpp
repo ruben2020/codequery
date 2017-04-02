@@ -349,9 +349,9 @@ shape2Path( NodeShape shape, QRectF rect)
         path.addRect( rect);
         return path;
     }
-        QPainterPath path;
+/*        QPainterPath path;
     path.addRect( rect);
-    return path;
+    return path;*/
 }
 
 /**

@@ -39,6 +39,21 @@ QSize ColorButton::sizeHint() const
 }
 
 StyleEdit::StyleEdit( QWidget *parent, bool show_additional)
+: name_label(NULL),
+  line_color_label(NULL),
+  line_style_label(NULL),
+  line_width_label(NULL),
+  fill_color_label(NULL),
+  shape_label(NULL),
+  name_combo(NULL),
+  fill_check(NULL),
+  shape_combo(NULL),
+  line_color_button(NULL),
+  line_style_combo(NULL),
+  line_width_spin(NULL),
+  fill_color_button(NULL),
+  ok(NULL),
+  cancel(NULL)
 {
     QColor color;
     if ( show_additional)

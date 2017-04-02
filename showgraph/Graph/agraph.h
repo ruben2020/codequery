@@ -75,7 +75,7 @@ public:
  */
 class AEdge: public Edge
 {
-    int dummy;
+    //int dummy;
 
     /** Constructors are made private, only nodes and graph can create edges */
     AEdge( AGraph *graph_p, int _id, ANode *_pred, ANode* _succ);

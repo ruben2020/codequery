@@ -323,6 +323,8 @@ inline AuxNode::AuxNode( AuxGraph *graph_p, int _id):
     priv_order(-1),
     node_type( AUX_NODE_SIMPLE),
     is_for_placement( true),
+    barycenter(0),
+    priv_rank(RANK_UNDEF),
     stable( false)
 {
 }

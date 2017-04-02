@@ -103,8 +103,8 @@ static int GetSolStringState(Accessor &styler, Sci_Position i, Sci_Position *nex
         else
         {
           *nextIndex = i + 1;
-          if (ch == '"') return SCE_SCRIPTOL_STRING;
-          else           return SCE_SCRIPTOL_STRING;
+          /*if (ch == '"') return SCE_SCRIPTOL_STRING;
+          else */          return SCE_SCRIPTOL_STRING;
 	}
 }
 

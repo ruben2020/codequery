@@ -221,7 +221,7 @@ void csdbparser::setDebug(bool val)
 	m_debug = val;
 }
 
-void csdbparser::create_buf(int size)
+void csdbparser::create_buf(long int size)
 {
 	if (size >= CSDBP_MINIM_BUFSIZE)
 	{

@@ -9,7 +9,7 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-      
+     
 
 ## Latest version
 
@@ -48,7 +48,7 @@ In addition, [starscope](https://github.com/eapache/starscope) is used to add su
 * Case-insensitive, partial keyword search - wildcard search supported * and ?
 * Exact match search
 * Filter search results by file path
-* File viewer with syntax highlighting
+* File viewer with syntax highlighting, for UTF-8 encoded source files
 * Ability to open viewed file in an external editor or IDE
 * Visualization of function call graph and class inheritance based on search term
 * Visualization graphs can be saved to PNG or Graphviz DOT files

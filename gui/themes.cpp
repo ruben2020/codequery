@@ -126,6 +126,17 @@ const char* cpp_docwords =
 "tableofcontents test throw throws todo tparam typedef union until var "
 "verbatim verbinclude version vhdlflow warning weakgroup xmlonly xrefitem";
 
+const char* go_keywords = "break default func interface select "
+"case defer go map struct chan else goto package switch "
+"const fallthrough if range type continue for import return var "
+"append cap close complex copy delete imag len "
+"make new panic print println real recover";
+
+const char* go_types = "true false iota nil "
+"bool byte complex64 complex128 error float32 float64 "
+"int int8 int16 int32 int64 rune string "
+"uint uint8 uint16 uint32 uint64 uintptr";
+
 
 QStringList themes::getThemesList(void)
 {
@@ -159,6 +170,11 @@ void themes::setKeywords(int lang, ScintillaEdit* lexer)
 		case enHighlightJavascript:
 		lexer->setKeyWords(0, js_keywords);
 		lexer->setKeyWords(1, js_types);
+		break;
+
+		case enHighlightGo:
+		lexer->setKeyWords(0, go_keywords);
+		lexer->setKeyWords(1, go_types);
 		break;
 
 		case enHighlightCPP:

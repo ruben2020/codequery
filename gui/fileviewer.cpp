@@ -368,6 +368,10 @@ void fileviewer::updateTextEdit(void)
 	pos = rx4.indexIn(m_iter->filename);
 	if (pos != -1) lang = enHighlightJavascript;
 
+	QRegExp rx5("\\.go$", Qt::CaseInsensitive);
+	pos = rx5.indexIn(m_iter->filename);
+	if (pos != -1) lang = enHighlightGo;
+
 	m_currentlang = lang;
 
 	QString alltext;

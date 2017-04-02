@@ -2,7 +2,7 @@
     "version": "0.19.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Now officially supporting Qt5 for Linux and Mac, UTF-8 files viewable on GUI, Source code preview text line length now unlimited",
+    "changes": "Now officially supporting Qt5 for Linux and Mac, UTF-8 files viewable on GUI, Source code preview text line length now unlimited, Golang syntax highlighting added",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

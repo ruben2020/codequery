@@ -5,6 +5,7 @@ Now officially supporting Qt5 for Linux and Mac, but Qt4 for Windows
 Unicode UTF-8 files now viewable on CodeQuery GUI
 Source code preview text line length now unlimited in database
 CodeQuery CLI now has feature to change the source code preview text line truncation length
+Golang syntax highlighting added
 Travis script now also builds with clang and Qt5 for Mac build testing
 Fixed a build bug in CMake scripts for Arch Linux
 Debian and tarball packages would now be separated into Qt5 and Qt4

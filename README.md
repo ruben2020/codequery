@@ -9,10 +9,10 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)     [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
+[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.18.0
+## Latest version = 0.19.0
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -49,7 +49,7 @@ In addition, [starscope](https://github.com/eapache/starscope) is used to add su
 * Case-insensitive, partial keyword search - wildcard search supported * and ?
 * Exact match search
 * Filter search results by file path
-* File viewer with syntax highlighting
+* File viewer with syntax highlighting, for UTF-8 encoded source files
 * Ability to open viewed file in an external editor or IDE
 * Visualization of function call graph and class inheritance based on search term
 * Visualization graphs can be saved to PNG or Graphviz DOT files
@@ -93,7 +93,7 @@ Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.c
 
 It's freeware and free open source software.
 
-This software is licensed under the [GNU GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
+This software is licensed under the [Mozilla Public License, version 2.0](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt).
 
 Files under the `querylib` directory are licensed under the [MIT license](http://opensource.org/licenses/MIT). See [QueryLib README](querylib/README.txt). This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without license restrictions. It's only dependency is on sqlite3.
 
@@ -202,7 +202,7 @@ We thank the people behind the following projects:
 [CMake](http://www.cmake.org/) - cross-platform build toolchain for CodeQuery    
 [Qt open source](http://qt-project.org/) - GUI toolkit used to build CodeQuery    
 [showgraph](http://code.google.com/p/showgraph/) - visualization done using this library    
-[scintilla](http://www.scintilla.org/) - our code editing widget (in the form of QScintilla)    
+[scintilla](http://www.scintilla.org/) - our code editing widget    
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    

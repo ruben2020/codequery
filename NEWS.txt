@@ -1,4 +1,16 @@
 
+Version 0.19.0 - Apr 2, 2017
+Migrated from GPLv2 to MPLv2 because of incompatibility with Qt5's license
+Now officially supporting Qt5 for Linux and Mac, but Qt4 for Windows
+Replaced QScintilla (by Riverbank Computing) with Scintilla (by Neil Hodgson), to avoid GPLv3
+Unicode UTF-8 files now viewable on CodeQuery GUI
+Source code preview text line length now unlimited in database
+CodeQuery CLI now has feature to change the source code preview text line truncation length
+Golang syntax highlighting added
+Travis script now also builds with clang and Qt5 for Mac build testing
+Fixed a build bug in CMake scripts for Arch Linux
+Debian and tarball packages would now be separated into Qt5 and Qt4
+
 Version 0.18.0 - Oct 9, 2016
 Migrated from GPLv3 to GPLv2 because some companies ban GPLv3 software
 List of functions in the file viewer area is a major new feature

@@ -8,7 +8,8 @@ It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Ex
 The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool to generate the CodeQuery database file.
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
-     
+
+      
 
 ## Latest version
 

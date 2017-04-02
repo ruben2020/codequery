@@ -1,0 +1,8 @@
+title: CodeQuery
+description: A code-understanding, code-browsing or code-search tool. This is a tool to index, then query or search C, C++, Java, Python, Ruby and Go source code. It builds upon the databases of cscope and ctags, and provides a nice GUI tool.
+google_analytics: UA-48551413-1
+show_downloads: true
+theme: jekyll-theme-cayman
+
+gems:
+  - jekyll-mentions

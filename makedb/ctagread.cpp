@@ -72,6 +72,7 @@ void ctagread::close_files(void)
 	fclose(f_tags);
 	f_tags = NULL;
 	sqlite3_close(m_db);
+	m_db = 0;
 }
 
 ctagread::enResult ctagread::prepare_cqdb(void)

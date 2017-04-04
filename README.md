@@ -188,6 +188,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 [jonashaag](https://github.com/jonashaag)    
 [ilovezfs](https://github.com/ilovezfs)    
 [JCount](https://github.com/JCount)    
+[brianonn](https://github.com/brianonn)    
 (More welcomed)
 
 

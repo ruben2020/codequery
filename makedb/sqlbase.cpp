@@ -20,7 +20,9 @@ sqlbase::sqlbase()
 
 sqlbase::~sqlbase()
 {
-	sqlite3_close(m_db);
+	if (m_db)
+		sqlite3_close(m_db);
+	m_db = 0;
 }
 
 void sqlbase::setDebug(bool val)

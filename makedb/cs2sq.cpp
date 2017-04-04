@@ -104,6 +104,7 @@ cs2sq::enResult cs2sq::open_db(const char* sqldb)
 	if (rc != SQLITE_OK)
 	{
 		sqlite3_close(m_db);
+		m_db = 0;
 		return resFILE_ACCESS_ERR;
 	}
 	return resOK;
@@ -120,6 +121,7 @@ void cs2sq::close_db(void)
 	sqlite3_finalize(m_callstmt);
 	sqlite3_finalize(m_symstmt);
 	sqlite3_close(m_db);
+	m_db = 0;
 }
 
 cs2sq::enResult cs2sq::setup_tables(void)

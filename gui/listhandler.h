@@ -58,7 +58,6 @@ void sendResultCurrentListItemSymbolName(const QString symName);
 private:
 mainwindow *mw;
 sqlqueryresultlist m_sqlist;
-QList<QTreeWidgetItem*> m_itemlist;
 bool m_noclick;
 
 };

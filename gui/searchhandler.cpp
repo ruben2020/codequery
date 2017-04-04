@@ -552,10 +552,10 @@ sqlqueryresultlist searchhandler::perform_grep(QString searchtxt, sqlqueryresult
 	sqlqueryresultlist resultlist;
 	QFutureWatcher<sqlqueryresultlist> futureWatcher;
 	QProgressDialog dialog;
-	unsigned int n = searchlist.resultlist.size();
+	long n = searchlist.resultlist.size();
 	if (n == 0) return resultlist;
 	strvec.resize(n);
-	for (unsigned int i=0; i < n; i++)
+	for (long i=0; i < n; i++)
 	{
 		strvec.replace(i, str2qt(searchlist.resultlist[i].filepath));
 	}
@@ -584,7 +584,7 @@ sqlqueryresultlist searchhandler::doGrep(const QString &fp)
 	sqlqueryresult res;
 	QString str, fp2;
 	tStr fpstr, fn;
-	int pos, linenumber=0;
+	long pos, linenumber=0;
 	char numtext[10];
 	QRegExp rx1(*m_grepRegExp);
 	reslist.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
@@ -622,7 +622,7 @@ sqlqueryresultlist searchhandler::doGrep(const QString &fp)
 void searchhandler::collateGrep(sqlqueryresultlist &result,
 			const sqlqueryresultlist &intermediate)
 {
-	unsigned int i, n;
+	long i, n;
 	n = intermediate.resultlist.size();
 	result.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
 	result.resultlist.reserve(n);

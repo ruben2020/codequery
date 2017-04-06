@@ -610,7 +610,7 @@ sqlqueryresultlist searchhandler::doGrep(const QString &fp)
 		{
 			res.filepath = fpstr;
 			res.filename = fn;
-			sprintf(numtext, "%d", linenumber);
+			sprintf(numtext, "%ld", linenumber);
 			res.linenum = numtext;
 			res.linetext = qt2str(str.trimmed().left(80));
 			reslist.resultlist.push_back(res);

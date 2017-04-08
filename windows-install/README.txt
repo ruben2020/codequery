@@ -13,6 +13,8 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 
 ## Latest version
 
+**NOTE: Version 0.20.0 fixes a major performance bug in the GUI.**
+
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
@@ -187,6 +189,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 [jonashaag](https://github.com/jonashaag)    
 [ilovezfs](https://github.com/ilovezfs)    
 [JCount](https://github.com/JCount)    
+[brianonn](https://github.com/brianonn)    
 (More welcomed)
 
 

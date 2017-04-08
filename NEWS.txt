@@ -1,4 +1,8 @@
 
+Version 0.20.0 - Apr 9, 2017
+Major bug fix for a performance issue in the GUI, wrt clearing of the search results list
+Other minor bug fixes
+
 Version 0.19.0 - Apr 2, 2017
 Migrated from GPLv2 to MPLv2 because of incompatibility with Qt5's license
 Now officially supporting Qt5 for Linux and Mac, but Qt4 for Windows

@@ -22,7 +22,7 @@ To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
 
-Please read [NEWS](NEWS.txt) to find out more.
+Please read [NEWS](NEWS.md) to find out more.
 
 
 ## How is it different from cscope and ctags? What are the advantages?

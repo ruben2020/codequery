@@ -98,7 +98,7 @@ std::string sym_data::symbname_escaped(void)
 
 const char* sym_data::getTypeDesc(void)
 {
-	for (int i=0; i<symbtypetbl_SIZE; i++)
+	for (long i=0; i<symbtypetbl_SIZE; i++)
 	{
 		if (sym_type == symbtypetbl[i].type)
 		{
@@ -110,7 +110,7 @@ const char* sym_data::getTypeDesc(void)
 
 const char sym_data::getTypeChar(void)
 {
-	for (int i=0; i<symbtypetbl_SIZE; i++)
+	for (long i=0; i<symbtypetbl_SIZE; i++)
 	{
 		if (sym_type == symbtypetbl[i].type)
 		{
@@ -174,8 +174,8 @@ std::string symdata_pack::line_text_escaped(void)
 std::string symdata_pack::line_text_replacetab(void)
 {
 	std::string s;
-	unsigned int i;
-	unsigned int n = line_text.length();
+	long i;
+	long n = line_text.length();
 	for (i=0; i < n; i++)
 	{
 		if (line_text[i] == '\t') s += ' ';
@@ -274,7 +274,7 @@ csdbparser::enResult csdbparser::file_sanity_check(const char *fn)
 {
 smartFILE fp;
 tempbuf buf(20000);
-unsigned int i;
+long i;
 std::string s;
 bool chkok;
 
@@ -327,7 +327,7 @@ return resOK;
 
 csdbparser::enResult csdbparser::parse_headers(void)
 {
-int slen;
+long slen;
 
 if (m_fp == NULL) {return resFILE_NOT_OPEN;}
 create_buf();
@@ -448,7 +448,7 @@ pack->line_text = chomp(m_buf);
 if (m_debug) {printf("fn = %s, lineno=%ld, firstline=%s\n",
 		pack->filename.c_str(), pack->line_num, pack->line_text.c_str());}
 
-int loopcheck = 0; // prevent infinite loop
+unsigned int loopcheck = 0; // prevent infinite loop
 sym_data sd;
 while(loopcheck++ < 65500)
 	{

@@ -51,7 +51,7 @@ bool isAbsolutePath(tStr fp);
 bool strrevcmp(tStr str, tStr cmpstr);
 char* get_last_part(char* str, int c);
 std::vector<std::string> splitstr(const char* inpstr, const char delim);
-int replacechar(std::string::iterator i1, std::string::iterator i2,
+long replacechar(std::string::iterator i1, std::string::iterator i2,
 			const char o, const char r);
 const char* chomp(char* str);
 std::string add_escape_char(std::string ori, char chr2escp, char escpchr);
@@ -87,18 +87,18 @@ class tempbuf
 {
 private:
 char* m_buffer;
-unsigned int m_size;
+long m_size;
 
 public:
-tempbuf(unsigned int n);
+tempbuf(long n);
 ~tempbuf(); // the reason why this class was written
 char* operator() ();
 char* get(void);
-char  operator[] (unsigned int i);
-unsigned int size(void) const;
+char  operator[] (long i);
+long size(void) const;
 bool isempty(void) const;
 void clear(void);
-char* reinit(unsigned int n);
+char* reinit(long n);
 const char* constchar(void);
 }; //class tempbuf
 

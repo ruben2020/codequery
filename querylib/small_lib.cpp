@@ -66,9 +66,9 @@ bool isAbsolutePath(tStr fp)
 bool strrevcmp(tStr str, tStr cmpstr)
 {
 	bool retval = (1 == 1);
-	int n = str.length();
+	long n = str.length();
 	if (n != cmpstr.length()) {retval = (1 == 0);}
-	else for (int i = (n - 1); i >= 0; i--)
+	else for (long i = (n - 1); i >= 0; i--)
 	{
 		if (str[i] != cmpstr[i])
 		{
@@ -121,9 +121,9 @@ std::vector<std::string> splitstr(const char* inpstr, const char delim)
 
 // replace char o with char r for every part of the string
 // from iterator i1 to iterator i2, excluding i2
-int replacechar(std::string::iterator i1, std::string::iterator i2, const char o, const char r)
+long replacechar(std::string::iterator i1, std::string::iterator i2, const char o, const char r)
 {
-	int count = 0;
+	long count = 0;
 	for(std::string::iterator i = i1; i != i2; ++i)
 	{
 		if (*i == o)
@@ -160,7 +160,7 @@ const char* chomp(char* str)
 std::string add_escape_char(std::string ori, char chr2escp, char escpchr)
 {
 	std::string s;
-	int num = 0;
+	long num = 0;
 	size_t retval = -1; 
 	s = ori;
 	do {
@@ -179,7 +179,7 @@ std::string add_escape_char(const char* oristr, char chr2escp, char escpchr)
 {
 	std::string ori(oristr);
 	std::string s;
-	int num = 0;
+	long num = 0;
 	size_t retval = -1; 
 	s = ori;
 	do {
@@ -239,7 +239,7 @@ void smartFILE::close_file(void)
 
 
 
-tempbuf::tempbuf(unsigned int n)
+tempbuf::tempbuf(long n)
 	{
 		if (n < 10) n = 10;
 		m_buffer = new (std::nothrow) char[n];
@@ -258,17 +258,17 @@ tempbuf::~tempbuf()
 	}
 char* tempbuf::operator() () {return m_buffer;}
 char* tempbuf::get(void) {return m_buffer;}
-char  tempbuf::operator[] (unsigned int i)
+char  tempbuf::operator[] (long i)
 	{
 		char chr;
 		if (i < m_size) chr = *(m_buffer + i);
 		else chr = 0;
 		return chr;
 	}
-unsigned int tempbuf::size(void) const {return m_size;}
+long tempbuf::size(void) const {return m_size;}
 bool tempbuf::isempty(void) const {return (*m_buffer == 0);}
 void tempbuf::clear(void) {*m_buffer = 0;}
-char* tempbuf::reinit(unsigned int n)
+char* tempbuf::reinit(long n)
 	{
 		if (n < 10) n = 10;
 		delete[] m_buffer;

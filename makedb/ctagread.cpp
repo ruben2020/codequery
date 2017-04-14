@@ -118,11 +118,11 @@ ctagread::enResult ctagread::prepare_cqdb(void)
 
 ctagread::enResult ctagread::process_ctags(void)
 {
-	tempbuf sym(400), fil(500), classname(400), classname2(400);
-	tempbuf numtxt(50), linetxt(4001), fil2(500);
+	tempbuf sym(65501), fil(65501), classname(65501), classname2(65501);
+	tempbuf numtxt(500), linetxt(65501), fil2(65501), nmspace(65501);
 	long int num;
-	int numOfLines=0;
-	int numOfLines2=0;
+	long int numOfLines=0;
+	long int numOfLines2=0;
 	char* retval;
 	int scanretval = 0;
 	int rc;
@@ -144,20 +144,20 @@ ctagread::enResult ctagread::process_ctags(void)
 		if (retval != NULL)
 		{
 			chomp(linetxt.get());
-			scanretval = sscanf(linetxt.get(), "%s\t%s\t%ld;\"\t%c\tclass:%s", sym.get(), fil2.get(), &num, &c, classname.get());
+			scanretval = sscanf(linetxt.get(), "%s\t%s\t%ld;\"\t%c\tclass:%s\t", sym.get(), fil2.get(), &num, &c, classname.get());
 		}
 		if ((retval != NULL)&&(scanretval == 5))
 		{
 			strcpy(fil.get(), "%");
 			strcat(fil.get(), extract_filename(fil2.get()));
-			res = getHListOfClassIDs(&classIDs, get_last_part(classname.get(), '.'), &listClsHist);
+			res = getHListOfClassIDs(&classIDs, get_last_part(get_last_part(classname.get(), ':'), '.'), &listClsHist);
 			if (res != resOK) return res;
 			if (classIDs.empty()) continue;
 			cp = sym.get();
 			if (*(sym.get()) == '~')
 			{
-				cp = (sym.get()) + 1; //include destructors
-									// which cscope missed out				
+				cp = (sym.get()) + 1;   // include destructors
+							// which cscope missed out
 			}
 			sprintf(numtxt.get(), "%ld", num);
 			if (c == 'f')
@@ -167,7 +167,7 @@ ctagread::enResult ctagread::process_ctags(void)
 			if (res != resOK) {return res;}
 			if (symIDs.empty() == false)
 			{
-				for (unsigned int i=0; i < symIDs.size(); i++)
+				for (long i=0; i < symIDs.size(); i++)
 					{
 						smallstr[0] = c;
 						rc=execstmt(m_insertstmt, classIDs[0].c_str(), symIDs[i].c_str(), smallstr);
@@ -182,7 +182,7 @@ ctagread::enResult ctagread::process_ctags(void)
 			}
 			//else {if (m_debug) {printf("no match found for symbol: %s\n",sym.get());}}
 		}
-		else if (retval != NULL)
+		if (retval != NULL)
 		{
 			scanretval = sscanf(linetxt.get(),
 			"%s\t%s\t%ld;\"\t%c\tinherits:%s", sym.get(), fil2.get(), &num, &c, classname.get());
@@ -201,6 +201,20 @@ ctagread::enResult ctagread::process_ctags(void)
 					&num, &c, classname2.get(), classname.get());
 				result = ((scanretval == 6)&&(c == 'c'));
 			}
+			if (!result)
+			{
+				scanretval = sscanf(linetxt.get(),
+				"%s\t%s\t%ld;\"\t%c\tnamespace:%s\tinherits:%s", sym.get(), fil2.get(),
+					&num, &c, nmspace.get(), classname.get());
+				result = ((scanretval == 6)&&(c == 'c'));
+			}
+			if (!result)
+			{
+				scanretval = sscanf(linetxt.get(),
+				"%s\t%s\t%ld;\"\t%c\tnamespace:%s\tfile:\tinherits:%s", sym.get(), fil2.get(),
+					&num, &c, nmspace.get(), classname.get());
+				result = ((scanretval == 6)&&(c == 'c'));
+			}
 			if (result)
 			{
 				res = getHListOfClassIDs(&classIDs, sym.get(), &listClsHist);
@@ -209,10 +223,10 @@ ctagread::enResult ctagread::process_ctags(void)
 				parentClassIDs.clear();
 				parentClassIDs_temp.clear();
 				std::vector<std::string> vecstr = splitstr(classname.get(), ',');
-				for (unsigned int i=0; i<vecstr.size(); i++)
+				for (long i=0; i<vecstr.size(); i++)
 				{
 					res = getHListOfClassIDs(&parentClassIDs_temp, 
-						get_last_part((char*)vecstr[i].c_str(), '.'), &listClsHist);
+						get_last_part(get_last_part((char*)vecstr[i].c_str(), ':'), '.'), &listClsHist);
 					if (res != resOK) return res;
 					while (parentClassIDs_temp.empty() == false)
 					{
@@ -220,7 +234,7 @@ ctagread::enResult ctagread::process_ctags(void)
 						parentClassIDs_temp.pop_back();
 					}
 				}
-				for (unsigned int i=0; i<parentClassIDs.size(); i++)
+				for (long i=0; i<parentClassIDs.size(); i++)
 				{
 					rc=execstmt(m_insertinheritstmt, parentClassIDs[i].c_str(), classIDs[0].c_str());
 					if (rc!=0) return resSQLError;
@@ -229,8 +243,8 @@ ctagread::enResult ctagread::process_ctags(void)
 			}
 		}
 	} while (retval != NULL);
-	if (m_debug) printf ("Total membertbl records possible = %d\n", numOfLines);
-	if (m_debug) printf ("Total inherittbl records possible = %d\n", numOfLines2);
+	if (m_debug) printf ("Total membertbl records possible = %ld\n", numOfLines);
+	if (m_debug) printf ("Total inherittbl records possible = %ld\n", numOfLines2);
 	return resOK;
 }
 
@@ -238,7 +252,7 @@ ctagread::enResult ctagread::getHListOfClassIDs(strctagIDList* idlist, const cha
 {
 	enResult res = resOK;
 	idlist->clear();
-	for (unsigned int i=0; i<listClsHist->size(); i++)
+	for (long i=0; i<listClsHist->size(); i++)
 	{
 		if ((*listClsHist)[i].cls.compare(v1) == 0)
 		{idlist->push_back((*listClsHist)[i].id); break;}

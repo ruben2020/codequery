@@ -64,6 +64,7 @@ sqlite3_stmt* m_readclassstmt;
 sqlite3_stmt* m_readsymstmt;
 sqlite3_stmt* m_readsymfstmt;
 sqlite3_stmt* m_writedeststmt;
+sqlite3_stmt* m_writetypestmt;
 enResult getListOfClassIDs(strctagIDList* idlist, const char* v1);
 enResult getHListOfClassIDs(strctagIDList* idlist, const char* v1, std::vector<stClsID> *listClsHist);
 enResult getListOfSymIDs(sqlite3_stmt* pstmt, strctagIDList* idlist, const char* v1, const char* v2, const char* v3);

@@ -20,6 +20,7 @@ ctagread::ctagread()
 ,m_readclassstmt(NULL)
 ,m_readsymstmt(NULL)
 ,m_writedeststmt(NULL)
+,m_writetypestmt(NULL)
 ,m_readsymfstmt(NULL)
 {
 }
@@ -57,17 +58,20 @@ void ctagread::close_files(void)
 	sqlite3_reset(m_readclassstmt);
 	sqlite3_reset(m_readsymstmt);
 	sqlite3_reset(m_writedeststmt);
+	sqlite3_reset(m_writetypestmt);
 	sqlite3_reset(m_readsymfstmt);
 	sqlite3_finalize(m_insertstmt);
 	sqlite3_finalize(m_insertinheritstmt);
 	sqlite3_finalize(m_readclassstmt);
 	sqlite3_finalize(m_readsymstmt);
 	sqlite3_finalize(m_writedeststmt);
+	sqlite3_finalize(m_writetypestmt);
 	sqlite3_finalize(m_readsymfstmt);
 	m_insertstmt = NULL;
 	m_readclassstmt = NULL;
 	m_readsymstmt = NULL;
 	m_writedeststmt = NULL;
+	m_writetypestmt = NULL;
 	m_readsymfstmt = NULL;
 	fclose(f_tags);
 	f_tags = NULL;
@@ -93,6 +97,9 @@ ctagread::enResult ctagread::prepare_cqdb(void)
 	if (rc != SQLITE_OK) return resSQLError;
 
 	rc = prepare_stmt(&m_writedeststmt, "UPDATE symtbl SET symName=? WHERE symID=?;");
+	if (rc != SQLITE_OK) return resSQLError;
+
+	rc = prepare_stmt(&m_writetypestmt, "UPDATE symtbl SET symType=? WHERE symID=?;");
 	if (rc != SQLITE_OK) return resSQLError;
 
 	//rc = prepare_stmt(&m_readsymfstmt, "SELECT symID FROM symtbl WHERE symName=? AND symType=\"$\" AND lineid IN (SELECT lineID FROM linestbl WHERE linenum=? AND fileid IN (SELECT fileID FROM filestbl WHERE filePath LIKE ?));");
@@ -165,6 +172,17 @@ ctagread::enResult ctagread::process_ctags(void)
 			else
 				res = getListOfSymIDs(m_readsymstmt, &symIDs, cp, numtxt.get(), fil.get());
 			if (res != resOK) {return res;}
+			if ((symIDs.empty() == true)&&(c == 'f'))
+			{
+				res = getListOfSymIDs(m_readsymstmt, &symIDs, cp, numtxt.get(), fil.get());
+				if (res != resOK) {return res;}
+				if (symIDs.empty() == false)
+				for (long i=0; i < symIDs.size(); i++)
+					{
+						rc=execstmt(m_writetypestmt, "$", symIDs[i].c_str());
+						if (rc!=0) return resSQLError;
+					}
+			}
 			if (symIDs.empty() == false)
 			{
 				for (long i=0; i < symIDs.size(); i++)

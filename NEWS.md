@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 0.21.0 - Apr 25, 2017
+----------------------------
+Fixes in the ctags file parser     
+
 Version 0.20.0 - Apr 9, 2017
 ----------------------------
 Major bug fix for a performance issue in the GUI, wrt clearing of the search results list    

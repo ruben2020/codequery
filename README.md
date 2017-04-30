@@ -12,9 +12,9 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.20.0
+## Latest version = 0.21.0
 
-**NOTE: Version 0.20.0 fixes a major performance bug in the GUI.**
+**NOTE: Version 0.21.0 has fixes for a major performance bug in the GUI and in the ctags file parser.**
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -22,7 +22,7 @@ To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
 On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
 
-Please read [NEWS](NEWS.txt) to find out more.
+Please read [NEWS](NEWS.md) to find out more.
 
 
 ## How is it different from cscope and ctags? What are the advantages?
@@ -172,13 +172,12 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 
 * Report bugs
 * Provide feedback, new ideas, suggestions etc. What would you like to see?
-* Tell your friends, propose it on StackOverflow, write about it, tweet it
+* Tell your friends, recommend it on StackOverflow or social media
 * Fix bugs (see Issues tab)
 * Update translations (Deutsch, Francais, Japanese etc.)
 * Port to other platforms
-* Write plugins for emacs, eclipse, Notepad++ etc.
-* Write a web-based interface to CodeQuery's database
-* Add support for other languages e.g. Javascript
+* Write plugins for emacs, eclipse, Notepad++, NetBeans, Jenkins etc.
+* Add support for other languages e.g. Objective-C, Swift
 
 
 ## List of Contributors

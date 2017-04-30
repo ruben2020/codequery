@@ -87,6 +87,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_pushButtonSearchPrev(NULL)
 ,m_pushButtonSearchNext(NULL)
 ,m_pushButtonGraph(NULL)
+,m_pushButtonFilesList(NULL)
 {
 	sq = new sqlqueryadv;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
@@ -123,6 +124,19 @@ void searchhandler::Graph_ButtonClick(bool checked)
 	if (!checked)
 	{
 		emit getResultCurrentListItemSymbolName();
+	}
+}
+
+void searchhandler::FilesList_ButtonClick(bool checked)
+{
+	if (!checked)
+	{
+		perform_search("*",
+			false,
+			sqlquery::sqlresultFILESLIST,
+			"*",
+			0,
+			false);
 	}
 }
 
@@ -298,6 +312,8 @@ void searchhandler::init(void)
 			this, SLOT(ClipSearch_ButtonClick(bool)));
 	connect(m_pushButtonGraph, SIGNAL(clicked(bool)),
 			this, SLOT(Graph_ButtonClick(bool)));
+	connect(m_pushButtonFilesList, SIGNAL(clicked(bool)),
+			this, SLOT(FilesList_ButtonClick(bool)));
 	connect(m_comboBoxSearch->lineEdit(), SIGNAL(returnPressed()),
 			this, SLOT(Search_EnterKeyPressed()));
 	connect(m_comboBoxSearch->lineEdit(), SIGNAL(textEdited(QString)),
@@ -361,7 +377,7 @@ void searchhandler::retranslateUi(void)
 				QVariant(sqlquery::sqlresultINCLUDE));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Full path for file"),
-				QVariant(sqlquery::sqlresultFILEPATH));
+				QVariant(sqlquery::sqlresultFILESLIST));
 	m_comboBoxQueryType->addItem(QIcon(),
 				tr("Functions or macros inside this file"),
 				QVariant(sqlquery::sqlresultFUNCSINFILE));

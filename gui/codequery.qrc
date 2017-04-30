@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/mainwindow">
+    <file>images/Folder2.png</file>
     <file>images/Search.png</file>
     <file>images/Arrow2_Left.png</file>
     <file>images/Arrow2_Right.png</file>
@@ -28,4 +29,3 @@
     <file>../build/gui/codequery_zh-CHT.qm</file>
   </qresource>
 </RCC>
-

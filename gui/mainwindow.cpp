@@ -143,6 +143,7 @@ void mainwindow::setup_searchhandler(void)
 	m_searchhandler->m_pushButtonSearchPrev = ui->pushButtonSearchPrev;
 	m_searchhandler->m_pushButtonSearchNext = ui->pushButtonSearchNext;
 	m_searchhandler->m_pushButtonGraph = ui->pushButtonGraph;
+	m_searchhandler->m_pushButtonFilesList = ui->pushButtonFilesList;
 	m_searchhandler->m_checkBoxFilter = ui->checkBoxFilter;
 	m_searchhandler->m_comboBoxFilter = ui->comboBoxFilter;
 	m_searchhandler->init();

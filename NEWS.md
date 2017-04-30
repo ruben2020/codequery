@@ -1,9 +1,11 @@
 Changelog
 =========
 
-Version 0.21.0 - Apr 25, 2017
+Version 0.21.0 - Apr 30, 2017
 ----------------------------
 Fixes in the ctags file parser     
+"List of files" button added to the GUI     
+Improved "full path for file" results list in GUI      
 
 Version 0.20.0 - Apr 9, 2017
 ----------------------------

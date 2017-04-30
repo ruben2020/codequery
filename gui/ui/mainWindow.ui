@@ -270,6 +270,29 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="pushButtonFilesList">
+        <property name="toolTip">
+         <string>List of all files</string>
+        </property>
+        <property name="statusTip">
+         <string>List of all files</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="../codequery.qrc">
+          <normaloff>:/mainwindow/images/Folder2.png</normaloff>:/mainwindow/images/Folder2.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>24</width>
+          <height>24</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pushButtonGraph">
         <property name="enabled">
          <bool>false</bool>
@@ -742,6 +765,7 @@
    <class>ScintillaEdit</class>
    <extends>QFrame</extends>
    <header>ScintillaEdit.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -756,6 +780,7 @@
   <tabstop>comboBoxSearch</tabstop>
   <tabstop>pushButtonSearch</tabstop>
   <tabstop>pushButtonClipSearch</tabstop>
+  <tabstop>pushButtonFilesList</tabstop>
   <tabstop>pushButtonGraph</tabstop>
   <tabstop>comboBoxQueryType</tabstop>
   <tabstop>treeWidgetSearchResults</tabstop>
@@ -769,6 +794,8 @@
   <tabstop>checkBoxSymbolOnly</tabstop>
   <tabstop>pushButtonUp</tabstop>
   <tabstop>pushButtonDown</tabstop>
+  <tabstop>comboBoxFuncListSort</tabstop>
+  <tabstop>listWidgetFunc</tabstop>
  </tabstops>
  <resources>
   <include location="../codequery.qrc"/>

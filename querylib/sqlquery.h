@@ -95,7 +95,7 @@ enum en_queryType
 		sqlresultFUNC_MACRO,
 		sqlresultCLASS_STRUCT,
 		sqlresultINCLUDE,
-		sqlresultFILEPATH,
+		sqlresultFILESLIST,
 		sqlresultCALLINGFUNC,
 		sqlresultCALLEDFUNC,
 		sqlresultCALLSOFFUNC,
@@ -106,6 +106,7 @@ enum en_queryType
 		sqlresultFUNCSINFILE,
 		sqlresultGREP,
 		sqlresultAUTOCOMPLETE,
+		sqlresultFILEPATH,
 		sqlresultDEFAULT = 100
 	};
 enum en_filereadstatus
@@ -141,6 +142,7 @@ private:
 	sqlqueryresultlist search_full(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_line(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_file_only(sqlite3_stmt* stmt);
+	sqlqueryresultlist search_filepath_only(sqlite3_stmt* stmt);
 	sqlqueryresultlist search_func_in_one_file(sqlite3_stmt* stmt);
 	tStr read_configtbl(const char *key, sqlite3_stmt *stmt);
 	tStr process_searchterm(const char* searchterm, const bool& exactmatch);

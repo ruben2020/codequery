@@ -13,7 +13,8 @@ Step 1: Install CMake (>2.7), sqlite3, Qt4 (>4.7) or Qt5 (>5.7) for Qt4 or Qt5, 
 [sqlite3](http://www.sqlite.org/)   
 [Qt4 or Qt5](http://qt-project.org/)   
 [cscope](http://cscope.sourceforge.net/)   
-[ctags](http://ctags.sourceforge.net/)    
+[Exuberant ctags](http://ctags.sourceforge.net/)    
+[Universal ctags](https://github.com/universal-ctags/ctags/)    
 [pycscope](https://github.com/portante/pycscope)    
 
 In Ubuntu or Linux Mint or Debian, do the following (first line for Qt5 OR second line for Qt4):    

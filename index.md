@@ -3,7 +3,7 @@
 
 This is a tool to index, then query or search C, C++, Java, Python, Ruby, Go and Javascript source code.
 
-It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Exuberant ctags](http://ctags.sourceforge.net/).
+It builds upon the databases of [cscope](http://cscope.sourceforge.net/) and [Exuberant ctags](http://ctags.sourceforge.net/). It can also work with [Universal ctags](https://github.com/universal-ctags/ctags/), which is a drop-in replacement for Exuberant ctags.
 
 The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool to generate the CodeQuery database file.
 
@@ -198,6 +198,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 We thank the people behind the following projects:    
 [cscope](http://cscope.sourceforge.net/) - our database is derived from this   
 [Exuberant ctags](http://ctags.sourceforge.net/)- our database is derived from this   
+[Universal ctags](https://github.com/universal-ctags/ctags/) - drop-in replacement for Exuberant ctags    
 [pycscope](https://github.com/portante/pycscope) - our database (for Python) is derived from this    
 [starscope](https://github.com/eapache/starscope) - our database (for Ruby, Go and Javascript) is derived from this    
 [sqlite3](http://www.sqlite.org/) - our database is using this format    

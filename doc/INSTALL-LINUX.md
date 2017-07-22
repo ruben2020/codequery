@@ -48,10 +48,11 @@ mkdir build
 cd build
 ```
 
-Step 5: Run cmake (first line for Qt5 OR second line for Qt4).     
+Step 5: Run cmake (first line for Qt5 OR second line for Qt4 OR third line for no GUI).     
 ```bash
 cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
 cmake -G "Unix Makefiles" -DBUILD_QT5=OFF ..
+cmake -G "Unix Makefiles" -DNO_GUI=ON ..
 ```
 
 Step 6: Run make and make install.     

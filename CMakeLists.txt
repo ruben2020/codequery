@@ -3,9 +3,13 @@ project(CodeQuery)
 
 
 option(BUILD_QT5 OFF)
+option(NO_GUI    OFF)
 
+if (NO_GUI)
+else (NO_GUI)
 SET( CMAKE_CXX_STANDARD 11 )
 SET( CMAKE_CXX_STANDARD_REQUIRED ON )
+endif (NO_GUI)
 
 IF(MSVC)
 ADD_DEFINITIONS(/D _CRT_SECURE_NO_WARNINGS)
@@ -19,17 +23,27 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
 
 set( EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR} )
 
+
 add_subdirectory( "querylib" )
 add_subdirectory( "makedb" )
 add_subdirectory( "cli" )
+
+if (NO_GUI)
+else (NO_GUI)
 add_subdirectory( "scintilla/qt/ScintillaEdit" )
 add_subdirectory( "showgraph" )
 add_subdirectory( "gui" )
-
+endif (NO_GUI)
 
 
 if (UNIX)
 
+if (NO_GUI)
+
+set( CPACK_PACKAGE_NAME "codequery-nogui" )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libsqlite3-0 (>= 3.7.0) " )
+
+else (NO_GUI)
 if (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt5" )
@@ -41,6 +55,7 @@ set( CPACK_PACKAGE_NAME "codequery-qt4" )
 set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtcore4 (>= 4.8.0), libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) " )
 
 endif (BUILD_QT5)
+endif (NO_GUI)
 
 
   if( CMAKE_SIZEOF_VOID_P EQUAL 8 )

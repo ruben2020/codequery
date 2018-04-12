@@ -451,7 +451,7 @@ void ScintillaEditBase::DrawImeIndicator(int indicator, int len)
 	if (indicator < 8 || indicator > INDIC_MAX) {
 		return;
 	}
-	sqt->pdoc->decorations.SetCurrentIndicator(indicator);
+	sqt->pdoc->DecorationSetCurrentIndicator(indicator);
 	for (size_t r=0; r< sqt-> sel.Count(); r++) {
 		int positionInsert = sqt->sel.Range(r).Start().Position();
 		sqt->pdoc->DecorationFillRange(positionInsert - len, 1, len);

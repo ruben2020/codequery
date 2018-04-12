@@ -281,13 +281,12 @@ void SurfaceImpl::Polygon(Point *pts,
 	PenColour(fore);
 	BrushColour(back);
 
-	QPoint *qpts = new QPoint[npts];
+	std::vector<QPoint> qpts(npts);
 	for (int i = 0; i < npts; i++) {
 		qpts[i] = QPoint(pts[i].x, pts[i].y);
 	}
 
-	GetPainter()->drawPolygon(qpts, npts);
-	delete [] qpts;
+	GetPainter()->drawPolygon(&qpts[0], npts);
 }
 
 void SurfaceImpl::RectangleDraw(PRectangle rc,
@@ -753,28 +752,28 @@ public:
 	ListBoxImpl();
 	~ListBoxImpl();
 
-	virtual void SetFont(Font &font);
-	virtual void Create(Window &parent, int ctrlID, Point location,
-						int lineHeight, bool unicodeMode, int technology);
-	virtual void SetAverageCharWidth(int width);
-	virtual void SetVisibleRows(int rows);
-	virtual int GetVisibleRows() const;
-	virtual PRectangle GetDesiredRect();
-	virtual int CaretFromEdge();
-	virtual void Clear();
-	virtual void Append(char *s, int type = -1);
-	virtual int Length();
-	virtual void Select(int n);
-	virtual int GetSelection();
-	virtual int Find(const char *prefix);
-	virtual void GetValue(int n, char *value, int len);
-	virtual void RegisterImage(int type, const char *xpmData);
-	virtual void RegisterRGBAImage(int type, int width, int height,
-		const unsigned char *pixelsImage);
+	void SetFont(Font &font) override;
+	void Create(Window &parent, int ctrlID, Point location,
+						int lineHeight, bool unicodeMode_, int technology) override;
+	void SetAverageCharWidth(int width) override;
+	void SetVisibleRows(int rows) override;
+	int GetVisibleRows() const override;
+	PRectangle GetDesiredRect() override;
+	int CaretFromEdge() override;
+	void Clear() override;
+	void Append(char *s, int type = -1) override;
+	int Length() override;
+	void Select(int n) override;
+	int GetSelection() override;
+	int Find(const char *prefix) override;
+	void GetValue(int n, char *value, int len) override;
+	void RegisterImage(int type, const char *xpmData) override;
+	void RegisterRGBAImage(int type, int width, int height,
+		const unsigned char *pixelsImage) override;
 	virtual void RegisterQPixmapImage(int type, const QPixmap& pm);
-	virtual void ClearRegisteredImages();
-	virtual void SetDoubleClickAction(CallBackAction action, void *data);
-	virtual void SetList(const char *list, char separator, char typesep);
+	void ClearRegisteredImages() override;
+	void SetDoubleClickAction(CallBackAction action, void *data) override;
+	void SetList(const char *list, char separator, char typesep) override;
 private:
 	bool unicodeMode;
 	int visibleRows;
@@ -789,8 +788,8 @@ public:
 	void setDoubleClickAction(CallBackAction action, void *data);
 
 protected:
-	virtual void mouseDoubleClickEvent(QMouseEvent *event);
-	virtual QStyleOptionViewItem viewOptions() const;
+	void mouseDoubleClickEvent(QMouseEvent *event) override;
+	QStyleOptionViewItem viewOptions() const override;
 
 private:
 	CallBackAction doubleClickAction;
@@ -1128,7 +1127,7 @@ public:
 		lib = 0;
 	}
 
-	virtual Function FindFunction(const char *name) {
+	Function FindFunction(const char *name) override {
 		if (lib) {
 			// C++ standard doesn't like casts between function pointers and void pointers so use a union
 			union {
@@ -1145,7 +1144,7 @@ public:
 		return NULL;
 	}
 
-	virtual bool IsValid() {
+	bool IsValid() override {
 		return lib != NULL;
 	}
 };

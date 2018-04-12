@@ -15,6 +15,7 @@
 #include "Scintilla.h"
 
 #include "Position.h"
+#include "UniqueString.h"
 #include "SplitVector.h"
 #include "Partitioning.h"
 #include "RunStyles.h"
@@ -45,7 +46,7 @@ public:
 	void NotifySavePoint(Document *doc, void *userData, bool atSavePoint);
 	void NotifyModified(Document *doc, DocModification mh, void *userData);
 	void NotifyDeleted(Document *doc, void *userData);
-	void NotifyStyleNeeded(Document *doc, void *userData, int endPos);
+	void NotifyStyleNeeded(Document *doc, void *userData, Sci::Position endPos);
 	void NotifyLexerChanged(Document *doc, void *userData);
 	void NotifyErrorOccurred(Document *doc, void *userData, int status);
 };
@@ -76,7 +77,7 @@ void WatcherHelper::NotifyModified(Document *, DocModification mh, void *) {
 void WatcherHelper::NotifyDeleted(Document *, void *) {
 }
 
-void WatcherHelper::NotifyStyleNeeded(Document *, void *, int endPos) {
+void WatcherHelper::NotifyStyleNeeded(Document *, void *, Sci::Position endPos) {
 	owner->emit_style_needed(endPos);
 }
 

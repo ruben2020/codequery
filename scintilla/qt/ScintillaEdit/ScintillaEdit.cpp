@@ -673,6 +673,14 @@ void ScintillaEdit::setCaretLineBack(sptr_t back) {
     send(SCI_SETCARETLINEBACK, back, 0);
 }
 
+sptr_t ScintillaEdit::caretLineFrame() const {
+    return send(SCI_GETCARETLINEFRAME, 0, 0);
+}
+
+void ScintillaEdit::setCaretLineFrame(sptr_t width) {
+    send(SCI_SETCARETLINEFRAME, width, 0);
+}
+
 void ScintillaEdit::styleSetChangeable(sptr_t style, bool changeable) {
     send(SCI_STYLESETCHANGEABLE, style, changeable);
 }
@@ -1619,6 +1627,10 @@ void ScintillaEdit::lineDelete() {
 
 void ScintillaEdit::lineTranspose() {
     send(SCI_LINETRANSPOSE, 0, 0);
+}
+
+void ScintillaEdit::lineReverse() {
+    send(SCI_LINEREVERSE, 0, 0);
 }
 
 void ScintillaEdit::lineDuplicate() {

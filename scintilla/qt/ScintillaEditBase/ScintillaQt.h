@@ -11,12 +11,13 @@
 #ifndef SCINTILLAQT_H
 #define SCINTILLAQT_H
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <assert.h>
-#include <ctype.h>
-#include <time.h>
+#include <cstddef>
+#include <cstdlib>
+#include <cassert>
+#include <cstring>
+#include <cctype>
+#include <cstdio>
+#include <ctime>
 #include <cmath>
 #include <stdexcept>
 #include <string>
@@ -29,6 +30,7 @@
 #include "Platform.h"
 #include "ILexer.h"
 #include "Position.h"
+#include "UniqueString.h"
 #include "SplitVector.h"
 #include "Partitioning.h"
 #include "RunStyles.h"
@@ -98,46 +100,46 @@ private slots:
 	void SelectionChanged();
 
 private:
-	virtual void Initialise();
-	virtual void Finalise();
-	virtual bool DragThreshold(Point ptStart, Point ptNow);
-	virtual bool ValidCodePage(int codePage) const;
+	void Init();
+	void Finalise() override;
+	bool DragThreshold(Point ptStart, Point ptNow) override;
+	bool ValidCodePage(int codePage) const override;
 
 private:
-	virtual void ScrollText(int linesToMove);
-	virtual void SetVerticalScrollPos();
-	virtual void SetHorizontalScrollPos();
-	virtual bool ModifyScrollBars(int nMax, int nPage);
-	virtual void ReconfigureScrollBars();
+	void ScrollText(int linesToMove) override;
+	void SetVerticalScrollPos() override;
+	void SetHorizontalScrollPos() override;
+	bool ModifyScrollBars(Sci::Line nMax, Sci::Line nPage) override;
+	void ReconfigureScrollBars() override;
 	void CopyToModeClipboard(const SelectionText &selectedText, QClipboard::Mode clipboardMode_);
-	virtual void Copy();
-	virtual void CopyToClipboard(const SelectionText &selectedText);
+	void Copy() override;
+	void CopyToClipboard(const SelectionText &selectedText) override;
 	void PasteFromMode(QClipboard::Mode clipboardMode_);
-	virtual void Paste();
-	virtual void ClaimSelection();
-	virtual void NotifyChange();
-	virtual void NotifyFocus(bool focus);
-	virtual void NotifyParent(SCNotification scn);
+	void Paste() override;
+	void ClaimSelection() override;
+	void NotifyChange() override;
+	void NotifyFocus(bool focus) override;
+	void NotifyParent(SCNotification scn) override;
 	int timers[tickDwell+1];
-	virtual bool FineTickerAvailable();
-	virtual bool FineTickerRunning(TickReason reason);
-	virtual void FineTickerStart(TickReason reason, int millis, int tolerance);
-	virtual void FineTickerCancel(TickReason reason);
-	virtual bool SetIdle(bool on);
-	virtual void SetMouseCapture(bool on);
-	virtual bool HaveMouseCapture();
-	virtual void StartDrag();
+	bool FineTickerAvailable() override;
+	bool FineTickerRunning(TickReason reason) override;
+	void FineTickerStart(TickReason reason, int millis, int tolerance) override;
+	void FineTickerCancel(TickReason reason) override;
+	bool SetIdle(bool on) override;
+	void SetMouseCapture(bool on) override;
+	bool HaveMouseCapture() override;
+	void StartDrag() override;
 	int CharacterSetOfDocument() const;
 	const char *CharacterSetIDOfDocument() const;
 	QString StringFromDocument(const char *s) const;
 	QByteArray BytesForDocument(const QString &text) const;
-	virtual CaseFolder *CaseFolderForEncoding();
-	virtual std::string CaseMapString(const std::string &s, int caseMapping);
+	CaseFolder *CaseFolderForEncoding() override;
+	std::string CaseMapString(const std::string &s, int caseMapping) override;
 
-	virtual void CreateCallTipWindow(PRectangle rc);
-	virtual void AddToPopUp(const char *label, int cmd = 0, bool enabled = true);
-	virtual sptr_t WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam);
-	virtual sptr_t DefWndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam);
+	void CreateCallTipWindow(PRectangle rc) override;
+	void AddToPopUp(const char *label, int cmd = 0, bool enabled = true) override;
+	sptr_t WndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) override;
+	sptr_t DefWndProc(unsigned int iMessage, uptr_t wParam, sptr_t lParam) override;
 
 	static sptr_t DirectFunction(sptr_t ptr,
 				     unsigned int iMessage, uptr_t wParam, sptr_t lParam);
@@ -151,7 +153,7 @@ protected:
 	void DragLeave();
 	void Drop(const Point &point, const QMimeData *data, bool move);
 
-	void timerEvent(QTimerEvent *event);
+	void timerEvent(QTimerEvent *event) override;
 
 private:
 	QAbstractScrollArea *scrollArea;

@@ -115,25 +115,25 @@ signals:
 	void resized();
 
 protected:
-	virtual bool event(QEvent *event);
-	virtual void paintEvent(QPaintEvent *event);
-	virtual void wheelEvent(QWheelEvent *event);
-	virtual void focusInEvent(QFocusEvent *event);
-	virtual void focusOutEvent(QFocusEvent *event);
-	virtual void resizeEvent(QResizeEvent *event);
-	virtual void keyPressEvent(QKeyEvent *event);
-	virtual void mousePressEvent(QMouseEvent *event);
-	virtual void mouseReleaseEvent(QMouseEvent *event);
-	virtual void mouseDoubleClickEvent(QMouseEvent *event);
-	virtual void mouseMoveEvent(QMouseEvent *event);
-	virtual void contextMenuEvent(QContextMenuEvent *event);
-	virtual void dragEnterEvent(QDragEnterEvent *event);
-	virtual void dragLeaveEvent(QDragLeaveEvent *event);
-	virtual void dragMoveEvent(QDragMoveEvent *event);
-	virtual void dropEvent(QDropEvent *event);
-	virtual void inputMethodEvent(QInputMethodEvent *event);
-	virtual QVariant inputMethodQuery(Qt::InputMethodQuery query) const;
-	virtual void scrollContentsBy(int, int) {}
+	bool event(QEvent *event) override;
+	void paintEvent(QPaintEvent *event) override;
+	void wheelEvent(QWheelEvent *event) override;
+	void focusInEvent(QFocusEvent *event) override;
+	void focusOutEvent(QFocusEvent *event) override;
+	void resizeEvent(QResizeEvent *event) override;
+	void keyPressEvent(QKeyEvent *event) override;
+	void mousePressEvent(QMouseEvent *event) override;
+	void mouseReleaseEvent(QMouseEvent *event) override;
+	void mouseDoubleClickEvent(QMouseEvent *event) override;
+	void mouseMoveEvent(QMouseEvent *event) override;
+	void contextMenuEvent(QContextMenuEvent *event) override;
+	void dragEnterEvent(QDragEnterEvent *event) override;
+	void dragLeaveEvent(QDragLeaveEvent *event) override;
+	void dragMoveEvent(QDragMoveEvent *event) override;
+	void dropEvent(QDropEvent *event) override;
+	void inputMethodEvent(QInputMethodEvent *event) override;
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const override;
+	void scrollContentsBy(int, int) override {}
 
 private:
 	ScintillaQt *sqt;

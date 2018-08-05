@@ -18,6 +18,7 @@
  * 
  */
 
+#include "asrt.h"
 #include "core_iface.h"
 #include "showgraph.h"
 

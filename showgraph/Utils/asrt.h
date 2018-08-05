@@ -59,6 +59,7 @@
 #  define ASSERT(cond) Q_ASSERT(cond)
 #endif
 
+#if 0
 /**
  * Generic assertion routine template
  * @ingroup Asserts
@@ -91,6 +92,7 @@ inline void assert( bool asrt)
 {
     assert< int>( asrt);
 }
+#endif
 
 /**
  * Assert that works only in debug version
@@ -99,7 +101,7 @@ inline void assert( bool asrt)
 inline void assertd( bool asrt)
 {
 #ifdef _DEBUG
-    assert< int>( asrt);
+    //assert< int>( asrt);
 #endif
 }
 

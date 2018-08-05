@@ -551,7 +551,7 @@ Numeration AuxGraph::rankNodes()
         if ( rank == NUMBER_NO_NUM)
         {
             rank = 0;
-            assert( 0); // Shouldn't be here. Means ranking did not cover all nodes
+            assertd( 0); // Shouldn't be here. Means ranking did not cover all nodes
         } 
         levels[ rank]->add( n);
     }

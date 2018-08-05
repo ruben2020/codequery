@@ -38,8 +38,8 @@ inline void Graph::deleteEdge( void *e)
  */
 inline void Graph::detachNode( Node* node)
 {
-    assert( isNotNullP( node));
-    assert( node->graph() == this);
+    assertd( isNotNullP( node));
+    assertd( node->graph() == this);
 
     if( first_node == node)
     {
@@ -54,8 +54,8 @@ inline void Graph::detachNode( Node* node)
  */
 inline void Graph::detachEdge( Edge * edge)
 {
-    assert( isNotNullP( edge));
-    assert( edge->graph() == this);
+    assertd( isNotNullP( edge));
+    assertd( edge->graph() == this);
 
     if( first_edge == edge)
     {
@@ -116,7 +116,7 @@ Graph::newNodeImpl( GraphUid id)
     /**
      * Check that we have available node id 
      */
-    assert( edge_next_id < GRAPH_MAX_NODE_NUM);
+    assertd( edge_next_id < GRAPH_MAX_NODE_NUM);
     
     /** Create node */
     Node *node_p = this->createNode( id);
@@ -152,9 +152,9 @@ Graph::newNode()
 inline Node * 
 Graph::newNode( QDomElement e)
 {
-    assert( !e.isNull());
-    assert( e.tagName() == QString( "node"));
-    assert( e.hasAttribute( "id"));
+    assertd( !e.isNull());
+    assertd( e.tagName() == QString( "node"));
+    assertd( e.hasAttribute( "id"));
 
     Node *node_p = newNodeImpl( node_next_id);
     node_p->setElement( e);
@@ -171,7 +171,7 @@ Graph::newEdgeImpl( Node * pred, Node * succ)
     /**
      * Check that we have available edge id 
      */
-    assert( edge_next_id < GRAPH_MAX_NODE_NUM);
+    assertd( edge_next_id < GRAPH_MAX_NODE_NUM);
     Edge *edge_p = this->createEdge( edge_next_id++, pred, succ);
     edge_p->attach( EDGE_LIST_GRAPH, first_edge);
     first_edge = edge_p;

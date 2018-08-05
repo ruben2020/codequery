@@ -70,7 +70,7 @@ GEdge::updateElement()
     int i = 0;
     QDomElement new_e = graph()->createElement( "edge");
     QDomNode e2 = graph()->documentElement().removeChild( e);
-    assert( !e2.isNull());
+    assertd( !e2.isNull());
     graph()->documentElement().appendChild( new_e);
     setElement( new_e);
     e = new_e;
@@ -101,7 +101,7 @@ GEdge::adjustStyles()
 
     while ( succ_n->isEdgeControl() || succ_n->isEdgeLabel())
     {
-        assert( isNotNullP( succ_n->firstSucc()));
+        assertd( isNotNullP( succ_n->firstSucc()));
         succ_n->firstSucc()->setStyle( style());
         succ_n = succ_n->firstSucc()->succ();
     }
@@ -110,7 +110,7 @@ GEdge::adjustStyles()
 
     while ( pred_n->isEdgeControl() || pred_n->isEdgeLabel())
     {
-        assert( isNotNullP( pred_n->firstPred()));
+        assertd( isNotNullP( pred_n->firstPred()));
         pred_n->firstPred()->setStyle( style());
         pred_n = pred_n->firstPred()->pred();
     }

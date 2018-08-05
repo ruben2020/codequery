@@ -51,7 +51,7 @@ enum ListDir
 inline ListDir
 ListRDir( ListDir dir)
 {
-    assert( LIST_DIR_NUM == 2);
+    assertd( LIST_DIR_NUM == 2);
     return ( dir == LIST_DIR_DEFAULT)? LIST_DIR_RDEFAULT: LIST_DIR_DEFAULT; 
 }
 

@@ -184,7 +184,7 @@ inline Node::EdgeIter Node::edgesEnd()
 inline void
 Node::AddEdgeInDir( Edge *edge, GraphDir dir)
 {
-    assert( isNotNullP( edge));
+    assertd( isNotNullP( edge));
     GRAPH_ASSERTD( (int) GRAPH_DIR_DOWN == (int) EDGE_LIST_SUCCS,
                    "Enums of direction and edge lists are not having right values");
     GRAPH_ASSERTD( (int) GRAPH_DIR_UP == (int) EDGE_LIST_PREDS,
@@ -199,7 +199,7 @@ Node::AddEdgeInDir( Edge *edge, GraphDir dir)
 inline void
 Node::deleteEdgeInDir( GraphDir dir, Edge* edge)
 {
-    assert( isNotNullP( edge));
+    assertd( isNotNullP( edge));
     if( first_edge[ dir] == edge)
     {
         first_edge[ dir] = edge->nextEdgeInDir( dir);

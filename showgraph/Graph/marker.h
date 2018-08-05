@@ -425,9 +425,9 @@ inline Marker MarkerManager::newMarker()
         {
             case M_ERROR_GENERIC:    
             default:
-                assert(0);
+                assertd(0);
         }
-        assert(0);
+        assertd(0);
     }
     return newMarker();
 }

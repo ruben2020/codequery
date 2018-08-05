@@ -77,7 +77,7 @@ namespace MemImpl
     template< class Data>
     Entry< Data>::Entry()
     {
-        assert( 0);
+        assertd( 0);
     }
     /**
      * Private destructor
@@ -85,7 +85,7 @@ namespace MemImpl
     template< class Data>
     Entry< Data>::~Entry()
     {
-        assert( 0);
+        assertd( 0);
     }
     /** Get position */
     template< class Data>

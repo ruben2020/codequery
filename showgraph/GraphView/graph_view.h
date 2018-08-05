@@ -126,7 +126,7 @@ public:
     /** New focus event */
     inline void focusEvent( GNode *n)
     {
-        assert( isNotNullP( n));
+        assertd( isNotNullP( n));
         viewEvent( NAV_EVENT_NODE_FOCUS, n);
     }
     /** Erase node from history */

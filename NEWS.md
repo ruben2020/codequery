@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 0.21.1 - Sep 15, 2018
+----------------------------
+Minor release to fix build incompatibility with Qt 5.11     
+
 Version 0.21.0 - Apr 30, 2017
 ----------------------------
 Fixes in the ctags file parser     

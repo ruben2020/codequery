@@ -94,7 +94,7 @@ GNode::~GNode()
 
             while ( succ->isEdgeControl() || succ->isEdgeLabel())
             {
-                assert( isNotNullP( succ->firstSucc()));
+                assertd( isNotNullP( succ->firstSucc()));
                 if ( succ->mark( m))
 				{
 					nodes << succ;
@@ -112,7 +112,7 @@ GNode::~GNode()
 
             while ( pred->isEdgeControl() || pred->isEdgeLabel())
             {
-                assert( isNotNullP( pred->firstPred()));
+                assertd( isNotNullP( pred->firstPred()));
                 if ( pred->mark( m))
 				{
 					nodes << pred;
@@ -186,8 +186,8 @@ GNode::updateElement()
 void
 GNode::readFromElement( QDomElement e)
 {
-    assert( !e.isNull());
-    assert( e.tagName() == QString( "node"));
+    assertd( !e.isNull());
+    assertd( e.tagName() == QString( "node"));
     
     if ( e.hasAttribute( "x") && e.hasAttribute( "y"))
     {
@@ -757,7 +757,7 @@ void NodeItem::adjustAssociates()
 
         if ( succ->isEdgeControl() || succ->isEdgeLabel())
         {
-            assert( isNotNullP( succ->firstSucc()));
+            assertd( isNotNullP( succ->firstSucc()));
             succ->firstSucc()->item()->adjust();
         }
     }
@@ -768,7 +768,7 @@ void NodeItem::adjustAssociates()
 
         if ( pred->isEdgeControl() || pred->isEdgeLabel())
         {
-            assert( isNotNullP( pred->firstPred()));
+            assertd( isNotNullP( pred->firstPred()));
             pred->firstPred()->item()->adjust();
         }
     }
@@ -786,7 +786,7 @@ void NodeItem::updateAssociates()
 
         if ( succ->isEdgeControl() || succ->isEdgeLabel())
         {
-            assert( isNotNullP( succ->firstSucc()));
+            assertd( isNotNullP( succ->firstSucc()));
             succ->firstSucc()->item()->update();
         }
     }
@@ -797,7 +797,7 @@ void NodeItem::updateAssociates()
 
         if ( pred->isEdgeControl() || pred->isEdgeLabel())
         {
-            assert( isNotNullP( pred->firstPred()));
+            assertd( isNotNullP( pred->firstPred()));
             pred->firstPred()->item()->update();
         }
     }

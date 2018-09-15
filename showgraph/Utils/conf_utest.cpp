@@ -33,11 +33,11 @@ bool uTestConf()
     conf->printOpts(); // Print them to console
 
     /** Check that created options can be accessed */
-    assert( isNullP( conf->option( "file")));
-    assert( isNotNullP( conf->option("output")));
-    assert( isNotNullP( conf->shortOption( "o")));
-    assert( isNullP( conf->shortOption( "output")));
-    assert( isNotNullP( conf->longOption("output")));
+    assertd( isNullP( conf->option( "file")));
+    assertd( isNotNullP( conf->option("output")));
+    assertd( isNotNullP( conf->shortOption( "o")));
+    assertd( isNullP( conf->shortOption( "output")));
+    assertd( isNotNullP( conf->longOption("output")));
 
     /** Create array of arguments */
     char *args[ 8];
@@ -54,12 +54,12 @@ bool uTestConf()
     conf->readArgs( 8, args);
 
     /** Check options values */
-    assert( conf->unknownOptsNum() == 2); // Check number of unknown arguments
-    assert( !(conf->option( "output")->string().compare("file")));
+    assertd( conf->unknownOptsNum() == 2); // Check number of unknown arguments
+    assertd( !(conf->option( "output")->string().compare("file")));
     Option *int_opt = conf->option( "integer");
-    assert( int_opt->isDefined());
-    assert( int_opt->intVal()== 80);
-    assert( conf->option( "b")->isSet());
+    assertd( int_opt->isDefined());
+    assertd( int_opt->intVal()== 80);
+    assertd( conf->option( "b")->isSet());
     
     delete conf;
     return true;

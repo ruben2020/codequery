@@ -43,7 +43,7 @@ Edge::detachFromNode( GraphDir dir)
 inline void 
 Edge::setNode( Node *n, GraphDir dir)
 {
-    assert( isNotNullP( n));
+    assertd( isNotNullP( n));
     nodes[ dir] = n;
     if ( n != NULL)
     {

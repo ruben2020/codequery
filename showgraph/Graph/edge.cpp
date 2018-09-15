@@ -43,8 +43,8 @@ Edge::debugPrint()
      * TODO: Implements graph states and in 'in process' state print node as '?'
      *       Examples of such prints: 4->? ?->3 ?->?
      */
-    assert( isNotNullP( pred()));
-    assert( isNotNullP( succ()));
+    assertd( isNotNullP( pred()));
+    assertd( isNotNullP( succ()));
 
     out("%llu->%llu;", pred()->id(), succ()->id());
 }

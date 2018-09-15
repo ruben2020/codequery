@@ -1,8 +1,8 @@
 {
-    "version": "0.21.0",
+    "version": "0.21.1",
     "state": "stable",
-    "scope": "minor feature",
-    "changes": "Fixes in the ctags file parser, List of files button added to the GUI",
+    "scope": "minor bugfix",
+    "changes": "Minor release to fix build incompatibility with Qt 5.11",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

@@ -440,8 +440,8 @@ inline NumValue NumManager::findNextFreeValue()
          */
         if ( res == NUM_VAL_LAST)
         {
-            assert< NumErrorType> ( !reached_limit, 
-                                       NUM_ERROR_OUT_OF_VALUES);
+            /*assert< NumErrorType> ( !reached_limit, 
+                                       NUM_ERROR_OUT_OF_VALUES);*/
             clearNumerationsInObjects();
             reached_limit = true;            
         }

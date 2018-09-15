@@ -212,7 +212,7 @@ Graph::writeToXML( QString filename)
     QFile file( filename);
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
-        assert( 0);
+        assertd( 0);
         return;
     }
      

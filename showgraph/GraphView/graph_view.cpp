@@ -307,7 +307,7 @@ void GGraph::showEditNodeStyle()
 
 void GGraph::showWholeGraph()
 {
-    assert( !view()->isContext());
+    assertd( !view()->isContext());
     emptySelection();
     GNode* n;
     foreachNode( n, this)
@@ -460,7 +460,7 @@ void GGraph::deleteEdgeWithControls( GEdge *edge)
     GNode * succ = edge->succ();
     while ( succ->isEdgeControl() || succ->isEdgeLabel())
     {
-        assert( isNotNullP( succ->firstSucc()));
+        assertd( isNotNullP( succ->firstSucc()));
         nodes << succ;
         edges << succ->firstSucc();
 		succ = succ->firstSucc()->succ();
@@ -468,7 +468,7 @@ void GGraph::deleteEdgeWithControls( GEdge *edge)
     GNode * pred = edge->pred(); 
     while ( pred->isEdgeControl() || pred->isEdgeLabel())
     {
-        assert( isNotNullP( pred->firstPred()));
+        assertd( isNotNullP( pred->firstPred()));
         nodes << pred;
 		edges << pred->firstPred();
         pred = pred->firstPred()->pred();
@@ -1337,11 +1337,11 @@ GNode* GraphView::findNodeByLabel( QString label)
 /** Repeat navigation event */
 void GraphView::replayNavigationEvent( NavEvent *ev)
 {
-    assert( isNotNullP( ev));
+    assertd( isNotNullP( ev));
     
     if ( ev->isFocus())
     {
-        assert( isNotNullP( ev->node()));
+        assertd( isNotNullP( ev->node()));
         if ( isContext())
         {
             graph()->emptySelection();
@@ -1455,7 +1455,7 @@ GGraph::writeToXML( QString filename)
     QFile file( filename);
     if (!file.open(QFile::WriteOnly | QFile::Text))
     {
-        assert( 0);
+        assertd( 0);
         return;
     }
     
@@ -1469,7 +1469,7 @@ GGraph::writeToXML( QString filename)
             elements.push_back( e);
             style->writeElement( e);
             //QDomNode e2 = graph()->documentElement().removeChild( e);
-            //assert( !e2.isNull());
+            //assertd( !e2.isNull());
             QDomNode n = documentElement().insertBefore( e, documentElement().firstChild());
             ASSERTD( !n.isNull());
         }

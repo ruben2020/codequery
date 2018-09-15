@@ -251,7 +251,7 @@ public:
                 out("EDGE LABEL %llu;", id());
                 break;
             default:         
-                assert( 0);
+                assertd( 0);
                 out("NO_TYPE %llu;", id());
                 break;
         }

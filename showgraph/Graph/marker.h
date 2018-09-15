@@ -365,8 +365,8 @@ MarkerManager::findNextFreeValue()
          */
         if ( res == GRAPH_MARKER_LAST)
         {
-            assert< MarkerErrorType> ( !reached_limit, 
-                                       M_ERROR_OUT_OF_VALUES);
+            /*assert< MarkerErrorType> ( !reached_limit, 
+                                       M_ERROR_OUT_OF_VALUES);*/
             clearMarkersInObjects();
             reached_limit = true;            
         }
@@ -425,9 +425,9 @@ inline Marker MarkerManager::newMarker()
         {
             case M_ERROR_GENERIC:    
             default:
-                assert(0);
+                assertd(0);
         }
-        assert(0);
+        assertd(0);
     }
     return newMarker();
 }

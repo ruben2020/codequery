@@ -19,6 +19,12 @@
  */
 #include "gview_impl.h"
 
+#ifdef USE_QT5
+#define QT45_FOREGROUND(x) windowText(x)
+#else
+#define QT45_FOREGROUND(x) foreground(x)
+#endif
+
 /**
  * EdgeHelper implementaion
  */
@@ -193,11 +199,11 @@ EdgeHelper::paint( QPainter *painter,
 
     //Set opacity
     painter->setOpacity( 0.3);
-    QPen pen( option->palette.foreground().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen( option->palette.QT45_FOREGROUND().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         
     // Draw the line itself
     painter->setPen( pen);
-    painter->setBrush( option->palette.foreground().color());
+    painter->setBrush( option->palette.QT45_FOREGROUND().color());
     // Draw the arrows if there's enough room and level of detail is appropriate
     if ( option->levelOfDetail >= draw_arrow_detail_level)
     {

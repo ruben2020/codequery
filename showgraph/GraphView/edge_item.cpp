@@ -23,6 +23,12 @@
 //#define SHOW_CONTROL_POINTS
 //#define SHOW_BACKEDGES
 
+#ifdef USE_QT5
+#define QT45_FOREGROUND(x) windowText(x)
+#else
+#define QT45_FOREGROUND(x) foreground(x)
+#endif
+
 GEdge::GEdge( GGraph *graph_p, int _id, GNode *_pred, GNode* _succ):
     AuxEdge( (AuxGraph *)graph_p, _id, (AuxNode *)_pred, (AuxNode *)_succ), _style( NULL)
 {
@@ -439,7 +445,7 @@ EdgeItem::paint( QPainter *painter,
     if ( edge()->graph()->view()->isContext())
         painter->setOpacity( opacity);
 
-    QPen pen( option->palette.foreground().color(),
+    QPen pen( option->palette.QT45_FOREGROUND().color(),
               1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         
     if ( isNotNullP( edge()->style()))
@@ -487,7 +493,7 @@ EdgeItem::paint( QPainter *painter,
             painter->setBrush( edge()->style()->pen().color());
         } else
         {
-            painter->setBrush(option->palette.foreground().color());
+            painter->setBrush(option->palette.QT45_FOREGROUND().color());
         }
         if ( edge()->isSelf())
         {

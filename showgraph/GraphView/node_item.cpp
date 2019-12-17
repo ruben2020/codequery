@@ -21,6 +21,12 @@
 
 //#define DRAW_AXIS
 
+#ifdef USE_QT5
+#define QT45_FOREGROUND(x) windowText(x)
+#else
+#define QT45_FOREGROUND(x) foreground(x)
+#endif
+
 /** Constant for adjusting item's border rectangle */
 const qreal box_adjust = 5;
         
@@ -478,7 +484,7 @@ NodeItem::paint( QPainter *painter,
         painter->drawLine( QPoint( -boundingRect().width(), 0), QPoint( boundingRect().width(),0));
         painter->drawLine( QPoint( 0, -boundingRect().height()), QPoint( 0, boundingRect().height()));
 #endif
-        QPen pen( option->palette.foreground().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+        QPen pen( option->palette.QT45_FOREGROUND().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         if ( option->levelOfDetail < 0.1)
         {
             painter->fillRect( borderRect(), option->palette.highlight().color());
@@ -527,11 +533,11 @@ NodeItem::paint( QPainter *painter,
             if ( bold_border && ( option->state & QStyle::State_Sunken)) 
             {
                 painter->setBrush( option->palette.highlight().color());
-                painter->setPen( QPen(option->palette.foreground().color(), 0));
+                painter->setPen( QPen(option->palette.QT45_FOREGROUND().color(), 0));
             } else
             {
                 painter->setBrush( option->palette.highlight().color());
-                painter->setPen( QPen(option->palette.foreground().color(), 0));
+                painter->setPen( QPen(option->palette.QT45_FOREGROUND().color(), 0));
             }
             painter->drawEllipse( -EdgeControlSize, -EdgeControlSize,
                                   2*EdgeControlSize, 2*EdgeControlSize);

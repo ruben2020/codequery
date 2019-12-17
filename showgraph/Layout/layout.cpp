@@ -16,8 +16,14 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <algorithm>
 #include "layout_iface.h"
 
+#ifdef USE_QT5
+#define QT45_SORT(x,y,z) std::sort(x,y,z)
+#else
+#define QT45_SORT(x,y,z) qSort(x,y,z)
+#endif
 
 /**
  * Arrange nodes in level
@@ -65,7 +71,7 @@ bool compareGroups( NodeGroup* g1,
  */
 void Level::sortNodesByOrder()
 {
-    qSort( node_list.begin(), node_list.end(), compareOrders);
+    QT45_SORT( node_list.begin(), node_list.end(), compareOrders);
 }
 
 /**
@@ -86,7 +92,7 @@ void Level::arrangeNodes( GraphDir dir, bool commit_placement, bool first_pass)
         }
     }
     /** Sort groups with respect to their coordinates */
-    qSort( list.begin(), list.end(), compareGroups);
+    QT45_SORT( list.begin(), list.end(), compareGroups);
     
     QLinkedList< NodeGroup *> groups;
     

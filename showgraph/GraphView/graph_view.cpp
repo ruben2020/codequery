@@ -8,6 +8,12 @@
  */
 #include "gview_impl.h"
 
+#ifdef USE_QT5
+#define QT45_FOREGROUND(x) windowText(x)
+#else
+#define QT45_FOREGROUND(x) foreground(x)
+#endif
+
 /**
  * Compute scale parameter from user-controlled zoom factor
  */
@@ -240,7 +246,7 @@ void GGraph::showEditEdgeStyle()
     GStyle* new_style;
     if ( isNullP( old_style))
     {
-        QColor color( view()->palette().foreground().color());
+        QColor color( view()->palette().QT45_FOREGROUND().color());
         new_style = new GStyle();
         new_style->setPenColor( color);
         new_style->setPenWidth( 1);
@@ -286,7 +292,7 @@ void GGraph::showEditNodeStyle()
     GStyle* new_style;
     if ( isNullP( old_style))
     {
-        QColor color( view()->palette().foreground().color());
+        QColor color( view()->palette().QT45_FOREGROUND().color());
         new_style = new GStyle();
         new_style->setPenColor( color);
         new_style->setPenWidth( 1);

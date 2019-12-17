@@ -58,3 +58,4 @@ PoolObj::operator delete[]( void *ptr)
 {
     ASSERT( 0);
 }
+

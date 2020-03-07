@@ -156,17 +156,17 @@ sqlquery::~sqlquery()
 
 sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 {
-	if (dbfn.empty()) return sqlfileOPENERROR;
+	if (dbfn.STRISEMPTY()) return sqlfileOPENERROR;
 
 	smartFILE fp;
 	// Does the file exist?
-	if (check_fileExists(dbfn.c_str()) == false) {return sqlfileOPENERROR;}
+	if (check_fileExists(dbfn.C_STR()) == false) {return sqlfileOPENERROR;}
 	// Try to open the file for reading
-	fp = fopen(dbfn.c_str(), "r");
+	fp = fopen(dbfn.C_STR(), "r");
 	if (fp == NULL) {return sqlfileOPENERROR;}
 	fp.close_file();
 
-	int rc = sqlite3_open_v2(dbfn.c_str(),
+	int rc = sqlite3_open_v2(dbfn.C_STR(),
 						&m_db, SQLITE_OPEN_READONLY, NULL);
 	if ((rc != SQLITE_OK)||(m_db == NULL)) 
 	{
@@ -183,12 +183,12 @@ sqlquery::en_filereadstatus sqlquery::open_dbfile(tStr dbfn)
 
 	tStr majorver = read_configtbl("DB_MAJOR_VER", stmt.get());
 	tStr minorver = read_configtbl("DB_MINOR_VER", stmt.get());
-	if ((majorver.empty())||(minorver.empty()))
+	if ((majorver.STRISEMPTY())||(minorver.STRISEMPTY()))
 		{return sqlfileNOTCORRECTDB;}
 	if (majorver.compare(tStr("0")) != 0) return sqlfileINCORRECTVER;
 	if (minorver.compare(tStr("1")) != 0) return sqlfileINCORRECTVER;
 	m_basepath = read_configtbl("DB_BASE_PATH", stmt.get());
-	if (m_basepath.empty()) {return sqlfileNOTCORRECTDB;}
+	if (m_basepath.STRISEMPTY()) {return sqlfileNOTCORRECTDB;}
 	rc = sqlite3_prepare_v2(m_db, SQL_AUTOCOMPLETE, strlen(SQL_AUTOCOMPLETE),
 							&(m_autocompstmt.m_stmt), NULL);
 	rc = sqlite3_prepare_v2(m_db, SQL_FUNCSINONEFILE, strlen(SQL_FUNCSINONEFILE),
@@ -244,7 +244,7 @@ sqlqueryresultlist sqlquery::search_funclist_filename(const char* searchstr)
 	srchterm.append(searchstr);
 	if ((searchstr == NULL)||(strlen(searchstr) < 1)||(m_db == NULL)) return result;
 	sqlite3_reset(m_funclistfilenamestmt.get());
-	int rc = sqlite3_bind_text(m_funclistfilenamestmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_STATIC);
+	int rc = sqlite3_bind_text(m_funclistfilenamestmt.get(), 1, srchterm.C_STR(), srchterm.size(), SQLITE_STATIC);
 	if (rc != SQLITE_OK) {printf("Err: %s\n", sqlite3_errmsg(m_db)); return result;}
 	result = search_func_in_one_file(m_funclistfilenamestmt.get());
 	return result;
@@ -270,7 +270,7 @@ tVecStr sqlquery::search_autocomplete(const char* searchstr)
 	if ((searchstr == NULL)||(strlen(searchstr) < 1)||(m_db == NULL)) return result;
 	tStr srchterm = process_searchterm_autocomplete(searchstr);
 	sqlite3_reset(m_autocompstmt.get());
-	int rc = sqlite3_bind_text(m_autocompstmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_STATIC);
+	int rc = sqlite3_bind_text(m_autocompstmt.get(), 1, srchterm.C_STR(), srchterm.size(), SQLITE_STATIC);
 	if (rc != SQLITE_OK) {printf("Err: %s\n", sqlite3_errmsg(m_db)); return result;}
 	do
 	{
@@ -298,13 +298,13 @@ sqlqueryresultlist sqlquery::search(
 	int rc;
 	bool twoTerms = true;
 	result.result_type = sqlqueryresultlist::sqlresultERROR;
-	if ((m_db == NULL)||(searchstr.empty())||(m_basepath.empty())) return result;
+	if ((m_db == NULL)||(searchstr.STRISEMPTY())||(m_basepath.STRISEMPTY())) return result;
 	tStr sqlqry, srchterm, filterterm;
 	sqlqueryresultlist::en_resultType resultType = sqlqueryresultlist::sqlresultFULL;
 	if (exactmatch && (querytype == sqlresultFUNCSINFILE)) {searchstr.insert(0, "%");}
-	srchterm = process_searchterm(searchstr.c_str(), exactmatch);
-	if (filterstr.empty()) {filterterm = "%";}
-	else {filterterm = process_searchterm(filterstr.c_str(), false);}
+	srchterm = process_searchterm(searchstr.C_STR(), exactmatch);
+	if (filterstr.STRISEMPTY()) {filterterm = "%";}
+	else {filterterm = process_searchterm(filterstr.C_STR(), false);}
 	switch (querytype)
 	{
 		case sqlquerySYMBOL:
@@ -368,7 +368,7 @@ sqlqueryresultlist sqlquery::search(
 	if (m_searchstmt.qry.compare(sqlqry) != 0)
 	{
 		sqlite3_finalize(m_searchstmt.get());
-		rc = sqlite3_prepare_v2(m_db, sqlqry.c_str(),
+		rc = sqlite3_prepare_v2(m_db, sqlqry.C_STR(),
 					sqlqry.size(),
 					&(m_searchstmt.m_stmt), NULL);
 		m_searchstmt.qry = (rc == SQLITE_OK) ? sqlqry : "";
@@ -378,11 +378,11 @@ sqlqueryresultlist sqlquery::search(
 		rc = sqlite3_reset(m_searchstmt.get());
 	}
 	if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
-	rc = sqlite3_bind_text(m_searchstmt.get(), 1, srchterm.c_str(), srchterm.size(), SQLITE_TRANSIENT);
+	rc = sqlite3_bind_text(m_searchstmt.get(), 1, srchterm.C_STR(), srchterm.size(), SQLITE_TRANSIENT);
 	if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
 	if (twoTerms)
 	{
-		rc = sqlite3_bind_text(m_searchstmt.get(), 2, filterterm.c_str(), filterterm.size(), SQLITE_TRANSIENT);
+		rc = sqlite3_bind_text(m_searchstmt.get(), 2, filterterm.C_STR(), filterterm.size(), SQLITE_TRANSIENT);
 		if (rc != SQLITE_OK) {result.sqlerrmsg = sqlite3_errmsg(m_db); return result;}
 	}
 	if (resultType == sqlqueryresultlist::sqlresultFULL) result = search_full(m_searchstmt.get());
@@ -399,7 +399,7 @@ sqlqueryresultlist sqlquery::search(
 
 tStr sqlquery::process_searchterm(const char* searchterm, const bool& exactmatch)
 {
-	tStr srchterm, srchterm2;
+	std::string srchterm, srchterm2;
 	if (!exactmatch)
 	{
 		srchterm2 = add_escape_char(searchterm,        '%', ';').c_str();
@@ -411,16 +411,24 @@ tStr sqlquery::process_searchterm(const char* searchterm, const bool& exactmatch
 		replacechar( srchterm.begin(), srchterm.end(), '?', '_');
 	}
 	else srchterm = searchterm;
+#if defined(USE_QT5)||defined(USE_QT4)
+	return  QString::fromStdString(srchterm);
+#else
 	return srchterm;
+#endif
 }
 
 tStr sqlquery::process_searchterm_autocomplete(const char* searchterm)
 {
-	tStr srchterm(searchterm);
+	std::string srchterm(searchterm);
 	srchterm += "%";
 	replacechar( srchterm.begin(), srchterm.end(), '*', '%');
 	replacechar( srchterm.begin(), srchterm.end(), '?', '_');
+#if defined(USE_QT5)||defined(USE_QT4)
+	return  QString::fromStdString(srchterm);
+#else
 	return srchterm;
+#endif
 }
 
 sqlqueryresultlist sqlquery::search_declaration(const char* searchstr)
@@ -445,7 +453,7 @@ sqlqueryresultlist sqlquery::search_declaration(const char* searchstr)
 			fp            = (const char*) sqlite3_column_text(stmt, 2);
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 3);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 4);
-			item.filename = extract_filename(fp.c_str());
+			item.filename = extract_filename(fp.C_STR());
 			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
@@ -487,7 +495,7 @@ sqlqueryresultlist sqlquery::search_full(sqlite3_stmt* stmt)
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 3);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 4);
 			item.fileid   =               sqlite3_column_int (stmt, 5);
-			item.filename = extract_filename(fp.c_str());
+			item.filename = extract_filename(fp.C_STR());
 			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
@@ -525,10 +533,9 @@ sqlqueryresultlist sqlquery::search_func_in_one_file(sqlite3_stmt* stmt)
 			item.symname  = (const char*) sqlite3_column_text(stmt, 0);
 			fp            = (const char*) sqlite3_column_text(stmt, 1);
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 2);
-			item.filename = extract_filename(fp.c_str());
-			item.intLinenum = atoi(item.linenum.c_str());
-			item.symname2 = item.symname;
-			std::transform(item.symname2.begin(), item.symname2.end(), item.symname2.begin(), ::tolower);
+			item.filename = extract_filename(fp.C_STR());
+			item.intLinenum = atoi(item.linenum.C_STR());
+			STRTOLOWER(item.symname2, item.symname);
 			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
@@ -567,7 +574,7 @@ sqlqueryresultlist sqlquery::search_file_line(sqlite3_stmt* stmt)
 			item.linenum  = (const char*) sqlite3_column_text(stmt, 1);
 			item.linetext = (const char*) sqlite3_column_text(stmt, 2);
 			item.fileid   =               sqlite3_column_int (stmt, 3);
-			item.filename = extract_filename(fp.c_str());
+			item.filename = extract_filename(fp.C_STR());
 			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;
@@ -604,7 +611,7 @@ sqlqueryresultlist sqlquery::search_file_only(sqlite3_stmt* stmt)
 		{
 			fp            = (const char*) sqlite3_column_text(stmt, 0);
 			item.linenum  = "1";
-			item.filename = extract_filename(fp.c_str());
+			item.filename = extract_filename(fp.C_STR());
 			if (isAbsolutePath(fp) == false)
 			{
 				item.filepath = m_basepath;

@@ -795,7 +795,7 @@ void fileviewer::recvFuncList(sqlqueryresultlist* reslist)
 	{
 		m_listWidgetFunc->addItem(new QListWidgetItem(
 			str2qt(m_funclist.resultlist[i].symname), 0, 
-			atoi(m_funclist.resultlist[i].linenum.c_str())));
+			atoi(m_funclist.resultlist[i].linenum.C_STR())));
 	}
 }
 

@@ -17,6 +17,8 @@ project(CodeQueryGUI)
   # here we define CODEQUERY_SRCS variable that contains a list of all .cpp files
   # note that we don't need \ at the end of line
   SET( CODEQUERY_SRCS
+       ../querylib/small_lib.cpp
+       ../querylib/sqlquery.cpp
        sqlqueryadv.cpp
        std2qt.cpp
        langtable.cpp
@@ -141,17 +143,19 @@ if (BUILD_QT5)
 if(WIN32)
   SET(CQ_WIN_RCS cqwin32.rc)
   add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
-  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5 scintillaedit)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
 else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
-  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph-qt5 scintillaedit)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
 endif()
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 
 
 else (BUILD_QT5)
- 
+
+  add_definitions( -DUSE_QT4 )
+
   # by default only QtCore and QtGui modules are enabled
   # other modules must be enabled like this:
   #SET( QT_USE_QTXML TRUE )
@@ -200,7 +204,7 @@ else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
 endif()
 
-  target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} sqlquery_lib small_lib cqshowgraph scintillaedit)
+  target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} cqshowgraph scintillaedit)
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 

@@ -66,9 +66,9 @@ bool isAbsolutePath(tStr fp)
 bool strrevcmp(tStr str, tStr cmpstr)
 {
 	bool retval = (1 == 1);
-	long n = str.length();
+	unsigned int n = str.length();
 	if (n != cmpstr.length()) {retval = (1 == 0);}
-	else for (long i = (n - 1); i >= 0; i--)
+	else for (unsigned int i = (n - 1); i >= 0; i--)
 	{
 		if (str[i] != cmpstr[i])
 		{
@@ -119,21 +119,6 @@ std::vector<std::string> splitstr(const char* inpstr, const char delim)
 	return vecstr;
 }
 
-// replace char o with char r for every part of the string
-// from iterator i1 to iterator i2, excluding i2
-long replacechar(std::string::iterator i1, std::string::iterator i2, const char o, const char r)
-{
-	long count = 0;
-	for(std::string::iterator i = i1; i != i2; ++i)
-	{
-		if (*i == o)
-		{
-			*i = r;
-			count++;
-		}
-	}
-	return count;
-}
 
 // remove EOL char
 const char* chomp(char* str)

@@ -256,11 +256,11 @@ QString searchhandler::search_declaration_qt(QString searchtxt)
 	QString str;
 	sqlqueryresultlist reslst = sq->search_declaration(searchtxt.QT45_TOASCII().data());
 	if (reslst.resultlist.size() > 0)
-	str.append(reslst.resultlist[0].filename.c_str())
+	str.append(reslst.resultlist[0].filename.C_STR())
 		.append(":")
-		.append(reslst.resultlist[0].linenum.c_str())
+		.append(reslst.resultlist[0].linenum.C_STR())
 		.append(" ==> ")
-		.append(reslst.resultlist[0].linetext.c_str());
+		.append(reslst.resultlist[0].linetext.C_STR());
 	return str;
 }
 
@@ -610,7 +610,7 @@ sqlqueryresultlist searchhandler::doGrep(const QString &fp)
 	fp2.replace("/", "\\");
 #endif
 	fpstr = qt2str(fp2);
-	fn = extract_filename(fpstr.c_str());
+	fn = extract_filename(fpstr.C_STR());
 	QFile file(fp2);
 	QTextStream in(&file);
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))

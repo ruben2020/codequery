@@ -9,6 +9,7 @@
  *
  */
 
+#if 0
 
 #include "std2qt.h"
 
@@ -37,4 +38,4 @@ tVecStr qt2strLst(const QStringList& inpLst)
 	return res;	
 }
 
-
+#endif

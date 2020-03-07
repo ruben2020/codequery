@@ -18,6 +18,12 @@
 
 #include "small_lib.h"
 
+#define str2qt(x) x
+#define qt2str(x) x
+#define strLst2qt(x) x
+#define qt2strLst(x) x
+
+#if 0
 inline QString str2qt(const tStr& inp)
 #ifdef CQ_NO_QTSQL
 	{return QString(inp.c_str());}
@@ -35,6 +41,8 @@ inline tStr qt2str(const QString& inp)
 #endif
 
 tVecStr qt2strLst(const QStringList& inpLst);
+
+#endif
 
 #endif //STD2QT_H_CQ
 

@@ -58,23 +58,23 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QStringLi
 	for (i=0; i < result1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-			arg(nodenum).arg(QString(result1.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result1.resultlist[i].symname.C_STR()));
 		xmltext += QString("<edge target=\"1\" source=\"%1\"/>").arg(nodenum);
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-			arg(nodenum).arg(QString(result1.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result1.resultlist[i].symname.C_STR()));
 		dottext += QString("node%1 -> node1;\n").arg(nodenum);
 		subrootnum = nodenum;
 		nodenum++;
 		if (levels == 2)
 		{
-			result = search(qt2str(result1.resultlist[i].symname.c_str()), sqlresultCALLINGFUNC, exactmatch);
+			result = search(qt2str(result1.resultlist[i].symname.C_STR()), sqlresultCALLINGFUNC, exactmatch);
 			for (j=0; j < result.resultlist.size(); j++)
 			{
 				xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-					arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+					arg(nodenum).arg(QString(result.resultlist[j].symname.C_STR()));
 				xmltext += QString("<edge target=\"%1\" source=\"%2\"/>").arg(subrootnum).arg(nodenum);
 				dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-					arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+					arg(nodenum).arg(QString(result.resultlist[j].symname.C_STR()));
 				dottext += QString("node%1 -> node%2;\n").arg(nodenum).arg(subrootnum);
 				nodenum++;
 			}
@@ -83,23 +83,23 @@ bool sqlqueryadv::search_funcgraph(QString searchstr, bool exactmatch, QStringLi
 	for (i=0; i < result2.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-			arg(nodenum).arg(QString(result2.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result2.resultlist[i].symname.C_STR()));
 		xmltext += QString("<edge target=\"%1\" source=\"1\"/>").arg(nodenum);
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-			arg(nodenum).arg(QString(result2.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result2.resultlist[i].symname.C_STR()));
 		dottext += QString("node1 -> node%1;\n").arg(nodenum);
 		subrootnum = nodenum;
 		nodenum++;
 		if (levels == 2)
 		{
-			result = search(qt2str(result2.resultlist[i].symname.c_str()), sqlresultCALLEDFUNC, exactmatch);
+			result = search(qt2str(result2.resultlist[i].symname.C_STR()), sqlresultCALLEDFUNC, exactmatch);
 			for (j=0; j < result.resultlist.size(); j++)
 			{
 				xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-					arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+					arg(nodenum).arg(QString(result.resultlist[j].symname.C_STR()));
 				xmltext += QString("<edge target=\"%1\" source=\"%2\"/>").arg(nodenum).arg(subrootnum);
 				dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-					arg(nodenum).arg(QString(result.resultlist[j].symname.c_str()));
+					arg(nodenum).arg(QString(result.resultlist[j].symname.C_STR()));
 				dottext += QString("node%1 -> node%2;\n").arg(subrootnum).arg(nodenum);
 				nodenum++;
 			}
@@ -156,20 +156,20 @@ bool sqlqueryadv::search_classinheritgraph(QString searchstr, bool exactmatch, Q
 	for (unsigned int i=0; i < result_children.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-			arg(nodenum).arg(QString(result_children.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_children.resultlist[i].symname.C_STR()));
 		xmltext += QString("<edge target=\"1\" source=\"%1\"/>").arg(nodenum);
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-			arg(nodenum).arg(QString(result_children.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_children.resultlist[i].symname.C_STR()));
 		dottext += QString("node%1 -> node1 [arrowhead=\"empty\"];\n").arg(nodenum);
 		nodenum++;
 	}
 	for (unsigned int i=0; i < result_parent1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-			arg(nodenum).arg(QString(result_parent1.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_parent1.resultlist[i].symname.C_STR()));
 		xmltext += QString("<edge target=\"%1\" source=\"1\"/>").arg(nodenum);
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-			arg(nodenum).arg(QString(result_parent1.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_parent1.resultlist[i].symname.C_STR()));
 		dottext += QString("node1 -> node%1 [arrowhead=\"empty\"];\n").arg(nodenum);
 		if (i == 0) parent1 = nodenum;
 		nodenum++;
@@ -177,20 +177,20 @@ bool sqlqueryadv::search_classinheritgraph(QString searchstr, bool exactmatch, Q
 	for (unsigned int i=0; i < result_parent2.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-			arg(nodenum).arg(QString(result_parent2.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_parent2.resultlist[i].symname.C_STR()));
 		xmltext += QString("<edge target=\"%1\" source=\"%2\"/>").arg(nodenum).arg(parent1);
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-			arg(nodenum).arg(QString(result_parent2.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_parent2.resultlist[i].symname.C_STR()));
 		dottext += QString("node%1 -> node%2 [arrowhead=\"empty\"];\n").arg(parent1).arg(nodenum);
 		nodenum++;
 	}
 	for (unsigned int i=0; i < result_cousins1.resultlist.size(); i++)
 	{
 		xmltext += QString("<node fill=\"#ffffff\" id=\"%1\" label=\"%2\"/>").
-			arg(nodenum).arg(QString(result_cousins1.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_cousins1.resultlist[i].symname.C_STR()));
 		xmltext += QString("<edge target=\"%1\" source=\"%2\"/>").arg(parent1).arg(nodenum);
 		dottext += QString("node%1 [label=\"%2\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n").
-			arg(nodenum).arg(QString(result_cousins1.resultlist[i].symname.c_str()));
+			arg(nodenum).arg(QString(result_cousins1.resultlist[i].symname.C_STR()));
 		dottext += QString("node%1 -> node%2 [arrowhead=\"empty\"];\n").arg(nodenum).arg(parent1);
 		nodenum++;
 	}

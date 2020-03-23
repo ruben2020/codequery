@@ -12,9 +12,9 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.21.0
+## Latest version = 0.22.0
 
-**NOTE: Version 0.21.0 has fixes for a major performance bug in the GUI and in the ctags file parser.**
+**NOTE: Version 0.22.0 has fixes for a major performance bug in the GUI and in the ctags file parser.**
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -131,7 +131,7 @@ On Mac, the software can be installed through [Brew](http://brew.sh/) using `bre
 
 To build on Linux and Mac, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
-Version 15.8a of [cscope](http://cscope.sourceforge.net/) or higher, works best with CodeQuery.
+Version 15.9 of [cscope](http://cscope.sourceforge.net/) or higher, works best with CodeQuery.
 
 
 ## How do I use it?

@@ -8,12 +8,14 @@
 #ifndef POSITIONCACHE_H
 #define POSITIONCACHE_H
 
-#ifdef SCI_NAMESPACE
 namespace Scintilla {
-#endif
 
-static inline bool IsEOLChar(char ch) {
+inline constexpr bool IsEOLChar(int ch) noexcept {
 	return (ch == '\r') || (ch == '\n');
+}
+
+inline constexpr bool IsSpaceOrTab(int ch) noexcept {
+	return ch == ' ' || ch == '\t';
 }
 
 /**
@@ -25,11 +27,11 @@ public:
 	double x;
 	double y;
 
-	explicit PointDocument(double x_ = 0, double y_ = 0) : x(x_), y(y_) {
+	explicit PointDocument(double x_ = 0, double y_ = 0) noexcept : x(x_), y(y_) {
 	}
 
 	// Conversion from Point.
-	explicit PointDocument(Point pt) : x(pt.x), y(pt.y) {
+	explicit PointDocument(Point pt) noexcept : x(pt.x), y(pt.y) {
 	}
 };
 
@@ -79,20 +81,23 @@ public:
 	explicit LineLayout(int maxLineLength_);
 	// Deleted so LineLayout objects can not be copied.
 	LineLayout(const LineLayout &) = delete;
+	LineLayout(LineLayout &&) = delete;
 	void operator=(const LineLayout &) = delete;
+	void operator=(LineLayout &&) = delete;
 	virtual ~LineLayout();
 	void Resize(int maxLineLength_);
-	void Free();
+	void Free() noexcept;
 	void Invalidate(validLevel validity_);
 	int LineStart(int line) const;
-	int LineLastVisible(int line) const;
-	Range SubLineRange(int subLine) const;
+	enum class Scope { visibleOnly, includeEnd };
+	int LineLastVisible(int line, Scope scope) const;
+	Range SubLineRange(int subLine, Scope scope) const;
 	bool InLine(int offset, int line) const;
 	void SetLineStart(int line, int start);
 	void SetBracesHighlight(Range rangeLine, const Sci::Position braces[],
 		char bracesMatchStyle, int xHighlight, bool ignoreStyle);
 	void RestoreBracesHighlight(Range rangeLine, const Sci::Position braces[], bool ignoreStyle);
-	int FindBefore(XYPOSITION x, int lower, int upper) const;
+	int FindBefore(XYPOSITION x, Range range) const;
 	int FindPositionFromX(XYPOSITION x, Range range, bool charPosition) const;
 	Point PointFromPosition(int posInLine, int lineHeight, PointEnd pe) const;
 	int EndLineStyle() const;
@@ -112,9 +117,11 @@ public:
 	LineLayoutCache();
 	// Deleted so LineLayoutCache objects can not be copied.
 	LineLayoutCache(const LineLayoutCache &) = delete;
+	LineLayoutCache(LineLayoutCache &&) = delete;
 	void operator=(const LineLayoutCache &) = delete;
+	void operator=(LineLayoutCache &&) = delete;
 	virtual ~LineLayoutCache();
-	void Deallocate();
+	void Deallocate() noexcept;
 	enum {
 		llcNone=SC_CACHE_NONE,
 		llcCaret=SC_CACHE_CARET,
@@ -122,11 +129,11 @@ public:
 		llcDocument=SC_CACHE_DOCUMENT
 	};
 	void Invalidate(LineLayout::validLevel validity_);
-	void SetLevel(int level_);
-	int GetLevel() const { return level; }
+	void SetLevel(int level_) noexcept;
+	int GetLevel() const noexcept { return level; }
 	LineLayout *Retrieve(Sci::Line lineNumber, Sci::Line lineCaret, int maxChars, int styleClock_,
 		Sci::Line linesOnScreen, Sci::Line linesInDoc);
-	void Dispose(LineLayout *ll);
+	void Dispose(LineLayout *ll) noexcept;
 };
 
 class PositionCacheEntry {
@@ -135,18 +142,20 @@ class PositionCacheEntry {
 	unsigned int clock:16;
 	std::unique_ptr<XYPOSITION []> positions;
 public:
-	PositionCacheEntry();
+	PositionCacheEntry() noexcept;
 	// Copy constructor not currently used, but needed for being element in std::vector.
 	PositionCacheEntry(const PositionCacheEntry &);
-	// Deleted so PositionCacheEntry objects can not be assigned.
+	// PositionCacheEntry objects should not be moved but MSVC 2015 requires this.
+	PositionCacheEntry(PositionCacheEntry &&) = default;
 	void operator=(const PositionCacheEntry &) = delete;
+	void operator=(PositionCacheEntry &&) = delete;
 	~PositionCacheEntry();
-	void Set(unsigned int styleNumber_, const char *s_, unsigned int len_, XYPOSITION *positions_, unsigned int clock_);
-	void Clear();
+	void Set(unsigned int styleNumber_, const char *s_, unsigned int len_, const XYPOSITION *positions_, unsigned int clock_);
+	void Clear() noexcept;
 	bool Retrieve(unsigned int styleNumber_, const char *s_, unsigned int len_, XYPOSITION *positions_) const;
-	static unsigned int Hash(unsigned int styleNumber_, const char *s, unsigned int len_);
-	bool NewerThan(const PositionCacheEntry &other) const;
-	void ResetClock();
+	static unsigned int Hash(unsigned int styleNumber_, const char *s, unsigned int len_) noexcept;
+	bool NewerThan(const PositionCacheEntry &other) const noexcept;
+	void ResetClock() noexcept;
 };
 
 class Representation {
@@ -156,7 +165,7 @@ public:
 	}
 };
 
-typedef std::map<int, Representation> MapRepresentation;
+typedef std::map<unsigned int, Representation> MapRepresentation;
 
 class SpecialRepresentations {
 	MapRepresentation mapReprs;
@@ -174,10 +183,10 @@ struct TextSegment {
 	int start;
 	int length;
 	const Representation *representation;
-	TextSegment(int start_=0, int length_=0, const Representation *representation_=0) :
+	TextSegment(int start_=0, int length_=0, const Representation *representation_=nullptr) noexcept :
 		start(start_), length(length_), representation(representation_) {
 	}
-	int end() const {
+	int end() const noexcept {
 		return start + length;
 	}
 };
@@ -195,7 +204,7 @@ class BreakFinder {
 	const Document *pdoc;
 	EncodingFamily encodingFamily;
 	const SpecialRepresentations *preprs;
-	void Insert(int val);
+	void Insert(Sci::Position val);
 public:
 	// If a whole run is longer than lengthStartSubdivision then subdivide
 	// into smaller runs at spaces or punctuation.
@@ -206,10 +215,12 @@ public:
 		int xStart, bool breakForSelection, const Document *pdoc_, const SpecialRepresentations *preprs_, const ViewStyle *pvsDraw);
 	// Deleted so BreakFinder objects can not be copied.
 	BreakFinder(const BreakFinder &) = delete;
+	BreakFinder(BreakFinder &&) = delete;
 	void operator=(const BreakFinder &) = delete;
+	void operator=(BreakFinder &&) = delete;
 	~BreakFinder();
 	TextSegment Next();
-	bool More() const;
+	bool More() const noexcept;
 };
 
 class PositionCache {
@@ -220,21 +231,17 @@ public:
 	PositionCache();
 	// Deleted so PositionCache objects can not be copied.
 	PositionCache(const PositionCache &) = delete;
+	PositionCache(PositionCache &&) = delete;
 	void operator=(const PositionCache &) = delete;
+	void operator=(PositionCache &&) = delete;
 	~PositionCache();
-	void Clear();
+	void Clear() noexcept;
 	void SetSize(size_t size_);
-	size_t GetSize() const { return pces.size(); }
+	size_t GetSize() const noexcept { return pces.size(); }
 	void MeasureWidths(Surface *surface, const ViewStyle &vstyle, unsigned int styleNumber,
 		const char *s, unsigned int len, XYPOSITION *positions, const Document *pdoc);
 };
 
-inline bool IsSpaceOrTab(int ch) {
-	return ch == ' ' || ch == '\t';
 }
-
-#ifdef SCI_NAMESPACE
-}
-#endif
 
 #endif

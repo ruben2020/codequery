@@ -8,25 +8,27 @@
 #ifndef XPM_H
 #define XPM_H
 
-#ifdef SCI_NAMESPACE
 namespace Scintilla {
-#endif
 
 /**
  * Hold a pixmap in XPM format.
  */
 class XPM {
-	int height;
-	int width;
-	int nColours;
+	int height=1;
+	int width=1;
+	int nColours=1;
 	std::vector<unsigned char> pixels;
 	ColourDesired colourCodeTable[256];
-	char codeTransparent;
+	char codeTransparent=' ';
 	ColourDesired ColourFromCode(int ch) const;
 	void FillRun(Surface *surface, int code, int startX, int y, int x) const;
 public:
 	explicit XPM(const char *textForm);
 	explicit XPM(const char *const *linesForm);
+	XPM(const XPM &) = default;
+	XPM(XPM &&) = default;
+	XPM &operator=(const XPM &) = default;
+	XPM &operator=(XPM &&) = default;
 	~XPM();
 	void Init(const char *textForm);
 	void Init(const char *const *linesForm);
@@ -50,9 +52,10 @@ class RGBAImage {
 public:
 	RGBAImage(int width_, int height_, float scale_, const unsigned char *pixels_);
 	explicit RGBAImage(const XPM &xpm);
-	// Deleted so RGBAImage objects can not be copied.
-	RGBAImage(const RGBAImage &) = delete;
-	RGBAImage &operator=(const RGBAImage &) = delete;
+	RGBAImage(const RGBAImage &) = default;
+	RGBAImage(RGBAImage &&) = default;
+	RGBAImage &operator=(const RGBAImage &) = default;
+	RGBAImage &operator=(RGBAImage &&) = default;
 	virtual ~RGBAImage();
 	int GetHeight() const { return height; }
 	int GetWidth() const { return width; }
@@ -61,7 +64,7 @@ public:
 	float GetScaledWidth() const { return width / scale; }
 	int CountBytes() const;
 	const unsigned char *Pixels() const;
-	void SetPixel(int x, int y, ColourDesired colour, int alpha=0xff);
+	void SetPixel(int x, int y, ColourDesired colour, int alpha);
 };
 
 /**
@@ -74,6 +77,11 @@ class RGBAImageSet {
 	mutable int width;	///< Memorize largest width of the set.
 public:
 	RGBAImageSet();
+	// Deleted so RGBAImageSet objects can not be copied.
+	RGBAImageSet(const RGBAImageSet &) = delete;
+	RGBAImageSet(RGBAImageSet &&) = delete;
+	RGBAImageSet &operator=(const RGBAImageSet &) = delete;
+	RGBAImageSet &operator=(RGBAImageSet &&) = delete;
 	~RGBAImageSet();
 	/// Remove all images.
 	void Clear();
@@ -87,8 +95,6 @@ public:
 	int GetWidth() const;
 };
 
-#ifdef SCI_NAMESPACE
 }
-#endif
 
 #endif

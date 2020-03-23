@@ -1,6 +1,8 @@
 // Scintilla source code edit control
 /** @file Catalogue.cxx
- ** Colourise for particular languages.
+ ** Lexer infrastructure.
+ ** Contains a list of LexerModules which can be searched to find a module appropriate for a
+ ** particular language.
  **/
 // Copyright 1998-2002 by Neil Hodgson <neilh@scintilla.org>
 // The License.txt file describes the conditions under which this software may be distributed.
@@ -19,9 +21,7 @@
 #include "LexerModule.h"
 #include "Catalogue.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 static std::vector<LexerModule *> lexerCatalogue;
 static int nextLanguage = SCLEX_AUTOMATIC+1;
@@ -33,7 +33,7 @@ const LexerModule *Catalogue::Find(int language) {
 			return lm;
 		}
 	}
-	return 0;
+	return nullptr;
 }
 
 const LexerModule *Catalogue::Find(const char *languageName) {
@@ -45,7 +45,7 @@ const LexerModule *Catalogue::Find(const char *languageName) {
 			}
 		}
 	}
-	return 0;
+	return nullptr;
 }
 
 void Catalogue::AddLexerModule(LexerModule *plm) {
@@ -90,6 +90,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmBlitzBasic);
 	LINK_LEXER(lmBullant);
 	LINK_LEXER(lmCaml);
+	LINK_LEXER(lmCIL);
 	LINK_LEXER(lmClw);
 	LINK_LEXER(lmClwNoCase);
 	LINK_LEXER(lmCmake);
@@ -101,6 +102,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmCsound);
 	LINK_LEXER(lmCss);
 	LINK_LEXER(lmD);
+	LINK_LEXER(lmDataflex);
 	LINK_LEXER(lmDiff);
 	LINK_LEXER(lmDMAP);
 	LINK_LEXER(lmDMIS);
@@ -119,6 +121,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmGAP);
 	LINK_LEXER(lmGui4Cli);
 	LINK_LEXER(lmHaskell);
+	LINK_LEXER(lmHollywood);
 	LINK_LEXER(lmHTML);
 	LINK_LEXER(lmIHex);
 	LINK_LEXER(lmIndent);
@@ -131,16 +134,19 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmLiterateHaskell);
 	LINK_LEXER(lmLot);
 	LINK_LEXER(lmLout);
+	LINK_LEXER(lmLPeg);
 	LINK_LEXER(lmLua);
 	LINK_LEXER(lmMagikSF);
 	LINK_LEXER(lmMake);
 	LINK_LEXER(lmMarkdown);
 	LINK_LEXER(lmMatlab);
+	LINK_LEXER(lmMaxima);
 	LINK_LEXER(lmMETAPOST);
 	LINK_LEXER(lmMMIXAL);
 	LINK_LEXER(lmModula);
 	LINK_LEXER(lmMSSQL);
 	LINK_LEXER(lmMySQL);
+	LINK_LEXER(lmNim);
 	LINK_LEXER(lmNimrod);
 	LINK_LEXER(lmNncrontab);
 	LINK_LEXER(lmNsis);
@@ -167,6 +173,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmRegistry);
 	LINK_LEXER(lmRuby);
 	LINK_LEXER(lmRust);
+	LINK_LEXER(lmSAS);
 	LINK_LEXER(lmScriptol);
 	LINK_LEXER(lmSmalltalk);
 	LINK_LEXER(lmSML);
@@ -175,6 +182,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmSpice);
 	LINK_LEXER(lmSQL);
 	LINK_LEXER(lmSrec);
+	LINK_LEXER(lmStata);
 	LINK_LEXER(lmSTTXT);
 	LINK_LEXER(lmTACL);
 	LINK_LEXER(lmTADS3);
@@ -189,6 +197,7 @@ int Scintilla_LinkLexers() {
 	LINK_LEXER(lmVerilog);
 	LINK_LEXER(lmVHDL);
 	LINK_LEXER(lmVisualProlog);
+	LINK_LEXER(lmX12);
 	LINK_LEXER(lmXML);
 	LINK_LEXER(lmYAML);
 

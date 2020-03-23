@@ -21,9 +21,7 @@
 #include "CharacterSet.h"
 #include "LexerModule.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 static void ClassifyWordSol(Sci_PositionU start, Sci_PositionU end, WordList &keywords, Accessor &styler, char *prevWord)
 {
@@ -104,7 +102,7 @@ static int GetSolStringState(Accessor &styler, Sci_Position i, Sci_Position *nex
         {
           *nextIndex = i + 1;
           /*if (ch == '"') return SCE_SCRIPTOL_STRING;
-          else */          return SCE_SCRIPTOL_STRING;
+          else*/           return SCE_SCRIPTOL_STRING;
 	}
 }
 

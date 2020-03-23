@@ -27,10 +27,9 @@
 #include "CharacterSet.h"
 #include "LexerModule.h"
 #include "OptionSet.h"
+#include "DefaultLexer.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 static const char *const JSONWordListDesc[] = {
 	"JSON Keywords",
@@ -128,7 +127,7 @@ struct OptionSetJSON : public OptionSet<OptionsJSON> {
 	}
 };
 
-class LexerJSON : public ILexer {
+class LexerJSON : public DefaultLexer {
 	OptionsJSON options;
 	OptionSetJSON optSetJSON;
 	EscapeSequence escapeSeq;

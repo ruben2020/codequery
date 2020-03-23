@@ -10,19 +10,17 @@
 #include <cstring>
 
 #include <algorithm>
+#include <iterator>
 
-#include "StringCopy.h"
 #include "WordList.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 /**
  * Creates an array that points into each word in the string and puts \0 terminators
  * after each word.
  */
-static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = false) {
+static char **ArrayFromWordList(char *wordlist, size_t slen, int *len, bool onlyLineEnds = false) {
 	int prev = '\n';
 	int words = 0;
 	// For rapid determination of whether a character is a separator, build
@@ -42,7 +40,6 @@ static char **ArrayFromWordList(char *wordlist, int *len, bool onlyLineEnds = fa
 	}
 	char **keywords = new char *[words + 1];
 	int wordsStore = 0;
-	const size_t slen = strlen(wordlist);
 	if (words) {
 		prev = '\0';
 		for (size_t k = 0; k < slen; k++) {
@@ -114,27 +111,48 @@ static int cmpWords(const void *a, const void *b) {
 }
 
 static void SortWordList(char **words, unsigned int len) {
-	qsort(static_cast<void *>(words), len, sizeof(*words), cmpWords);
+	qsort(words, len, sizeof(*words), cmpWords);
 }
 
 #endif
 
-void WordList::Set(const char *s) {
-	Clear();
+bool WordList::Set(const char *s) {
 	const size_t lenS = strlen(s) + 1;
-	list = new char[lenS];
-	memcpy(list, s, lenS);
-	words = ArrayFromWordList(list, &len, onlyLineEnds);
+	char *listTemp = new char[lenS];
+	memcpy(listTemp, s, lenS);
+	int lenTemp = 0;
+	char **wordsTemp = ArrayFromWordList(listTemp, lenS - 1, &lenTemp, onlyLineEnds);
 #ifdef _MSC_VER
-	std::sort(words, words + len, cmpWords);
+	std::sort(wordsTemp, wordsTemp + lenTemp, cmpWords);
 #else
-	SortWordList(words, len);
+	SortWordList(wordsTemp, lenTemp);
 #endif
-	std::fill(starts, starts + ELEMENTS(starts), -1);
+
+	if (lenTemp == len) {
+		bool changed = false;
+		for (int i = 0; i < lenTemp; i++) {
+			if (strcmp(words[i], wordsTemp[i]) != 0) {
+				changed = true;
+				break;
+			}
+		}
+		if (!changed) {
+			delete []listTemp;
+			delete []wordsTemp;
+			return false;
+		}
+	}
+
+	Clear();
+	words = wordsTemp;
+	list = listTemp;
+	len = lenTemp;
+	std::fill(starts, std::end(starts), -1);
 	for (int l = len - 1; l >= 0; l--) {
 		unsigned char indexChar = words[l][0];
 		starts[indexChar] = l;
 	}
+	return true;
 }
 
 /** Check whether a string is in the list.
@@ -148,7 +166,7 @@ bool WordList::InList(const char *s) const {
 	const unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
-		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
+		while (words[j][0] == firstChar) {
 			if (s[1] == words[j][1]) {
 				const char *a = words[j] + 1;
 				const char *b = s + 1;
@@ -190,7 +208,7 @@ bool WordList::InListAbbreviated(const char *s, const char marker) const {
 	const unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
-		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
+		while (words[j][0] == firstChar) {
 			bool isSubword = false;
 			int start = 1;
 			if (words[j][1] == marker) {
@@ -244,7 +262,7 @@ bool WordList::InListAbridged(const char *s, const char marker) const {
 	const unsigned char firstChar = s[0];
 	int j = starts[firstChar];
 	if (j >= 0) {
-		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
+		while (words[j][0] == firstChar) {
 			const char *a = words[j];
 			const char *b = s;
 			while (*a && *a == *b) {

@@ -4,9 +4,7 @@
 
 #include "ScintillaEdit.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 ScintillaEdit::ScintillaEdit(QWidget *parent) : ScintillaEditBase(parent) {
 }
@@ -30,7 +28,7 @@ QPair<int, int>ScintillaEdit::find_text(int flags, const char *text, int cpMin, 
     ft.chrg.cpMax = cpMax;
     ft.chrgText.cpMin = cpMin;
     ft.chrgText.cpMax = cpMax;
-    ft.lpstrText = const_cast<char *>(text);
+    ft.lpstrText = text;
 
     int start = send(SCI_FINDTEXT, flags, (uptr_t) (&ft));
 
@@ -243,6 +241,14 @@ void ScintillaEdit::setTabWidth(sptr_t tabWidth) {
 
 sptr_t ScintillaEdit::tabWidth() const {
     return send(SCI_GETTABWIDTH, 0, 0);
+}
+
+void ScintillaEdit::setTabMinimumWidth(sptr_t pixels) {
+    send(SCI_SETTABMINIMUMWIDTH, pixels, 0);
+}
+
+sptr_t ScintillaEdit::tabMinimumWidth() const {
+    return send(SCI_GETTABMINIMUMWIDTH, 0, 0);
 }
 
 void ScintillaEdit::clearTabStops(sptr_t line) {
@@ -565,6 +571,14 @@ QByteArray ScintillaEdit::wordChars() const {
     return TextReturner(SCI_GETWORDCHARS, 0);
 }
 
+void ScintillaEdit::setCharacterCategoryOptimization(sptr_t countCharacters) {
+    send(SCI_SETCHARACTERCATEGORYOPTIMIZATION, countCharacters, 0);
+}
+
+sptr_t ScintillaEdit::characterCategoryOptimization() const {
+    return send(SCI_GETCHARACTERCATEGORYOPTIMIZATION, 0, 0);
+}
+
 void ScintillaEdit::beginUndoAction() {
     send(SCI_BEGINUNDOACTION, 0, 0);
 }
@@ -635,14 +649,6 @@ void ScintillaEdit::setWhitespaceSize(sptr_t size) {
 
 sptr_t ScintillaEdit::whitespaceSize() const {
     return send(SCI_GETWHITESPACESIZE, 0, 0);
-}
-
-void ScintillaEdit::setStyleBits(sptr_t bits) {
-    send(SCI_SETSTYLEBITS, bits, 0);
-}
-
-sptr_t ScintillaEdit::styleBits() const {
-    return send(SCI_GETSTYLEBITS, 0, 0);
 }
 
 void ScintillaEdit::setLineState(sptr_t line, sptr_t state) {
@@ -835,6 +841,10 @@ sptr_t ScintillaEdit::column(sptr_t pos) const {
 
 sptr_t ScintillaEdit::countCharacters(sptr_t start, sptr_t end) {
     return send(SCI_COUNTCHARACTERS, start, end);
+}
+
+sptr_t ScintillaEdit::countCodeUnits(sptr_t start, sptr_t end) {
+    return send(SCI_COUNTCODEUNITS, start, end);
 }
 
 void ScintillaEdit::setHScrollBar(bool visible) {
@@ -1077,12 +1087,28 @@ sptr_t ScintillaEdit::targetStart() const {
     return send(SCI_GETTARGETSTART, 0, 0);
 }
 
+void ScintillaEdit::setTargetStartVirtualSpace(sptr_t space) {
+    send(SCI_SETTARGETSTARTVIRTUALSPACE, space, 0);
+}
+
+sptr_t ScintillaEdit::targetStartVirtualSpace() const {
+    return send(SCI_GETTARGETSTARTVIRTUALSPACE, 0, 0);
+}
+
 void ScintillaEdit::setTargetEnd(sptr_t end) {
     send(SCI_SETTARGETEND, end, 0);
 }
 
 sptr_t ScintillaEdit::targetEnd() const {
     return send(SCI_GETTARGETEND, 0, 0);
+}
+
+void ScintillaEdit::setTargetEndVirtualSpace(sptr_t space) {
+    send(SCI_SETTARGETENDVIRTUALSPACE, space, 0);
+}
+
+sptr_t ScintillaEdit::targetEndVirtualSpace() const {
+    return send(SCI_GETTARGETENDVIRTUALSPACE, 0, 0);
 }
 
 void ScintillaEdit::setTargetRange(sptr_t start, sptr_t end) {
@@ -1227,6 +1253,18 @@ void ScintillaEdit::toggleFoldShowText(sptr_t line, const char * text) {
 
 void ScintillaEdit::foldDisplayTextSetStyle(sptr_t style) {
     send(SCI_FOLDDISPLAYTEXTSETSTYLE, style, 0);
+}
+
+sptr_t ScintillaEdit::foldDisplayTextStyle() const {
+    return send(SCI_FOLDDISPLAYTEXTGETSTYLE, 0, 0);
+}
+
+void ScintillaEdit::setDefaultFoldDisplayText(const char * text) {
+    send(SCI_SETDEFAULTFOLDDISPLAYTEXT, 0, (sptr_t)text);
+}
+
+QByteArray ScintillaEdit::getDefaultFoldDisplayText() {
+    return TextReturner(SCI_GETDEFAULTFOLDDISPLAYTEXT, 0);
 }
 
 void ScintillaEdit::foldLine(sptr_t line, sptr_t action) {
@@ -1813,8 +1851,8 @@ sptr_t ScintillaEdit::zoom() const {
     return send(SCI_GETZOOM, 0, 0);
 }
 
-sptr_t ScintillaEdit::createDocument() {
-    return send(SCI_CREATEDOCUMENT, 0, 0);
+sptr_t ScintillaEdit::createDocument(sptr_t bytes, sptr_t documentOptions) {
+    return send(SCI_CREATEDOCUMENT, bytes, documentOptions);
 }
 
 void ScintillaEdit::addRefDocument(sptr_t doc) {
@@ -1825,8 +1863,20 @@ void ScintillaEdit::releaseDocument(sptr_t doc) {
     send(SCI_RELEASEDOCUMENT, 0, doc);
 }
 
+sptr_t ScintillaEdit::documentOptions() const {
+    return send(SCI_GETDOCUMENTOPTIONS, 0, 0);
+}
+
 sptr_t ScintillaEdit::modEventMask() const {
     return send(SCI_GETMODEVENTMASK, 0, 0);
+}
+
+void ScintillaEdit::setCommandEvents(bool commandEvents) {
+    send(SCI_SETCOMMANDEVENTS, commandEvents, 0);
+}
+
+bool ScintillaEdit::commandEvents() const {
+    return send(SCI_GETCOMMANDEVENTS, 0, 0);
 }
 
 void ScintillaEdit::setFocus(bool focus) {
@@ -1997,6 +2047,10 @@ sptr_t ScintillaEdit::positionRelative(sptr_t pos, sptr_t relative) {
     return send(SCI_POSITIONRELATIVE, pos, relative);
 }
 
+sptr_t ScintillaEdit::positionRelativeCodeUnits(sptr_t pos, sptr_t relative) {
+    return send(SCI_POSITIONRELATIVECODEUNITS, pos, relative);
+}
+
 void ScintillaEdit::copyRange(sptr_t start, sptr_t end) {
     send(SCI_COPYRANGE, start, end);
 }
@@ -2011,6 +2065,10 @@ void ScintillaEdit::setSelectionMode(sptr_t selectionMode) {
 
 sptr_t ScintillaEdit::selectionMode() const {
     return send(SCI_GETSELECTIONMODE, 0, 0);
+}
+
+bool ScintillaEdit::moveExtendsSelection() const {
+    return send(SCI_GETMOVEEXTENDSSELECTION, 0, 0);
 }
 
 sptr_t ScintillaEdit::getLineSelStartPosition(sptr_t line) {
@@ -2525,8 +2583,16 @@ sptr_t ScintillaEdit::selectionNStart(sptr_t selection) const {
     return send(SCI_GETSELECTIONNSTART, selection, 0);
 }
 
+sptr_t ScintillaEdit::selectionNStartVirtualSpace(sptr_t selection) const {
+    return send(SCI_GETSELECTIONNSTARTVIRTUALSPACE, selection, 0);
+}
+
 void ScintillaEdit::setSelectionNEnd(sptr_t selection, sptr_t caret) {
     send(SCI_SETSELECTIONNEND, selection, caret);
+}
+
+sptr_t ScintillaEdit::selectionNEndVirtualSpace(sptr_t selection) const {
+    return send(SCI_GETSELECTIONNENDVIRTUALSPACE, selection, 0);
 }
 
 sptr_t ScintillaEdit::selectionNEnd(sptr_t selection) const {
@@ -2685,8 +2751,8 @@ sptr_t ScintillaEdit::technology() const {
     return send(SCI_GETTECHNOLOGY, 0, 0);
 }
 
-sptr_t ScintillaEdit::createLoader(sptr_t bytes) {
-    return send(SCI_CREATELOADER, bytes, 0);
+sptr_t ScintillaEdit::createLoader(sptr_t bytes, sptr_t documentOptions) {
+    return send(SCI_CREATELOADER, bytes, documentOptions);
 }
 
 void ScintillaEdit::findIndicatorShow(sptr_t start, sptr_t end) {
@@ -2789,10 +2855,6 @@ sptr_t ScintillaEdit::propertyInt(const char * key, sptr_t defaultValue) const {
     return send(SCI_GETPROPERTYINT, (sptr_t)key, defaultValue);
 }
 
-sptr_t ScintillaEdit::styleBitsNeeded() const {
-    return send(SCI_GETSTYLEBITSNEEDED, 0, 0);
-}
-
 QByteArray ScintillaEdit::lexerLanguage() const {
     return TextReturner(SCI_GETLEXERLANGUAGE, 0);
 }
@@ -2855,6 +2917,42 @@ sptr_t ScintillaEdit::distanceToSecondaryStyles() const {
 
 QByteArray ScintillaEdit::subStyleBases() const {
     return TextReturner(SCI_GETSUBSTYLEBASES, 0);
+}
+
+sptr_t ScintillaEdit::namedStyles() const {
+    return send(SCI_GETNAMEDSTYLES, 0, 0);
+}
+
+QByteArray ScintillaEdit::nameOfStyle(sptr_t style) {
+    return TextReturner(SCI_NAMEOFSTYLE, style);
+}
+
+QByteArray ScintillaEdit::tagsOfStyle(sptr_t style) {
+    return TextReturner(SCI_TAGSOFSTYLE, style);
+}
+
+QByteArray ScintillaEdit::descriptionOfStyle(sptr_t style) {
+    return TextReturner(SCI_DESCRIPTIONOFSTYLE, style);
+}
+
+sptr_t ScintillaEdit::lineCharacterIndex() const {
+    return send(SCI_GETLINECHARACTERINDEX, 0, 0);
+}
+
+void ScintillaEdit::allocateLineCharacterIndex(sptr_t lineCharacterIndex) {
+    send(SCI_ALLOCATELINECHARACTERINDEX, lineCharacterIndex, 0);
+}
+
+void ScintillaEdit::releaseLineCharacterIndex(sptr_t lineCharacterIndex) {
+    send(SCI_RELEASELINECHARACTERINDEX, lineCharacterIndex, 0);
+}
+
+sptr_t ScintillaEdit::lineFromIndexPosition(sptr_t pos, sptr_t lineCharacterIndex) {
+    return send(SCI_LINEFROMINDEXPOSITION, pos, lineCharacterIndex);
+}
+
+sptr_t ScintillaEdit::indexPositionFromLine(sptr_t line, sptr_t lineCharacterIndex) {
+    return send(SCI_INDEXPOSITIONFROMLINE, line, lineCharacterIndex);
 }
 
 /* --Autogenerated -- end of section automatically generated from Scintilla.iface */

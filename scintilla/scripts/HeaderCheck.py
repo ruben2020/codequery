@@ -45,6 +45,7 @@ def CheckFiles(root):
     # The Qt platform code interleaves system and Scintilla headers
     #~ filePaths += glob.glob(root + "/qt/ScintillaEditBase/*.cpp")
     #~ filePaths += glob.glob(root + "/qt/ScintillaEdit/*.cpp")
+    filePaths += glob.glob(root + "/curses/*.cxx")
     #~ print(filePaths)
     masterHeaderList = ExtractHeaders(root + "/scripts/HeaderOrder.txt")
     for f in filePaths:
@@ -88,6 +89,5 @@ def CheckFiles(root):
                     i += 1
                     #~ return
         #print("Master header list", " ".join(masterHeaderList))
-            
 
 CheckFiles("..")

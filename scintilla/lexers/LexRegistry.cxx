@@ -27,10 +27,9 @@
 #include "CharacterSet.h"
 #include "LexerModule.h"
 #include "OptionSet.h"
+#include "DefaultLexer.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 static const char *const RegistryWordListDesc[] = {
 	0
@@ -53,7 +52,7 @@ struct OptionSetRegistry : public OptionSet<OptionsRegistry> {
 	}
 };
 
-class LexerRegistry : public ILexer {
+class LexerRegistry : public DefaultLexer {
 	OptionsRegistry options;
 	OptionSetRegistry optSetRegistry;
 

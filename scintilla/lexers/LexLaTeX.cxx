@@ -28,9 +28,7 @@
 #include "LexerModule.h"
 #include "LexerBase.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 using namespace std;
 
@@ -41,8 +39,15 @@ struct latexFoldSave {
 	latexFoldSave(const latexFoldSave &save) : structLev(save.structLev) {
 		for (int i = 0; i < 8; ++i) openBegins[i] = save.openBegins[i];
 	}
+	latexFoldSave &operator=(const latexFoldSave &save) {
+		if (this != &save) {
+			structLev = save.structLev;
+			for (int i = 0; i < 8; ++i) openBegins[i] = save.openBegins[i];
+		}
+		return *this;
+	}
 	int openBegins[8];
-	int structLev;
+	Sci_Position structLev;
 };
 
 class LexerLaTeX : public LexerBase {

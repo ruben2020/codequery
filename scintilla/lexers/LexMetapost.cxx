@@ -30,9 +30,7 @@
 #include "CharacterSet.h"
 #include "LexerModule.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 // val SCE_METAPOST_DEFAULT = 0
 // val SCE_METAPOST_SPECIAL = 1
@@ -179,7 +177,8 @@ static void ColouriseMETAPOSTDoc(
 	}
 
 	WordList &keywords  = *keywordlists[0] ;
-	WordList &keywords2 = *keywordlists[extraInterface-1] ;
+	WordList kwEmpty;
+	WordList &keywords2 = (extraInterface > 0) ? *keywordlists[extraInterface - 1] : kwEmpty;
 
 	StyleContext sc(startPos, length, SCE_METAPOST_TEXT, styler) ;
 

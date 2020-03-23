@@ -10,10 +10,6 @@
 #include "ScintillaEditBase.h"
 #include "ScintillaDocument.h"
 
-#ifdef SCI_NAMESPACE
-namespace Scintilla {
-#endif
-
 #ifndef EXPORT_IMPORT_API
 #ifdef WIN32
 #ifdef MAKING_LIBRARY
@@ -103,6 +99,8 @@ public:
 	void setBufferedDraw(bool buffered);
 	void setTabWidth(sptr_t tabWidth);
 	sptr_t tabWidth() const;
+	void setTabMinimumWidth(sptr_t pixels);
+	sptr_t tabMinimumWidth() const;
 	void clearTabStops(sptr_t line);
 	void addTabStop(sptr_t line, sptr_t x);
 	sptr_t getNextTabStop(sptr_t line, sptr_t x);
@@ -183,6 +181,8 @@ public:
 	void setCaretPeriod(sptr_t periodMilliseconds);
 	void setWordChars(const char * characters);
 	QByteArray wordChars() const;
+	void setCharacterCategoryOptimization(sptr_t countCharacters);
+	sptr_t characterCategoryOptimization() const;
 	void beginUndoAction();
 	void endUndoAction();
 	void indicSetStyle(sptr_t indicator, sptr_t indicatorStyle);
@@ -201,8 +201,6 @@ public:
 	void setWhitespaceBack(bool useSetting, sptr_t back);
 	void setWhitespaceSize(sptr_t size);
 	sptr_t whitespaceSize() const;
-	void setStyleBits(sptr_t bits);
-	sptr_t styleBits() const;
 	void setLineState(sptr_t line, sptr_t state);
 	sptr_t lineState(sptr_t line) const;
 	sptr_t maxLineState() const;
@@ -251,6 +249,7 @@ public:
 	sptr_t lineIndentPosition(sptr_t line) const;
 	sptr_t column(sptr_t pos) const;
 	sptr_t countCharacters(sptr_t start, sptr_t end);
+	sptr_t countCodeUnits(sptr_t start, sptr_t end);
 	void setHScrollBar(bool visible);
 	bool hScrollBar() const;
 	void setIndentationGuides(sptr_t indentView);
@@ -311,8 +310,12 @@ public:
 	sptr_t caretWidth() const;
 	void setTargetStart(sptr_t start);
 	sptr_t targetStart() const;
+	void setTargetStartVirtualSpace(sptr_t space);
+	sptr_t targetStartVirtualSpace() const;
 	void setTargetEnd(sptr_t end);
 	sptr_t targetEnd() const;
+	void setTargetEndVirtualSpace(sptr_t space);
+	sptr_t targetEndVirtualSpace() const;
 	void setTargetRange(sptr_t start, sptr_t end);
 	QByteArray targetText() const;
 	void targetFromSelection();
@@ -349,6 +352,9 @@ public:
 	void toggleFold(sptr_t line);
 	void toggleFoldShowText(sptr_t line, const char * text);
 	void foldDisplayTextSetStyle(sptr_t style);
+	sptr_t foldDisplayTextStyle() const;
+	void setDefaultFoldDisplayText(const char * text);
+	QByteArray getDefaultFoldDisplayText();
 	void foldLine(sptr_t line, sptr_t action);
 	void foldChildren(sptr_t line, sptr_t action);
 	void expandChildren(sptr_t line, sptr_t level);
@@ -495,10 +501,13 @@ public:
 	bool selectionIsRectangle() const;
 	void setZoom(sptr_t zoomInPoints);
 	sptr_t zoom() const;
-	sptr_t createDocument();
+	sptr_t createDocument(sptr_t bytes, sptr_t documentOptions);
 	void addRefDocument(sptr_t doc);
 	void releaseDocument(sptr_t doc);
+	sptr_t documentOptions() const;
 	sptr_t modEventMask() const;
+	void setCommandEvents(bool commandEvents);
+	bool commandEvents() const;
 	void setFocus(bool focus);
 	bool focus() const;
 	void setStatus(sptr_t status);
@@ -541,10 +550,12 @@ public:
 	sptr_t positionBefore(sptr_t pos);
 	sptr_t positionAfter(sptr_t pos);
 	sptr_t positionRelative(sptr_t pos, sptr_t relative);
+	sptr_t positionRelativeCodeUnits(sptr_t pos, sptr_t relative);
 	void copyRange(sptr_t start, sptr_t end);
 	void copyText(sptr_t length, const char * text);
 	void setSelectionMode(sptr_t selectionMode);
 	sptr_t selectionMode() const;
+	bool moveExtendsSelection() const;
 	sptr_t getLineSelStartPosition(sptr_t line);
 	sptr_t getLineSelEndPosition(sptr_t line);
 	void lineDownRectExtend();
@@ -673,7 +684,9 @@ public:
 	sptr_t selectionNAnchorVirtualSpace(sptr_t selection) const;
 	void setSelectionNStart(sptr_t selection, sptr_t anchor);
 	sptr_t selectionNStart(sptr_t selection) const;
+	sptr_t selectionNStartVirtualSpace(sptr_t selection) const;
 	void setSelectionNEnd(sptr_t selection, sptr_t caret);
+	sptr_t selectionNEndVirtualSpace(sptr_t selection) const;
 	sptr_t selectionNEnd(sptr_t selection) const;
 	void setRectangularSelectionCaret(sptr_t caret);
 	sptr_t rectangularSelectionCaret() const;
@@ -713,7 +726,7 @@ public:
 	void scrollToEnd();
 	void setTechnology(sptr_t technology);
 	sptr_t technology() const;
-	sptr_t createLoader(sptr_t bytes);
+	sptr_t createLoader(sptr_t bytes, sptr_t documentOptions);
 	void findIndicatorShow(sptr_t start, sptr_t end);
 	void findIndicatorFlash(sptr_t start, sptr_t end);
 	void findIndicatorHide();
@@ -739,7 +752,6 @@ public:
 	QByteArray property(const char * key) const;
 	QByteArray propertyExpanded(const char * key) const;
 	sptr_t propertyInt(const char * key, sptr_t defaultValue) const;
-	sptr_t styleBitsNeeded() const;
 	QByteArray lexerLanguage() const;
 	sptr_t privateLexerCall(sptr_t operation, sptr_t pointer);
 	QByteArray propertyNames();
@@ -756,16 +768,24 @@ public:
 	void setIdentifiers(sptr_t style, const char * identifiers);
 	sptr_t distanceToSecondaryStyles() const;
 	QByteArray subStyleBases() const;
+	sptr_t namedStyles() const;
+	QByteArray nameOfStyle(sptr_t style);
+	QByteArray tagsOfStyle(sptr_t style);
+	QByteArray descriptionOfStyle(sptr_t style);
+	sptr_t lineCharacterIndex() const;
+	void allocateLineCharacterIndex(sptr_t lineCharacterIndex);
+	void releaseLineCharacterIndex(sptr_t lineCharacterIndex);
+	sptr_t lineFromIndexPosition(sptr_t pos, sptr_t lineCharacterIndex);
+	sptr_t indexPositionFromLine(sptr_t line, sptr_t lineCharacterIndex);
 /* --Autogenerated -- end of section automatically generated from Scintilla.iface */
 
 };
 
-#ifdef SCI_NAMESPACE
-}
-#endif
-
 #if defined(__GNUC__)
 #pragma GCC diagnostic ignored "-Wmissing-field-initializers"
+#if !defined(__clang__) && (__GNUC__ >= 8)
+#pragma GCC diagnostic ignored "-Wcast-function-type"
+#endif
 #endif
 
 #endif /* SCINTILLAEDIT_H */

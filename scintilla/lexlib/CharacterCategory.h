@@ -8,9 +8,7 @@
 #ifndef CHARACTERCATEGORY_H
 #define CHARACTERCATEGORY_H
 
-#ifdef SCI_NAMESPACE
 namespace Scintilla {
-#endif
 
 enum CharacterCategory {
 	ccLu, ccLl, ccLt, ccLm, ccLo,
@@ -30,8 +28,23 @@ bool IsIdContinue(int character);
 bool IsXidStart(int character);
 bool IsXidContinue(int character);
 
-#ifdef SCI_NAMESPACE
+class CharacterCategoryMap {
+private:
+	std::vector<unsigned char> dense;
+public:
+	CharacterCategoryMap();
+	CharacterCategory CategoryFor(int character) const {
+		if (static_cast<size_t>(character) < dense.size()) {
+			return static_cast<CharacterCategory>(dense[character]);
+		} else {
+			// binary search through ranges
+			return CategoriseCharacter(character);
+		}
+	}
+	int Size() const noexcept;
+	void Optimize(int countCharacters);
+};
+
 }
-#endif
 
 #endif

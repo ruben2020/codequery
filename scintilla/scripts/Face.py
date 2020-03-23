@@ -37,6 +37,9 @@ def decodeParam(p):
 			name = nv
 	return type, name, value
 
+def IsEnumeration(t):
+	return t[:1].isupper()
+
 class Face:
 
 	def __init__(self):
@@ -44,6 +47,7 @@ class Face:
 		self.features = {}
 		self.values = {}
 		self.events = {}
+		self.aliases = {}
 
 	def ReadFromFile(self, name):
 		currentCategory = ""
@@ -75,7 +79,7 @@ class Face:
 							"ReturnType": retType,
 							"Value": value,
 							"Param1Type": p1[0], "Param1Name": p1[1], "Param1Value": p1[2],
-							"Param2Type": p2[0],	"Param2Name": p2[1], "Param2Value": p2[2],
+							"Param2Type": p2[0], "Param2Name": p2[1], "Param2Value": p2[2],
 							"Category": currentCategory, "Comment": currentComment
 						}
 						if value in self.values:
@@ -116,5 +120,10 @@ class Face:
 							"Value": value,
 							"Comment": currentComment }
 						self.order.append(name)
+						currentComment = []
+					elif featureType == "ali":
+						# Enumeration alias
+						name, value = featureVal.split("=", 1)
+						self.aliases[name] = value
 						currentComment = []
 

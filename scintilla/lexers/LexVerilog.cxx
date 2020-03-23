@@ -31,10 +31,9 @@
 
 #include "OptionSet.h"
 #include "SubStyles.h"
+#include "DefaultLexer.h"
 
-#ifdef SCI_NAMESPACE
 using namespace Scintilla;
-#endif
 
 namespace {
 	// Use an unnamed namespace to protect the functions and classes from name conflicts
@@ -58,7 +57,11 @@ class LinePPState {
 		return level >= 0 && level < 32;
 	}
 	int maskLevel() const {
-		return 1 << level;
+		if (level >= 0) {
+			return 1 << level;
+		} else {
+			return 1;
+		}
 	}
 public:
 	LinePPState() : state(0), ifTaken(0), level(-1) {
@@ -172,7 +175,7 @@ const char styleSubable[] = {0};
 
 }
 
-class LexerVerilog : public ILexerWithSubStyles {
+class LexerVerilog : public DefaultLexer {
 	CharacterSet setWord;
 	WordList keywords;
 	WordList keywords2;

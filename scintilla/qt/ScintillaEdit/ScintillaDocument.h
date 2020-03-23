@@ -9,10 +9,6 @@
 
 class WatcherHelper;
 
-#ifdef SCI_NAMESPACE
-namespace Scintilla {
-#endif
-
 #ifndef EXPORT_IMPORT_API
 #ifdef WIN32
 #ifdef MAKING_LIBRARY
@@ -80,30 +76,16 @@ public:
 
     int get_character(int pos); // Calls GetCharacterAndWidth(pos, NULL)
 
-private:
-    void emit_modify_attempt();
-    void emit_save_point(bool atSavePoint);
-    void emit_modified(int position, int modification_type, const QByteArray& text, int length,
-	int linesAdded, int line, int foldLevelNow, int foldLevelPrev);
-    void emit_style_needed(int pos);
-    void emit_lexer_changed();
-    void emit_error_occurred(int status);
-
 signals:
     void modify_attempt();
     void save_point(bool atSavePoint);
-    void modified(int position, int modification_type, const QByteArray& text, int length,
-	int linesAdded, int line, int foldLevelNow, int foldLevelPrev);
+    void modified(int position, int modification_type, const QByteArray &text, int length,
+                  int linesAdded, int line, int foldLevelNow, int foldLevelPrev);
     void style_needed(int pos);
     void lexer_changed();
     void error_occurred(int status);
 
     friend class ::WatcherHelper;
-
 };
-
-#ifdef SCI_NAMESPACE
-}
-#endif
 
 #endif // SCINTILLADOCUMENT_H

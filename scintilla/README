@@ -6,7 +6,7 @@ To build SciTE, Scintilla must first be built.
 
 *** GTK+/Linux version ***
 
-You must first have GTK+ 2.18 or later and GCC (4.8 or better) installed.
+You must first have GTK+ 2.24 or later and GCC (4.8 or better) installed.
 Clang may be used by adding CLANG=1 to the make command line.
 Other C++ compilers may work but may require tweaking the make file.
 Either GTK+ 2.x or 3.x may be used with 2.x the default and 3.x
@@ -83,3 +83,7 @@ To build Scintilla, run xcodebuild in the scintilla/cocoa/ScintillaFramework dir
 *** Qt version ***
 
 See the qt/README file to build Scintilla with Qt.
+
+*** Curses version ***
+
+See the curses/README.md file to build Scintilla with curses.

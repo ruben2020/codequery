@@ -671,3 +671,213 @@ sqlqueryresultlist sqlquery::search_filepath_only(sqlite3_stmt* stmt)
 	return result;
 }
 
+bool sqlquery::search_funcgraph(tStr searchstr, bool exactmatch, tVecStr& xmlout, tVecStr& dotout, int levels, tStr* errstr)
+{
+	unsigned int i, j;
+	sqlqueryresultlist result1, result2, result;
+	tStr xmltext = "<graph>";
+	tStr dottext = "digraph graphname {\n";
+	unsigned int nodenum = 1, subrootnum;
+
+	result1 = search(searchstr, sqlresultCALLINGFUNC, exactmatch);
+	result2 = search(searchstr, sqlresultCALLEDFUNC, exactmatch);
+	if (result1.result_type == sqlqueryresultlist::sqlresultERROR)
+	{
+		if (errstr) *errstr = result1.sqlerrmsg;
+		return false;
+	}
+	else if (result2.result_type == sqlqueryresultlist::sqlresultERROR)
+	{
+		if (errstr) *errstr = result2.sqlerrmsg;
+		return false;
+	}
+
+	unique_symnames(result1);
+	unique_symnames(result2);
+
+	xmltext += string_format(tStr("<node fill=\"#e2ffff\" id=\"%d\" label=\"%s\"/>"), nodenum, searchstr.C_STR());
+	dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#e2ffff\" shape=\"box\" ];\n"), nodenum, searchstr.C_STR());
+
+	nodenum++;
+
+	for (i=0; i < result1.resultlist.size(); i++)
+	{
+		xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"), nodenum, result1.resultlist[i].symname.C_STR());
+		xmltext += string_format(tStr("<edge target=\"1\" source=\"%d\"/>"), nodenum);
+		dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+			nodenum, result1.resultlist[i].symname.C_STR());
+		dottext += string_format(tStr("node%d -> node1;\n"), nodenum);
+		subrootnum = nodenum;
+		nodenum++;
+		if (levels == 2)
+		{
+			result = search(result1.resultlist[i].symname.C_STR(), sqlresultCALLINGFUNC, exactmatch);
+			for (j=0; j < result.resultlist.size(); j++)
+			{
+				xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+					nodenum, result.resultlist[j].symname.C_STR());
+				xmltext += string_format(tStr("<edge target=\"%d\" source=\"%d\"/>"), subrootnum, nodenum);
+				dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+					nodenum, result.resultlist[j].symname.C_STR());
+				dottext += string_format(tStr("node%d -> node%d;\n"), nodenum, subrootnum);
+				nodenum++;
+			}
+		}
+	}
+	for (i=0; i < result2.resultlist.size(); i++)
+	{
+		xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+			nodenum, result2.resultlist[i].symname.C_STR());
+		xmltext += string_format(tStr("<edge target=\"%d\" source=\"1\"/>"), nodenum);
+		dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+			nodenum, result2.resultlist[i].symname.C_STR());
+		dottext += string_format(tStr("node1 -> node%d;\n"), nodenum);
+		subrootnum = nodenum;
+		nodenum++;
+		if (levels == 2)
+		{
+			result = search(result2.resultlist[i].symname.C_STR(), sqlresultCALLEDFUNC, exactmatch);
+			for (j=0; j < result.resultlist.size(); j++)
+			{
+				xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+					nodenum, result.resultlist[j].symname.C_STR());
+				xmltext += string_format(tStr("<edge target=\"%d\" source=\"%d\"/>"), nodenum, subrootnum);
+				dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+					nodenum, result.resultlist[j].symname.C_STR());
+				dottext += string_format(tStr("node%d -> node%d;\n"), subrootnum, nodenum);
+				nodenum++;
+			}
+		}
+	}
+	xmltext += "</graph>";
+	dottext += "}\n";
+	xmlout.push_back(xmltext);
+	dotout.push_back(dottext);
+	return true;
+}
+
+bool sqlquery::search_classinheritgraph(tStr searchstr, bool exactmatch, tVecStr& xmlout, tVecStr& dotout, tStr* errstr)
+{
+
+	sqlqueryresultlist result_children, result_parent1, result_cousins1, result_parent2;
+	tStr xmltext = "<graph>";
+	tStr dottext = "digraph graphname {\n";
+	int nodenum = 1;
+	int parent1 = 0;
+
+	xmltext += string_format(tStr("<node fill=\"#e2ffff\" id=\"%d\" label=\"%s\"/>"), nodenum, searchstr.C_STR());
+	dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#e2ffff\" shape=\"box\" ];\n"), nodenum, searchstr.C_STR());
+	nodenum++;
+
+	result_children = search(searchstr, sqlresultCHILDCLASS, exactmatch);
+	if (result_children.result_type == sqlqueryresultlist::sqlresultERROR)
+	{
+		if (errstr) *errstr = result_children.sqlerrmsg;
+		return false;
+	}
+	result_parent1 = search(searchstr, sqlresultPARENTCLASS, exactmatch);
+	if (result_parent1.result_type == sqlqueryresultlist::sqlresultERROR)
+	{
+		if (errstr) *errstr = result_parent1.sqlerrmsg;
+		return false;
+	}
+	if (result_parent1.resultlist.size() > 0)
+	{
+		result_parent2 = search(result_parent1.resultlist[0].symname, sqlresultPARENTCLASS, exactmatch);
+		if (result_parent2.result_type == sqlqueryresultlist::sqlresultERROR)
+		{
+			if (errstr) *errstr = result_parent2.sqlerrmsg;
+			return false;
+		}
+		result_cousins1 = search(result_parent1.resultlist[0].symname, sqlresultCHILDCLASS, exactmatch);
+		if (result_cousins1.result_type == sqlqueryresultlist::sqlresultERROR)
+		{
+			if (errstr) *errstr = result_cousins1.sqlerrmsg;
+			return false;
+		}
+	}
+	unique_symnames(result_children);
+	unique_symnames(result_parent1);
+	unique_symnames(result_parent2);
+	unique_symnames(result_cousins1);
+	remove_symname(result_cousins1, searchstr); // I am not my own cousin
+	for (unsigned int i=0; i < result_children.resultlist.size(); i++)
+	{
+		xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+			nodenum, result_children.resultlist[i].symname.C_STR());
+		xmltext += string_format(tStr("<edge target=\"1\" source=\"%d\"/>"), nodenum);
+		dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+			nodenum, result_children.resultlist[i].symname.C_STR());
+		dottext += string_format(tStr("node%d -> node1 [arrowhead=\"empty\"];\n"), nodenum);
+		nodenum++;
+	}
+	for (unsigned int i=0; i < result_parent1.resultlist.size(); i++)
+	{
+		xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+			nodenum, result_parent1.resultlist[i].symname.C_STR());
+		xmltext += string_format(tStr("<edge target=\"%d\" source=\"1\"/>"), nodenum);
+		dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+			nodenum, result_parent1.resultlist[i].symname.C_STR());
+		dottext += string_format(tStr("node1 -> node%d [arrowhead=\"empty\"];\n"), nodenum);
+		if (i == 0) parent1 = nodenum;
+		nodenum++;
+	}
+	for (unsigned int i=0; i < result_parent2.resultlist.size(); i++)
+	{
+		xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+			nodenum, result_parent2.resultlist[i].symname.C_STR());
+		xmltext += string_format(tStr("<edge target=\"%d\" source=\"%d\"/>"), nodenum, parent1);
+		dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+			nodenum, result_parent2.resultlist[i].symname.C_STR());
+		dottext += string_format(tStr("node%d -> node%d [arrowhead=\"empty\"];\n"), parent1, nodenum);
+		nodenum++;
+	}
+	for (unsigned int i=0; i < result_cousins1.resultlist.size(); i++)
+	{
+		xmltext += string_format(tStr("<node fill=\"#ffffff\" id=\"%d\" label=\"%s\"/>"),
+			nodenum, result_cousins1.resultlist[i].symname.C_STR());
+		xmltext += string_format(tStr("<edge target=\"%d\" source=\"%d\"/>"), parent1, nodenum);
+		dottext += string_format(tStr("node%d [label=\"%s\" style=filled fillcolor=\"#ffffff\" shape=\"box\" ];\n"),
+			nodenum, result_cousins1.resultlist[i].symname.C_STR());
+		dottext += string_format(tStr("node%d -> node%d [arrowhead=\"empty\"];\n"), nodenum, parent1);
+		nodenum++;
+	}
+	xmltext += "</graph>";
+	dottext += "}\n";
+	xmlout.push_back(xmltext);
+	dotout.push_back(dottext);
+	return true;
+}
+
+// make the list of symnames unique, no elements repeated
+void sqlquery::unique_symnames(sqlqueryresultlist& res)
+{
+	tSetStr setstr;
+	sqlqueryresultlist out;
+	sqlqueryresult item;
+	for(unsigned int i=0; i < res.resultlist.size(); i++)
+	{
+		setstr.insert(res.resultlist[i].symname);
+	}
+	for (auto it = setstr.begin(); it != setstr.end(); it++)
+	{
+		item.symname = *it;
+		out.resultlist.push_back(item);
+	}
+	res = out;
+}
+
+// remove a symname from the list
+void sqlquery::remove_symname(sqlqueryresultlist& res, tStr name)
+{
+	for (auto it = res.resultlist.begin(); it != res.resultlist.end(); it++)
+	{
+		if (it->symname.compare(name) == 0)
+		{
+			res.resultlist.erase(it);
+			break;
+		}
+	}
+}
+
+

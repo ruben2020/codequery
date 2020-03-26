@@ -19,7 +19,7 @@
 #include <QtGui>
 #endif
 
-#include "sqlqueryadv.h"
+#include "sqlquery.h"
 
 class mainwindow;
 
@@ -126,7 +126,7 @@ void searchListFuncResultsReady(sqlqueryresultlist* res);
 
 private:
 mainwindow *mw;
-static sqlqueryadv* sq;
+static sqlquery* sq;
 QString m_graphdesc;
 int m_typeOfGraph; // 1 = Function Call, 2 = Class Inheritance
 QStringListModel m_srchStrLstModel;

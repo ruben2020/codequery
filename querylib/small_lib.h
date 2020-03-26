@@ -29,12 +29,16 @@
 #define SMALL_LIB_H_CQ
 
 #include <stdio.h>
-#include <string>
-#include <vector>
 #include <string.h>
+#include <set>
+#include <vector>
+#include <memory>
+#include <string>
+#include <stdexcept>
 #if defined(USE_QT5)||defined(USE_QT4)
 #include <QString>
 #include <QStringList>
+#include <QSet>
 #endif
 
 
@@ -51,10 +55,12 @@
 typedef QString tStr;
 typedef QString::iterator tStrIter;
 typedef QStringList tVecStr;
+typedef QSet<QString> tSetStr;
 #else // only STL
 typedef std::string tStr;
 typedef std::string::iterator tStrIter;
 typedef std::vector<std::string> tVecStr;
+typedef std::set<std::string> tSetStr;
 #endif
 
 #if defined(USE_QT5) // use Qt5's QString
@@ -167,6 +173,29 @@ long unsigned int getInt(void) const;
 const char* getStr(void) const;
 int getStrSize(void) const;
 }; //class idxcounter
+
+/* From https://stackoverflow.com/a/26221725 */
+template<typename ... Args>
+std::string string_format( const std::string& format, Args ... args )
+{
+    size_t size = snprintf( nullptr, 0, format.c_str(), args ... ) + 1; // Extra space for '\0'
+    if( size <= 0 ){ throw std::runtime_error( "Error during formatting." ); }
+    std::unique_ptr<char[]> buf( new char[ size ] );
+    snprintf( buf.get(), size, format.c_str(), args ... );
+    return std::string( buf.get(), buf.get() + size - 1 ); // We don't want the '\0' inside
+}
+
+#if defined(USE_QT5)||defined(USE_QT4)
+template<typename ... Args>
+QString string_format( const QString& format, Args ... args )
+{
+    size_t size = snprintf( nullptr, 0, format.C_STR(), args ... ) + 1; // Extra space for '\0'
+    if( size <= 0 ){ throw std::runtime_error( "Error during formatting." ); }
+    std::unique_ptr<char[]> buf( new char[ size ] );
+    snprintf( buf.get(), size, format.C_STR(), args ... );
+    return QString::fromStdString(std::string( buf.get(), buf.get() + size - 1 )); // We don't want the '\0' inside
+}
+#endif
 
 #endif //SMALL_LIB_H_CQ
 

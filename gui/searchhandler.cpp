@@ -22,7 +22,7 @@
 #define QT45_TOASCII(x) toAscii(x)
 #endif
 
-sqlqueryadv* searchhandler::sq = NULL;
+sqlquery* searchhandler::sq = NULL;
 bool searchhandler::m_grepExactMatch = false;
 QRegExp* searchhandler::m_grepRegExp = NULL;
 
@@ -89,7 +89,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 ,m_pushButtonGraph(NULL)
 ,m_pushButtonFilesList(NULL)
 {
-	sq = new sqlqueryadv;
+	sq = new sqlquery;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
 	m_grepRegExp = new QRegExp();
 	m_iter = m_searchMemoryList.begin();

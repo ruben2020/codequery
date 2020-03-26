@@ -130,6 +130,8 @@ enum en_filereadstatus
 	sqlqueryresultlist search_funclist_fileid(int& fileid);
 	tVecStr search_autocomplete(const char* searchstr);
 	sqlqueryresultlist search_declaration(const char* searchstr);
+	bool search_funcgraph(tStr searchstr, bool exactmatch, tVecStr& xmlout, tVecStr& dotout, int levels = 1, tStr* errstr = nullptr);
+	bool search_classinheritgraph(tStr searchstr, bool exactmatch, tVecStr& xmlout, tVecStr& dotout, tStr* errstr = nullptr);
 
 private:
 	sqlite3 *m_db;
@@ -147,6 +149,8 @@ private:
 	tStr read_configtbl(const char *key, sqlite3_stmt *stmt);
 	tStr process_searchterm(const char* searchterm, const bool& exactmatch);
 	tStr process_searchterm_autocomplete(const char* searchstr);
+	void unique_symnames(sqlqueryresultlist& res);
+	void remove_symname(sqlqueryresultlist& res, tStr name);
 };
 
 #endif

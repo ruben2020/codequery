@@ -291,3 +291,4 @@ long unsigned int idxcounter::getInt(void) const {return m_ctr;}
 const char* idxcounter::getStr(void) const {return m_buf;}
 int idxcounter::getStrSize(void) const {return strlen(m_buf);}
 
+

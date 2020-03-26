@@ -21,11 +21,14 @@
 
 void printhelp(const char* str)
 {
-	printf("Usage: %s [-s <sqdbfile> [-p <n>] [-t <term>] [-l <len>] -[e|f] [-u] ]  [-d] [-v] [-h]\n\n", str);
+	printf("Usage: %s [-s <sqdbfile> [-p <n> [-g]] [-t <term>] [-l <len>] -[e|f] [-u] ]  [-d] [-v] [-h]\n\n", str);
 	printf("options:\n");
 	printf("  -s : CodeQuery sqlite3 db file path\n");
 	printf("  -p : parameter is a number denoted by n\n");
 	printf("       default n = 1 (Symbol)\n");
+	printf("  -g : Create GraphViz DOT output instead of search results\n");
+	printf("       Applicable only for function or macro def(n=2) and\n");
+	printf("       class or struct (n=3)\n");
 	printf("  -t : search term without spaces\n");
 	printf("       if Exact Match is switched off, wild card\n");
 	printf("       searches are possible. Use * and ?\n");
@@ -57,6 +60,9 @@ void printhelp(const char* str)
 	printf("   12: Parent of this class (inheritance)\n");
 	printf("   13: Functions or macros inside this file\n\n");
 	printf("Example:\n%s -s myproject.db -p 6 -t read*file -f\n\n", str);
+	printf("Example of using -g with GraphViz:\n");
+	printf("%s -s myproject.db -p 2 -g -t read*file > functioncallgraph.dot\n", str);
+	printf("dot -Tpng -ofunctioncallgraph.png functioncallgraph.dot\n\n");
 
 }
 
@@ -103,13 +109,16 @@ tStr limitcstr(int limitlen, tStr str)
 		return str.substr(0,limitlen);
 }
 
-int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool debug, int limitlen)
+int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool debug, int limitlen, bool graph)
 {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
 	sqlquery sq;
 	tStr lstr;
 	sqlquery::en_filereadstatus filestatus = sq.open_dbfile(sqfn);
+	tVecStr grpxml, grpdot;
+	bool res = false;
+	tStr errstr;
 	switch (filestatus)
 	{
 		case sqlquery::sqlfileOK:
@@ -134,6 +143,34 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 		return 1;	
 	}
 	sqlqueryresultlist resultlst;
+	if (graph)
+	{
+		if (intParam == sqlquery::sqlresultFUNC_MACRO)
+		{
+			res = sq.search_funcgraph(term, exact, grpxml, grpdot, 1, &errstr);
+		}
+		else if (intParam == sqlquery::sqlresultCLASS_STRUCT)
+		{
+			res = sq.search_classinheritgraph(term, exact, grpxml, grpdot, &errstr);
+		}
+		else
+		{
+			printf("Error: -g only works with function or macro def(n=2) and\n");
+			printf("       class or struct (n=3)\n");
+			return 1;
+		}
+		if (res == false)
+		{
+			printf("Error: SQL Error! %s!\n", errstr.c_str());
+			return 1;
+		}
+		else
+		{
+			for (auto it = grpdot.begin(); it != grpdot.end(); it++)
+				printf("%s\n", it->c_str());
+			return 0;
+		}
+	}
 	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact);
 	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
@@ -172,11 +209,12 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 int main(int argc, char *argv[])
 {
 	int c;
-	bool bSqlite, bParam, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
+	bool bSqlite, bParam, bGraph, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
 	int countExact = 0;
 	int limitlen = 80;
 	bSqlite = false;
 	bParam = false;
+	bGraph = false;
 	bTerm = false;
 	bExact = false;
 	bFull = false;
@@ -186,7 +224,7 @@ int main(int argc, char *argv[])
 	bError = false;
 	tStr sqfn, param = "1", term;
 
-    while ((c = getopt2(argc, argv, "s:p:t:l:efudvh")) != -1)
+    while ((c = getopt2(argc, argv, "s:p:gt:l:efudvh")) != -1)
     {
 		switch(c)
 		{
@@ -215,6 +253,9 @@ int main(int argc, char *argv[])
 			case 'p':
 				bParam = true;
 				param = optarg;
+				break;
+			case 'g':
+				bGraph = true;
 				break;
 			case 't':
 				bTerm = true;
@@ -263,7 +304,7 @@ int main(int argc, char *argv[])
 	}
 	if (bSqlite && bTerm)
 	{
-		bError = process_query(sqfn, term, param, bExact, bFull, bDebug, limitlen) > 0;
+		bError = process_query(sqfn, term, param, bExact, bFull, bDebug, limitlen, bGraph) > 0;
 	}
 	if (bError)
 	{

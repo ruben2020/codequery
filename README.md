@@ -131,7 +131,7 @@ On Mac, the software can be installed through [Brew](http://brew.sh/) using `bre
 
 To build on Linux and Mac, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
-Version 15.9 of [cscope](http://cscope.sourceforge.net/) or higher, works best with CodeQuery.
+Version 15.8a of [cscope](http://cscope.sourceforge.net/) or higher, works best with CodeQuery.
 
 
 ## How do I use it?

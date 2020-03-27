@@ -21,7 +21,8 @@
 
 void printhelp(const char* str)
 {
-	printf("Usage: %s [-s <sqdbfile> [-p <n> [-g]] [-t <term>] [-l <len>] -[e|f] [-u] ]  [-d] [-v] [-h]\n\n", str);
+	printf("Usage:\n");
+	printf("%s [-s <sqdbfile> [-p <n>] [-g] [-t <term>] [-l <len>] -[e|f] [-u] [-b <path>]]  [-d] [-v] [-h]\n\n", str);
 	printf("options:\n");
 	printf("  -s : CodeQuery sqlite3 db file path\n");
 	printf("  -p : parameter is a number denoted by n\n");
@@ -40,6 +41,10 @@ void printhelp(const char* str)
 	printf("  -f : Exact Match switched OFF (fuzzy search)\n");
 	printf("       Case-insensitive with wild card search (default)\n");
 	printf("  -u : show full file path instead of file name\n");
+	printf("  -b : filters the results by source file path term\n");
+	printf("       For example, if the path term is \"test\" (without quotes),\n");
+	printf("       then the results will be filtered by source files whose\n");
+	printf("       path includes the term \"test\"\n");
 	printf("  -d : debug\n");
 	printf("  -v : version\n");
 	printf("  -h : help\n\n");
@@ -109,7 +114,8 @@ tStr limitcstr(int limitlen, tStr str)
 		return str.substr(0,limitlen);
 }
 
-int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool debug, int limitlen, bool graph)
+int process_query(tStr sqfn, tStr term, tStr param, bool exact, 
+		   bool full, bool debug, int limitlen, bool graph, tStr fpath)
 {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
 	int retVal = 0;
@@ -171,7 +177,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 			return 0;
 		}
 	}
-	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact);
+	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact, fpath);
 	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
 		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
@@ -209,7 +215,8 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact, bool full, bool 
 int main(int argc, char *argv[])
 {
 	int c;
-	bool bSqlite, bParam, bGraph, bTerm, bExact, bFull, bDebug, bVersion, bHelp, bError;
+	bool bSqlite, bParam, bGraph, bTerm, bExact, bFull;
+	bool bDebug, bVersion, bHelp, bError;
 	int countExact = 0;
 	int limitlen = 80;
 	bSqlite = false;
@@ -222,9 +229,9 @@ int main(int argc, char *argv[])
 	bVersion = false;
 	bHelp = (argc <= 1);
 	bError = false;
-	tStr sqfn, param = "1", term;
+	tStr sqfn, param = "1", term, fpath = "";
 
-    while ((c = getopt2(argc, argv, "s:p:gt:l:efudvh")) != -1)
+    while ((c = getopt2(argc, argv, "s:p:gt:l:efub:dvh")) != -1)
     {
 		switch(c)
 		{
@@ -253,6 +260,9 @@ int main(int argc, char *argv[])
 			case 'p':
 				bParam = true;
 				param = optarg;
+				break;
+			case 'b':
+				fpath = optarg;
 				break;
 			case 'g':
 				bGraph = true;
@@ -304,7 +314,7 @@ int main(int argc, char *argv[])
 	}
 	if (bSqlite && bTerm)
 	{
-		bError = process_query(sqfn, term, param, bExact, bFull, bDebug, limitlen, bGraph) > 0;
+		bError = process_query(sqfn, term, param, bExact, bFull, bDebug, limitlen, bGraph, fpath) > 0;
 	}
 	if (bError)
 	{

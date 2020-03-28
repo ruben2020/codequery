@@ -12,6 +12,17 @@ project(CodeQueryGUI)
 
 #ADD_DEFINITIONS( -Wall )
 
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.10.0") 
+foreach(p
+    CMP0071 # 3.10: Let AUTOMOC and AUTOUIC process GENERATED files
+    )
+  if(POLICY ${p})
+    cmake_policy(SET ${p} NEW)
+  endif()
+endforeach()
+endif()
+
+
 
   # with SET() command you can change variables or define new ones
   # here we define CODEQUERY_SRCS variable that contains a list of all .cpp files

@@ -493,6 +493,7 @@ void searchhandler::QueryType_indexChanged(const int& idx)
         m_comboBoxSearch->setStatusTip(tr("If Exact Match is switched off, wildcard searches (* and ?) are supported"));
 #endif // QT_NO_STATUSTIP
 	}
+	Search_EnterKeyPressed();
 }
 
 void searchhandler::perform_search(QString searchtxt,

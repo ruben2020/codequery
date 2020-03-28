@@ -307,7 +307,14 @@ void mainwindow::readSettings()
 	//m_fileviewer->m_textEditSourceFont.setPixelSize(settings.value("FileViewerFontSize", 12).toInt());
 	m_fileviewer->m_fontsize = settings.value("FileViewerFontSize", 0).toInt();
 	m_fileviewer->m_textEditSource->setZoom(m_fileviewer->m_fontsize);
-	m_fileviewer->m_textEditSourceFont.setFamily(settings.value("FileViewerFontType", "Courier New").toString());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+	m_fileviewer->m_textEditSourceFont.setFamily(m_fileviewer->checkFontFamily(
+		settings.value("FileViewerFontType", 
+			QFontDatabase::systemFont(QFontDatabase::FixedFont).family()).toString()));
+#else
+	m_fileviewer->m_textEditSourceFont.setFamily(m_fileviewer->checkFontFamily(
+		settings.value("FileViewerFontType", "Consolas").toString()));
+#endif
 	m_fileviewer->m_textEditSource->setFont(m_fileviewer->m_textEditSourceFont);
 	m_fileviewer->m_textEditSource->setTabWidth(settings.value("FileViewerTabWidth", 4).toInt());
 	m_fileviewer->m_theme = (settings.value("FileViewerTheme", "Eclipse Default").toString());

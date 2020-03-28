@@ -234,12 +234,9 @@ void csdbparser::create_buf(long int size)
 
 void csdbparser::destroy_buf(void)
 {
-if (m_buf != NULL)
-	{
 	delete[] m_buf;
 	m_buf = NULL;
 	m_bufsize = 0;
-	}
 }
 
 csdbparser::enResult csdbparser::open_file(const char *fn)
@@ -259,8 +256,8 @@ void csdbparser::close_file(void)
 {
 if (m_fp != NULL)
 	{
-	fclose(m_fp);
-	m_fp = NULL;
+		fclose(m_fp);
+		m_fp = NULL;
 	}
 m_trailer_start = 0;
 destroy_buf();

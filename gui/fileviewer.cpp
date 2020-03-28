@@ -165,6 +165,34 @@ void fileviewer::createFontList(void)
 	m_fontlist = fixedpitch;
 }
 
+QString fileviewer::checkFontFamily(QString fontname)
+{
+	QString newfont;
+#ifdef _WIN32
+	QString tryfont1 = "Consolas";
+	QString tryfont2 = "Courier New";
+#else
+	QString tryfont1 = "Monospace";
+	QString tryfont2 = "Ubuntu Mono";
+#endif
+	if (m_fontlist.isEmpty()) createFontList();
+	if (m_fontlist.contains(fontname))
+	{
+		newfont = fontname;
+	}
+	else
+	{
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+		newfont = QFontDatabase::systemFont(QFontDatabase::FixedFont).family();
+#else
+		if      (m_fontlist.contains(tryfont1)) newfont = tryfont1;
+		else if (m_fontlist.contains(tryfont2)) newfont = tryfont2;
+		else newfont = m_fontlist[0];
+#endif
+	}
+	return newfont;
+}
+
 void fileviewer::init(void)
 {
 	Scintilla_LinkLexers();

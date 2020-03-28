@@ -28,7 +28,7 @@ cs2sq::~cs2sq()
 {
 	close_csdb();
 	close_db();
-	if (m_buf != NULL) delete[] m_buf;
+	delete[] m_buf;
 }
 
 csdbparser::enResult cs2sq::open_csdb(const char* csdbfn)

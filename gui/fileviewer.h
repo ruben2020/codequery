@@ -84,6 +84,7 @@ void init(void);
 void updateTextEdit(void);
 void updateFilePathLabel(void);
 void handleFileCannotBeOpenedCase(void);
+QString checkFontFamily(QString fontname);
 
 public slots:
 void fileToBeOpened(QString filename, QString linenum, int fileid);

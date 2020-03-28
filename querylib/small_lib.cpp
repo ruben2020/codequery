@@ -236,10 +236,7 @@ tempbuf::tempbuf(long n)
 	}
 tempbuf::~tempbuf()
 	{
-		if (m_buffer != NULL)
-		{ 
-			delete[] m_buffer;
-		}
+		delete[] m_buffer;
 	}
 char* tempbuf::operator() () {return m_buffer;}
 char* tempbuf::get(void) {return m_buffer;}

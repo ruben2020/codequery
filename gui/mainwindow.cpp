@@ -75,8 +75,8 @@ void mainwindow::init(void)
 			m_listhandler, SLOT(requestToProvideResultCurrentListItemSymbolName()));
 	connect(m_listhandler, SIGNAL(sendResultCurrentListItemSymbolName(QString)),
 			m_searchhandler, SLOT(resultCurrentListItemSymbolName(QString)));
-	connect(m_searchhandler, SIGNAL(searchDeclarationResultsReady(QString)),
-			m_fileviewer, SLOT(annotate(QString)));
+	connect(m_searchhandler, SIGNAL(searchDeclarationResultsReady(QStringList)),
+			m_fileviewer, SLOT(annotate(QStringList)));
 	connect(m_fileviewer, SIGNAL(requestAnnotation(QString)),
 			m_searchhandler, SLOT(searchDeclaration(QString)));
 	connect(m_searchhandler, SIGNAL(searchListFuncResultsReady(sqlqueryresultlist*)),

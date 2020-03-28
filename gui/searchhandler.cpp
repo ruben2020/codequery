@@ -194,10 +194,10 @@ void searchhandler::autoCompleteFinished()
 
 void searchhandler::declarSearchFinished()
 {
-	QString str = m_declarFutureWatcher.result();
-	if (str.length() > 0)
-		emit searchDeclarationResultsReady(str);
+	QStringList strLst = m_declarFutureWatcher.result();
 	m_declarBusy = false;
+	if (strLst.length() > 0)
+		emit searchDeclarationResultsReady(strLst);
 }
 
 void searchhandler::searchDeclaration(QString searchstr)
@@ -251,17 +251,22 @@ sqlqueryresultlist searchhandler::search_funclist_qt_fileid(int fileid)
 	return sq->search_funclist_fileid(fileid);
 }
 
-QString searchhandler::search_declaration_qt(QString searchtxt)
+QStringList searchhandler::search_declaration_qt(QString searchtxt)
 {
+	QStringList strLst;
 	QString str;
 	sqlqueryresultlist reslst = sq->search_declaration(searchtxt.QT45_TOASCII().data());
 	if (reslst.resultlist.size() > 0)
-	str.append(reslst.resultlist[0].filename.C_STR())
-		.append(":")
-		.append(reslst.resultlist[0].linenum.C_STR())
-		.append(" ==> ")
-		.append(reslst.resultlist[0].linetext.C_STR());
-	return str;
+	{
+		str.append(reslst.resultlist[0].filename.C_STR())
+			.append(":")
+			.append(reslst.resultlist[0].linenum.C_STR())
+			.append(" ==> ")
+			.append(reslst.resultlist[0].linetext.C_STR());
+		strLst << searchtxt;
+		strLst << str;
+	}
+	return strLst;
 }
 
 QStringList searchhandler::search_autocomplete_qt(QString searchtxt)

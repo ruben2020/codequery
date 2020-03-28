@@ -62,7 +62,7 @@ QCheckBox *m_checkBoxFilter;
 QComboBox *m_comboBoxFilter;
 QCompleter *m_completer;
 QFutureWatcher<QStringList> m_autocompFutureWatcher;
-QFutureWatcher<QString> m_declarFutureWatcher;
+QFutureWatcher<QStringList> m_declarFutureWatcher;
 QFutureWatcher<sqlqueryresultlist> m_listFuncFutureWatcher;
 static bool m_grepExactMatch;
 static QRegExp* m_grepRegExp;
@@ -84,7 +84,7 @@ void goBackInSearchMemory(void);
 void restoreSearchMemoryItem(void);
 void retranslateUi(void);
 static QStringList search_autocomplete_qt(QString searchtxt);
-static QString search_declaration_qt(QString searchtxt);
+static QStringList search_declaration_qt(QString searchtxt);
 static sqlqueryresultlist search_funclist_qt_filename(QString filename);
 static sqlqueryresultlist search_funclist_qt_fileid(int fileid);
 static sqlqueryresultlist doGrep(const QString &fp);
@@ -121,7 +121,7 @@ void updateStatus(const QString & message, int timeout = 0);
 void DBreset();
 void sendDBtimestamp(QDateTime dt);
 void getResultCurrentListItemSymbolName();
-void searchDeclarationResultsReady(QString resdeclar);
+void searchDeclarationResultsReady(QStringList resdeclar);
 void searchListFuncResultsReady(sqlqueryresultlist* res);
 
 private:

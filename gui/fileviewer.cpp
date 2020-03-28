@@ -457,7 +457,9 @@ void fileviewer::AbleToCopy(bool copy)
 		m_annotline = m_textEditSource->lineFromPosition(m_textEditSource->selectionEnd());
 		QString str = (QApplication::clipboard())->text();
 		if (str.length() > 0)
+		{
 			emit requestAnnotation(str);
+		}
 	}
 }
 
@@ -796,11 +798,21 @@ void fileviewer::replaceLexer(int sclang, int lang)
 	}
 }
 
-void fileviewer::annotate(QString annotstr)
+void fileviewer::annotate(QStringList annotstrLst)
 {
-	m_textEditSource->annotationClearAll();
-	m_textEditSource->annotationSetText(m_annotline, annotstr.toUtf8().data());
-	m_textEditSource->annotationSetStyle(m_annotline, 29);
+	m_textEditSource->copy();
+	QString str = (QApplication::clipboard())->text();
+	m_annotline = m_textEditSource->lineFromPosition(m_textEditSource->selectionEnd());
+	if ((annotstrLst.length() >= 2)&&(annotstrLst[0] == str))
+	{
+		m_textEditSource->annotationClearAll();
+		m_textEditSource->annotationSetText(m_annotline, annotstrLst[1].toUtf8().data());
+		m_textEditSource->annotationSetStyle(m_annotline, 29);
+	}
+	else if (str.length() > 0)
+	{
+		emit requestAnnotation(str);
+	}
 }
 
 void fileviewer::recvFuncList(sqlqueryresultlist* reslist)

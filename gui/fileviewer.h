@@ -103,7 +103,7 @@ void recvDBtimestamp(QDateTime dt);
 void fontSelectionTemporary(const QString &fonttxt);
 void themeSelectionTemporary(const QString &themetxt);
 void tabWidthSelectionTemporary(const QString &width);
-void annotate(QString annotstr);
+void annotate(QStringList annotstrLst);
 void recvFuncList(sqlqueryresultlist* reslist);
 void funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem);
 void FuncListSort_indexChanged(const int& idx);

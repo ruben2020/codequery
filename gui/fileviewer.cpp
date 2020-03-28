@@ -444,6 +444,7 @@ void fileviewer::braceMatchCheck(void)
 		matchpos = m_textEditSource->braceMatch(cpos, 0);
 	}
 	if (matchpos != -1) m_textEditSource->braceHighlight(cpos, matchpos);
+	else m_textEditSource->braceHighlight(-1, -1);
 }
 
 void fileviewer::AbleToCopy(bool copy)

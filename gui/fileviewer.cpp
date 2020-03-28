@@ -233,8 +233,8 @@ void fileviewer::init(void)
 			this, SLOT(TextShrink_ButtonClick(bool)));
 	connect(m_pushButtonTextEnlarge, SIGNAL(clicked(bool)),
 			this, SLOT(TextEnlarge_ButtonClick(bool)));
-	connect(m_listWidgetFunc, SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-			this, SLOT(funcItemSelected(QListWidgetItem *, QListWidgetItem *)));
+	connect(m_listWidgetFunc, SIGNAL(itemPressed(QListWidgetItem *)),
+			this, SLOT(funcItemSelected(QListWidgetItem *)));
 	connect(m_comboBoxFuncListSort, SIGNAL(currentIndexChanged(int)),
 			this, SLOT(FuncListSort_indexChanged(int)));
 	m_fileDataList.clear();
@@ -447,11 +447,44 @@ void fileviewer::braceMatchCheck(void)
 	else m_textEditSource->braceHighlight(-1, -1);
 }
 
+void fileviewer::updateFuncList(void)
+{
+	if (m_funclist.resultlist.empty()) return;
+	long line = m_textEditSource->lineFromPosition(m_textEditSource->currentPos()) + 1;
+	tStr selectedfunc = "";
+	unsigned int selectedline, line1;
+	auto previt = m_funclist.resultlist.begin();
+	for (auto it = m_funclist.resultlist.begin(); it != m_funclist.resultlist.end(); it++)
+	{
+		if ( (line < it->intLinenum) && (line >= previt->intLinenum) )
+		{
+			selectedfunc = previt->symname;
+			selectedline = previt->intLinenum;
+			break;
+		}
+		previt = it;
+	}
+	if (selectedfunc.isEmpty() == false)
+	{
+		auto itemlist = m_listWidgetFunc->findItems(selectedfunc, Qt::MatchExactly);
+		for (auto it = itemlist.begin(); it != itemlist.end(); it++)
+		{
+			line1 = (*it)->data(Qt::UserRole).toUInt();
+			if (selectedline == line1)
+			{
+				m_listWidgetFunc->setCurrentItem(*it);
+				break;
+			}
+		}
+	}
+}
+
 void fileviewer::AbleToCopy(bool copy)
 {
 	m_pushButtonPaste->setEnabled(copy);
 	m_textEditSource->annotationClearAll();
 	braceMatchCheck();
+	updateFuncList();
 	if (copy)
 	{
 		m_textEditSource->copy();
@@ -821,38 +854,34 @@ void fileviewer::recvFuncList(sqlqueryresultlist* reslist)
 	m_listWidgetFunc->clear();
 	if ((m_fileDataList.isEmpty())||(m_iter == m_fileDataList.end())) return;
 	m_funclist = *reslist;
-	filedata fd(str2qt(m_funclist.resultlist[0].filename), "1", -99);
+	m_funclist.sort_by_linenum();
+	for (auto it = m_funclist.resultlist.begin(); it != m_funclist.resultlist.end(); it++)
+	{
+		it->intLinenum = atoi(it->linenum.C_STR());
+	}
+	filedata fd(m_funclist.resultlist[0].filename, "1", -99);
 	if (m_iter->compareFileNameOnly(fd) == false)
 	{
 		if (m_iter->fileid < 0)	{emit requestFuncList_filename(m_iter->filename);}
 		else {emit requestFuncList_fileid(m_iter->fileid);}
 		return;
 	}
-	if (m_comboBoxFuncListSort->currentIndex() == 0)
-		{m_funclist.sort_by_linenum();}
-	else
-		{m_funclist.sort_by_name();}
-	for (int i=0; i < m_funclist.resultlist.size(); i++)
+	sqlqueryresultlist templist = m_funclist;
+	if (m_comboBoxFuncListSort->currentIndex() != 0) templist.sort_by_name();
+	QListWidgetItem* item;
+	for (auto it = templist.resultlist.begin(); it != templist.resultlist.end(); it++)
 	{
-		m_listWidgetFunc->addItem(new QListWidgetItem(
-			str2qt(m_funclist.resultlist[i].symname), 0, 
-			atoi(m_funclist.resultlist[i].linenum.C_STR())));
+		item = new QListWidgetItem(it->symname);
+		item->setData(Qt::UserRole, QVariant(it->intLinenum));
+		m_listWidgetFunc->addItem(item);
 	}
 }
 
-void fileviewer::funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem)
+void fileviewer::funcItemSelected(QListWidgetItem * curitem)
 {
-	if (curitem == NULL) return;
-	int num = curitem->type();
-	if (num <= 0)
-	{
-		num = 1;
-	}
-	else
-	{
-		num = num - 1; // not sure why it's one off
-	}
-	m_textEditSource->setFirstVisibleLine(num);
+	if (curitem == nullptr) return;
+	unsigned int num = curitem->data(Qt::UserRole).toUInt();
+	m_textEditSource->setFirstVisibleLine(num - 1);
 }
 
 void fileviewer::FuncListSort_indexChanged(const int& idx)

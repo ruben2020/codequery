@@ -105,7 +105,7 @@ void themeSelectionTemporary(const QString &themetxt);
 void tabWidthSelectionTemporary(const QString &width);
 void annotate(QStringList annotstrLst);
 void recvFuncList(sqlqueryresultlist* reslist);
-void funcItemSelected(QListWidgetItem * curitem, QListWidgetItem * previtem);
+void funcItemSelected(QListWidgetItem * curitem);
 void FuncListSort_indexChanged(const int& idx);
 
 signals:
@@ -140,6 +140,7 @@ void setLexer(int lang = -1);
 void replaceLexer(int sclang, int lang);
 void clearTextEdit(void);
 void braceMatchCheck(void);
+void updateFuncList(void);
 
 };
 

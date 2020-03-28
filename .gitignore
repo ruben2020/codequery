@@ -22,6 +22,7 @@ build32/
 build64/
 build_qt5/
 build_qt4/
+build_nogui/
 output/
 Output/
 bin/

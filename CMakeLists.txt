@@ -14,11 +14,9 @@ project(CodeQuery)
 option(BUILD_QT5 OFF)
 option(NO_GUI    OFF)
 
-if (NO_GUI)
-else (NO_GUI)
+# C++11 now always required
 SET( CMAKE_CXX_STANDARD 11 )
 SET( CMAKE_CXX_STANDARD_REQUIRED ON )
-endif (NO_GUI)
 
 IF(MSVC)
 ADD_DEFINITIONS(/D _CRT_SECURE_NO_WARNINGS)

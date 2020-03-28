@@ -27,7 +27,7 @@ cscope -cb
 ```
 4. Create a ctags database like this.
 ```bash
-ctags --fields=+i -n -R -L ./cscope.files
+ctags --fields=+i -n -L ./cscope.files
 ```
 5. Run cqmakedb to create a CodeQuery database out of the cscope and ctags databases, like this:
 ```bash
@@ -53,11 +53,11 @@ find . -iname "*.java" > ./cscope.files
 ```
 3. Create a cscope database like this:
 ```bash
-cscope -cbR
+cscope -cb
 ```
 4. Create a ctags database like this:
 ```bash
-ctags --fields=+i -n -R -L ./cscope.files
+ctags --fields=+i -n -L ./cscope.files
 ```
 5. Run cqmakedb to create a CodeQuery database out of the cscope and ctags databases, like this:
 ```bash
@@ -73,6 +73,8 @@ Use `cqmakedb -h` to get help on cqmakedb command line arguments.
 
 ## HOW TO USE CODEQUERY WITH PYTHON CODE?
 
+If you want to browse Python code, don't forget to install [pycscope](https://github.com/portante/pycscope). Information on how to install this tool is available on its github page.
+
 1. Change directory to the base folder of your source code like this:
 ```bash
 cd ~/projects/myproject/src
@@ -87,7 +89,7 @@ pycscope -i ./cscope.files
 ```
 4. Create a ctags database like this.
 ```bash
-ctags --fields=+i -n -R -L ./cscope.files
+ctags --fields=+i -n -L ./cscope.files
 ```
 5. Run cqmakedb to create a CodeQuery database out of the cscope and ctags databases, like this:
 ```bash
@@ -102,6 +104,8 @@ Use `cqmakedb -h` to get help on cqmakedb command line arguments.
 
 
 ## HOW TO USE CODEQUERY WITH RUBY, GO AND JAVASCRIPT CODE?
+
+If you want to browse Ruby, Go or Javascript code, don't forget to install [starscope](https://github.com/eapache/starscope). Information on how to install this tool is available on its github page.
 
 1. Change directory to the base folder of your source code like this:
 ```bash
@@ -119,7 +123,7 @@ starscope -e cscope
 ```
 4. Create a ctags database like this.
 ```bash
-ctags --fields=+i -n -R -L ./cscope.files
+ctags --fields=+i -n -L ./cscope.files
 ```
 5. Run cqmakedb to create a CodeQuery database out of the cscope and ctags databases, like this:
 ```bash

@@ -31,7 +31,7 @@ cscope -cb
 
 4. Create a ctags database like this.
 
-ctags --fields=+i -n -R -L cscope.files
+ctags --fields=+i -n -L cscope.files
 
 
 5. Run cqmakedb to create a CodeQuery database out of the
@@ -66,12 +66,12 @@ dir /b/a/s *.java > cscope.files
 
 3. Create a cscope database like this:
 
-cscope -cbR
+cscope -cb
 
 
 4. Create a ctags database like this:
 
-ctags --fields=+i -n -R -L cscope.files
+ctags --fields=+i -n -L cscope.files
 
 
 5. Run cqmakedb to create a CodeQuery database out of the
@@ -91,6 +91,8 @@ Use cqmakedb -h to get help on cqmakedb command line arguments.
 
 HOW TO USE CODEQUERY WITH PYTHON CODE?
 
+Please install pycscope manually by following instructions on its page here:
+https://github.com/portante/pycscope
 
 1. Change directory to the base folder of your source code like this:
 
@@ -110,7 +112,7 @@ pycscope -i cscope.files
 
 4. Create a ctags database like this.
 
-ctags --fields=+i -n -R -L cscope.files
+ctags --fields=+i -n -L cscope.files
 
 
 5. Run cqmakedb to create a CodeQuery database out of the
@@ -131,6 +133,8 @@ Use cqmakedb -h to get help on cqmakedb command line arguments.
 
 HOW TO USE CODEQUERY WITH RUBY, GO AND JAVASCRIPT CODE?
 
+Please install starscope manually by following instructions on its page here:
+https://github.com/eapache/starscope
 
 1. Change directory to the base folder of your source code like this:
 
@@ -152,7 +156,7 @@ starscope -e cscope
 
 4. Create a ctags database like this.
 
-ctags --fields=+i -n -R -L cscope.files
+ctags --fields=+i -n -L cscope.files
 
 
 5. Run cqmakedb to create a CodeQuery database out of the

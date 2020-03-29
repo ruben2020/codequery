@@ -98,7 +98,7 @@ std::string sym_data::symbname_escaped(void)
 
 const char* sym_data::getTypeDesc(void)
 {
-	for (long i=0; i<symbtypetbl_SIZE; i++)
+	for (unsigned long i=0; i<symbtypetbl_SIZE; i++)
 	{
 		if (sym_type == symbtypetbl[i].type)
 		{
@@ -110,7 +110,7 @@ const char* sym_data::getTypeDesc(void)
 
 const char sym_data::getTypeChar(void)
 {
-	for (long i=0; i<symbtypetbl_SIZE; i++)
+	for (unsigned long i=0; i<symbtypetbl_SIZE; i++)
 	{
 		if (sym_type == symbtypetbl[i].type)
 		{
@@ -301,13 +301,13 @@ if (hdr.get_version() != CSDBP_SUPPORTED_VER_NUM)
 // We must have "c", we don't mind "q" and we cannot have any other
 chkok = false;
 tVecStr vs = hdr.get_param_list();
-for(i=0; i< vs.size(); i++)
+for(i=0; i< (long) vs.size(); i++)
 {
 	if (vs[i].compare("c") == 0) chkok = true;
 }
 if (chkok == false) {return resUNSUPPORTED_PARAM;}
 
-for(i=0; i< vs.size(); i++)
+for(i=0; i< (long) vs.size(); i++)
 {
 	if ((vs[i].compare("c") != 0) && 
 		(vs[i].compare("q") != 0)) chkok = false;
@@ -324,7 +324,6 @@ return resOK;
 
 csdbparser::enResult csdbparser::parse_headers(void)
 {
-long slen;
 
 if (m_fp == NULL) {return resFILE_NOT_OPEN;}
 create_buf();
@@ -338,7 +337,6 @@ csdbheader hdr;
 
 // Read out the first line i.e. the header
 if (fgets(m_buf, CSDBP_MINIM_BUFSIZE, m_fp) == NULL) {return resFILE_ACCESS_ERR;}
-slen = strlen(chomp(m_buf));
 
 std::string s(static_cast<const char*>(m_buf));
 
@@ -563,7 +561,7 @@ if (ch == 9) // TAB
 				if (m_debug) printf("Incl found\n");
 				break;
 			default:
-				for (int i=0; i<symbtypetbl_SIZE; i++)
+				for (int i=0; i< (long) symbtypetbl_SIZE; i++)
 					{
 					if (symbtypetbl[i].chr == ch)
 						{

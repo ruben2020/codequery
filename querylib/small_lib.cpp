@@ -66,11 +66,16 @@ bool isAbsolutePath(tStr fp)
 bool strrevcmp(tStr str, tStr cmpstr)
 {
 	bool retval = (1 == 1);
-	unsigned int n = str.length();
+	size_t n = str.length();
 	if (n != cmpstr.length()) {retval = (1 == 0);}
-	else for (unsigned int i = (n - 1); i >= 0; i--)
+	else if (n > 0)
+	for (size_t i = (n - 1); ((i >= 0)&&(i < n)); i--)
 	{
-		if (str[i] != cmpstr[i])
+		if ((i < 0)||(i >= n))
+		{
+			continue;
+		}
+		if (str.CHAR_AT(i) != cmpstr.CHAR_AT(i))
 		{
 			retval = (1 == 0);
 			break;

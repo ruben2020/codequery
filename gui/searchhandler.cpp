@@ -607,7 +607,7 @@ sqlqueryresultlist searchhandler::doGrep(const QString &fp)
 	QString str, fp2;
 	tStr fpstr, fn;
 	long pos, linenumber=0;
-	char numtext[10];
+	char numtext[30];
 	QRegExp rx1(*m_grepRegExp);
 	reslist.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
 	fp2 = fp;

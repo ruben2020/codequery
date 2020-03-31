@@ -67,17 +67,20 @@ typedef std::set<std::string> tSetStr;
 #define C_STR(x) toLatin1(x).data(x)
 #define STRISEMPTY(x) isEmpty(x)
 #define STRTOLOWER(x,y) x = y.toLower()
+#define CHAR_AT(x) at(x).toLatin1()
 
 #elif defined(USE_QT4) // use Qt4's QString
 #define C_STR(x) toAscii(x).data(x)
 #define STRISEMPTY(x) isEmpty(x)
 #define STRTOLOWER(x,y) x = y.toLower()
+#define CHAR_AT(x) at(x).toLatin1()
 
 #else // use std::string
 #define C_STR(x) c_str(x)
 #define STRISEMPTY(x) empty(x)
 #define STRTOLOWER(x,y) x = y; \
                         std::transform(x.begin(), x.end(), x.begin(), ::tolower)
+#define CHAR_AT(x) at(x)
 #endif
 
 

@@ -25,12 +25,6 @@
 #include "themes.h"
 #include "std2qt.h"
 
-#ifdef USE_QT5
-#define QT45_TOASCII(x) toLatin1(x)
-#else
-#define QT45_TOASCII(x) toAscii(x)
-#endif
-
 #ifdef _WIN32
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
 #else
@@ -85,8 +79,8 @@ bool filedata::compareFileNameOnly(const filedata& fd)
 	if ((fileid < 0)||(fd.fileid < 0))
 	{
 		cmp =(strcmp(
-		extract_filename(filename.QT45_TOASCII().data()),
-		extract_filename(fd.filename.QT45_TOASCII().data())) == 0);
+		extract_filename(filename.C_STR()),
+		extract_filename(fd.filename.C_STR())) == 0);
 	}
 	else
 	{
@@ -410,7 +404,7 @@ void fileviewer::updateTextEdit(void)
 	m_textEditSource->setReadOnly(false);
 	m_textEditSource->setText(alltext.toUtf8().data());
 	m_textEditSource->setReadOnly(true);
-	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
+	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
 	highlightLine(m_iter->linenum.toInt());
 	updateFilePathLabel();
 	m_pushButtonGoToLine->setEnabled(true);
@@ -709,7 +703,7 @@ void fileviewer::textSizeChange(int n)
 	//m_lexer->setFont(m_textEditSourceFont);
 	m_fontsize += n;
 	m_textEditSource->setZoom(m_fontsize);
-	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
+	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
 	//m_textEditSource->setTabWidth(m_fontwidthtemp);
 }
 
@@ -824,9 +818,9 @@ void fileviewer::replaceLexer(int sclang, int lang)
 		m_textEditSource->markerSetBack(m_markerhandle2, themes::QC2SC(linenumfgcolor));
 		m_textEditSource->markerSetAlpha(m_markerhandle, SC_ALPHA_NOALPHA);
 		m_textEditSource->markerSetAlpha(m_markerhandle2, SC_ALPHA_NOALPHA);
-		m_textEditSource->styleSetFont(STYLE_LINENUMBER, m_textEditSourceFont.family().QT45_TOASCII().data());
+		m_textEditSource->styleSetFont(STYLE_LINENUMBER, m_textEditSourceFont.family().C_STR());
 		m_textEditSource->setZoom(m_fontsize);
-		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).QT45_TOASCII().data()));
+		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
 		themes::setKeywords(lang, m_textEditSource);
 		m_textEditSource->colourise(0, -1);
 	}

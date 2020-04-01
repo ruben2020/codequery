@@ -87,7 +87,7 @@ static QStringList search_autocomplete_qt(QString searchtxt);
 static QStringList search_declaration_qt(QString searchtxt);
 static sqlqueryresultlist search_funclist_qt_filename(QString filename);
 static sqlqueryresultlist search_funclist_qt_fileid(int fileid);
-static sqlqueryresultlist doGrep(const QString &fp);
+static sqlqueryresultlist doGrep(const QPair<QString, int> &fp);
 static void collateGrep(sqlqueryresultlist &result,
 			const sqlqueryresultlist &intermediate);
 

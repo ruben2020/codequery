@@ -10,7 +10,6 @@
  */
 
 
-#include "std2qt.h"
 #include "listhandler.h"
 
 listhandler::listhandler(mainwindow* pmw)
@@ -76,8 +75,8 @@ void listhandler::listItemClicked(QTreeWidgetItem * current, QTreeWidgetItem * p
 	if (m_noclick) return;
 	checkUpDown();
 	emit listRowNumUpdated(m_treeWidgetSearchResults->indexOfTopLevelItem(current));
-	emit openFile(str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].filepath),
-			str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].linenum),
+	emit openFile(m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].filepath,
+			m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].linenum,
 			m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].fileid);
 }
 
@@ -87,7 +86,7 @@ void listhandler::requestToProvideResultCurrentListItemSymbolName()
 	if (m_treeWidgetSearchResults->topLevelItemCount() > 0)
 	{
 		QTreeWidgetItem* current = m_treeWidgetSearchResults->currentItem();
-		symName = str2qt(m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].symname);
+		symName = m_sqlist.resultlist[current->data(0,Qt::UserRole).toLongLong()].symname;
 	}
 	emit sendResultCurrentListItemSymbolName(symName);
 }
@@ -105,13 +104,13 @@ void listhandler::updateList(void)
 		col = 0;
 		treeitemlist += new QTreeWidgetItem(m_treeWidgetSearchResults);
 		if (m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)
-			treeitemlist.last()->setText(col++, str2qt(it->symname));
-		treeitemlist.last()->setText(col++, str2qt(it->filename));
+			treeitemlist.last()->setText(col++, it->symname);
+		treeitemlist.last()->setText(col++, it->filename);
 		if ((m_sqlist.result_type == sqlqueryresultlist::sqlresultFULL)||
 			(m_sqlist.result_type == sqlqueryresultlist::sqlresultFILE_LINE))
 		{
-			treeitemlist.last()->setText(col++, str2qt(it->linenum));
-			treeitemlist.last()->setText(col++, str2qt(it->linetext));
+			treeitemlist.last()->setText(col++, it->linenum);
+			treeitemlist.last()->setText(col++, it->linetext);
 		}
 		treeitemlist.last()->setData(0, Qt::UserRole, QVariant(i++));
 	}

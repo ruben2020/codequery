@@ -23,7 +23,6 @@
 #include "mainwindow.h"
 #include "fileviewsettingsdialog.h"
 #include "themes.h"
-#include "std2qt.h"
 
 #ifdef _WIN32
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"

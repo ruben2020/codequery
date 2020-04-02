@@ -30,7 +30,6 @@ endif()
   SET( CODEQUERY_SRCS
        ../querylib/small_lib.cpp
        ../querylib/sqlquery.cpp
-       std2qt.cpp
        langtable.cpp
        fileviewer.cpp
        listhandler.cpp

@@ -7,9 +7,9 @@ Source: "\workspace\codequery\windows-install\LICENSE.txt"; DestDir: "{app}"; Fl
 Source: "\workspace\codequery\windows-install\HOWTO-WINDOWS.txt"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\workspace\codequery\windows-install\cscope.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\workspace\codequery\windows-install\ctags.exe"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "\Qt\4.8.6\bin\QtCore4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "\Qt\4.8.6\bin\QtGui4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
-Source: "\Qt\4.8.6\bin\QtXml4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "\Qt\4.8.7\bin\QtCore4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "\Qt\4.8.7\bin\QtGui4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
+Source: "\Qt\4.8.7\bin\QtXml4.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\mingw32\bin\sqlite3.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\mingw32\bin\libgcc_s_dw2-1.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
 Source: "\mingw32\bin\libstdc++-6.dll"; DestDir: "{app}"; Flags: 32bit overwritereadonly
@@ -26,7 +26,7 @@ Name: "{group}\Uninstall"; Filename: "{uninstallexe}"; WorkingDir: "{app}"
 ShowLanguageDialog=auto
 AppName=CodeQuery
 AppVerName=CodeQuery 0.22.0
-AppCopyright=Copyright 2013-2017 (C) ruben2020
+AppCopyright=Copyright 2013-2020 (C) ruben2020
 AppId={{D95A3CC0-CC79-4CF1-A92B-50E909B60EF1}
 LicenseFile=\workspace\codequery\windows-install\LICENSE.txt
 DefaultDirName={pf}\CodeQuery

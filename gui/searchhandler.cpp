@@ -12,7 +12,6 @@
 
 #include <QVector>
 #include <QPair>
-#include "std2qt.h"
 #include "graphdialog.h"
 #include "searchhandler.h"
 
@@ -269,7 +268,7 @@ QStringList searchhandler::search_declaration_qt(QString searchtxt)
 
 QStringList searchhandler::search_autocomplete_qt(QString searchtxt)
 {
-	return strLst2qt(sq->search_autocomplete(searchtxt.C_STR()));
+	return sq->search_autocomplete(searchtxt.C_STR());
 }
 
 void searchhandler::autoCompleteStateChanged(int state)
@@ -434,7 +433,7 @@ void searchhandler::OpenDB_indexChanged(const int& idx)
 	}
 	sq->close_dbfile();
 	QFileInfo dbfile(m_comboBoxDB->itemText(idx));
-	sqstatus = sq->open_dbfile(qt2str(m_comboBoxDB->itemText(idx)));
+	sqstatus = sq->open_dbfile(m_comboBoxDB->itemText(idx));
 	if (sqstatus != sqlquery::sqlfileOK)
 	{
 		QMessageBox msgBox((QWidget*)mw);
@@ -544,7 +543,7 @@ void searchhandler::perform_search(QString searchtxt,
 	if (sqlresultlist.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
 		QMessageBox msgBox((QWidget*)mw);
-		msgBox.setText(str2qt(sqlresultlist.sqlerrmsg));
+		msgBox.setText(sqlresultlist.sqlerrmsg);
 		msgBox.exec();
 	}
 	else

@@ -150,7 +150,7 @@ if (BUILD_QT5)
   INCLUDE_DIRECTORIES( "${Qt5Widgets_INCLUDE_DIRS}" )
 
 if(WIN32)
-  SET(CQ_WIN_RCS cqwin32.rc)
+  SET(CQ_WIN_RCS cqwin64.rc)
   add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
   target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
 else()

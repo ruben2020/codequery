@@ -37,7 +37,7 @@
 		<Directory Id='TARGETDIR' Name='SourceDir'>
 			<Directory Id='ProgramFilesFolder' Name='PFiles'>
 				<Directory Id='CodeQuery' Name='CodeQuery'>
-					<Directory Id='INSTALLDIR' Name='CodeQuery 0.22.0'>
+					<Directory Id='INSTALLDIR' Name='CodeQuery 0.22.0 64bit'>
 						<Component Id='CodeQueryGUI_64bit' Guid='2989278c-93cd-4ef7-a692-4eef77e747fb'>
 							<File Id='codequeryEXE' Name='codequery.exe' DiskId='1' Source='C:\workspace\codequery\build\output\codequery.exe' KeyPath='yes'>
 								<Shortcut Id="startmenuCodeQueryShortcut" Directory="AppProgramMenuFolder" Name="CodeQuery"
@@ -150,19 +150,19 @@
 								<File Id='qt_uk' Name='qt_uk.qm' DiskId='1' Source='C:\workspace\codequery\build\output\translations\qt_uk.qm' KeyPath='no' />
 								<File Id='qt_zh_TW' Name='qt_zh_TW.qm' DiskId='1' Source='C:\workspace\codequery\build\output\translations\qt_zh_TW.qm' KeyPath='no' />
 							</Component>
-							<Component Id='CodeQueryUninstall' Guid='089a8038-775a-11ea-bc55-0242ac130003'>
-								<File Id='uninstallBAT' Name='uninstall.bat' DiskId='1' Source='C:\workspace\codequery\windows-install\wincommon\uninstall.bat' 
-										KeyPath='yes' >
-									<Shortcut Id="startmenuUninstallShortcut" Directory="AppProgramMenuFolder" Name="Uninstall CodeQuery" Show='minimized'
-										Arguments='[ProductCode]' Advertise="yes" WorkingDirectory='INSTALLDIR' Icon="msiexec.ico" IconIndex="0" />
-								</File>
-							</Component>
 						</Directory>
+						<Component Id='CodeQueryUninstall' Guid='089a8038-775a-11ea-bc55-0242ac130003'>
+							<File Id='uninstallBAT' Name='uninstall.bat' DiskId='1' Source='C:\workspace\codequery\windows-install\wincommon\uninstall.bat' 
+									KeyPath='yes' >
+									<Shortcut Id="startmenuUninstallShortcut" Directory="AppProgramMenuFolder" Name="Uninstall CodeQuery" Show='minimized'
+									Arguments='[ProductCode]' Advertise="yes" WorkingDirectory='INSTALLDIR' Icon="msiexec.ico" IconIndex="0" />
+							</File>
+						</Component>
 					</Directory>
 				</Directory>
 			</Directory>
 			<Directory Id="ProgramMenuFolder" Name="Programs">
-				<Directory Id="AppProgramMenuFolder" Name="CodeQuery 0.22.0" />
+				<Directory Id="AppProgramMenuFolder" Name="CodeQuery 0.22.0 (64-bit)" />
 			</Directory>
 		</Directory>
 		<DirectoryRef Id="AppProgramMenuFolder">
@@ -171,7 +171,7 @@
 				<RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
 			</Component>
 		</DirectoryRef>
-		<Feature Id='Complete' Title='CodeQuery 0.22.0' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
+		<Feature Id='Complete' Title='CodeQuery 0.22.0 (Qt5, 64-bit)' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
 			<ComponentRef Id='CodeQueryGUI_64bit' />
 			<ComponentRef Id='cqmakedb_64bit' />
 			<ComponentRef Id='cqsearch_64bit' />

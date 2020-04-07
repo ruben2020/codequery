@@ -42,24 +42,25 @@ add_subdirectory( "showgraph" )
 add_subdirectory( "gui" )
 endif (NO_GUI)
 
+# Increasing minimum version numbers of dependencies to support Ubuntu 16.04 LTS (xenial)
 
 if (UNIX)
 
 if (NO_GUI)
 
 set( CPACK_PACKAGE_NAME "codequery-nogui" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libsqlite3-0 (>= 3.7.0) " )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libsqlite3-0 (>= 3.11.0) " )
 
 else (NO_GUI)
 if (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt5" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.4.0) , libsqlite3-0 (>= 3.7.0) " )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.5.1) , libsqlite3-0 (>= 3.11.0) " )
 
 else (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt4" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtcore4 (>= 4.8.0), libqtgui4 (>= 4.8.0) , libqt4-xml (>= 4.8.0) , libsqlite3-0 (>= 3.7.0) " )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libqtcore4 (>= 4.8.7), libqtgui4 (>= 4.8.7) , libqt4-xml (>= 4.8.7) , libsqlite3-0 (>= 3.11.0) " )
 
 endif (BUILD_QT5)
 endif (NO_GUI)

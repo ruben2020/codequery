@@ -11,7 +11,7 @@ cmake_minimum_required(VERSION 3.2.2)
 project(CodeQuery)
 
 
-option(BUILD_QT5 OFF)
+option(BUILD_QT5 ON)
 option(NO_GUI    OFF)
 
 # C++11 now always required

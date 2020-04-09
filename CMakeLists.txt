@@ -11,8 +11,14 @@ cmake_minimum_required(VERSION 3.2.2)
 project(CodeQuery)
 
 
-option(BUILD_QT5 ON)
-option(NO_GUI    OFF)
+option(BUILD_QT5 "Qt5 option"    ON)
+option(NO_GUI    "No GUI option" OFF)
+
+MESSAGE("-- NO_GUI = " ${NO_GUI})
+if (NO_GUI)
+else (NO_GUI)
+MESSAGE("-- BUILD_QT5 = " ${BUILD_QT5})
+endif(NO_GUI)
 
 # C++11 now always required
 SET( CMAKE_CXX_STANDARD 11 )

@@ -2,7 +2,7 @@ language: cpp
 
 compiler: gcc
 
-dist: trusty
+dist: bionic
 
 sudo: require
 
@@ -14,17 +14,18 @@ env:
 
 before_install:
  - uname -a
- - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq qdbus qmlscene qt5-default qt5-qmake qtbase5-dev-tools qtchooser qtdeclarative5-dev xbitmaps xterm libqt5svg5-dev qttools5-dev qtscript5-dev qtdeclarative5-folderlistmodel-plugin qtdeclarative5-controls-plugin qttools5-dev-tools
- - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq sqlite3 libsqlite3-dev cscope exuberant-ctags rpm qt4-dev-tools clang
-
+ - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq build-essential g++ git cmake sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
+ - sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confnew" install -qq build-essential g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+ 
 script: 
-  - sudo ln -s /usr/bin/gcc-4.8 /usr/local/bin/gcc
-  - sudo ln -s /usr/bin/g++-4.8 /usr/local/bin/g++
   - gcc -v && g++ -v && clang -v && cmake --version
   - mkdir -p build
   - cd build
   - rm -rf *
   - cmake -G "Unix Makefiles" ..
+  - make
+  - strip -v ./codequery
+  - strip -v ./cq*
   - make package
   - sudo make install
   - cqmakedb -v
@@ -36,6 +37,9 @@ script:
   - cd build
   - rm -rf *
   - cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
+  - make
+  - strip -v ./codequery
+  - strip -v ./cq*
   - make package
   - sudo make install
   - cqmakedb -v
@@ -52,6 +56,9 @@ script:
   - export CC=clang
   - export CXX=clang++
   - cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
+  - make
+  - strip -v ./codequery
+  - strip -v ./cq*
   - make package
   - sudo make install
   - cqmakedb -v

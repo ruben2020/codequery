@@ -3,6 +3,7 @@ md build
 cd build
 cmake -G "MinGW Makefiles" -DBUILD_QT5=ON -DSQLITE_INCLUDE_DIR=c:\qt\Tools\mingw730_64\x86_64-w64-mingw32\include -DSQLITE_LIBRARY_RELEASE=c:\qt\Tools\mingw730_64\bin\sqlite3.dll ..
 mingw32-make
+strip.exe .\*.exe
 md output
 copy *.exe output
 copy c:\Qt\tools\mingw730_64\bin\sqlite3.dll output

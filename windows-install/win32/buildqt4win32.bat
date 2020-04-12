@@ -3,6 +3,7 @@ md build
 cd build
 cmake -G "MinGW Makefiles" -DBUILD_QT5=OFF ..
 mingw32-make
+strip.exe .\*.exe
 md output
 copy *.exe output
 copy C:\mingw32\bin\sqlite3.dll output

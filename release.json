@@ -2,7 +2,7 @@
     "version": "0.22.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Fixes in the ctags file parser, List of files button added to the GUI",
+    "changes": "Many bugfixes and enhancements",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

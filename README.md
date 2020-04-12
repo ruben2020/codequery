@@ -14,8 +14,6 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 
 ## Latest version = 0.22.0
 
-**NOTE: Version 0.22.0 has fixes for a major performance bug in the GUI and in the ctags file parser.**
-
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.

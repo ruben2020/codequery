@@ -17,15 +17,5 @@
     <file>images/Text_Minus.png</file>
     <file>images/Text_Plus.png</file>
     <file>images/logo.png</file>
-    <file>../build/gui/codequery_de.qm</file>
-    <file>../build/gui/codequery_en.qm</file>
-    <file>../build/gui/codequery_es.qm</file>
-    <file>../build/gui/codequery_fr.qm</file>
-    <file>../build/gui/codequery_id.qm</file>
-    <file>../build/gui/codequery_it.qm</file>
-    <file>../build/gui/codequery_ja.qm</file>
-    <file>../build/gui/codequery_ko.qm</file>
-    <file>../build/gui/codequery_zh-CHS.qm</file>
-    <file>../build/gui/codequery_zh-CHT.qm</file>
   </qresource>
 </RCC>

@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="/trans">
+    <file>codequery_de.qm</file>
+    <file>codequery_en.qm</file>
+    <file>codequery_es.qm</file>
+    <file>codequery_fr.qm</file>
+    <file>codequery_id.qm</file>
+    <file>codequery_it.qm</file>
+    <file>codequery_ja.qm</file>
+    <file>codequery_ko.qm</file>
+    <file>codequery_zh-CHS.qm</file>
+    <file>codequery_zh-CHT.qm</file>
+  </qresource>
+</RCC>

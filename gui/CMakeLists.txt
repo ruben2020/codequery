@@ -125,21 +125,43 @@ if (BUILD_QT5)
   QT5_ADD_TRANSLATION( QM ${CODEQUERY_TRANS} )  
   
   # this command will generate rules that will run rcc on all files from CODEQUERY_RCS
-  # in result CODEQUERY_RC_SRCS variable will contain paths to files produced by rcc
-  # QT4_ADD_RESOURCES( CODEQUERY_RC_SRCS ${CODEQUERY_RCS} )
+  # in result CQIMAGES_RC_SRCS variable will contain paths to files produced by rcc
+  # QT4_ADD_RESOURCES( CQIMAGES_RC_SRCS ${CODEQUERY_RCS} )
 
-  SET( CODEQUERY_RC_NAME codequery )
-  SET( CODEQUERY_RC_QRC "${CMAKE_CURRENT_SOURCE_DIR}/${CODEQUERY_RC_NAME}.qrc")
-  SET( CODEQUERY_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_${CODEQUERY_RC_NAME}.cxx")
+  SET( CQIMAGES_RC_QRC   "${CMAKE_CURRENT_SOURCE_DIR}/cqimages.qrc")
+  SET( CQIMAGES_RC_SRCS  "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqimages.cxx")
+  SET( CQTRANS_RC_QRCT "${CMAKE_CURRENT_SOURCE_DIR}/cqtrans.qrc.template")
+  SET( CQTRANS_RC_QRC  "${CMAKE_CURRENT_BINARY_DIR}/cqtrans.qrc")
+  SET( CQTRANS_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqtrans.cxx")
 
   # Run the resource compiler (rcc_options should already be set). We can't
   # use QT4_ADD_RESOURCES because the qrc file may not exist yet.
   ADD_CUSTOM_COMMAND(
-    OUTPUT ${CODEQUERY_RC_SRCS}
+    OUTPUT ${CQIMAGES_RC_SRCS}
     COMMAND ${QT_RCC_EXECUTABLE}
-    ARGS ${rcc_options} -name ${CODEQUERY_RC_NAME} -o ${CODEQUERY_RC_SRCS} ${CODEQUERY_RC_QRC}
-    DEPENDS ${QM}
+    ARGS ${rcc_options} -name cqimages -o ${CQIMAGES_RC_SRCS} ${CQIMAGES_RC_QRC}
     )
+
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_SRCS}
+    COMMAND ${QT_RCC_EXECUTABLE}
+    ARGS ${rcc_options} -name cqtrans -o ${CQTRANS_RC_SRCS} ${CQTRANS_RC_QRC}
+    DEPENDS ${QM} ${CQTRANS_RC_QRC}
+    )
+
+if (WIN32)
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_QRC}
+    COMMAND copy
+    ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
+    )
+else (WIN32)
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_QRC}
+    COMMAND cp
+    ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
+    )
+endif (WIN32)
 
   # this will run uic on .ui files:
   QT5_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
@@ -151,10 +173,10 @@ if (BUILD_QT5)
 
 if(WIN32)
   SET(CQ_WIN_RCS cqwin64.rc)
-  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
+  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
   target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
 else()
-  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
   target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
 endif()
   
@@ -182,22 +204,44 @@ else (BUILD_QT5)
   QT4_ADD_TRANSLATION( QM ${CODEQUERY_TRANS} )  
   
   # this command will generate rules that will run rcc on all files from CODEQUERY_RCS
-  # in result CODEQUERY_RC_SRCS variable will contain paths to files produced by rcc
-  # QT4_ADD_RESOURCES( CODEQUERY_RC_SRCS ${CODEQUERY_RCS} )
+  # in result CQIMAGES_RC_SRCS variable will contain paths to files produced by rcc
+  # QT4_ADD_RESOURCES( CQIMAGES_RC_SRCS ${CODEQUERY_RCS} )
 
 
-  SET( CODEQUERY_RC_NAME codequery )
-  SET( CODEQUERY_RC_QRC "${CMAKE_CURRENT_SOURCE_DIR}/${CODEQUERY_RC_NAME}.qrc")
-  SET( CODEQUERY_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_${CODEQUERY_RC_NAME}.cxx")
+  SET( CQIMAGES_RC_QRC   "${CMAKE_CURRENT_SOURCE_DIR}/cqimages.qrc")
+  SET( CQIMAGES_RC_SRCS  "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqimages.cxx")
+  SET( CQTRANS_RC_QRCT "${CMAKE_CURRENT_SOURCE_DIR}/cqtrans.qrc.template")
+  SET( CQTRANS_RC_QRC  "${CMAKE_CURRENT_BINARY_DIR}/cqtrans.qrc")
+  SET( CQTRANS_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqtrans.cxx")
 
   # Run the resource compiler (rcc_options should already be set). We can't
   # use QT4_ADD_RESOURCES because the qrc file may not exist yet.
   ADD_CUSTOM_COMMAND(
-    OUTPUT ${CODEQUERY_RC_SRCS}
+    OUTPUT ${CQIMAGES_RC_SRCS}
     COMMAND ${QT_RCC_EXECUTABLE}
-    ARGS ${rcc_options} -name ${CODEQUERY_RC_NAME} -o ${CODEQUERY_RC_SRCS} ${CODEQUERY_RC_QRC}
-    DEPENDS ${QM}
+    ARGS ${rcc_options} -name cqimages -o ${CQIMAGES_RC_SRCS} ${CQIMAGES_RC_QRC}
     )
+
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_SRCS}
+    COMMAND ${QT_RCC_EXECUTABLE}
+    ARGS ${rcc_options} -name cqtrans -o ${CQTRANS_RC_SRCS} ${CQTRANS_RC_QRC}
+    DEPENDS ${QM} ${CQTRANS_RC_QRC}
+    )
+
+if (WIN32)
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_QRC}
+    COMMAND copy
+    ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
+    )
+else (WIN32)
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_QRC}
+    COMMAND cp
+    ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
+    )
+endif (WIN32)
 
   # this will run uic on .ui files:
   QT4_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
@@ -208,9 +252,9 @@ else (BUILD_QT5)
 
 if(WIN32)
   SET(CQ_WIN_RCS cqwin32.rc)
-  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
+  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
 else()
-  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CODEQUERY_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
 endif()
 
   target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} cqshowgraph scintillaedit)

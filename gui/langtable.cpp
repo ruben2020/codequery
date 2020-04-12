@@ -16,7 +16,7 @@
 #include "small_lib.h"
 #include "langtable.h"
 
-#define BASE_LANG_PATH ":/mainwindow/build/gui/"
+#define BASE_LANG_PATH ":/trans/"
 
 
 typedef struct

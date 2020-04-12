@@ -19,6 +19,8 @@
 # Ignore the following directories
 build/
 buildnogui/
+buildqt4/
+buildqt5/
 output/
 Output/
 bin/

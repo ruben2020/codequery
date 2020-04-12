@@ -22,7 +22,7 @@ script:
   - mkdir -p build
   - cd build
   - rm -rf *
-  - cmake -G "Unix Makefiles" ..
+  - cmake -G "Unix Makefiles" -DBUILD_QT5=OFF ..
   - make
   - strip -v ./codequery
   - strip -v ./cq*
@@ -47,6 +47,20 @@ script:
   - rm cscope.out
   - rm tags
   - rm cq.db
+  - cscope -cbR
+  - ctags --fields=+i -nR
+  - cqmakedb -s cq.db -c cscope.out -t tags -p -d
+  - cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
+  - mkdir -p buildnogui
+  - cd buildnogui
+  - rm -rf *
+  - cmake -G "Unix Makefiles" -DNO_GUI=ON ..
+  - make
+  - strip -v ./cq*
+  - make package
+  - sudo make install
+  - cqmakedb -v
+  - cd ..
   - cscope -cbR
   - ctags --fields=+i -nR
   - cqmakedb -s cq.db -c cscope.out -t tags -p -d
@@ -76,8 +90,6 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-4.8
-      - g++-4.8
       - cmake
   coverity_scan:
     project:

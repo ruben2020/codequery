@@ -1,8 +1,29 @@
 Changelog
 =========
 
+Version 0.22.0 - Apr 12, 2020
+-----------------------------
+Enhancement: Added build option for no GUI      
+Enhancement: Updated Scintilla to 3.11.2      
+Enhancement: Performance improvement by using QString instead of STL String for search through GUI      
+Enhancement: Added ability to general call function and class inheritance graph through cqsearch CLI      
+Enhancement: Added ability to filter by path added to cqsearch CLI      
+Enhancement: Changing query type on the GUI dropbox will start a search immediately      
+Enhancement: Clicking on a line in the GUI file viewer, will now highlight the appropriate function in the function list      
+Enhancement: Now Qt5 becomes the default build option in CMakeLists.txt     
+Enhancement: Windows installer changed from InnoSetup to Wix Toolset, to generate MSI installer     
+Enhancement: Now Windows installer will be in two versions: Qt5, 64-bit or Qt4, 32-bit     
+Bugfix: Default font selection for GUI file viewer, instead of becoming empty     
+Bugfix: Improved annotation accuracy in GUI     
+Bugfix: Improved brace highlighting in GUI     
+Bugfix: Fixed the bug where function list next to GUI file viewer doesn't work properly for grep     
+
+Version 0.21.1 - Sept 16, 2018
+------------------------------
+Fixed a build error due to new version of Qt5 (5.11)    
+
 Version 0.21.0 - Apr 30, 2017
-----------------------------
+-----------------------------
 Fixes in the ctags file parser     
 "List of files" button added to the GUI     
 Improved "full path for file" results list in GUI      

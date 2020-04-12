@@ -65,8 +65,6 @@ cmake -G "Unix Makefiles" -DNO_GUI=ON ..
 Step 6: Run make and make install.     
 ```bash
 make
-strip ./codequery
-strip ./cq*
 sudo make install
 ```
 

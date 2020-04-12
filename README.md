@@ -93,7 +93,7 @@ Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.c
 
 It's freeware and free open source software.
 
-This software is licensed under the [Mozilla Public License, version 2.0 (MPL-2.0)](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/LICENSE.txt). This applies to both the distributed Source Code Form and the distributed Executable Form of the software.
+This software is licensed under the [Mozilla Public License, version 2.0 (MPL-2.0)](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/wincommon/LICENSE.txt). This applies to both the distributed Source Code Form and the distributed Executable Form of the software.
 
 To understand the MPL-2.0 license, please read the [MPL-2.0 FAQ by mozilla.org](https://www.mozilla.org/en-US/MPL/2.0/FAQ/).
 
@@ -134,7 +134,7 @@ Version 15.8a of [cscope](http://cscope.sourceforge.net/) or higher, works best 
 
 ## How do I use it?
 
-On Windows: [HOWTO-WINDOWS](windows-install/HOWTO-WINDOWS.txt). This file is included in the EXE setup package.
+On Windows: [HOWTO-WINDOWS](windows-install/wincommon/HOWTO-WINDOWS.txt). This file is included in the EXE setup package.
 
 On Linux and Mac: [HOWTO-LINUX](doc/HOWTO-LINUX.md)
 

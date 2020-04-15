@@ -83,6 +83,18 @@ translations/codequery_zh-CHT.ts
 
   )  
 
+  SET( CQIMAGES_RC_QRC   "${CMAKE_CURRENT_SOURCE_DIR}/cqimages.qrc")
+  SET( CQIMAGES_RC_SRCS  "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqimages.cxx")
+  SET( CQTRANS_RC_QRCT   "${CMAKE_CURRENT_SOURCE_DIR}/cqtrans.qrc.template")
+  SET( CQTRANS_RC_QRC    "${CMAKE_CURRENT_BINARY_DIR}/cqtrans.qrc")
+  SET( CQTRANS_RC_SRCS   "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqtrans.cxx")
+
+if (WIN32)
+  SET( COPY_COMMAND  "copy")
+else (WIN32)
+  SET( COPY_COMMAND  "cp")
+endif (WIN32)
+
   add_definitions( -DNO_QDESIGNER_WIDGET_EXPORT )
 
   INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
@@ -128,14 +140,7 @@ if (BUILD_QT5)
   # in result CQIMAGES_RC_SRCS variable will contain paths to files produced by rcc
   # QT4_ADD_RESOURCES( CQIMAGES_RC_SRCS ${CODEQUERY_RCS} )
 
-  SET( CQIMAGES_RC_QRC   "${CMAKE_CURRENT_SOURCE_DIR}/cqimages.qrc")
-  SET( CQIMAGES_RC_SRCS  "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqimages.cxx")
-  SET( CQTRANS_RC_QRCT "${CMAKE_CURRENT_SOURCE_DIR}/cqtrans.qrc.template")
-  SET( CQTRANS_RC_QRC  "${CMAKE_CURRENT_BINARY_DIR}/cqtrans.qrc")
-  SET( CQTRANS_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqtrans.cxx")
-
-  # Run the resource compiler (rcc_options should already be set). We can't
-  # use QT4_ADD_RESOURCES because the qrc file may not exist yet.
+  # Run the resource compiler (rcc_options should already be set).
   ADD_CUSTOM_COMMAND(
     OUTPUT ${CQIMAGES_RC_SRCS}
     COMMAND ${QT_RCC_EXECUTABLE}
@@ -149,23 +154,15 @@ if (BUILD_QT5)
     DEPENDS ${QM} ${CQTRANS_RC_QRC}
     )
 
-if (WIN32)
   ADD_CUSTOM_COMMAND(
     OUTPUT ${CQTRANS_RC_QRC}
-    COMMAND copy
+    COMMAND ${COPY_COMMAND}
     ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
     )
-else (WIN32)
-  ADD_CUSTOM_COMMAND(
-    OUTPUT ${CQTRANS_RC_QRC}
-    COMMAND cp
-    ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
-    )
-endif (WIN32)
+    
 
   # this will run uic on .ui files:
   QT5_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
-  
 
   # we need this to be able to include headers produced by uic in our code
   # (CMAKE_BINARY_DIR holds a path to the build directory, while INCLUDE_DIRECTORIES() works just like INCLUDEPATH from qmake)
@@ -207,15 +204,7 @@ else (BUILD_QT5)
   # in result CQIMAGES_RC_SRCS variable will contain paths to files produced by rcc
   # QT4_ADD_RESOURCES( CQIMAGES_RC_SRCS ${CODEQUERY_RCS} )
 
-
-  SET( CQIMAGES_RC_QRC   "${CMAKE_CURRENT_SOURCE_DIR}/cqimages.qrc")
-  SET( CQIMAGES_RC_SRCS  "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqimages.cxx")
-  SET( CQTRANS_RC_QRCT "${CMAKE_CURRENT_SOURCE_DIR}/cqtrans.qrc.template")
-  SET( CQTRANS_RC_QRC  "${CMAKE_CURRENT_BINARY_DIR}/cqtrans.qrc")
-  SET( CQTRANS_RC_SRCS "${CMAKE_CURRENT_BINARY_DIR}/qrc_cqtrans.cxx")
-
-  # Run the resource compiler (rcc_options should already be set). We can't
-  # use QT4_ADD_RESOURCES because the qrc file may not exist yet.
+  # Run the resource compiler (rcc_options should already be set).
   ADD_CUSTOM_COMMAND(
     OUTPUT ${CQIMAGES_RC_SRCS}
     COMMAND ${QT_RCC_EXECUTABLE}
@@ -229,19 +218,12 @@ else (BUILD_QT5)
     DEPENDS ${QM} ${CQTRANS_RC_QRC}
     )
 
-if (WIN32)
   ADD_CUSTOM_COMMAND(
     OUTPUT ${CQTRANS_RC_QRC}
-    COMMAND copy
+    COMMAND ${COPY_COMMAND}
     ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
     )
-else (WIN32)
-  ADD_CUSTOM_COMMAND(
-    OUTPUT ${CQTRANS_RC_QRC}
-    COMMAND cp
-    ARGS ${CQTRANS_RC_QRCT} ${CQTRANS_RC_QRC}
-    )
-endif (WIN32)
+    
 
   # this will run uic on .ui files:
   QT4_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
@@ -262,7 +244,5 @@ endif()
   install(TARGETS codequery RUNTIME DESTINATION bin)
 
 endif (BUILD_QT5)
-
-
 
 

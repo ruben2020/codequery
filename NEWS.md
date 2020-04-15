@@ -1,6 +1,10 @@
 Changelog
 =========
 
+Version 0.23.0 - Apr 15, 2020
+-----------------------------
+The CMake build directory is now moveable and renameable, which is useful for Debian source package creation
+
 Version 0.22.0 - Apr 12, 2020
 -----------------------------
 Enhancement: Added build option for no GUI      

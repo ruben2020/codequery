@@ -12,7 +12,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.22.0
+## Latest version = 0.23.0
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -93,7 +93,7 @@ Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.c
 
 It's freeware and free open source software.
 
-This software is licensed under the [Mozilla Public License, version 2.0 (MPL-2.0)](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE](LICENSE.md) or [LICENSE.txt](windows-install/wincommon/LICENSE.txt). This applies to both the distributed Source Code Form and the distributed Executable Form of the software.
+This software is licensed under the [Mozilla Public License, version 2.0 (MPL-2.0)](https://www.mozilla.org/en-US/MPL/2.0/). See [LICENSE.md](LICENSE.md) or [LICENSE.txt](windows-install/wincommon/LICENSE.txt). This applies to both the distributed Source Code Form and the distributed Executable Form of the software.
 
 To understand the MPL-2.0 license, please read the [MPL-2.0 FAQ by mozilla.org](https://www.mozilla.org/en-US/MPL/2.0/FAQ/).
 

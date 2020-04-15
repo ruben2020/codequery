@@ -1,8 +1,8 @@
 {
-    "version": "0.22.0",
+    "version": "0.23.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Many bugfixes and enhancements",
+    "changes": "The CMake build directory is now moveable and renameable, which is useful for Debian source package creation",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

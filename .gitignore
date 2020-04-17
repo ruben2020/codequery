@@ -25,6 +25,7 @@ output/
 Output/
 bin/
 html/
+.vscode/
 
 # Ignore cscope and ctags files, and our db files
 cscope.files

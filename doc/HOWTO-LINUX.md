@@ -114,8 +114,8 @@ cd ~/projects/myproject/src
 2. Create a cscope.files file with all the Ruby, Go or Javascript source files listed in it.
 ```bash
 find . -iname "*.rb"    > ./cscope.files
-find . -iname "*.go"    > ./cscope.files
-find . -iname "*.js"    > ./cscope.files
+find . -iname "*.go"    >> ./cscope.files
+find . -iname "*.js"    >> ./cscope.files
 ```
 3. Create a cscope database like this:
 ```bash

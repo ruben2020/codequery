@@ -84,9 +84,15 @@ Here's a function call graph based on the search term of "updateFilePathLabel". 
 ![Visualization screenshot](doc/screenshot2.png)
 
 
-## Are other editors like vim or emacs supported?
+## Are other editors like vim or emacs or Visual Studio Code supported?
 
-Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.com/devjoe/vim-codequery) by [devjoe](https://github.com/devjoe). We welcome contributors to develop plugins for other editors too.
+Yes!
+
+There is a vim plugin for CodeQuery called [vim-codequery](https://github.com/devjoe/vim-codequery) by [devjoe](https://github.com/devjoe).
+
+There is a Visual Studio Code extension for CodeQuery called [codequery4vscode](https://github.com/ruben2020/codequery4vscode) by [ruben2020](https://github.com/ruben2020). The Visual Studio Code Extension Marketplace page for this extension is [ruben2020.codequery4vscode](https://marketplace.visualstudio.com/items?itemName=ruben2020.codequery4vscode).
+
+We welcome contributors to develop plugins for other editors too.
 
 
 ## What does it cost? How is it licensed?

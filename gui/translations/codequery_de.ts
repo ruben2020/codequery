@@ -108,7 +108,7 @@
         <location filename="../ui/mainWindow.ui" line="207"/>
         <location filename="../ui/mainWindow.ui" line="210"/>
         <source>If Exact Match is switched off, wildcard searches (* and ?) are supported</source>
-        <translation>Wenn "Genaue Übereinstimmung ausgeschaltet" ist, werden Platzhaltersuchen (* und ?) unterstützt</translation>
+        <translation>Wenn "Genaue Übereinstimmung" ausgeschaltet ist, werden Platzhaltersuchen (* und ?) unterstützt</translation>
     </message>
     <message>
         <location filename="../ui/mainWindow.ui" line="229"/>

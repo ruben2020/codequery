@@ -5,7 +5,7 @@
  * 
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
- * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ * file, You can obtain one at https://www.mozilla.org/en-US/MPL/2.0/.
  *
  */
 
@@ -13,7 +13,7 @@
 #ifndef SWVER_H_CQ
 #define SWVER_H_CQ
 
-#define CODEQUERY_SW_VERSION      "CodeQuery 0.23.0"
+#define CODEQUERY_SW_VERSION      "CodeQuery 0.24.0"
 #define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
 	CODEQUERY_SW_VERSION \
 	"</p>"\
@@ -22,12 +22,12 @@
 
 
 #define CODEQUERY_SW_LICENSE  \
-"Copyright (C) 2013-2020 ruben2020 https://github.com/ruben2020/\n\n" \
+"Copyright (C) 2013-2021 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
 "The Source Code Form and the Executable Form of this software\n" \
 "are subject to the terms of the Mozilla Public License, v. 2.0.\n" \
 "If a copy of the MPL was not distributed with this software,\n" \
-"You can obtain one at http://mozilla.org/MPL/2.0/.\n\n" \
+"You can obtain one at https://www.mozilla.org/en-US/MPL/2.0/.\n\n" \
 "The Source Code Form of this software can be obtained from:\n" \
 "https://github.com/ruben2020/codequery\n\n" \
 "This software is distributed in the hope that it will be useful,\n" \
@@ -36,12 +36,12 @@
 "Mozilla Public License, v. 2.0 for more details.\n\n" \
 
 #define CODEQUERY_SW_LICENSE_PARA  \
-"Copyright (C) 2013-2020 ruben2020 https://github.com/ruben2020/\n\n" \
+"Copyright (C) 2013-2021 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
 "The Source Code Form and the Executable Form of this software " \
 "are subject to the terms of the Mozilla Public License, v. 2.0. " \
 "If a copy of the MPL was not distributed with this software, " \
-"You can obtain one at http://mozilla.org/MPL/2.0/.\n\n" \
+"You can obtain one at https://www.mozilla.org/en-US/MPL/2.0/.\n\n" \
 "The Source Code Form of this software can be obtained from: " \
 "https://github.com/ruben2020/codequery\n\n" \
 "This software is distributed in the hope that it will be useful, " \
@@ -50,11 +50,11 @@
 "Mozilla Public License, v. 2.0 for more details.\n\n" \
 
 #define CODEQUERY_SW_LICENSE_PARA_LINK  \
-"<p>Copyright (C) 2013-2020 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
+"<p>Copyright (C) 2013-2021 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
 "<p>The Source Code Form and the Executable Form of this software " \
 "are subject to the terms of the Mozilla Public License, v. 2.0. " \
 "If a copy of the MPL was not distributed with this software, " \
-"You can obtain one at <a href=\"http://mozilla.org/MPL/2.0/\">http://mozilla.org/MPL/2.0/</a>.</p>\n\n" \
+"You can obtain one at <a href=\"https://www.mozilla.org/en-US/MPL/2.0/\">https://www.mozilla.org/en-US/MPL/2.0/</a>.</p>\n\n" \
 "<p>The Source Code Form of this software can be obtained from: " \
 "<a href=\"https://github.com/ruben2020/codequery\">https://github.com/ruben2020/codequery</a></p>\n\n" \
 "<p>This software is distributed in the hope that it will be useful, " \

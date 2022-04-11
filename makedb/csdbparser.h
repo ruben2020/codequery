@@ -160,6 +160,7 @@ void destroy_buf(void);
 enResult parse_headers(void);
 enResult single_line_symbol(bool& endOfSymbData, bool& foundSomething);
 enResult symbolread(sym_data* data, symdata_pack* pack);
+bool srcfil_trailer_check(void);
 
 }; // class csdbparser
 

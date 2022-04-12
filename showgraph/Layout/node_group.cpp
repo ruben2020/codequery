@@ -19,7 +19,7 @@
 #include <algorithm>
 #include "layout_iface.h"
 
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #define QT45_SORT(x,y,z) std::sort(x,y,z)
 #else
 #define QT45_SORT(x,y,z) qSort(x,y,z)

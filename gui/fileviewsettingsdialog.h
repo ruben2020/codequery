@@ -13,7 +13,7 @@
 #ifndef FILEVIEWSETTINGSDIALOG_H_CQ
 #define FILEVIEWSETTINGSDIALOG_H_CQ
 
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
 #else
 #include <QtGui>

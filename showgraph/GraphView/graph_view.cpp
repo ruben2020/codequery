@@ -8,11 +8,28 @@
  */
 #include "gview_impl.h"
 
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #define QT45_FOREGROUND(x) windowText(x)
 #else
 #define QT45_FOREGROUND(x) foreground(x)
 #endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
+#define WHEELEVENTYDELTA(x)           (x->angleDelta().y())
+#else
+#define WHEELEVENTYDELTA(x)           (x->delta())
+#endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+#define QGV_MATRIX()       transform()
+#define QGV_SETMATRIX(x)   setTransform(x)
+#define QMATRIX            QTransform
+#else
+#define QGV_MATRIX()       matrix()
+#define QGV_SETMATRIX(x)   setMatrix(x)
+#define QMATRIX            QMatrix
+#endif
+
 
 /**
  * Compute scale parameter from user-controlled zoom factor
@@ -686,7 +703,7 @@ GraphView::mouseDoubleClickEvent(QMouseEvent *ev)
     if( ev->button() & Qt::LeftButton)
     {
         QPoint p = ev->pos();
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         if ( isEditable() && !scene()->itemAt( mapToScene( ev->pos()), QTransform()))
 #else
         if ( isEditable() && !scene()->itemAt( mapToScene( ev->pos())))
@@ -700,7 +717,7 @@ GraphView::mouseDoubleClickEvent(QMouseEvent *ev)
     } else if( isEditable() 
                && ev->button() & Qt::RightButton)
     {
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QGraphicsItem *node = scene()->itemAt( mapToScene( ev->pos()), QTransform());
 #else
         QGraphicsItem *node = scene()->itemAt( mapToScene( ev->pos()));
@@ -756,7 +773,7 @@ GraphView::mouseReleaseEvent( QMouseEvent *ev)
     {
         if ( createEdge)
         {
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
             QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()), QTransform());
 #else
             QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()));
@@ -773,7 +790,7 @@ GraphView::mouseReleaseEvent( QMouseEvent *ev)
                     }
 				}
             }
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         } else if ( !scene()->itemAt( mapToScene( ev->pos()), QTransform()))
 #else
         } else if ( !scene()->itemAt( mapToScene( ev->pos())))
@@ -799,7 +816,7 @@ GraphView::mouseMoveEvent(QMouseEvent *ev)
 {
     if ( createEdge)
     {
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
         QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()), QTransform());
 #else
         QGraphicsItem* item = scene()->itemAt( mapToScene( ev->pos()));
@@ -851,7 +868,7 @@ GraphView::keyPressEvent(QKeyEvent *event)
  */
 void GraphView::wheelEvent(QWheelEvent *event)
 {
-    zoom_scale += event->delta() / 100;
+    zoom_scale += WHEELEVENTYDELTA(event) / 100;
 	updateMatrix();
 }
 
@@ -878,8 +895,8 @@ void GraphView::zoomOrig()
 void GraphView::updateMatrix()
 {
      qreal scale_val = scaleVal( zoom_scale); 
-     QMatrix scale;
-     qreal prev_scale = matrix().m11();
+     QMATRIX scale;
+     qreal prev_scale = QGV_MATRIX().m11();
      qreal scale_ratio = scale_val / prev_scale; 
      scale.scale( scale_val, scale_val);
      GNode * focus = graph()->nodeInFocus();
@@ -893,12 +910,12 @@ void GraphView::updateMatrix()
                              .center();
 
          QPointF item_in_view = item_center - old_center;
-         setMatrix( scale); // scale
+         QGV_SETMATRIX( scale); // scale
          QPointF new_center = old_center + item_in_view * ( scale_ratio - 1) / scale_ratio;
          centerOn( new_center); // adjust to keep focus point in place
      } else
      {
-         setMatrix( scale);
+         QGV_SETMATRIX( scale);
      }
      
 }
@@ -1153,9 +1170,9 @@ void GraphView::advanceView()
                   || abs<qreal>( line.dy()) > view_rect.height()))
         {
             zoom_scale-=STEP_SCALE;
-            QMatrix scale;
+            QMATRIX scale;
             scale.scale( scaleVal( zoom_scale), scaleVal( zoom_scale));
-            setMatrix( scale);
+            QGV_SETMATRIX( scale);
         } else
         {
             zoom_out_done = true;

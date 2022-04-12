@@ -411,7 +411,7 @@ tStr sqlquery::process_searchterm(const char* searchterm, const bool& exactmatch
 		replacechar( srchterm.begin(), srchterm.end(), '?', '_');
 	}
 	else srchterm = searchterm;
-#if defined(USE_QT5)||defined(USE_QT4)
+#ifdef QT_VERSION
 	return  QString::fromStdString(srchterm);
 #else
 	return srchterm;
@@ -424,7 +424,7 @@ tStr sqlquery::process_searchterm_autocomplete(const char* searchterm)
 	srchterm += "%";
 	replacechar( srchterm.begin(), srchterm.end(), '*', '%');
 	replacechar( srchterm.begin(), srchterm.end(), '?', '_');
-#if defined(USE_QT5)||defined(USE_QT4)
+#ifdef QT_VERSION
 	return  QString::fromStdString(srchterm);
 #else
 	return srchterm;

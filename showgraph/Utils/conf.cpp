@@ -19,6 +19,12 @@
 #include "utils_iface.h"
 #include <QRegExp>
 
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+#define QTENDL     Qt::endl
+#else
+#define QTENDL     endl
+#endif
+
 /** 
  * namespaces import
  */
@@ -32,7 +38,7 @@ Option::print( QTextStream &stream)
     
     stream << "-" << short_name << ", "
            << "--" << long_name << "    "
-           << descr << endl;
+           << descr << QTENDL;
 }
 
 /** Default constructor of configuration */
@@ -85,7 +91,7 @@ void Conf::readArgs( int argc, char** argv)
                 opt = short_opts[ name];
             } else
             {
-                err << "No such option " << name << endl;
+                err << "No such option " << name << QTENDL;
                 unknown_options.push_back( name);
             }
         } else if (  long_rx.indexIn( curr) != -1)
@@ -97,14 +103,14 @@ void Conf::readArgs( int argc, char** argv)
                 opt = long_opts[ name];
             } else
             {
-                err << "No such option " << name << endl;
+                err << "No such option " << name << QTENDL;
                 unknown_options.push_back( name);
             }
         } else
         {
             out("WTF");
             /* Is not an option specifier */
-            err << "Unrecognized argument " << curr << endl;
+            err << "Unrecognized argument " << curr << QTENDL;
             unknown_options.push_back( curr);
         }
         if ( isNotNullP( opt))

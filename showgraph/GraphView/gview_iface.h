@@ -42,17 +42,17 @@ class EdgeItem;
 class GraphView;
 class StyleEdit;
 
-#ifdef USE_QT5
-#include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 #include <QList>
 #include <QGraphicsItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QDebug>
 #include <QWheelEvent>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#include <QtWidgets>
+#else
+#include <QtGui>
+#endif
 
 #include "../Graph/graph_iface.h"
 #include "../Layout/layout_iface.h"

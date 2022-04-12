@@ -19,7 +19,7 @@
  */
 #include "gview_impl.h"
 
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #define QT45_FOREGROUND(x) windowText(x)
 #else
 #define QT45_FOREGROUND(x) foreground(x)
@@ -86,7 +86,7 @@ StyleEdit::StyleEdit( QWidget *parent, bool show_additional)
     line_color_label->setBuddy( line_color_button);
 
     line_style_combo = new QComboBox( this);
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     line_style_combo->addItem(tr("Solid"), QPen(Qt::SolidLine));
     line_style_combo->addItem(tr("Dash"), QPen(Qt::DashLine));
     line_style_combo->addItem(tr("Dot"), QPen(Qt::DotLine));
@@ -270,7 +270,7 @@ void StyleEdit::setGStyle( GStyle *st)
             fill_color_button->setColor( color);
         }
     }
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
     line_style_combo->setCurrentIndex( line_style_combo->findData( QPen(gstyle->pen().style())));
 #else
     line_style_combo->setCurrentIndex( line_style_combo->findData( gstyle->pen().style()));

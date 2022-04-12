@@ -13,7 +13,8 @@
 #ifndef SEARCHHANDLER_H_CQ
 #define SEARCHHANDLER_H_CQ
 
-#ifdef USE_QT5
+#include <QtGlobal>
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
 #else
 #include <QtGui>

@@ -19,7 +19,7 @@
 #include <algorithm>
 #include "layout_iface.h"
 
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #define QT45_SORT(x,y,z) std::sort(x,y,z)
 #else
 #define QT45_SORT(x,y,z) qSort(x,y,z)
@@ -94,33 +94,33 @@ void Level::arrangeNodes( GraphDir dir, bool commit_placement, bool first_pass)
     /** Sort groups with respect to their coordinates */
     QT45_SORT( list.begin(), list.end(), compareGroups);
     
-    QLinkedList< NodeGroup *> groups;
+    std::list< NodeGroup *> groups;
     
     foreach( NodeGroup *group, list)
     {
         groups.push_back( group);
     }
     
-    QLinkedList< NodeGroup *>::iterator it = groups.begin();
+    std::list< NodeGroup *>::iterator it = groups.begin();
 
     /**
      * For each group
      */
-    while( groups.count())
+    while( groups.size())
     {
         /*
          * 1. Look at the group to the right and left and see they interleave
          *    if they do -> merge groups and repeat
          */
         NodeGroup* grp = *it;
-        QLinkedList< NodeGroup *>::iterator it_right = it;
+        std::list< NodeGroup *>::iterator it_right = it;
         it_right++;
         bool no_merge = true; 
 
         /** Group to the left */
         if ( it != groups.begin())
         {
-            QLinkedList< NodeGroup *>::iterator it_left = it;
+            std::list< NodeGroup *>::iterator it_left = it;
             it_left--;
             NodeGroup* left_grp = *it_left;
             if ( grp->interleaves( left_grp))

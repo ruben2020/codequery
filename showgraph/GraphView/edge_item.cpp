@@ -23,11 +23,18 @@
 //#define SHOW_CONTROL_POINTS
 //#define SHOW_BACKEDGES
 
-#ifdef USE_QT5
+#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #define QT45_FOREGROUND(x) windowText(x)
 #else
 #define QT45_FOREGROUND(x) foreground(x)
 #endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+#define QLINEF_INTERSECT intersects
+#else
+#define QLINEF_INTERSECT intersect
+#endif
+
 
 GEdge::GEdge( GGraph *graph_p, int _id, GNode *_pred, GNode* _succ):
     AuxEdge( (AuxGraph *)graph_p, _id, (AuxNode *)_pred, (AuxNode *)_succ), _style( NULL)
@@ -260,7 +267,7 @@ EdgeItem::adjust()
             p2 = endPolygon.at(i);
             polyLine = QLineF(p1, p2);
             QLineF::IntersectType intersectType =
-                 polyLine.intersect( line, &srcP);
+                 polyLine.QLINEF_INTERSECT( line, &srcP);
             if (intersectType == QLineF::BoundedIntersection)
                  break;
             p1 = p2;
@@ -278,7 +285,7 @@ EdgeItem::adjust()
             p2 = endPolygon.at(i);
             polyLine = QLineF(p1, p2);
             QLineF::IntersectType intersectType =
-                 polyLine.intersect( line2, &dstP);
+                 polyLine.QLINEF_INTERSECT( line2, &dstP);
             if ( intersectType == QLineF::BoundedIntersection)
                  break;
             p1 = p2;

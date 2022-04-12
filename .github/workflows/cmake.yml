@@ -91,6 +91,7 @@ jobs:
           brew install cmake qt@5 sqlite cscope ctags
           clang -v
           cmake --version
+          brew info qt@5
           
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash

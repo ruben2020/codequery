@@ -201,6 +201,7 @@ class LexerJSON : public DefaultLexer {
 
 	public:
 	LexerJSON() :
+		DefaultLexer("json", SCLEX_JSON),
 		setOperators(CharacterSet::setNone, "[{}]:,"),
 		setURL(CharacterSet::setAlphaNum, "-._~:/?#[]@!$&'()*+,),="),
 		setKeywordJSONLD(CharacterSet::setAlpha, ":@"),
@@ -208,7 +209,7 @@ class LexerJSON : public DefaultLexer {
 	}
 	virtual ~LexerJSON() {}
 	int SCI_METHOD Version() const override {
-		return lvOriginal;
+		return lvIdentity;
 	}
 	void SCI_METHOD Release() override {
 		delete this;
@@ -227,6 +228,9 @@ class LexerJSON : public DefaultLexer {
 			return 0;
 		}
 		return -1;
+	}
+	const char * SCI_METHOD PropertyGet(const char *key) override {
+		return optSetJSON.PropertyGet(key);
 	}
 	Sci_Position SCI_METHOD WordListSet(int n, const char *wl) override {
 		WordList *wordListN = 0;

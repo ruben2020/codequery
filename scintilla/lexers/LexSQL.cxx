@@ -303,12 +303,12 @@ struct OptionSetSQL : public OptionSet<OptionsSQL> {
 
 class LexerSQL : public DefaultLexer {
 public :
-	LexerSQL() {}
+	LexerSQL() : DefaultLexer("sql", SCLEX_SQL) {}
 
 	virtual ~LexerSQL() {}
 
 	int SCI_METHOD Version () const override {
-		return lvOriginal;
+		return lvIdentity;
 	}
 
 	void SCI_METHOD Release() override {
@@ -332,6 +332,10 @@ public :
 			return 0;
 		}
 		return -1;
+	}
+
+	const char * SCI_METHOD PropertyGet(const char *key) override {
+		return osSQL.PropertyGet(key);
 	}
 
 	const char * SCI_METHOD DescribeWordListSets() override {

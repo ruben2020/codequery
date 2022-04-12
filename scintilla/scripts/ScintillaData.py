@@ -237,7 +237,8 @@ class ScintillaData:
             for module in modules:
                 self.sclexFromName[module[2]] = module[1]
                 self.fileFromSclex[module[1]] = lexFile
-                self.lexerModules.append(module[0])
+                if module[0] not in self.lexerModules:
+                    self.lexerModules.append(module[0])
             for k in FindProperties(lexFile).keys():
                 lexerProperties.add(k)
             documents = FindPropertyDocumentation(lexFile)

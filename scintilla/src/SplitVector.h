@@ -85,7 +85,7 @@ public:
 	}
 
 	/// Reallocate the storage for the buffer to be newSize and
-	/// copy exisiting contents to the new buffer.
+	/// copy existing contents to the new buffer.
 	/// Must not be used to decrease the size of the buffer.
 	void ReAllocate(ptrdiff_t newSize) {
 		if (newSize < 0)
@@ -206,11 +206,12 @@ public:
 	/// Add some new empty elements.
 	/// InsertValue is good for value objects but not for unique_ptr objects
 	/// since they can only be moved from once.
-	void InsertEmpty(ptrdiff_t position, ptrdiff_t insertLength) {
+	/// Callers can write to the returned pointer to transform inputs without copies.
+	T *InsertEmpty(ptrdiff_t position, ptrdiff_t insertLength) {
 		PLATFORM_ASSERT((position >= 0) && (position <= lengthBody));
 		if (insertLength > 0) {
 			if ((position < 0) || (position > lengthBody)) {
-				return;
+				return nullptr;
 			}
 			RoomFor(insertLength);
 			GapTo(position);
@@ -222,6 +223,7 @@ public:
 			part1Length += insertLength;
 			gapLength -= insertLength;
 		}
+		return body.data() + position;
 	}
 
 	/// Ensure at least length elements allocated,

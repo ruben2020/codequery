@@ -51,7 +51,7 @@ The file "check.mak" is designed to run on a Linux machine that has
 cross-compilers for Win32 and Mac OSX. It does not necessarily produce any
 binary builds of Scintilla that can be used -- it just ensures Scintilla can be
 built without compile errors. How to obtain a set of cross-compilers is beyond
-the scope of this document. At the time of writing, GCC 5.4 is used exclusively.
+the scope of this document. At the time of writing, GCC 4.8 and 5.4 are used.
 
 Not only does "check.mak" perform platform compile checks, but it also has rules
 for manually running Scintilla's unit tests (which take too long to run
@@ -503,3 +503,245 @@ branch), or have information worth noting.
 7783:1b8ce5991cb9 Readying 4.2.2 release.
 7784:60e957153834 Added tag rel-4-2-2 for changeset 1b8ce5991cb9
   Not backported, since this is LongTerm3.
+
+7835:bebc5e0eb82a Bug [#2115]. Avoid Clang warnings with COM_DECLSPEC_NOTHROW from declaration.
+  Not backported, as its changes are in RTL code, which was not backported.
+
+7841:023ad180a294 Update comments.
+  Backported, but noted use with GCC 4.8 and Clang 3.4.
+
+7843:f5d966795469 Remove Clang option that is not needed with Clang 9.
+  Not backported, as this option was added in 2018.
+
+7854:ab518c9df18e Builds without GNU extensions so set to standard C++17.
+  Backported, but with c++11, not c++17.
+
+7858:f7e61139f379 gcc 9 has a new warning deprecated-copy which occurs many times in Qt headers.
+  Not backported, as GCC 9 is not supported.
+
+7862:f4cf92e43f48 Use safe mechanism to convert to function pointers.
+7863:507307a6c315 Use safe mechanism for converting between function pointers and void*.
+  Backported, but with the c++11 version of static_assert().
+
+7868:3b33632cad16 Lexilla implemented as loadable lexer.
+  Not backported, as there is no point supporting Lexilla until Scintilla 5.
+  Note: there is change to ScintillaBase.cxx at the end of the changeset that I
+  am unsure what to do with.
+
+7870:6ffcbd42288c Define ILexer5 with methods for retrieving name, ID, and property values.
+  Backported, but with new ILexerWithIdentity class that inherits from ILexer.
+  This is for compatibility and in-line with prior lexer versioning.
+
+7871:ff54e1fc74f3 Implement SCI_SETILEXER.
+  Not backported, since it utilizes the new ILexer5 interface, which is not
+  compatible with ILexerWithIdentity. Since Lexilla and external lexers only
+  create ILexer5* instances, supporting this does not make sense.
+
+7872:9aff497315aa Lexilla testing framework.
+7873:38866a74f665 Lexilla tests.
+7898:9e6fceb9c791 Add lexilla/src to include directories to find "Lexilla.h".
+7899:84655f8588ed Implement negative relative positions in GetRelativePosition.
+  Not backported, as Lexilla is not supported.
+
+7951:e7a1fca621ee Clean up the code changed with 7883 dropping CF_TEXT.
+  Not backported, as it relies on std::wstring_view and only C++11 is supported.
+
+7952:7137777f9be8 Readying 4.3.0 release.
+7953:2ff0c9f88f1c Added tag rel-4-3-0 for changeset 7137777f9be8
+  Not backported, since this is LongTerm3.
+
+7955:7a9b0cfd9e92 Adding test for batch lexer.
+  Not backported, as Lexilla is not supported.
+
+7956:c38e1a816a53 Bug [#2151]. Fix drag and drop between different encodings.
+  Not backported, as it relies on 7951:e7a1fca621ee, which was not backported.
+
+7957:14e6c7beab83 Don't include lexilla.so in source archive.
+7959:0f40bc8cf1ed Adding test for makefile lexer.
+7963:7acfe8254e53 Add version information resource to Lexilla.DLL on Win32.
+  Not backported, as Lexilla is not supported.
+
+7964:e01e845c6daa Small simplification and spelling fix.
+  Not backported, as it applies to non-LongTerm3 versioning.
+
+7969:6bef6331c9bb SciTE change log.
+  Not backported, as this is LongTerm3.
+
+7971:2b47b4061b51 Bug [#2139]. Add test case for compound decorator.
+7972:e4ee9ccc1be0 Add batch file to test lexers.
+7973:a299df5f83de Bug [#2143]. Add test case for comment start in number.
+  Not backported, as Lexilla is not supported.
+
+7983:5d4c40a72a72 Bug [#2151]. Minor improvements.
+  Not backported, as it relies on 7951:e7a1fca621ee, which was not backported.
+
+7994:32e2c934bcc6 Readying 4.3.1 release.
+7995:d7d6106e0cf6 Added tag rel-4-3-1 for changeset 32e2c934bcc6
+  Not backported, as this is LongTerm3.
+
+7996:d24ffc808e59 Fix bug where all drops were treated as rectangular.
+  Not backported, as it relies on 7951:e7a1fca621ee, which was not backported.
+
+7997:c4e53c985ef6 Readying 4.3.1 release.
+7998:91340ea3f89e Added tag rel-4-3-2 for changeset c4e53c985ef6
+  Not backported, as this is LongTerm3.
+
+8014:5e621040222d Use dynamic_cast and assertion to make bugs more obvious.
+  Backported, but without "static inline GdkAtom ... {}" declarations, which
+  are not supported in C++11.
+
+8027:6b1d13c2a6b9 SciTE change log.
+8107:19db953baba2 Fix typo.
+8108:5d8ef45011be Add Visual C++ project files for Lexilla.DLL and Scintilla.DLL with no lexers.
+  Not backported, as this is LongTerm3.
+
+8122:daf3a21a961e Change log.
+  Not backported, as SCI_SETILEXER has not been impemented.
+
+8135:463c3cd3d8b2 Fix some warnings from Clang-Tidy.
+  Backported, but without [[maybe_unused]], which is C++17 only.
+
+8136:5b6c787f30d4 Fix warning from g++.
+  Not backported, since [[maybe_unused]] is C++17 only.
+
+8145:0755bd39b628 Add test for differing styles between \r and \n.
+8146:db55dac10cfe Fix inverted test.
+8147:44af0edda8c3 Add test that illustrates all Python styles.
+8150:18be701f19b6 Remove dead code.
+  Not backported, as Lexilla is not supported.
+
+8152:3481e13acf88 Making dependencies now requires Python 3.6+.
+8153:5dfb47531eef Update Python versions.
+8154:7a8ff85aa5a8 Update Python versions for files that may involve PySide on Linux
+  Not backported in an attempt to keep support for Python 2.7.
+
+8204:f0951477de32 Added tag rel-4-3-3 for changeset 4c6aee014e72
+8206:fdfe04eeff0e Fixed link.
+  Not backported, as this is LongTerm3.
+
+8207:f2a312bb0ff9 Add tests for errorlist lexer.
+8208:51662a65c520 Add tests for mmixal lexer.
+8211:ede3d559ad4a Fix line ends on example files.
+8214:c6536b577dfe Add a script to make it easier to test lexers on Unix.
+  Not backported, as Lexilla is not supported.
+
+8229:c88f8cdede65 Feature [feature-requests:1347]. Optimize large insertions
+  Backported, but with a "reinterpret_cast<>" in place of "if constexpr()". This
+  shouldn't be an issue, but if so, it will be when largeDocument is true.
+
+8233:fe9919b45dde Support Windows XP.
+8234:47ee096230fe Set calling convention to stdcall to match clients and old DLL lexers and export names undecorated.
+8235:dcdc684baa3a On Unix call shared object liblexilla instead of lexilla to match platform convention.
+8236:1b4a98fe81fd Produce a shared object libscintilla.so that can be dynamically linked to.
+8237:9924c5344c5a Remove lexers from libscintilla.lib / libscintilla.a.
+8238:7563800da018 Ensure Lexilla built as well.
+  Not backported, as Lexilla is not supported.
+
+8240:1348ba71e4b6 Use pathlib in generator scripts.
+  Not backported in an attempt to keep support for Python 2.7.
+
+8241:711a07441bfc Update version.
+  Not backported, as Lexilla is not supported.
+
+8245:84f6361d238b SciTE change log.
+8247:42e7939c902b Update download sizes.
+  Not backported, as this is LongTerm3.
+
+8251:5e4fb5bdfc0a Add Xcode project for Lexilla.
+8252:40c090f1d8e3 Added Info.plist to hold name and version.
+8253:29e21f17c77f Update Lexilla Xcode project with new lexers and changed version number.
+8254:7680d60e4438 Hide Visual Studio solution files from Mercurial.
+  Not backported, as Lexilla is not supported.
+
+8255:96b4a77ad9db Add file that avoids extra upgrade checks.
+  Not backported, as it is for newer versions of XCode.
+
+8256:030106247f11 Add new project that builds a Scintilla framework with no lexers.
+  Not backported, as Lexilla is not supported.
+
+8259:9eb5513f9887 Regenerate version numbers in cocoa/Scintilla project.
+  Not backported, as cocoa versioning is probably not needed and would require some Python script backporting.
+
+8260:cd73c86aadae Save and restore current directory around dependency generation in source directory.
+8262:27dde1067ce0 Update instructions for separate Lexilla.
+  Not backported, as Lexilla is not supported.
+
+8269:02f64387e1e6 Updates for 4.4.0.
+8270:cf480284c27e Change log.
+8271:12e2a7acacec Change log.
+8272:2cec461c9531 Added tag rel-4-4-0 for changeset 12e2a7acacec
+  Not backported, as this is LongTerm3.
+
+8273:21000fa93341 Use @rpath as dylib install path as otherwise expects /usr/lib.
+8274:ad039bcac9a0 Make Lexilla run on old macOS by setting deployment target to 10.8.
+8275:23834927ce81 Specify the calling convention so that both dynamic and static linking work on 32-bit and 64-bit Win32.
+  Not backported, as Lexilla is not supported.
+
+8276:41a534b0add8 Updates for 4.4.2.
+8277:9e2209bc5dc8 Added tag rel-4-4-2 for changeset 41a534b0add8
+8278:464c94dd39c2 Updates for 4.4.3.
+8279:e454eae1f1eb Added bug reference.
+8280:a402218b9494 Added tag rel-4-4-3 for changeset e454eae1f1eb
+  Not backported, as this is LongTerm3.
+
+8281:24f3e50b1355 Fix list in documentation.
+  Not backported, as this applies to a Lexilla change that was not backported.
+
+8282:7dbe86a38c18 Use pathlib.
+  Not backported in an attempt to keep support for Python 2.7.
+
+8283:2a5262659fe0 Defer most initialisation until Scintilla window is created.
+8284:6ca6c0a02a93 Use call_once for initialising Direct2D so only done once even with threads.
+  Not backported, as my Windows compiler does not support C++11 threading
+  facilities, and I cannot test this.
+
+8287:f8749b773e12 Prefer .data() over &[0] as more explicit.
+  Backported, but without C++17 and C++20 features.
+
+8292:96f2097aebc7 Add test for latex lexer.
+  Not backported, as Lexilla is not supported.
+
+8294:82dc5f8e49ff Removed extra end tag.
+8303:dca178e47b29 Add include that defines back_inserter.
+  Not backported, as this applies to a change that was not backported.
+
+8304:c010c1851c8a Fixed path mentioned in comment.
+8311:f0910912700f Change log for SciTE.
+  Not backported, as Lexilla is not supported.
+
+8389:e0f48fde525f SciTE change log.
+  Not backported, as this is LongTerm3.
+
+8404:a1ec539e1585 Stronger argument validation in BlobInline methods.
+  Not backported, as this applies to changes that have not been backported.
+
+8402:efa2991d428f Make simple methods on simple classes constexpr.
+8416:06a43e06a8e0 Add constexpr, const, noexcept and make other small improvements to lexlib.
+  Backported, but without constexpr for complicated methods.
+
+8417:e46854ef9662 Fix truncation of locale due to not counting NUL. Add return code check.
+8418:c2b2e876bf7e Tidied up code using wstring, which will often avoid allocating, and fixing variable names.
+  Not backported, as this applies to changes that have not been backported.
+
+8419:ea29809cb3f5 Updates for 4.4.4.
+8421:f422793aa52f Update download size.
+8459:5fbdb19e6cee Added tag rel-4-4-4 for changeset f422793aa52f
+8465:8820f7f9ad26 SciTE change log.
+  Not backported, as this is LongTerm3.
+
+8475:2a7cbb364d79 Use [[fallthrough]] to reduce warnings from Visual Studio static analysis.
+  Not backported, since only C++11 is supported.
+
+8476:0fff04a16faf SciTE change log.
+  Not backported, as this is LongTerm3.
+
+8479:6877fb805dba Use groups without folders as groups with folders caused trouble for new clones.
+8480:dcab8335677e Updating version number.
+  Not backported, as Lexilla is not supported.
+
+8506:b932d5546df6 SciTE change log.
+8511:3ef2f5e5629d Update version number to 4.4.5.
+8512:22b6bbb36280 Add blurb for new version.
+8513:49cf08088ac0 Added information on lexer library functions SetLibraryProperty and GetLibraryPropertyNames.
+8514:eae8ad09180c Change release date.
+  Not backported, as this is LongTerm3 and Lexilla is not supported.

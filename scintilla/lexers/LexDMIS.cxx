@@ -56,7 +56,7 @@ class LexerDMIS : public DefaultLexer
 		virtual ~LexerDMIS(void);
 
 		int SCI_METHOD Version() const override {
-			return lvOriginal;
+			return lvIdentity;
 		}
 
 		void SCI_METHOD Release() override {
@@ -77,6 +77,10 @@ class LexerDMIS : public DefaultLexer
 
 		Sci_Position SCI_METHOD PropertySet(const char *, const char *) override {
 			return -1;
+		}
+
+		const char * SCI_METHOD PropertyGet(const char *) override {
+			return NULL;
 		}
 
 		Sci_Position SCI_METHOD WordListSet(int n, const char *wl) override;
@@ -129,7 +133,7 @@ void SCI_METHOD LexerDMIS::InitWordListSets(void)
 }
 
 
-LexerDMIS::LexerDMIS(void) {
+LexerDMIS::LexerDMIS(void) : DefaultLexer("DMIS", SCLEX_DMIS) {
 	this->InitWordListSets();
 
 	this->m_majorWords.Clear();

@@ -11,6 +11,8 @@
 #ifndef UNIQUESTRING_H
 #define UNIQUESTRING_H
 
+#include "Compat.h"
+
 namespace Scintilla {
 
 constexpr bool IsNullOrEmpty(const char *text) noexcept {

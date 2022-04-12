@@ -10,17 +10,24 @@ useInitializationList
 // produces same result on empty collections
 useStlAlgorithm
 
+// Written with variable for consistency
+knownArgument:scintilla/src/SparseVector.h
+knownArgument:scintilla/src/RESearch.cxx
+
 // The two sections are for different purposes: C1 control set and UTF-8 invalid bytes
 duplicateCondition:scintilla/src/Editor.cxx
+
+// Appears to not understand lambda
+knownConditionTrueFalse:scintilla/src/PerLine.cxx
 
 // Some non-explicit constructors are used for conversions or are private to lexers
 noExplicitConstructor
 
-// Document is checking for a change by called methods and cppcheck isn't considering escape
-knownConditionTrueFalse:scintilla/src/Document.cxx
-
 // MarginView access to all bits is safe and is better defined in later versions of C++
 shiftTooManyBitsSigned:scintilla/src/MarginView.cxx
+
+// The styler parameter is not const as LexAccessor::operator[] is not const
+constParameter:scintilla/lexlib/StyleContext.cxx
 
 // ScintillaDocument is providing an API and there are no consumers of the API inside Scintilla
 unusedFunction:scintilla/qt/ScintillaEdit/ScintillaDocument.cpp
@@ -41,15 +48,19 @@ constParameter:scintilla/lexers/LexAbaqus.cxx
 constParameter:scintilla/lexers/LexAda.cxx
 constParameter:scintilla/lexers/LexAsn1.cxx
 compareBoolExpressionWithInt:scintilla/lexers/LexAU3.cxx
+knownConditionTrueFalse:scintilla/lexers/LexAU3.cxx
 shadowVariable:scintilla/lexers/LexAU3.cxx
 constParameter:scintilla/lexers/LexBaan.cxx
 unreadVariable:scintilla/lexers/LexBaan.cxx
 constParameter:scintilla/lexers/LexBash.cxx
 uninitMemberVar:scintilla/lexers/LexBash.cxx
 variableScope:scintilla/lexers/LexBash.cxx
+knownConditionTrueFalse:scintilla/lexers/LexBash.cxx
 variableScope:scintilla/lexers/LexBatch.cxx
 constParameter:scintilla/lexers/LexBullant.cxx
 variableScope:scintilla/lexers/LexCmake.cxx
+constParameter:scintilla/lexers/LexCmake.cxx
+knownConditionTrueFalse:scintilla/lexers/LexCmake.cxx
 constParameter:scintilla/lexers/LexCLW.cxx
 constParameter:scintilla/lexers/LexCOBOL.cxx
 constParameter:scintilla/lexers/LexCoffeeScript.cxx
@@ -62,10 +73,10 @@ constParameter:scintilla/lexers/LexEiffel.cxx
 variableScope:scintilla/lexers/LexErlang.cxx
 knownConditionTrueFalse:scintilla/lexers/LexEScript.cxx
 constParameter:scintilla/lexers/LexFortran.cxx
+constParameter:scintilla/lexers/LexGap.cxx
 variableScope:scintilla/lexers/LexGui4Cli.cxx
 constParameter:scintilla/lexers/LexHaskell.cxx
 constParameter:scintilla/lexers/LexHex.cxx
-missingOverride:scintilla/lexers/LexHollywood.cxx
 constParameter:scintilla/lexers/LexHTML.cxx
 variableScope:scintilla/lexers/LexInno.cxx
 constParameter:scintilla/lexers/LexJSON.cxx
@@ -73,6 +84,7 @@ variableScope:scintilla/lexers/LexLaTeX.cxx
 constParameter:scintilla/lexers/LexLaTeX.cxx
 constParameter:scintilla/lexers/LexLisp.cxx
 constParameter:scintilla/lexers/LexMagik.cxx
+knownArgument:scintilla/lexers/LexMarkdown.cxx
 constParameter:scintilla/lexers/LexMatlab.cxx
 unreadVariable:scintilla/lexers/LexMatlab.cxx
 variableScope:scintilla/lexers/LexMetapost.cxx
@@ -84,7 +96,10 @@ constParameter:scintilla/lexers/LexNim.cxx
 constParameter:scintilla/lexers/LexNimrod.cxx
 variableScope:scintilla/lexers/LexNimrod.cxx
 variableScope:scintilla/lexers/LexNsis.cxx
+constParameter:scintilla/lexers/LexNsis.cxx
+knownConditionTrueFalse:scintilla/lexers/LexNsis.cxx
 variableScope:scintilla/lexers/LexOpal.cxx
+constParameter:scintilla/lexers/LexOpal.cxx
 constParameter:scintilla/lexers/LexOScript.cxx
 constParameter:scintilla/lexers/LexPascal.cxx
 variableScope:scintilla/lexers/LexPB.cxx
@@ -92,29 +107,33 @@ constParameter:scintilla/lexers/LexPerl.cxx
 constParameter:scintilla/lexers/LexPLM.cxx
 constParameter:scintilla/lexers/LexPython.cxx
 shadowVariable:scintilla/lexers/LexPowerPro.cxx
+knownConditionTrueFalse:scintilla/lexers/LexPowerPro.cxx
 constParameter:scintilla/lexers/LexProgress.cxx
 variableScope:scintilla/lexers/LexProgress.cxx
+constParameter:scintilla/lexers/LexRaku.cxx
+variableScope:scintilla/lexers/LexRaku.cxx
 redundantInitialization:scintilla/lexers/LexRegistry.cxx
 constParameter:scintilla/lexers/LexRuby.cxx
 variableScope:scintilla/lexers/LexRuby.cxx
 uninitMemberVar:scintilla/lexers/LexRuby.cxx
 constParameter:scintilla/lexers/LexRust.cxx
+knownConditionTrueFalse:scintilla/lexers/LexRust.cxx
 constParameter:scintilla/lexers/LexScriptol.cxx
 variableScope:scintilla/lexers/LexSpecman.cxx
 constParameter:scintilla/lexers/LexSpice.cxx
 unreadVariable:scintilla/lexers/LexSpice.cxx
 constParameter:scintilla/lexers/LexSTTXT.cxx
 constParameter:scintilla/lexers/LexTACL.cxx
+knownConditionTrueFalse:scintilla/lexers/LexTACL.cxx
 clarifyCalculation:scintilla/lexers/LexTADS3.cxx
 constParameter:scintilla/lexers/LexTADS3.cxx
 constParameter:scintilla/lexers/LexTAL.cxx
 invalidscanf:scintilla/lexers/LexTCMD.cxx
-knownConditionTrueFalse:scintilla/lexers/LexTCMD.cxx
 constParameter:scintilla/lexers/LexTeX.cxx
 variableScope:scintilla/lexers/LexTeX.cxx
+knownArgument:scintilla/lexers/LexTxt2tags.cxx
 constParameter:scintilla/lexers/LexVB.cxx
-knownConditionTrueFalse:scintilla/lexers/LexVerilog.cxx
-constArgument:scintilla/lexers/LexVerilog.cxx
+knownArgument:scintilla/lexers/LexVerilog.cxx
 constParameter:scintilla/lexers/LexVerilog.cxx
 constParameter:scintilla/lexers/LexVHDL.cxx
 shadowVariable:scintilla/lexers/LexVHDL.cxx
@@ -131,7 +150,6 @@ constVariable:scintilla/lexers/LexAVE.cxx
 constVariable:scintilla/lexers/LexAVS.cxx
 constVariable:scintilla/lexers/LexAsn1.cxx
 constVariable:scintilla/lexers/LexBibTeX.cxx
-constVariable:scintilla/lexers/LexBatch.cxx
 constVariable:scintilla/lexers/LexCLW.cxx
 constVariable:scintilla/lexers/LexCOBOL.cxx
 constVariable:scintilla/lexers/LexCSS.cxx
@@ -190,8 +208,8 @@ constVariable:scintilla/lexers/LexVHDL.cxx
 // bp.itBracket not actually redundant as needed by return statements
 redundantAssignment:scintilla/lexers/LexCPP.cxx
 
-// Appears spurious for allowTermination
-knownConditionTrueFalse:scintilla/lexers/LexHTML.cxx
+// Suppress everything in test example files
+*:scintilla/lexilla/test/examples/*
 
 // Suppress everything in catch.hpp as won't be changing
 *:scintilla/test/unit/catch.hpp

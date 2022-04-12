@@ -19,6 +19,8 @@
 #include "CaseConvert.h"
 #include "UniConversion.h"
 
+#include "Compat.h"
+
 using namespace Scintilla;
 
 namespace {
@@ -579,6 +581,9 @@ class CaseConverter : public ICaseConverter {
 	struct CharacterConversion {
 		int character;
 		ConversionString conversion;
+		CharacterConversion() noexcept : character(0) {
+			// Empty case: NUL -> "".
+		}
 		CharacterConversion(int character_=0, const char *conversion_="") noexcept : character(character_) {
 			StringCopy(conversion.conversion, conversion_);
 		}
@@ -692,7 +697,7 @@ void AddSymmetric(enum CaseConversion conversion, int lower,int upper) {
 
 void SetupConversions(enum CaseConversion conversion) {
 	// First initialize for the symmetric ranges
-	for (size_t i=0; i<ELEMENTS(symmetricCaseConversionRanges);) {
+	for (size_t i=0; i<Sci::size(symmetricCaseConversionRanges);) {
 		const int lower = symmetricCaseConversionRanges[i++];
 		const int upper = symmetricCaseConversionRanges[i++];
 		const int length = symmetricCaseConversionRanges[i++];
@@ -702,7 +707,7 @@ void SetupConversions(enum CaseConversion conversion) {
 		}
 	}
 	// Add the symmetric singletons
-	for (size_t i=0; i<ELEMENTS(symmetricCaseConversions);) {
+	for (size_t i=0; i<Sci::size(symmetricCaseConversions);) {
 		const int lower = symmetricCaseConversions[i++];
 		const int upper = symmetricCaseConversions[i++];
 		AddSymmetric(conversion, lower, upper);
@@ -711,7 +716,7 @@ void SetupConversions(enum CaseConversion conversion) {
 	const char *sComplex = complexCaseConversions;
 	while (*sComplex) {
 		// Longest ligature is 3 character so 5 for safety
-		const size_t lenUTF8 = 5*UTF8MaxBytes+1;
+		constexpr size_t lenUTF8 = 5*UTF8MaxBytes+1;
 		unsigned char originUTF8[lenUTF8]{};
 		char foldedUTF8[lenUTF8]{};
 		char lowerUTF8[lenUTF8]{};

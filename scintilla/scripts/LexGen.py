@@ -13,10 +13,12 @@ from FileGenerator import Regenerate, UpdateLineInFile, \
     FindSectionInList
 import ScintillaData
 import HFacer
+import os
 import uuid
 import sys
 
-sys.path.append("../")
+baseDirectory = os.path.dirname(os.path.dirname(ScintillaData.__file__))
+sys.path.insert(0, baseDirectory)
 
 import win32.DepGen
 import gtk.DepGen
@@ -35,8 +37,8 @@ def UpdateVersionNumbers(sci, root):
     UpdateLineInFile(root + "doc/ScintillaDownload.html", "       Release",
         "       Release " + sci.versionDotted)
     ReplaceREInFile(root + "doc/ScintillaDownload.html",
-        r"/www.scintilla.org/([a-zA-Z]+)\d\d\d\d?",
-        r"/www.scintilla.org/\g<1>" +  sci.version)
+        r"(/sourceforge.net/projects/scintilla/files/scintilla/)[\d\.]+(/[a-zA-Z]+)\d+",
+        r"\g<1>" +  sci.versionDotted + "\g<2>" + sci.version)
     UpdateLineInFile(root + "doc/index.html",
         '          <font color="#FFCC99" size="3"> Release version',
         '          <font color="#FFCC99" size="3"> Release version ' +\
@@ -44,6 +46,12 @@ def UpdateVersionNumbers(sci, root):
     UpdateLineInFile(root + "doc/index.html",
         '           Site last modified',
         '           Site last modified ' + sci.mdyModified + '</font>')
+    ReplaceREInFile(root + "doc/ScintillaHistory.html",
+        r"(/sourceforge.net/projects/scintilla/files/scintilla/)[\d\.]+(/[a-zA-Z]+)\d+",
+        r"\g<1>" +  sci.versionDotted + "\g<2>" + sci.version,
+        count=1)
+    ReplaceREInFile(root + "doc/ScintillaHistory.html",
+        r">Release [\d\.]+<", ">Release " + sci.versionDotted + "<", count=1)
     UpdateLineInFile(root + "doc/ScintillaHistory.html",
         '	Released ',
         '	Released ' + sci.dmyModified + '.')
@@ -51,6 +59,11 @@ def UpdateVersionNumbers(sci, root):
         "CFBundleVersion", sci.versionDotted)
     UpdateLineInPlistFile(root + "cocoa/ScintillaFramework/Info.plist",
         "CFBundleShortVersionString", sci.versionDotted)
+    UpdateLineInFile(root + "LongTermDownload.html", "       Release",
+        "       Release " + sci.versionDotted)
+    ReplaceREInFile(root + "LongTermDownload.html",
+        r"(/sourceforge.net/projects/scintilla/files/scintilla/)[\d\.]+(/[a-zA-Z]+)\d+",
+        r"\g<1>" +  sci.versionDotted + "\g<2>" + sci.version)
 
 # Last 24 digits of UUID, used for item IDs in Xcode
 def uid24():
@@ -116,13 +129,19 @@ def RegenerateXcodeProject(path, lexers, lexerReferences):
 
 def RegenerateAll(root):
 
+    scintillaBase = os.path.abspath(root)
+
     sci = ScintillaData.ScintillaData(root)
 
     Regenerate(root + "src/Catalogue.cxx", "//", sci.lexerModules)
     Regenerate(root + "win32/scintilla.mak", "#", sci.lexFiles)
 
+    startDir = os.getcwd()
+    os.chdir(os.path.join(scintillaBase, "win32"))
     win32.DepGen.Generate()
+    os.chdir(os.path.join(scintillaBase, "gtk"))
     gtk.DepGen.Generate()
+    os.chdir(startDir)
 
     RegenerateXcodeProject(root + "cocoa/ScintillaFramework/ScintillaFramework.xcodeproj/project.pbxproj",
         sci.lexFiles, sci.lexersXcode)

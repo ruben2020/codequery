@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # Dependencies.py - discover, read, and write dependencies file for make.
 # The format like the output from "g++ -MM" which produces a
 # list of header (.h) files used by source files (.cxx).
@@ -21,7 +21,10 @@
 
 import codecs, glob, os, sys
 
-from . import FileGenerator
+if __name__ == "__main__":
+	import FileGenerator
+else:
+	from . import FileGenerator
 
 continuationLineEnd = " \\"
 

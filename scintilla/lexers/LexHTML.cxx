@@ -862,8 +862,11 @@ class LexerHTML : public DefaultLexer {
 	std::set<std::string> nonFoldingTags;
 public:
 	explicit LexerHTML(bool isXml_, bool isPHPScript_) :
-		DefaultLexer(isXml_ ? lexicalClassesHTML : lexicalClassesXML,
-			isXml_ ? ELEMENTS(lexicalClassesHTML) : ELEMENTS(lexicalClassesXML)),
+		DefaultLexer(
+			isXml_ ? "xml" : (isPHPScript_ ? "phpscript" : "hypertext"),
+			isXml_ ? SCLEX_XML : (isPHPScript_ ? SCLEX_PHPSCRIPT : SCLEX_HTML),
+			isXml_ ? lexicalClassesHTML : lexicalClassesXML,
+			isXml_ ? Sci::size(lexicalClassesHTML) : Sci::size(lexicalClassesXML)),
 		isXml(isXml_),
 		isPHPScript(isPHPScript_),
 		osHTML(isPHPScript_),
@@ -884,6 +887,9 @@ public:
 		return osHTML.DescribeProperty(name);
 	}
 	Sci_Position SCI_METHOD PropertySet(const char *key, const char *val) override;
+	const char * SCI_METHOD PropertyGet(const char *key) override {
+		return osHTML.PropertyGet(key);
+	}
 	const char *SCI_METHOD DescribeWordListSets() override {
 		return osHTML.DescribeWordListSets();
 	}

@@ -18,7 +18,7 @@ public:
 	bool on;
 	int period;
 
-	Caret();
+	Caret() noexcept;
 };
 
 class EditModel {
@@ -65,7 +65,7 @@ public:
 	virtual Range GetHotSpotRange() const noexcept = 0;
 	void SetDefaultFoldDisplayText(const char *text);
 	const char *GetDefaultFoldDisplayText() const noexcept;
-	const char *GetFoldDisplayText(Sci::Line lineDoc) const;
+	const char *GetFoldDisplayText(Sci::Line lineDoc) const noexcept;
 };
 
 }

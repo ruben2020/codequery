@@ -9,11 +9,9 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
-#include <time.h>
 #include <math.h>
 #include <assert.h>
 #include <ctype.h>
-#include <limits.h>
 #include <wchar.h>
 
 // C++ wrappers of C standard library
@@ -33,10 +31,8 @@
 #include <stdexcept>
 #include <new>
 #include <utility>
-#include <tuple>
 #include <string>
 #include <vector>
-#include <deque>
 #include <map>
 #include <set>
 #include <forward_list>
@@ -50,6 +46,7 @@
 #include <sstream>
 
 // POSIX
+#include <dlfcn.h>
 #include <sys/time.h>
 
 // GTK headers
@@ -103,6 +100,7 @@
 #include "CharacterSet.h"
 #include "CharacterCategory.h"
 #include "LexerModule.h"
+#include "CatalogueModules.h"
 #include "OptionSet.h"
 #include "SparseState.h"
 #include "SubStyles.h"

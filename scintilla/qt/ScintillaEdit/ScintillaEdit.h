@@ -78,6 +78,8 @@ public:
 	bool canRedo();
 	sptr_t markerLineFromHandle(sptr_t markerHandle);
 	void markerDeleteHandle(sptr_t markerHandle);
+	sptr_t markerHandleFromLine(sptr_t line, sptr_t which);
+	sptr_t markerNumberFromLine(sptr_t line, sptr_t which);
 	bool undoCollection() const;
 	sptr_t viewWS() const;
 	void setViewWS(sptr_t viewWS);
@@ -480,6 +482,7 @@ public:
 	void braceBadLight(sptr_t pos);
 	void braceBadLightIndicator(bool useSetting, sptr_t indicator);
 	sptr_t braceMatch(sptr_t pos, sptr_t maxReStyle);
+	sptr_t braceMatchNext(sptr_t pos, sptr_t startPos);
 	bool viewEOL() const;
 	void setViewEOL(bool visible);
 	sptr_t docPointer() const;
@@ -493,6 +496,7 @@ public:
 	void setEdgeColour(sptr_t edgeColour);
 	void multiEdgeAddLine(sptr_t column, sptr_t edgeColour);
 	void multiEdgeClearAll();
+	sptr_t multiEdgeColumn(sptr_t which) const;
 	void searchAnchor();
 	sptr_t searchNext(sptr_t searchFlags, const char * text);
 	sptr_t searchPrev(sptr_t searchFlags, const char * text);
@@ -740,6 +744,15 @@ public:
 	void setRepresentation(const char * encodedCharacter, const char * representation);
 	QByteArray representation(const char * encodedCharacter) const;
 	void clearRepresentation(const char * encodedCharacter);
+	void eOLAnnotationSetText(sptr_t line, const char * text);
+	QByteArray eOLAnnotationText(sptr_t line) const;
+	void eOLAnnotationSetStyle(sptr_t line, sptr_t style);
+	sptr_t eOLAnnotationStyle(sptr_t line) const;
+	void eOLAnnotationClearAll();
+	void eOLAnnotationSetVisible(sptr_t visible);
+	sptr_t eOLAnnotationVisible() const;
+	void eOLAnnotationSetStyleOffset(sptr_t style);
+	sptr_t eOLAnnotationStyleOffset() const;
 	void startRecord();
 	void stopRecord();
 	void setLexer(sptr_t lexer);

@@ -159,6 +159,14 @@ void ScintillaEdit::markerDeleteHandle(sptr_t markerHandle) {
     send(SCI_MARKERDELETEHANDLE, markerHandle, 0);
 }
 
+sptr_t ScintillaEdit::markerHandleFromLine(sptr_t line, sptr_t which) {
+    return send(SCI_MARKERHANDLEFROMLINE, line, which);
+}
+
+sptr_t ScintillaEdit::markerNumberFromLine(sptr_t line, sptr_t which) {
+    return send(SCI_MARKERNUMBERFROMLINE, line, which);
+}
+
 bool ScintillaEdit::undoCollection() const {
     return send(SCI_GETUNDOCOLLECTION, 0, 0);
 }
@@ -1767,6 +1775,10 @@ sptr_t ScintillaEdit::braceMatch(sptr_t pos, sptr_t maxReStyle) {
     return send(SCI_BRACEMATCH, pos, maxReStyle);
 }
 
+sptr_t ScintillaEdit::braceMatchNext(sptr_t pos, sptr_t startPos) {
+    return send(SCI_BRACEMATCHNEXT, pos, startPos);
+}
+
 bool ScintillaEdit::viewEOL() const {
     return send(SCI_GETVIEWEOL, 0, 0);
 }
@@ -1817,6 +1829,10 @@ void ScintillaEdit::multiEdgeAddLine(sptr_t column, sptr_t edgeColour) {
 
 void ScintillaEdit::multiEdgeClearAll() {
     send(SCI_MULTIEDGECLEARALL, 0, 0);
+}
+
+sptr_t ScintillaEdit::multiEdgeColumn(sptr_t which) const {
+    return send(SCI_GETMULTIEDGECOLUMN, which, 0);
 }
 
 void ScintillaEdit::searchAnchor() {
@@ -2805,6 +2821,42 @@ QByteArray ScintillaEdit::representation(const char * encodedCharacter) const {
 
 void ScintillaEdit::clearRepresentation(const char * encodedCharacter) {
     send(SCI_CLEARREPRESENTATION, (sptr_t)encodedCharacter, 0);
+}
+
+void ScintillaEdit::eOLAnnotationSetText(sptr_t line, const char * text) {
+    send(SCI_EOLANNOTATIONSETTEXT, line, (sptr_t)text);
+}
+
+QByteArray ScintillaEdit::eOLAnnotationText(sptr_t line) const {
+    return TextReturner(SCI_EOLANNOTATIONGETTEXT, line);
+}
+
+void ScintillaEdit::eOLAnnotationSetStyle(sptr_t line, sptr_t style) {
+    send(SCI_EOLANNOTATIONSETSTYLE, line, style);
+}
+
+sptr_t ScintillaEdit::eOLAnnotationStyle(sptr_t line) const {
+    return send(SCI_EOLANNOTATIONGETSTYLE, line, 0);
+}
+
+void ScintillaEdit::eOLAnnotationClearAll() {
+    send(SCI_EOLANNOTATIONCLEARALL, 0, 0);
+}
+
+void ScintillaEdit::eOLAnnotationSetVisible(sptr_t visible) {
+    send(SCI_EOLANNOTATIONSETVISIBLE, visible, 0);
+}
+
+sptr_t ScintillaEdit::eOLAnnotationVisible() const {
+    return send(SCI_EOLANNOTATIONGETVISIBLE, 0, 0);
+}
+
+void ScintillaEdit::eOLAnnotationSetStyleOffset(sptr_t style) {
+    send(SCI_EOLANNOTATIONSETSTYLEOFFSET, style, 0);
+}
+
+sptr_t ScintillaEdit::eOLAnnotationStyleOffset() const {
+    return send(SCI_EOLANNOTATIONGETSTYLEOFFSET, 0, 0);
 }
 
 void ScintillaEdit::startRecord() {

@@ -20,7 +20,7 @@ unix {
     }
 }
 
-VERSION = 3.11.2
+VERSION = 3.21.1
 
 SOURCES += \
     ScintillaEdit.cpp \

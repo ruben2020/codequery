@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Face.py - module for reading and parsing Scintilla.iface file
 # Implemented 2000 by Neil Hodgson neilh@scintilla.org
 # Released to the public domain.

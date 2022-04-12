@@ -8,6 +8,8 @@
 #ifndef PARTITIONING_H
 #define PARTITIONING_H
 
+#include "Compat.h"
+
 namespace Scintilla {
 
 /// A split vector of integers with a method for adding a value to all elements
@@ -85,7 +87,7 @@ private:
 	}
 
 	void Allocate(ptrdiff_t growSize) {
-		body.reset(new SplitVectorWithRangeAdd<T>(growSize));
+		body = Sci::make_unique<SplitVectorWithRangeAdd<T>>(growSize);
 		stepPartition = 0;
 		stepLength = 0;
 		body->Insert(0, 0);	// This value stays 0 for ever
@@ -120,6 +122,26 @@ public:
 		}
 		body->Insert(partition, pos);
 		stepPartition++;
+	}
+
+	void InsertPartitions(T partition, const T *positions, size_t length) {
+		if (stepPartition < partition) {
+			ApplyStep(partition);
+		}
+		body->InsertFromArray(partition, positions, 0, length);
+		stepPartition += static_cast<T>(length);
+	}
+
+	void InsertPartitionsWithCast(T partition, const ptrdiff_t *positions, size_t length) {
+		// Used for 64-bit builds when T is 32-bits
+		if (stepPartition < partition) {
+			ApplyStep(partition);
+		}
+		T *pInsertion = body->InsertEmpty(partition, length);
+		for (size_t i = 0; i < length; i++) {
+			pInsertion[i] = static_cast<T>(positions[i]);
+		}
+		stepPartition += static_cast<T>(length);
 	}
 
 	void SetPartitionStartPosition(T partition, T pos) noexcept {

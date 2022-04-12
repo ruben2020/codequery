@@ -44,7 +44,7 @@ protected:
 	int maxListWidth;		/// Maximum width of list, in average character widths
 	int multiAutoCMode; /// Mode for autocompleting when multiple selections are present
 
-#ifdef SCI_LEXER
+#if SCI_LEXER
 	LexState *DocumentLexState();
 	void SetLexer(uptr_t wParam);
 	void SetLexerLanguage(const char *languageName);

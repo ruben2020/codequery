@@ -423,6 +423,7 @@ class LexerPerl : public DefaultLexer {
 	OptionSetPerl osPerl;
 public:
 	LexerPerl() :
+		DefaultLexer("perl", SCLEX_PERL),
 		setWordStart(CharacterSet::setAlpha, "_", 0x80, true),
 		setWord(CharacterSet::setAlphaNum, "_", 0x80, true),
 		setSpecialVar(CharacterSet::setNone, "\"$;<>&`'+,./\\%:=~!?@[]"),
@@ -434,7 +435,7 @@ public:
 		delete this;
 	}
 	int SCI_METHOD Version() const override {
-		return lvOriginal;
+		return lvIdentity;
 	}
 	const char *SCI_METHOD PropertyNames() override {
 		return osPerl.PropertyNames();
@@ -446,6 +447,9 @@ public:
 		return osPerl.DescribeProperty(name);
 	}
 	Sci_Position SCI_METHOD PropertySet(const char *key, const char *val) override;
+	const char * SCI_METHOD PropertyGet(const char *key) override {
+		return osPerl.PropertyGet(key);
+	}
 	const char *SCI_METHOD DescribeWordListSets() override {
 		return osPerl.DescribeWordListSets();
 	}
@@ -901,7 +905,7 @@ void SCI_METHOD LexerPerl::Lex(Sci_PositionU startPos, Sci_Position length, int 
 			sc.SetState(SCE_PL_DEFAULT);
 			break;
 		case SCE_PL_COMMENTLINE:
-			if (sc.atLineEnd) {
+			if (sc.atLineStart) {
 				sc.SetState(SCE_PL_DEFAULT);
 			}
 			break;

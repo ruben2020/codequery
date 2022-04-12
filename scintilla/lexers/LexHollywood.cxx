@@ -6,7 +6,7 @@
  ** For more information on Hollywood, see http://www.hollywood-mal.com/
  ** Mail me (andreas <at> airsoftsoftwair <dot> de) for any bugs.
  ** This code is subject to the same license terms as the rest of the Scintilla project:
- ** The License.txt file describes the conditions under which this software may be distributed.
+ ** The License.txt file describes the conditions under which this software may be distributed. 
  **/
 
 #include <stdlib.h>
@@ -96,7 +96,7 @@ static int character_classification[128] =
 	// we handle the decimal digit case manually below so that 3.1415 and .123 is styled correctly
 	// the collateral damage of treating "." as an identifier is that "." is never styled
 	// SCE_HOLLYWOOD_OPERATOR
-	4, // . ($2E)
+	4, // . ($2E) 
 	2, // / ($2F)
 	28, // 0 ($30)
 	28, // 1 ($31)
@@ -247,40 +247,44 @@ struct OptionSetHollywood : public OptionSet<OptionsHollywood> {
 
 class LexerHollywood : public DefaultLexer {
 	int (*CheckFoldPoint)(char const *);
-	WordList keywordlists[4];
+	WordList keywordlists[4];	
 	OptionsHollywood options;
 	OptionSetHollywood osHollywood;
 public:
 	LexerHollywood(int (*CheckFoldPoint_)(char const *), const char * const wordListDescriptions[]) :
+						 DefaultLexer("hollywood", SCLEX_HOLLYWOOD),
 						 CheckFoldPoint(CheckFoldPoint_),
 						 osHollywood(wordListDescriptions) {
 	}
 	virtual ~LexerHollywood() {
 	}
-	void SCI_METHOD Release() {
+	void SCI_METHOD Release() override {
 		delete this;
 	}
-	int SCI_METHOD Version() const {
-		return lvMetaData;
+	int SCI_METHOD Version() const override {
+		return lvIdentity;
 	}
-	const char * SCI_METHOD PropertyNames() {
+	const char * SCI_METHOD PropertyNames() override {
 		return osHollywood.PropertyNames();
 	}
-	int SCI_METHOD PropertyType(const char *name) {
+	int SCI_METHOD PropertyType(const char *name) override {
 		return osHollywood.PropertyType(name);
 	}
-	const char * SCI_METHOD DescribeProperty(const char *name) {
+	const char * SCI_METHOD DescribeProperty(const char *name) override {
 		return osHollywood.DescribeProperty(name);
 	}
-	Sci_Position SCI_METHOD PropertySet(const char *key, const char *val);
-	const char * SCI_METHOD DescribeWordListSets() {
+	Sci_Position SCI_METHOD PropertySet(const char *key, const char *val) override;
+	const char * SCI_METHOD PropertyGet(const char* key) override {
+		return osHollywood.PropertyGet(key);
+	}
+	const char * SCI_METHOD DescribeWordListSets() override {
 		return osHollywood.DescribeWordListSets();
 	}
-	Sci_Position SCI_METHOD WordListSet(int n, const char *wl);
-	void SCI_METHOD Lex(Sci_PositionU startPos, Sci_Position length, int initStyle, IDocument *pAccess);
-	void SCI_METHOD Fold(Sci_PositionU startPos, Sci_Position length, int initStyle, IDocument *pAccess);
+	Sci_Position SCI_METHOD WordListSet(int n, const char *wl) override;
+	void SCI_METHOD Lex(Sci_PositionU startPos, Sci_Position length, int initStyle, IDocument *pAccess) override;
+	void SCI_METHOD Fold(Sci_PositionU startPos, Sci_Position length, int initStyle, IDocument *pAccess) override;
 
-	void * SCI_METHOD PrivateCall(int, void *) {
+	void * SCI_METHOD PrivateCall(int, void *) override {
 		return 0;
 	}
 	static ILexer *LexerFactoryHollywood() {
@@ -320,7 +324,7 @@ Sci_Position SCI_METHOD LexerHollywood::WordListSet(int n, const char *wl) {
 			firstModification = 0;
 		}
 	}
-	return firstModification;
+	return firstModification;	
 }
 
 void SCI_METHOD LexerHollywood::Lex(Sci_PositionU startPos, Sci_Position length, int initStyle, IDocument *pAccess) {
@@ -339,7 +343,7 @@ void SCI_METHOD LexerHollywood::Lex(Sci_PositionU startPos, Sci_Position length,
 	 	if (sc.ch == '\"' && sc.chPrev != '\\') inString = !inString;
 
 		if (sc.state == SCE_HOLLYWOOD_IDENTIFIER) {
-			if (!IsIdentifier(sc.ch)) {
+			if (!IsIdentifier(sc.ch)) {				
 				char s[100];
 				int kstates[4] = {
 					SCE_HOLLYWOOD_KEYWORD,
@@ -353,7 +357,7 @@ void SCI_METHOD LexerHollywood::Lex(Sci_PositionU startPos, Sci_Position length,
 						sc.ChangeState(kstates[i]);
 					}
 				}
-				sc.SetState(SCE_HOLLYWOOD_DEFAULT);
+				sc.SetState(SCE_HOLLYWOOD_DEFAULT);				
 			}
 		} else if (sc.state == SCE_HOLLYWOOD_OPERATOR) {
 
@@ -396,7 +400,7 @@ void SCI_METHOD LexerHollywood::Lex(Sci_PositionU startPos, Sci_Position length,
 			if (sc.Match("]]") && !inString) {
 				sc.Forward();
 				sc.ForwardSetState(SCE_HOLLYWOOD_DEFAULT);
-			}
+			}			
 		}
 
 		if (sc.state == SCE_HOLLYWOOD_DEFAULT) {
@@ -407,23 +411,23 @@ void SCI_METHOD LexerHollywood::Lex(Sci_PositionU startPos, Sci_Position length,
 				sc.Forward();
 			} else if (sc.Match("[[")) {
 				sc.SetState(SCE_HOLLYWOOD_STRINGBLOCK);
-				sc.Forward();
+				sc.Forward();				
 			} else if (sc.Match('"')) {
 				sc.SetState(SCE_HOLLYWOOD_STRING);
-			} else if (sc.Match('$')) {
+			} else if (sc.Match('$')) { 
 				sc.SetState(SCE_HOLLYWOOD_HEXNUMBER);
 			} else if (sc.Match("0x") || sc.Match("0X")) {  // must be before IsDigit() because of 0x
 				sc.SetState(SCE_HOLLYWOOD_HEXNUMBER);
 				sc.Forward();
 			} else if (sc.ch == '.' && (sc.chNext >= '0' && sc.chNext <= '9')) {  // ".1234" style numbers
 				sc.SetState(SCE_HOLLYWOOD_NUMBER);
-				sc.Forward();
+				sc.Forward();	
 			} else if (IsDigit(sc.ch)) {
 				sc.SetState(SCE_HOLLYWOOD_NUMBER);
 			} else if (sc.Match('#')) {
 				sc.SetState(SCE_HOLLYWOOD_CONSTANT);
 			} else if (sc.Match('@')) {
-				sc.SetState(SCE_HOLLYWOOD_PREPROCESSOR);
+				sc.SetState(SCE_HOLLYWOOD_PREPROCESSOR);	
 			} else if (IsOperator(sc.ch)) {
 				sc.SetState(SCE_HOLLYWOOD_OPERATOR);
 			} else if (IsIdentifier(sc.ch)) {
@@ -480,7 +484,7 @@ void SCI_METHOD LexerHollywood::Fold(Sci_PositionU startPos, Sci_Position length
 						done = 1;
 				}
 			}
-		}
+		}		
 
 		if (atEOL) {
 			int lev = levelPrev;
@@ -497,7 +501,7 @@ void SCI_METHOD LexerHollywood::Fold(Sci_PositionU startPos, Sci_Position length
 			levelPrev = levelCurrent;
 			visibleChars = 0;
 			done = 0;
-			wordlen = 0;
+			wordlen = 0;			
 		}
 		if (!IsSpace(ch)) {
 			visibleChars++;
@@ -506,7 +510,7 @@ void SCI_METHOD LexerHollywood::Fold(Sci_PositionU startPos, Sci_Position length
 	// Fill in the real level of the next line, keeping the current flags as they will be filled in later
 
 	int flagsNext = styler.LevelAt(lineCurrent) & ~SC_FOLDLEVELNUMBERMASK;
-	styler.SetLevel(lineCurrent, levelPrev | flagsNext);
+	styler.SetLevel(lineCurrent, levelPrev | flagsNext);	
 }
 
 LexerModule lmHollywood(SCLEX_HOLLYWOOD, LexerHollywood::LexerFactoryHollywood, "hollywood", hollywoodWordListDesc);

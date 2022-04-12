@@ -1,9 +1,18 @@
-# Copyright 2018-2019 Mitchell mitchell.att.foicica.com. See License.txt.
+# Copyright 2018-2020 Mitchell mitchell.att.foicica.com. See License.txt.
 # This makefile is used only for catching compile and test errors when
 # backporting fixes and features from the main branch of Scintilla. It likely
 # will not produce compiled targets that can be used by a Scintilla-based
 # application.
-# Usage: make -f check.mak
+# Usage: 
+#   make -f check.mak            # check that everything compiles
+#   make -f check.mak test       # run all tests
+#   make -f check.mak bait       # run test GTK program
+#   make -f check.mak dmapp      # run test Win32 program using WINE
+#   make -f check.mak jinx       # run test curses program with Lua LPeg lexers
+#   make -f check.mak gen        # update all version info and dates based on
+#                                  version.txt and the current date
+#   make -f check.mak zip        # make release archives
+#   make -f check.mak upload     # upload HTML docs to sourceforge
 
 .SUFFIXES: .cxx .c .o .h .a
 
@@ -11,8 +20,8 @@ INCLUDEDIRS = -Iinclude -Isrc -Ilexlib
 CC = gcc
 CXX = g++
 AR = ar
-CLANG_CC = clang --gcc-toolchain=$(shell pwd)/gcc/4.8.1
-CLANG_CXX = clang++ --gcc-toolchain=$(shell pwd)/gcc/4.8.1
+CLANG_CC = clang --gcc-toolchain=$(shell pwd)/gcc/4.8.4
+CLANG_CXX = clang++ --gcc-toolchain=$(shell pwd)/gcc/4.8.4
 CFLAGS = -pedantic -Wall
 CXXFLAGS = -std=c++11 -pedantic -pedantic-errors -DSCI_LEXER $(INCLUDEDIRS) \
            -DNDEBUG -Os -Wall
@@ -33,9 +42,10 @@ base_src_objs = AutoComplete.o CallTip.o CaseConvert.o CaseFolder.o \
                 PerLine.o PositionCache.o RESearch.o RunStyles.o \
                 ScintillaBase.o Selection.o Style.o UniConversion.o \
                 ViewStyle.o UniqueString.o XPM.o
-base_lexlib_objs = Accessor.o CharacterCategory.o CharacterSet.o LexerBase.o \
-                   LexerModule.o LexerNoExceptions.o LexerSimple.o \
-                   PropSetSimple.o StyleContext.o WordList.o
+base_lexlib_objs = Accessor.o CharacterCategory.o CharacterSet.o \
+                   DefaultLexer.o LexerBase.o LexerModule.o \
+                   LexerNoExceptions.o LexerSimple.o PropSetSimple.o \
+                   StyleContext.o WordList.o
 base_lexer_objs = $(addsuffix .o,$(basename $(sort $(notdir $(wildcard lexers/Lex*.cxx)))))
 
 win32_src_objs = $(addprefix win32/, $(base_src_objs))
@@ -68,23 +78,25 @@ curses_lexer_objs_clang = $(addprefix curses/clang-, $(base_lexer_objs))
 curses_plat_objs_clang = $(addprefix curses/clang-, $(notdir $(curses_plat_objs)))
 
 all: | /tmp/scintilla
-	$(MAKE) -C $| -f check.mak -j8 bin/scintilla_win32.a bin/scintilla_cocoa.a \
+	$(MAKE) -C $| -f check.mak -j4 bin/scintilla_win32.dll bin/scintilla_cocoa.a \
 	  bin/scintilla_gtk.a bin/clang-scintilla_gtk.a bin/scintilla_curses.a \
 		bin/clang-scintilla_curses.a qt qt-clang
 /tmp/scintilla:
 	cp -rs `pwd` $@
 	cp -r $@/qt $@/qt-clang
-	mkdir -p $@/gcc/4.8.1/include/c++/4.8.1
-	cp -rs /usr/include/c++/4.8.1/* $@/gcc/4.8.1/include/c++/4.8.1
-	cp -rs /usr/include/x86_64-linux-gnu/c++/4.8/* $@/gcc/4.8.1/include/c++/4.8.1
-	mkdir -p $@/gcc/4.8.1/lib/gcc/x86_64-linux-gnu/4.8.1
-	cp -rs /usr/lib/gcc/x86_64-linux-gnu/4.8.1/* \
-	  $@/gcc/4.8.1/lib/gcc/x86_64-linux-gnu/4.8.1/
+	mkdir -p $@/gcc/4.8.4/include/c++/4.8.4
+	cp -rs /usr/include/c++/4.8.4/* $@/gcc/4.8.4/include/c++/4.8.4
+	cp -rs /usr/include/x86_64-linux-gnu/c++/4.8/* $@/gcc/4.8.4/include/c++/4.8.4
+	mkdir -p $@/gcc/4.8.4/lib/gcc/x86_64-linux-gnu/4.8.4
+	cp -rs /usr/lib/gcc/x86_64-linux-gnu/4.8.4/* \
+	  $@/gcc/4.8.4/lib/gcc/x86_64-linux-gnu/4.8.4/
 
 # Windows platform objects.
-bin/scintilla_win32.a: $(win32_src_objs) $(win32_lexlib_objs) \
-                       $(win32_lexer_objs) $(win32_plat_objs)
-	$(CROSS_WIN32)$(AR) rc $@ $^
+# Note: build a DLL to test linking.
+bin/scintilla_win32.dll: $(win32_src_objs) $(win32_lexlib_objs) \
+                         $(win32_lexer_objs) $(win32_plat_objs)
+	$(CROSS_WIN32)$(CXX) -mwindows -shared -static -o $@ $^ -lgdi32 -luser32 \
+		-limm32 -lole32 -luuid -loleaut32 -lmsimg32 -lstdc++
 	touch $@
 $(win32_src_objs): win32/%.o: src/%.cxx
 $(win32_lexlib_objs): win32/%.o: lexlib/%.cxx
@@ -153,7 +165,7 @@ $(curses_lexlib_objs_clang): curses/clang-%.o: lexlib/%.cxx
 $(curses_lexer_objs_clang): curses/clang-%.o: lexers/%.cxx
 $(curses_plat_objs): curses/%.o: curses/%.cxx
 $(curses_plat_objs_clang): curses/clang-%.o: curses/%.cxx
-$(curses_src_objs) $(curses_lexlib_objs) $(curses_lexer_objs): CXX := $(LINUX_CXX)
+$(curses_src_objs) $(curses_lexlib_objs) $(curses_lexer_objs) $(curses_plat_objs): CXX := $(LINUX_CXX)
 $(curses_src_objs_clang) $(curses_lexlib_objs_clang) $(curses_lexer_objs_clang) $(curses_plat_objs_clang): CXX := $(CLANG_CXX)
 bin/scintilla_curses.a bin/clang-scintilla_curses.a:
 	ar rc $@ $^
@@ -165,6 +177,7 @@ $(curses_plat_objs) $(curses_plat_objs_clang):
 	$(CXX) -c $(CXXFLAGS) -DCURSES -Wno-unused-parameter $< -o $@
 
 # Qt platform objects. (Note: requires libqt4-dev qt4-qmake.)
+# Note: the Qt makefile produces shared libraries, so linking is tested.
 .PHONY: qt qt-clang
 qt: qt/ScintillaEditBase/Makefile
 qt-clang: qt-clang/ScintillaEditBase/Makefile
@@ -207,7 +220,68 @@ test: | /tmp/scintilla
 	make -C $|/test/unit CXX=$(LINUX_CXX) clean test
 	cd $|/test && lua5.1 test_lexlua.lua
 
-releasedir = /tmp/scintilla$(shell grep -o '[0-9]\+' version.txt)
+# Bait test program for GTK.
+# Rebuild scintilla.a to ensure only GTK platform objects are inside.
+bait: | /tmp/scintilla/gtk/bait
+	rm -f $|/../../bin/scintilla.a
+	make -C $(dir $|) -j4
+	make -C $|
+	$|/$@
+/tmp/scintilla/gtk/bait: /tmp/scintilla/bait.zip | /tmp/scintilla
+	mkdir $@
+	unzip -d $@ $< && mv $@/bait/* $@ && rmdir $@/bait
+	sed -i -e 's|scintilla|..|;' $@/Makefile
+/tmp/scintilla/bait.zip: | /tmp/scintilla
+	wget -O $@ https://www.scintilla.org/bait.zip
+
+# dmapp test program for Win32.
+# Since the test program is mean to be build on Windows, create a makefile for 
+# cross-compiling from Linux.
+dmapp_dlls = /tmp/scintilla/win32/dmapp/SciLexer.dll
+define _dmapp_makefile
+ALL: DMApp.exe
+DMApp.o: DMApp.cxx ; i686-w64-mingw32-g++ -std=c++11 -I ../../include -c $< -o $@
+DMApp_rc.o: DMApp.rc ; i686-w64-mingw32-windres $< $@
+DMApp.exe: DMApp.o DMApp_rc.o ; i686-w64-mingw32-g++ $^ -o $@ -lkernel32 -luser32 -lgdi32 -lcomdlg32 -lwinmm -lcomctl32 -ladvapi32 -limm32 -lshell32 -lole32 -lstdc++
+clean: ; rm -f *.exe *.o *.res
+endef
+export dmapp_makefile = $(value _dmapp_makefile)
+dmapp: /tmp/scintilla/win32/dmapp/DMApp.exe
+	WINEPREFIX=$(dir $<)/wine WINEARCH=win32 wine $<
+lexilla: /tmp/scintilla/win32/dmapp/DMApp.exe
+	WINEPREFIX=$(dir $<)/wine WINEARCH=win32 wine $< X
+/tmp/scintilla/win32/dmapp/DMApp.exe: $(dmapp_dlls) | /tmp/scintilla/win32/dmapp
+	make -C $|
+$(dmapp_dlls): | /tmp/scintilla/win32/dmapp
+	rm -f $|/../Catalogue.o $|/../ScintillaBase.o
+	make -C $(dir $|) CXX=/opt/mingw-w64/bin/i686-w64-mingw32-g++ \
+		AR=/opt/mingw-w64/bin/i686-w64-mingw32-ar \
+		RANLIB=/opt/mingw-w64/bin/i686-w64-mingw32-ranlib \
+		WINDRES=/opt/mingw-w64/bin/i686-w64-mingw32-windres -j4
+	cd $| && ln -sf ../../bin/*.dll .
+/tmp/scintilla/win32/dmapp: /tmp/scintilla/dmapp.zip | /tmp/scintilla
+	mkdir $@
+	unzip -d $@ $<
+	sed -i -e '/SCI_SETSTYLEBITS/d' $@/DMApp.cxx
+	echo "$$dmapp_makefile" > $@/makefile
+/tmp/scintilla/dmapp.zip: | /tmp/scintilla
+	wget -O $@ https://www.scintilla.org/dmapp.zip
+
+# jinx test program for curses.
+jinx: | /tmp/scintilla/curses/jinx
+	rm -f $|/../../bin/scintilla.a $|/../LexLPeg.o
+	make -C $(dir $|) -j4 LPEG_LEXER=1 DEBUG=1
+	make -C $| LPEG_LEXER=1 DEBUG=1
+	cd $| && ./$@
+
+version = $(shell grep -o '[0-9]\+' version.txt)
+date = $(shell date +'%Y%m%d')
+gen:
+	@echo "Using version $(version) with date $(date)"
+	sed -i -e 's/content="[0-9]\+"/content="$(date)"/;' doc/index.html
+	cd scripts && python LexGen.py
+
+releasedir = /tmp/scintilla$(version)
 $(releasedir): ; hg archive $@
 zip: $(releasedir)
 	cd /tmp && tar czf $<.tgz $(notdir $<)

@@ -8,47 +8,6 @@ project(ScintillaEdit)
     ../ScintillaEditBase/PlatQt.cpp
     ../ScintillaEditBase/ScintillaQt.cpp
     ../ScintillaEditBase/ScintillaEditBase.cpp
-    ../../src/XPM.cxx
-    ../../src/ViewStyle.cxx
-    ../../src/UniqueString.cxx
-    ../../src/UniConversion.cxx
-    ../../src/Style.cxx
-    ../../src/Selection.cxx
-    ../../src/ScintillaBase.cxx
-    ../../src/RunStyles.cxx
-    ../../src/RESearch.cxx
-    ../../src/PositionCache.cxx
-    ../../src/PerLine.cxx
-    ../../src/MarginView.cxx
-    ../../src/LineMarker.cxx
-    ../../src/KeyMap.cxx
-    ../../src/Indicator.cxx
-    ../../src/ExternalLexer.cxx
-    ../../src/EditView.cxx
-    ../../src/Editor.cxx
-    ../../src/EditModel.cxx
-    ../../src/Document.cxx
-    ../../src/Decoration.cxx
-    ../../src/DBCS.cxx
-    ../../src/ContractionState.cxx
-    ../../src/CharClassify.cxx
-    ../../src/CellBuffer.cxx
-    ../../src/Catalogue.cxx
-    ../../src/CaseFolder.cxx
-    ../../src/CaseConvert.cxx
-    ../../src/CallTip.cxx
-    ../../src/AutoComplete.cxx
-    ../../lexlib/WordList.cxx
-    ../../lexlib/StyleContext.cxx
-    ../../lexlib/PropSetSimple.cxx
-    ../../lexlib/LexerSimple.cxx
-    ../../lexlib/LexerNoExceptions.cxx
-    ../../lexlib/LexerModule.cxx
-    ../../lexlib/LexerBase.cxx
-    ../../lexlib/DefaultLexer.cxx
-    ../../lexlib/CharacterSet.cxx
-    ../../lexlib/CharacterCategory.cxx
-    ../../lexlib/Accessor.cxx
       )
 
   
@@ -59,7 +18,9 @@ project(ScintillaEdit)
     ../ScintillaEditBase/ScintillaQt.h
   )
   
-  FILE(GLOB LEXER_SRCS "../../lexers/*.cxx")
+  FILE(GLOB LEXER_SRCS  "../../lexers/*.cxx")
+  FILE(GLOB LEXLIB_SRCS "../../lexlib/*.cxx")
+  FILE(GLOB SCINT_SRCS  "../../src/*.cxx")
 
   INCLUDE_DIRECTORIES( "../ScintillaEditBase" )
   INCLUDE_DIRECTORIES( "../../include" )
@@ -85,7 +46,7 @@ if (BUILD_QT5)
 
   INCLUDE_DIRECTORIES( "${Qt5Widgets_INCLUDE_DIRS}" )
 
-  add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${LEXER_SRCS})
+  add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${LEXER_SRCS} ${LEXLIB_SRCS} ${SCINT_SRCS} )
   target_link_libraries( scintillaedit Qt5::Widgets Qt5::Concurrent )
 
 else (BUILD_QT5)
@@ -99,7 +60,7 @@ else (BUILD_QT5)
   QT4_WRAP_CPP( SCINTILLA_MOC_SRCS ${SCINTILLA_MOC_HDRS} )
 
 
-  add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${LEXER_SRCS})
+  add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${LEXER_SRCS} ${LEXLIB_SRCS} ${SCINT_SRCS} )
   target_link_libraries( scintillaedit ${QT_LIBRARIES} )
 
 endif (BUILD_QT5)

@@ -48,7 +48,11 @@ void cqDialogGraph::setupGraphFromXML(QStringList& grpxml, QStringList& grpdot, 
 	m_grpdot = grpdot;
 	m_img = showgraph::convertToImage(grpxml[0]);
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap(Qt::ReturnByValue).mask());
+#else
+	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
+#endif
 	if (desc.length() > 0) dialog_ui->labelDesc->setText(desc);
 	for (unsigned int i=0; i < grpxml.size(); i++) dialog_ui->comboBoxNbrOfLevels->addItem(QString::number(i+1));
 	dialog_ui->comboBoxNbrOfLevels->setCurrentIndex(0);
@@ -61,7 +65,11 @@ void cqDialogGraph::numberOfLevelsChanged(int num)
 {
 	m_img = showgraph::convertToImage(m_grpxml[dialog_ui->comboBoxNbrOfLevels->currentIndex()]);
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap(Qt::ReturnByValue).mask());
+#else
+	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
+#endif
 	adjustScrollBar(dialog_ui->scrollArea->horizontalScrollBar(), m_scaleFactor/5);
 	adjustScrollBar(dialog_ui->scrollArea->verticalScrollBar(), m_scaleFactor/5);
 }

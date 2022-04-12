@@ -351,12 +351,44 @@ m_base_path = hdr.get_base_path();
 return resOK;
 }
 
+bool csdbparser::srcfil_trailer_check(void)
+{
+char str[5];
+char *s = nullptr;
+int ret=0x30;
+long int i = 0-3;
+
+if (fseek(m_fp, m_trailer_start-3, SEEK_SET) != 0) return false;
+s = fgets(str, 4, m_fp);
+if (s == nullptr) return false;
+if ((str[0] == 0x09)&&(str[1] == 0x40)&&(str[2] == 0x0A)) return true;
+
+printf("WARNING: Trailer start offset is wrong. Attempting to find right trailer start offset.\n");
+if (fseek(m_fp, m_trailer_start-3, SEEK_SET) != 0) return false;
+while(ret != EOF)
+	{
+		ret = fgetc(m_fp); i++;
+		if (ret != 0x09) continue;
+		ret = fgetc(m_fp); i++;
+		if (ret != 0x40) continue;
+		ret = fgetc(m_fp); i++;
+		if (ret == 0x0A)
+		{
+			printf("Wrong trailer start offset = %ld, Corrected trailer start offset = %ld\n", m_trailer_start, m_trailer_start + i);
+			m_trailer_start += i;
+			return true;
+		}
+	}
+return false;
+}
+
 csdbparser::enResult csdbparser::setup_srcfil_read(void)
 {
 CSDBP_GENERAL_CHK();
 
 long int num;
 
+if (srcfil_trailer_check() == false) {return resOTHER_ERR;}
 if (fseek(m_fp, m_trailer_start, SEEK_SET) != 0) {return resFILE_ACCESS_ERR;}
 
 fscanf(m_fp, "%ld\n", &num); // number of source directories
@@ -374,6 +406,7 @@ return resOK;
 csdbparser::enResult csdbparser::get_next_srcfil(std::string* srcfil)
 {
 CSDBP_GENERAL_CHK();
+
 
 if (ftell(m_fp) < m_trailer_start) setup_srcfil_read();
 

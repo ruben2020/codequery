@@ -105,7 +105,6 @@ jobs:
           make
           make package
           sudo make install
-          cqmakedb -v
           
       - name: Configure CMake and Build on Ubuntu GCC Qt4
         shell: bash
@@ -119,7 +118,6 @@ jobs:
           make
           make package
           sudo make install
-          cqmakedb -v
 
       - name: Configure CMake and Build on Ubuntu GCC NoGui
         shell: bash
@@ -133,7 +131,6 @@ jobs:
           make
           make package
           sudo make install
-          cqmakedb -v
 
       - name: Configure CMake and Build on macOS Clang Qt5
         shell: bash
@@ -145,3 +142,15 @@ jobs:
           export CXX=clang++
           cmake -G "Unix Makefiles" -DBUILD_QT5=ON -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@5/lib/cmake ..
           make
+          sudo make install
+          
+      - name: Test
+        shell: bash
+        run: |
+          cd ..
+          cqmakedb -v
+          cscope -cbR
+          ctags --fields=+i -nR
+          cqmakedb -s cq.db -c cscope.out -t tags -p -d
+          cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
+

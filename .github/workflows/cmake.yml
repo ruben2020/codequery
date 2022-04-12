@@ -58,7 +58,7 @@ jobs:
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
 
-      - name: Install dependencies on ubuntu
+      - name: Install dependencies on Ubuntu GCC Qt5
         if: startsWith(matrix.config.name, 'Ubuntu GCC Qt5')
         run: |
           sudo apt-get update
@@ -67,7 +67,7 @@ jobs:
           lsb_release -a
           gcc -v && g++ -v && cmake --version
 
-      - name: Install dependencies on ubuntu
+      - name: Install dependencies on Ubuntu GCC Qt4
         if: startsWith(matrix.config.name, 'Ubuntu GCC Qt4')
         run: |
           sudo apt-get update
@@ -76,7 +76,7 @@ jobs:
           lsb_release -a
           gcc -v && g++ -v && cmake --version
 
-      - name: Install dependencies on ubuntu
+      - name: Install dependencies on Ubuntu GCC NoGui
         if: startsWith(matrix.config.name, 'Ubuntu GCC NoGui')
         run: |
           sudo apt-get update
@@ -85,8 +85,8 @@ jobs:
           lsb_release -a
           gcc -v && g++ -v && cmake --version
 
-      - name: Install dependencies on macos
-        if: startsWith(matrix.config.os, 'macOS Clang Qt5')
+      - name: Install dependencies on macOS Clang Qt5
+        if: startsWith(matrix.config.name, 'macOS Clang Qt5')
         run: |
           brew install cmake qt@5 sqlite cscope ctags
           clang -v

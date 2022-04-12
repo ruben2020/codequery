@@ -1,0 +1,146 @@
+# Heavily inspired (i.e. copy/paste) from https://gist.github.com/NickNaso/0d478f1481686d5bcc868cac06620a60
+name: CMake Build Matrix
+
+# Controls when the action will run. Triggers the workflow on push
+on: 
+  push:
+  pull_request:
+  release:
+    # tags:
+    # - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        config: 
+        - {
+            name: "Ubuntu GCC Qt5",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
+        - {
+            name: "Ubuntu GCC Qt4",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
+        - {
+            name: "Ubuntu GCC NoGui",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
+        - {
+            name: "macOS Clang Qt5",
+            os: macos-latest,
+            build_type: "Debug",
+            cc: "clang",
+            cxx: "clang++"
+          }
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Print env
+        run: |
+          echo github.event.action: ${{ github.event.action }}
+          echo github.event_name: ${{ github.event_name }}
+
+      - name: Install dependencies on ubuntu
+        if: startsWith(matrix.config.name, 'Ubuntu GCC Qt5')
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential g++ git cmake sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
+          uname -a
+          lsb_release -a
+          gcc -v && g++ -v && cmake --version
+
+      - name: Install dependencies on ubuntu
+        if: startsWith(matrix.config.name, 'Ubuntu GCC Qt4')
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+          uname -a
+          lsb_release -a
+          gcc -v && g++ -v && cmake --version
+
+      - name: Install dependencies on ubuntu
+        if: startsWith(matrix.config.name, 'Ubuntu GCC NoGui')
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential g++ git cmake sqlite3 libsqlite3-dev cscope exuberant-ctags
+          uname -a
+          lsb_release -a
+          gcc -v && g++ -v && cmake --version
+
+      - name: Install dependencies on macos
+        if: startsWith(matrix.config.os, 'macOS Clang Qt5')
+        run: |
+          brew install cmake qt@5
+          clang -v
+          cmake --version
+          
+      - name: Configure CMake and Build on Ubuntu GCC Qt5
+        shell: bash
+        if: contains(matrix.config.name, 'Ubuntu GCC Qt5')
+        run: |
+          mkdir -p build
+          cd build
+          export CC=gcc
+          export CXX=g++
+          cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
+          make
+          make package
+          sudo make install
+          cqmakedb -v
+          
+      - name: Configure CMake and Build on Ubuntu GCC Qt4
+        shell: bash
+        if: contains(matrix.config.name, 'Ubuntu GCC Qt4')
+        run: |
+          mkdir -p build
+          cd build
+          export CC=gcc
+          export CXX=g++
+          cmake -G "Unix Makefiles" -DBUILD_QT5=OFF ..
+          make
+          make package
+          sudo make install
+          cqmakedb -v
+
+      - name: Configure CMake and Build on Ubuntu GCC NoGui
+        shell: bash
+        if: contains(matrix.config.name, 'Ubuntu GCC NoGui')
+        run: |
+          mkdir -p build
+          cd build
+          export CC=gcc
+          export CXX=g++
+          cmake -G "Unix Makefiles" -DNO_GUI=ON ..
+          make
+          make package
+          sudo make install
+          cqmakedb -v
+
+      - name: Configure CMake and Build on macOS Clang Qt5
+        shell: bash
+        if: contains(matrix.config.name, 'macOS Clang Qt5')
+        run: |
+          mkdir -p build
+          cd build
+          export CC=clang
+          export CXX=clang++
+          cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
+          make

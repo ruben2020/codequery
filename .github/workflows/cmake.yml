@@ -55,6 +55,13 @@ jobs:
             cc: "clang",
             cxx: "clang++"
           }
+        - {
+            name: "Windows MinGW Qt5",
+            os: windows-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -99,7 +106,18 @@ jobs:
           clang -v
           cmake --version
           brew info qt@5
-          
+
+      - name: Install Qt5 on Windows
+        if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: '5.15.2'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_mingw81'
+          dir: '${{ github.workspace }}/lib/'
+          cached: 'false'
+
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
         if: "contains(matrix.config.name, 'Ubuntu 20.04 GCC Qt5') || contains(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
@@ -150,7 +168,13 @@ jobs:
           cmake -G "Unix Makefiles" -DBUILD_QT5=ON -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@5/lib/cmake ..
           make
           sudo make install
-          
+
+      - name: Configure CMake and Build on Windows MinGW Qt5
+        shell: bash
+        if: contains(matrix.config.name, 'Windows MinGW Qt5')
+        run: |
+          echo $Qt5_DIR
+
       - name: Test
         shell: bash
         run: |

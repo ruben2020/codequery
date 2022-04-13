@@ -169,16 +169,13 @@ jobs:
           sudo make install
 
       - name: Configure CMake and Build on Windows MinGW Qt5
-        shell: msys2 {0}
+        shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
         env:
           CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
         run: |
-          echo $Qt5_DIR
-          mkdir -p build
-          cd build
-          cmake -G "MinGW Makefiles" -DBUILD_QT5=ON ..
-          mingw32-make
+          echo ${{env.Qt5_Dir}}
+          dir /b/a/s ${{env.Qt5_Dir}}\*.bat
 
       - name: Test
         shell: bash

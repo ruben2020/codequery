@@ -5,7 +5,6 @@ g++ -v
 dir /b/a/s c:\vcpkg\sqlite*.dll
 md build
 cd build
-cmake -G "MinGW Makefiles" -DBUILD_QT5=ON -DGHAWIN=ON -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE="c:\vcpkg\scripts\buildsystems\vcpkg.cmake" ..
-mingw32-make
+cmake -G "Ninja" -DBUILD_QT5=ON -DGHAWIN=ON -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE="c:\vcpkg\scripts\buildsystems\vcpkg.cmake" ..
+ninja
 cd ..
-

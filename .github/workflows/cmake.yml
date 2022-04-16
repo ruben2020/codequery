@@ -171,9 +171,7 @@ jobs:
       - name: Configure CMake and Build on Windows MinGW Qt5
         shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
-        env:
-          CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
-        run: call ${{env.Qt5_Dir}}/bin/qtenv2.bat
+        run: call windows-install/win64/buildqt5win64_github.bat
 
       - name: Test
         shell: bash

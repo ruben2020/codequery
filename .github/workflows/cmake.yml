@@ -173,7 +173,7 @@ jobs:
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
         env:
           CMAKE_PREFIX_PATH: ${{env.Qt5_Dir}}
-        run: dir /b/a/s ${{env.Qt5_Dir}}/../../cmke.exe
+        run: call ${{env.Qt5_Dir}}/bin/qtenv2.bat
 
       - name: Test
         shell: bash

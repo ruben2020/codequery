@@ -117,6 +117,11 @@ jobs:
           arch: 'win64_mingw81'
           cached: 'false'
 
+      - name: Install sqlite3 on Windows
+        shell: cmd
+        if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
+        run: vcpkg install sqlite3
+
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
         if: "contains(matrix.config.name, 'Ubuntu 20.04 GCC Qt5') || contains(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"

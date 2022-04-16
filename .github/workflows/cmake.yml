@@ -120,7 +120,7 @@ jobs:
       - name: Install sqlite3 on Windows
         shell: cmd
         if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
-        run: vcpkg install sqlite3
+        run: vcpkg install sqlite3:x64-windows
 
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash

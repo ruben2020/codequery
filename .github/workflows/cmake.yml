@@ -22,7 +22,7 @@ jobs:
         config: 
         - {
             name: "Ubuntu 20.04 GCC Qt5",
-            os: ubuntu-20.04,
+            os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++",

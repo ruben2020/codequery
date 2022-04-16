@@ -123,6 +123,10 @@ jobs:
         if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
         run: vcpkg install sqlite3:x64-windows
 
+      - name: Install ninja on Windows
+        if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
+        uses: seanmiddleditch/gha-setup-ninja@master
+
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
         if: "contains(matrix.config.name, 'Ubuntu-latest GCC Qt5') || contains(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
@@ -177,7 +181,6 @@ jobs:
       - name: Configure CMake and Build on Windows MinGW Qt5
         shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
-        uses: seanmiddleditch/gha-setup-ninja@master
         run: call "windows-install/win64/buildqt5win64_github.bat"
 
       - name: Test on Linux, MacOS

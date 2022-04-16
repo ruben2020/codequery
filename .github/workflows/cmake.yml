@@ -76,7 +76,7 @@ jobs:
         if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt5') || startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake ninja sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
           uname -a
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version
@@ -85,7 +85,7 @@ jobs:
         if: startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt4')
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake ninja sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
           uname -a
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version
@@ -94,7 +94,7 @@ jobs:
         if: startsWith(matrix.config.name, 'Ubuntu-latest GCC NoGui')
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake ninja sqlite3 libsqlite3-dev cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev cscope exuberant-ctags
           uname -a
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version

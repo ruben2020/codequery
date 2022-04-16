@@ -4,5 +4,5 @@ gcc -v
 g++ -v
 md build
 cd build
-cmake -G "MinGW Makefiles" -DBUILD_QT5=ON ..
+cmake -G "MinGW Makefiles" -DBUILD_QT5=ON -DGHAWIN=ON ..
 mingw32-make

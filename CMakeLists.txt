@@ -13,12 +13,17 @@ project(CodeQuery)
 
 option(BUILD_QT5 "Qt5 option"    ON)
 option(NO_GUI    "No GUI option" OFF)
+option(GHAWIN    "GitHub Actions on Windows" OFF)
 
 MESSAGE("-- NO_GUI = " ${NO_GUI})
 if (NO_GUI)
 else (NO_GUI)
 MESSAGE("-- BUILD_QT5 = " ${BUILD_QT5})
 endif(NO_GUI)
+
+if (GHAWIN)
+MESSAGE("-- GHAWIN = " ${GHAWIN})
+endif(GHAWIN)
 
 # C++11 now always required
 SET( CMAKE_CXX_STANDARD 11 )

@@ -178,14 +178,18 @@ jobs:
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
         run: call "windows-install/win64/buildqt5win64_github.bat"
 
-      - name: Test
+      - name: Test on Linux, MacOS
         shell: bash
         if: ${{ !contains(matrix.config.name, 'Windows MinGW Qt5') }}
         run: |
-          cd ..
           cqmakedb -v
           cscope -cbR
           ctags --fields=+i -nR
           cqmakedb -s cq.db -c cscope.out -t tags -p -d
           cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
+
+      - name: Test on Windows
+        shell: cmd
+        if: contains(matrix.config.name, 'Windows MinGW Qt5')
+        run: call "windows-install/win64/test_github.bat"
 

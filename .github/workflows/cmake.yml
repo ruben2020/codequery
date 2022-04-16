@@ -43,7 +43,7 @@ jobs:
           }
         - {
             name: "Ubuntu 20.04 GCC NoGui",
-            os: ubuntu-20.04,
+            os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++"

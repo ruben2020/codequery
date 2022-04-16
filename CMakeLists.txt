@@ -24,8 +24,10 @@ endif(NO_GUI)
 if (GHAWIN)
 MESSAGE("-- GHAWIN = " ${GHAWIN})
 else (GHAWIN)
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
 endif(GHAWIN)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
+
 
 # C++11 now always required
 SET( CMAKE_CXX_STANDARD 11 )

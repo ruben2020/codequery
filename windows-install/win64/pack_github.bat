@@ -8,6 +8,8 @@ copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libstdc++-6.
 copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libwinpthread-1.dll" output
 cd output
 windeployqt codequery.exe
-dir/b/a/s
+dir /b/a/s
 candle.exe -ext WixUIExtension -ext WixUtilExtension "..\..\windows-install\win64\codequery64.wxs"
 light.exe -ext WixUIExtension -ext WixUtilExtension codequery64.wixobj
+dir /a/s *.msi
+

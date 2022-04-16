@@ -76,35 +76,36 @@ jobs:
         if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt5') || startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
           uname -a
           lsb_release -a
-          gcc -v && g++ -v && cmake --version
+          gcc -v && g++ -v && cmake --version && ninja --version
 
       - name: Install dependencies on Ubuntu 18.04 GCC Qt4
         if: startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt4')
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
           uname -a
           lsb_release -a
-          gcc -v && g++ -v && cmake --version
+          gcc -v && g++ -v && cmake --version && ninja --version
 
       - name: Install dependencies on Ubuntu-latest GCC NoGui
         if: startsWith(matrix.config.name, 'Ubuntu-latest GCC NoGui')
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake sqlite3 libsqlite3-dev cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja sqlite3 libsqlite3-dev cscope exuberant-ctags
           uname -a
           lsb_release -a
-          gcc -v && g++ -v && cmake --version
+          gcc -v && g++ -v && cmake --version && ninja --version
 
       - name: Install dependencies on macOS Clang Qt5
         if: startsWith(matrix.config.name, 'macOS Clang Qt5')
         run: |
-          brew install cmake qt@5 sqlite cscope ctags
+          brew install cmake ninja qt@5 sqlite cscope ctags
           clang -v
           cmake --version
+          ninja --version
           brew info qt@5
 
       - name: Install Qt5 on Windows
@@ -130,10 +131,10 @@ jobs:
           cd build
           export CC=gcc
           export CXX=g++
-          cmake -G "Unix Makefiles" -DBUILD_QT5=ON ..
-          make
-          make package
-          sudo make install
+          cmake -G "Ninja" -DBUILD_QT5=ON ..
+          ninja
+          ninja package
+          sudo ninja install
           
       - name: Configure CMake and Build on Ubuntu 18.04 GCC Qt4
         shell: bash
@@ -143,10 +144,10 @@ jobs:
           cd build
           export CC=gcc
           export CXX=g++
-          cmake -G "Unix Makefiles" -DBUILD_QT5=OFF ..
-          make
-          make package
-          sudo make install
+          cmake -G "Ninja" -DBUILD_QT5=OFF ..
+          ninja
+          ninja package
+          sudo ninja install
 
       - name: Configure CMake and Build on Ubuntu-latest GCC NoGui
         shell: bash
@@ -156,10 +157,10 @@ jobs:
           cd build
           export CC=gcc
           export CXX=g++
-          cmake -G "Unix Makefiles" -DNO_GUI=ON ..
-          make
-          make package
-          sudo make install
+          cmake -G "Ninja" -DNO_GUI=ON ..
+          ninja
+          ninja package
+          sudo ninja install
 
       - name: Configure CMake and Build on macOS Clang Qt5
         shell: bash
@@ -169,9 +170,9 @@ jobs:
           cd build
           export CC=clang
           export CXX=clang++
-          cmake -G "Unix Makefiles" -DBUILD_QT5=ON -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@5/lib/cmake ..
-          make
-          sudo make install
+          cmake -G "Ninja" -DBUILD_QT5=ON -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@5/lib/cmake ..
+          ninja
+          sudo ninja install
 
       - name: Configure CMake and Build on Windows MinGW Qt5
         shell: cmd

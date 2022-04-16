@@ -1,3 +1,4 @@
+set PATH=%PATH%;"%WIX%\bin"
 cd build
 md output
 copy *.exe output

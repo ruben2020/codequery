@@ -180,6 +180,7 @@ jobs:
 
       - name: Test
         shell: bash
+        if: ${{ !contains(matrix.config.name, 'Windows MinGW Qt5') }}
         run: |
           cd ..
           cqmakedb -v

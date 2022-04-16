@@ -23,6 +23,8 @@ endif(NO_GUI)
 
 if (GHAWIN)
 MESSAGE("-- GHAWIN = " ${GHAWIN})
+else (GHAWIN)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
 endif(GHAWIN)
 
 # C++11 now always required
@@ -37,7 +39,6 @@ SET( CMAKE_CXX_FLAGS_DEBUG  "-O2 -Wno-unused-result" )
 SET( CMAKE_CXX_FLAGS_RELEASE  "-O2 -Wno-unused-result" )
 ENDIF(MSVC)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
 
 set( EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR} )
 

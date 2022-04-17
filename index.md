@@ -9,10 +9,10 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
+[![Build Status](https://github.com/ruben2020/codequery/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/ruben2020/codequery/actions)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.24.0
+## Latest version = 0.25.0
 
 Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 

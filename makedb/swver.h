@@ -13,7 +13,7 @@
 #ifndef SWVER_H_CQ
 #define SWVER_H_CQ
 
-#define CODEQUERY_SW_VERSION      "CodeQuery 0.24.0"
+#define CODEQUERY_SW_VERSION      "CodeQuery 0.25.0"
 #define CODEQUERY_SW_VERSION_WEBSITE      "<p>"\
 	CODEQUERY_SW_VERSION \
 	"</p>"\
@@ -22,7 +22,7 @@
 
 
 #define CODEQUERY_SW_LICENSE  \
-"Copyright (C) 2013-2021 ruben2020 https://github.com/ruben2020/\n\n" \
+"Copyright (C) 2013-2022 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
 "The Source Code Form and the Executable Form of this software\n" \
 "are subject to the terms of the Mozilla Public License, v. 2.0.\n" \
@@ -36,7 +36,7 @@
 "Mozilla Public License, v. 2.0 for more details.\n\n" \
 
 #define CODEQUERY_SW_LICENSE_PARA  \
-"Copyright (C) 2013-2021 ruben2020 https://github.com/ruben2020/\n\n" \
+"Copyright (C) 2013-2022 ruben2020 https://github.com/ruben2020/\n\n" \
 "Website: https://github.com/ruben2020/codequery\n\n" \
 "The Source Code Form and the Executable Form of this software " \
 "are subject to the terms of the Mozilla Public License, v. 2.0. " \
@@ -50,7 +50,7 @@
 "Mozilla Public License, v. 2.0 for more details.\n\n" \
 
 #define CODEQUERY_SW_LICENSE_PARA_LINK  \
-"<p>Copyright (C) 2013-2021 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
+"<p>Copyright (C) 2013-2022 <a href=\"https://github.com/ruben2020/\">ruben2020</a></p>\n\n" \
 "<p>The Source Code Form and the Executable Form of this software " \
 "are subject to the terms of the Mozilla Public License, v. 2.0. " \
 "If a copy of the MPL was not distributed with this software, " \
@@ -76,8 +76,6 @@
  * generate the CodeQuery database file.
  * The CodeQuery database file can be viewed and queried using the codequery GUI tool.
  *
- * This contains only the Doxygen documentation of the source code.
- * For the rest, please see the Github page above.
  */
 
 #endif // SWVER_H_CQ

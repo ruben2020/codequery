@@ -1,8 +1,8 @@
 {
-    "version": "0.24.0",
+    "version": "0.25.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Improved German translation for CodeQuery GUI",
+    "changes": "Workaround for pycscope trailer start offset bug",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

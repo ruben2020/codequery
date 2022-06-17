@@ -202,11 +202,13 @@ int create_callee_tree(tStr sqfn, tStr term, tStr param, bool exact,
 		printf("Error: Function only available for exact match|!\n");
 		return 1;	
 	}
-	max_depth = (depth>max_depth)?max_depth:depth;
+	max_depth = (depth < max_depth)?max_depth:depth;
 	int retVal = create_callee_tree_rec(sqfn, term, intParam, exact, 0, fpath, full, debug, limitlen);
 	return retVal;
 
 }
+
+
 int process_query(tStr sqfn, tStr term, tStr param, bool exact, 
 		   bool full, bool debug, int limitlen, bool graph, tStr fpath)
 {

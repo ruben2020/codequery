@@ -19,10 +19,12 @@
 #include "swver.h"
 
 
+int max_depth = 100;
+
 void printhelp(const char* str)
 {
 	printf("Usage:\n");
-	printf("%s [-s <sqdbfile> [-p <n>] [-g] [-t <term>] [-l <len>] -[e|f] [-u] [-b <path>]]  [-d] [-v] [-h]\n\n", str);
+	printf("%s [-s <sqdbfile> [-p <n>] [-g] [-t <term>] [-l <len>] -[e|f] [-u] [-b <path>]]  [-d] [-v] [-h] [-k <depth>]\n\n", str);
 	printf("options:\n");
 	printf("  -s : CodeQuery sqlite3 db file path\n");
 	printf("  -p : parameter is a number denoted by n\n");
@@ -48,6 +50,7 @@ void printhelp(const char* str)
 	printf("  -d : debug\n");
 	printf("  -v : version\n");
 	printf("  -h : help\n\n");
+	printf("  -k : recursively create callee graph up to specified depth(<5)\n\n");
 	printf("The combinations possible are -s -t -e, -s -t -f -u\n");
 	printf("The additional optional arguments are -d\n\n");
 	printf("The possible values for n are:\n");
@@ -114,6 +117,96 @@ tStr limitcstr(int limitlen, tStr str)
 		return str.substr(0,limitlen);
 }
 
+int create_callee_tree_rec(tStr sqfn, tStr term, int intParam, 
+		bool exact, int depth, tStr fpath,
+		bool full, bool debug, int limitlen) {
+	if(depth == max_depth)
+		return 0;
+
+	int retVal = 0;
+	sqlquery sq;
+	tStr lstr;
+	sqlquery::en_filereadstatus filestatus = sq.open_dbfile(sqfn);
+	tVecStr grpxml, grpdot;
+	bool res = false;
+	tStr errstr;
+	switch (filestatus)
+	{
+		case sqlquery::sqlfileOK:
+			break;
+		case sqlquery::sqlfileOPENERROR:
+			printf("Error: File %s open error!\n", sqfn.c_str());
+			return 1;
+		case sqlquery::sqlfileNOTCORRECTDB:
+			printf("Error: File %s does not have correct database format!\n", sqfn.c_str());
+			return 1;
+		case sqlquery::sqlfileINCORRECTVER:
+			printf("Error: File %s has an unsupported database version number!\n", sqfn.c_str());
+			return 1;
+		case sqlquery::sqlfileUNKNOWNERROR:
+			printf("Error: Unknown Error!\n");
+			return 1;
+	}
+	sqlqueryresultlist resultlst;
+
+	//printf("Search string: %s\n",term.c_str());
+	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact, fpath);
+	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
+	{
+		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
+		return 1;	
+	}
+
+	//close sql conn at this point
+	sq.close_dbfile();
+
+	printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+	printf("{%s calls: \n",term.c_str());
+
+	for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
+		it != resultlst.resultlist.end(); it++)
+	{
+		lstr = limitcstr(limitlen, it->linetext);
+		switch(resultlst.result_type)
+		{
+			case sqlqueryresultlist::sqlresultFULL:
+				printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+
+				printf("%s\t%s:%s\n", 
+						it->symname.c_str(),
+						(full ? it->filepath.c_str() : it->filename.c_str()),
+						it->linenum.c_str());
+				create_callee_tree_rec(sqfn, it->symname.c_str(), intParam, exact, depth +1, fpath, full, debug, limitlen);
+
+				break;	
+			default:
+				break;	
+		}
+	}
+	printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+	printf("end %s calls}\n",term.c_str());
+	return retVal;
+}
+int create_callee_tree(tStr sqfn, tStr term, tStr param, bool exact, 
+		int depth, tStr fpath, bool full, bool debug, int limitlen) {
+	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
+	
+	int intParam = atoi(param.c_str()) - 1;
+	if ((intParam != sqlquery::sqlresultCALLEDFUNC) || (intParam >= sqlquery::sqlresultAUTOCOMPLETE))
+	{
+		printf("Error: Function only available for callee graph!\n");
+		return 1;	
+	}
+	if (exact == false)
+	{
+		printf("Error: Function only available for exact match|!\n");
+		return 1;	
+	}
+	max_depth = (depth>max_depth)?max_depth:depth;
+	int retVal = create_callee_tree_rec(sqfn, term, intParam, exact, 0, fpath, full, debug, limitlen);
+	return retVal;
+
+}
 int process_query(tStr sqfn, tStr term, tStr param, bool exact, 
 		   bool full, bool debug, int limitlen, bool graph, tStr fpath)
 {
@@ -177,6 +270,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact,
 			return 0;
 		}
 	}
+	printf("Search string: %s\n",term.c_str());
 	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact, fpath);
 	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
@@ -215,7 +309,7 @@ int process_query(tStr sqfn, tStr term, tStr param, bool exact,
 int main(int argc, char *argv[])
 {
 	int c;
-	bool bSqlite, bParam, bGraph, bTerm, bExact, bFull;
+	bool bSqlite, bParam, bGraph, bTerm, bExact, bFull, bTree;
 	bool bDebug, bVersion, bHelp, bError;
 	int countExact = 0;
 	int limitlen = 80;
@@ -223,6 +317,7 @@ int main(int argc, char *argv[])
 	bParam = false;
 	bGraph = false;
 	bTerm = false;
+	bTree = false;
 	bExact = false;
 	bFull = false;
 	bDebug = false;
@@ -230,8 +325,9 @@ int main(int argc, char *argv[])
 	bHelp = (argc <= 1);
 	bError = false;
 	tStr sqfn, param = "1", term, fpath = "";
+	int rec_depth = 1;
 
-    while ((c = getopt2(argc, argv, "s:p:gt:l:efub:dvh")) != -1)
+    while ((c = getopt2(argc, argv, "s:p:gt:l:efub:dvhk:")) != -1)
     {
 		switch(c)
 		{
@@ -270,6 +366,10 @@ int main(int argc, char *argv[])
 			case 't':
 				bTerm = true;
 				term = optarg;
+				break;
+			case 'k':
+				bTree = true;
+				rec_depth = atoi(optarg);
 				break;
 			case 'l':
 				limitlen = atoi(optarg);
@@ -312,10 +412,16 @@ int main(int argc, char *argv[])
 		printhelp(extract_filename(argv[0]));
 		return 1;
 	}
-	if (bSqlite && bTerm)
+	if (bSqlite && bTerm && !bTree)
 	{
 		bError = process_query(sqfn, term, param, bExact, bFull, bDebug, limitlen, bGraph, fpath) > 0;
 	}
+	if (bSqlite && bTerm && bTree)
+	{
+		bError = create_callee_tree(sqfn, term, param, bExact, rec_depth, fpath, bFull, bDebug, limitlen) > 0;
+	}
+
+
 	if (bError)
 	{
 		printhelp(extract_filename(argv[0]));

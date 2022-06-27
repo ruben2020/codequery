@@ -25,6 +25,7 @@
 int max_depth = 100;
 
 std::map<std::string, std::string> visited_fn_map;
+std::map<std::string, std::string> map_ref_loc;
 
 void printhelp(const char* str)
 {
@@ -138,8 +139,26 @@ void dump_map(){
 	  std::cout << "\n";
   }
 	 std::cout << "}\n";
+  for(const auto& elem : map_ref_loc){
+	  std::cout << "Map: "<< elem.first<<" last call: "<<elem.second<<std::endl;
+  }
 }
 
+void find_map_ref(std::string fn_name_str, std::string map_line, std::string map_loc){
+	if(fn_name_str.compare("bpf_map_update_elem") == 0||
+			fn_name_str.compare("bpf_map_lookup_elem") == 0){
+			unsigned first = map_line.find('(')+1;
+		unsigned last = map_line.find(',');
+		std::string strNew = map_line.substr(first,last-first);
+		strNew.erase(std::remove(strNew.begin(), strNew.end(), '&'), strNew.end());
+		strNew.erase(std::remove(strNew.begin(), strNew.end(), ' '), strNew.end());
+		printf("\t MAP[%s] READ \t:  [%s] ",strNew.c_str(),map_line.c_str()); 
+		if(map_ref_loc.find(strNew) == map_ref_loc.end())
+			map_ref_loc[strNew] = map_loc;
+	}
+	return;
+
+}
 void make_fn_defn_entry(tStr term, bool exact, int depth, tStr fpath,
 		bool full, bool debug, int limitlen,sqlquery* sq){
 	sqlqueryresultlist resultlst1;
@@ -216,24 +235,15 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 		lstr = limitcstr(limitlen, it->linetext);
 		if(resultlst.result_type == sqlqueryresultlist::sqlresultFULL)
 		{
+			std::string fn_name_str(it->symname.c_str());
+			std::string map_line(lstr.c_str());
+			find_map_ref(fn_name_str, map_line, it->filepath+"#"+it->linenum);
 			printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
 			//find bpf_map_details
-			std::string fn_name_str(it->symname.c_str());
-			if(fn_name_str.compare("bpf_map_update_elem") == 0||
-				fn_name_str.compare("bpf_map_lookup_elem") == 0){
-				std::string map_line(lstr.c_str());
-				unsigned first = map_line.find('(')+1;
-				unsigned last = map_line.find(',');
-				std::string strNew = map_line.substr(first,last-first);
-				strNew.erase(std::remove(strNew.begin(), strNew.end(), '&'), strNew.end());
-				strNew.erase(std::remove(strNew.begin(), strNew.end(), ' '), strNew.end());
-				printf("\t MAP[%s] READ \t:  [%s] ",strNew.c_str(),lstr.c_str()); 
-
-			}
 			printf("%s\t CALLSITE \t%s:%s\n", 
-					it->symname.c_str(),
-					(full ? it->filepath.c_str() : it->filename.c_str()),
-					it->linenum.c_str());
+				it->symname.c_str(),
+				(full ? it->filepath.c_str() : it->filename.c_str()),
+				it->linenum.c_str());
 			create_callee_tree_rec(sqfn, it->symname.c_str(), intParam, exact, depth +1, fpath, full, debug, limitlen);
 		}
 	}

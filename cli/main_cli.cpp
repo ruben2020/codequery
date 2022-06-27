@@ -13,13 +13,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory>
+#include <map>
+#include <string>
 #include "small_lib.h"
 #include "getopt2.h"
 #include "sqlquery.h"
 #include "swver.h"
-
+#include <iostream>
 
 int max_depth = 100;
+
+std::map<std::string, std::string> visited_fn_map;
 
 void printhelp(const char* str)
 {
@@ -117,6 +121,16 @@ tStr limitcstr(int limitlen, tStr str)
 		return str.substr(0,limitlen);
 }
 
+void dump_map(){
+  printf("DUMPING MAP\n");
+  printf("FileName#linenumber\tfuncName\n\n");
+  for(const auto& elem : visited_fn_map)
+    {
+      std::cout << elem.first << " " << elem.second << "\n";
+    }
+}
+
+
 int create_callee_tree_rec(tStr sqfn, tStr term, int intParam, 
 		bool exact, int depth, tStr fpath,
 		bool full, bool debug, int limitlen) {
@@ -148,6 +162,7 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 			return 1;
 	}
 	sqlqueryresultlist resultlst;
+	sqlqueryresultlist resultlst1;
 
 	//printf("Search string: %s\n",term.c_str());
 	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact, fpath);
@@ -156,13 +171,31 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
 		return 1;	
 	}
-
+	resultlst1 = sq.search(term,(sqlquery::en_queryType)1, exact, fpath);
+	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
+	{
+		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
+		return 1;	
+	}
 	//close sql conn at this point
 	sq.close_dbfile();
 
-	printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
-	printf("{%s calls: \n",term.c_str());
-
+	printf("%.*s {%s defined at: ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",term.c_str());
+	
+	for(std::vector<sqlqueryresult>::iterator it = resultlst1.resultlist.begin();
+		it != resultlst1.resultlist.end(); it++){
+		printf(" [%s:%s] ", (full ? it->filepath.c_str() : it->filename.c_str()),it->linenum.c_str());
+		std::string path = it->filepath.c_str();
+		std::string linenum = it->linenum.c_str();
+		std::string key = path + "#"+ linenum;
+		if(visited_fn_map.find(key) == visited_fn_map.end()){
+		  visited_fn_map[key] = term.c_str();
+		} else{
+		  printf("VISITED\n");
+		  return 0;
+		}
+	}	
+	printf(" calls: \n");
 	for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
 		it != resultlst.resultlist.end(); it++)
 	{
@@ -172,7 +205,7 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 			case sqlqueryresultlist::sqlresultFULL:
 				printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
 
-				printf("%s\t%s:%s\n", 
+				printf("%s\t CALLSITE \t%s:%s\n", 
 						it->symname.c_str(),
 						(full ? it->filepath.c_str() : it->filename.c_str()),
 						it->linenum.c_str());
@@ -187,6 +220,7 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 	printf("end %s calls}\n",term.c_str());
 	return retVal;
 }
+
 int create_callee_tree(tStr sqfn, tStr term, tStr param, bool exact, 
 		int depth, tStr fpath, bool full, bool debug, int limitlen) {
 	if ((sqfn.empty())||(term.empty())||(param.empty())) return 1;
@@ -204,6 +238,7 @@ int create_callee_tree(tStr sqfn, tStr term, tStr param, bool exact,
 	}
 	max_depth = (depth>max_depth)?max_depth:depth;
 	int retVal = create_callee_tree_rec(sqfn, term, intParam, exact, 0, fpath, full, debug, limitlen);
+	dump_map();
 	return retVal;
 
 }

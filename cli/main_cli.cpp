@@ -123,8 +123,37 @@ tStr limitcstr(int limitlen, tStr str)
 		return str.substr(0,limitlen);
 }
 
+void dump_map_defn_map(sqlquery* sq, bool exact, tStr fpath){
+	sqlqueryresultlist resultlst;
+	
+	printf("{\nDUMPING REQUIRED MAPS AND DEFS\n");
+	for(const auto& elem : map_ref_loc){
+		std::cout << "Map: "<< elem.first<<" ";
+		resultlst = sq->search(elem.first, (sqlquery::en_queryType) 0, exact, fpath);
+		if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
+		{
+			printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
+			return;	
+		}
+		bool isF = false;
+		for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
+			it != resultlst.resultlist.end(); it++){
+			if(it->linetext.find("SEC") != std::string::npos){
+				printf(" [%s:%s]\n", it->filepath.c_str(),it->linenum.c_str());
+				isF = true;
+				break;
+			}
+		}
+		if(!isF)
+			printf("last call: %s, not found\n", elem.second.c_str());
+	
+	}
+	std::cout << "}" << std::endl;
+	return;
+}
+
 //dump the map along with user queries ... for multiple definitions of functions
-void dump_map(){
+void dump_func_defn_map(){
   std::map<std::string,std::vector<std::string>> print_map;
   printf("{\nDUMPING REQUIRED FNS AND DEFS\n");
   printf("funcName:\tFileName#linenumber\n\n");
@@ -139,9 +168,6 @@ void dump_map(){
 	  std::cout << "\n";
   }
 	 std::cout << "}\n";
-  for(const auto& elem : map_ref_loc){
-	  std::cout << "Map: "<< elem.first<<" last call: "<<elem.second<<std::endl;
-  }
 }
 
 void find_map_ref(std::string fn_name_str, std::string map_line, std::string map_loc){
@@ -189,46 +215,24 @@ void make_fn_defn_entry(tStr term, bool exact, int depth, tStr fpath,
 }
 int create_callee_tree_rec(tStr sqfn, tStr term, int intParam, 
 		bool exact, int depth, tStr fpath,
-		bool full, bool debug, int limitlen) {
+		bool full, bool debug, int limitlen, sqlquery* sq) {
 	if(depth == max_depth)
 		return 0;
 
 	int retVal = 0;
-	sqlquery sq;
 	tStr lstr;
-	sqlquery::en_filereadstatus filestatus = sq.open_dbfile(sqfn);
 	tVecStr grpxml, grpdot;
 	bool res = false;
 	tStr errstr;
-	switch (filestatus)
-	{
-		case sqlquery::sqlfileOK:
-			break;
-		case sqlquery::sqlfileOPENERROR:
-			printf("Error: File %s open error!\n", sqfn.c_str());
-			return 1;
-		case sqlquery::sqlfileNOTCORRECTDB:
-			printf("Error: File %s does not have correct database format!\n", sqfn.c_str());
-			return 1;
-		case sqlquery::sqlfileINCORRECTVER:
-			printf("Error: File %s has an unsupported database version number!\n", sqfn.c_str());
-			return 1;
-		case sqlquery::sqlfileUNKNOWNERROR:
-			printf("Error: Unknown Error!\n");
-			return 1;
-	}
 	sqlqueryresultlist resultlst;
 
-
-	//printf("Search string: %s\n",term.c_str());
-	resultlst = sq.search(term, (sqlquery::en_queryType) intParam, exact, fpath);
+	resultlst = sq->search(term, (sqlquery::en_queryType) intParam, exact, fpath);
 	if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
 	{
 		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
 		return 1;	
 	}
-	make_fn_defn_entry(term, exact, depth, fpath, full, debug, limitlen, &sq);
-	sq.close_dbfile();
+	make_fn_defn_entry(term, exact, depth, fpath, full, debug, limitlen, sq);
 	for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
 		it != resultlst.resultlist.end(); it++)
 	{
@@ -244,7 +248,7 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 				it->symname.c_str(),
 				(full ? it->filepath.c_str() : it->filename.c_str()),
 				it->linenum.c_str());
-			create_callee_tree_rec(sqfn, it->symname.c_str(), intParam, exact, depth +1, fpath, full, debug, limitlen);
+			create_callee_tree_rec(sqfn, it->symname.c_str(), intParam, exact, depth +1, fpath, full, debug, limitlen, sq);
 		}
 	}
 	printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
@@ -268,8 +272,32 @@ int create_callee_tree(tStr sqfn, tStr term, tStr param, bool exact,
 		return 1;	
 	}
 	max_depth = (depth>max_depth)?max_depth:depth;
-	int retVal = create_callee_tree_rec(sqfn, term, intParam, exact, 0, fpath, full, debug, limitlen);
-	dump_map();
+
+	sqlquery sq;
+	sqlquery::en_filereadstatus filestatus = sq.open_dbfile(sqfn);
+	switch (filestatus)
+	{
+		case sqlquery::sqlfileOK:
+			break;
+		case sqlquery::sqlfileOPENERROR:
+			printf("Error: File %s open error!\n", sqfn.c_str());
+			return 1;
+		case sqlquery::sqlfileNOTCORRECTDB:
+			printf("Error: File %s does not have correct database format!\n", sqfn.c_str());
+			return 1;
+		case sqlquery::sqlfileINCORRECTVER:
+			printf("Error: File %s has an unsupported database version number!\n", sqfn.c_str());
+			return 1;
+		case sqlquery::sqlfileUNKNOWNERROR:
+			printf("Error: Unknown Error!\n");
+			return 1;
+	}
+
+
+	int retVal = create_callee_tree_rec(sqfn, term, intParam, exact, 0, fpath, full, debug, limitlen, &sq);
+	dump_func_defn_map();
+	dump_map_defn_map(&sq, exact, fpath);
+	sq.close_dbfile();
 	return retVal;
 
 }

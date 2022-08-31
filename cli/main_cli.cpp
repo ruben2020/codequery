@@ -126,9 +126,9 @@ tStr limitcstr(int limitlen, tStr str)
 void dump_map_defn_map(sqlquery* sq, bool exact, tStr fpath){
 	sqlqueryresultlist resultlst;
 	
-	printf("{\nDUMPING REQUIRED MAPS AND DEFS\n");
+	printf("{#map_name,filename,line #, isFound\nn");
 	for(const auto& elem : map_ref_loc){
-		std::cout << "Map: "<< elem.first<<" ";
+		std::cout << elem.first;
 		resultlst = sq->search(elem.first, (sqlquery::en_queryType) 0, exact, fpath);
 		if (resultlst.result_type == sqlqueryresultlist::sqlresultERROR)
 		{
@@ -139,13 +139,13 @@ void dump_map_defn_map(sqlquery* sq, bool exact, tStr fpath){
 		for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
 			it != resultlst.resultlist.end(); it++){
 			if(it->linetext.find("SEC") != std::string::npos){
-				printf(" [%s:%s]\n", it->filepath.c_str(),it->linenum.c_str());
+				printf(",%s,%s,1\n", it->filepath.c_str(),it->linenum.c_str());
 				isF = true;
 				break;
 			}
 		}
 		if(!isF)
-			printf("last call: %s, not found\n", elem.second.c_str());
+			printf(",%s,0\n", elem.second.c_str());
 	
 	}
 	std::cout << "}" << std::endl;
@@ -155,15 +155,14 @@ void dump_map_defn_map(sqlquery* sq, bool exact, tStr fpath){
 //dump the map along with user queries ... for multiple definitions of functions
 void dump_func_defn_map(){
   std::map<std::string,std::vector<std::string>> print_map;
-  printf("{\nDUMPING REQUIRED FNS AND DEFS\n");
-  printf("funcName:\tFileName#linenumber\n\n");
+  printf("{#funcName,count,[FileName,linenumber]\n");
   for(const auto& elem : visited_fn_map){
    	print_map[elem.second].push_back(elem.first);
    }
   for(const auto& elem : print_map){
-    std::cout<< elem.first << "," << elem.second.size();
+    std::cout<< elem.first <<","<<elem.second.size();
 	  for(const auto&inner : elem.second){
-	    std::cout << ","<<inner;
+	    std::cout << ",["<<inner<<"]";
 	  }
 	  std::cout << "\n";
   }
@@ -178,7 +177,7 @@ void find_map_ref(std::string fn_name_str, std::string map_line, std::string map
 		std::string strNew = map_line.substr(first,last-first);
 		strNew.erase(std::remove(strNew.begin(), strNew.end(), '&'), strNew.end());
 		strNew.erase(std::remove(strNew.begin(), strNew.end(), ' '), strNew.end());
-		printf("\t MAP[%s] READ \t:  [%s] ",strNew.c_str(),map_line.c_str()); 
+		//printf("\t MAP[%s] READ \t:  [%s] ",strNew.c_str(),map_line.c_str()); 
 		if(map_ref_loc.find(strNew) == map_ref_loc.end())
 			map_ref_loc[strNew] = map_loc;
 	}
@@ -195,22 +194,22 @@ void make_fn_defn_entry(tStr term, bool exact, int depth, tStr fpath,
 		return;	
 	}
 	//close sql conn at this point
-	printf("%.*s {%s defined at: ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",term.c_str());
+	//printf("%.*s {%s defined at: ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t",term.c_str());
 	//find definition information	
 	for(std::vector<sqlqueryresult>::iterator it = resultlst1.resultlist.begin();
 		it != resultlst1.resultlist.end(); it++){
-		printf(" [%s:%s] ", (full ? it->filepath.c_str() : it->filename.c_str()),it->linenum.c_str());
+		//printf(" [%s:%s] ", (full ? it->filepath.c_str() : it->filename.c_str()),it->linenum.c_str());
 		std::string path = it->filepath.c_str();
 		std::string linenum = it->linenum.c_str();
-		std::string key = path + "#"+ linenum;
+		std::string key = path + ","+ linenum;
 		if(visited_fn_map.find(key) == visited_fn_map.end()){
 		  visited_fn_map[key] = term.c_str();
 		} else{
-		  printf("VISITED\n");
+		  //printf("VISITED\n");
 		  return;
 		}
 	}	
-	printf(" calls: \n");
+	//printf(" calls: \n");
 	return;
 }
 int create_callee_tree_rec(tStr sqfn, tStr term, int intParam, 
@@ -241,18 +240,18 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 		{
 			std::string fn_name_str(it->symname.c_str());
 			std::string map_line(lstr.c_str());
-			find_map_ref(fn_name_str, map_line, it->filepath+"#"+it->linenum);
-			printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+			find_map_ref(fn_name_str, map_line, it->filepath+","+it->linenum);
+			/*printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
 			//find bpf_map_details
 			printf("%s\t CALLSITE \t%s:%s\n", 
 				it->symname.c_str(),
 				(full ? it->filepath.c_str() : it->filename.c_str()),
-				it->linenum.c_str());
+				it->linenum.c_str());*/
 			create_callee_tree_rec(sqfn, it->symname.c_str(), intParam, exact, depth +1, fpath, full, debug, limitlen, sq);
 		}
 	}
-	printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
-	printf("end %s calls}\n",term.c_str());
+	/*printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
+	printf("end %s calls}\n",term.c_str());*/
 	return retVal;
 }
 

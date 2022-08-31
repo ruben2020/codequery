@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+<source file="./showgraph/Graph/predecls.h" funcheader="inline GraphDir RevDir (GraphDir dir)" startline="64" endline="73">
+inline GraphDir RevDir (GraphDir dir) {
+    GRAPH_ASSERTD (GRAPH_DIRS_NUM == 2, "Graph implementation is suited for two directions only");
+#ifdef DIR_INVERTION_LONG_VERSION
+    return (dir == GRAPH_DIR_UP) ? GRAPH_DIR_DOWN : GRAPH_DIR_UP;
+#else
+    return (GraphDir) !dir;
+#endif
+}
+</source>
+</doc>

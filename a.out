@@ -1,0 +1,179 @@
+Directory '' deleted.
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_kern.c 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_kern.c to test/balancer_kern.c
+Processing: /home/sayandes/katran/katran/lib/bpf/xdp_root.c 
+Copying /home/sayandes/katran/katran/lib/bpf/xdp_root.c to test/xdp_root.c
+Processing: /home/sayandes/katran/katran/lib/bpf/healthchecking_kern.c 
+Copying /home/sayandes/katran/katran/lib/bpf/healthchecking_kern.c to test/healthchecking_kern.c
+Processing: /home/sayandes/katran/katran/lib/bpf/xdp_pktcntr.c 
+Copying /home/sayandes/katran/katran/lib/bpf/xdp_pktcntr.c to test/xdp_pktcntr.c
+Processing: /home/sayandes/katran/katran/lib/bpf/healthchecking_ipip.c 
+Copying /home/sayandes/katran/katran/lib/bpf/healthchecking_ipip.c to test/healthchecking_ipip.c
+Processing: /home/sayandes/katran/katran/decap/bpf/decap_kern.c 
+Copying /home/sayandes/katran/katran/decap/bpf/decap_kern.c to test/decap_kern.c
+Processing: /home/sayandes/katran/build/fbcode_builder/CMake/fb_py_win_main.c 
+Copying /home/sayandes/katran/build/fbcode_builder/CMake/fb_py_win_main.c to test/fb_py_win_main.c
+Processing: /home/sayandes/katran/katran/lib/KatranLb.h 
+Copying /home/sayandes/katran/katran/lib/KatranLb.h to test/KatranLb.h
+Processing: /home/sayandes/katran/katran/lib/Netlink.h 
+Copying /home/sayandes/katran/katran/lib/Netlink.h to test/Netlink.h
+Processing: /home/sayandes/katran/katran/lib/MaglevHashV2.h 
+Copying /home/sayandes/katran/katran/lib/MaglevHashV2.h to test/MaglevHashV2.h
+Processing: /home/sayandes/katran/katran/lib/PcapStructs.h 
+Copying /home/sayandes/katran/katran/lib/PcapStructs.h to test/PcapStructs.h
+Processing: /home/sayandes/katran/katran/lib/PcapWriter.h 
+Copying /home/sayandes/katran/katran/lib/PcapWriter.h to test/PcapWriter.h
+Processing: /home/sayandes/katran/katran/lib/linux_includes/jhash.h 
+Copying /home/sayandes/katran/katran/lib/linux_includes/jhash.h to test/jhash.h
+Processing: /home/sayandes/katran/katran/lib/linux_includes/bpf.h 
+Copying /home/sayandes/katran/katran/lib/linux_includes/bpf.h to test/bpf.h
+Processing: /home/sayandes/katran/katran/lib/linux_includes/bpf_common.h 
+Copying /home/sayandes/katran/katran/lib/linux_includes/bpf_common.h to test/bpf_common.h
+Processing: /home/sayandes/katran/katran/lib/linux_includes/bpf_helpers.h 
+Copying /home/sayandes/katran/katran/lib/linux_includes/bpf_helpers.h to test/bpf_helpers.h
+Processing: /home/sayandes/katran/katran/lib/linux_includes/bpf_endian.h 
+Copying /home/sayandes/katran/katran/lib/linux_includes/bpf_endian.h to test/bpf_endian.h
+Processing: /home/sayandes/katran/katran/lib/IOBufWriter.h 
+Copying /home/sayandes/katran/katran/lib/IOBufWriter.h to test/IOBufWriter.h
+Processing: /home/sayandes/katran/katran/lib/EventPipeCallback.h 
+Copying /home/sayandes/katran/katran/lib/EventPipeCallback.h to test/EventPipeCallback.h
+Processing: /home/sayandes/katran/katran/lib/KatranSimulator.h 
+Copying /home/sayandes/katran/katran/lib/KatranSimulator.h to test/KatranSimulator.h
+Processing: /home/sayandes/katran/katran/lib/MaglevHash.h 
+Copying /home/sayandes/katran/katran/lib/MaglevHash.h to test/MaglevHash.h
+Processing: /home/sayandes/katran/katran/lib/BpfAdapter.h 
+Copying /home/sayandes/katran/katran/lib/BpfAdapter.h to test/BpfAdapter.h
+Processing: /home/sayandes/katran/katran/lib/PcapMsgMeta.h 
+Copying /home/sayandes/katran/katran/lib/PcapMsgMeta.h to test/PcapMsgMeta.h
+Processing: /home/sayandes/katran/katran/lib/MacHelpers.h 
+Copying /home/sayandes/katran/katran/lib/MacHelpers.h to test/MacHelpers.h
+Processing: /home/sayandes/katran/katran/lib/IpHelpers.h 
+Copying /home/sayandes/katran/katran/lib/IpHelpers.h to test/IpHelpers.h
+Processing: /home/sayandes/katran/katran/lib/PipeWriter.h 
+Copying /home/sayandes/katran/katran/lib/PipeWriter.h to test/PipeWriter.h
+Processing: /home/sayandes/katran/katran/lib/MaglevBase.h 
+Copying /home/sayandes/katran/katran/lib/MaglevBase.h to test/MaglevBase.h
+Processing: /home/sayandes/katran/katran/lib/MonitoringStructs.h 
+Copying /home/sayandes/katran/katran/lib/MonitoringStructs.h to test/MonitoringStructs.h
+Processing: /home/sayandes/katran/katran/lib/bpf/introspection.h 
+Copying /home/sayandes/katran/katran/lib/bpf/introspection.h to test/introspection.h
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_kern-tpl.h 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_kern-tpl.h to test/balancer_kern-tpl.h
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_maps.h 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_maps.h to test/balancer_maps.h
+Processing: /home/sayandes/katran/katran/lib/bpf/pckt_encap.h 
+Copying /home/sayandes/katran/katran/lib/bpf/pckt_encap.h to test/pckt_encap.h
+Processing: /home/sayandes/katran/katran/lib/bpf/healthchecking_helpers.h 
+Copying /home/sayandes/katran/katran/lib/bpf/healthchecking_helpers.h to test/healthchecking_helpers.h
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_consts.h 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_consts.h to test/balancer_consts.h
+Processing: /home/sayandes/katran/katran/lib/bpf/encap_helpers.h 
+Copying /home/sayandes/katran/katran/lib/bpf/encap_helpers.h to test/encap_helpers.h
+Processing: /home/sayandes/katran/katran/lib/bpf/flow_debug.h 
+Copying /home/sayandes/katran/katran/lib/bpf/flow_debug.h to test/flow_debug.h
+Processing: /home/sayandes/katran/katran/lib/bpf/control_data_maps.h 
+Copying /home/sayandes/katran/katran/lib/bpf/control_data_maps.h to test/control_data_maps.h
+Processing: /home/sayandes/katran/katran/lib/bpf/healthchecking_structs.h 
+Copying /home/sayandes/katran/katran/lib/bpf/healthchecking_structs.h to test/healthchecking_structs.h
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_structs.h 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_structs.h to test/balancer_structs.h
+Processing: /home/sayandes/katran/katran/lib/bpf/healthchecking_maps.h 
+Copying /home/sayandes/katran/katran/lib/bpf/healthchecking_maps.h to test/healthchecking_maps.h
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_helpers.h 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_helpers.h to test/balancer_helpers.h
+Processing: /home/sayandes/katran/katran/lib/bpf/pckt_parsing.h 
+Copying /home/sayandes/katran/katran/lib/bpf/pckt_parsing.h to test/pckt_parsing.h
+Processing: /home/sayandes/katran/katran/lib/bpf/flow_debug_maps.h 
+Copying /home/sayandes/katran/katran/lib/bpf/flow_debug_maps.h to test/flow_debug_maps.h
+Processing: /home/sayandes/katran/katran/lib/bpf/flow_debug_helpers.h 
+Copying /home/sayandes/katran/katran/lib/bpf/flow_debug_helpers.h to test/flow_debug_helpers.h
+Processing: /home/sayandes/katran/katran/lib/bpf/csum_helpers.h 
+Copying /home/sayandes/katran/katran/lib/bpf/csum_helpers.h to test/csum_helpers.h
+Processing: /home/sayandes/katran/katran/lib/bpf/balancer_kern_flavors-tpl.h 
+Copying /home/sayandes/katran/katran/lib/bpf/balancer_kern_flavors-tpl.h to test/balancer_kern_flavors-tpl.h
+Processing: /home/sayandes/katran/katran/lib/bpf/healthchecking_consts.h 
+Copying /home/sayandes/katran/katran/lib/bpf/healthchecking_consts.h to test/healthchecking_consts.h
+Processing: /home/sayandes/katran/katran/lib/bpf/handle_icmp.h 
+Copying /home/sayandes/katran/katran/lib/bpf/handle_icmp.h to test/handle_icmp.h
+Processing: /home/sayandes/katran/katran/lib/KatranMonitor.h 
+Copying /home/sayandes/katran/katran/lib/KatranMonitor.h to test/KatranMonitor.h
+Processing: /home/sayandes/katran/katran/lib/KatranEventReader.h 
+Copying /home/sayandes/katran/katran/lib/KatranEventReader.h to test/KatranEventReader.h
+Processing: /home/sayandes/katran/katran/lib/MonitoringServiceCore.h 
+Copying /home/sayandes/katran/katran/lib/MonitoringServiceCore.h to test/MonitoringServiceCore.h
+Processing: /home/sayandes/katran/katran/lib/PcapMsg.h 
+Copying /home/sayandes/katran/katran/lib/PcapMsg.h to test/PcapMsg.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranGueTestFixtures.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranGueTestFixtures.h to test/KatranGueTestFixtures.h
+Processing: /home/sayandes/katran/katran/lib/testing/PcapParser.h 
+Copying /home/sayandes/katran/katran/lib/testing/PcapParser.h to test/PcapParser.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranOptionalTestFixtures.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranOptionalTestFixtures.h to test/KatranOptionalTestFixtures.h
+Processing: /home/sayandes/katran/katran/lib/testing/PacketAttributes.h 
+Copying /home/sayandes/katran/katran/lib/testing/PacketAttributes.h to test/PacketAttributes.h
+Processing: /home/sayandes/katran/katran/lib/testing/Base64Helpers.h 
+Copying /home/sayandes/katran/katran/lib/testing/Base64Helpers.h to test/Base64Helpers.h
+Processing: /home/sayandes/katran/katran/lib/testing/BpfTester.h 
+Copying /home/sayandes/katran/katran/lib/testing/BpfTester.h to test/BpfTester.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranTestProvision.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranTestProvision.h to test/KatranTestProvision.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranHCTestFixtures.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranHCTestFixtures.h to test/KatranHCTestFixtures.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranGueOptionalTestFixtures.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranGueOptionalTestFixtures.h to test/KatranGueOptionalTestFixtures.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranTestUtil.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranTestUtil.h to test/KatranTestUtil.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranTestFixtures.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranTestFixtures.h to test/KatranTestFixtures.h
+Processing: /home/sayandes/katran/katran/lib/testing/KatranTPRTestFixtures.h 
+Copying /home/sayandes/katran/katran/lib/testing/KatranTPRTestFixtures.h to test/KatranTPRTestFixtures.h
+Processing: /home/sayandes/katran/katran/lib/PerfBufferEventReader.h 
+Copying /home/sayandes/katran/katran/lib/PerfBufferEventReader.h to test/PerfBufferEventReader.h
+Processing: /home/sayandes/katran/katran/lib/MurmurHash3.h 
+Copying /home/sayandes/katran/katran/lib/MurmurHash3.h to test/MurmurHash3.h
+Processing: /home/sayandes/katran/katran/lib/KatranLbStructs.h 
+Copying /home/sayandes/katran/katran/lib/KatranLbStructs.h to test/KatranLbStructs.h
+Processing: /home/sayandes/katran/katran/lib/CHHelpers.h 
+Copying /home/sayandes/katran/katran/lib/CHHelpers.h to test/CHHelpers.h
+Processing: /home/sayandes/katran/katran/lib/ByteRangeWriter.h 
+Copying /home/sayandes/katran/katran/lib/ByteRangeWriter.h to test/ByteRangeWriter.h
+Processing: /home/sayandes/katran/katran/lib/FileWriter.h 
+Copying /home/sayandes/katran/katran/lib/FileWriter.h to test/FileWriter.h
+Processing: /home/sayandes/katran/katran/lib/Vip.h 
+Copying /home/sayandes/katran/katran/lib/Vip.h to test/Vip.h
+Processing: /home/sayandes/katran/katran/lib/DataWriter.h 
+Copying /home/sayandes/katran/katran/lib/DataWriter.h to test/DataWriter.h
+Processing: /home/sayandes/katran/katran/lib/BpfLoader.h 
+Copying /home/sayandes/katran/katran/lib/BpfLoader.h to test/BpfLoader.h
+Processing: /home/sayandes/katran/katran/lib/BalancerStructs.h 
+Copying /home/sayandes/katran/katran/lib/BalancerStructs.h to test/BalancerStructs.h
+Processing: /home/sayandes/katran/katran/decap/XdpDecapStructs.h 
+Copying /home/sayandes/katran/katran/decap/XdpDecapStructs.h to test/XdpDecapStructs.h
+Processing: /home/sayandes/katran/katran/decap/bpf/decap_maps.h 
+Copying /home/sayandes/katran/katran/decap/bpf/decap_maps.h to test/decap_maps.h
+Processing: /home/sayandes/katran/katran/decap/XdpDecap.h 
+Copying /home/sayandes/katran/katran/decap/XdpDecap.h to test/XdpDecap.h
+Processing: /home/sayandes/katran/katran/decap/testing/XdpDecapTestFixtures.h 
+Copying /home/sayandes/katran/katran/decap/testing/XdpDecapTestFixtures.h to test/XdpDecapTestFixtures.h
+Processing: /home/sayandes/katran/katran/decap/testing/XdpDecapGueTestFixtures.h 
+Copying /home/sayandes/katran/katran/decap/testing/XdpDecapGueTestFixtures.h to test/XdpDecapGueTestFixtures.h
+Processing: /home/sayandes/katran/tools/xdpdump/XdpDumpStructs.h 
+Copying /home/sayandes/katran/tools/xdpdump/XdpDumpStructs.h to test/XdpDumpStructs.h
+Processing: /home/sayandes/katran/tools/xdpdump/XdpEventReader.h 
+Copying /home/sayandes/katran/tools/xdpdump/XdpEventReader.h to test/XdpEventReader.h
+Processing: /home/sayandes/katran/tools/xdpdump/XdpEventLogger.h 
+Copying /home/sayandes/katran/tools/xdpdump/XdpEventLogger.h to test/XdpEventLogger.h
+Processing: /home/sayandes/katran/tools/xdpdump/XdpDumpKern.h 
+Copying /home/sayandes/katran/tools/xdpdump/XdpDumpKern.h to test/XdpDumpKern.h
+Processing: /home/sayandes/katran/tools/xdpdump/XdpDump.h 
+Copying /home/sayandes/katran/tools/xdpdump/XdpDump.h to test/XdpDump.h
+Processing: /home/sayandes/katran/example_grpc/GrpcSignalHandler.h 
+Copying /home/sayandes/katran/example_grpc/GrpcSignalHandler.h to test/GrpcSignalHandler.h
+Processing: /home/sayandes/katran/example_grpc/KatranGrpcService.h 
+Copying /home/sayandes/katran/example_grpc/KatranGrpcService.h to test/KatranGrpcService.h
+Processing: /home/sayandes/katran/example/KatranSimpleServiceSignalHandler.h 
+Copying /home/sayandes/katran/example/KatranSimpleServiceSignalHandler.h to test/KatranSimpleServiceSignalHandler.h
+Processing: /home/sayandes/katran/example/client/KatranSimpleClient.h 
+Copying /home/sayandes/katran/example/client/KatranSimpleClient.h to test/KatranSimpleClient.h
+Processing: /home/sayandes/katran/example/KatranSimpleServiceHandler.h 
+Copying /home/sayandes/katran/example/KatranSimpleServiceHandler.h to test/KatranSimpleServiceHandler.h

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+<source file="./test/xdp_root.c" funcheader="SEC (\"xdp\") int xdp_root (struct xdp_md *ctx)" startline="29" endline="37">
+SEC ("xdp")
+int xdp_root (struct xdp_md *ctx) {
+    __u32 *fd;
+#pragma clang loop unroll(full)
+    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
+        bpf_tail_call (ctx, & root_array, i);
+    }
+    return XDP_PASS;
+}
+</source>
+</doc>

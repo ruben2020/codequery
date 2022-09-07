@@ -8,10 +8,18 @@ include "C18/bom.grm"
 % include "C18/c-comments.grm"
 % TODO: uncommenting is leading to issues with multiline '//' comments, so disabled
 
+define begin_marker
+ [NL] '<[SPOFF] 'struct '>[SPON] [NL]
+end define
+
+define end_marker
+ '<[SPOFF] '/struct '>[SPON] [NL]
+end define
+
+
 redefine function_definition_or_declaration
-	%[function_definition]  
 	[function_definition]
-    |[opt stringlit]	[declaration] [opt stringlit]
+    |	[opt begin_marker] [declaration] [opt end_marker]
 #ifdef PREPROCESSOR
     |	[preprocessor]
 #endif
@@ -26,32 +34,57 @@ end redefine
 rule replaceStruct0
 	replace [function_definition_or_declaration]
 	  T [struct_or_union_specifier] S [semi] 
-	by
-	   "beginStruct"  T S "endStruct"
-end rule
 
+	construct BEG [begin_marker]
+	 '< 'struct  '>
+
+	construct END [end_marker]
+	 '<  '/struct '>
+
+	by
+	   BEG  T S END
+end rule
 
 rule replaceStruct1
 	replace [function_definition_or_declaration]
 	  T [struct_or_union_specifier] P [reference_id] S [semi] 
+
+	construct BEG [begin_marker]
+	 '< 'struct '>
+
+	construct END [end_marker]
+	 '< '/struct '>
+
 	by
-	   "beginStruct"  T P S "endStruct"
-	 
+	   BEG  T P S END
 end rule
 
 rule replaceStruct2
 	replace [function_definition_or_declaration]
 	  T [struct_or_union_specifier] P [reference_id] U [decl_qualifier_or_type_specifier] S [semi]  
+
+	construct BEG [begin_marker]
+	 '< 'struct '>
+
+	construct END [end_marker]
+	 '< '/struct '>
+
 	by
-	   "beginStruct"  T P U S "endStruct  "
-	 
+	   BEG T P U S END 
 end rule
 
 rule replaceStruct3
 	replace [function_definition_or_declaration]
 	  T [struct_or_union_specifier]  M [macro_specifier] P [init_declarator]  S [semi]  
+
+	construct BEG [begin_marker]
+	 '< 'struct '>
+
+	construct END [end_marker]
+	 '< '/struct '>
+
 	by
-	 "beginStruct"  T  M   P  S "endStruct"
+	 BEG  T  M   P  S END
 end rule
 
 function main 
@@ -63,4 +96,3 @@ function main
 		  [replaceStruct2]
 		  [replaceStruct3]
 end function
-

@@ -26,8 +26,18 @@ struct {
   __uint(max_entries, ROOT_ARRAY_SIZE);
 } root_array SEC(".maps");
 
-SEC("xdp")
-int xdp_root(struct xdp_md* ctx) {
+
+int SEC("xdp") xdp_root(struct xdp_md* ctx) {
+  __u32* fd;
+#pragma clang loop unroll(full)
+  for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
+    bpf_tail_call(ctx, &root_array, i);
+  }
+  return XDP_PASS;
+}
+
+
+int SEC("xdp") xdp_val(struct xdp_md* ctx) {
   __u32* fd;
 #pragma clang loop unroll(full)
   for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {

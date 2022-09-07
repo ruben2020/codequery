@@ -1,336 +1,66 @@
-Successful annotation for file: ./test/balancer_kern.c
-Successful annotation for file: ./test/decap_kern.c
-Successful annotation for file: ./test/x.c
-Successful annotation for file: ./test/xdp_root.c
-Successful annotation for file: ./test/healthchecking_kern.c
-Successful annotation for file: ./test/xdp_pktcntr.c
-Successful annotation for file: ./test/healthchecking_ipip.c
-Successful annotation for file: ./extracted.c
-Successful annotation for file: ./xdp_root.c
-Successful annotation for file: ./build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c
-Successful annotation for file: ./querylib/small_lib.h
-Successful annotation for file: ./querylib/getopt2.h
-Successful annotation for file: ./querylib/sqlquery.h
-Successful annotation for file: ./test/introspection.h
-Successful annotation for file: ./test/balancer_kern-tpl.h
-Successful annotation for file: ./test/balancer_maps.h
-Successful annotation for file: ./test/pckt_encap.h
-Successful annotation for file: ./test/healthchecking_helpers.h
-Successful annotation for file: ./test/balancer_consts.h
-Successful annotation for file: ./test/encap_helpers.h
-Successful annotation for file: ./test/flow_debug.h
-Successful annotation for file: ./test/jhash.h
-Successful annotation for file: ./test/control_data_maps.h
-Successful annotation for file: ./test/healthchecking_structs.h
-Successful annotation for file: ./test/balancer_structs.h
-Successful annotation for file: ./test/healthchecking_maps.h
-Successful annotation for file: ./test/balancer_helpers.h
-Successful annotation for file: ./test/pckt_parsing.h
-Successful annotation for file: ./test/flow_debug_maps.h
-Successful annotation for file: ./test/decap_maps.h
-Successful annotation for file: ./test/bpf.h
-Successful annotation for file: ./test/flow_debug_helpers.h
-Successful annotation for file: ./test/bpf_common.h
-Successful annotation for file: ./test/csum_helpers.h
-Successful annotation for file: ./test/bpf_helpers.h
-Successful annotation for file: ./test/bpf_endian.h
-Successful annotation for file: ./test/balancer_kern_flavors-tpl.h
-Successful annotation for file: ./test/healthchecking_consts.h
-Successful annotation for file: ./test/handle_icmp.h
-Successful annotation for file: ./gui/langtable.h
-Successful annotation for file: ./gui/searchhandler.h
-Successful annotation for file: ./gui/aboutdialog.h
-Successful annotation for file: ./gui/fileviewsettingsdialog.h
-Successful annotation for file: ./gui/fileviewer.h
-Successful annotation for file: ./gui/listhandler.h
-Successful annotation for file: ./gui/graphdialog.h
-Successful annotation for file: ./gui/themes.h
-Successful annotation for file: ./gui/mainwindow.h
-Successful annotation for file: ./makedb/csdbheader.h
-Successful annotation for file: ./makedb/swver.h
-Successful annotation for file: ./makedb/cscommon.h
-Successful annotation for file: ./makedb/ctagread.h
-Successful annotation for file: ./makedb/csdbparser.h
-Successful annotation for file: ./makedb/cs2sq.h
-Successful annotation for file: ./makedb/sqlbase.h
-Successful annotation for file: ./scintilla/lexlib/OptionSet.h
-Successful annotation for file: ./scintilla/lexlib/Accessor.h
-Successful annotation for file: ./scintilla/lexlib/LexerModule.h
-Successful annotation for file: ./scintilla/lexlib/WordList.h
-Successful annotation for file: ./scintilla/lexlib/StringCopy.h
-Successful annotation for file: ./scintilla/lexlib/CharacterSet.h
-Successful annotation for file: ./scintilla/lexlib/StyleContext.h
-Successful annotation for file: ./scintilla/lexlib/LexAccessor.h
-Successful annotation for file: ./scintilla/lexlib/LexerBase.h
-Successful annotation for file: ./scintilla/lexlib/DefaultLexer.h
-Successful annotation for file: ./scintilla/lexlib/CharacterCategory.h
-Successful annotation for file: ./scintilla/lexlib/LexerSimple.h
-Successful annotation for file: ./scintilla/lexlib/SparseState.h
-Successful annotation for file: ./scintilla/lexlib/LexerNoExceptions.h
-Successful annotation for file: ./scintilla/lexlib/SubStyles.h
-Successful annotation for file: ./scintilla/lexlib/PropSetSimple.h
-Successful annotation for file: ./scintilla/lexlib/CatalogueModules.h
-Successful annotation for file: ./scintilla/qt/ScintillaEdit/ScintillaEdit.h
-Successful annotation for file: ./scintilla/qt/ScintillaEdit/ScintillaDocument.h
-Successful annotation for file: ./scintilla/qt/ScintillaEditPy/global.h
-Successful annotation for file: ./scintilla/qt/ScintillaEditBase/PlatQt.h
-Successful annotation for file: ./scintilla/qt/ScintillaEditBase/ScintillaQt.h
-Successful annotation for file: ./scintilla/qt/ScintillaEditBase/ScintillaEditBase.h
-Successful annotation for file: ./scintilla/include/SciLexer.h
-Successful annotation for file: ./scintilla/include/ILexer.h
-Successful annotation for file: ./scintilla/include/Platform.h
-Successful annotation for file: ./scintilla/include/ScintillaWidget.h
-Successful annotation for file: ./scintilla/include/Compat.h
-Successful annotation for file: ./scintilla/include/ILoader.h
-Successful annotation for file: ./scintilla/include/Sci_Position.h
-Successful annotation for file: ./scintilla/include/Scintilla.h
-Successful annotation for file: ./scintilla/src/ContractionState.h
-Successful annotation for file: ./scintilla/src/ViewStyle.h
-Successful annotation for file: ./scintilla/src/RunStyles.h
-Successful annotation for file: ./scintilla/src/PositionCache.h
-Successful annotation for file: ./scintilla/src/ExternalLexer.h
-Successful annotation for file: ./scintilla/src/Editor.h
-Successful annotation for file: ./scintilla/src/FontQuality.h
-Successful annotation for file: ./scintilla/src/Document.h
-Successful annotation for file: ./scintilla/src/Position.h
-Successful annotation for file: ./scintilla/src/RESearch.h
-Successful annotation for file: ./scintilla/src/CharClassify.h
-Successful annotation for file: ./scintilla/src/Indicator.h
-Successful annotation for file: ./scintilla/src/CaseFolder.h
-Successful annotation for file: ./scintilla/src/IntegerRectangle.h
-Successful annotation for file: ./scintilla/src/DBCS.h
-Successful annotation for file: ./scintilla/src/CaseConvert.h
-Successful annotation for file: ./scintilla/src/MarginView.h
-Successful annotation for file: ./scintilla/src/Decoration.h
-Successful annotation for file: ./scintilla/src/SplitVector.h
-Successful annotation for file: ./scintilla/src/XPM.h
-Successful annotation for file: ./scintilla/src/UniConversion.h
-Successful annotation for file: ./scintilla/src/CallTip.h
-Successful annotation for file: ./scintilla/src/LineMarker.h
-Successful annotation for file: ./scintilla/src/Selection.h
-Successful annotation for file: ./scintilla/src/CellBuffer.h
-Successful annotation for file: ./scintilla/src/SparseVector.h
-Successful annotation for file: ./scintilla/src/KeyMap.h
-Successful annotation for file: ./scintilla/src/EditModel.h
-Successful annotation for file: ./scintilla/src/AutoComplete.h
-Successful annotation for file: ./scintilla/src/PerLine.h
-Successful annotation for file: ./scintilla/src/Style.h
-Successful annotation for file: ./scintilla/src/Partitioning.h
-Successful annotation for file: ./scintilla/src/ElapsedPeriod.h
-Successful annotation for file: ./scintilla/src/Catalogue.h
-Successful annotation for file: ./scintilla/src/EditView.h
-Successful annotation for file: ./scintilla/src/UniqueString.h
-Successful annotation for file: ./scintilla/src/ScintillaBase.h
-Successful annotation for file: ./showgraph/Utils/mem.h
-Successful annotation for file: ./showgraph/Utils/asrt.h
-Successful annotation for file: ./showgraph/Utils/mem_ref.h
-Successful annotation for file: ./showgraph/Utils/mem_chunk.h
-Successful annotation for file: ./showgraph/Utils/mem_obj.h
-Successful annotation for file: ./showgraph/Utils/print.h
-Successful annotation for file: ./showgraph/Utils/mem_entry.h
-Successful annotation for file: ./showgraph/Utils/list.h
-Successful annotation for file: ./showgraph/Utils/mem_fixed_pool.h
-Successful annotation for file: ./showgraph/Utils/conf.h
-Successful annotation for file: ./showgraph/Utils/singleton.h
-Successful annotation for file: ./showgraph/Utils/ulist.h
-Successful annotation for file: ./showgraph/Utils/mem_mgr.h
-Successful annotation for file: ./showgraph/Utils/misc.h
-Successful annotation for file: ./showgraph/Utils/mem_pool.h
-Successful annotation for file: ./showgraph/Utils/utils_iface.h
-Successful annotation for file: ./showgraph/showgraph.h
-Successful annotation for file: ./showgraph/Graph/marker.h
-Successful annotation for file: ./showgraph/Graph/graph.h
-Successful annotation for file: ./showgraph/Graph/edge.h
-Successful annotation for file: ./showgraph/Graph/graph_inline.h
-Successful annotation for file: ./showgraph/Graph/agraph.h
-Successful annotation for file: ./showgraph/Graph/node.h
-Successful annotation for file: ./showgraph/Graph/predecls.h
-Successful annotation for file: ./showgraph/Graph/node_inline.h
-Successful annotation for file: ./showgraph/Graph/num.h
-Successful annotation for file: ./showgraph/Graph/node_iter.h
-Successful annotation for file: ./showgraph/Graph/edge_inline.h
-Successful annotation for file: ./showgraph/Graph/graph_iface.h
-Successful annotation for file: ./showgraph/GraphView/gview_iface.h
-Successful annotation for file: ./showgraph/GraphView/gstyle.h
-Successful annotation for file: ./showgraph/GraphView/edge_item.h
-Successful annotation for file: ./showgraph/GraphView/navigation.h
-Successful annotation for file: ./showgraph/GraphView/style_edit.h
-Successful annotation for file: ./showgraph/GraphView/visible_edge.h
-Successful annotation for file: ./showgraph/GraphView/node_item.h
-Successful annotation for file: ./showgraph/GraphView/gview_impl.h
-Successful annotation for file: ./showgraph/GraphView/graph_view.h
-Successful annotation for file: ./showgraph/GraphView/edge_helper.h
-Successful annotation for file: ./showgraph/core_iface.h
-Successful annotation for file: ./showgraph/Layout/node_group.h
-Successful annotation for file: ./showgraph/Layout/aux_edge.h
-Successful annotation for file: ./showgraph/Layout/aux_node.h
-Successful annotation for file: ./showgraph/Layout/aux_graph.h
-Successful annotation for file: ./showgraph/Layout/layout_iface.h
-Successful annotation for file: ./test/balancer_kern.c
-Successful annotation for file: ./test/decap_kern.c
-Successful annotation for file: ./test/x.c
-Successful annotation for file: ./test/xdp_root.c
-Successful annotation for file: ./test/healthchecking_kern.c
-Successful annotation for file: ./test/xdp_pktcntr.c
-Successful annotation for file: ./test/healthchecking_ipip.c
-Successful annotation for file: ./extracted.c
-Successful annotation for file: ./xdp_root.c
-Failed annotation for file: ./build/CMakeFiles/3.16.3/CompilerIdC/CMakeCCompilerId.c
-Failed annotation for file: ./querylib/small_lib.h
-Successful annotation for file: ./querylib/getopt2.h
-Failed annotation for file: ./querylib/sqlquery.h
-Successful annotation for file: ./test/introspection.h
-Failed annotation for file: ./test/balancer_kern-tpl.h
-Successful annotation for file: ./test/balancer_maps.h
-Successful annotation for file: ./test/pckt_encap.h
-Successful annotation for file: ./test/healthchecking_helpers.h
-Successful annotation for file: ./test/balancer_consts.h
-Successful annotation for file: ./test/encap_helpers.h
-Successful annotation for file: ./test/flow_debug.h
-Successful annotation for file: ./test/jhash.h
-Successful annotation for file: ./test/control_data_maps.h
-Successful annotation for file: ./test/healthchecking_structs.h
-Successful annotation for file: ./test/balancer_structs.h
-Successful annotation for file: ./test/healthchecking_maps.h
-Successful annotation for file: ./test/balancer_helpers.h
-Successful annotation for file: ./test/pckt_parsing.h
-Successful annotation for file: ./test/flow_debug_maps.h
-Successful annotation for file: ./test/decap_maps.h
-Successful annotation for file: ./test/bpf.h
-Successful annotation for file: ./test/flow_debug_helpers.h
-Successful annotation for file: ./test/bpf_common.h
-Successful annotation for file: ./test/csum_helpers.h
-Successful annotation for file: ./test/bpf_helpers.h
-Successful annotation for file: ./test/bpf_endian.h
-Failed annotation for file: ./test/balancer_kern_flavors-tpl.h
-Successful annotation for file: ./test/healthchecking_consts.h
-Successful annotation for file: ./test/handle_icmp.h
-Failed annotation for file: ./gui/langtable.h
-Failed annotation for file: ./gui/searchhandler.h
-Failed annotation for file: ./gui/aboutdialog.h
-Failed annotation for file: ./gui/fileviewsettingsdialog.h
-Failed annotation for file: ./gui/fileviewer.h
-Failed annotation for file: ./gui/listhandler.h
-Failed annotation for file: ./gui/graphdialog.h
-Failed annotation for file: ./gui/themes.h
-Failed annotation for file: ./gui/mainwindow.h
-Failed annotation for file: ./makedb/csdbheader.h
-Successful annotation for file: ./makedb/swver.h
-Successful annotation for file: ./makedb/cscommon.h
-Failed annotation for file: ./makedb/ctagread.h
-Failed annotation for file: ./makedb/csdbparser.h
-Failed annotation for file: ./makedb/cs2sq.h
-Failed annotation for file: ./makedb/sqlbase.h
-Failed annotation for file: ./scintilla/lexlib/OptionSet.h
-Failed annotation for file: ./scintilla/lexlib/Accessor.h
-Failed annotation for file: ./scintilla/lexlib/LexerModule.h
-Failed annotation for file: ./scintilla/lexlib/WordList.h
-Failed annotation for file: ./scintilla/lexlib/StringCopy.h
-Failed annotation for file: ./scintilla/lexlib/CharacterSet.h
-Failed annotation for file: ./scintilla/lexlib/StyleContext.h
-Failed annotation for file: ./scintilla/lexlib/LexAccessor.h
-Failed annotation for file: ./scintilla/lexlib/LexerBase.h
-Failed annotation for file: ./scintilla/lexlib/DefaultLexer.h
-Failed annotation for file: ./scintilla/lexlib/CharacterCategory.h
-Failed annotation for file: ./scintilla/lexlib/LexerSimple.h
-Failed annotation for file: ./scintilla/lexlib/SparseState.h
-Failed annotation for file: ./scintilla/lexlib/LexerNoExceptions.h
-Failed annotation for file: ./scintilla/lexlib/SubStyles.h
-Failed annotation for file: ./scintilla/lexlib/PropSetSimple.h
-Failed annotation for file: ./scintilla/lexlib/CatalogueModules.h
-Failed annotation for file: ./scintilla/qt/ScintillaEdit/ScintillaEdit.h
-Failed annotation for file: ./scintilla/qt/ScintillaEdit/ScintillaDocument.h
-Successful annotation for file: ./scintilla/qt/ScintillaEditPy/global.h
-Failed annotation for file: ./scintilla/qt/ScintillaEditBase/PlatQt.h
-Failed annotation for file: ./scintilla/qt/ScintillaEditBase/ScintillaQt.h
-Failed annotation for file: ./scintilla/qt/ScintillaEditBase/ScintillaEditBase.h
-Successful annotation for file: ./scintilla/include/SciLexer.h
-Failed annotation for file: ./scintilla/include/ILexer.h
-Failed annotation for file: ./scintilla/include/Platform.h
-Successful annotation for file: ./scintilla/include/ScintillaWidget.h
-Failed annotation for file: ./scintilla/include/Compat.h
-Failed annotation for file: ./scintilla/include/ILoader.h
-Successful annotation for file: ./scintilla/include/Sci_Position.h
-Successful annotation for file: ./scintilla/include/Scintilla.h
-Failed annotation for file: ./scintilla/src/ContractionState.h
-Failed annotation for file: ./scintilla/src/ViewStyle.h
-Failed annotation for file: ./scintilla/src/RunStyles.h
-Failed annotation for file: ./scintilla/src/PositionCache.h
-Failed annotation for file: ./scintilla/src/ExternalLexer.h
-Failed annotation for file: ./scintilla/src/Editor.h
-Failed annotation for file: ./scintilla/src/FontQuality.h
-Failed annotation for file: ./scintilla/src/Document.h
-Failed annotation for file: ./scintilla/src/Position.h
-Failed annotation for file: ./scintilla/src/RESearch.h
-Failed annotation for file: ./scintilla/src/CharClassify.h
-Failed annotation for file: ./scintilla/src/Indicator.h
-Failed annotation for file: ./scintilla/src/CaseFolder.h
-Failed annotation for file: ./scintilla/src/IntegerRectangle.h
-Failed annotation for file: ./scintilla/src/DBCS.h
-Failed annotation for file: ./scintilla/src/CaseConvert.h
-Failed annotation for file: ./scintilla/src/MarginView.h
-Failed annotation for file: ./scintilla/src/Decoration.h
-Failed annotation for file: ./scintilla/src/SplitVector.h
-Failed annotation for file: ./scintilla/src/XPM.h
-Failed annotation for file: ./scintilla/src/UniConversion.h
-Failed annotation for file: ./scintilla/src/CallTip.h
-Failed annotation for file: ./scintilla/src/LineMarker.h
-Failed annotation for file: ./scintilla/src/Selection.h
-Failed annotation for file: ./scintilla/src/CellBuffer.h
-Failed annotation for file: ./scintilla/src/SparseVector.h
-Failed annotation for file: ./scintilla/src/KeyMap.h
-Failed annotation for file: ./scintilla/src/EditModel.h
-Failed annotation for file: ./scintilla/src/AutoComplete.h
-Failed annotation for file: ./scintilla/src/PerLine.h
-Failed annotation for file: ./scintilla/src/Style.h
-Failed annotation for file: ./scintilla/src/Partitioning.h
-Failed annotation for file: ./scintilla/src/ElapsedPeriod.h
-Failed annotation for file: ./scintilla/src/Catalogue.h
-Failed annotation for file: ./scintilla/src/EditView.h
-Failed annotation for file: ./scintilla/src/UniqueString.h
-Failed annotation for file: ./scintilla/src/ScintillaBase.h
-Failed annotation for file: ./showgraph/Utils/mem.h
-Failed annotation for file: ./showgraph/Utils/asrt.h
-Failed annotation for file: ./showgraph/Utils/mem_ref.h
-Failed annotation for file: ./showgraph/Utils/mem_chunk.h
-Failed annotation for file: ./showgraph/Utils/mem_obj.h
-Failed annotation for file: ./showgraph/Utils/print.h
-Failed annotation for file: ./showgraph/Utils/mem_entry.h
-Failed annotation for file: ./showgraph/Utils/list.h
-Failed annotation for file: ./showgraph/Utils/mem_fixed_pool.h
-Failed annotation for file: ./showgraph/Utils/conf.h
-Failed annotation for file: ./showgraph/Utils/singleton.h
-Successful annotation for file: ./showgraph/Utils/ulist.h
-Failed annotation for file: ./showgraph/Utils/mem_mgr.h
-Failed annotation for file: ./showgraph/Utils/misc.h
-Failed annotation for file: ./showgraph/Utils/mem_pool.h
-Failed annotation for file: ./showgraph/Utils/utils_iface.h
-Failed annotation for file: ./showgraph/showgraph.h
-Failed annotation for file: ./showgraph/Graph/marker.h
-Failed annotation for file: ./showgraph/Graph/graph.h
-Failed annotation for file: ./showgraph/Graph/edge.h
-Failed annotation for file: ./showgraph/Graph/graph_inline.h
-Failed annotation for file: ./showgraph/Graph/agraph.h
-Failed annotation for file: ./showgraph/Graph/node.h
-Successful annotation for file: ./showgraph/Graph/predecls.h
-Failed annotation for file: ./showgraph/Graph/node_inline.h
-Failed annotation for file: ./showgraph/Graph/num.h
-Failed annotation for file: ./showgraph/Graph/node_iter.h
-Failed annotation for file: ./showgraph/Graph/edge_inline.h
-Successful annotation for file: ./showgraph/Graph/graph_iface.h
-Failed annotation for file: ./showgraph/GraphView/gview_iface.h
-Failed annotation for file: ./showgraph/GraphView/gstyle.h
-Failed annotation for file: ./showgraph/GraphView/edge_item.h
-Failed annotation for file: ./showgraph/GraphView/navigation.h
-Failed annotation for file: ./showgraph/GraphView/style_edit.h
-Failed annotation for file: ./showgraph/GraphView/visible_edge.h
-Failed annotation for file: ./showgraph/GraphView/node_item.h
-Successful annotation for file: ./showgraph/GraphView/gview_impl.h
-Failed annotation for file: ./showgraph/GraphView/graph_view.h
-Failed annotation for file: ./showgraph/GraphView/edge_helper.h
-Successful annotation for file: ./showgraph/core_iface.h
-Failed annotation for file: ./showgraph/Layout/node_group.h
-Failed annotation for file: ./showgraph/Layout/aux_edge.h
-Failed annotation for file: ./showgraph/Layout/aux_node.h
-Failed annotation for file: ./showgraph/Layout/aux_graph.h
-Successful annotation for file: ./showgraph/Layout/layout_iface.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_kern.c
+Successful struct annotation for file: /home/sayandes/codequery/test/balancer_kern.c
+Successful function annotation for file: /home/sayandes/codequery/test/decap_kern.c
+Successful struct annotation for file: /home/sayandes/codequery/test/decap_kern.c
+Successful function annotation for file: /home/sayandes/codequery/test/x.c
+Successful struct annotation for file: /home/sayandes/codequery/test/x.c
+Successful function annotation for file: /home/sayandes/codequery/test/xdp_root.c
+Successful struct annotation for file: /home/sayandes/codequery/test/xdp_root.c
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_kern.c
+Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_kern.c
+Successful function annotation for file: /home/sayandes/codequery/test/xdp_pktcntr.c
+Successful struct annotation for file: /home/sayandes/codequery/test/xdp_pktcntr.c
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_ipip.c
+Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_ipip.c
+Successful function annotation for file: /home/sayandes/codequery/test/introspection.h
+Successful struct annotation for file: /home/sayandes/codequery/test/introspection.h
+Failed function annotation for file: /home/sayandes/codequery/test/balancer_kern-tpl.h
+Failed struct annotation for file: /home/sayandes/codequery/test/balancer_kern-tpl.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_maps.h
+Successful struct annotation for file: /home/sayandes/codequery/test/balancer_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/pckt_encap.h
+Successful struct annotation for file: /home/sayandes/codequery/test/pckt_encap.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_helpers.h
+Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_consts.h
+Successful struct annotation for file: /home/sayandes/codequery/test/balancer_consts.h
+Successful function annotation for file: /home/sayandes/codequery/test/encap_helpers.h
+Successful struct annotation for file: /home/sayandes/codequery/test/encap_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/flow_debug.h
+Successful struct annotation for file: /home/sayandes/codequery/test/flow_debug.h
+Successful function annotation for file: /home/sayandes/codequery/test/jhash.h
+Successful struct annotation for file: /home/sayandes/codequery/test/jhash.h
+Successful function annotation for file: /home/sayandes/codequery/test/control_data_maps.h
+Successful struct annotation for file: /home/sayandes/codequery/test/control_data_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_structs.h
+Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_structs.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_structs.h
+Successful struct annotation for file: /home/sayandes/codequery/test/balancer_structs.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_maps.h
+Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_helpers.h
+Successful struct annotation for file: /home/sayandes/codequery/test/balancer_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/pckt_parsing.h
+Successful struct annotation for file: /home/sayandes/codequery/test/pckt_parsing.h
+Successful function annotation for file: /home/sayandes/codequery/test/flow_debug_maps.h
+Successful struct annotation for file: /home/sayandes/codequery/test/flow_debug_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/decap_maps.h
+Successful struct annotation for file: /home/sayandes/codequery/test/decap_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf.h
+Successful struct annotation for file: /home/sayandes/codequery/test/bpf.h
+Successful function annotation for file: /home/sayandes/codequery/test/flow_debug_helpers.h
+Successful struct annotation for file: /home/sayandes/codequery/test/flow_debug_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf_common.h
+Successful struct annotation for file: /home/sayandes/codequery/test/bpf_common.h
+Successful function annotation for file: /home/sayandes/codequery/test/csum_helpers.h
+Successful struct annotation for file: /home/sayandes/codequery/test/csum_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf_helpers.h
+Successful struct annotation for file: /home/sayandes/codequery/test/bpf_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf_endian.h
+Successful struct annotation for file: /home/sayandes/codequery/test/bpf_endian.h
+Failed function annotation for file: /home/sayandes/codequery/test/balancer_kern_flavors-tpl.h
+Failed struct annotation for file: /home/sayandes/codequery/test/balancer_kern_flavors-tpl.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_consts.h
+Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_consts.h
+Successful function annotation for file: /home/sayandes/codequery/test/handle_icmp.h
+Successful struct annotation for file: /home/sayandes/codequery/test/handle_icmp.h

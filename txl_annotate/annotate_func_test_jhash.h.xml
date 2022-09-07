@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/test/jhash.h" funcheader="static inline __u32 rol32 (__u32 word, unsigned int shift)" startline="7" endline="9">
+static inline __u32 rol32 (__u32 word, unsigned int shift) {
+    return (word << shift) | (word >> ((-shift) & 31));
+}
+</source>
+<source file="/home/sayandes/codequery/test/jhash.h" funcheader="static inline u32 jhash (const void *key, u32 length, u32 initval)" startline="55" endline="100">
+static inline u32 jhash (const void *key, u32 length, u32 initval) {
+    u32 a, b, c;
+    const unsigned char *k = key;
+    a = b = c = JHASH_INITVAL + length + initval;
+    while (length > 12) {
+        a += *(u32*) (k);
+        b += *(u32*) (k + 4);
+        c += *(u32*) (k + 8);
+        __jhash_mix (a, b, c);
+        length -= 12;
+        k += 12;
+    }
+    switch (length) {
+    case 12 :
+        c += (u32) k[11] << 24;
+    case 11 :
+        c += (u32) k[10] << 16;
+    case 10 :
+        c += (u32) k[9] << 8;
+    case 9 :
+        c += k[8];
+    case 8 :
+        b += (u32) k[7] << 24;
+    case 7 :
+        b += (u32) k[6] << 16;
+    case 6 :
+        b += (u32) k[5] << 8;
+    case 5 :
+        b += k[4];
+    case 4 :
+        a += (u32) k[3] << 24;
+    case 3 :
+        a += (u32) k[2] << 16;
+    case 2 :
+        a += (u32) k[1] << 8;
+    case 1 :
+        a += k[0];
+        __jhash_final (a, b, c);
+    case 0 :
+        break;
+    }
+    return c;
+}
+</source>
+<source file="/home/sayandes/codequery/test/jhash.h" funcheader="static inline u32 __jhash_nwords (u32 a, u32 b, u32 c, u32 initval)" startline="102" endline="108">
+static inline u32 __jhash_nwords (u32 a, u32 b, u32 c, u32 initval) {
+    a += initval;
+    b += initval;
+    c += initval;
+    __jhash_final (a, b, c);
+    return c;
+}
+</source>
+<source file="/home/sayandes/codequery/test/jhash.h" funcheader="static inline u32 jhash_2words (u32 a, u32 b, u32 initval)" startline="110" endline="112">
+static inline u32 jhash_2words (u32 a, u32 b, u32 initval) {
+    return __jhash_nwords (a, b, 0, initval +JHASH_INITVAL + (2 << 2));
+}
+</source>
+<source file="/home/sayandes/codequery/test/jhash.h" funcheader="static inline u32 jhash_1word (u32 a, u32 initval)" startline="114" endline="116">
+static inline u32 jhash_1word (u32 a, u32 initval) {
+    return __jhash_nwords (a, 0, 0, initval +JHASH_INITVAL + (1 << 2));
+}
+</source>
+</doc>

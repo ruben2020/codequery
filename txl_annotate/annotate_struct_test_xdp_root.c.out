@@ -1,26 +1,34 @@
-<?xml version="1.0"?>
-<doc>
-<source file="xdp_root.c" funcheader="int SEC (\"xdp\") xdp_root (struct xdp_md *ctx)" startline="30" endline="37">
-int SEC ("xdp")
-xdp_root (struct xdp_md *ctx) {
-    __u32 *fd;
-#pragma clang loop unroll(full)
-    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
-        bpf_tail_call (ctx, & root_array, i);
-    }
-    return XDP_PASS;
-}
-</source>
-<source file="xdp_root.c" funcheader="int xdp_val (struct xdp_md *ctx)" startline="40" endline="47">
-int SEC ("xdp")
-xdp_root (struct xdp_md *ctx) {
-    __u32 *fd;
-#pragma clang loop unroll(full)
-    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
-        bpf_tail_call (ctx, & root_array, i);
-    }
-    return XDP_PASS;
-}
-</source>
+#include "bpf.h"
+#include "bpf_helpers.h"
+#define ROOT_ARRAY_SIZE 3
 
-</doc>
+<struct>
+struct {
+    __uint (type, BPF_MAP_TYPE_PROG_ARRAY);
+    __type (key, __u32);
+    __type (value, __u32);
+    __uint (max_entries, ROOT_ARRAY_SIZE);
+} root_array SEC (".maps");
+</struct>
+
+int SEC ("xdp")
+xdp_root (struct xdp_md *ctx) {
+    __u32 *fd;
+#pragma clang loop unroll(full)
+    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
+        bpf_tail_call (ctx, & root_array, i);
+    }
+    return XDP_PASS;
+}
+
+int SEC ("xdp")
+xdp_val (struct xdp_md *ctx) {
+    __u32 *fd;
+#pragma clang loop unroll(full)
+    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
+        bpf_tail_call (ctx, & root_array, i);
+    }
+    return XDP_PASS;
+}
+
+char _license [] SEC ("license") = "GPL";

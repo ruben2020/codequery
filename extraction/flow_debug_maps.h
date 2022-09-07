@@ -1,4 +1,4 @@
-/* Copyright (C) 2018-present, Facebook, Inc.
+/* Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,36 +14,20 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#ifndef __FLOW_DEBUG_MAPS_H
+#define __FLOW_DEBUG_MAPS_H
+
+#include "balancer_structs.h"
 #include "bpf.h"
 #include "bpf_helpers.h"
-
-#define ROOT_ARRAY_SIZE 3
+#include "flow_debug.h"
 
 struct {
-  __uint(type, BPF_MAP_TYPE_PROG_ARRAY);
-  __type(key, __u32);
-  __type(value, __u32);
-  __uint(max_entries, ROOT_ARRAY_SIZE);
-} root_array SEC(".maps");
+  __uint(type, BPF_MAP_TYPE_ARRAY_OF_MAPS);
+  __uint(key_size, sizeof(__u32));
+  __uint(value_size, sizeof(__u32));
+  __uint(max_entries, MAX_SUPPORTED_CPUS);
+  __uint(map_flags, NO_FLAGS);
+} flow_debug_maps SEC(".maps");
 
-
-int SEC("xdp") xdp_root(struct xdp_md* ctx) {
-  __u32* fd;
-#pragma clang loop unroll(full)
-  for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
-    bpf_tail_call(ctx, &root_array, i);
-  }
-  return XDP_PASS;
-}
-
-
-int SEC("xdp") xdp_val(struct xdp_md* ctx) {
-  __u32* fd;
-#pragma clang loop unroll(full)
-  for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
-    bpf_tail_call(ctx, &root_array, i);
-  }
-  return XDP_PASS;
-}
-
-char _license[] SEC("license") = "GPL";
+#endif // of __FLOW_DEBUG_MAPS_H

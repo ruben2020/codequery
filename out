@@ -1,0 +1,768 @@
+cscope header:  test/balancer_kern.c
+
+cscope header:  test/decap_kern.c
+
+cscope header:  test/x.c
+
+cscope header:  test/xdp_root.c
+
+cscope header:  test/healthchecking_kern.c
+
+cscope header:  test/xdp_pktcntr.c
+
+cscope header:  test/healthchecking_ipip.c
+
+cscope header:  test/introspection.h
+
+copying header:  test/introspection.h
+cscope header:  test/balancer_kern-tpl.h
+
+copying header:  test/balancer_kern-tpl.h
+cscope header:  test/balancer_maps.h
+
+copying header:  test/balancer_maps.h
+cscope header:  test/pckt_encap.h
+
+copying header:  test/pckt_encap.h
+cscope header:  test/healthchecking_helpers.h
+
+copying header:  test/healthchecking_helpers.h
+cscope header:  test/balancer_consts.h
+
+copying header:  test/balancer_consts.h
+cscope header:  test/encap_helpers.h
+
+copying header:  test/encap_helpers.h
+cscope header:  test/flow_debug.h
+
+copying header:  test/flow_debug.h
+cscope header:  test/jhash.h
+
+copying header:  test/jhash.h
+cscope header:  test/control_data_maps.h
+
+copying header:  test/control_data_maps.h
+cscope header:  test/healthchecking_structs.h
+
+copying header:  test/healthchecking_structs.h
+cscope header:  test/balancer_structs.h
+
+copying header:  test/balancer_structs.h
+cscope header:  test/healthchecking_maps.h
+
+copying header:  test/healthchecking_maps.h
+cscope header:  test/balancer_helpers.h
+
+copying header:  test/balancer_helpers.h
+cscope header:  test/pckt_parsing.h
+
+copying header:  test/pckt_parsing.h
+cscope header:  test/flow_debug_maps.h
+
+copying header:  test/flow_debug_maps.h
+cscope header:  test/decap_maps.h
+
+copying header:  test/decap_maps.h
+cscope header:  test/bpf.h
+
+copying header:  test/bpf.h
+cscope header:  test/flow_debug_helpers.h
+
+copying header:  test/flow_debug_helpers.h
+cscope header:  test/bpf_common.h
+
+copying header:  test/bpf_common.h
+cscope header:  test/csum_helpers.h
+
+copying header:  test/csum_helpers.h
+cscope header:  test/bpf_helpers.h
+
+copying header:  test/bpf_helpers.h
+cscope header:  test/bpf_endian.h
+
+copying header:  test/bpf_endian.h
+cscope header:  test/balancer_kern_flavors-tpl.h
+
+copying header:  test/balancer_kern_flavors-tpl.h
+cscope header:  test/healthchecking_consts.h
+
+copying header:  test/healthchecking_consts.h
+cscope header:  test/handle_icmp.h
+
+copying header:  test/handle_icmp.h
+Ignoring {#funcName,count,[FileName,linenumber]
+
+ct 1
+ct 1
+ct 1
+Header File:  KERNEL_VERSION,1,/usr/include/linux/version.h,2
+
+ct 1
+Duplicate Defns:  PCKT_ENCAP_V4,2,/home/sayandes/codequery/test/balancer_consts.h,339,/home/sayandes/codequery/test/balancer_consts.h,343
+
+ct 1
+Duplicate Defns:  PCKT_ENCAP_V6,2,/home/sayandes/codequery/test/balancer_consts.h,340,/home/sayandes/codequery/test/balancer_consts.h,344
+
+ct 1
+Duplicate Defns:  RECORD_GUE_ROUTE,2,/home/sayandes/codequery/test/flow_debug.h,31,/home/sayandes/codequery/test/flow_debug.h,37
+
+ct 1
+Header File:  REPORT_EVENT,1,/home/sayandes/codequery/test/introspection.h,28
+
+ct 1
+Duplicate Defns:  REPORT_PACKET_TOOBIG,2,/home/sayandes/codequery/test/introspection.h,32,/home/sayandes/codequery/test/introspection.h,40
+
+ct 1
+Duplicate Defns:  REPORT_QUIC_PACKET_DROP_NO_REAL,2,/home/sayandes/codequery/test/introspection.h,34,/home/sayandes/codequery/test/introspection.h,42
+
+ct 1
+Duplicate Defns:  REPORT_TCP_NONSYN_LRUMISS,2,/home/sayandes/codequery/test/introspection.h,30,/home/sayandes/codequery/test/introspection.h,38
+
+ct 1
+Header File:  __ASMNAME,1,/usr/include/sys/cdefs.h,186
+
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/wordsize.h>
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/long-double.h>
+ct 1
+Header File:  __FD_CLR,1,/usr/include/bits/select.h,60
+
+headerFile:  /usr/include/bits/select.h  h:  <bits/wordsize.h>
+ct 1
+Header File:  __FD_ISSET,1,/usr/include/bits/select.h,62
+
+headerFile:  /usr/include/bits/select.h  h:  <bits/wordsize.h>
+ct 1
+Header File:  __FD_SET,1,/usr/include/bits/select.h,58
+
+headerFile:  /usr/include/bits/select.h  h:  <bits/wordsize.h>
+ct 1
+Duplicate Defns:  __FD_ZERO,2,/usr/include/bits/select.h,33,/usr/include/bits/select.h,48
+
+ct 1
+Duplicate Defns:  __GNUC_PREREQ,3,/usr/include/features.h,161,/usr/include/features.h,164,/usr/include/sys/cdefs.h,417
+
+ct 1
+Duplicate Defns:  __LDBL_REDIR1,2,/usr/include/sys/cdefs.h,458,/usr/include/sys/cdefs.h,475
+
+ct 1
+Duplicate Defns:  __LDBL_REDIR1_NTH,2,/usr/include/sys/cdefs.h,461,/usr/include/sys/cdefs.h,477
+
+ct 1
+Header File:  __REDIRECT,1,/usr/include/sys/cdefs.h,174
+
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/wordsize.h>
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/long-double.h>
+ct 1
+Duplicate Defns:  __REDIRECT_NTH,2,/usr/include/sys/cdefs.h,176,/usr/include/sys/cdefs.h,181
+
+ct 1
+Header File:  ___constant_swab16,1,/usr/include/linux/swab.h,14
+
+headerFile:  /usr/include/linux/swab.h  h:  <linux/types.h>
+headerFile:  /usr/include/linux/swab.h  h:  <asm/bitsperlong.h>
+headerFile:  /usr/include/linux/swab.h  h:  <asm/swab.h>
+ct 1
+Header File:  __attribute__,1,/usr/include/sys/cdefs.h,201
+
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/wordsize.h>
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/long-double.h>
+ct 1
+Header File:  __bos0,1,/usr/include/sys/cdefs.h,124
+
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/wordsize.h>
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/long-double.h>
+ct 1
+Duplicate Defns:  __bpf_constant_htonl,2,/home/sayandes/codequery/test/bpf_endian.h,30,/home/sayandes/codequery/test/bpf_endian.h,39
+
+ct 1
+Duplicate Defns:  __bpf_constant_htons,2,/home/sayandes/codequery/test/bpf_endian.h,26,/home/sayandes/codequery/test/bpf_endian.h,35
+
+ct 1
+Duplicate Defns:  __bpf_constant_ntohs,2,/home/sayandes/codequery/test/bpf_endian.h,25,/home/sayandes/codequery/test/bpf_endian.h,34
+
+ct 1
+Duplicate Defns:  __bpf_htonl,2,/home/sayandes/codequery/test/bpf_endian.h,28,/home/sayandes/codequery/test/bpf_endian.h,37
+
+ct 1
+Duplicate Defns:  __bpf_htons,2,/home/sayandes/codequery/test/bpf_endian.h,24,/home/sayandes/codequery/test/bpf_endian.h,33
+
+ct 1
+Duplicate Defns:  __bpf_ntohs,2,/home/sayandes/codequery/test/bpf_endian.h,23,/home/sayandes/codequery/test/bpf_endian.h,32
+
+ct 1
+Header File:  __bswap_16,1,/usr/include/bits/byteswap.h,34
+
+headerFile:  /usr/include/bits/byteswap.h  h:  <features.h>
+headerFile:  /usr/include/bits/byteswap.h  h:  <bits/types.h>
+ct 1
+Header File:  __bswap_32,1,/usr/include/bits/byteswap.h,49
+
+headerFile:  /usr/include/bits/byteswap.h  h:  <features.h>
+headerFile:  /usr/include/bits/byteswap.h  h:  <bits/types.h>
+ct 1
+Header File:  __bswap_64,1,/usr/include/bits/byteswap.h,70
+
+headerFile:  /usr/include/bits/byteswap.h  h:  <features.h>
+headerFile:  /usr/include/bits/byteswap.h  h:  <bits/types.h>
+ct 1
+Duplicate Defns:  __glibc_clang_has_extension,3,/usr/include/sys/cdefs.h,260,/usr/include/sys/cdefs.h,92,/usr/include/sys/cdefs.h,94
+
+ct 1
+Duplicate Defns:  __glibc_clang_prereq,3,/usr/include/features.h,172,/usr/include/features.h,175,/usr/include/string.h,37
+
+ct 1
+Header File:  __glibc_macro_warning1,1,/usr/include/sys/cdefs.h,493
+
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/wordsize.h>
+headerFile:  /usr/include/sys/cdefs.h  h:  <bits/long-double.h>
+ct 1
+Header File:  __jhash_final,1,/home/sayandes/codequery/test/jhash.h,33
+
+ct 1
+Header File:  __jhash_mix,1,/home/sayandes/codequery/test/jhash.h,11
+
+ct 1
+Header File:  __jhash_nwords,1,/home/sayandes/codequery/test/jhash.h,102
+
+ct 1
+Duplicate Defns:  __nonnull,2,/usr/include/sys/cdefs.h,293,/usr/include/sys/cdefs.h,295
+
+ct 1
+Header File:  __uint16_identity,1,/usr/include/bits/uintn-identity.h,33
+
+headerFile:  /usr/include/bits/uintn-identity.h  h:  <bits/types.h>
+ct 1
+Header File:  __uint32_identity,1,/usr/include/bits/uintn-identity.h,39
+
+headerFile:  /usr/include/bits/uintn-identity.h  h:  <bits/types.h>
+ct 1
+Header File:  __uint64_identity,1,/usr/include/bits/uintn-identity.h,45
+
+headerFile:  /usr/include/bits/uintn-identity.h  h:  <bits/types.h>
+ct 1
+Header File:  bpf_htonl,1,/home/sayandes/codequery/test/bpf_endian.h,48
+
+headerFile:  /home/sayandes/codequery/test/bpf_endian.h  h:  <linux/swab.h>
+ct 1
+Header File:  bpf_htons,1,/home/sayandes/codequery/test/bpf_endian.h,44
+
+headerFile:  /home/sayandes/codequery/test/bpf_endian.h  h:  <linux/swab.h>
+ct 1
+Header File:  bpf_ntohs,1,/home/sayandes/codequery/test/bpf_endian.h,46
+
+headerFile:  /home/sayandes/codequery/test/bpf_endian.h  h:  <linux/swab.h>
+ct 1
+Header File:  calc_offset,1,/home/sayandes/codequery/test/pckt_parsing.h,58
+
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ptrace.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/version.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  bpf.h
+ct 1
+ct 1
+ct 1
+Header File:  csum_fold_helper,1,/home/sayandes/codequery/test/csum_helpers.h,30
+
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_helpers.h
+ct 1
+Header File:  decap_v4,1,/home/sayandes/codequery/test/pckt_encap.h,159
+
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <string.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  encap_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  flow_debug.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  pckt_parsing.h
+ct 1
+Header File:  decap_v6,1,/home/sayandes/codequery/test/pckt_encap.h,138
+
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <string.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  encap_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  flow_debug.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  pckt_parsing.h
+ct 1
+Header File:  decrement_ttl,1,/home/sayandes/codequery/test/balancer_helpers.h,84
+
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  csum_helpers.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  introspection.h
+ct 1
+ct 1
+ct 1
+Header File:  gue_decap_v4,1,/home/sayandes/codequery/test/pckt_encap.h,373
+
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <string.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  encap_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  flow_debug.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  pckt_parsing.h
+ct 1
+Header File:  gue_decap_v6,1,/home/sayandes/codequery/test/pckt_encap.h,392
+
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  <string.h>
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  encap_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  flow_debug.h
+headerFile:  /home/sayandes/codequery/test/pckt_encap.h  h:  pckt_parsing.h
+ct 1
+Header File:  gue_record_route,1,/home/sayandes/codequery/test/flow_debug_helpers.h,55
+
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/flow_debug_helpers.h  h:  flow_debug_maps.h
+ct 1
+ct 1
+ct 1
+ct 1
+Header File:  ipv4_csum,1,/home/sayandes/codequery/test/csum_helpers.h,46
+
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_helpers.h
+ct 1
+Header File:  ipv4_csum_inline,1,/home/sayandes/codequery/test/csum_helpers.h,51
+
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_helpers.h
+ct 1
+Header File:  ipv6_csum,1,/home/sayandes/codequery/test/csum_helpers.h,76
+
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_helpers.h
+ct 1
+ct 1
+Header File:  jhash,1,/home/sayandes/codequery/test/jhash.h,55
+
+ct 1
+Header File:  jhash_2words,1,/home/sayandes/codequery/test/jhash.h,110
+
+ct 1
+Duplicate Defns:  memcpy,2,/usr/include/bits/string_fortified.h,31,/usr/include/string.h,43
+
+ct 1
+Duplicate Defns:  memset,2,/usr/include/bits/string_fortified.h,59,/usr/include/string.h,61
+
+ct 1
+Header File:  min_helper,1,/home/sayandes/codequery/test/csum_helpers.h,41
+
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_endian.h
+headerFile:  /home/sayandes/codequery/test/csum_helpers.h  h:  bpf_helpers.h
+ct 1
+Header File:  parse_hdr_opt,1,/home/sayandes/codequery/test/pckt_parsing.h,144
+
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ptrace.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/version.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  bpf.h
+ct 1
+Header File:  parse_icmp,1,/home/sayandes/codequery/test/handle_icmp.h,255
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  parse_icmpv6,1,/home/sayandes/codequery/test/handle_icmp.h,223
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  parse_quic,1,/home/sayandes/codequery/test/pckt_parsing.h,276
+
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ptrace.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/version.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  bpf.h
+ct 1
+Header File:  parse_tcp,1,/home/sayandes/codequery/test/pckt_parsing.h,102
+
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ptrace.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/version.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  bpf.h
+ct 1
+Header File:  parse_udp,1,/home/sayandes/codequery/test/pckt_parsing.h,76
+
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ptrace.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/version.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  bpf.h
+ct 1
+ct 1
+Duplicate Defns:  process_encaped_gue_pckt,2,/home/sayandes/codequery/test/balancer_kern.c,392,/home/sayandes/codequery/test/decap_kern.c,123
+
+ct 1
+Duplicate Defns:  process_encaped_ipip_pckt,2,/home/sayandes/codequery/test/balancer_kern.c,340,/home/sayandes/codequery/test/decap_kern.c,85
+
+ct 1
+Duplicate Defns:  process_l3_headers,2,/home/sayandes/codequery/test/balancer_kern.c,158,/home/sayandes/codequery/test/decap_kern.c,34
+
+ct 1
+Duplicate Defns:  process_packet,2,/home/sayandes/codequery/test/balancer_kern.c,480,/home/sayandes/codequery/test/decap_kern.c,164
+
+ct 1
+ct 1
+Header File:  recirculate,1,/home/sayandes/codequery/test/balancer_helpers.h,74
+
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  csum_helpers.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  introspection.h
+ct 1
+Header File:  send_icmp4_too_big,1,/home/sayandes/codequery/test/handle_icmp.h,119
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  send_icmp6_reply,1,/home/sayandes/codequery/test/handle_icmp.h,92
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  send_icmp6_too_big,1,/home/sayandes/codequery/test/handle_icmp.h,164
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  send_icmp_reply,1,/home/sayandes/codequery/test/handle_icmp.h,60
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  send_icmp_too_big,1,/home/sayandes/codequery/test/handle_icmp.h,206
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  submit_event,1,/home/sayandes/codequery/test/balancer_helpers.h,46
+
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/in.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  bpf_helpers.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  control_data_maps.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  csum_helpers.h
+headerFile:  /home/sayandes/codequery/test/balancer_helpers.h  h:  introspection.h
+ct 1
+Header File:  swap_mac,1,/home/sayandes/codequery/test/handle_icmp.h,50
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  swap_mac_and_send,1,/home/sayandes/codequery/test/handle_icmp.h,38
+
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  balancer_structs.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf.h
+headerFile:  /home/sayandes/codequery/test/handle_icmp.h  h:  bpf_endian.h
+ct 1
+Header File:  tcp_hdr_opt_lookup,1,/home/sayandes/codequery/test/pckt_parsing.h,199
+
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/icmpv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/if_ether.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ip.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ipv6.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/ptrace.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/tcp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/udp.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <linux/version.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stdbool.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  <stddef.h>
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_consts.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  balancer_helpers.h
+headerFile:  /home/sayandes/codequery/test/pckt_parsing.h  h:  bpf.h
+Ignoring }
+
+Ignoring {#map_name,filename,line #, isFound
+
+ct 3
+test/introspection.h
+test/balancer_kern-tpl.h
+test/balancer_maps.h
+test/pckt_encap.h
+test/healthchecking_helpers.h
+test/balancer_consts.h
+test/encap_helpers.h
+test/flow_debug.h
+test/jhash.h
+test/control_data_maps.h
+test/healthchecking_structs.h
+test/balancer_structs.h
+test/healthchecking_maps.h
+test/balancer_helpers.h
+test/pckt_parsing.h
+test/flow_debug_maps.h
+test/decap_maps.h
+test/bpf.h
+test/flow_debug_helpers.h
+test/bpf_common.h
+test/csum_helpers.h
+test/bpf_helpers.h
+test/bpf_endian.h
+test/balancer_kern_flavors-tpl.h
+test/healthchecking_consts.h
+test/handle_icmp.h
+/usr/include/linux/version.h
+/home/sayandes/codequery/test/introspection.h
+/usr/include/sys/cdefs.h
+<bits/wordsize.h>
+<bits/long-double.h>
+/usr/include/bits/select.h
+/usr/include/linux/swab.h
+<linux/types.h>
+<asm/bitsperlong.h>
+<asm/swab.h>
+/usr/include/bits/byteswap.h
+<features.h>
+<bits/types.h>
+/home/sayandes/codequery/test/jhash.h
+/usr/include/bits/uintn-identity.h
+/home/sayandes/codequery/test/bpf_endian.h
+<linux/swab.h>
+/home/sayandes/codequery/test/pckt_parsing.h
+<linux/icmp.h>
+<linux/icmpv6.h>
+<linux/if_ether.h>
+<linux/ip.h>
+<linux/ipv6.h>
+<linux/ptrace.h>
+<linux/tcp.h>
+<linux/udp.h>
+<linux/version.h>
+<stdbool.h>
+<stddef.h>
+balancer_consts.h
+balancer_helpers.h
+bpf.h
+/home/sayandes/codequery/test/csum_helpers.h
+<linux/in.h>
+bpf_endian.h
+bpf_helpers.h
+/home/sayandes/codequery/test/pckt_encap.h
+<string.h>
+balancer_structs.h
+control_data_maps.h
+encap_helpers.h
+flow_debug.h
+pckt_parsing.h
+/home/sayandes/codequery/test/balancer_helpers.h
+csum_helpers.h
+introspection.h
+/home/sayandes/codequery/test/flow_debug_helpers.h
+flow_debug_maps.h
+/home/sayandes/codequery/test/handle_icmp.h
+annotatedFile:  test_balancer_kern.c.xml
+annotatedXmlFile:  test_balancer_kern.c.xml

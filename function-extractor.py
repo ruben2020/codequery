@@ -46,7 +46,7 @@ def copy_include_files(iFile, opdir):
 
 # read iFile from startLine to endLine and writes to oFile
 def extractAndDump(iFile,startLine,endLine,oFile):
-    print("iFile",iFile, "startline:",startLine," endline: ",endLine)
+    #print("iFile",iFile, "startline:",startLine," endline: ",endLine)
     if not os.path.exists(iFile):
         print("File Not Found: ",iFile)
         return
@@ -54,22 +54,43 @@ def extractAndDump(iFile,startLine,endLine,oFile):
     lineCt = 1
     #ignore lines
     while lineCt < startLine:
-        print("skipping line#: ",lineCt)
+        #print("skipping line#: ",lineCt)
         iFilePtr.readline()
         lineCt = lineCt + 1;
     comment = "/* Extracted from \n "+ iFile+ " \n startLine: "+ str(startLine) + " endLine: "+ str(endLine) + "\n */ \n"
     oFile.write(comment)
     while lineCt <= endLine :
         line = iFilePtr.readline()
-        print("lineCt",lineCt, " line: ",line)
+        #print("lineCt",lineCt, " line: ",line)
         oFile.write(line)
         lineCt= lineCt + 1
 
     iFilePtr.close()
     return
 
-# parses output from c-functions-extraction.txl
-def parseTXLOutputFile(inputFile,f,e):
+# parses output from c-extract-struct.txl
+def parseTXLStructOutputFile(fileName,f):
+    print("Parsing Struct Output FIle: ",fileName)
+    iFile = open(fileName,'r')
+    lineCt = 1
+    for line in iFile.readlines():
+        print(line)
+        begin=re.match(r"<struct>",line)
+        end = re.match(r"</struct>",line)
+        if begin:
+            startLine = lineCt + 1
+        elif end:
+            endLine = lineCt - 1
+            key = fileName+":"+str(startLine)+":"+str(endLine);
+            print("EXTRACT -> ",key)
+            structs[key]=1
+            extractAndDump(fileName,startLine,endLine,f)
+        lineCt = lineCt + 1;
+    iFile.close()
+            
+
+# parses output from c-extract-function.txl
+def parseTXLFunctionOutputFile(inputFile,f,e):
     srcSeen=False
     lines = []
     for line in inputFile.readlines():
@@ -103,15 +124,17 @@ def parseTXLOutputFile(inputFile,f,e):
             startLine = int(tokens[-2])
             endLine = int(tokens[-1])
             #funcHeader=tokens[2].split("=")[1]
-            print(srcFile, " startline: ",startLine," endline: ",endLine," funcname: ",funcName)
-            key=funcName+":"+srcFile+":"+str(startLine)
-            print("Checking ",key)
+            #print(srcFile, " startline: ",startLine," endline: ",endLine," funcname: ",funcName)
+            #key=funcName+":"+srcFile+":"+str(startLine)
+            key=funcName+":"+srcFile
+            #print("Checking ",key)
             if key in fns.keys():
                 if not srcFile.endswith(".h"):
-                    print("Need to Extract", key)
+                    #print("Need to Extract", key)
                     op=funcName+","+srcFile+",["+str(startLine)+":"+str(endLine)+"]\n"
                     e.write(op)
                     extractAndDump(srcFile,startLine,endLine,f)
+                    del fns[key]
             continue;
     
 def parseXML(xmlFile,f):
@@ -141,7 +164,7 @@ def addDependsOn(headerFile):
                 #h = h.replace("<","")
                 #h = h.replace(">","")
                 h = h.replace("\"","")
-                print("headerFile: ",headerFile," h: ",h)
+                #print("headerFile: ",headerFile," h: ",h)
                 graph[h].add(headerFile)
                 headers[h]=1
                 headers[headerFile]=1
@@ -160,19 +183,19 @@ def parseFunctionList(ifile):
             print("ct",ct)
             if ct >= 2:
                 return
-            #print("Processing", line)
+            ##print("Processing", line)
             line = line.replace('[','')
             line = line.replace(']','')
             tokens = line.split(',')
             fnName = tokens[0]
             count = tokens[1]
             if int(count) > 1:
-                print("Duplicate Defns: ", line);
+                #print("Duplicate Defns: ", line);
                 duplicates.append(line)
                 continue;
             src = tokens[2]
             if src.endswith(".h"):
-                print("Header File: ",line)
+                #print("Header File: ",line)
                 headers[src]=1
                 shutil.copy(src,opdir)
                 addDependsOn(src)
@@ -180,7 +203,8 @@ def parseFunctionList(ifile):
             #remove end ]
             startLine = startLine[:-1]
             #print(fnName,count,src,startLine)
-            key=fnName+":"+src+":"+startLine
+            #key=fnName+":"+src+":"+startLine
+            key=fnName+":"+src;
             fns[key]=1
 
             
@@ -197,6 +221,9 @@ if __name__ == "__main__":
     #dict containing header file dependencies for ordering includes in final generated file
     graph = defaultdict(set)
 
+    #dict containing struct defns to be extracted
+    structs = {}
+    
     #constants
     opdir="extraction"
     codequeryOutputFile="func.out"
@@ -204,6 +231,8 @@ if __name__ == "__main__":
     extractedFileName = opdir+"/"+"extracted.c"
     TXLDir ="./txl_annotate"
     extractedFunctionListFile="extractedFuncList.out"
+    missedFunctionListFile="missedFuncList.out"
+
     
     make_extraction_dir(opdir)
     copy_include_files("cscope.files", opdir)
@@ -229,7 +258,7 @@ if __name__ == "__main__":
     f.write("/* SPDX-License-Identifier: GPL-2.0 */\n");
     #print("HEADERS\n")
     for header in headers.keys():
-        print(header)
+        #print(header)
         if not "<" in header:
             header = header.split('/')[-1]
             macro = header.upper()
@@ -248,13 +277,28 @@ if __name__ == "__main__":
     #Parse TXL annotated files
     for fName in os.listdir(TXLDir):
         print("annotatedFile: ",fName)
+        path = TXLDir + "/" + fName
         if fName.endswith(".xml"):
-            print("annotatedXmlFile: ",fName)
-            path = TXLDir + "/" + fName
+            #print("annotatedXmlFile: ",fName)
             xmlFile = open(path,'r')
-            parseTXLOutputFile(xmlFile,f,eFile)
+            parseTXLFunctionOutputFile(xmlFile,f,eFile)
             xmlFile.close()
+        elif "annotate_struct" in fName:
+            print("structFIle: ",fName)
+            parseTXLStructOutputFile(path,f)
 
     f.write("char _license[] SEC(\"license\") = \"GPL\";");
     f.close()
     eFile.close()
+
+    outFile = open(missedFunctionListFile,'w')
+    outFile.write("func:fileName,Status\n")
+    for fn in fns:
+        outFile.write(fn)
+        srcFile = fn.split(":")[-1]
+        if srcFile.endswith(".h"):
+            outFile.write(",SKIPPED")
+        else:
+            outFile.write(",MISSED")
+        outFile.write("\n")
+    outFile.close()

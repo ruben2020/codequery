@@ -5,7 +5,6 @@ import os
 import shutil
 from collections import defaultdict
 
-
 def dump_to_file(f,appt):
     str = "//" + appt.get('file')+ " " + appt.get('startline')+ " "+ appt.get('endline') + " \n"
     f.write(str)
@@ -30,7 +29,88 @@ def make_extraction_dir(path):
         os.makedirs(path)
         print("The new directory is created!")
     #os.chdir(path)
+# string to search in file
 
+def create_preprocessor_map(filename):
+
+    fp = open(filename, 'r')
+        # read all lines using readline()
+    lc = 1
+    lines = fp.readlines()
+    print("Creating preprocessor for: ",filename)
+    stack = []
+    pres=[]
+
+    for line in lines:
+        # check if string present on a current line
+        ifdefstring = '#ifdef '
+        ifstring = '#if '
+        elsestring = '#else '
+        endifstring = '#endif '
+        elifstring = '#elif '
+        ifndefstring = '#ifndef '
+        # find() method returns -1 if the value is not found,
+        # if found it return 0
+        if line.find(ifdefstring) == 0:
+            print('string #ifdef exists in file')
+            print('line Number:', lc,line)
+            tokens = line.split()
+            name = tokens[1]
+            stack.append((ifdefstring,name,lc))
+
+        if line.find(ifstring) == 0:
+            print('string #if exists in file')
+            print('line Number:', lc,line)
+            tokens = line.split()
+            name = tokens[1]
+            stack.append((ifstring,name,lc))
+
+
+        if line.find(ifndefstring) == 0:
+            print('string #ifndef exists in file')
+            print('line Number:', lc,line)
+            tokens = line.split()
+            name = tokens[1]
+            stack.append((ifndefstring,name,lc))
+
+
+        if line.find(elifstring) == 0:
+           print('string #elif exists in file')
+           print('line Number:', lc,line)
+           (t,name,bg) = stack.pop()
+           pres.append((t,name,bg,lc-1))
+           tokens = line.split()
+           stack.append((ifdefstring,tokens[1],lc))
+
+        if line.find(elsestring) == 0:
+           print('string #else exists in file')
+           print('line Number:', lc,line)
+           (t,name,bg) = stack.pop()
+           pres.append(( t,name,bg,lc-1))
+           tokens = line.split()
+           stack.append((ifndefstring,name,lc))
+
+
+        if line.find(endifstring) == 0:
+           print('string #endif exists in file')
+           print('line Number:', lc,line)
+           (t,name,bg) = stack.pop()
+           pres.append(( t,name,bg,lc-1))
+
+        lc = lc + 1
+
+    print(pres)       
+    return pres
+
+# checks if function/struct in filename between st_line and end_line needs to be guarded with IFDEF MACROS
+def contained_in_preprocessor(fname, pres, st_line, end_line):
+        print("checking containment in: ",fname,"start: ",st_line,"end: ",end_line)
+        for (t,defName,start,end) in pres:
+                if st_line >= start and end_line <= end:
+                    print("Fully contained ", t, defName)
+                    return (t,defName,start,end)
+        return (None,None,None,None)
+                    
 # reads cscope.files and copies headers to direction. Also adds headers to headers dict
 def copy_include_files(iFile, opdir):
     iFilePtr = open(iFile,'r')
@@ -39,7 +119,7 @@ def copy_include_files(iFile, opdir):
         line=line.replace("\n","")
         if line.endswith(".h"):
             shutil.copy(line, opdir)
-            headers[line]=1
+            #headers[line]=1
             print("copying header: ",line)
     shutil.copy("Makefile",opdir)
     iFilePtr.close()
@@ -50,6 +130,16 @@ def extractAndDump(iFile,startLine,endLine,oFile):
     if not os.path.exists(iFile):
         print("File Not Found: ",iFile)
         return
+    val=None
+    #check if we need to guard this func/struct with a macro
+    p = presDict[iFile]
+    if not p:
+        print("ALERT: PREPROCESSING DICT MISSING FOR: ",iFile)
+    else:
+        (val,name,start,end) = contained_in_preprocessor(iFile,p, startLine, endLine)
+    if val:
+        cmd = val+" "+name+"\n"
+        oFile.write(cmd)
     iFilePtr = open(iFile,'r')
     lineCt = 1
     #ignore lines
@@ -64,27 +154,54 @@ def extractAndDump(iFile,startLine,endLine,oFile):
         #print("lineCt",lineCt, " line: ",line)
         oFile.write(line)
         lineCt= lineCt + 1
-
+            
     iFilePtr.close()
+    if val:
+        cmd="#endif \n"
+        oFile.write(cmd)
     return
+
+#does structStr contain map name that is of interest
+def doesStructContainMap(str):
+    for key in maps:
+        #isMap = re.match(key,str)
+        if key in str.split():
+            return (True,key)
+        
+    return (False,None)
 
 # parses output from c-extract-struct.txl
 def parseTXLStructOutputFile(fileName,f):
     print("Parsing Struct Output FIle: ",fileName)
     iFile = open(fileName,'r')
     lineCt = 1
+    inside = False;
+    structStr = ""
     for line in iFile.readlines():
         print(line)
         begin=re.match(r"<struct>",line)
         end = re.match(r"</struct>",line)
         if begin:
             startLine = lineCt + 1
+            inside = True;
         elif end:
             endLine = lineCt - 1
             key = fileName+":"+str(startLine)+":"+str(endLine);
             print("EXTRACT -> ",key)
-            structs[key]=1
-            extractAndDump(fileName,startLine,endLine,f)
+            maps[key]=1
+            # Write maps together from dict
+            #if not ".h.out" in fileName:
+            #    extractAndDump(fileName,startLine,endLine,f)
+            inside = False;
+            print("StructStr",structStr)
+            (isMap,mapName) = doesStructContainMap(structStr)
+            if isMap == True:
+                head="//fileName "+fileName+" startLine: "+str(startLine)+" endLine: "+str(endLine)+"\n"
+                structStr=head+structStr
+                opMaps[mapName].append(structStr)
+            structStr= ""
+        elif inside == True:
+            structStr = structStr + line
         lineCt = lineCt + 1;
     iFile.close()
             
@@ -118,6 +235,11 @@ def parseTXLFunctionOutputFile(inputFile,f,e):
             #print("len",len(tokens),"tokens",tokens)
             srcFile = tokens[-4]
             srcFile = srcFile.replace(" ","")
+
+            if not srcFile in presDict:
+                p = create_preprocessor_map(srcFile)
+                presDict[srcFile]=p
+            
             funcName = tokens[-3].replace(" (","(")
             #print(funcName)
             funcName = funcName.split('(')[-2].split(" ")[-1]
@@ -170,6 +292,49 @@ def addDependsOn(headerFile):
                 headers[headerFile]=1
     iFile.close()
 
+def processFuncLine(line):
+    ##print("Processing", line)
+    line = line.replace('[','')
+    line = line.replace(']','')
+    tokens = line.split(',')
+    fnName = tokens[0]
+    count = tokens[1]
+    if int(count) > 1:
+        #print("Duplicate Defns: ", line);
+        duplicates.append(line)
+        return
+    src = tokens[2]
+    if src.endswith(".h"):
+        #print("Header File: ",line)
+        headers[src]=1
+        shutil.copy(src,opdir)
+        addDependsOn(src)
+    startLine = tokens[3]
+    #remove end ]
+    startLine = startLine[:-1]
+    #print(fnName,count,src,startLine)
+    #key=fnName+":"+src+":"+startLine
+    key=fnName+":"+src;
+    fns[key]=1
+
+def processMapLine(line):
+    ##print("Processing", line)
+    line = line.replace('[','')
+    line = line.replace(']','')
+    tokens = line.split(',')
+    mapName = tokens[0]
+    srcFile = tokens[1]
+    if srcFile.endswith(".h"):
+        headers[srcFile]=1
+        addDependsOn(srcFile)
+    startLine = tokens[2]
+    isFound = tokens[3]
+    #print(fnName,count,src,startLine)
+    #key=fnName+":"+src+":"+startLine
+    key=mapName
+    maps[key]=1
+
+
 # Parses output from codequery search output and puts in map
 def parseFunctionList(ifile):
     ct = 0
@@ -181,32 +346,11 @@ def parseFunctionList(ifile):
             ct = ct + 1
         else:
             print("ct",ct)
-            if ct >= 2:
-                return
-            ##print("Processing", line)
-            line = line.replace('[','')
-            line = line.replace(']','')
-            tokens = line.split(',')
-            fnName = tokens[0]
-            count = tokens[1]
-            if int(count) > 1:
-                #print("Duplicate Defns: ", line);
-                duplicates.append(line)
-                continue;
-            src = tokens[2]
-            if src.endswith(".h"):
-                #print("Header File: ",line)
-                headers[src]=1
-                shutil.copy(src,opdir)
-                addDependsOn(src)
-            startLine = tokens[3]
-            #remove end ]
-            startLine = startLine[:-1]
-            #print(fnName,count,src,startLine)
-            #key=fnName+":"+src+":"+startLine
-            key=fnName+":"+src;
-            fns[key]=1
-
+            if ct < 2:
+                processFuncLine(line)
+            else:
+                processMapLine(line)
+            
             
 if __name__ == "__main__":
     #dict containing function definitions
@@ -221,8 +365,14 @@ if __name__ == "__main__":
     #dict containing header file dependencies for ordering includes in final generated file
     graph = defaultdict(set)
 
-    #dict containing struct defns to be extracted
-    structs = {}
+    #dict containing map defns to be extracted
+    maps = {}
+
+    #dict containing maps that will be written out
+    opMaps = defaultdict(list)
+
+    #dict of dict containing pre processor directives per file
+    presDict = defaultdict(list)
     
     #constants
     opdir="extraction"
@@ -251,10 +401,10 @@ if __name__ == "__main__":
         dupFile.write(dup)
     dupFile.close()
 
-    #print("curr: ",os.getcwd())
+    
+    f = open(extractedFileName,'w')
 
     #include required header files
-    f = open(extractedFileName,'w')
     f.write("/* SPDX-License-Identifier: GPL-2.0 */\n");
     #print("HEADERS\n")
     for header in headers.keys():
@@ -274,19 +424,52 @@ if __name__ == "__main__":
             
         f.write(cmd)
 
+    xmlFiles = []
+    structFiles = []
     #Parse TXL annotated files
     for fName in os.listdir(TXLDir):
         print("annotatedFile: ",fName)
         path = TXLDir + "/" + fName
         if fName.endswith(".xml"):
             #print("annotatedXmlFile: ",fName)
-            xmlFile = open(path,'r')
-            parseTXLFunctionOutputFile(xmlFile,f,eFile)
-            xmlFile.close()
+            xmlFiles.append(path)
         elif "annotate_struct" in fName:
-            print("structFIle: ",fName)
-            parseTXLStructOutputFile(path,f)
+            structFiles.append(path)
+        
+    for path in structFiles:
+        print("structFIle: ",path)
+        p = create_preprocessor_map(path)
+        presDict[path]=p
+        parseTXLStructOutputFile(path,f)
+            
+    for mapName  in opMaps:
+        isDup=False
+        if len(opMaps[mapName]) > 1:
+            isDup=True
+            cmd = "//ATTENTION BEGIN: DUPLICATE MAP DEFNS\n"
+            f.write(cmd)
+        for s in opMaps[mapName]:
+            # Do not write structs from .h files as they will already be included
+            if not ".h" in s:
+                f.write(s)
+            else:
+                if isDup == True:
+                    f.write("//DUP Defn at: ")
+                    h = s.split("\n")[0]
+                    h = h.replace("//","")
+                    f.write(h)
+                    f.write("\n")
+        if isDup == True:
+            f.write("//ATTENTION END \n")
+            isDup=False;
 
+    for path in xmlFiles:
+        p = create_preprocessor_map(path)
+        presDict[path]=p
+        xmlFile = open(path,'r')
+        parseTXLFunctionOutputFile(xmlFile,f,eFile)
+        xmlFile.close()
+            
     f.write("char _license[] SEC(\"license\") = \"GPL\";");
     f.close()
     eFile.close()
@@ -302,3 +485,17 @@ if __name__ == "__main__":
             outFile.write(",MISSED")
         outFile.write("\n")
     outFile.close()
+
+    print("MAPS\n")
+    for mapName  in opMaps:
+        if len(opMaps[mapName]) > 1:
+            print("DUPLICATE MAP",mapName)
+        else:
+            print("MAP",mapName)
+        for str in opMaps[mapName]:
+            print(str)
+
+    print("PREPROCESSORS")
+    for key in presDict:
+        print("Name: ",key)
+        print("Val: ",presDict[key])

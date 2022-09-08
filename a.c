@@ -1,4 +1,3 @@
-#include<stdio.h>
 
 struct abc {
 	int x;

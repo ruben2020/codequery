@@ -104,7 +104,7 @@ rule convertFunctionDefinitions
 	<source file=FileNameString funcheader=FunctionHeaderString startline=LineNumberString endline=EndLineNumberString>
     by
 	XmlHeader 
-	FunctionHeader  [debug]
+	FunctionHeader  
 	KR_Parms
 	'{
 	    FunctionBody [unmarkEmbeddedFunctionDefinitions]

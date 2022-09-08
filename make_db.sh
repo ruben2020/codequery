@@ -7,7 +7,7 @@ echo "Creating new file index ..."
 find -L $1 -name '*.c' >cscope.files
 find -L $1 -name '*.h' >>cscope.files
 echo "Running cscope & ctags ..."
-cscope -cb 
+cscope -cb  
 ctags --fields=+i -n -L ./cscope.files
 echo "Making DBs ..."
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p

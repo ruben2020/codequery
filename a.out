@@ -15,12 +15,18 @@ cscope header:  ./test/healthchecking_ipip.c
 cscope header:  ./test/introspection.h
 
 copying header:  ./test/introspection.h
+cscope header:  ./test/balancer_kern-tpl.h
+
+copying header:  ./test/balancer_kern-tpl.h
 cscope header:  ./test/balancer_maps.h
 
 copying header:  ./test/balancer_maps.h
 cscope header:  ./test/pckt_encap.h
 
 copying header:  ./test/pckt_encap.h
+cscope header:  ./test/healthchecking_helpers.h
+
+copying header:  ./test/healthchecking_helpers.h
 cscope header:  ./test/balancer_consts.h
 
 copying header:  ./test/balancer_consts.h

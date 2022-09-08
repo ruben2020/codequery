@@ -1,6 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0 */
-#define RECORD_FLOW_INFO
-
+#define RECORD_FLOW_INFO 
 #ifndef VERSION_H
 #define VERSION_H
 #include "version.h"
@@ -20,7 +19,7 @@
 #include <bits/long-double.h>
 #ifndef SELECT_H
 #define SELECT_H
-#include "select.h"
+#include <sys/select.h>
 #endif 
 
 #ifndef SWAB_H
@@ -33,7 +32,7 @@
 #include <asm/swab.h>
 #ifndef BYTESWAP_H
 #define BYTESWAP_H
-#include "byteswap.h"
+#include <byteswap.h>
 #endif 
 
 #include <features.h>
@@ -45,7 +44,7 @@
 
 #ifndef UINTN_IDENTITY_H
 #define UINTN_IDENTITY_H
-#include "uintn-identity.h"
+#include <netinet/in.h>
 #endif 
 
 #ifndef BPF_ENDIAN_H
@@ -181,7 +180,6 @@
 #define FLOW_DEBUG_MAPS_H
 #include "flow_debug_maps.h"
 #endif 
-
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
  startLine: 818 endLine: 827
@@ -499,4 +497,5 @@ __attribute__((__always_inline__)) static inline void increment_quic_cid_drop_re
   }
   quic_drop->v2 += 1;
 }
+
 char _license[] SEC("license") = "GPL";

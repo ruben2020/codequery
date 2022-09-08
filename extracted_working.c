@@ -1,133 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0 */
-#ifndef INTROSPECTION_H
-#define INTROSPECTION_H
-#include "introspection.h"
-#endif 
-
-//#ifndef BALANCER_KERN_TPL_H
-//#define BALANCER_KERN_TPL_H
-//#include "balancer_kern-tpl.h"
-//#endif 
-
-#ifndef BALANCER_MAPS_H
-#define BALANCER_MAPS_H
-#include "balancer_maps.h"
-#endif 
-
-#ifndef PCKT_ENCAP_H
-#define PCKT_ENCAP_H
-#include "pckt_encap.h"
-#endif 
-/*
-#ifndef HEALTHCHECKING_HELPERS_H
-#define HEALTHCHECKING_HELPERS_H
-#include "healthchecking_helpers.h"
-#endif 
-*/
-#ifndef BALANCER_CONSTS_H
-#define BALANCER_CONSTS_H
-#include "balancer_consts.h"
-#endif 
-
-#ifndef ENCAP_HELPERS_H
-#define ENCAP_HELPERS_H
-#include "encap_helpers.h"
-#endif 
-
-#ifndef FLOW_DEBUG_H
-#define FLOW_DEBUG_H
-#include "flow_debug.h"
-#endif 
-
-#ifndef JHASH_H
-#define JHASH_H
-#include "jhash.h"
-#endif 
-
-#ifndef CONTROL_DATA_MAPS_H
-#define CONTROL_DATA_MAPS_H
-#include "control_data_maps.h"
-#endif 
-
-#ifndef HEALTHCHECKING_STRUCTS_H
-#define HEALTHCHECKING_STRUCTS_H
-#include "healthchecking_structs.h"
-#endif 
-
-#ifndef BALANCER_STRUCTS_H
-#define BALANCER_STRUCTS_H
-#include "balancer_structs.h"
-#endif 
-
-#ifndef HEALTHCHECKING_MAPS_H
-#define HEALTHCHECKING_MAPS_H
-#include "healthchecking_maps.h"
-#endif 
-
-#ifndef BALANCER_HELPERS_H
-#define BALANCER_HELPERS_H
-#include "balancer_helpers.h"
-#endif 
-
-#ifndef PCKT_PARSING_H
-#define PCKT_PARSING_H
-#include "pckt_parsing.h"
-#endif 
-
-#ifndef FLOW_DEBUG_MAPS_H
-#define FLOW_DEBUG_MAPS_H
-#include "flow_debug_maps.h"
-#endif 
-
-#ifndef DECAP_MAPS_H
-#define DECAP_MAPS_H
-#include "decap_maps.h"
-#endif 
-
-#ifndef BPF_H
-#define BPF_H
-#include "bpf.h"
-#endif 
-
-#ifndef FLOW_DEBUG_HELPERS_H
-#define FLOW_DEBUG_HELPERS_H
-#include "flow_debug_helpers.h"
-#endif 
-
-#ifndef BPF_COMMON_H
-#define BPF_COMMON_H
-#include "bpf_common.h"
-#endif 
-
-#ifndef CSUM_HELPERS_H
-#define CSUM_HELPERS_H
-#include "csum_helpers.h"
-#endif 
-
-#ifndef BPF_HELPERS_H
-#define BPF_HELPERS_H
-#include "bpf_helpers.h"
-#endif 
-
-#ifndef BPF_ENDIAN_H
-#define BPF_ENDIAN_H
-#include "bpf_endian.h"
-#endif 
-
-//#ifndef BALANCER_KERN_FLAVORS_TPL_H
-//#define BALANCER_KERN_FLAVORS_TPL_H
-//#include "balancer_kern_flavors-tpl.h"
-//#endif 
-
-#ifndef HEALTHCHECKING_CONSTS_H
-#define HEALTHCHECKING_CONSTS_H
-#include "healthchecking_consts.h"
-#endif 
-
-#ifndef HANDLE_ICMP_H
-#define HANDLE_ICMP_H
-#include "handle_icmp.h"
-#endif 
+#define RECORD_FLOW_INFO
 
 #ifndef VERSION_H
 #define VERSION_H
@@ -143,14 +15,14 @@
 #define CDEFS_H
 #include "cdefs.h"
 #endif 
-/*
+
 #include <bits/wordsize.h>
 #include <bits/long-double.h>
 #ifndef SELECT_H
 #define SELECT_H
 #include "select.h"
 #endif 
-*/
+
 #ifndef SWAB_H
 #define SWAB_H
 #include "swab.h"
@@ -159,7 +31,6 @@
 #include <linux/types.h>
 #include <asm/bitsperlong.h>
 #include <asm/swab.h>
-/*
 #ifndef BYTESWAP_H
 #define BYTESWAP_H
 #include "byteswap.h"
@@ -176,7 +47,7 @@
 #define UINTN_IDENTITY_H
 #include "uintn-identity.h"
 #endif 
-*/
+
 #ifndef BPF_ENDIAN_H
 #define BPF_ENDIAN_H
 #include "bpf_endian.h"
@@ -291,6 +162,40 @@
 #include "handle_icmp.h"
 #endif 
 
+#ifndef BALANCER_MAPS_H
+#define BALANCER_MAPS_H
+#include "balancer_maps.h"
+#endif 
+
+#ifndef CONTROL_DATA_MAPS_H
+#define CONTROL_DATA_MAPS_H
+#include "control_data_maps.h"
+#endif 
+
+#ifndef DECAP_MAPS_H
+#define DECAP_MAPS_H
+#include "decap_maps.h"
+#endif 
+
+#ifndef FLOW_DEBUG_MAPS_H
+#define FLOW_DEBUG_MAPS_H
+#include "flow_debug_maps.h"
+#endif 
+
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 818 endLine: 827
+ */ 
+__attribute__((__always_inline__)) static inline __u32 get_packet_hash(struct packet_description* pckt,bool hash_16bytes) {
+  if (hash_16bytes) {
+    return jhash_2words(
+        jhash(pckt->flow.srcv6, 16, INIT_JHASH_SEED_V6),
+        pckt->flow.ports,
+        INIT_JHASH_SEED);
+  } else {
+    return jhash_2words(pckt->flow.src, pckt->flow.ports, INIT_JHASH_SEED);
+  }
+}
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
  startLine: 24 endLine: 50
@@ -321,20 +226,6 @@ __attribute__((__always_inline__))
     }
   }
   return false;
-}
-/* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 818 endLine: 827
- */ 
-__attribute__((__always_inline__)) static inline __u32 get_packet_hash(struct packet_description* pckt,bool hash_16bytes) {
-  if (hash_16bytes) {
-    return jhash_2words(
-        jhash(pckt->flow.srcv6, 16, INIT_JHASH_SEED_V6),
-        pckt->flow.ports,
-        INIT_JHASH_SEED);
-  } else {
-    return jhash_2words(pckt->flow.src, pckt->flow.ports, INIT_JHASH_SEED);
-  }
 }
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
@@ -448,11 +339,11 @@ __attribute__((__always_inline__)) static inline void connection_table_lookup(
   *real = bpf_map_lookup_elem(&reals, &key);
   return;
 }
+#ifdef  INLINE_DECAP_GENERIC
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
  startLine: 233 endLine: 255
  */ 
-#ifdef INLINE_DECAP_GENERIC
 __attribute__((__always_inline__)) static inline int
 check_decap_dst(struct packet_description* pckt, bool is_ipv6, bool* pass) {
   struct address dst_addr = {};
@@ -476,7 +367,8 @@ check_decap_dst(struct packet_description* pckt, bool is_ipv6, bool* pass) {
   }
   return FURTHER_PROCESSING;
 }
-#endif
+#endif 
+#ifdef  GLOBAL_LRU_LOOKUP
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
  startLine: 261 endLine: 277
@@ -498,12 +390,12 @@ __attribute__((__always_inline__)) static inline bool reals_have_same_addr(
     return a->dst == b->dst;
   }
 }
+#endif 
+#ifdef  GLOBAL_LRU_LOOKUP
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
  startLine: 279 endLine: 335
- */
-
-#ifdef GLOBAL_LRU_LOOKUP
+ */ 
 __attribute__((__always_inline__)) static inline int perform_global_lru_lookup(
     struct real_definition** dst,
     struct packet_description* pckt,
@@ -561,8 +453,7 @@ __attribute__((__always_inline__)) static inline int perform_global_lru_lookup(
 
   return FURTHER_PROCESSING;
 }
-
-#endif // GLOBAL_LRU_LOOKUP
+#endif 
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
  startLine: 444 endLine: 457
@@ -608,5 +499,4 @@ __attribute__((__always_inline__)) static inline void increment_quic_cid_drop_re
   }
   quic_drop->v2 += 1;
 }
-
 char _license[] SEC("license") = "GPL";

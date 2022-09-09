@@ -292,18 +292,19 @@ def parseXML(xmlFile,f):
         print(appt.get('endline'))
         
 # read header file and included headers to headers dict
-def addDependsOn(headerFile):
-    with open(headerFile) as iFile:
+def addDependsOn(cFile):
+    with open(cFile) as iFile:
         for line in iFile.readlines():
             if "#include" in line:
                 h  = line.split()[-1]
                 #h = h.replace("<","")
                 #h = h.replace(">","")
                 h = h.replace("\"","")
-                #print("headerFile: ",headerFile," h: ",h)
-                graph[h].add(headerFile)
+                #print("cFile: ",cFile," h: ",h)
+                graph[h].add(cFile)
+                print("Adding Header Dep: From",cFile," to: ",h )
                 headers[h]=1
-                headers[headerFile]=1
+               
     iFile.close()
 
 def processFuncLine(line):
@@ -318,10 +319,12 @@ def processFuncLine(line):
         duplicates.append(line)
         return
     src = tokens[2]
-    if src.endswith(".h"):
+    #Add headers included by .c files only
+    if src.endswith(".c"):
+    #if src.endswith(".h"):
         #print("Header File: ",line)
-        headers[src]=1
-        shutil.copy(src,opdir)
+        #headers[src]=1
+        #shutil.copy(src,opdir)
         addDependsOn(src)
     startLine = tokens[3]
     #remove end ]

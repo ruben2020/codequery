@@ -1,43 +1,11 @@
 /* SPDX-License-Identifier: GPL-2.0 */
 #define RECORD_FLOW_INFO
-#ifndef SWAB_H
-#define SWAB_H
-#include "swab.h"
-#endif 
-
-#include <linux/types.h>
-#include <asm/bitsperlong.h>
-#include <asm/swab.h>
-#ifndef BPF_ENDIAN_H
-#define BPF_ENDIAN_H
-#include "bpf_endian.h"
-#endif 
-
-#include <linux/swab.h>
-#ifndef CDEFS_H
-#define CDEFS_H
-#include "cdefs.h"
-#endif 
-
-#include <bits/wordsize.h>
-#include <bits/long-double.h>
-#ifndef STRING_H
-#define STRING_H
-#include "string.h"
-#endif 
-
-//#include <bits/libc-header-start.h>
-#include <stddef.h>
-#ifndef HANDLE_ICMP_H
-#define HANDLE_ICMP_H
-#include "handle_icmp.h"
-#endif 
-
-#include <linux/icmp.h>
-#include <linux/icmpv6.h>
-#include <linux/if_ether.h>
+#include <linux/in.h>
 #include <linux/ip.h>
 #include <linux/ipv6.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <string.h>
 #ifndef BALANCER_CONSTS_H
 #define BALANCER_CONSTS_H
 #include "balancer_consts.h"
@@ -46,6 +14,11 @@
 #ifndef BALANCER_HELPERS_H
 #define BALANCER_HELPERS_H
 #include "balancer_helpers.h"
+#endif 
+
+#ifndef BALANCER_MAPS_H
+#define BALANCER_MAPS_H
+#include "balancer_maps.h"
 #endif 
 
 #ifndef BALANCER_STRUCTS_H
@@ -58,42 +31,19 @@
 #include "bpf.h"
 #endif 
 
-#ifndef BPF_ENDIAN_H
-#define BPF_ENDIAN_H
-#include "bpf_endian.h"
-#endif 
-
-#ifndef CSUM_HELPERS_H
-#define CSUM_HELPERS_H
-#include "csum_helpers.h"
-#endif 
-
-#include <linux/in.h>
-#include <linux/udp.h>
-#include <stdbool.h>
 #ifndef BPF_HELPERS_H
 #define BPF_HELPERS_H
 #include "bpf_helpers.h"
 #endif 
 
-#ifndef BALANCER_HELPERS_H
-#define BALANCER_HELPERS_H
-#include "balancer_helpers.h"
+#ifndef HANDLE_ICMP_H
+#define HANDLE_ICMP_H
+#include "handle_icmp.h"
 #endif 
 
-#ifndef CONTROL_DATA_MAPS_H
-#define CONTROL_DATA_MAPS_H
-#include "control_data_maps.h"
-#endif 
-
-#ifndef CSUM_HELPERS_H
-#define CSUM_HELPERS_H
-#include "csum_helpers.h"
-#endif 
-
-#ifndef INTROSPECTION_H
-#define INTROSPECTION_H
-#include "introspection.h"
+#ifndef JHASH_H
+#define JHASH_H
+#include "jhash.h"
 #endif 
 
 #ifndef PCKT_ENCAP_H
@@ -101,53 +51,9 @@
 #include "pckt_encap.h"
 #endif 
 
-#include <string.h>
-#ifndef ENCAP_HELPERS_H
-#define ENCAP_HELPERS_H
-#include "encap_helpers.h"
-#endif 
-
-#ifndef FLOW_DEBUG_H
-#define FLOW_DEBUG_H
-#include "flow_debug.h"
-#endif 
-
 #ifndef PCKT_PARSING_H
 #define PCKT_PARSING_H
 #include "pckt_parsing.h"
-#endif 
-
-#ifndef PCKT_PARSING_H
-#define PCKT_PARSING_H
-#include "pckt_parsing.h"
-#endif 
-
-#include <linux/ptrace.h>
-#include <linux/tcp.h>
-#include <linux/version.h>
-#ifndef FLOW_DEBUG_HELPERS_H
-#define FLOW_DEBUG_HELPERS_H
-#include "flow_debug_helpers.h"
-#endif 
-
-#ifndef FLOW_DEBUG_MAPS_H
-#define FLOW_DEBUG_MAPS_H
-#include "flow_debug_maps.h"
-#endif 
-
-#ifndef INTROSPECTION_H
-#define INTROSPECTION_H
-#include "introspection.h"
-#endif 
-
-#ifndef VERSION_H
-#define VERSION_H
-#include "version.h"
-#endif 
-
-#ifndef JHASH_H
-#define JHASH_H
-#include "jhash.h"
 #endif 
 
 #ifndef BALANCER_MAPS_H
@@ -165,10 +71,38 @@
 #include "decap_maps.h"
 #endif 
 
+#ifndef FLOW_DEBUG_HELPERS_H
+#define FLOW_DEBUG_HELPERS_H
+#include "flow_debug_helpers.h"
+#endif 
+
+#include <linux/if_ether.h>
+#include <linux/tcp.h>
+#include <linux/udp.h>
 #ifndef FLOW_DEBUG_MAPS_H
 #define FLOW_DEBUG_MAPS_H
 #include "flow_debug_maps.h"
 #endif 
+
+#ifndef FLOW_DEBUG_MAPS_H
+#define FLOW_DEBUG_MAPS_H
+#include "flow_debug_maps.h"
+#endif 
+
+#ifndef FLOW_DEBUG_H
+#define FLOW_DEBUG_H
+#include "flow_debug.h"
+#endif 
+
+#ifndef PCKT_PARSING_H
+#define PCKT_PARSING_H
+#include "pckt_parsing.h"
+#endif 
+
+#include <linux/icmp.h>
+#include <linux/icmpv6.h>
+#include <linux/ptrace.h>
+#include <linux/version.h>
 
 #ifdef  INLINE_DECAP_GENERIC
 /* Extracted from 

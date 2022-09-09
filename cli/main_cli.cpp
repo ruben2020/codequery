@@ -25,6 +25,7 @@
 int max_depth = 100;
 
 std::map<std::string, std::string> visited_fn_map;
+std::vector<std::string> visited_fn_order;
 std::map<std::string, std::string> map_ref_loc;
 
 void printhelp(const char* str)
@@ -151,7 +152,7 @@ void dump_map_defn_map(sqlquery* sq, bool exact, tStr fpath){
 	std::cout << "}" << std::endl;
 	return;
 }
-
+/*
 //dump the map along with user queries ... for multiple definitions of functions
 void dump_func_defn_map(){
   std::map<std::string,std::vector<std::string>> print_map;
@@ -162,6 +163,26 @@ void dump_func_defn_map(){
   for(const auto& elem : print_map){
     std::cout<< elem.first <<","<<elem.second.size();
 	  for(const auto&inner : elem.second){
+	    std::cout << ",["<<inner<<"]";
+	  }
+	  std::cout << "\n";
+  }
+	 std::cout << "}\n";
+}
+*/
+
+//dump the map along with user queries ... for multiple definitions of functions
+void dump_func_defn_map(){
+  std::map<std::string,std::vector<std::string>> print_map;
+  printf("{#funcName,count,[FileName,linenumber]\n");
+  for(const auto& elem : visited_fn_map){
+   	print_map[elem.second].push_back(elem.first);
+   }
+  //for(const auto& elem : print_map){
+  for(const auto& key : visited_fn_order){
+
+    std::cout<< key <<","<< print_map[key].size();
+	  for(const auto&inner : print_map[key]){
 	    std::cout << ",["<<inner<<"]";
 	  }
 	  std::cout << "\n";
@@ -204,6 +225,7 @@ void make_fn_defn_entry(tStr term, bool exact, int depth, tStr fpath,
 		std::string key = path + ","+ linenum;
 		if(visited_fn_map.find(key) == visited_fn_map.end()){
 		  visited_fn_map[key] = term.c_str();
+		  visited_fn_order.push_back(term.c_str());
 		} else{
 		  //printf("VISITED\n");
 		  return;
@@ -231,7 +253,7 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 		printf("Error: SQL Error! %s!\n", resultlst.sqlerrmsg.c_str());
 		return 1;	
 	}
-	make_fn_defn_entry(term, exact, depth, fpath, full, debug, limitlen, sq);
+	//make_fn_defn_entry(term, exact, depth, fpath, full, debug, limitlen, sq);
 	for(std::vector<sqlqueryresult>::iterator it = resultlst.resultlist.begin();
 		it != resultlst.resultlist.end(); it++)
 	{
@@ -250,6 +272,7 @@ int create_callee_tree_rec(tStr sqfn, tStr term, int intParam,
 			create_callee_tree_rec(sqfn, it->symname.c_str(), intParam, exact, depth +1, fpath, full, debug, limitlen, sq);
 		}
 	}
+	make_fn_defn_entry(term, exact, depth, fpath, full, debug, limitlen, sq);
 	/*printf("%.*s ", depth, "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t");
 	printf("end %s calls}\n",term.c_str());*/
 	return retVal;

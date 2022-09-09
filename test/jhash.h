@@ -4,16 +4,10 @@
  * can compile it into valid sequence of bpf instructions
  */
 
-//IRL Changed:
-static inline u32 rol32(u32 word, unsigned int shift) {
-  return (word << shift) | (word >> ((-shift) & 31));
-}
-
-/*
 static inline __u32 rol32(__u32 word, unsigned int shift) {
   return (word << shift) | (word >> ((-shift) & 31));
 }
-*/
+
 #define __jhash_mix(a, b, c) \
   {                          \
     a -= c;                  \

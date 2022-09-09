@@ -171,17 +171,6 @@ def doesStructContainMap(str):
         
     return (False,None)
 
-def dumpFns(f,e):
-    for key in fns:
-        (funcName,srcFile,startLine,endLine) = fns[key]
-        if not funcName == None and not srcFile.endswith(".h"):
-            op=funcName+","+srcFile+",["+str(startLine)+":"+str(endLine)+"]\n"
-            e.write(op)
-            extractAndDump(srcFile,startLine,endLine,f)
-            #del fns[key]
-        
-
-
 # parses output from c-extract-struct.txl
 def parseTXLStructOutputFile(fileName,f):
     print("Parsing Struct Output FIle: ",fileName)
@@ -218,7 +207,6 @@ def parseTXLStructOutputFile(fileName,f):
     iFile.close()
             
 
-    
 # parses output from c-extract-function.txl
 def parseTXLFunctionOutputFile(inputFile,f,e):
     srcSeen=False
@@ -262,15 +250,14 @@ def parseTXLFunctionOutputFile(inputFile,f,e):
             #print(srcFile, " startline: ",startLine," endline: ",endLine," funcname: ",funcName)
             #key=funcName+":"+srcFile+":"+str(startLine)
             key=funcName+":"+srcFile
-            print("Checking if need to extract",key)
+            #print("Checking ",key)
             if key in fns.keys():
-                fns.update({key:(funcName,srcFile,startLine,endLine)})
                 if not srcFile.endswith(".h"):
-                    print("Need to Extract", key)
-                    #op=funcName+","+srcFile+",["+str(startLine)+":"+str(endLine)+"]\n"
-                    #e.write(op)
-                    #extractAndDump(srcFile,startLine,endLine,f)
-                    #del fns[key]
+                    #print("Need to Extract", key)
+                    op=funcName+","+srcFile+",["+str(startLine)+":"+str(endLine)+"]\n"
+                    e.write(op)
+                    extractAndDump(srcFile,startLine,endLine,f)
+                    del fns[key]
             continue;
     
 def parseXML(xmlFile,f):
@@ -328,8 +315,8 @@ def processFuncLine(line):
     startLine = startLine[:-1]
     #print(fnName,count,src,startLine)
     #key=fnName+":"+src+":"+startLine
-    key=fnName+":"+src
-    fns[key]=(None,None,None,None)
+    key=fnName+":"+src;
+    fns[key]=1
 
 def processMapLine(line):
     ##print("Processing", line)
@@ -407,7 +394,7 @@ if __name__ == "__main__":
     
     parseFunctionList(ifile)
     ifile.close()
-    print("BEFORE: FNS LIST")
+    print("FNS LIST")
     print(fns)
     
     #print("Dependencies: \n",graph)
@@ -424,7 +411,7 @@ if __name__ == "__main__":
 
     #include required header files
     f.write("/* SPDX-License-Identifier: GPL-2.0 */\n");
-    f.write("#define RECORD_FLOW_INFO\n")
+    f.write("#define RECORD_FLOW\n")
     #print("HEADERS\n")
     for header in headers.keys():
         #print(header)
@@ -488,9 +475,7 @@ if __name__ == "__main__":
         xmlFile = open(path,'r')
         parseTXLFunctionOutputFile(xmlFile,f,eFile)
         xmlFile.close()
-
-    dumpFns(f,eFile)
-    
+            
     f.write("char _license[] SEC(\"license\") = \"GPL\";");
     f.close()
     eFile.close()
@@ -520,7 +505,3 @@ if __name__ == "__main__":
     for key in presDict:
         print("Name: ",key)
         print("Val: ",presDict[key])
-
-    print("AFTER: FNS LIST")
-    print(fns)
-    

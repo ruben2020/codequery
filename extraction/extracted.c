@@ -1,27 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0 */
-#define RECORD_FLOW_INFO 
-#ifndef VERSION_H
-#define VERSION_H
-#include "version.h"
-#endif 
-
-#ifndef INTROSPECTION_H
-#define INTROSPECTION_H
-#include "introspection.h"
-#endif 
-
-#ifndef CDEFS_H
-#define CDEFS_H
-#include "cdefs.h"
-#endif 
-
-#include <bits/wordsize.h>
-#include <bits/long-double.h>
-#ifndef SELECT_H
-#define SELECT_H
-#include <sys/select.h>
-#endif 
-
+#define RECORD_FLOW_INFO
 #ifndef SWAB_H
 #define SWAB_H
 #include "swab.h"
@@ -30,32 +8,29 @@
 #include <linux/types.h>
 #include <asm/bitsperlong.h>
 #include <asm/swab.h>
-#ifndef BYTESWAP_H
-#define BYTESWAP_H
-#include <byteswap.h>
-#endif 
-
-#include <features.h>
-#include <bits/types.h>
-#ifndef JHASH_H
-#define JHASH_H
-#include "jhash.h"
-#endif 
-
-#ifndef UINTN_IDENTITY_H
-#define UINTN_IDENTITY_H
-#include <netinet/in.h>
-#endif 
-
 #ifndef BPF_ENDIAN_H
 #define BPF_ENDIAN_H
 #include "bpf_endian.h"
 #endif 
 
 #include <linux/swab.h>
-#ifndef PCKT_PARSING_H
-#define PCKT_PARSING_H
-#include "pckt_parsing.h"
+#ifndef CDEFS_H
+#define CDEFS_H
+#include "cdefs.h"
+#endif 
+
+#include <bits/wordsize.h>
+#include <bits/long-double.h>
+#ifndef STRING_H
+#define STRING_H
+#include "string.h"
+#endif 
+
+//#include <bits/libc-header-start.h>
+#include <stddef.h>
+#ifndef HANDLE_ICMP_H
+#define HANDLE_ICMP_H
+#include "handle_icmp.h"
 #endif 
 
 #include <linux/icmp.h>
@@ -63,12 +38,6 @@
 #include <linux/if_ether.h>
 #include <linux/ip.h>
 #include <linux/ipv6.h>
-#include <linux/ptrace.h>
-#include <linux/tcp.h>
-#include <linux/udp.h>
-#include <linux/version.h>
-#include <stdbool.h>
-#include <stddef.h>
 #ifndef BALANCER_CONSTS_H
 #define BALANCER_CONSTS_H
 #include "balancer_consts.h"
@@ -79,9 +48,19 @@
 #include "balancer_helpers.h"
 #endif 
 
+#ifndef BALANCER_STRUCTS_H
+#define BALANCER_STRUCTS_H
+#include "balancer_structs.h"
+#endif 
+
 #ifndef BPF_H
 #define BPF_H
 #include "bpf.h"
+#endif 
+
+#ifndef BPF_ENDIAN_H
+#define BPF_ENDIAN_H
+#include "bpf_endian.h"
 #endif 
 
 #ifndef CSUM_HELPERS_H
@@ -90,14 +69,31 @@
 #endif 
 
 #include <linux/in.h>
-#ifndef BPF_ENDIAN_H
-#define BPF_ENDIAN_H
-#include "bpf_endian.h"
-#endif 
-
+#include <linux/udp.h>
+#include <stdbool.h>
 #ifndef BPF_HELPERS_H
 #define BPF_HELPERS_H
 #include "bpf_helpers.h"
+#endif 
+
+#ifndef BALANCER_HELPERS_H
+#define BALANCER_HELPERS_H
+#include "balancer_helpers.h"
+#endif 
+
+#ifndef CONTROL_DATA_MAPS_H
+#define CONTROL_DATA_MAPS_H
+#include "control_data_maps.h"
+#endif 
+
+#ifndef CSUM_HELPERS_H
+#define CSUM_HELPERS_H
+#include "csum_helpers.h"
+#endif 
+
+#ifndef INTROSPECTION_H
+#define INTROSPECTION_H
+#include "introspection.h"
 #endif 
 
 #ifndef PCKT_ENCAP_H
@@ -106,16 +102,6 @@
 #endif 
 
 #include <string.h>
-#ifndef BALANCER_STRUCTS_H
-#define BALANCER_STRUCTS_H
-#include "balancer_structs.h"
-#endif 
-
-#ifndef CONTROL_DATA_MAPS_H
-#define CONTROL_DATA_MAPS_H
-#include "control_data_maps.h"
-#endif 
-
 #ifndef ENCAP_HELPERS_H
 #define ENCAP_HELPERS_H
 #include "encap_helpers.h"
@@ -131,21 +117,14 @@
 #include "pckt_parsing.h"
 #endif 
 
-#ifndef BALANCER_HELPERS_H
-#define BALANCER_HELPERS_H
-#include "balancer_helpers.h"
+#ifndef PCKT_PARSING_H
+#define PCKT_PARSING_H
+#include "pckt_parsing.h"
 #endif 
 
-#ifndef CSUM_HELPERS_H
-#define CSUM_HELPERS_H
-#include "csum_helpers.h"
-#endif 
-
-#ifndef INTROSPECTION_H
-#define INTROSPECTION_H
-#include "introspection.h"
-#endif 
-
+#include <linux/ptrace.h>
+#include <linux/tcp.h>
+#include <linux/version.h>
 #ifndef FLOW_DEBUG_HELPERS_H
 #define FLOW_DEBUG_HELPERS_H
 #include "flow_debug_helpers.h"
@@ -156,9 +135,19 @@
 #include "flow_debug_maps.h"
 #endif 
 
-#ifndef HANDLE_ICMP_H
-#define HANDLE_ICMP_H
-#include "handle_icmp.h"
+#ifndef INTROSPECTION_H
+#define INTROSPECTION_H
+#include "introspection.h"
+#endif 
+
+#ifndef VERSION_H
+#define VERSION_H
+#include "version.h"
+#endif 
+
+#ifndef JHASH_H
+#define JHASH_H
+#include "jhash.h"
 #endif 
 
 #ifndef BALANCER_MAPS_H
@@ -180,19 +169,108 @@
 #define FLOW_DEBUG_MAPS_H
 #include "flow_debug_maps.h"
 #endif 
+
+#ifdef  INLINE_DECAP_GENERIC
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 818 endLine: 827
+ startLine: 233 endLine: 255
  */ 
-__attribute__((__always_inline__)) static inline __u32 get_packet_hash(struct packet_description* pckt,bool hash_16bytes) {
-  if (hash_16bytes) {
-    return jhash_2words(
-        jhash(pckt->flow.srcv6, 16, INIT_JHASH_SEED_V6),
-        pckt->flow.ports,
-        INIT_JHASH_SEED);
+__attribute__((__always_inline__)) static inline int
+check_decap_dst(struct packet_description* pckt, bool is_ipv6, bool* pass) {
+  struct address dst_addr = {};
+  struct lb_stats* data_stats;
+
+  if (is_ipv6) {
+    memcpy(dst_addr.addrv6, pckt->flow.dstv6, 16);
   } else {
-    return jhash_2words(pckt->flow.src, pckt->flow.ports, INIT_JHASH_SEED);
+    dst_addr.addr = pckt->flow.dst;
   }
+  __u32* decap_dst_flags = bpf_map_lookup_elem(&decap_dst, &dst_addr);
+
+  if (decap_dst_flags) {
+    *pass = false;
+    __u32 stats_key = MAX_VIPS + REMOTE_ENCAP_CNTRS;
+    data_stats = bpf_map_lookup_elem(&stats, &stats_key);
+    if (!data_stats) {
+      return XDP_DROP;
+    }
+    data_stats->v1 += 1;
+  }
+  return FURTHER_PROCESSING;
+}
+#endif 
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 444 endLine: 457
+ */ 
+__attribute__((__always_inline__)) static inline void
+increment_quic_cid_version_stats(int host_id) {
+  __u32 quic_version_stats_key = MAX_VIPS + QUIC_CID_VERSION_STATS;
+  struct lb_stats* quic_version =
+      bpf_map_lookup_elem(&stats, &quic_version_stats_key);
+  if (!quic_version) {
+    return;
+  }
+  if (host_id > QUIC_CONNID_VERSION_V1_MAX_VAL) {
+    quic_version->v2 += 1;
+  } else {
+    quic_version->v1 += 1;
+  }
+}
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 470 endLine: 478
+ */ 
+__attribute__((__always_inline__)) static inline void increment_quic_cid_drop_real_0() {
+  __u32 quic_drop_stats_key = MAX_VIPS + QUIC_CID_DROP_STATS;
+  struct lb_stats* quic_drop =
+      bpf_map_lookup_elem(&stats, &quic_drop_stats_key);
+  if (!quic_drop) {
+    return;
+  }
+  quic_drop->v2 += 1;
+}
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 459 endLine: 468
+ */ 
+__attribute__((__always_inline__)) static inline void
+increment_quic_cid_drop_no_real() {
+  __u32 quic_drop_stats_key = MAX_VIPS + QUIC_CID_DROP_STATS;
+  struct lb_stats* quic_drop =
+      bpf_map_lookup_elem(&stats, &quic_drop_stats_key);
+  if (!quic_drop) {
+    return;
+  }
+  quic_drop->v1 += 1;
+}
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 133 endLine: 156
+ */ 
+__attribute__((__always_inline__)) static inline void connection_table_lookup(
+    struct real_definition** real,
+    struct packet_description* pckt,
+    void* lru_map,
+    bool isGlobalLru) {
+  struct real_pos_lru* dst_lru;
+  __u64 cur_time;
+  __u32 key;
+  dst_lru = bpf_map_lookup_elem(lru_map, &pckt->flow);
+  if (!dst_lru) {
+    return;
+  }
+  if (!isGlobalLru && pckt->flow.proto == IPPROTO_UDP) {
+    cur_time = bpf_ktime_get_ns();
+    if (cur_time - dst_lru->atime > LRU_UDP_TIMEOUT) {
+      return;
+    }
+    dst_lru->atime = cur_time;
+  }
+  key = dst_lru->pos;
+  pckt->real_index = key;
+  *real = bpf_map_lookup_elem(&reals, &key);
+  return;
 }
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
@@ -224,6 +302,20 @@ __attribute__((__always_inline__))
     }
   }
   return false;
+}
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 818 endLine: 827
+ */ 
+__attribute__((__always_inline__)) static inline __u32 get_packet_hash(struct packet_description* pckt,bool hash_16bytes) {
+  if (hash_16bytes) {
+    return jhash_2words(
+        jhash(pckt->flow.srcv6, 16, INIT_JHASH_SEED_V6),
+        pckt->flow.ports,
+        INIT_JHASH_SEED);
+  } else {
+    return jhash_2words(pckt->flow.src, pckt->flow.ports, INIT_JHASH_SEED);
+  }
 }
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
@@ -309,63 +401,6 @@ __attribute__((__always_inline__))
   }
   return true;
 }
-/* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 133 endLine: 156
- */ 
-__attribute__((__always_inline__)) static inline void connection_table_lookup(
-    struct real_definition** real,
-    struct packet_description* pckt,
-    void* lru_map,
-    bool isGlobalLru) {
-  struct real_pos_lru* dst_lru;
-  __u64 cur_time;
-  __u32 key;
-  dst_lru = bpf_map_lookup_elem(lru_map, &pckt->flow);
-  if (!dst_lru) {
-    return;
-  }
-  if (!isGlobalLru && pckt->flow.proto == IPPROTO_UDP) {
-    cur_time = bpf_ktime_get_ns();
-    if (cur_time - dst_lru->atime > LRU_UDP_TIMEOUT) {
-      return;
-    }
-    dst_lru->atime = cur_time;
-  }
-  key = dst_lru->pos;
-  pckt->real_index = key;
-  *real = bpf_map_lookup_elem(&reals, &key);
-  return;
-}
-#ifdef  INLINE_DECAP_GENERIC
-/* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 233 endLine: 255
- */ 
-__attribute__((__always_inline__)) static inline int
-check_decap_dst(struct packet_description* pckt, bool is_ipv6, bool* pass) {
-  struct address dst_addr = {};
-  struct lb_stats* data_stats;
-
-  if (is_ipv6) {
-    memcpy(dst_addr.addrv6, pckt->flow.dstv6, 16);
-  } else {
-    dst_addr.addr = pckt->flow.dst;
-  }
-  __u32* decap_dst_flags = bpf_map_lookup_elem(&decap_dst, &dst_addr);
-
-  if (decap_dst_flags) {
-    *pass = false;
-    __u32 stats_key = MAX_VIPS + REMOTE_ENCAP_CNTRS;
-    data_stats = bpf_map_lookup_elem(&stats, &stats_key);
-    if (!data_stats) {
-      return XDP_DROP;
-    }
-    data_stats->v1 += 1;
-  }
-  return FURTHER_PROCESSING;
-}
-#endif 
 #ifdef  GLOBAL_LRU_LOOKUP
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
@@ -452,50 +487,4 @@ __attribute__((__always_inline__)) static inline int perform_global_lru_lookup(
   return FURTHER_PROCESSING;
 }
 #endif 
-/* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 444 endLine: 457
- */ 
-__attribute__((__always_inline__)) static inline void
-increment_quic_cid_version_stats(int host_id) {
-  __u32 quic_version_stats_key = MAX_VIPS + QUIC_CID_VERSION_STATS;
-  struct lb_stats* quic_version =
-      bpf_map_lookup_elem(&stats, &quic_version_stats_key);
-  if (!quic_version) {
-    return;
-  }
-  if (host_id > QUIC_CONNID_VERSION_V1_MAX_VAL) {
-    quic_version->v2 += 1;
-  } else {
-    quic_version->v1 += 1;
-  }
-}
-/* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 459 endLine: 468
- */ 
-__attribute__((__always_inline__)) static inline void
-increment_quic_cid_drop_no_real() {
-  __u32 quic_drop_stats_key = MAX_VIPS + QUIC_CID_DROP_STATS;
-  struct lb_stats* quic_drop =
-      bpf_map_lookup_elem(&stats, &quic_drop_stats_key);
-  if (!quic_drop) {
-    return;
-  }
-  quic_drop->v1 += 1;
-}
-/* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
- startLine: 470 endLine: 478
- */ 
-__attribute__((__always_inline__)) static inline void increment_quic_cid_drop_real_0() {
-  __u32 quic_drop_stats_key = MAX_VIPS + QUIC_CID_DROP_STATS;
-  struct lb_stats* quic_drop =
-      bpf_map_lookup_elem(&stats, &quic_drop_stats_key);
-  if (!quic_drop) {
-    return;
-  }
-  quic_drop->v2 += 1;
-}
-
 char _license[] SEC("license") = "GPL";

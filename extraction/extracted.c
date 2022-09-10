@@ -104,6 +104,84 @@
 #include <linux/ptrace.h>
 #include <linux/version.h>
 
+
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 158 endLine: 230
+ */ 
+__attribute__((__always_inline__)) static inline int process_l3_headers(
+    struct packet_description* pckt,
+    __u8* protocol,
+    __u64 off,
+    __u16* pkt_bytes,
+    void* data,
+    void* data_end,
+    bool is_ipv6) {
+  __u64 iph_len;
+  int action;
+  struct iphdr* iph;
+  struct ipv6hdr* ip6h;
+  if (is_ipv6) {
+    ip6h = data + off;
+    if (ip6h + 1 > data_end) {
+      return XDP_DROP;
+    }
+
+    iph_len = sizeof(struct ipv6hdr);
+    *protocol = ip6h->nexthdr;
+    pckt->flow.proto = *protocol;
+
+    // copy tos from the packet
+    pckt->tos = (ip6h->priority << 4) & 0xF0;
+    pckt->tos = pckt->tos | ((ip6h->flow_lbl[0] >> 4) & 0x0F);
+
+    *pkt_bytes = bpf_ntohs(ip6h->payload_len);
+    off += iph_len;
+    if (*protocol == IPPROTO_FRAGMENT) {
+      // we drop fragmented packets
+      return XDP_DROP;
+    } else if (*protocol == IPPROTO_ICMPV6) {
+      action = parse_icmpv6(data, data_end, off, pckt);
+      if (action >= 0) {
+        return action;
+      }
+    } else {
+      memcpy(pckt->flow.srcv6, ip6h->saddr.s6_addr32, 16);
+      memcpy(pckt->flow.dstv6, ip6h->daddr.s6_addr32, 16);
+    }
+  } else {
+    iph = data + off;
+    if (iph + 1 > data_end) {
+      return XDP_DROP;
+    }
+    // ihl contains len of ipv4 header in 32bit words
+    if (iph->ihl != 5) {
+      // if len of ipv4 hdr is not equal to 20bytes that means that header
+      // contains ip options, and we dont support em
+      return XDP_DROP;
+    }
+    pckt->tos = iph->tos;
+    *protocol = iph->protocol;
+    pckt->flow.proto = *protocol;
+    *pkt_bytes = bpf_ntohs(iph->tot_len);
+    off += IPV4_HDR_LEN_NO_OPT;
+
+    if (iph->frag_off & PCKT_FRAGMENTED) {
+      // we drop fragmented packets.
+      return XDP_DROP;
+    }
+    if (*protocol == IPPROTO_ICMP) {
+      action = parse_icmp(data, data_end, off, pckt);
+      if (action >= 0) {
+        return action;
+      }
+    } else {
+      pckt->flow.src = iph->saddr;
+      pckt->flow.dst = iph->daddr;
+    }
+  }
+  return FURTHER_PROCESSING;
+}
 #ifdef  INLINE_DECAP_GENERIC
 /* Extracted from 
  /home/sayandes/codequery/test/balancer_kern.c 
@@ -131,6 +209,117 @@ check_decap_dst(struct packet_description* pckt, bool is_ipv6, bool* pass) {
     data_stats->v1 += 1;
   }
   return FURTHER_PROCESSING;
+}
+#endif 
+#ifdef  INLINE_DECAP_IPIP
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 340 endLine: 387
+ */ 
+__attribute__((__always_inline__)) static inline int process_encaped_ipip_pckt(
+    void** data,
+    void** data_end,
+    struct xdp_md* xdp,
+    bool* is_ipv6,
+    __u8* protocol,
+    bool pass) {
+  int action;
+  if (*protocol == IPPROTO_IPIP) {
+    if (*is_ipv6) {
+      int offset = sizeof(struct ipv6hdr) + sizeof(struct ethhdr);
+      if ((*data + offset) > *data_end) {
+        return XDP_DROP;
+      }
+      action = decrement_ttl(*data, *data_end, offset, false);
+      if (!decap_v6(xdp, data, data_end, true)) {
+        return XDP_DROP;
+      }
+      *is_ipv6 = false;
+    } else {
+      int offset = sizeof(struct iphdr) + sizeof(struct ethhdr);
+      if ((*data + offset) > *data_end) {
+        return XDP_DROP;
+      }
+      action = decrement_ttl(*data, *data_end, offset, false);
+      if (!decap_v4(xdp, data, data_end)) {
+        return XDP_DROP;
+      }
+    }
+  } else if (*protocol == IPPROTO_IPV6) {
+    int offset = sizeof(struct ipv6hdr) + sizeof(struct ethhdr);
+    if ((*data + offset) > *data_end) {
+      return XDP_DROP;
+    }
+    action = decrement_ttl(*data, *data_end, offset, true);
+    if (!decap_v6(xdp, data, data_end, false)) {
+      return XDP_DROP;
+    }
+  }
+  if (action >= 0) {
+    return action;
+  }
+  if (pass) {
+    // pass packet to kernel after decapsulation
+    return XDP_PASS;
+  }
+  return recirculate(xdp);
+}
+#endif 
+#ifdef  INLINE_DECAP_GUE
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 391 endLine: 441
+ */ 
+__attribute__((__always_inline__)) static inline int 
+process_encaped_gue_pckt(
+    void** data,
+    void** data_end,
+    struct xdp_md* xdp,
+    bool is_ipv6,
+    bool pass) {
+  int offset = 0;
+  int action;
+  if (is_ipv6) {
+    __u8 v6 = 0;
+    offset =
+        sizeof(struct ipv6hdr) + sizeof(struct ethhdr) + sizeof(struct udphdr);
+    // 1 byte for gue v1 marker to figure out what is internal protocol
+    if ((*data + offset + 1) > *data_end) {
+      return XDP_DROP;
+    }
+    v6 = ((__u8*)(*data))[offset];
+    v6 &= GUEV1_IPV6MASK;
+    if (v6) {
+      // inner packet is ipv6 as well
+      action = decrement_ttl(*data, *data_end, offset, true);
+      if (!gue_decap_v6(xdp, data, data_end, false)) {
+        return XDP_DROP;
+      }
+    } else {
+      // inner packet is ipv4
+      action = decrement_ttl(*data, *data_end, offset, false);
+      if (!gue_decap_v6(xdp, data, data_end, true)) {
+        return XDP_DROP;
+      }
+    }
+  } else {
+    offset =
+        sizeof(struct iphdr) + sizeof(struct ethhdr) + sizeof(struct udphdr);
+    if ((*data + offset) > *data_end) {
+      return XDP_DROP;
+    }
+    action = decrement_ttl(*data, *data_end, offset, false);
+    if (!gue_decap_v4(xdp, data, data_end)) {
+      return XDP_DROP;
+    }
+  }
+  if (action >= 0) {
+    return action;
+  }
+  if (pass) {
+    return XDP_PASS;
+  }
+  return recirculate(xdp);
 }
 #endif 
 /* Extracted from 
@@ -421,4 +610,349 @@ __attribute__((__always_inline__)) static inline int perform_global_lru_lookup(
   return FURTHER_PROCESSING;
 }
 #endif 
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 480 endLine: 791
+ */ 
+__attribute__((__always_inline__)) static inline int process_packet(struct xdp_md* xdp, __u64 off, bool is_ipv6) {
+  void* data = (void*)(long)xdp->data;
+  void* data_end = (void*)(long)xdp->data_end;
+  struct ctl_value* cval;
+  struct real_definition* dst = NULL;
+  struct packet_description pckt = {};
+  struct vip_definition vip = {};
+  struct vip_meta* vip_info;
+  struct lb_stats* data_stats;
+  __u64 iph_len;
+  __u8 protocol;
+  __u16 original_sport;
+
+  int action;
+  __u32 vip_num;
+  __u32 mac_addr_pos = 0;
+  __u16 pkt_bytes;
+  action = process_l3_headers(
+      &pckt, &protocol, off, &pkt_bytes, data, data_end, is_ipv6);
+  if (action >= 0) {
+    return action;
+  }
+  protocol = pckt.flow.proto;
+
+#ifdef INLINE_DECAP_IPIP
+  /* This is to workaround a verifier issue for 5.2.
+   * The reason is that 5.2 verifier does not handle register
+   * copy states properly while 5.6 handles properly.
+   *
+   * For the following source code:
+   *   if (protocol == IPPROTO_IPIP || protocol == IPPROTO_IPV6) {
+   *     ...
+   *   }
+   * llvm12 may generate the following simplified code sequence
+   *   100  r5 = *(u8 *)(r9 +51)  // r5 is the protocol
+   *   120  r4 = r5
+   *   121  if r4 s> 0x10 goto target1
+   *   122  *(u64 *)(r10 -184) = r5
+   *   123  if r4 == 0x4 goto target2
+   *   ...
+   *   target2:
+   *   150  r1 = *(u64 *)(r10 -184)
+   *   151  if (r1 != 4) { __unreachable__}
+   *
+   * For the path 123->150->151, 5.6 correctly noticed
+   * at insn 150: r4, r5, *(u64 *)(r10 -184) all have value 4.
+   * while 5.2 has *(u64 *)(r10 -184) holding "r5" which could be
+   * any value 0-255. In 5.2, "__unreachable" code is verified
+   * and it caused verifier failure.
+   */
+  if (protocol == IPPROTO_IPIP) {
+    bool pass = true;
+    action = check_decap_dst(&pckt, is_ipv6, &pass);
+    if (action >= 0) {
+      return action;
+    }
+    return process_encaped_ipip_pckt(
+        &data, &data_end, xdp, &is_ipv6, &protocol, pass);
+  } else if (protocol == IPPROTO_IPV6) {
+    bool pass = true;
+    action = check_decap_dst(&pckt, is_ipv6, &pass);
+    if (action >= 0) {
+      return action;
+    }
+    return process_encaped_ipip_pckt(
+        &data, &data_end, xdp, &is_ipv6, &protocol, pass);
+  }
+#endif // INLINE_DECAP_IPIP
+
+  if (protocol == IPPROTO_TCP) {
+    if (!parse_tcp(data, data_end, is_ipv6, &pckt)) {
+      return XDP_DROP;
+    }
+  } else if (protocol == IPPROTO_UDP) {
+    if (!parse_udp(data, data_end, is_ipv6, &pckt)) {
+      return XDP_DROP;
+    }
+#ifdef INLINE_DECAP_GUE
+    if (pckt.flow.port16[1] == bpf_htons(GUE_DPORT)) {
+      bool pass = true;
+      action = check_decap_dst(&pckt, is_ipv6, &pass);
+      if (action >= 0) {
+        return action;
+      }
+      return process_encaped_gue_pckt(&data, &data_end, xdp, is_ipv6, pass);
+    }
+#endif // of INLINE_DECAP_GUE
+  } else {
+    // send to tcp/ip stack
+    return XDP_PASS;
+  }
+
+  if (is_ipv6) {
+    memcpy(vip.vipv6, pckt.flow.dstv6, 16);
+  } else {
+    vip.vip = pckt.flow.dst;
+  }
+
+  vip.port = pckt.flow.port16[1];
+  vip.proto = pckt.flow.proto;
+  vip_info = bpf_map_lookup_elem(&vip_map, &vip);
+  if (!vip_info) {
+    vip.port = 0;
+    vip_info = bpf_map_lookup_elem(&vip_map, &vip);
+    if (!vip_info) {
+      return XDP_PASS;
+    }
+
+    if (!(vip_info->flags & F_HASH_DPORT_ONLY)) {
+      // VIP, which doesnt care about dst port (all packets to this VIP w/ diff
+      // dst port but from the same src port/ip must go to the same real
+      pckt.flow.port16[1] = 0;
+    }
+  }
+
+  if (data_end - data > MAX_PCKT_SIZE) {
+    REPORT_PACKET_TOOBIG(xdp, data, data_end - data, false);
+#ifdef ICMP_TOOBIG_GENERATION
+    __u32 stats_key = MAX_VIPS + ICMP_TOOBIG_CNTRS;
+    data_stats = bpf_map_lookup_elem(&stats, &stats_key);
+    if (!data_stats) {
+      return XDP_DROP;
+    }
+    if (is_ipv6) {
+      data_stats->v2 += 1;
+    } else {
+      data_stats->v1 += 1;
+    }
+    return send_icmp_too_big(xdp, is_ipv6, data_end - data);
+#else
+    return XDP_DROP;
+#endif
+  }
+
+  __u32 stats_key = MAX_VIPS + LRU_CNTRS;
+  data_stats = bpf_map_lookup_elem(&stats, &stats_key);
+  if (!data_stats) {
+    return XDP_DROP;
+  }
+
+  // total packets
+  data_stats->v1 += 1;
+
+  // Lookup dst based on id in packet
+  if ((vip_info->flags & F_QUIC_VIP)) {
+    __u32 quic_stats_key = MAX_VIPS + QUIC_ROUTE_STATS;
+    struct lb_stats* quic_stats = bpf_map_lookup_elem(&stats, &quic_stats_key);
+    if (!quic_stats) {
+      return XDP_DROP;
+    }
+    int real_index;
+    real_index = parse_quic(data, data_end, is_ipv6, &pckt);
+    if (real_index > 0) {
+      increment_quic_cid_version_stats(real_index);
+      __u32 key = real_index;
+      __u32* real_pos = bpf_map_lookup_elem(&server_id_map, &key);
+      if (real_pos) {
+        key = *real_pos;
+        if (key == 0) {
+          increment_quic_cid_drop_real_0();
+          // increment counter for the CH based routing
+          quic_stats->v1 += 1;
+        } else {
+          pckt.real_index = key;
+          dst = bpf_map_lookup_elem(&reals, &key);
+          if (!dst) {
+            increment_quic_cid_drop_no_real();
+            REPORT_QUIC_PACKET_DROP_NO_REAL(xdp, data, data_end - data, false);
+            return XDP_DROP;
+          }
+          quic_stats->v2 += 1;
+        }
+      } else {
+        // increment counter for the CH based routing
+        quic_stats->v1 += 1;
+      }
+    } else {
+      quic_stats->v1 += 1;
+    }
+  }
+
+  // save the original sport before making real selection, possibly changing its
+  // value.
+  original_sport = pckt.flow.port16[0];
+
+  if (!dst) {
+    if ((vip_info->flags & F_HASH_NO_SRC_PORT)) {
+      // service, where diff src port, but same ip must go to the same real,
+      // e.g. gfs
+      pckt.flow.port16[0] = 0;
+    }
+    __u32 cpu_num = bpf_get_smp_processor_id();
+    void* lru_map = bpf_map_lookup_elem(&lru_mapping, &cpu_num);
+    if (!lru_map) {
+      lru_map = &fallback_cache;
+      __u32 lru_stats_key = MAX_VIPS + FALLBACK_LRU_CNTR;
+      struct lb_stats* lru_stats = bpf_map_lookup_elem(&stats, &lru_stats_key);
+      if (!lru_stats) {
+        return XDP_DROP;
+      }
+      // We were not able to retrieve per cpu/core lru and falling back to
+      // default one. This counter should never be anything except 0 in prod.
+      // We are going to use it for monitoring.
+      lru_stats->v1 += 1;
+    }
+#ifdef TCP_SERVER_ID_ROUTING
+    // First try to lookup dst in the tcp_hdr_opt (if enabled)
+    if (pckt.flow.proto == IPPROTO_TCP && !(pckt.flags & F_SYN_SET)) {
+      __u32 routing_stats_key = MAX_VIPS + TCP_SERVER_ID_ROUTE_STATS;
+      struct lb_stats* routing_stats =
+          bpf_map_lookup_elem(&stats, &routing_stats_key);
+      if (!routing_stats) {
+        return XDP_DROP;
+      }
+      if (tcp_hdr_opt_lookup(
+              xdp,
+              is_ipv6,
+              &dst,
+              &pckt,
+              vip_info->flags & F_LRU_BYPASS,
+              lru_map) == FURTHER_PROCESSING) {
+        routing_stats->v1 += 1;
+      } else {
+        routing_stats->v2 += 1;
+      }
+    }
+#endif // TCP_SERVER_ID_ROUTING
+
+    // Next, try to lookup dst in the lru_cache
+    if (!dst && !(pckt.flags & F_SYN_SET) &&
+        !(vip_info->flags & F_LRU_BYPASS)) {
+      connection_table_lookup(&dst, &pckt, lru_map, /*isGlobalLru=*/false);
+    }
+
+#ifdef GLOBAL_LRU_LOOKUP
+    if (!dst && !(pckt.flags & F_SYN_SET) && vip_info->flags & F_GLOBAL_LRU) {
+      int global_lru_lookup_result =
+          perform_global_lru_lookup(&dst, &pckt, cpu_num, vip_info, is_ipv6);
+      if (global_lru_lookup_result >= 0) {
+        return global_lru_lookup_result;
+      }
+    }
+#endif // GLOBAL_LRU_LOOKUP
+
+    // if dst is not found, route via consistent-hashing of the flow.
+    if (!dst) {
+      if (pckt.flow.proto == IPPROTO_TCP) {
+        __u32 lru_stats_key = MAX_VIPS + LRU_MISS_CNTR;
+        struct lb_stats* lru_stats =
+            bpf_map_lookup_elem(&stats, &lru_stats_key);
+        if (!lru_stats) {
+          return XDP_DROP;
+        }
+        if (pckt.flags & F_SYN_SET) {
+          // miss because of new tcp session
+          lru_stats->v1 += 1;
+        } else {
+          // miss of non-syn tcp packet. could be either because of LRU trashing
+          // or because another katran is restarting and all the sessions
+          // have been reshuffled
+          REPORT_TCP_NONSYN_LRUMISS(xdp, data, data_end - data, false);
+          lru_stats->v2 += 1;
+        }
+      }
+      if (!get_packet_dst(&dst, &pckt, vip_info, is_ipv6, lru_map)) {
+        return XDP_DROP;
+      }
+      // lru misses (either new connection or lru is full and starts to trash)
+      data_stats->v2 += 1;
+    }
+  }
+
+  cval = bpf_map_lookup_elem(&ctl_array, &mac_addr_pos);
+
+  if (!cval) {
+    return XDP_DROP;
+  }
+
+  vip_num = vip_info->vip_num;
+  data_stats = bpf_map_lookup_elem(&stats, &vip_num);
+  if (!data_stats) {
+    return XDP_DROP;
+  }
+  data_stats->v1 += 1;
+  data_stats->v2 += pkt_bytes;
+
+  // per real statistics
+  data_stats = bpf_map_lookup_elem(&reals_stats, &pckt.real_index);
+  if (!data_stats) {
+    return XDP_DROP;
+  }
+  data_stats->v1 += 1;
+  data_stats->v2 += pkt_bytes;
+#ifdef LOCAL_DELIVERY_OPTIMIZATION
+  if ((vip_info->flags & F_LOCAL_VIP) && (dst->flags & F_LOCAL_REAL)) {
+    return XDP_PASS;
+  }
+#endif
+  // restore the original sport value to use it as a seed for the GUE sport
+  pckt.flow.port16[0] = original_sport;
+  if (dst->flags & F_IPV6) {
+    if (!PCKT_ENCAP_V6(xdp, cval, is_ipv6, &pckt, dst, pkt_bytes)) {
+      return XDP_DROP;
+    }
+  } else {
+    if (!PCKT_ENCAP_V4(xdp, cval, &pckt, dst, pkt_bytes)) {
+      return XDP_DROP;
+    }
+  }
+
+  return XDP_TX;
+}
+/* Extracted from 
+ /home/sayandes/codequery/test/balancer_kern.c 
+ startLine: 793 endLine: 817
+ */ 
+SEC("xdp")
+int balancer_ingress(struct xdp_md* ctx) {
+  void* data = (void*)(long)ctx->data;
+  void* data_end = (void*)(long)ctx->data_end;
+  struct ethhdr* eth = data;
+  __u32 eth_proto;
+  __u32 nh_off;
+  nh_off = sizeof(struct ethhdr);
+
+  if (data + nh_off > data_end) {
+    // bogus packet, len less than minimum ethernet frame size
+    return XDP_DROP;
+  }
+
+  eth_proto = eth->h_proto;
+
+  if (eth_proto == BE_ETH_P_IP) {
+    return process_packet(ctx, nh_off, false);
+  } else if (eth_proto == BE_ETH_P_IPV6) {
+    return process_packet(ctx, nh_off, true);
+  } else {
+    // pass to tcp/ip stack
+    return XDP_PASS;
+  }
+}
 char _license[] SEC("license") = "GPL";

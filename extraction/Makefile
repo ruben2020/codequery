@@ -1,15 +1,38 @@
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+obj := .
+src := .
 
-XDP_TARGETS := extracted
-#USER_TARGETS := xdp_pass_user
 
+DEBUGBPF = -DDEBUG
+#DEBUGFLAGS = -O0 -g -Wall
+DEBUGFLAGS = -O2 -g -Wall
+PFLAGS = $(DEBUGFLAGS)
+
+INCLUDEFLAGS = -I$(obj)/usr/include \
+	       -I$(obj)/include \
+
+
+
+always = extracted.o
+
+HOSTCFLAGS += $(INCLUDEFLAGS) $(PFLAGS)
+HOSTCFLAGS_bpf_load.o += $(INCLUDEFLAGS) $(PFLAGS) -Wno-unused-variable
+
+
+# Allows pointing LLC/CLANG to a LLVM backend with bpf support, redefine on cmdline:
+#  make samples/bpf/ LLC=~/git/llvm/build/bin/llc CLANG=~/git/llvm/build/bin/clang
 LLC ?= llc
 CLANG ?= clang
-CC := gcc
 
-BASE_DIR = /home/sayandes/xdp-tutorial
-LIBBPF_DIR = $(BASE_DIR)/libbpf/src/
-COMMON_DIR = $(BASE_DIR)/common/
+# Trick to allow make to be run from this directory
+all: $(always)
+	$(MAKE) -C .. $$PWD/
 
-include $(COMMON_DIR)/common.mk
-COMMON_OBJS := $(COMMON_DIR)/common_params.o
+clean:
+	$(MAKE) -C .. M=$$PWD clean
+	@rm -f *~
+
+$(obj)/%.o: $(src)/%.c
+	$(CLANG) $(INCLUDEFLAGS) $(EXTRA_CFLAGS) \
+	$(DEBUGBPF) -D__KERNEL__ -Wno-unused-value -Wno-pointer-sign \
+		-Wno-compare-distinct-pointer-types \
+		-O2 -emit-llvm -c -g $< -o -| $(LLC) -march=bpf -filetype=obj -o $@

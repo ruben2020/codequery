@@ -14,8 +14,6 @@ Successful function annotation for file: /home/sayandes/codequery/test/healthche
 Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_ipip.c
 Successful function annotation for file: /home/sayandes/codequery/test/introspection.h
 Successful struct annotation for file: /home/sayandes/codequery/test/introspection.h
-Failed function annotation for file: /home/sayandes/codequery/test/balancer_kern-tpl.h
-Failed struct annotation for file: /home/sayandes/codequery/test/balancer_kern-tpl.h
 Successful function annotation for file: /home/sayandes/codequery/test/balancer_maps.h
 Successful struct annotation for file: /home/sayandes/codequery/test/balancer_maps.h
 Successful function annotation for file: /home/sayandes/codequery/test/pckt_encap.h
@@ -58,9 +56,8 @@ Successful function annotation for file: /home/sayandes/codequery/test/bpf_helpe
 Successful struct annotation for file: /home/sayandes/codequery/test/bpf_helpers.h
 Successful function annotation for file: /home/sayandes/codequery/test/bpf_endian.h
 Successful struct annotation for file: /home/sayandes/codequery/test/bpf_endian.h
-Failed function annotation for file: /home/sayandes/codequery/test/balancer_kern_flavors-tpl.h
-Failed struct annotation for file: /home/sayandes/codequery/test/balancer_kern_flavors-tpl.h
 Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_consts.h
 Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_consts.h
 Successful function annotation for file: /home/sayandes/codequery/test/handle_icmp.h
 Successful struct annotation for file: /home/sayandes/codequery/test/handle_icmp.h
+Successful cqsearch for function: balancer_ingress

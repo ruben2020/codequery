@@ -1,8 +1,5 @@
 func:fileName,Status
-___constant_swab16:/usr/include/linux/swab.h,SKIPPED
 bpf_ntohs:/home/sayandes/codequery/test/bpf_endian.h,SKIPPED
-__attribute__:/usr/include/sys/cdefs.h,SKIPPED
-memcpy:/usr/include/string.h,SKIPPED
 swap_mac_and_send:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
 send_icmp6_reply:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
 parse_icmpv6:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
@@ -10,11 +7,13 @@ csum_fold_helper:/home/sayandes/codequery/test/csum_helpers.h,SKIPPED
 ipv4_csum_inline:/home/sayandes/codequery/test/csum_helpers.h,SKIPPED
 send_icmp_reply:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
 parse_icmp:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
+process_l3_headers:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 check_decap_dst:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 decrement_ttl:/home/sayandes/codequery/test/balancer_helpers.h,SKIPPED
 decap_v6:/home/sayandes/codequery/test/pckt_encap.h,SKIPPED
 decap_v4:/home/sayandes/codequery/test/pckt_encap.h,SKIPPED
 recirculate:/home/sayandes/codequery/test/balancer_helpers.h,SKIPPED
+process_encaped_ipip_pckt:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 calc_offset:/home/sayandes/codequery/test/pckt_parsing.h,SKIPPED
 parse_tcp:/home/sayandes/codequery/test/pckt_parsing.h,SKIPPED
 parse_udp:/home/sayandes/codequery/test/pckt_parsing.h,SKIPPED
@@ -23,12 +22,11 @@ get_next_ports:/home/sayandes/codequery/test/flow_debug_helpers.h,SKIPPED
 gue_record_route:/home/sayandes/codequery/test/flow_debug_helpers.h,SKIPPED
 gue_decap_v6:/home/sayandes/codequery/test/pckt_encap.h,SKIPPED
 gue_decap_v4:/home/sayandes/codequery/test/pckt_encap.h,SKIPPED
+process_encaped_gue_pckt:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 min_helper:/home/sayandes/codequery/test/csum_helpers.h,SKIPPED
 submit_event:/home/sayandes/codequery/test/balancer_helpers.h,SKIPPED
 REPORT_EVENT:/home/sayandes/codequery/test/introspection.h,SKIPPED
 swap_mac:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
-memset:/usr/include/string.h,SKIPPED
-___constant_swab32:/usr/include/linux/swab.h,SKIPPED
 bpf_htonl:/home/sayandes/codequery/test/bpf_endian.h,SKIPPED
 ipv6_csum:/home/sayandes/codequery/test/csum_helpers.h,SKIPPED
 send_icmp6_too_big:/home/sayandes/codequery/test/handle_icmp.h,SKIPPED
@@ -39,7 +37,6 @@ parse_quic:/home/sayandes/codequery/test/pckt_parsing.h,SKIPPED
 increment_quic_cid_version_stats:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 increment_quic_cid_drop_real_0:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 increment_quic_cid_drop_no_real:/home/sayandes/codequery/test/balancer_kern.c,MISSED
-KERNEL_VERSION:/usr/include/linux/version.h,SKIPPED
 parse_hdr_opt:/home/sayandes/codequery/test/pckt_parsing.h,SKIPPED
 tcp_hdr_opt_lookup:/home/sayandes/codequery/test/pckt_parsing.h,SKIPPED
 connection_table_lookup:/home/sayandes/codequery/test/balancer_kern.c,MISSED
@@ -54,3 +51,5 @@ get_packet_hash:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 get_packet_dst:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 reals_have_same_addr:/home/sayandes/codequery/test/balancer_kern.c,MISSED
 perform_global_lru_lookup:/home/sayandes/codequery/test/balancer_kern.c,MISSED
+process_packet:/home/sayandes/codequery/test/balancer_kern.c,MISSED
+balancer_ingress:/home/sayandes/codequery/test/balancer_kern.c,MISSED

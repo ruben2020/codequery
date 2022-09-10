@@ -2,20 +2,12 @@ __bpf_constant_ntohs,2,/home/sayandes/codequery/test/bpf_endian.h,25,/home/sayan
 __bpf_constant_ntohs,2,/home/sayandes/codequery/test/bpf_endian.h,25,/home/sayandes/codequery/test/bpf_endian.h,34
 __bpf_ntohs,2,/home/sayandes/codequery/test/bpf_endian.h,23,/home/sayandes/codequery/test/bpf_endian.h,32
 __bpf_ntohs,2,/home/sayandes/codequery/test/bpf_endian.h,23,/home/sayandes/codequery/test/bpf_endian.h,32
-__nonnull,2,/usr/include/sys/cdefs.h,293,/usr/include/sys/cdefs.h,295
-__nonnull,2,/usr/include/sys/cdefs.h,293,/usr/include/sys/cdefs.h,295
-process_l3_headers,2,/home/sayandes/codequery/test/balancer_kern.c,158,/home/sayandes/codequery/test/decap_kern.c,34
-process_l3_headers,2,/home/sayandes/codequery/test/balancer_kern.c,158,/home/sayandes/codequery/test/decap_kern.c,34
-process_encaped_ipip_pckt,2,/home/sayandes/codequery/test/balancer_kern.c,340,/home/sayandes/codequery/test/decap_kern.c,85
-process_encaped_ipip_pckt,2,/home/sayandes/codequery/test/balancer_kern.c,340,/home/sayandes/codequery/test/decap_kern.c,85
 __bpf_constant_htons,2,/home/sayandes/codequery/test/bpf_endian.h,26,/home/sayandes/codequery/test/bpf_endian.h,35
 __bpf_constant_htons,2,/home/sayandes/codequery/test/bpf_endian.h,26,/home/sayandes/codequery/test/bpf_endian.h,35
 __bpf_htons,2,/home/sayandes/codequery/test/bpf_endian.h,24,/home/sayandes/codequery/test/bpf_endian.h,33
 __bpf_htons,2,/home/sayandes/codequery/test/bpf_endian.h,24,/home/sayandes/codequery/test/bpf_endian.h,33
 RECORD_GUE_ROUTE,2,/home/sayandes/codequery/test/flow_debug.h,31,/home/sayandes/codequery/test/flow_debug.h,37
 RECORD_GUE_ROUTE,2,/home/sayandes/codequery/test/flow_debug.h,31,/home/sayandes/codequery/test/flow_debug.h,37
-process_encaped_gue_pckt,2,/home/sayandes/codequery/test/balancer_kern.c,392,/home/sayandes/codequery/test/decap_kern.c,123
-process_encaped_gue_pckt,2,/home/sayandes/codequery/test/balancer_kern.c,392,/home/sayandes/codequery/test/decap_kern.c,123
 REPORT_PACKET_TOOBIG,2,/home/sayandes/codequery/test/introspection.h,32,/home/sayandes/codequery/test/introspection.h,40
 REPORT_PACKET_TOOBIG,2,/home/sayandes/codequery/test/introspection.h,32,/home/sayandes/codequery/test/introspection.h,40
 __bpf_constant_htonl,2,/home/sayandes/codequery/test/bpf_endian.h,30,/home/sayandes/codequery/test/bpf_endian.h,39
@@ -30,5 +22,3 @@ PCKT_ENCAP_V6,2,/home/sayandes/codequery/test/balancer_consts.h,340,/home/sayand
 PCKT_ENCAP_V6,2,/home/sayandes/codequery/test/balancer_consts.h,340,/home/sayandes/codequery/test/balancer_consts.h,344
 PCKT_ENCAP_V4,2,/home/sayandes/codequery/test/balancer_consts.h,339,/home/sayandes/codequery/test/balancer_consts.h,343
 PCKT_ENCAP_V4,2,/home/sayandes/codequery/test/balancer_consts.h,339,/home/sayandes/codequery/test/balancer_consts.h,343
-process_packet,2,/home/sayandes/codequery/test/balancer_kern.c,480,/home/sayandes/codequery/test/decap_kern.c,164
-process_packet,2,/home/sayandes/codequery/test/balancer_kern.c,480,/home/sayandes/codequery/test/decap_kern.c,164

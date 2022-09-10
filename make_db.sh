@@ -3,17 +3,19 @@
 echo "Cleaning old files ..."
 rm cscope.files cscope.out tags myproject.db 
 
+codedir=${3:-$PWD}
+opdir=${2:-'txl_annotate'}
+function_name=${1}
+
 echo "Creating new file index ..."
-find -L $1 -name '*.c' >cscope.files
-find -L $1 -name '*.h' >>cscope.files
+find -L $codedir -name '*.c' >cscope.files
+find -L $codedir -name '*.h' >>cscope.files
 echo "Running cscope & ctags ..."
 cscope -cb -k 
 ctags --fields=+i -n -L ./cscope.files
 echo "Making DBs ..."
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 
-#opdir="txl_annotate"
-opdir=$2
 if [ -d "$opdir" ]; then rm -Rf $opdir; fi
 mkdir $opdir
 
@@ -48,4 +50,17 @@ while read -r line; do
 
 done < "cscope.files"
 
-#Command to generate function call graph cqsearch -s ./myproject.db -t process_packet  -p 7  -l 100 -k 10 -e > a1
+#Command to generate function call graph 
+echo "Running cqsearch for $function_name and outputting dependencies to func.out"
+status=`cqsearch -s ./myproject.db -t $function_name  -p 7  -l 100 -k 10 -e > func.out`
+status=$?
+if [ $status -eq 0 ]
+then
+	echo "Successful cqsearch for function: $function_name" >> $logfile
+else
+	echo "Failed cqsearch for function: $function_name" >> $logfile
+fi
+
+echo "Success"
+echo "DELETE DUPLICATES in func.out for code extraction step to proceed!!"
+

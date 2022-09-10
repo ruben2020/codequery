@@ -99,88 +99,6 @@ ct 1
 ct 1
 ct 1
 ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-ct 1
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
-ct 1
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
@@ -219,6 +137,36 @@ ct 1
 ct 1
 ct 1
 ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
 ct 1
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
@@ -237,22 +185,16 @@ Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhas
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
 ct 1
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
-Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
 ct 1
 ct 1
 ct 1
@@ -311,6 +253,27 @@ Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhas
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
 ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
 Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
@@ -334,7 +297,113 @@ ct 1
 ct 1
 ct 1
 ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
 ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
+ct 1
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/in.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ip.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <linux/ipv6.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stdbool.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <stddef.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  <string.h>
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_consts.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_maps.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  balancer_structs.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  bpf_helpers.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  handle_icmp.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  jhash.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_encap.h
+Adding Header Dep: From /home/sayandes/codequery/test/balancer_kern.c  to:  pckt_parsing.h
 Ignoring }
 
 Ignoring {#map_name,filename,line #, isFound
@@ -433,7 +502,7 @@ Adding Header Dep: From /home/sayandes/codequery/test/balancer_maps.h  to:  bala
 Ignoring }
 
 BEFORE: FNS LIST
-OrderedDict([('___constant_swab16:/usr/include/linux/swab.h', (None, None, None, None)), ('bpf_ntohs:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('__attribute__:/usr/include/sys/cdefs.h', (None, None, None, None)), ('memcpy:/usr/include/string.h', (None, None, None, None)), ('swap_mac_and_send:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('send_icmp6_reply:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('parse_icmpv6:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('csum_fold_helper:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('ipv4_csum_inline:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('send_icmp_reply:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('parse_icmp:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('check_decap_dst:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('decrement_ttl:/home/sayandes/codequery/test/balancer_helpers.h', (None, None, None, None)), ('decap_v6:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('decap_v4:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('recirculate:/home/sayandes/codequery/test/balancer_helpers.h', (None, None, None, None)), ('calc_offset:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('parse_tcp:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('parse_udp:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('bpf_htons:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('get_next_ports:/home/sayandes/codequery/test/flow_debug_helpers.h', (None, None, None, None)), ('gue_record_route:/home/sayandes/codequery/test/flow_debug_helpers.h', (None, None, None, None)), ('gue_decap_v6:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('gue_decap_v4:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('min_helper:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('submit_event:/home/sayandes/codequery/test/balancer_helpers.h', (None, None, None, None)), ('REPORT_EVENT:/home/sayandes/codequery/test/introspection.h', (None, None, None, None)), ('swap_mac:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('memset:/usr/include/string.h', (None, None, None, None)), ('___constant_swab32:/usr/include/linux/swab.h', (None, None, None, None)), ('bpf_htonl:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('ipv6_csum:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('send_icmp6_too_big:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('ipv4_csum:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('send_icmp4_too_big:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('send_icmp_too_big:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('parse_quic:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('increment_quic_cid_version_stats:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('increment_quic_cid_drop_real_0:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('increment_quic_cid_drop_no_real:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('KERNEL_VERSION:/usr/include/linux/version.h', (None, None, None, None)), ('parse_hdr_opt:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('tcp_hdr_opt_lookup:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('connection_table_lookup:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('is_under_flood:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('rol32:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_final:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_nwords:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('jhash_2words:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_mix:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('jhash:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('get_packet_hash:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('get_packet_dst:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('reals_have_same_addr:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('perform_global_lru_lookup:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None))])
+OrderedDict([('bpf_ntohs:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('swap_mac_and_send:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('send_icmp6_reply:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('parse_icmpv6:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('csum_fold_helper:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('ipv4_csum_inline:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('send_icmp_reply:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('parse_icmp:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('process_l3_headers:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('check_decap_dst:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('decrement_ttl:/home/sayandes/codequery/test/balancer_helpers.h', (None, None, None, None)), ('decap_v6:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('decap_v4:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('recirculate:/home/sayandes/codequery/test/balancer_helpers.h', (None, None, None, None)), ('process_encaped_ipip_pckt:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('calc_offset:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('parse_tcp:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('parse_udp:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('bpf_htons:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('get_next_ports:/home/sayandes/codequery/test/flow_debug_helpers.h', (None, None, None, None)), ('gue_record_route:/home/sayandes/codequery/test/flow_debug_helpers.h', (None, None, None, None)), ('gue_decap_v6:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('gue_decap_v4:/home/sayandes/codequery/test/pckt_encap.h', (None, None, None, None)), ('process_encaped_gue_pckt:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('min_helper:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('submit_event:/home/sayandes/codequery/test/balancer_helpers.h', (None, None, None, None)), ('REPORT_EVENT:/home/sayandes/codequery/test/introspection.h', (None, None, None, None)), ('swap_mac:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('bpf_htonl:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('ipv6_csum:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('send_icmp6_too_big:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('ipv4_csum:/home/sayandes/codequery/test/csum_helpers.h', (None, None, None, None)), ('send_icmp4_too_big:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('send_icmp_too_big:/home/sayandes/codequery/test/handle_icmp.h', (None, None, None, None)), ('parse_quic:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('increment_quic_cid_version_stats:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('increment_quic_cid_drop_real_0:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('increment_quic_cid_drop_no_real:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('parse_hdr_opt:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('tcp_hdr_opt_lookup:/home/sayandes/codequery/test/pckt_parsing.h', (None, None, None, None)), ('connection_table_lookup:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('is_under_flood:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('rol32:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_final:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_nwords:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('jhash_2words:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_mix:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('jhash:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('get_packet_hash:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('get_packet_dst:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('reals_have_same_addr:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('perform_global_lru_lookup:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('process_packet:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None)), ('balancer_ingress:/home/sayandes/codequery/test/balancer_kern.c', (None, None, None, None))])
 annotatedFile:  annotate_struct_test_balancer_helpers.h.out
 annotatedFile:  annotate_struct_test_decap_maps.h.out
 annotatedFile:  annotate_func_test_csum_helpers.h.xml
@@ -11608,6 +11677,7 @@ Need to Extract connection_table_lookup:/home/sayandes/codequery/test/balancer_k
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline int process_l3_headers (struct packet_description *pckt, __u8 *protocol, __u64 off, __u16 *pkt_bytes, void *data, void *data_end, bool is_ipv6)" startline="158" endline="230">
 
 Checking if need to extract process_l3_headers:/home/sayandes/codequery/test/balancer_kern.c
+Need to Extract process_l3_headers:/home/sayandes/codequery/test/balancer_kern.c
 ['__attribute__ ((__always_inline__)) static inline int process_l3_headers (struct packet_description *pckt, __u8 *protocol, __u64 off, __u16 *pkt_bytes, void *data, void *data_end, bool is_ipv6) {\n', '    __u64 iph_len;\n', '    int action;\n', '    struct iphdr *iph;\n', '    struct ipv6hdr *ip6h;\n', '    if (is_ipv6) {\n', '        ip6h = data + off;\n', '        if (ip6h + 1 > data_end) {\n', '            return XDP_DROP;\n', '        }\n', '        iph_len = sizeof (struct ipv6hdr);\n', '        *protocol = ip6h->nexthdr;\n', '        pckt->flow.proto = *protocol;\n', '        pckt->tos = (ip6h->priority << 4) & 0xF0;\n', '        pckt->tos = pckt->tos | ((ip6h->flow_lbl[0] >> 4) & 0x0F);\n', '        *pkt_bytes = bpf_ntohs (ip6h->payload_len);\n', '        off += iph_len;\n', '        if (*protocol == IPPROTO_FRAGMENT) {\n', '            return XDP_DROP;\n', '        }\n', '        else if (*protocol == IPPROTO_ICMPV6) {\n', '            action = parse_icmpv6 (data, data_end, off, pckt);\n', '            if (action >= 0) {\n', '                return action;\n', '            }\n', '        }\n', '        else {\n', '            memcpy (pckt -> flow.srcv6, ip6h -> saddr.s6_addr32, 16);\n', '            memcpy (pckt -> flow.dstv6, ip6h -> daddr.s6_addr32, 16);\n', '        }\n', '    }\n', '    else {\n', '        iph = data + off;\n', '        if (iph + 1 > data_end) {\n', '            return XDP_DROP;\n', '        }\n', '        if (iph->ihl != 5) {\n', '            return XDP_DROP;\n', '        }\n', '        pckt->tos = iph->tos;\n', '        *protocol = iph->protocol;\n', '        pckt->flow.proto = *protocol;\n', '        *pkt_bytes = bpf_ntohs (iph->tot_len);\n', '        off += IPV4_HDR_LEN_NO_OPT;\n', '        if (iph->frag_off & PCKT_FRAGMENTED) {\n', '            return XDP_DROP;\n', '        }\n', '        if (*protocol == IPPROTO_ICMP) {\n', '            action = parse_icmp (data, data_end, off, pckt);\n', '            if (action >= 0) {\n', '                return action;\n', '            }\n', '        }\n', '        else {\n', '            pckt->flow.src = iph->saddr;\n', '            pckt->flow.dst = iph->daddr;\n', '        }\n', '    }\n', '    return FURTHER_PROCESSING;\n', '}\n']
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline int check_decap_dst (struct packet_description *pckt, bool is_ipv6, bool *pass)" startline="233" endline="255">
 
@@ -11627,10 +11697,12 @@ Need to Extract perform_global_lru_lookup:/home/sayandes/codequery/test/balancer
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline int process_encaped_ipip_pckt (void **data, void **data_end, struct xdp_md *xdp, bool *is_ipv6, __u8 *protocol, bool pass)" startline="340" endline="387">
 
 Checking if need to extract process_encaped_ipip_pckt:/home/sayandes/codequery/test/balancer_kern.c
+Need to Extract process_encaped_ipip_pckt:/home/sayandes/codequery/test/balancer_kern.c
 ['__attribute__ ((__always_inline__)) static inline int process_encaped_ipip_pckt (void **data, void **data_end, struct xdp_md *xdp, bool *is_ipv6, __u8 *protocol, bool pass) {\n', '    int action;\n', '    if (*protocol == IPPROTO_IPIP) {\n', '        if (*is_ipv6) {\n', '            int offset = sizeof (struct ipv6hdr) + sizeof (struct ethhdr);\n', '            if ((*data + offset) > *data_end) {\n', '                return XDP_DROP;\n', '            }\n', '            action = decrement_ttl (*data, *data_end, offset, false);\n', '            if (!decap_v6 (xdp, data, data_end, true)) {\n', '                return XDP_DROP;\n', '            }\n', '            *is_ipv6 = false;\n', '        }\n', '        else {\n', '            int offset = sizeof (struct iphdr) + sizeof (struct ethhdr);\n', '            if ((*data + offset) > *data_end) {\n', '                return XDP_DROP;\n', '            }\n', '            action = decrement_ttl (*data, *data_end, offset, false);\n', '            if (!decap_v4 (xdp, data, data_end)) {\n', '                return XDP_DROP;\n', '            }\n', '        }\n', '    }\n', '    else if (*protocol == IPPROTO_IPV6) {\n', '        int offset = sizeof (struct ipv6hdr) + sizeof (struct ethhdr);\n', '        if ((*data + offset) > *data_end) {\n', '            return XDP_DROP;\n', '        }\n', '        action = decrement_ttl (*data, *data_end, offset, true);\n', '        if (!decap_v6 (xdp, data, data_end, false)) {\n', '            return XDP_DROP;\n', '        }\n', '    }\n', '    if (action >= 0) {\n', '        return action;\n', '    }\n', '    if (pass) {\n', '        return XDP_PASS;\n', '    }\n', '    return recirculate (xdp);\n', '}\n']
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline int process_encaped_gue_pckt (void **data, void **data_end, struct xdp_md *xdp, bool is_ipv6, bool pass)" startline="391" endline="441">
 
 Checking if need to extract process_encaped_gue_pckt:/home/sayandes/codequery/test/balancer_kern.c
+Need to Extract process_encaped_gue_pckt:/home/sayandes/codequery/test/balancer_kern.c
 ['__attribute__ ((__always_inline__)) static inline int process_encaped_gue_pckt (void **data, void **data_end, struct xdp_md *xdp, bool is_ipv6, bool pass) {\n', '    int offset = 0;\n', '    int action;\n', '    if (is_ipv6) {\n', '        __u8 v6 = 0;\n', '        offset = sizeof (struct ipv6hdr) + sizeof (struct ethhdr) + sizeof (struct udphdr);\n', '        if ((*data + offset + 1) > *data_end) {\n', '            return XDP_DROP;\n', '        }\n', '        v6 = ((__u8 *) (*data))[offset];\n', '        v6 &= GUEV1_IPV6MASK;\n', '        if (v6) {\n', '            action = decrement_ttl (*data, *data_end, offset, true);\n', '            if (!gue_decap_v6 (xdp, data, data_end, false)) {\n', '                return XDP_DROP;\n', '            }\n', '        }\n', '        else {\n', '            action = decrement_ttl (*data, *data_end, offset, false);\n', '            if (!gue_decap_v6 (xdp, data, data_end, true)) {\n', '                return XDP_DROP;\n', '            }\n', '        }\n', '    }\n', '    else {\n', '        offset = sizeof (struct iphdr) + sizeof (struct ethhdr) + sizeof (struct udphdr);\n', '        if ((*data + offset) > *data_end) {\n', '            return XDP_DROP;\n', '        }\n', '        action = decrement_ttl (*data, *data_end, offset, false);\n', '        if (!gue_decap_v4 (xdp, data, data_end)) {\n', '            return XDP_DROP;\n', '        }\n', '    }\n', '    if (action >= 0) {\n', '        return action;\n', '    }\n', '    if (pass) {\n', '        return XDP_PASS;\n', '    }\n', '    return recirculate (xdp);\n', '}\n']
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline void increment_quic_cid_version_stats (int host_id)" startline="444" endline="457">
 
@@ -11650,10 +11722,12 @@ Need to Extract increment_quic_cid_drop_real_0:/home/sayandes/codequery/test/bal
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline int process_packet (struct xdp_md *xdp, __u64 off, bool is_ipv6)" startline="480" endline="791">
 
 Checking if need to extract process_packet:/home/sayandes/codequery/test/balancer_kern.c
+Need to Extract process_packet:/home/sayandes/codequery/test/balancer_kern.c
 ['__attribute__ ((__always_inline__)) static inline int process_packet (struct xdp_md *xdp, __u64 off, bool is_ipv6) {\n', '    void *data = (void *) (long) xdp->data;\n', '    void *data_end = (void *) (long) xdp->data_end;\n', '    struct ctl_value *cval;\n', '    struct real_definition *dst = NULL;\n', '    struct packet_description pckt = {};\n', '    struct vip_definition vip = {};\n', '    struct vip_meta *vip_info;\n', '    struct lb_stats *data_stats;\n', '    __u64 iph_len;\n', '    __u8 protocol;\n', '    __u16 original_sport;\n', '    int action;\n', '    __u32 vip_num;\n', '    __u32 mac_addr_pos = 0;\n', '    __u16 pkt_bytes;\n', '    action = process_l3_headers (&pckt, &protocol, off, &pkt_bytes, data, data_end, is_ipv6);\n', '    if (action >= 0) {\n', '        return action;\n', '    }\n', '    protocol = pckt.flow.proto;\n', '#ifdef INLINE_DECAP_IPIP\n', '    if (protocol == IPPROTO_IPIP) {\n', '        bool pass = true;\n', '        action = check_decap_dst (&pckt, is_ipv6, &pass);\n', '        if (action >= 0) {\n', '            return action;\n', '        }\n', '        return process_encaped_ipip_pckt (&data, &data_end, xdp, &is_ipv6, &protocol, pass);\n', '    }\n', '    else if (protocol == IPPROTO_IPV6) {\n', '        bool pass = true;\n', '        action = check_decap_dst (&pckt, is_ipv6, &pass);\n', '        if (action >= 0) {\n', '            return action;\n', '        }\n', '        return process_encaped_ipip_pckt (&data, &data_end, xdp, &is_ipv6, &protocol, pass);\n', '    }\n', '#endif // INLINE_DECAP_IPIP\n', '    if (protocol == IPPROTO_TCP) {\n', '        if (!parse_tcp (data, data_end, is_ipv6, &pckt)) {\n', '            return XDP_DROP;\n', '        }\n', '    }\n', '    else if (protocol == IPPROTO_UDP) {\n', '        if (!parse_udp (data, data_end, is_ipv6, &pckt)) {\n', '            return XDP_DROP;\n', '        }\n', '#ifdef INLINE_DECAP_GUE\n', '        if (pckt.flow.port16[1] == bpf_htons (GUE_DPORT)) {\n', '            bool pass = true;\n', '            action = check_decap_dst (&pckt, is_ipv6, &pass);\n', '            if (action >= 0) {\n', '                return action;\n', '            }\n', '            return process_encaped_gue_pckt (&data, &data_end, xdp, is_ipv6, pass);\n', '        }\n', '#endif // of INLINE_DECAP_GUE\n', '    }\n', '    else {\n', '        return XDP_PASS;\n', '    }\n', '    if (is_ipv6) {\n', '        memcpy (vip.vipv6, pckt.flow.dstv6, 16);\n', '    }\n', '    else {\n', '        vip.vip = pckt.flow.dst;\n', '    }\n', '    vip.port = pckt.flow.port16[1];\n', '    vip.proto = pckt.flow.proto;\n', '    vip_info = bpf_map_lookup_elem (&vip_map, &vip);\n', '    if (!vip_info) {\n', '        vip.port = 0;\n', '        vip_info = bpf_map_lookup_elem (&vip_map, &vip);\n', '        if (!vip_info) {\n', '            return XDP_PASS;\n', '        }\n', '        if (!(vip_info->flags & F_HASH_DPORT_ONLY)) {\n', '            pckt.flow.port16[1] = 0;\n', '        }\n', '    }\n', '    if (data_end - data > MAX_PCKT_SIZE) {\n', '        REPORT_PACKET_TOOBIG (xdp, data, data_end - data, false);\n', '#ifdef ICMP_TOOBIG_GENERATION\n', '        __u32 stats_key = MAX_VIPS + ICMP_TOOBIG_CNTRS;\n', '        data_stats = bpf_map_lookup_elem (&stats, &stats_key);\n', '        if (!data_stats) {\n', '            return XDP_DROP;\n', '        }\n', '        if (is_ipv6) {\n', '            data_stats->v2 += 1;\n', '        }\n', '        else {\n', '            data_stats->v1 += 1;\n', '        }\n', '        return send_icmp_too_big (xdp, is_ipv6, data_end -data);\n', '#else\n', '        return XDP_DROP;\n', '#endif\n', '    }\n', '    __u32 stats_key = MAX_VIPS + LRU_CNTRS;\n', '    data_stats = bpf_map_lookup_elem (&stats, &stats_key);\n', '    if (!data_stats) {\n', '        return XDP_DROP;\n', '    }\n', '    data_stats->v1 += 1;\n', '    if ((vip_info->flags & F_QUIC_VIP)) {\n', '        __u32 quic_stats_key = MAX_VIPS + QUIC_ROUTE_STATS;\n', '        struct lb_stats *quic_stats = bpf_map_lookup_elem (&stats, &quic_stats_key);\n', '        if (!quic_stats) {\n', '            return XDP_DROP;\n', '        }\n', '        int real_index;\n', '        real_index = parse_quic (data, data_end, is_ipv6, &pckt);\n', '        if (real_index > 0) {\n', '            increment_quic_cid_version_stats (real_index);\n', '            __u32 key = real_index;\n', '            __u32 *real_pos = bpf_map_lookup_elem (&server_id_map, &key);\n', '            if (real_pos) {\n', '                key = *real_pos;\n', '                if (key == 0) {\n', '                    increment_quic_cid_drop_real_0 ();\n', '                    quic_stats->v1 += 1;\n', '                }\n', '                else {\n', '                    pckt.real_index = key;\n', '                    dst = bpf_map_lookup_elem (&reals, &key);\n', '                    if (!dst) {\n', '                        increment_quic_cid_drop_no_real ();\n', '                        REPORT_QUIC_PACKET_DROP_NO_REAL (xdp, data, data_end - data, false);\n', '                        return XDP_DROP;\n', '                    }\n', '                    quic_stats->v2 += 1;\n', '                }\n', '            }\n', '            else {\n', '                quic_stats->v1 += 1;\n', '            }\n', '        }\n', '        else {\n', '            quic_stats->v1 += 1;\n', '        }\n', '    }\n', '    original_sport = pckt.flow.port16[0];\n', '    if (!dst) {\n', '        if ((vip_info->flags & F_HASH_NO_SRC_PORT)) {\n', '            pckt.flow.port16[0] = 0;\n', '        }\n', '        __u32 cpu_num = bpf_get_smp_processor_id ();\n', '        void *lru_map = bpf_map_lookup_elem (&lru_mapping, &cpu_num);\n', '        if (!lru_map) {\n', '            lru_map = &fallback_cache;\n', '            __u32 lru_stats_key = MAX_VIPS + FALLBACK_LRU_CNTR;\n', '            struct lb_stats *lru_stats = bpf_map_lookup_elem (&stats, &lru_stats_key);\n', '            if (!lru_stats) {\n', '                return XDP_DROP;\n', '            }\n', '            lru_stats->v1 += 1;\n', '        }\n', '#ifdef TCP_SERVER_ID_ROUTING\n', '        if (pckt.flow.proto == IPPROTO_TCP && !(pckt.flags & F_SYN_SET)) {\n', '            __u32 routing_stats_key = MAX_VIPS + TCP_SERVER_ID_ROUTE_STATS;\n', '            struct lb_stats *routing_stats = bpf_map_lookup_elem (&stats, &routing_stats_key);\n', '            if (!routing_stats) {\n', '                return XDP_DROP;\n', '            }\n', '            if (tcp_hdr_opt_lookup (xdp, is_ipv6, &dst, &pckt, vip_info->flags & F_LRU_BYPASS, lru_map) == FURTHER_PROCESSING) {\n', '                routing_stats->v1 += 1;\n', '            }\n', '            else {\n', '                routing_stats->v2 += 1;\n', '            }\n', '        }\n', '#endif // TCP_SERVER_ID_ROUTING\n', '        if (!dst && !(pckt.flags & F_SYN_SET) && !(vip_info->flags & F_LRU_BYPASS)) {\n', '            connection_table_lookup (& dst, & pckt, lru_map, false);\n', '        }\n', '#ifdef GLOBAL_LRU_LOOKUP\n', '        if (!dst && !(pckt.flags & F_SYN_SET) && vip_info->flags & F_GLOBAL_LRU) {\n', '            int global_lru_lookup_result = perform_global_lru_lookup (&dst, &pckt, cpu_num, vip_info, is_ipv6);\n', '            if (global_lru_lookup_result >= 0) {\n', '                return global_lru_lookup_result;\n', '            }\n', '        }\n', '#endif // GLOBAL_LRU_LOOKUP\n', '        if (!dst) {\n', '            if (pckt.flow.proto == IPPROTO_TCP) {\n', '                __u32 lru_stats_key = MAX_VIPS + LRU_MISS_CNTR;\n', '                struct lb_stats *lru_stats = bpf_map_lookup_elem (&stats, &lru_stats_key);\n', '                if (!lru_stats) {\n', '                    return XDP_DROP;\n', '                }\n', '                if (pckt.flags & F_SYN_SET) {\n', '                    lru_stats->v1 += 1;\n', '                }\n', '                else {\n', '                    REPORT_TCP_NONSYN_LRUMISS (xdp, data, data_end - data, false);\n', '                    lru_stats->v2 += 1;\n', '                }\n', '            }\n', '            if (!get_packet_dst (&dst, &pckt, vip_info, is_ipv6, lru_map)) {\n', '                return XDP_DROP;\n', '            }\n', '            data_stats->v2 += 1;\n', '        }\n', '    }\n', '    cval = bpf_map_lookup_elem (&ctl_array, &mac_addr_pos);\n', '    if (!cval) {\n', '        return XDP_DROP;\n', '    }\n', '    vip_num = vip_info->vip_num;\n', '    data_stats = bpf_map_lookup_elem (&stats, &vip_num);\n', '    if (!data_stats) {\n', '        return XDP_DROP;\n', '    }\n', '    data_stats->v1 += 1;\n', '    data_stats->v2 += pkt_bytes;\n', '    data_stats = bpf_map_lookup_elem (&reals_stats, &pckt.real_index);\n', '    if (!data_stats) {\n', '        return XDP_DROP;\n', '    }\n', '    data_stats->v1 += 1;\n', '    data_stats->v2 += pkt_bytes;\n', '#ifdef LOCAL_DELIVERY_OPTIMIZATION\n', '    if ((vip_info->flags & F_LOCAL_VIP) && (dst->flags & F_LOCAL_REAL)) {\n', '        return XDP_PASS;\n', '    }\n', '#endif\n', '    pckt.flow.port16[0] = original_sport;\n', '    if (dst->flags & F_IPV6) {\n', '        if (!PCKT_ENCAP_V6 (xdp, cval, is_ipv6, &pckt, dst, pkt_bytes)) {\n', '            return XDP_DROP;\n', '        }\n', '    }\n', '    else {\n', '        if (!PCKT_ENCAP_V4 (xdp, cval, &pckt, dst, pkt_bytes)) {\n', '            return XDP_DROP;\n', '        }\n', '    }\n', '    return XDP_TX;\n', '}\n']
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="SEC (\"xdp\") int balancer_ingress (struct xdp_md *ctx)" startline="793" endline="817">
 
 Checking if need to extract balancer_ingress:/home/sayandes/codequery/test/balancer_kern.c
+Need to Extract balancer_ingress:/home/sayandes/codequery/test/balancer_kern.c
 ['SEC ("xdp")\n', 'int balancer_ingress (struct xdp_md *ctx) {\n', '    void *data = (void *) (long) ctx->data;\n', '    void *data_end = (void *) (long) ctx->data_end;\n', '    struct ethhdr *eth = data;\n', '    __u32 eth_proto;\n', '    __u32 nh_off;\n', '    nh_off = sizeof (struct ethhdr);\n', '    if (data + nh_off > data_end) {\n', '        return XDP_DROP;\n', '    }\n', '    eth_proto = eth->h_proto;\n', '    if (eth_proto == BE_ETH_P_IP) {\n', '        return process_packet (ctx, nh_off, false);\n', '    }\n', '    else if (eth_proto == BE_ETH_P_IPV6) {\n', '        return process_packet (ctx, nh_off, true);\n', '    }\n', '    else {\n', '        return XDP_PASS;\n', '    }\n', '}\n']
 Starting <source file="/home/sayandes/codequery/test/balancer_kern.c" funcheader="__attribute__ ((__always_inline__)) static inline __u32 get_packet_hash (struct packet_description *pckt, bool hash_16bytes)" startline="818" endline="827">
 
@@ -11995,8 +12069,13 @@ Checking if need to extract parse_quic:/home/sayandes/codequery/test/pckt_parsin
 ['__attribute__ ((__always_inline__)) static inline int parse_quic (void *data, void *data_end, bool is_ipv6, struct packet_description *pckt) {\n', '    bool is_icmp = (pckt->flags & F_ICMP);\n', '    __u64 off = calc_offset (is_ipv6, is_icmp);\n', '    if ((data + off + sizeof (struct udphdr) + sizeof (__u8)) > data_end) {\n', '        return FURTHER_PROCESSING;\n', '    }\n', '    __u8 *quic_data = data + off + sizeof (struct udphdr);\n', '    __u8 *pkt_type = quic_data;\n', '    __u8 *connId = NULL;\n', '    if ((*pkt_type & QUIC_LONG_HEADER) == QUIC_LONG_HEADER) {\n', '        if (quic_data + sizeof (struct quic_long_header) > data_end) {\n', '            return FURTHER_PROCESSING;\n', '        }\n', '        if ((*pkt_type & QUIC_PACKET_TYPE_MASK) < QUIC_HANDSHAKE) {\n', '            return FURTHER_PROCESSING;\n', '        }\n', '        struct quic_long_header *long_header = (struct quic_long_header *) quic_data;\n', '        if (long_header->conn_id_lens < QUIC_MIN_CONNID_LEN) {\n', '            return FURTHER_PROCESSING;\n', '        }\n', '        connId = long_header->dst_connection_id;\n', '    }\n', '    else {\n', '        if (quic_data + sizeof (struct quic_short_header) > data_end) {\n', '            return FURTHER_PROCESSING;\n', '        }\n', '        connId = ((struct quic_short_header *) quic_data)->connection_id;\n', '    }\n', '    if (!connId) {\n', '        return FURTHER_PROCESSING;\n', '    }\n', '    __u8 connIdVersion = (connId[0] >> 6);\n', '    if (connIdVersion == QUIC_CONNID_VERSION_V1) {\n', '        return ((connId[0] & 0x3F) << 10) | (connId[1] << 2) | (connId[2] >> 6);\n', '    }\n', '    else if (connIdVersion == QUIC_CONNID_VERSION_V2) {\n', '        __u32 cid = (connId[1] << 16) | (connId[2] << 8) | (connId[3]);\n', '        return cid;\n', '    }\n', '    return FURTHER_PROCESSING;\n', '}\n']
 Creating preprocessor for:  ./txl_annotate/annotate_func_test_bpf_common.h.xml
 []
+checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  158 end:  230
 checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  233 end:  255
 Fully contained  #ifdef  INLINE_DECAP_GENERIC
+checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  340 end:  387
+Fully contained  #ifdef  INLINE_DECAP_IPIP
+checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  391 end:  441
+Fully contained  #ifdef  INLINE_DECAP_GUE
 checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  444 end:  457
 checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  470 end:  478
 checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  459 end:  468
@@ -12008,6 +12087,8 @@ checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  
 Fully contained  #ifdef  GLOBAL_LRU_LOOKUP
 checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  279 end:  335
 Fully contained  #ifdef  GLOBAL_LRU_LOOKUP
+checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  480 end:  791
+checking containment in:  /home/sayandes/codequery/test/balancer_kern.c start:  793 end:  817
 MAPS
 
 MAP decap_counters
@@ -12306,4 +12387,4 @@ Val:  [('#if ', 'LINUX_VERSION_CODE', 227, 273), ('#ifdef ', 'TCP_HDR_OPT_SKIP_U
 Name:  ./txl_annotate/annotate_func_test_bpf_common.h.xml
 Val:  []
 AFTER: FNS LIST
-OrderedDict([('___constant_swab16:/usr/include/linux/swab.h', (None, None, None, None)), ('bpf_ntohs:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('__attribute__:/usr/include/sys/cdefs.h', (None, None, None, None)), ('memcpy:/usr/include/string.h', (None, None, None, None)), ('swap_mac_and_send:/home/sayandes/codequery/test/handle_icmp.h', ('swap_mac_and_send', '/home/sayandes/codequery/test/handle_icmp.h', 38, 48)), ('send_icmp6_reply:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp6_reply', '/home/sayandes/codequery/test/handle_icmp.h', 92, 117)), ('parse_icmpv6:/home/sayandes/codequery/test/handle_icmp.h', ('parse_icmpv6', '/home/sayandes/codequery/test/handle_icmp.h', 223, 253)), ('csum_fold_helper:/home/sayandes/codequery/test/csum_helpers.h', ('csum_fold_helper', '/home/sayandes/codequery/test/csum_helpers.h', 30, 39)), ('ipv4_csum_inline:/home/sayandes/codequery/test/csum_helpers.h', ('ipv4_csum_inline', '/home/sayandes/codequery/test/csum_helpers.h', 51, 60)), ('send_icmp_reply:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp_reply', '/home/sayandes/codequery/test/handle_icmp.h', 60, 90)), ('parse_icmp:/home/sayandes/codequery/test/handle_icmp.h', ('parse_icmp', '/home/sayandes/codequery/test/handle_icmp.h', 255, 285)), ('check_decap_dst:/home/sayandes/codequery/test/balancer_kern.c', ('check_decap_dst', '/home/sayandes/codequery/test/balancer_kern.c', 233, 255)), ('decrement_ttl:/home/sayandes/codequery/test/balancer_helpers.h', ('decrement_ttl', '/home/sayandes/codequery/test/balancer_helpers.h', 83, 111)), ('decap_v6:/home/sayandes/codequery/test/pckt_encap.h', ('decap_v6', '/home/sayandes/codequery/test/pckt_encap.h', 137, 156)), ('decap_v4:/home/sayandes/codequery/test/pckt_encap.h', ('decap_v4', '/home/sayandes/codequery/test/pckt_encap.h', 158, 173)), ('recirculate:/home/sayandes/codequery/test/balancer_helpers.h', ('recirculate', '/home/sayandes/codequery/test/balancer_helpers.h', 74, 80)), ('calc_offset:/home/sayandes/codequery/test/pckt_parsing.h', ('calc_offset', '/home/sayandes/codequery/test/pckt_parsing.h', 58, 74)), ('parse_tcp:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_tcp', '/home/sayandes/codequery/test/pckt_parsing.h', 102, 130)), ('parse_udp:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_udp', '/home/sayandes/codequery/test/pckt_parsing.h', 76, 100)), ('bpf_htons:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('get_next_ports:/home/sayandes/codequery/test/flow_debug_helpers.h', ('get_next_ports', '/home/sayandes/codequery/test/flow_debug_helpers.h', 29, 53)), ('gue_record_route:/home/sayandes/codequery/test/flow_debug_helpers.h', ('gue_record_route', '/home/sayandes/codequery/test/flow_debug_helpers.h', 55, 124)), ('gue_decap_v6:/home/sayandes/codequery/test/pckt_encap.h', ('gue_decap_v6', '/home/sayandes/codequery/test/pckt_encap.h', 391, 412)), ('gue_decap_v4:/home/sayandes/codequery/test/pckt_encap.h', ('gue_decap_v4', '/home/sayandes/codequery/test/pckt_encap.h', 372, 389)), ('min_helper:/home/sayandes/codequery/test/csum_helpers.h', ('min_helper', '/home/sayandes/codequery/test/csum_helpers.h', 41, 43)), ('submit_event:/home/sayandes/codequery/test/balancer_helpers.h', ('submit_event', '/home/sayandes/codequery/test/balancer_helpers.h', 46, 70)), ('REPORT_EVENT:/home/sayandes/codequery/test/introspection.h', (None, None, None, None)), ('swap_mac:/home/sayandes/codequery/test/handle_icmp.h', ('swap_mac', '/home/sayandes/codequery/test/handle_icmp.h', 50, 58)), ('memset:/usr/include/string.h', (None, None, None, None)), ('___constant_swab32:/usr/include/linux/swab.h', (None, None, None, None)), ('bpf_htonl:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('ipv6_csum:/home/sayandes/codequery/test/csum_helpers.h', ('ipv6_csum', '/home/sayandes/codequery/test/csum_helpers.h', 75, 88)), ('send_icmp6_too_big:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp6_too_big', '/home/sayandes/codequery/test/handle_icmp.h', 164, 203)), ('ipv4_csum:/home/sayandes/codequery/test/csum_helpers.h', ('ipv4_csum', '/home/sayandes/codequery/test/csum_helpers.h', 45, 49)), ('send_icmp4_too_big:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp4_too_big', '/home/sayandes/codequery/test/handle_icmp.h', 119, 162)), ('send_icmp_too_big:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp_too_big', '/home/sayandes/codequery/test/handle_icmp.h', 205, 221)), ('parse_quic:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_quic', '/home/sayandes/codequery/test/pckt_parsing.h', 276, 335)), ('increment_quic_cid_version_stats:/home/sayandes/codequery/test/balancer_kern.c', ('increment_quic_cid_version_stats', '/home/sayandes/codequery/test/balancer_kern.c', 444, 457)), ('increment_quic_cid_drop_real_0:/home/sayandes/codequery/test/balancer_kern.c', ('increment_quic_cid_drop_real_0', '/home/sayandes/codequery/test/balancer_kern.c', 470, 478)), ('increment_quic_cid_drop_no_real:/home/sayandes/codequery/test/balancer_kern.c', ('increment_quic_cid_drop_no_real', '/home/sayandes/codequery/test/balancer_kern.c', 459, 468)), ('KERNEL_VERSION:/usr/include/linux/version.h', (None, None, None, None)), ('parse_hdr_opt:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_hdr_opt', '/home/sayandes/codequery/test/pckt_parsing.h', 144, 197)), ('tcp_hdr_opt_lookup:/home/sayandes/codequery/test/pckt_parsing.h', ('tcp_hdr_opt_lookup', '/home/sayandes/codequery/test/pckt_parsing.h', 199, 273)), ('connection_table_lookup:/home/sayandes/codequery/test/balancer_kern.c', ('connection_table_lookup', '/home/sayandes/codequery/test/balancer_kern.c', 133, 156)), ('is_under_flood:/home/sayandes/codequery/test/balancer_kern.c', ('is_under_flood', '/home/sayandes/codequery/test/balancer_kern.c', 24, 50)), ('rol32:/home/sayandes/codequery/test/jhash.h', ('rol32', '/home/sayandes/codequery/test/jhash.h', 7, 9)), ('__jhash_final:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_nwords:/home/sayandes/codequery/test/jhash.h', ('__jhash_nwords', '/home/sayandes/codequery/test/jhash.h', 102, 108)), ('jhash_2words:/home/sayandes/codequery/test/jhash.h', ('jhash_2words', '/home/sayandes/codequery/test/jhash.h', 110, 112)), ('__jhash_mix:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('jhash:/home/sayandes/codequery/test/jhash.h', ('jhash', '/home/sayandes/codequery/test/jhash.h', 55, 100)), ('get_packet_hash:/home/sayandes/codequery/test/balancer_kern.c', ('get_packet_hash', '/home/sayandes/codequery/test/balancer_kern.c', 818, 827)), ('get_packet_dst:/home/sayandes/codequery/test/balancer_kern.c', ('get_packet_dst', '/home/sayandes/codequery/test/balancer_kern.c', 52, 131)), ('reals_have_same_addr:/home/sayandes/codequery/test/balancer_kern.c', ('reals_have_same_addr', '/home/sayandes/codequery/test/balancer_kern.c', 261, 277)), ('perform_global_lru_lookup:/home/sayandes/codequery/test/balancer_kern.c', ('perform_global_lru_lookup', '/home/sayandes/codequery/test/balancer_kern.c', 279, 335))])
+OrderedDict([('bpf_ntohs:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('swap_mac_and_send:/home/sayandes/codequery/test/handle_icmp.h', ('swap_mac_and_send', '/home/sayandes/codequery/test/handle_icmp.h', 38, 48)), ('send_icmp6_reply:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp6_reply', '/home/sayandes/codequery/test/handle_icmp.h', 92, 117)), ('parse_icmpv6:/home/sayandes/codequery/test/handle_icmp.h', ('parse_icmpv6', '/home/sayandes/codequery/test/handle_icmp.h', 223, 253)), ('csum_fold_helper:/home/sayandes/codequery/test/csum_helpers.h', ('csum_fold_helper', '/home/sayandes/codequery/test/csum_helpers.h', 30, 39)), ('ipv4_csum_inline:/home/sayandes/codequery/test/csum_helpers.h', ('ipv4_csum_inline', '/home/sayandes/codequery/test/csum_helpers.h', 51, 60)), ('send_icmp_reply:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp_reply', '/home/sayandes/codequery/test/handle_icmp.h', 60, 90)), ('parse_icmp:/home/sayandes/codequery/test/handle_icmp.h', ('parse_icmp', '/home/sayandes/codequery/test/handle_icmp.h', 255, 285)), ('process_l3_headers:/home/sayandes/codequery/test/balancer_kern.c', ('process_l3_headers', '/home/sayandes/codequery/test/balancer_kern.c', 158, 230)), ('check_decap_dst:/home/sayandes/codequery/test/balancer_kern.c', ('check_decap_dst', '/home/sayandes/codequery/test/balancer_kern.c', 233, 255)), ('decrement_ttl:/home/sayandes/codequery/test/balancer_helpers.h', ('decrement_ttl', '/home/sayandes/codequery/test/balancer_helpers.h', 83, 111)), ('decap_v6:/home/sayandes/codequery/test/pckt_encap.h', ('decap_v6', '/home/sayandes/codequery/test/pckt_encap.h', 137, 156)), ('decap_v4:/home/sayandes/codequery/test/pckt_encap.h', ('decap_v4', '/home/sayandes/codequery/test/pckt_encap.h', 158, 173)), ('recirculate:/home/sayandes/codequery/test/balancer_helpers.h', ('recirculate', '/home/sayandes/codequery/test/balancer_helpers.h', 74, 80)), ('process_encaped_ipip_pckt:/home/sayandes/codequery/test/balancer_kern.c', ('process_encaped_ipip_pckt', '/home/sayandes/codequery/test/balancer_kern.c', 340, 387)), ('calc_offset:/home/sayandes/codequery/test/pckt_parsing.h', ('calc_offset', '/home/sayandes/codequery/test/pckt_parsing.h', 58, 74)), ('parse_tcp:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_tcp', '/home/sayandes/codequery/test/pckt_parsing.h', 102, 130)), ('parse_udp:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_udp', '/home/sayandes/codequery/test/pckt_parsing.h', 76, 100)), ('bpf_htons:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('get_next_ports:/home/sayandes/codequery/test/flow_debug_helpers.h', ('get_next_ports', '/home/sayandes/codequery/test/flow_debug_helpers.h', 29, 53)), ('gue_record_route:/home/sayandes/codequery/test/flow_debug_helpers.h', ('gue_record_route', '/home/sayandes/codequery/test/flow_debug_helpers.h', 55, 124)), ('gue_decap_v6:/home/sayandes/codequery/test/pckt_encap.h', ('gue_decap_v6', '/home/sayandes/codequery/test/pckt_encap.h', 391, 412)), ('gue_decap_v4:/home/sayandes/codequery/test/pckt_encap.h', ('gue_decap_v4', '/home/sayandes/codequery/test/pckt_encap.h', 372, 389)), ('process_encaped_gue_pckt:/home/sayandes/codequery/test/balancer_kern.c', ('process_encaped_gue_pckt', '/home/sayandes/codequery/test/balancer_kern.c', 391, 441)), ('min_helper:/home/sayandes/codequery/test/csum_helpers.h', ('min_helper', '/home/sayandes/codequery/test/csum_helpers.h', 41, 43)), ('submit_event:/home/sayandes/codequery/test/balancer_helpers.h', ('submit_event', '/home/sayandes/codequery/test/balancer_helpers.h', 46, 70)), ('REPORT_EVENT:/home/sayandes/codequery/test/introspection.h', (None, None, None, None)), ('swap_mac:/home/sayandes/codequery/test/handle_icmp.h', ('swap_mac', '/home/sayandes/codequery/test/handle_icmp.h', 50, 58)), ('bpf_htonl:/home/sayandes/codequery/test/bpf_endian.h', (None, None, None, None)), ('ipv6_csum:/home/sayandes/codequery/test/csum_helpers.h', ('ipv6_csum', '/home/sayandes/codequery/test/csum_helpers.h', 75, 88)), ('send_icmp6_too_big:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp6_too_big', '/home/sayandes/codequery/test/handle_icmp.h', 164, 203)), ('ipv4_csum:/home/sayandes/codequery/test/csum_helpers.h', ('ipv4_csum', '/home/sayandes/codequery/test/csum_helpers.h', 45, 49)), ('send_icmp4_too_big:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp4_too_big', '/home/sayandes/codequery/test/handle_icmp.h', 119, 162)), ('send_icmp_too_big:/home/sayandes/codequery/test/handle_icmp.h', ('send_icmp_too_big', '/home/sayandes/codequery/test/handle_icmp.h', 205, 221)), ('parse_quic:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_quic', '/home/sayandes/codequery/test/pckt_parsing.h', 276, 335)), ('increment_quic_cid_version_stats:/home/sayandes/codequery/test/balancer_kern.c', ('increment_quic_cid_version_stats', '/home/sayandes/codequery/test/balancer_kern.c', 444, 457)), ('increment_quic_cid_drop_real_0:/home/sayandes/codequery/test/balancer_kern.c', ('increment_quic_cid_drop_real_0', '/home/sayandes/codequery/test/balancer_kern.c', 470, 478)), ('increment_quic_cid_drop_no_real:/home/sayandes/codequery/test/balancer_kern.c', ('increment_quic_cid_drop_no_real', '/home/sayandes/codequery/test/balancer_kern.c', 459, 468)), ('parse_hdr_opt:/home/sayandes/codequery/test/pckt_parsing.h', ('parse_hdr_opt', '/home/sayandes/codequery/test/pckt_parsing.h', 144, 197)), ('tcp_hdr_opt_lookup:/home/sayandes/codequery/test/pckt_parsing.h', ('tcp_hdr_opt_lookup', '/home/sayandes/codequery/test/pckt_parsing.h', 199, 273)), ('connection_table_lookup:/home/sayandes/codequery/test/balancer_kern.c', ('connection_table_lookup', '/home/sayandes/codequery/test/balancer_kern.c', 133, 156)), ('is_under_flood:/home/sayandes/codequery/test/balancer_kern.c', ('is_under_flood', '/home/sayandes/codequery/test/balancer_kern.c', 24, 50)), ('rol32:/home/sayandes/codequery/test/jhash.h', ('rol32', '/home/sayandes/codequery/test/jhash.h', 7, 9)), ('__jhash_final:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('__jhash_nwords:/home/sayandes/codequery/test/jhash.h', ('__jhash_nwords', '/home/sayandes/codequery/test/jhash.h', 102, 108)), ('jhash_2words:/home/sayandes/codequery/test/jhash.h', ('jhash_2words', '/home/sayandes/codequery/test/jhash.h', 110, 112)), ('__jhash_mix:/home/sayandes/codequery/test/jhash.h', (None, None, None, None)), ('jhash:/home/sayandes/codequery/test/jhash.h', ('jhash', '/home/sayandes/codequery/test/jhash.h', 55, 100)), ('get_packet_hash:/home/sayandes/codequery/test/balancer_kern.c', ('get_packet_hash', '/home/sayandes/codequery/test/balancer_kern.c', 818, 827)), ('get_packet_dst:/home/sayandes/codequery/test/balancer_kern.c', ('get_packet_dst', '/home/sayandes/codequery/test/balancer_kern.c', 52, 131)), ('reals_have_same_addr:/home/sayandes/codequery/test/balancer_kern.c', ('reals_have_same_addr', '/home/sayandes/codequery/test/balancer_kern.c', 261, 277)), ('perform_global_lru_lookup:/home/sayandes/codequery/test/balancer_kern.c', ('perform_global_lru_lookup', '/home/sayandes/codequery/test/balancer_kern.c', 279, 335)), ('process_packet:/home/sayandes/codequery/test/balancer_kern.c', ('process_packet', '/home/sayandes/codequery/test/balancer_kern.c', 480, 791)), ('balancer_ingress:/home/sayandes/codequery/test/balancer_kern.c', ('balancer_ingress', '/home/sayandes/codequery/test/balancer_kern.c', 793, 817))])

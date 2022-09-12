@@ -60,4 +60,4 @@ Successful function annotation for file: /home/sayandes/codequery/test/healthche
 Successful struct annotation for file: /home/sayandes/codequery/test/healthchecking_consts.h
 Successful function annotation for file: /home/sayandes/codequery/test/handle_icmp.h
 Successful struct annotation for file: /home/sayandes/codequery/test/handle_icmp.h
-Successful cqsearch for function: balancer_ingress
+Successful cqsearch for function: xdpdecap

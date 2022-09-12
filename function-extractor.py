@@ -437,6 +437,7 @@ if __name__ == "__main__":
             macro = macro.replace(".","_")
             macro = macro.replace("/","_")
             macro = macro.replace("-","_")
+            macro = macro + "_OPENED_FRAMEWORK"
             cmd = "#ifndef "+ macro + "\n"
             cmd += "#define " + macro + "\n"
             cmd += "#include \"" + header + "\"\n"

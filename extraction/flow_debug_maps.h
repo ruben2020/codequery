@@ -21,7 +21,7 @@
 #include "bpf.h"
 #include "bpf_helpers.h"
 #include "flow_debug.h"
-
+/*XXX
 struct {
   __uint(type, BPF_MAP_TYPE_ARRAY_OF_MAPS);
   __uint(key_size, sizeof(__u32));
@@ -29,5 +29,5 @@ struct {
   __uint(max_entries, MAX_SUPPORTED_CPUS);
   __uint(map_flags, NO_FLAGS);
 } flow_debug_maps SEC(".maps");
-
+*/
 #endif // of __FLOW_DEBUG_MAPS_H

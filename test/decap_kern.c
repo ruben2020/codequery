@@ -220,7 +220,7 @@ __attribute__((__always_inline__)) static inline int process_packet(
   return XDP_PASS;
 }
 
-SEC(DECAP_PROG_SEC)
+SEC("decap")
 int xdpdecap(struct xdp_md* ctx) {
   void* data = (void*)(long)ctx->data;
   void* data_end = (void*)(long)ctx->data_end;

@@ -76,29 +76,6 @@
 #include "decap_maps.h"
 #endif 
 
-#ifndef FLOW_DEBUG_HELPERS_H_OPENED_FRAMEWORK
-#define FLOW_DEBUG_HELPERS_H_OPENED_FRAMEWORK
-#include "flow_debug_helpers.h"
-#endif 
-
-#include <linux/if_ether.h>
-#include <linux/tcp.h>
-#include <linux/udp.h>
-#ifndef FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
-#define FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
-#include "flow_debug_maps.h"
-#endif 
-
-#ifndef FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
-#define FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
-#include "flow_debug_maps.h"
-#endif 
-
-#ifndef FLOW_DEBUG_H_OPENED_FRAMEWORK
-#define FLOW_DEBUG_H_OPENED_FRAMEWORK
-#include "flow_debug.h"
-#endif 
-
 #ifndef PCKT_PARSING_H_OPENED_FRAMEWORK
 #define PCKT_PARSING_H_OPENED_FRAMEWORK
 #include "pckt_parsing.h"
@@ -106,9 +83,11 @@
 
 #include <linux/icmp.h>
 #include <linux/icmpv6.h>
+#include <linux/if_ether.h>
 #include <linux/ptrace.h>
+#include <linux/tcp.h>
+#include <linux/udp.h>
 #include <linux/version.h>
-
 /* Extracted from 
  /home/sayandes/codequery/test/decap_kern.c 
  startLine: 34 endLine: 83

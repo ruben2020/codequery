@@ -13,6 +13,21 @@ def dump_to_file(f,appt):
     f.write(str)
     f.write(appt.text)
 
+def copyMakefile(srcdir,opdir):
+    isExist = os.path.exists(opdir) and os.path.exists(opdir) 
+    if isExist:
+        path= srcdir+"/"+'Makefile'
+        makeExist = os.path.exists(path)
+        if makeExist:
+            shutil.copy(path,opdir)
+        else:
+            print("Makefile does not exist in ",srcdir)
+    else:
+        print("One or More directories do not exist")
+    
+    
+
+    
 def make_extraction_dir(path):
     # Check whether the specified path exists or not
     isExist = os.path.exists(path)
@@ -396,7 +411,10 @@ if __name__ == "__main__":
 
     parser.add_argument('-t','--txlDir', type=str,required=True,
                     help='Directory contaning TXL annotated files with function and map listings')
-    
+
+    parser.add_argument('-s','--srcdir', type=str,required=True,
+                    help='Directory containing source files for function  to be extraced from')
+
     
     
     args = parser.parse_args()
@@ -408,6 +426,8 @@ if __name__ == "__main__":
     extractedFileName = opdir+"/"+args.extractedFileName
     cscopeFile=args.cscopeFile
     TXLDir =args.txlDir
+    srcdir = args.srcdir
+
     
     dupFileName=opdir+"/"+"duplicates.out"
     extractedFunctionListFile="extractedFuncList.out"
@@ -439,14 +459,15 @@ if __name__ == "__main__":
     
     make_extraction_dir(opdir)
     copy_include_files(cscopeFile, opdir)
+    copyMakefile(srcdir,opdir)
+    
     dupFile = open (dupFileName,'w')
     ifile = open(codequeryOutputFile,'r')
     eFile = open(extractedFunctionListFile,'w')
     
     parseFunctionList(ifile)
     ifile.close()
-    print("BEFORE: FNS LIST")
-    print(fns)
+
     
     #print("Dependencies: \n",graph)
 

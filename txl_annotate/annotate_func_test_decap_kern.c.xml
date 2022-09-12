@@ -155,8 +155,8 @@ __attribute__ ((__always_inline__)) static inline int process_packet (void *data
     return XDP_PASS;
 }
 </source>
-<source file="/home/sayandes/codequery/test/decap_kern.c" funcheader="SEC (DECAP_PROG_SEC) int xdpdecap (struct xdp_md *ctx)" startline="223" endline="247">
-SEC (DECAP_PROG_SEC)
+<source file="/home/sayandes/codequery/test/decap_kern.c" funcheader="SEC (\"decap\") int xdpdecap (struct xdp_md *ctx)" startline="223" endline="247">
+SEC ("decap")
 int xdpdecap (struct xdp_md *ctx) {
     void *data = (void *) (long) ctx->data;
     void *data_end = (void *) (long) ctx->data_end;

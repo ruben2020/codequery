@@ -17,16 +17,6 @@ struct {
 
 <struct>
 struct {
-    __uint (type, BPF_MAP_TYPE_ARRAY_OF_MAPS);
-    __uint (key_size, sizeof (__u32));
-    __uint (value_size, sizeof (__u32));
-    __uint (max_entries, MAX_SUPPORTED_CPUS);
-    __uint (map_flags, NO_FLAGS);
-} lru_mapping SEC (".maps");
-</struct>
-
-<struct>
-struct {
     __uint (type, BPF_MAP_TYPE_LRU_HASH);
     __type (key, struct flow_key);
     __type (value, struct real_pos_lru);

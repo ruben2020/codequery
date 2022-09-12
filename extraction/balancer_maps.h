@@ -37,6 +37,7 @@ struct {
   __uint(map_flags, NO_FLAGS);
 } vip_map SEC(".maps");
 
+/* XXX
 // map which contains cpu core to lru mapping
 struct {
   __uint(type, BPF_MAP_TYPE_ARRAY_OF_MAPS);
@@ -45,6 +46,7 @@ struct {
   __uint(max_entries, MAX_SUPPORTED_CPUS);
   __uint(map_flags, NO_FLAGS);
 } lru_mapping SEC(".maps");
+*/
 
 // fallback lru. we should never hit this one outside of unittests
 struct {

@@ -24,7 +24,7 @@ __attribute__ ((__always_inline__)) static inline __u32 get_next_ports (void *tr
     return ports;
 }
 </source>
-<source file="/home/sayandes/codequery/test/flow_debug_helpers.h" funcheader="__attribute__ ((__always_inline__)) static inline void gue_record_route (struct ethhdr *outer_eth, struct ethhdr *inner_eth, void *data_end, bool outer_v4, bool inner_v4)" startline="55" endline="124">
+<source file="/home/sayandes/codequery/test/flow_debug_helpers.h" funcheader="__attribute__ ((__always_inline__)) static inline void gue_record_route (struct ethhdr *outer_eth, struct ethhdr *inner_eth, void *data_end, bool outer_v4, bool inner_v4)" startline="55" endline="128">
 __attribute__ ((__always_inline__)) static inline void gue_record_route (struct ethhdr *outer_eth, struct ethhdr *inner_eth, void *data_end, bool outer_v4, bool inner_v4) {
     struct flow_key flow = {0};
     struct flow_debug_info debug_info = {0};
@@ -32,10 +32,6 @@ __attribute__ ((__always_inline__)) static inline void gue_record_route (struct 
     struct iphdr *ip4h = 0;
     void *transport_header = 0;
     __u32 cpu_num = bpf_get_smp_processor_id ();
-    void *flow_debug_map = bpf_map_lookup_elem (&flow_debug_maps, &cpu_num);
-    if (!flow_debug_map) {
-        return;
-    }
     if (outer_v4) {
         if ((void *) outer_eth + sizeof (struct ethhdr) + sizeof (struct iphdr) > data_end) {
             return;
@@ -74,7 +70,6 @@ __attribute__ ((__always_inline__)) static inline void gue_record_route (struct 
         flow.proto = ip6h->nexthdr;
         flow.ports = get_next_ports (transport_header, ip6h->nexthdr, data_end);
     }
-    bpf_map_update_elem (flow_debug_map, & flow, & debug_info, BPF_ANY);
     return;
 }
 </source>

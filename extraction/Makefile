@@ -1,15 +1,17 @@
-# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+CLANG=/home/sayandes/katran/_build//deps/clang/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin/clang 
+LLC=/home/sayandes/katran/_build//deps/clang/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin/llc
+INLCUDE_SYS=/usr/include
+INCLUDE_LOC=/include
+XDP_TARGETS=extracted
+BPF_CFLAGS ?= -I$(INLCUDE_SYS) -I$(INCLUDE_LOC)
 
-XDP_TARGETS := extracted
-#USER_TARGETS := xdp_pass_user
+XDP_C = ${XDP_TARGETS:=.c}
+XDP_OBJ = ${XDP_C:.c=.o}
 
-LLC ?= llc
-CLANG ?= clang
-CC := gcc
+$(XDP_OBJ): %.o: %.c 
+	$(CLANG)   $(BPF_CFLAGS) \
+	-DDEBUG -D__KERNEL__ -Wno-unused-value -Wno-pointer-sign \
+        -Wno-compare-distinct-pointer-types \
+	-O2 -emit-llvm -c -g -o  ${@:.o=.ll} $<
+	$(LLC) -march=bpf -filetype=obj -o $@ ${@:.o=.ll}
 
-BASE_DIR = /home/sayandes/xdp-tutorial
-LIBBPF_DIR = $(BASE_DIR)/libbpf/src/
-COMMON_DIR = $(BASE_DIR)/common/
-
-include $(COMMON_DIR)/common.mk
-COMMON_OBJS := $(COMMON_DIR)/common_params.o

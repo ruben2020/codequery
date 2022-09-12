@@ -5,6 +5,8 @@ import os
 import shutil
 from collections import defaultdict
 from collections import OrderedDict
+import argparse
+
 
 def dump_to_file(f,appt):
     str = "//" + appt.get('file')+ " " + appt.get('startline')+ " "+ appt.get('endline') + " \n"
@@ -370,6 +372,48 @@ def parseFunctionList(ifile):
             
             
 if __name__ == "__main__":
+
+    #constants
+    #opdir="extraction"
+    #codequeryOutputFile="func.out"
+    #extractedFileName = opdir+"/"+"extracted.c"
+    #TXLDir ="./txl_annotate"
+    #cscopeFile="cscope.files"
+
+
+    parser = argparse.ArgumentParser(description='Function Extractor')
+    parser.add_argument('-o','--opdir', type=str,required=True,
+                    help='directory to dump extracted files to ')
+
+    parser.add_argument('-f','--codequeryOutputFile', type=str,required=True,
+                    help='Function and Map dependency output from codequery ')
+
+    parser.add_argument('-e','--extractedFileName', type=str,required=True,
+                    help='Output file with extracted function')
+
+    parser.add_argument('-c','--cscopeFile', type=str,required=True,
+                    help='cscope file listing all files in original dir')
+
+    parser.add_argument('-t','--txlDir', type=str,required=True,
+                    help='Directory contaning TXL annotated files with function and map listings')
+    
+    
+    
+    args = parser.parse_args()
+
+    print("Args",args)
+
+    opdir=args.opdir
+    codequeryOutputFile=args.codequeryOutputFile
+    extractedFileName = opdir+"/"+args.extractedFileName
+    cscopeFile=args.cscopeFile
+    TXLDir =args.txlDir
+    
+    dupFileName=opdir+"/"+"duplicates.out"
+    extractedFunctionListFile="extractedFuncList.out"
+    missedFunctionListFile="missedFuncList.out"
+    
+    
     #dict containing function definitions
     #fns = {}
     fns = OrderedDict()
@@ -392,18 +436,9 @@ if __name__ == "__main__":
     #dict of dict containing pre processor directives per file
     presDict = defaultdict(list)
     
-    #constants
-    opdir="extraction"
-    codequeryOutputFile="func.out"
-    dupFileName=opdir+"/"+"duplicates.out"
-    extractedFileName = opdir+"/"+"extracted.c"
-    TXLDir ="./txl_annotate"
-    extractedFunctionListFile="extractedFuncList.out"
-    missedFunctionListFile="missedFuncList.out"
-
     
     make_extraction_dir(opdir)
-    copy_include_files("cscope.files", opdir)
+    copy_include_files(cscopeFile, opdir)
     dupFile = open (dupFileName,'w')
     ifile = open(codequeryOutputFile,'r')
     eFile = open(extractedFunctionListFile,'w')

@@ -1,8 +1,8 @@
 CLANG=/home/sayandes/katran/_build//deps/clang/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin/clang 
 LLC=/home/sayandes/katran/_build//deps/clang/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin/llc
-INLCUDE_SYS=./usr/include
-INCLUDE_LOC=./include
-XDP_TARGETS =extracted
+INLCUDE_SYS=/usr/include
+INCLUDE_LOC=/include
+XDP_TARGETS=extracted
 BPF_CFLAGS ?= -I$(INLCUDE_SYS) -I$(INCLUDE_LOC)
 
 XDP_C = ${XDP_TARGETS:=.c}
@@ -14,4 +14,4 @@ $(XDP_OBJ): %.o: %.c
         -Wno-compare-distinct-pointer-types \
 	-O2 -emit-llvm -c -g -o  ${@:.o=.ll} $<
 	$(LLC) -march=bpf -filetype=obj -o $@ ${@:.o=.ll}
-	
+

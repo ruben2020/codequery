@@ -5,102 +5,102 @@
 #include <linux/ipv6.h>
 #include <stdbool.h>
 #include <stddef.h>
-#ifndef BALANCER_CONSTS_H
-#define BALANCER_CONSTS_H
+#ifndef BALANCER_CONSTS_H_OPENED_FRAMEWORK
+#define BALANCER_CONSTS_H_OPENED_FRAMEWORK
 #include "balancer_consts.h"
 #endif 
 
-#ifndef BPF_H
-#define BPF_H_OPEPEPEPE
+#ifndef BPF_H_OPENED_FRAMEWORK
+#define BPF_H_OPENED_FRAMEWORK
 #include "bpf.h"
 #endif 
 
-#ifndef BPF_HELPERS_H
-#define BPF_HELPERS_H
+#ifndef BPF_HELPERS_H_OPENED_FRAMEWORK
+#define BPF_HELPERS_H_OPENED_FRAMEWORK
 #include "bpf_helpers.h"
 #endif 
 
-#ifndef DECAP_MAPS_H
-#define DECAP_MAPS_H
+#ifndef DECAP_MAPS_H_OPENED_FRAMEWORK
+#define DECAP_MAPS_H_OPENED_FRAMEWORK
 #include "decap_maps.h"
 #endif 
 
-#ifndef PCKT_ENCAP_H
-#define PCKT_ENCAP_H
+#ifndef PCKT_ENCAP_H_OPENED_FRAMEWORK
+#define PCKT_ENCAP_H_OPENED_FRAMEWORK
 #include "pckt_encap.h"
 #endif 
 
-#ifndef PCKT_PARSING_H
-#define PCKT_PARSING_H
+#ifndef PCKT_PARSING_H_OPENED_FRAMEWORK
+#define PCKT_PARSING_H_OPENED_FRAMEWORK
 #include "pckt_parsing.h"
 #endif 
 
 #include <string.h>
-#ifndef BALANCER_HELPERS_H
-#define BALANCER_HELPERS_H
+#ifndef BALANCER_HELPERS_H_OPENED_FRAMEWORK
+#define BALANCER_HELPERS_H_OPENED_FRAMEWORK
 #include "balancer_helpers.h"
 #endif 
 
-#ifndef BALANCER_MAPS_H
-#define BALANCER_MAPS_H
+#ifndef BALANCER_MAPS_H_OPENED_FRAMEWORK
+#define BALANCER_MAPS_H_OPENED_FRAMEWORK
 #include "balancer_maps.h"
 #endif 
 
-#ifndef BALANCER_STRUCTS_H
-#define BALANCER_STRUCTS_H
+#ifndef BALANCER_STRUCTS_H_OPENED_FRAMEWORK
+#define BALANCER_STRUCTS_H_OPENED_FRAMEWORK
 #include "balancer_structs.h"
 #endif 
 
-#ifndef HANDLE_ICMP_H
-#define HANDLE_ICMP_H
+#ifndef HANDLE_ICMP_H_OPENED_FRAMEWORK
+#define HANDLE_ICMP_H_OPENED_FRAMEWORK
 #include "handle_icmp.h"
 #endif 
 
-#ifndef JHASH_H
-#define JHASH_H
+#ifndef JHASH_H_OPENED_FRAMEWORK
+#define JHASH_H_OPENED_FRAMEWORK
 #include "jhash.h"
 #endif 
 
-#ifndef BALANCER_MAPS_H
-#define BALANCER_MAPS_H
+#ifndef BALANCER_MAPS_H_OPENED_FRAMEWORK
+#define BALANCER_MAPS_H_OPENED_FRAMEWORK
 #include "balancer_maps.h"
 #endif 
 
-#ifndef CONTROL_DATA_MAPS_H
-#define CONTROL_DATA_MAPS_H
+#ifndef CONTROL_DATA_MAPS_H_OPENED_FRAMEWORK
+#define CONTROL_DATA_MAPS_H_OPENED_FRAMEWORK
 #include "control_data_maps.h"
 #endif 
 
-#ifndef DECAP_MAPS_H
-#define DECAP_MAPS_H
+#ifndef DECAP_MAPS_H_OPENED_FRAMEWORK
+#define DECAP_MAPS_H_OPENED_FRAMEWORK
 #include "decap_maps.h"
 #endif 
 
-#ifndef FLOW_DEBUG_HELPERS_H
-#define FLOW_DEBUG_HELPERS_H
+#ifndef FLOW_DEBUG_HELPERS_H_OPENED_FRAMEWORK
+#define FLOW_DEBUG_HELPERS_H_OPENED_FRAMEWORK
 #include "flow_debug_helpers.h"
 #endif 
 
 #include <linux/if_ether.h>
 #include <linux/tcp.h>
 #include <linux/udp.h>
-#ifndef FLOW_DEBUG_MAPS_H
-#define FLOW_DEBUG_MAPS_H
+#ifndef FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
+#define FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
 #include "flow_debug_maps.h"
 #endif 
 
-#ifndef FLOW_DEBUG_MAPS_H
-#define FLOW_DEBUG_MAPS_H
+#ifndef FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
+#define FLOW_DEBUG_MAPS_H_OPENED_FRAMEWORK
 #include "flow_debug_maps.h"
 #endif 
 
-#ifndef FLOW_DEBUG_H
-#define FLOW_DEBUG_H
+#ifndef FLOW_DEBUG_H_OPENED_FRAMEWORK
+#define FLOW_DEBUG_H_OPENED_FRAMEWORK
 #include "flow_debug.h"
 #endif 
 
-#ifndef PCKT_PARSING_H
-#define PCKT_PARSING_H
+#ifndef PCKT_PARSING_H_OPENED_FRAMEWORK
+#define PCKT_PARSING_H_OPENED_FRAMEWORK
 #include "pckt_parsing.h"
 #endif 
 
@@ -631,7 +631,7 @@ __attribute__((__always_inline__)) static inline int process_packet(
  /home/sayandes/codequery/test/decap_kern.c 
  startLine: 223 endLine: 247
  */ 
-SEC("sec")
+SEC("decap")
 int xdpdecap(struct xdp_md* ctx) {
   void* data = (void*)(long)ctx->data;
   void* data_end = (void*)(long)ctx->data_end;

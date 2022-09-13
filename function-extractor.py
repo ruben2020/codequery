@@ -55,7 +55,7 @@ def create_preprocessor_map(filename):
         # read all lines using readline()
     lc = 1
     lines = fp.readlines()
-    print("Creating preprocessor for: ",filename)
+    #print("Creating preprocessor for: ",filename)
     stack = []
     pres=[]
 
@@ -71,38 +71,38 @@ def create_preprocessor_map(filename):
         # if found it return 0
         if line.find(ifdefstring) == 0:
             print('string #ifdef exists in file')
-            print('line Number:', lc,line)
+            #print('line Number:', lc,line)
             tokens = line.split()
             name = tokens[1]
             stack.append((ifdefstring,name,lc))
 
         if line.find(ifstring) == 0:
-            print('string #if exists in file')
-            print('line Number:', lc,line)
+            #print('string #if exists in file')
+            #print('line Number:', lc,line)
             tokens = line.split()
             name = tokens[1]
             stack.append((ifstring,name,lc))
 
 
         if line.find(ifndefstring) == 0:
-            print('string #ifndef exists in file')
-            print('line Number:', lc,line)
+            #print('string #ifndef exists in file')
+            #print('line Number:', lc,line)
             tokens = line.split()
             name = tokens[1]
             stack.append((ifndefstring,name,lc))
 
 
         if line.find(elifstring) == 0:
-           print('string #elif exists in file')
-           print('line Number:', lc,line)
+           #print('string #elif exists in file')
+           #print('line Number:', lc,line)
            (t,name,bg) = stack.pop()
            pres.append((t,name,bg,lc-1))
            tokens = line.split()
            stack.append((ifdefstring,tokens[1],lc))
 
         if line.find(elsestring) == 0:
-           print('string #else exists in file')
-           print('line Number:', lc,line)
+           #print('string #else exists in file')
+           #print('line Number:', lc,line)
            (t,name,bg) = stack.pop()
            pres.append(( t,name,bg,lc-1))
            tokens = line.split()
@@ -110,22 +110,22 @@ def create_preprocessor_map(filename):
 
 
         if line.find(endifstring) == 0:
-           print('string #endif exists in file')
-           print('line Number:', lc,line)
+           #print('string #endif exists in file')
+           #print('line Number:', lc,line)
            (t,name,bg) = stack.pop()
            pres.append(( t,name,bg,lc-1))
 
         lc = lc + 1
 
-    print(pres)       
+    #print(pres)       
     return pres
 
 # checks if function/struct in filename between st_line and end_line needs to be guarded with IFDEF MACROS
 def contained_in_preprocessor(fname, pres, st_line, end_line):
-        print("checking containment in: ",fname,"start: ",st_line,"end: ",end_line)
+        #print("checking containment in: ",fname,"start: ",st_line,"end: ",end_line)
         for (t,defName,start,end) in pres:
                 if st_line >= start and end_line <= end:
-                    print("Fully contained ", t, defName)
+                    #print("Fully contained ", t, defName)
                     return (t,defName,start,end)
         return (None,None,None,None)
                     
@@ -133,20 +133,20 @@ def contained_in_preprocessor(fname, pres, st_line, end_line):
 def copy_include_files(iFile, opdir):
     iFilePtr = open(iFile,'r')
     for line in iFilePtr.readlines():
-        print("cscope header: ",line)
+        #print("cscope header: ",line)
         line=line.replace("\n","")
         if line.endswith(".h"):
             shutil.copy(line, opdir)
             #headers[line]=1
-            print("copying header: ",line)
+            #print("copying header: ",line)
     shutil.copy("Makefile",opdir)
     iFilePtr.close()
 
 # read iFile from startLine to endLine and writes to oFile
 def extractAndDump(iFile,startLine,endLine,oFile):
-    #print("iFile",iFile, "startline:",startLine," endline: ",endLine)
+    ##print("iFile",iFile, "startline:",startLine," endline: ",endLine)
     if not os.path.exists(iFile):
-        print("File Not Found: ",iFile)
+        #print("File Not Found: ",iFile)
         return
     val=None
     #check if we need to guard this func/struct with a macro
@@ -162,14 +162,14 @@ def extractAndDump(iFile,startLine,endLine,oFile):
     lineCt = 1
     #ignore lines
     while lineCt < startLine:
-        #print("skipping line#: ",lineCt)
+        ##print("skipping line#: ",lineCt)
         iFilePtr.readline()
         lineCt = lineCt + 1;
     comment = "/* Extracted from \n "+ iFile+ " \n startLine: "+ str(startLine) + " endLine: "+ str(endLine) + "\n */ \n"
     oFile.write(comment)
     while lineCt <= endLine :
         line = iFilePtr.readline()
-        #print("lineCt",lineCt, " line: ",line)
+        ##print("lineCt",lineCt, " line: ",line)
         oFile.write(line)
         lineCt= lineCt + 1
             
@@ -201,13 +201,13 @@ def dumpFns(f,e):
 
 # parses output from c-extract-struct.txl
 def parseTXLStructOutputFile(fileName,f):
-    print("Parsing Struct Output FIle: ",fileName)
+    #print("Parsing Struct Output FIle: ",fileName)
     iFile = open(fileName,'r')
     lineCt = 1
     inside = False;
     structStr = ""
     for line in iFile.readlines():
-        print(line)
+        #print(line)
         begin=re.match(r"<struct>",line)
         end = re.match(r"</struct>",line)
         if begin:
@@ -216,13 +216,13 @@ def parseTXLStructOutputFile(fileName,f):
         elif end:
             endLine = lineCt - 1
             key = fileName+":"+str(startLine)+":"+str(endLine);
-            print("EXTRACT -> ",key)
+            #print("EXTRACT -> ",key)
             maps[key]=1
             # Write maps together from dict
             #if not ".h.out" in fileName:
             #    extractAndDump(fileName,startLine,endLine,f)
             inside = False;
-            print("StructStr",structStr)
+            #print("StructStr",structStr)
             (isMap,mapName) = doesStructContainMap(structStr)
             if isMap == True:
                 head="//fileName "+fileName+" startLine: "+str(startLine)+" endLine: "+str(endLine)+"\n"
@@ -245,7 +245,7 @@ def parseTXLFunctionOutputFile(inputFile,f,e):
         if ending:
             srcSeen = False;
             #dump to file
-            print(lines)
+            #print(lines)
             lines = []
             continue;
         if srcSeen:
@@ -253,7 +253,7 @@ def parseTXLFunctionOutputFile(inputFile,f,e):
             continue;
         starting = re.match(r"<source",line)
         if starting:
-            print("Starting",line)
+            #print("Starting",line)
             srcSeen = True
             line = line.replace("funcheader","")
             line = line.replace("startline","")
@@ -262,7 +262,7 @@ def parseTXLFunctionOutputFile(inputFile,f,e):
             line = line.replace("\n","")
             line = line.replace("\"","")
             tokens = line.split('=')
-            #print("len",len(tokens),"tokens",tokens)
+            ##print("len",len(tokens),"tokens",tokens)
             srcFile = tokens[-4]
             srcFile = srcFile.replace(" ","")
 
@@ -271,19 +271,19 @@ def parseTXLFunctionOutputFile(inputFile,f,e):
                 presDict[srcFile]=p
             
             funcName = tokens[-3].replace(" (","(")
-            #print(funcName)
+            ##print(funcName)
             funcName = funcName.split('(')[-2].split(" ")[-1]
             startLine = int(tokens[-2])
             endLine = int(tokens[-1])
             #funcHeader=tokens[2].split("=")[1]
-            #print(srcFile, " startline: ",startLine," endline: ",endLine," funcname: ",funcName)
+            ##print(srcFile, " startline: ",startLine," endline: ",endLine," funcname: ",funcName)
             #key=funcName+":"+srcFile+":"+str(startLine)
             key=funcName+":"+srcFile
-            print("Checking if need to extract",key)
+            #print("Checking if need to extract",key)
             if key in fns.keys():
                 fns.update({key:(funcName,srcFile,startLine,endLine)})
                 if not srcFile.endswith(".h"):
-                    print("Need to Extract", key)
+                    print("Need to Extract Function", key)
                     #op=funcName+","+srcFile+",["+str(startLine)+":"+str(endLine)+"]\n"
                     #e.write(op)
                     #extractAndDump(srcFile,startLine,endLine,f)
@@ -300,13 +300,13 @@ def parseXML(xmlFile,f):
     root = etree.fromstring(xml)
     for appt in root.getchildren():
         dump_to_file(f,appt)
-        print("source_code\n")
-        print(appt.text)
-        print("FileName")
-        print(appt.get('file'))
-        print(appt.get('funcheader'))
-        print(appt.get('startline'))
-        print(appt.get('endline'))
+        #print("source_code\n")
+        #print(appt.text)
+        #print("FileName")
+        #print(appt.get('file'))
+        #print(appt.get('funcheader'))
+        #print(appt.get('startline'))
+        #print(appt.get('endline'))
         
 # read header file and included headers to headers dict
 def addDependsOn(cFile):
@@ -317,42 +317,42 @@ def addDependsOn(cFile):
                 #h = h.replace("<","")
                 #h = h.replace(">","")
                 h = h.replace("\"","")
-                #print("cFile: ",cFile," h: ",h)
+                ##print("cFile: ",cFile," h: ",h)
                 graph[h].add(cFile)
-                print("Adding Header Dep: From",cFile," to: ",h )
+                #print("Adding Header Dep: From",cFile," to: ",h )
                 headers[h]=1
                
     iFile.close()
 
 def processFuncLine(line):
-    ##print("Processing", line)
+    ###print("Processing", line)
     line = line.replace('[','')
     line = line.replace(']','')
     tokens = line.split(',')
     fnName = tokens[0]
     count = tokens[1]
     if int(count) > 1:
-        #print("Duplicate Defns: ", line);
+        ##print("Duplicate Defns: ", line);
         duplicates.append(line)
         return
     src = tokens[2]
     #Add headers included by .c files only
     if src.endswith(".c"):
     #if src.endswith(".h"):
-        #print("Header File: ",line)
+        ##print("Header File: ",line)
         #headers[src]=1
         #shutil.copy(src,opdir)
         addDependsOn(src)
     startLine = tokens[3]
     #remove end ]
     startLine = startLine[:-1]
-    #print(fnName,count,src,startLine)
+    ##print(fnName,count,src,startLine)
     #key=fnName+":"+src+":"+startLine
     key=fnName+":"+src
     fns[key]=(None,None,None,None)
 
 def processMapLine(line):
-    ##print("Processing", line)
+    ###print("Processing", line)
     line = line.replace('[','')
     line = line.replace(']','')
     tokens = line.split(',')
@@ -363,7 +363,7 @@ def processMapLine(line):
         addDependsOn(srcFile)
     startLine = tokens[2]
     isFound = tokens[3]
-    #print(fnName,count,src,startLine)
+    ##print(fnName,count,src,startLine)
     #key=fnName+":"+src+":"+startLine
     key=mapName
     maps[key]=1
@@ -373,13 +373,13 @@ def processMapLine(line):
 def parseFunctionList(ifile):
     ct = 0
     for line in ifile.readlines():
-        #print(line)
+        ##print(line)
         m = re.match(r"[{}]",line)
         if m:
-            print("Ignoring",line)
+            #print("Ignoring",line)
             ct = ct + 1
         else:
-            print("ct",ct)
+            #print("ct",ct)
             if ct < 2:
                 processFuncLine(line)
             else:
@@ -419,7 +419,7 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
-    print("Args",args)
+    #print("Args",args)
 
     opdir=args.opdir
     codequeryOutputFile=args.codequeryOutputFile
@@ -469,11 +469,11 @@ if __name__ == "__main__":
     ifile.close()
 
     
-    #print("Dependencies: \n",graph)
+    ##print("Dependencies: \n",graph)
 
     # Dump duplicate function definitions
-    #print("fns: ", fns)
-    #print("dups: ",duplicates)
+    ##print("fns: ", fns)
+    ##print("dups: ",duplicates)
     for dup in duplicates:
         dupFile.write(dup)
     dupFile.close()
@@ -484,9 +484,9 @@ if __name__ == "__main__":
     #include required header files
     f.write("/* SPDX-License-Identifier: GPL-2.0 */\n");
     f.write("#define RECORD_FLOW_INFO\n")
-    #print("HEADERS\n")
+    ##print("HEADERS\n")
     for header in headers.keys():
-        #print(header)
+        ##print(header)
         if not "<" in header:
             header = header.split('/')[-1]
             macro = header.upper()
@@ -507,16 +507,16 @@ if __name__ == "__main__":
     structFiles = []
     #Parse TXL annotated files
     for fName in os.listdir(TXLDir):
-        print("annotatedFile: ",fName)
+        #print("annotatedFile: ",fName)
         path = TXLDir + "/" + fName
         if fName.endswith(".xml"):
-            #print("annotatedXmlFile: ",fName)
+            ##print("annotatedXmlFile: ",fName)
             xmlFiles.append(path)
         elif "annotate_struct" in fName:
             structFiles.append(path)
         
     for path in structFiles:
-        print("structFIle: ",path)
+        #print("structFIle: ",path)
         p = create_preprocessor_map(path)
         presDict[path]=p
         parseTXLStructOutputFile(path,f)
@@ -567,20 +567,18 @@ if __name__ == "__main__":
         outFile.write("\n")
     outFile.close()
 
-    print("MAPS\n")
+    #print("MAPS\n")
     for mapName  in opMaps:
         if len(opMaps[mapName]) > 1:
             print("DUPLICATE MAP",mapName)
         else:
             print("MAP",mapName)
-        for str in opMaps[mapName]:
-            print(str)
+        #for str in opMaps[mapName]:
+            #print(str)
 
-    print("PREPROCESSORS")
-    for key in presDict:
-        print("Name: ",key)
-        print("Val: ",presDict[key])
-
-    print("AFTER: FNS LIST")
-    print(fns)
-    
+    #print("PREPROCESSORS")
+    #for key in presDict:
+        #print("Name: ",key)
+        #print("Val: ",presDict[key])
+    #print("AFTER: FNS LIST")
+    #print(fns)

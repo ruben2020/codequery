@@ -1,0 +1,289 @@
+int xdpdecap(struct xdp_md * ctx):
+; int xdpdecap(struct xdp_md* ctx) {
+   0: (bf) r6 = r1
+   1: (b7) r0 = 1
+; void* data_end = (void*)(long)ctx->data_end;
+   2: (79) r8 = *(u64 *)(r6 +8)
+; void* data = (void*)(long)ctx->data;
+   3: (79) r7 = *(u64 *)(r6 +0)
+; if (data + nh_off > data_end) {
+   4: (bf) r1 = r7
+   5: (07) r1 += 14
+; if (data + nh_off > data_end) {
+   6: (2d) if r1 > r8 goto pc+220
+; eth_proto = eth->h_proto;
+   7: (71) r3 = *(u8 *)(r7 +12)
+   8: (71) r2 = *(u8 *)(r7 +13)
+   9: (67) r2 <<= 8
+  10: (4f) r2 |= r3
+; if (eth_proto == BE_ETH_P_IP) {
+  11: (15) if r2 == 0xdd86 goto pc+74
+  12: (b7) r0 = 2
+  13: (55) if r2 != 0x8 goto pc+213
+  14: (b7) r2 = 0
+; __u32 key = 0;
+  15: (63) *(u32 *)(r10 -8) = r2
+; if (iph + 1 > data_end) {
+  16: (bf) r2 = r7
+  17: (07) r2 += 34
+; 
+  18: (b7) r0 = 1
+; if (iph + 1 > data_end) {
+  19: (2d) if r2 > r8 goto pc+207
+; if (iph->ihl != 5) {
+  20: (71) r1 = *(u8 *)(r1 +0)
+  21: (57) r1 &= 15
+; 
+  22: (b7) r0 = 1
+; if (iph->ihl != 5) {
+  23: (55) if r1 != 0x5 goto pc+203
+; if (iph->frag_off & PCKT_FRAGMENTED) {
+  24: (69) r1 = *(u16 *)(r7 +20)
+; if (iph->frag_off & PCKT_FRAGMENTED) {
+  25: (57) r1 &= 65343
+; 
+  26: (b7) r0 = 1
+; if (iph->frag_off & PCKT_FRAGMENTED) {
+  27: (55) if r1 != 0x0 goto pc+199
+; 
+  28: (71) r9 = *(u8 *)(r7 +23)
+  29: (bf) r2 = r10
+  30: (07) r2 += -8
+; data_stats = bpf_map_lookup_elem(&decap_counters, &key);
+  31: (18) r1 = map[id:229]
+  33: (85) call percpu_array_map_lookup_elem#215424
+  34: (bf) r1 = r0
+  35: (b7) r0 = 2
+; if (!data_stats) {
+  36: (15) if r1 == 0x0 goto pc+190
+; data_stats->total += 1;
+  37: (79) r2 = *(u64 *)(r1 +16)
+  38: (07) r2 += 1
+  39: (7b) *(u64 *)(r1 +16) = r2
+; if (protocol == IPPROTO_IPIP || protocol == IPPROTO_IPV6) {
+  40: (15) if r9 == 0x29 goto pc+1
+  41: (55) if r9 != 0x4 goto pc+185
+; data_stats->decap_v4 += 1;
+  42: (79) r2 = *(u64 *)(r1 +0)
+  43: (07) r2 += 1
+  44: (7b) *(u64 *)(r1 +0) = r2
+; if (*protocol == IPPROTO_IPIP) {
+  45: (15) if r9 == 0x29 goto pc+103
+  46: (55) if r9 != 0x4 goto pc+180
+; 
+  47: (bf) r1 = r7
+  48: (07) r1 += 20
+; memcpy(new_eth->h_source, old_eth->h_source, 6);
+  49: (71) r2 = *(u8 *)(r7 +11)
+  50: (73) *(u8 *)(r7 +31) = r2
+  51: (71) r2 = *(u8 *)(r7 +10)
+  52: (73) *(u8 *)(r7 +30) = r2
+  53: (71) r2 = *(u8 *)(r7 +9)
+  54: (73) *(u8 *)(r7 +29) = r2
+  55: (71) r2 = *(u8 *)(r7 +8)
+  56: (73) *(u8 *)(r7 +28) = r2
+  57: (71) r2 = *(u8 *)(r7 +7)
+  58: (73) *(u8 *)(r7 +27) = r2
+  59: (71) r2 = *(u8 *)(r7 +6)
+  60: (73) *(u8 *)(r7 +26) = r2
+; memcpy(new_eth->h_dest, old_eth->h_dest, 6);
+  61: (71) r2 = *(u8 *)(r7 +4)
+  62: (73) *(u8 *)(r1 +4) = r2
+  63: (71) r2 = *(u8 *)(r7 +5)
+  64: (73) *(u8 *)(r1 +5) = r2
+  65: (71) r2 = *(u8 *)(r7 +2)
+  66: (73) *(u8 *)(r1 +2) = r2
+  67: (71) r2 = *(u8 *)(r7 +3)
+  68: (73) *(u8 *)(r1 +3) = r2
+  69: (71) r2 = *(u8 *)(r7 +0)
+  70: (73) *(u8 *)(r1 +0) = r2
+  71: (71) r2 = *(u8 *)(r7 +1)
+  72: (73) *(u8 *)(r1 +1) = r2
+  73: (b7) r1 = 0
+; new_eth->h_proto = BE_ETH_P_IP;
+  74: (73) *(u8 *)(r7 +33) = r1
+  75: (b7) r1 = 8
+  76: (73) *(u8 *)(r7 +32) = r1
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct iphdr))) {
+  77: (bf) r1 = r6
+  78: (b7) r2 = 20
+  79: (85) call bpf_xdp_adjust_head#9519840
+  80: (bf) r1 = r0
+  81: (67) r1 <<= 32
+  82: (77) r1 >>= 32
+  83: (b7) r0 = 2
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct iphdr))) {
+  84: (15) if r1 == 0x0 goto pc+142
+  85: (05) goto pc+140
+  86: (b7) r1 = 0
+; __u32 key = 0;
+  87: (63) *(u32 *)(r10 -4) = r1
+  88: (b7) r0 = 1
+; if (ip6h + 1 > data_end) {
+  89: (bf) r1 = r7
+  90: (07) r1 += 54
+; if (ip6h + 1 > data_end) {
+  91: (2d) if r1 > r8 goto pc+135
+; *protocol = ip6h->nexthdr;
+  92: (71) r8 = *(u8 *)(r7 +20)
+; if (*protocol == IPPROTO_FRAGMENT) {
+  93: (15) if r8 == 0x2c goto pc+133
+  94: (bf) r2 = r10
+; 
+  95: (07) r2 += -4
+; data_stats = bpf_map_lookup_elem(&decap_counters, &key);
+  96: (18) r1 = map[id:229]
+  98: (85) call percpu_array_map_lookup_elem#215424
+  99: (bf) r1 = r0
+ 100: (b7) r0 = 2
+; if (!data_stats) {
+ 101: (15) if r1 == 0x0 goto pc+125
+; data_stats->total += 1;
+ 102: (79) r2 = *(u64 *)(r1 +16)
+ 103: (07) r2 += 1
+ 104: (7b) *(u64 *)(r1 +16) = r2
+; if (protocol == IPPROTO_IPIP || protocol == IPPROTO_IPV6) {
+ 105: (15) if r8 == 0x29 goto pc+1
+ 106: (55) if r8 != 0x4 goto pc+120
+; data_stats->decap_v6 += 1;
+ 107: (79) r2 = *(u64 *)(r1 +8)
+ 108: (07) r2 += 1
+ 109: (7b) *(u64 *)(r1 +8) = r2
+; if (*protocol == IPPROTO_IPIP) {
+ 110: (15) if r8 == 0x29 goto pc+79
+ 111: (55) if r8 != 0x4 goto pc+115
+ 112: (b7) r1 = 0
+; new_eth->h_proto = BE_ETH_P_IP;
+ 113: (73) *(u8 *)(r7 +53) = r1
+ 114: (b7) r1 = 8
+ 115: (73) *(u8 *)(r7 +52) = r1
+; memcpy(new_eth->h_source, old_eth->h_source, 6);
+ 116: (71) r1 = *(u8 *)(r7 +11)
+ 117: (73) *(u8 *)(r7 +51) = r1
+ 118: (71) r1 = *(u8 *)(r7 +10)
+ 119: (73) *(u8 *)(r7 +50) = r1
+ 120: (71) r1 = *(u8 *)(r7 +9)
+ 121: (73) *(u8 *)(r7 +49) = r1
+ 122: (71) r1 = *(u8 *)(r7 +8)
+ 123: (73) *(u8 *)(r7 +48) = r1
+ 124: (71) r1 = *(u8 *)(r7 +7)
+ 125: (73) *(u8 *)(r7 +47) = r1
+ 126: (71) r1 = *(u8 *)(r7 +6)
+ 127: (73) *(u8 *)(r7 +46) = r1
+; memcpy(new_eth->h_dest, old_eth->h_dest, 6);
+ 128: (71) r1 = *(u8 *)(r7 +3)
+ 129: (73) *(u8 *)(r7 +43) = r1
+ 130: (71) r1 = *(u8 *)(r7 +2)
+ 131: (73) *(u8 *)(r7 +42) = r1
+ 132: (71) r1 = *(u8 *)(r7 +1)
+ 133: (73) *(u8 *)(r7 +41) = r1
+ 134: (71) r1 = *(u8 *)(r7 +0)
+ 135: (73) *(u8 *)(r7 +40) = r1
+ 136: (71) r1 = *(u8 *)(r7 +5)
+ 137: (73) *(u8 *)(r7 +45) = r1
+ 138: (71) r1 = *(u8 *)(r7 +4)
+ 139: (73) *(u8 *)(r7 +44) = r1
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct ipv6hdr))) {
+ 140: (bf) r1 = r6
+ 141: (b7) r2 = 40
+ 142: (85) call bpf_xdp_adjust_head#9519840
+ 143: (bf) r1 = r0
+ 144: (67) r1 <<= 32
+ 145: (77) r1 >>= 32
+ 146: (b7) r0 = 2
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct ipv6hdr))) {
+ 147: (15) if r1 == 0x0 goto pc+79
+ 148: (05) goto pc+77
+; if ((*data + sizeof(struct ipv6hdr) + sizeof(struct ethhdr)) > *data_end) {
+ 149: (bf) r1 = r7
+ 150: (07) r1 += 54
+; 
+ 151: (b7) r0 = 1
+; if ((*data + sizeof(struct ipv6hdr) + sizeof(struct ethhdr)) > *data_end) {
+ 152: (2d) if r1 > r8 goto pc+74
+ 153: (b7) r1 = 221
+; new_eth->h_proto = BE_ETH_P_IPV6;
+ 154: (73) *(u8 *)(r7 +53) = r1
+ 155: (b7) r1 = 134
+ 156: (73) *(u8 *)(r7 +52) = r1
+; memcpy(new_eth->h_source, old_eth->h_source, 6);
+ 157: (71) r1 = *(u8 *)(r7 +11)
+ 158: (73) *(u8 *)(r7 +51) = r1
+ 159: (71) r1 = *(u8 *)(r7 +10)
+ 160: (73) *(u8 *)(r7 +50) = r1
+ 161: (71) r1 = *(u8 *)(r7 +9)
+ 162: (73) *(u8 *)(r7 +49) = r1
+ 163: (71) r1 = *(u8 *)(r7 +8)
+ 164: (73) *(u8 *)(r7 +48) = r1
+ 165: (71) r1 = *(u8 *)(r7 +7)
+ 166: (73) *(u8 *)(r7 +47) = r1
+ 167: (71) r1 = *(u8 *)(r7 +6)
+ 168: (73) *(u8 *)(r7 +46) = r1
+; memcpy(new_eth->h_dest, old_eth->h_dest, 6);
+ 169: (71) r1 = *(u8 *)(r7 +3)
+ 170: (73) *(u8 *)(r7 +43) = r1
+ 171: (71) r1 = *(u8 *)(r7 +2)
+ 172: (73) *(u8 *)(r7 +42) = r1
+ 173: (71) r1 = *(u8 *)(r7 +1)
+ 174: (73) *(u8 *)(r7 +41) = r1
+ 175: (71) r1 = *(u8 *)(r7 +0)
+ 176: (73) *(u8 *)(r7 +40) = r1
+ 177: (71) r1 = *(u8 *)(r7 +5)
+ 178: (73) *(u8 *)(r7 +45) = r1
+ 179: (71) r1 = *(u8 *)(r7 +4)
+ 180: (73) *(u8 *)(r7 +44) = r1
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct ipv6hdr))) {
+ 181: (bf) r1 = r6
+ 182: (b7) r2 = 40
+ 183: (85) call bpf_xdp_adjust_head#9519840
+ 184: (bf) r1 = r0
+ 185: (67) r1 <<= 32
+ 186: (77) r1 >>= 32
+ 187: (b7) r0 = 2
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct ipv6hdr))) {
+ 188: (15) if r1 == 0x0 goto pc+38
+ 189: (05) goto pc+36
+ 190: (b7) r1 = 221
+; new_eth->h_proto = BE_ETH_P_IPV6;
+ 191: (73) *(u8 *)(r7 +53) = r1
+ 192: (b7) r1 = 134
+ 193: (73) *(u8 *)(r7 +52) = r1
+; memcpy(new_eth->h_source, old_eth->h_source, 6);
+ 194: (71) r1 = *(u8 *)(r7 +11)
+ 195: (73) *(u8 *)(r7 +51) = r1
+ 196: (71) r1 = *(u8 *)(r7 +10)
+ 197: (73) *(u8 *)(r7 +50) = r1
+ 198: (71) r1 = *(u8 *)(r7 +9)
+ 199: (73) *(u8 *)(r7 +49) = r1
+ 200: (71) r1 = *(u8 *)(r7 +8)
+ 201: (73) *(u8 *)(r7 +48) = r1
+ 202: (71) r1 = *(u8 *)(r7 +7)
+ 203: (73) *(u8 *)(r7 +47) = r1
+ 204: (71) r1 = *(u8 *)(r7 +6)
+ 205: (73) *(u8 *)(r7 +46) = r1
+; memcpy(new_eth->h_dest, old_eth->h_dest, 6);
+ 206: (71) r1 = *(u8 *)(r7 +3)
+ 207: (73) *(u8 *)(r7 +43) = r1
+ 208: (71) r1 = *(u8 *)(r7 +2)
+ 209: (73) *(u8 *)(r7 +42) = r1
+ 210: (71) r1 = *(u8 *)(r7 +1)
+ 211: (73) *(u8 *)(r7 +41) = r1
+ 212: (71) r1 = *(u8 *)(r7 +0)
+ 213: (73) *(u8 *)(r7 +40) = r1
+ 214: (71) r1 = *(u8 *)(r7 +5)
+ 215: (73) *(u8 *)(r7 +45) = r1
+ 216: (71) r1 = *(u8 *)(r7 +4)
+ 217: (73) *(u8 *)(r7 +44) = r1
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct ipv6hdr))) {
+ 218: (bf) r1 = r6
+ 219: (b7) r2 = 40
+ 220: (85) call bpf_xdp_adjust_head#9519840
+ 221: (bf) r1 = r0
+ 222: (67) r1 <<= 32
+ 223: (77) r1 >>= 32
+ 224: (b7) r0 = 2
+; if (bpf_xdp_adjust_head(xdp, (int)sizeof(struct ipv6hdr))) {
+ 225: (15) if r1 == 0x0 goto pc+1
+ 226: (b7) r0 = 1
+; }
+ 227: (95) exit

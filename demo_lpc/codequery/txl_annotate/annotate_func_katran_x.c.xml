@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/root/github/demo_lpc/codequery/katran/x.c" funcheader="SEC (\"xdp\") int xdp_prog_simple (struct xdp_md *ctx)" startline="8" endline="13">
+SEC ("xdp")
+int xdp_prog_simple (struct xdp_md *ctx) {
+    return xdpdecap (ctx);
+}
+</source>
+</doc>

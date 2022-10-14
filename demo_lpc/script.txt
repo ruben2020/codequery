@@ -1,0 +1,41 @@
+0. Set up
+   b) cd codequery
+
+d) ls katran
+   
+1. make_db.sh TAB1
+        a) Identify function name from test folder.
+		i) vim katran//decap_kern.c
+        b) Run make_db.
+       ./bpf_extractor.sh xdpdecap txl_annotate/ katran
+        c) show annotated fn files (quickly)
+  vim txl_annotate/annotate_func_katran_decap_kern.c.xml
+        d) open func.out
+vim func.out
+                i) remove 1-2 lines ..
+2. function_extractor.py TAB2
+        a) show cleaned out func.out
+vim func.out.cleaned
+        b) run function_extractor.py with parameters ...
+   python3 function-extractor.py -o katran_extracted -f func.out.cleaned -e extracted.c -c cscope.files -t txl_annotate -s katran > log
+        c) show extracted.c
+  cd extraction/
+   vim extracted.c
+        d) remove attention lines
+	e) Added license and include files MACRO  guards
+	f) come to xdpdecap and show which lines were extracted
+        e) run Makefile
+make
+        f) attach verifier passes
+bpftool net
+ip link set dev veth1 xdp obj extracted.o sec decap
+        g) show bpftool output
+bpftool net
+3. hookpoint transformation TAB3
+        0) copy code from extraction folder
+        a) transformation.sh
+        b) show vimdiff/grep of transformed and original files
+	c) go into extraction folder and remove extracted.o run Make
+	d) first show that nothing is attached
+        e) attach verifier passes
+                i) show bpftool output

@@ -89,17 +89,17 @@
 #include <linux/udp.h>
 #include <linux/version.h>
 //ATTENTION BEGIN: DUPLICATE MAP DEFNS
-//fileName ./txl_annotate/annotate_struct_test_xdp_pktcntr.c.out startLine: 14 endLine: 19
+//DUP Defn at: fileName txl_annotate/annotate_struct_katran_control_data_maps.h.out startLine: 9 endLine: 15
+//fileName txl_annotate/annotate_struct_katran_xdp_pktcntr.c.out startLine: 14 endLine: 19
 struct {
     __uint (type, BPF_MAP_TYPE_ARRAY);
     __type (key, __u32);
     __type (value, __u32);
     __uint (max_entries, CTRL_ARRAY_SIZE);
 } ctl_array SEC (".maps");
-//DUP Defn at: fileName ./txl_annotate/annotate_struct_test_control_data_maps.h.out startLine: 9 endLine: 15
 //ATTENTION END 
 /* Extracted from 
- /home/sayandes/codequery/test/decap_kern.c 
+ /root/github/demo_lpc/codequery/katran/decap_kern.c 
  startLine: 34 endLine: 83
  */ 
 __attribute__((__always_inline__)) static inline int process_l3_headers(
@@ -154,7 +154,7 @@ __attribute__((__always_inline__)) static inline int process_l3_headers(
 }
 #ifdef  INLINE_DECAP_GENERIC
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 233 endLine: 255
  */ 
 __attribute__((__always_inline__)) static inline int
@@ -182,7 +182,7 @@ check_decap_dst(struct packet_description* pckt, bool is_ipv6, bool* pass) {
 }
 #endif 
 /* Extracted from 
- /home/sayandes/codequery/test/decap_kern.c 
+ /root/github/demo_lpc/codequery/katran/decap_kern.c 
  startLine: 85 endLine: 120
  */ 
 __attribute__((__always_inline__)) static inline int process_encaped_ipip_pckt(
@@ -223,7 +223,7 @@ __attribute__((__always_inline__)) static inline int process_encaped_ipip_pckt(
 }
 #ifdef  INLINE_DECAP_GUE
 /* Extracted from 
- /home/sayandes/codequery/test/decap_kern.c 
+ /root/github/demo_lpc/codequery/katran/decap_kern.c 
  startLine: 123 endLine: 161
  */ 
 __attribute__((__always_inline__)) static inline int process_encaped_gue_pckt(
@@ -267,7 +267,7 @@ __attribute__((__always_inline__)) static inline int process_encaped_gue_pckt(
 }
 #endif 
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 444 endLine: 457
  */ 
 __attribute__((__always_inline__)) static inline void
@@ -285,7 +285,7 @@ increment_quic_cid_version_stats(int host_id) {
   }
 }
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 470 endLine: 478
  */ 
 __attribute__((__always_inline__)) static inline void increment_quic_cid_drop_real_0() {
@@ -298,7 +298,7 @@ __attribute__((__always_inline__)) static inline void increment_quic_cid_drop_re
   quic_drop->v2 += 1;
 }
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 459 endLine: 468
  */ 
 __attribute__((__always_inline__)) static inline void
@@ -312,7 +312,7 @@ increment_quic_cid_drop_no_real() {
   quic_drop->v1 += 1;
 }
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 133 endLine: 156
  */ 
 __attribute__((__always_inline__)) static inline void connection_table_lookup(
@@ -340,7 +340,7 @@ __attribute__((__always_inline__)) static inline void connection_table_lookup(
   return;
 }
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 24 endLine: 50
  */ 
 __attribute__((__always_inline__)) 
@@ -371,7 +371,7 @@ __attribute__((__always_inline__))
   return false;
 }
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 818 endLine: 827
  */ 
 __attribute__((__always_inline__)) static inline __u32 get_packet_hash(struct packet_description* pckt,bool hash_16bytes) {
@@ -385,7 +385,7 @@ __attribute__((__always_inline__)) static inline __u32 get_packet_hash(struct pa
   }
 }
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 52 endLine: 131
  */ 
 __attribute__((__always_inline__)) 
@@ -470,7 +470,7 @@ __attribute__((__always_inline__))
 }
 #ifdef  GLOBAL_LRU_LOOKUP
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 261 endLine: 277
  */ 
 __attribute__((__always_inline__)) static inline bool reals_have_same_addr(
@@ -493,7 +493,7 @@ __attribute__((__always_inline__)) static inline bool reals_have_same_addr(
 #endif 
 #ifdef  GLOBAL_LRU_LOOKUP
 /* Extracted from 
- /home/sayandes/codequery/test/balancer_kern.c 
+ /root/github/demo_lpc/codequery/katran/balancer_kern.c 
  startLine: 279 endLine: 335
  */ 
 __attribute__((__always_inline__)) static inline int perform_global_lru_lookup(
@@ -555,7 +555,7 @@ __attribute__((__always_inline__)) static inline int perform_global_lru_lookup(
 }
 #endif 
 /* Extracted from 
- /home/sayandes/codequery/test/decap_kern.c 
+ /root/github/demo_lpc/codequery/katran/decap_kern.c 
  startLine: 164 endLine: 221
  */ 
 __attribute__((__always_inline__)) static inline int process_packet(
@@ -617,7 +617,7 @@ __attribute__((__always_inline__)) static inline int process_packet(
   return XDP_PASS;
 }
 /* Extracted from 
- /home/sayandes/codequery/test/decap_kern.c 
+ /root/github/demo_lpc/codequery/katran/decap_kern.c 
  startLine: 223 endLine: 247
  */ 
 SEC("decap")

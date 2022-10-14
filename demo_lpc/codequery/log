@@ -1,0 +1,97 @@
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+Need to Extract Function is_under_flood:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function get_packet_dst:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function connection_table_lookup:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function check_decap_dst:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function reals_have_same_addr:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function perform_global_lru_lookup:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function increment_quic_cid_version_stats:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function increment_quic_cid_drop_no_real:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function increment_quic_cid_drop_real_0:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+Need to Extract Function get_packet_hash:/root/github/demo_lpc/codequery/katran/balancer_kern.c
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+string #ifdef exists in file
+Need to Extract Function process_l3_headers:/root/github/demo_lpc/codequery/katran/decap_kern.c
+Need to Extract Function process_encaped_ipip_pckt:/root/github/demo_lpc/codequery/katran/decap_kern.c
+Need to Extract Function process_encaped_gue_pckt:/root/github/demo_lpc/codequery/katran/decap_kern.c
+Need to Extract Function process_packet:/root/github/demo_lpc/codequery/katran/decap_kern.c
+Need to Extract Function xdpdecap:/root/github/demo_lpc/codequery/katran/decap_kern.c
+string #ifdef exists in file
+string #ifdef exists in file
+MAP decap_counters
+MAP vip_map
+MAP reals
+MAP reals_stats
+MAP stats
+MAP server_id_map
+MAP lpm_src_v4
+MAP lpm_src_v6
+MAP global_lru_maps
+DUPLICATE MAP ctl_array
+MAP decap_dst

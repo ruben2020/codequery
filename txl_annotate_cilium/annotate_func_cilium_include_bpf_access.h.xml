@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/include/bpf/access.h" funcheader="static __always_inline __maybe_unused __u32 map_array_get_32 (const __u32 *array, __u32 index, const __u32 limit)" startline="10" endline="33">
+static __always_inline __maybe_unused __u32 map_array_get_32 (const __u32 *array, __u32 index, const __u32 limit) {
+    __u32 datum = 0;
+    if (__builtin_constant_p (index) || !__builtin_constant_p (limit))
+        __throw_build_bug ();
+    asm volatile ("%[index] <<= 2\n\t"
+        "if %[index] > %[limit] goto +1\n\t"
+        "%[array] += %[index]\n\t"
+        "%[datum] = *(u32 *)(%[array] + 0)\n\t"
+        : [datum] "=r" (datum)
+        : [limit] "i" (limit), [array] "r" (array), [index] "r" (index)
+        :
+    ) return datum;
+}
+</source>
+</doc>

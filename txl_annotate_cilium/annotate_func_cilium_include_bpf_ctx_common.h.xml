@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/include/bpf/ctx/common.h" funcheader="static __always_inline void *ctx_data (const struct __ctx_buff *ctx)" startline="16" endline="19">
+static __always_inline void *ctx_data (const struct __ctx_buff *ctx) {
+    return (void *) (unsigned long) ctx->data;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/bpf/ctx/common.h" funcheader="static __always_inline void *ctx_data_meta (const struct __ctx_buff *ctx)" startline="21" endline="24">
+static __always_inline void *ctx_data_meta (const struct __ctx_buff *ctx) {
+    return (void *) (unsigned long) ctx->data_meta;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/bpf/ctx/common.h" funcheader="static __always_inline void *ctx_data_end (const struct __ctx_buff *ctx)" startline="26" endline="29">
+static __always_inline void *ctx_data_end (const struct __ctx_buff *ctx) {
+    return (void *) (unsigned long) ctx->data_end;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/bpf/ctx/common.h" funcheader="static __always_inline bool ctx_no_room (const void *needed, const void *limit)" startline="31" endline="34">
+static __always_inline bool ctx_no_room (const void *needed, const void *limit) {
+    return unlikely (needed > limit);
+}
+</source>
+</doc>

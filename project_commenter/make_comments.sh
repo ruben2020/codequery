@@ -1,16 +1,26 @@
 #!/bin/bash
 ##TODO: Move to python
 
+#----------------------
 echo "Cleaning old files ..."
 rm cscope.files cscope.out tags myproject.db 
-bash setup_interfaces.sh
-echo "Setting interfaces for testing ..."
+
 codedir=${1:-'katran'}
 opdir_default="txl_annotate_$codedir"
 copdir_default="txl_annotate_commented_$codedir"
 opdir=${2:-$opdir_default}
 copdir=${3:-$copdir_default}
+if [ -d "$opdir" ]; then rm -Rf $opdir; fi
+mkdir $opdir
 
+if [ -d "$copdir" ]; then rm -Rf $copdir; fi
+mkdir $copdir
+
+bash setup_interfaces.sh
+echo "Setting interfaces for testing ..."
+#----------------------
+
+#----------------------
 echo "Creating new file index ..."
 find -L $codedir -name '*.c' >cscope.files
 find -L $codedir -name '*.h' >>cscope.files
@@ -19,12 +29,7 @@ cscope -cb -k
 ctags --fields=+i -n -L ./cscope.files
 echo "Making DBs ..."
 cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
-
-if [ -d "$opdir" ]; then rm -Rf $opdir; fi
-mkdir $opdir
-
-if [ -d "$copdir" ]; then rm -Rf $copdir; fi
-mkdir $copdir
+#----------------------
 
 
 echo "Read cscope files and generate function annotation ..."

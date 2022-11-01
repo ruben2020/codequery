@@ -1,0 +1,8 @@
+#include "decap_kern.c"
+
+SEC ("xdp")
+int xdp_prog_simple (struct xdp_md *ctx) {
+    return xdpdecap (ctx);
+}
+
+char _license [] SEC ("license") = "GPL";

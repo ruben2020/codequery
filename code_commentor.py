@@ -16,7 +16,7 @@ def check_and_return_helper_present(my_dict,line):
             return key
     return None
 
-def get_helper_encoding(lines):
+def get_helper_encoding(lines,helperdict):
     helper_set= set()
     for line in lines:
         present=check_and_return_helper_present(helperdict,line)
@@ -35,7 +35,7 @@ def set_to_string(my_set):
     return str
 
 
-def get_read_maps(lines):
+def get_read_maps(lines, map_read_fn):
     map_read_set=set()
     for line in lines:
         mapname= check_map_access(map_read_fn,line)
@@ -43,7 +43,7 @@ def get_read_maps(lines):
             map_read_set.add(mapname)
     return set_to_string(map_read_set)
             
-def get_update_maps(lines):
+def get_update_maps(lines, map_update_fn):
     map_update_set=set()
     for line in lines:
         mapname= check_map_access(map_update_fn,line)
@@ -85,7 +85,7 @@ def generate_comment(srcFile,funcName,startLine,endLine,funcArgs,output,encoding
     return comment
 
 # parses output from c-extract-function.txl
-def parseTXLFunctionOutputFileForComments(inputFile, opFile, srcFile):
+def parseTXLFunctionOutputFileForComments(inputFile, opFile, srcFile, helperdict, map_update_fn, map_read_fn):
     srcSeen=False
     lines = []
     startLineDict ={}
@@ -100,9 +100,9 @@ def parseTXLFunctionOutputFileForComments(inputFile, opFile, srcFile):
             srcSeen = False;
             #dump to file
             #print(lines)
-            encoding = get_helper_encoding(lines)
-            read_maps=get_read_maps(lines)
-            update_maps=get_update_maps(lines)
+            encoding = get_helper_encoding(lines,helperdict)
+            read_maps=get_read_maps(lines, map_read_fn)
+            update_maps=get_update_maps(lines, map_update_fn)
             #print("Encoding: ",encoding)
             comment = generate_comment(srcFile,funcName,startLine,endLine,funcArgs,output,encoding,read_maps,update_maps)
             #dump_comment(srcFile,startLine,comment)
@@ -187,7 +187,7 @@ if __name__ =="__main__":
         map_read_fn = ["bpf_map_peek_elem", "bpf_map_lookup_elem", "bpf_map_pop_elem"]
 
         xmlFile = open(txlFile,'r')
-        parseTXLFunctionOutputFileForComments(xmlFile, opFile, srcFile)
+        parseTXLFunctionOutputFileForComments(xmlFile, opFile, srcFile, helperdict, map_update_fn, map_read_fn)
         xmlFile.close()
         '''
         ifile = open("./txl_annotate/annotate_func_test_decap_kern.c.xml",'r')

@@ -3,9 +3,13 @@
 echo "Cleaning old files ..."
 rm cscope.files cscope.out tags myproject.db 
 
-codedir=${3:-$PWD}
-opdir=${2:-'txl_annotate'}
 function_name=${1}
+codedir=${1:-'katran'}
+opdir_default="txl_annotate_$codedir"
+copdir_default="txl_annotate_commented_$codedir"
+opdir=${2:-$opdir_default}
+copdir=${3:-$copdir_default}
+
 
 echo "Creating new file index ..."
 find -L $codedir -name '*.c' >cscope.files

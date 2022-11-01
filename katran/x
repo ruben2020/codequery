@@ -1,0 +1,145 @@
+#balancer_kern.c#:  if ((*cur_time - conn_rate_stats->v2) > ONE_SEC) {
+#balancer_kern.c#:SEC("xdp")
+#balancer_kern.c#:char _license[] SEC("license") = "GPL";
+a:balancer_kern.c:SEC("xdp")
+a:xdp_pktcntr.c:SEC("xdp")
+a:xdp_root.c:int SEC("xdp") xdp_root(struct xdp_md* ctx) {
+a:xdp_root.c:int SEC("xdp") xdp_val(struct xdp_md* ctx) {
+a~:balancer_kern.c:  if ((*cur_time - conn_rate_stats->v2) > ONE_SEC) {
+a~:balancer_kern.c:SEC("xdp")
+a~:balancer_kern.c:char _license[] SEC("license") = "GPL";
+a~:bpf.h:  BPF_PROG_TYPE_FLOW_DISSECTOR,
+a~:bpf.h:  BPF_FLOW_DISSECTOR,
+a~:bpf.h: *      SEC("kprobe/sys_open")
+a~:decap_kern.c:SEC("decap")
+a~:decap_kern.c://char _license[] SEC("license") = "GPL";
+a~:healthchecking_ipip.c:SEC("tc")
+a~:healthchecking_ipip.c:char _license[] SEC("license") = "GPL";
+a~:healthchecking_kern.c:SEC("tc")
+a~:healthchecking_kern.c:char _license[] SEC("license") = "GPL";
+a~:x.c:SEC("xdp")
+a~:x.c:char _license[] SEC("license") = "GPL";
+a~:xdp_pktcntr.c:SEC("xdp")
+a~:xdp_pktcntr.c:char _license[] SEC("license") = "GPL";
+a~:xdp_root.c:int SEC("xdp") xdp_root(struct xdp_md* ctx) {
+a~:xdp_root.c:int SEC("xdp") xdp_val(struct xdp_md* ctx) {
+a~:xdp_root.c:char _license[] SEC("license") = "GPL";
+balancer_consts.h:#define ONE_SEC 1000000000U // 1 sec in nanosec
+balancer_kern.c:  if ((*cur_time - conn_rate_stats->v2) > ONE_SEC) {
+balancer_kern.c:SEC("xdp")
+balancer_kern.c:char _license[] SEC("license") = "GPL";
+balancer_maps.h:} vip_map SEC(".maps");
+balancer_maps.h:} lru_mapping SEC(".maps");
+balancer_maps.h:} fallback_cache SEC(".maps");
+balancer_maps.h:} ch_rings SEC(".maps");
+balancer_maps.h:} reals SEC(".maps");
+balancer_maps.h:} reals_stats SEC(".maps");
+balancer_maps.h:} stats SEC(".maps");
+balancer_maps.h:} server_id_map SEC(".maps");
+balancer_maps.h:} lpm_src_v4 SEC(".maps");
+balancer_maps.h:} lpm_src_v6 SEC(".maps");
+balancer_maps.h:} global_lru_maps SEC(".maps");
+balancer_maps.h:} fallback_glru SEC(".maps");
+bpf.h:  BPF_PROG_TYPE_FLOW_DISSECTOR,
+bpf.h:  BPF_FLOW_DISSECTOR,
+bpf.h: *      SEC("kprobe/sys_open")
+bpf.h:#define BPF_FLOW_DISSECTOR_F_PARSE_1ST_FRAG (1U << 0)
+bpf.h:#define BPF_FLOW_DISSECTOR_F_STOP_AT_FLOW_LABEL (1U << 1)
+bpf.h:#define BPF_FLOW_DISSECTOR_F_STOP_AT_ENCAP (1U << 2)
+bpf_helpers.h:#define SEC(NAME) __attribute__((section(NAME), used))
+control_data_maps.h:} ctl_array SEC(".maps");
+control_data_maps.h:} event_pipe SEC(".maps");
+control_data_maps.h:} decap_dst SEC(".maps");
+control_data_maps.h:} subprograms SEC(".maps");
+control_data_maps.h:} pckt_srcs SEC(".maps");
+decap_kern.c:#ifndef DECAP_PROG_SEC
+decap_kern.c:#define DECAP_PROG_SEC "xdp"
+decap_kern.c:SEC("decap")
+decap_kern.c://char _license[] SEC("license") = "GPL";
+decap_maps.h:} decap_counters SEC(".maps");
+flow_debug_maps.h:} flow_debug_maps SEC(".maps");
+healthchecking_ipip.c:} hc_ctrl_map SEC(".maps");
+healthchecking_ipip.c:} hc_reals_map SEC(".maps");
+healthchecking_ipip.c:} hc_stats_map SEC(".maps");
+healthchecking_ipip.c:SEC("tc")
+healthchecking_ipip.c:char _license[] SEC("license") = "GPL";
+healthchecking_kern.c:SEC("tc")
+healthchecking_kern.c:char _license[] SEC("license") = "GPL";
+healthchecking_maps.h:} hc_ctrl_map SEC(".maps");
+healthchecking_maps.h:} hc_reals_map SEC(".maps");
+healthchecking_maps.h:} hc_pckt_srcs_map SEC(".maps");
+healthchecking_maps.h:} hc_pckt_macs SEC(".maps");
+healthchecking_maps.h:} hc_stats_map SEC(".maps");
+healthchecking_maps.h:} per_hckey_stats SEC(".maps");
+healthchecking_maps.h:} hc_key_map SEC(".maps");
+sec.out:#balancer_kern.c#:  if ((*cur_time - conn_rate_stats->v2) > ONE_SEC) {
+sec.out:#balancer_kern.c#:SEC("xdp")
+sec.out:#balancer_kern.c#:char _license[] SEC("license") = "GPL";
+sec.out:balancer_consts.h:#define ONE_SEC 1000000000U // 1 sec in nanosec
+sec.out:balancer_kern.c:  if ((*cur_time - conn_rate_stats->v2) > ONE_SEC) {
+sec.out:balancer_kern.c:SEC("xdp")
+sec.out:balancer_kern.c:char _license[] SEC("license") = "GPL";
+sec.out:balancer_maps.h:} vip_map SEC(".maps");
+sec.out:balancer_maps.h:} lru_mapping SEC(".maps");
+sec.out:balancer_maps.h:} fallback_cache SEC(".maps");
+sec.out:balancer_maps.h:} ch_rings SEC(".maps");
+sec.out:balancer_maps.h:} reals SEC(".maps");
+sec.out:balancer_maps.h:} reals_stats SEC(".maps");
+sec.out:balancer_maps.h:} stats SEC(".maps");
+sec.out:balancer_maps.h:} server_id_map SEC(".maps");
+sec.out:balancer_maps.h:} lpm_src_v4 SEC(".maps");
+sec.out:balancer_maps.h:} lpm_src_v6 SEC(".maps");
+sec.out:balancer_maps.h:} global_lru_maps SEC(".maps");
+sec.out:balancer_maps.h:} fallback_glru SEC(".maps");
+sec.out:bpf.h:  BPF_PROG_TYPE_FLOW_DISSECTOR,
+sec.out:bpf.h:  BPF_FLOW_DISSECTOR,
+sec.out:bpf.h: *      SEC("kprobe/sys_open")
+sec.out:bpf.h:#define BPF_FLOW_DISSECTOR_F_PARSE_1ST_FRAG (1U << 0)
+sec.out:bpf.h:#define BPF_FLOW_DISSECTOR_F_STOP_AT_FLOW_LABEL (1U << 1)
+sec.out:bpf.h:#define BPF_FLOW_DISSECTOR_F_STOP_AT_ENCAP (1U << 2)
+sec.out:bpf_helpers.h:#define SEC(NAME) __attribute__((section(NAME), used))
+sec.out:control_data_maps.h:} ctl_array SEC(".maps");
+sec.out:control_data_maps.h:} event_pipe SEC(".maps");
+sec.out:control_data_maps.h:} decap_dst SEC(".maps");
+sec.out:control_data_maps.h:} subprograms SEC(".maps");
+sec.out:control_data_maps.h:} pckt_srcs SEC(".maps");
+sec.out:decap_kern.c:#ifndef DECAP_PROG_SEC
+sec.out:decap_kern.c:#define DECAP_PROG_SEC "xdp"
+sec.out:decap_kern.c:SEC("decap")
+sec.out:decap_kern.c://char _license[] SEC("license") = "GPL";
+sec.out:decap_maps.h:} decap_counters SEC(".maps");
+sec.out:flow_debug_maps.h:} flow_debug_maps SEC(".maps");
+sec.out:healthchecking_ipip.c:} hc_ctrl_map SEC(".maps");
+sec.out:healthchecking_ipip.c:} hc_reals_map SEC(".maps");
+sec.out:healthchecking_ipip.c:} hc_stats_map SEC(".maps");
+sec.out:healthchecking_ipip.c:SEC("tc")
+sec.out:healthchecking_ipip.c:char _license[] SEC("license") = "GPL";
+sec.out:healthchecking_kern.c:SEC("tc")
+sec.out:healthchecking_kern.c:char _license[] SEC("license") = "GPL";
+sec.out:healthchecking_maps.h:} hc_ctrl_map SEC(".maps");
+sec.out:healthchecking_maps.h:} hc_reals_map SEC(".maps");
+sec.out:healthchecking_maps.h:} hc_pckt_srcs_map SEC(".maps");
+sec.out:healthchecking_maps.h:} hc_pckt_macs SEC(".maps");
+sec.out:healthchecking_maps.h:} hc_stats_map SEC(".maps");
+sec.out:healthchecking_maps.h:} per_hckey_stats SEC(".maps");
+sec.out:healthchecking_maps.h:} hc_key_map SEC(".maps");
+sec.out:x.c:SEC("xdp")
+sec.out:x.c:char _license[] SEC("license") = "GPL";
+sec.out:xdp_pktcntr.c:} ctl_array SEC(".maps");
+sec.out:xdp_pktcntr.c:} cntrs_array SEC(".maps");
+sec.out:xdp_pktcntr.c:SEC("xdp")
+sec.out:xdp_pktcntr.c:char _license[] SEC("license") = "GPL";
+sec.out:xdp_root.c:} root_array SEC(".maps");
+sec.out:xdp_root.c:int SEC("xdp") xdp_root(struct xdp_md* ctx) {
+sec.out:xdp_root.c:int SEC("xdp") xdp_val(struct xdp_md* ctx) {
+sec.out:xdp_root.c:char _license[] SEC("license") = "GPL";
+x.c:SEC("xdp")
+x.c:char _license[] SEC("license") = "GPL";
+xdp_pktcntr.c:} ctl_array SEC(".maps");
+xdp_pktcntr.c:} cntrs_array SEC(".maps");
+xdp_pktcntr.c:SEC("xdp")
+xdp_pktcntr.c:char _license[] SEC("license") = "GPL";
+xdp_root.c:} root_array SEC(".maps");
+xdp_root.c:int SEC("xdp") xdp_root(struct xdp_md* ctx) {
+xdp_root.c:int SEC("xdp") xdp_val(struct xdp_md* ctx) {
+xdp_root.c:char _license[] SEC("license") = "GPL";

@@ -1,7 +1,7 @@
 #ebpf3
-BASEDIR=/root/github/
+#BASEDIR=/root/github/
 #ebpf1
-#BASEDIR=/home/sayandes/
+BASEDIR=/home/sayandes/
 CLANG=$(BASEDIR)/katran/_build//deps/clang/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin/clang 
 LLC=$(BASEDIR)/katran/_build//deps/clang/clang+llvm-12.0.0-x86_64-linux-gnu-ubuntu-20.04/bin/llc
 INLCUDE_SYS=/usr/include

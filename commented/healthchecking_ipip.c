@@ -94,8 +94,8 @@ struct {
  Funcname: healthcheck_encap,
  Input: (struct __sk_buff *skb),
  Output: int,
- Helpers: [bpf_map_lookup_elem,bpf_redirect,bpf_skb_set_tunnel_key,],
- Read_maps: [ hc_ctrl_map, hc_reals_map, hc_stats_map,],
+ Helpers: [bpf_map_lookup_elem,bpf_skb_set_tunnel_key,bpf_redirect,],
+ Read_maps: [ hc_stats_map, hc_ctrl_map, hc_reals_map,],
  Update_maps: [],
  Func Description: TO BE ADDED, 
  } 

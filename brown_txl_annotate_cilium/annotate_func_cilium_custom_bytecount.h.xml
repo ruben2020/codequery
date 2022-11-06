@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/custom/bytecount.h" funcheader="static __always_inline void custom_prog (const struct __ctx_buff *ctx, __u32 identity)" startline="11" endline="24">
+static __always_inline void custom_prog (const struct __ctx_buff *ctx, __u32 identity) {
+    __u64 len, *bytecount;
+    len = ctx_full_len (ctx);
+    bytecount = map_lookup_elem (&bytecount_map, &identity);
+    if (bytecount)
+        __sync_fetch_and_add (bytecount, len);
+    else
+        map_update_elem (&bytecount_map, &identity, &len, BPF_ANY);
+}
+</source>
+</doc>

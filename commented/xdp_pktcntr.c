@@ -52,7 +52,7 @@ struct {
  Input: (struct xdp_md *ctx),
  Output: int,
  Helpers: [bpf_map_lookup_elem,],
- Read_maps: [ ctl_array, cntrs_array,],
+ Read_maps: [ cntrs_array, ctl_array,],
  Update_maps: [],
  Func Description: TO BE ADDED, 
  } 

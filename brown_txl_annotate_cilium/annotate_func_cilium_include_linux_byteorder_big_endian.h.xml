@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __le64 __cpu_to_le64p (const __u64 *p)" startline="45" endline="48">
+static __inline__ __le64 __cpu_to_le64p (const __u64 *p) {
+    return (__le64) __swab64p (p);
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __u64 __le64_to_cpup (const __le64 *p)" startline="49" endline="52">
+static __inline__ __u64 __le64_to_cpup (const __le64 *p) {
+    return __swab64p ((__u64 *) p);
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __le32 __cpu_to_le32p (const __u32 *p)" startline="53" endline="56">
+static __inline__ __le32 __cpu_to_le32p (const __u32 *p) {
+    return (__le32) __swab32p (p);
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __u32 __le32_to_cpup (const __le32 *p)" startline="57" endline="60">
+static __inline__ __u32 __le32_to_cpup (const __le32 *p) {
+    return __swab32p ((__u32 *) p);
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __le16 __cpu_to_le16p (const __u16 *p)" startline="61" endline="64">
+static __inline__ __le16 __cpu_to_le16p (const __u16 *p) {
+    return (__le16) __swab16p (p);
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __u16 __le16_to_cpup (const __le16 *p)" startline="65" endline="68">
+static __inline__ __u16 __le16_to_cpup (const __le16 *p) {
+    return __swab16p ((__u16 *) p);
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __be64 __cpu_to_be64p (const __u64 *p)" startline="69" endline="72">
+static __inline__ __be64 __cpu_to_be64p (const __u64 *p) {
+    return (__be64) *p;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __u64 __be64_to_cpup (const __be64 *p)" startline="73" endline="76">
+static __inline__ __u64 __be64_to_cpup (const __be64 *p) {
+    return (__u64) *p;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __be32 __cpu_to_be32p (const __u32 *p)" startline="77" endline="80">
+static __inline__ __be32 __cpu_to_be32p (const __u32 *p) {
+    return (__be32) *p;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __u32 __be32_to_cpup (const __be32 *p)" startline="81" endline="84">
+static __inline__ __u32 __be32_to_cpup (const __be32 *p) {
+    return (__u32) *p;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __be16 __cpu_to_be16p (const __u16 *p)" startline="85" endline="88">
+static __inline__ __be16 __cpu_to_be16p (const __u16 *p) {
+    return (__be16) *p;
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/byteorder/big_endian.h" funcheader="static __inline__ __u16 __be16_to_cpup (const __be16 *p)" startline="89" endline="92">
+static __inline__ __u16 __be16_to_cpup (const __be16 *p) {
+    return (__u16) *p;
+}
+</source>
+</doc>

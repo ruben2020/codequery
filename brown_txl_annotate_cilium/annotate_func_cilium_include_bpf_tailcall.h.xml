@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/include/bpf/tailcall.h" funcheader="static __always_inline __maybe_unused void tail_call_static (const struct __ctx_buff *ctx, const void *map, const __u32 slot)" startline="10" endline="33">
+static __always_inline __maybe_unused void tail_call_static (const struct __ctx_buff *ctx, const void *map, const __u32 slot) {
+    if (!__builtin_constant_p (slot))
+        __throw_build_bug ();
+    asm volatile ("r1 = %[ctx]\n\t"
+        "r2 = %[map]\n\t"
+        "r3 = %[slot]\n\t"
+        "call 12\n\t"
+        :
+        : [ctx] "r" (ctx), [map] "r" (map), [slot] "i" (slot)
+        : "r0", "r1", "r2", "r3", "r4", "r5"
+    )}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/bpf/tailcall.h" funcheader="static __always_inline __maybe_unused void tail_call_dynamic (struct __ctx_buff *ctx, const void *map, __u32 slot)" startline="35" endline="46">
+static __always_inline __maybe_unused void tail_call_dynamic (struct __ctx_buff *ctx, const void *map, __u32 slot) {
+    if (__builtin_constant_p (slot))
+        __throw_build_bug ();
+    tail_call (ctx, map, slot);
+}
+</source>
+</doc>

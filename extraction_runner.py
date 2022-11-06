@@ -5,6 +5,8 @@ import glob
 import command
 import shutil
 import code_commentor as cmt
+import argparse
+
 
 def check_if_cmd_available():
     commands = ['txl', 'cscope', 'ctags', 'cqmakedb', 'cqsearch']
@@ -48,17 +50,7 @@ def create_directories(dir_list):
     for dr in dir_list:
         if not os.path.exists(dr):
             os.mkdir(dr)
-
-'''
-echo "Creating new file index ..."
-find -L $codedir -name '*.c' >cscope.files
-find -L $codedir -name '*.h' >>cscope.files
-echo "Running cscope & ctags ..."
-cscope -cb -k 
-ctags --fields=+i -n -L ./cscope.files
-echo "Making DBs ..."
-cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
-'''            
+            
 #cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 def make_cscope_db(db_name,code_dir):
     op_file = open('cscope.files','w')
@@ -118,6 +110,16 @@ def search_function(function_name, db_file):
 
 if __name__ == "__main__":
 
+        my_parser = argparse.ArgumentParser()
+    my_parser.add_argument('-annotate_only',
+                       action='store',
+                           default=False)
+    my_parser.add_argument('-f','--function_name',action='store',required=True)
+    my_parser.add_argument('-s','--src_dir',action='store',required=True)
+    my_parser.add_argument('-o','--txl_op_dir',action='store',required=True)
+    
+    args = my_parser.parse_args()
+    print(vars(args))
     if(not check_if_cmd_available() or not check_if_file_available()):
         exit(1)
     print("here")
@@ -126,11 +128,19 @@ if __name__ == "__main__":
     cscope_files = "cscope.files"
     cscope_out = "cscope.out"
     tags_folder = "./tags"
-    function_name = "xdpdecap"
+    #function_name = "xdpdecap"
+    function_name= args.function_name
+    src_dir = args.src_dir
+    txl_op_dir = args.txl_op_dir
+    dir_list.append(txl_op_dir)
     create_directories(dir_list)
-    make_cscope_db(db_file,"katran")
-    txl_dict = create_txl_annotation(cscope_files,"txl_annotate")
-    create_code_comments(txl_dict, "asset/helper_hookpoint_map.json", "commented")
+    #make_cscope_db(db_file,"katran")
+    make_cscope_db(db_file,src_dir)
+    
+    txl_dict = create_txl_annotation(cscope_files,txl_op_dir)
+    if args.annotate_only:
+        exit(0)
+        create_code_comments(txl_dict, "asset/helper_hookpoint_map.json", "commented")
     create_cqmakedb(db_file, cscope_out, tags_folder)
     search_function(function_name, db_file)
-  #  run_cqsearch()
+

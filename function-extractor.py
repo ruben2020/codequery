@@ -139,7 +139,7 @@ def copy_include_files(iFile, opdir):
             shutil.copy(line, opdir)
             #headers[line]=1
             #print("copying header: ",line)
-    shutil.copy("Makefile",opdir)
+    #shutil.copy("Makefile",opdir)
     iFilePtr.close()
 
 # read iFile from startLine to endLine and writes to oFile

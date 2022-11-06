@@ -88,16 +88,8 @@
 #include <linux/tcp.h>
 #include <linux/udp.h>
 #include <linux/version.h>
-//ATTENTION BEGIN: DUPLICATE MAP DEFNS
-//fileName ./txl_annotate/annotate_struct_test_xdp_pktcntr.c.out startLine: 14 endLine: 19
-struct {
-    __uint (type, BPF_MAP_TYPE_ARRAY);
-    __type (key, __u32);
-    __type (value, __u32);
-    __uint (max_entries, CTRL_ARRAY_SIZE);
-} ctl_array SEC (".maps");
-//DUP Defn at: fileName ./txl_annotate/annotate_struct_test_control_data_maps.h.out startLine: 9 endLine: 15
-//ATTENTION END 
+
+
 /* Extracted from 
  /home/sayandes/codequery/test/decap_kern.c 
  startLine: 34 endLine: 83

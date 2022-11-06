@@ -1,0 +1,16 @@
+#ifndef __GHASH_H_
+#define __GHASH_H_
+#include <bpf/ctx/ctx.h>
+#include <bpf/api.h>
+#define GOLDEN_RATIO_32 0x61C88647
+#define GOLDEN_RATIO_64 0x61C8864680B583EBull
+
+static __always_inline __u32 hash_32 (__u32 val, __u32 bits) {
+    return (val * GOLDEN_RATIO_32) >> (32 - bits);
+}
+
+static __always_inline __u32 hash_64 (__u64 val, __u32 bits) {
+    return (val * GOLDEN_RATIO_64) >> (64 - bits);
+}
+#endif /* __GHASH_H_ */
+

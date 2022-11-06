@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/include/bpf/verifier.h" funcheader="static __always_inline void relax_verifier (void)" startline="13" endline="18">
+static __always_inline void relax_verifier (void) {
+#ifndef HAVE_LARGE_INSN_LIMIT
+    volatile int __maybe_unused id = get_smp_processor_id ();
+#endif
+}
+</source>
+</doc>

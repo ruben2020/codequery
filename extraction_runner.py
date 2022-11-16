@@ -1,3 +1,8 @@
+# Author Info:
+# Sayandeep Sen (sayandes@in.ibm.com)
+# Palani Kodeswaran (palani.kodeswaran@in.ibm.com)
+# License: TBD
+
 import os
 import re
 import subprocess

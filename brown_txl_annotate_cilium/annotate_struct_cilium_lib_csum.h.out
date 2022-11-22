@@ -1,0 +1,37 @@
+#ifndef __LIB_CSUM_H_
+#define __LIB_CSUM_H_
+#include <linux/tcp.h>
+#include <linux/udp.h>
+#include <linux/icmpv6.h>
+#define TCP_CSUM_OFF (offsetof(struct tcphdr, check))
+#define UDP_CSUM_OFF (offsetof(struct udphdr, check))
+
+<struct>
+struct csum_offset {
+    __u16 offset;
+    __u16 flags;
+};
+</struct>
+
+static __always_inline void csum_l4_offset_and_flags (__u8 nexthdr, struct csum_offset *off) {
+    switch (nexthdr) {
+    case IPPROTO_TCP :
+        off->offset = TCP_CSUM_OFF;
+        break;
+    case IPPROTO_UDP :
+        off->offset = UDP_CSUM_OFF;
+        off->flags = BPF_F_MARK_MANGLED_0;
+        break;
+    case IPPROTO_ICMPV6 :
+        off->offset = offsetof (struct icmp6hdr, icmp6_cksum);
+        break;
+    case IPPROTO_ICMP :
+        break;
+    }
+}
+
+static __always_inline int csum_l4_replace (struct __ctx_buff *ctx, __u64 l4_off, const struct csum_offset *csum, __be32 from, __be32 to, int flags) {
+    return l4_csum_replace (ctx, l4_off +csum->offset, from, to, flags | csum->flags);
+}
+#endif /* __LB_H_ */
+

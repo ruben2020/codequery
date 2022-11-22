@@ -1,0 +1,93 @@
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_kern.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/balancer_kern.c
+Successful function annotation for file: /home/sayandes/codequery/test/decap_kern.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/decap_kern.c
+Successful function annotation for file: /home/sayandes/codequery/test/x.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/x.c
+Successful function annotation for file: /home/sayandes/codequery/test/xdp_root.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/xdp_root.c
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_kern.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/healthchecking_kern.c
+Successful function annotation for file: /home/sayandes/codequery/test/xdp_pktcntr.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/xdp_pktcntr.c
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_ipip.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/healthchecking_ipip.c
+Successful function annotation for file: /home/sayandes/codequery/test/introspection.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/introspection.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/balancer_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/pckt_encap.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/pckt_encap.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/healthchecking_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_consts.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/balancer_consts.h
+Successful function annotation for file: /home/sayandes/codequery/test/encap_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/encap_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/flow_debug.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/flow_debug.h
+Successful function annotation for file: /home/sayandes/codequery/test/jhash.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/jhash.h
+Successful function annotation for file: /home/sayandes/codequery/test/control_data_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/control_data_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_structs.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/healthchecking_structs.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_structs.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/balancer_structs.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/healthchecking_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/balancer_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/balancer_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/pckt_parsing.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/pckt_parsing.h
+Successful function annotation for file: /home/sayandes/codequery/test/flow_debug_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/flow_debug_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/decap_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/decap_maps.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/bpf.h
+Successful function annotation for file: /home/sayandes/codequery/test/flow_debug_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/flow_debug_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf_common.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/bpf_common.h
+Successful function annotation for file: /home/sayandes/codequery/test/csum_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/csum_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/bpf_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/test/bpf_endian.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/bpf_endian.h
+Successful function annotation for file: /home/sayandes/codequery/test/healthchecking_consts.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/healthchecking_consts.h
+Successful function annotation for file: /home/sayandes/codequery/test/handle_icmp.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/test/handle_icmp.h

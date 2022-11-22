@@ -1,0 +1,3162 @@
+ {xdpdecap calls: 
+ process_packet	decap_kern.c:240
+	 {process_packet calls: 
+	 process_l3_headers	decap_kern.c:177
+		 {process_l3_headers calls: 
+		 bpf_ntohs	decap_kern.c:54
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 bpf_ntohs	decap_kern.c:74
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 bpf_ntohs	balancer_kern.c:184
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 parse_icmpv6	balancer_kern.c:190
+			 {parse_icmpv6 calls: 
+			 send_icmp6_reply	handle_icmp.h:235
+				 {send_icmp6_reply calls: 
+				 memcpy	handle_icmp.h:113
+					 {memcpy calls: 
+					 __nonnull	string.h:44
+						 {__nonnull calls: 
+						 __attribute__	cdefs.h:293
+							 {__attribute__ calls: 
+							 end __attribute__ calls}
+						 end __nonnull calls}
+					 __builtin___memcpy_chk	string_fortified.h:34
+						 {__builtin___memcpy_chk calls: 
+						 end __builtin___memcpy_chk calls}
+					 __bos0	string_fortified.h:34
+						 {__bos0 calls: 
+						 __builtin_object_size	cdefs.h:124
+							 {__builtin_object_size calls: 
+							 end __builtin_object_size calls}
+						 end __bos0 calls}
+					 end memcpy calls}
+				 memcpy	handle_icmp.h:114
+					 {memcpy calls: 
+					 __nonnull	string.h:44
+						 {__nonnull calls: 
+						 __attribute__	cdefs.h:293
+							 {__attribute__ calls: 
+							 end __attribute__ calls}
+						 end __nonnull calls}
+					 __builtin___memcpy_chk	string_fortified.h:34
+						 {__builtin___memcpy_chk calls: 
+						 end __builtin___memcpy_chk calls}
+					 __bos0	string_fortified.h:34
+						 {__bos0 calls: 
+						 __builtin_object_size	cdefs.h:124
+							 {__builtin_object_size calls: 
+							 end __builtin_object_size calls}
+						 end __bos0 calls}
+					 end memcpy calls}
+				 memcpy	handle_icmp.h:115
+					 {memcpy calls: 
+					 __nonnull	string.h:44
+						 {__nonnull calls: 
+						 __attribute__	cdefs.h:293
+							 {__attribute__ calls: 
+							 end __attribute__ calls}
+						 end __nonnull calls}
+					 __builtin___memcpy_chk	string_fortified.h:34
+						 {__builtin___memcpy_chk calls: 
+						 end __builtin___memcpy_chk calls}
+					 __bos0	string_fortified.h:34
+						 {__bos0 calls: 
+						 __builtin_object_size	cdefs.h:124
+							 {__builtin_object_size calls: 
+							 end __builtin_object_size calls}
+						 end __bos0 calls}
+					 end memcpy calls}
+				 swap_mac_and_send	handle_icmp.h:116
+					 {swap_mac_and_send calls: 
+					 memcpy	handle_icmp.h:44
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:45
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:46
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 end swap_mac_and_send calls}
+				 end send_icmp6_reply calls}
+			 memcpy	handle_icmp.h:250
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	handle_icmp.h:251
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 end parse_icmpv6 calls}
+		 memcpy	balancer_kern.c:195
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 memcpy	balancer_kern.c:196
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 bpf_ntohs	balancer_kern.c:212
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 parse_icmp	balancer_kern.c:220
+			 {parse_icmp calls: 
+			 send_icmp_reply	handle_icmp.h:267
+				 {send_icmp_reply calls: 
+				 ipv4_csum_inline	handle_icmp.h:87
+					 {ipv4_csum_inline calls: 
+					 unroll	csum_helpers.h:55
+						 {unroll calls: 
+						 end unroll calls}
+					 csum_fold_helper	csum_helpers.h:59
+						 {csum_fold_helper calls: 
+						 end csum_fold_helper calls}
+					 end ipv4_csum_inline calls}
+				 swap_mac_and_send	handle_icmp.h:89
+					 {swap_mac_and_send calls: 
+					 memcpy	handle_icmp.h:44
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:45
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:46
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 end swap_mac_and_send calls}
+				 end send_icmp_reply calls}
+			 end parse_icmp calls}
+		 end process_l3_headers calls}
+	 bpf_map_lookup_elem	decap_kern.c:184
+		 {bpf_map_lookup_elem calls: 
+		 end bpf_map_lookup_elem calls}
+	 process_encaped_ipip_pckt	decap_kern.c:196
+		 {process_encaped_ipip_pckt calls: 
+		 decap_v6	decap_kern.c:100
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decap_v4	decap_kern.c:107
+			 {decap_v4 calls: 
+			 memcpy	pckt_encap.h:164
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:165
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:167
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v4 calls}
+		 decap_v6	decap_kern.c:115
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:354
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v6	balancer_kern.c:355
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:364
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v4	balancer_kern.c:365
+			 {decap_v4 calls: 
+			 memcpy	pckt_encap.h:164
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:165
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:167
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v4 calls}
+		 decrement_ttl	balancer_kern.c:374
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v6	balancer_kern.c:375
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 recirculate	balancer_kern.c:386
+			 {recirculate calls: 
+			 bpf_tail_call	balancer_helpers.h:77
+				 {bpf_tail_call calls: 
+				 end bpf_tail_call calls}
+			 end recirculate calls}
+		 end process_encaped_ipip_pckt calls}
+	 parse_udp	decap_kern.c:204
+		 {parse_udp calls: 
+		 calc_offset	pckt_parsing.h:82
+			 {calc_offset calls: 
+			 end calc_offset calls}
+		 calc_offset	XdpDumpKern.h:99
+			 {calc_offset calls: 
+			 end calc_offset calls}
+		 end parse_udp calls}
+	 bpf_htons	decap_kern.c:207
+		 {bpf_htons calls: 
+		 __builtin_constant_p	bpf_endian.h:45
+			 {__builtin_constant_p calls: 
+			 end __builtin_constant_p calls}
+		 __bpf_constant_htons	bpf_endian.h:45
+			 {__bpf_constant_htons calls: 
+			 ___constant_swab16	bpf_endian.h:26
+				 {___constant_swab16 calls: 
+				 end ___constant_swab16 calls}
+			 end __bpf_constant_htons calls}
+		 __bpf_htons	bpf_endian.h:45
+			 {__bpf_htons calls: 
+			 __builtin_bswap16	bpf_endian.h:24
+				 {__builtin_bswap16 calls: 
+				 end __builtin_bswap16 calls}
+			 end __bpf_htons calls}
+		 end bpf_htons calls}
+	 process_encaped_gue_pckt	decap_kern.c:213
+		 {process_encaped_gue_pckt calls: 
+		 gue_decap_v6	decap_kern.c:141
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:399
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v6 calls}
+		 gue_decap_v6	decap_kern.c:146
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:399
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v6 calls}
+		 gue_decap_v4	decap_kern.c:156
+			 {gue_decap_v4 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:378
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:379
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:380
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:382
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v4 calls}
+		 decrement_ttl	balancer_kern.c:412
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 gue_decap_v6	balancer_kern.c:413
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:399
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:418
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 gue_decap_v6	balancer_kern.c:419
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:399
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:429
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 gue_decap_v4	balancer_kern.c:430
+			 {gue_decap_v4 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:378
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:379
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:380
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:382
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v4 calls}
+		 recirculate	balancer_kern.c:440
+			 {recirculate calls: 
+			 bpf_tail_call	balancer_helpers.h:77
+				 {bpf_tail_call calls: 
+				 end bpf_tail_call calls}
+			 end recirculate calls}
+		 end process_encaped_gue_pckt calls}
+	 process_l3_headers	balancer_kern.c:497
+		 {process_l3_headers calls: 
+		 bpf_ntohs	decap_kern.c:54
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 bpf_ntohs	decap_kern.c:74
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 bpf_ntohs	balancer_kern.c:184
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 parse_icmpv6	balancer_kern.c:190
+			 {parse_icmpv6 calls: 
+			 send_icmp6_reply	handle_icmp.h:235
+				 {send_icmp6_reply calls: 
+				 memcpy	handle_icmp.h:113
+					 {memcpy calls: 
+					 __nonnull	string.h:44
+						 {__nonnull calls: 
+						 __attribute__	cdefs.h:293
+							 {__attribute__ calls: 
+							 end __attribute__ calls}
+						 end __nonnull calls}
+					 __builtin___memcpy_chk	string_fortified.h:34
+						 {__builtin___memcpy_chk calls: 
+						 end __builtin___memcpy_chk calls}
+					 __bos0	string_fortified.h:34
+						 {__bos0 calls: 
+						 __builtin_object_size	cdefs.h:124
+							 {__builtin_object_size calls: 
+							 end __builtin_object_size calls}
+						 end __bos0 calls}
+					 end memcpy calls}
+				 memcpy	handle_icmp.h:114
+					 {memcpy calls: 
+					 __nonnull	string.h:44
+						 {__nonnull calls: 
+						 __attribute__	cdefs.h:293
+							 {__attribute__ calls: 
+							 end __attribute__ calls}
+						 end __nonnull calls}
+					 __builtin___memcpy_chk	string_fortified.h:34
+						 {__builtin___memcpy_chk calls: 
+						 end __builtin___memcpy_chk calls}
+					 __bos0	string_fortified.h:34
+						 {__bos0 calls: 
+						 __builtin_object_size	cdefs.h:124
+							 {__builtin_object_size calls: 
+							 end __builtin_object_size calls}
+						 end __bos0 calls}
+					 end memcpy calls}
+				 memcpy	handle_icmp.h:115
+					 {memcpy calls: 
+					 __nonnull	string.h:44
+						 {__nonnull calls: 
+						 __attribute__	cdefs.h:293
+							 {__attribute__ calls: 
+							 end __attribute__ calls}
+						 end __nonnull calls}
+					 __builtin___memcpy_chk	string_fortified.h:34
+						 {__builtin___memcpy_chk calls: 
+						 end __builtin___memcpy_chk calls}
+					 __bos0	string_fortified.h:34
+						 {__bos0 calls: 
+						 __builtin_object_size	cdefs.h:124
+							 {__builtin_object_size calls: 
+							 end __builtin_object_size calls}
+						 end __bos0 calls}
+					 end memcpy calls}
+				 swap_mac_and_send	handle_icmp.h:116
+					 {swap_mac_and_send calls: 
+					 memcpy	handle_icmp.h:44
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:45
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:46
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 end swap_mac_and_send calls}
+				 end send_icmp6_reply calls}
+			 memcpy	handle_icmp.h:250
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	handle_icmp.h:251
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 end parse_icmpv6 calls}
+		 memcpy	balancer_kern.c:195
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 memcpy	balancer_kern.c:196
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 bpf_ntohs	balancer_kern.c:212
+			 {bpf_ntohs calls: 
+			 __builtin_constant_p	bpf_endian.h:47
+				 {__builtin_constant_p calls: 
+				 end __builtin_constant_p calls}
+			 __bpf_constant_ntohs	bpf_endian.h:47
+				 {__bpf_constant_ntohs calls: 
+				 ___constant_swab16	bpf_endian.h:25
+					 {___constant_swab16 calls: 
+					 end ___constant_swab16 calls}
+				 end __bpf_constant_ntohs calls}
+			 __bpf_ntohs	bpf_endian.h:47
+				 {__bpf_ntohs calls: 
+				 __builtin_bswap16	bpf_endian.h:23
+					 {__builtin_bswap16 calls: 
+					 end __builtin_bswap16 calls}
+				 end __bpf_ntohs calls}
+			 end bpf_ntohs calls}
+		 parse_icmp	balancer_kern.c:220
+			 {parse_icmp calls: 
+			 send_icmp_reply	handle_icmp.h:267
+				 {send_icmp_reply calls: 
+				 ipv4_csum_inline	handle_icmp.h:87
+					 {ipv4_csum_inline calls: 
+					 unroll	csum_helpers.h:55
+						 {unroll calls: 
+						 end unroll calls}
+					 csum_fold_helper	csum_helpers.h:59
+						 {csum_fold_helper calls: 
+						 end csum_fold_helper calls}
+					 end ipv4_csum_inline calls}
+				 swap_mac_and_send	handle_icmp.h:89
+					 {swap_mac_and_send calls: 
+					 memcpy	handle_icmp.h:44
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:45
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 memcpy	handle_icmp.h:46
+						 {memcpy calls: 
+						 __nonnull	string.h:44
+							 {__nonnull calls: 
+							 __attribute__	cdefs.h:293
+								 {__attribute__ calls: 
+								 end __attribute__ calls}
+							 end __nonnull calls}
+						 __builtin___memcpy_chk	string_fortified.h:34
+							 {__builtin___memcpy_chk calls: 
+							 end __builtin___memcpy_chk calls}
+						 __bos0	string_fortified.h:34
+							 {__bos0 calls: 
+							 __builtin_object_size	cdefs.h:124
+								 {__builtin_object_size calls: 
+								 end __builtin_object_size calls}
+							 end __bos0 calls}
+						 end memcpy calls}
+					 end swap_mac_and_send calls}
+				 end send_icmp_reply calls}
+			 end parse_icmp calls}
+		 end process_l3_headers calls}
+	 check_decap_dst	balancer_kern.c:532
+		 {check_decap_dst calls: 
+		 memcpy	balancer_kern.c:239
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 bpf_map_lookup_elem	balancer_kern.c:243
+			 {bpf_map_lookup_elem calls: 
+			 end bpf_map_lookup_elem calls}
+		 bpf_map_lookup_elem	balancer_kern.c:248
+			 {bpf_map_lookup_elem calls: 
+			 end bpf_map_lookup_elem calls}
+		 end check_decap_dst calls}
+	 process_encaped_ipip_pckt	balancer_kern.c:536
+		 {process_encaped_ipip_pckt calls: 
+		 decap_v6	decap_kern.c:100
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decap_v4	decap_kern.c:107
+			 {decap_v4 calls: 
+			 memcpy	pckt_encap.h:164
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:165
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:167
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v4 calls}
+		 decap_v6	decap_kern.c:115
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:354
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v6	balancer_kern.c:355
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:364
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v4	balancer_kern.c:365
+			 {decap_v4 calls: 
+			 memcpy	pckt_encap.h:164
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:165
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:167
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v4 calls}
+		 decrement_ttl	balancer_kern.c:374
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v6	balancer_kern.c:375
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 recirculate	balancer_kern.c:386
+			 {recirculate calls: 
+			 bpf_tail_call	balancer_helpers.h:77
+				 {bpf_tail_call calls: 
+				 end bpf_tail_call calls}
+			 end recirculate calls}
+		 end process_encaped_ipip_pckt calls}
+	 check_decap_dst	balancer_kern.c:540
+		 {check_decap_dst calls: 
+		 memcpy	balancer_kern.c:239
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 bpf_map_lookup_elem	balancer_kern.c:243
+			 {bpf_map_lookup_elem calls: 
+			 end bpf_map_lookup_elem calls}
+		 bpf_map_lookup_elem	balancer_kern.c:248
+			 {bpf_map_lookup_elem calls: 
+			 end bpf_map_lookup_elem calls}
+		 end check_decap_dst calls}
+	 process_encaped_ipip_pckt	balancer_kern.c:544
+		 {process_encaped_ipip_pckt calls: 
+		 decap_v6	decap_kern.c:100
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decap_v4	decap_kern.c:107
+			 {decap_v4 calls: 
+			 memcpy	pckt_encap.h:164
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:165
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:167
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v4 calls}
+		 decap_v6	decap_kern.c:115
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:354
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v6	balancer_kern.c:355
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:364
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v4	balancer_kern.c:365
+			 {decap_v4 calls: 
+			 memcpy	pckt_encap.h:164
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:165
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:167
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v4 calls}
+		 decrement_ttl	balancer_kern.c:374
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 decap_v6	balancer_kern.c:375
+			 {decap_v6 calls: 
+			 memcpy	pckt_encap.h:143
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:144
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:150
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end decap_v6 calls}
+		 recirculate	balancer_kern.c:386
+			 {recirculate calls: 
+			 bpf_tail_call	balancer_helpers.h:77
+				 {bpf_tail_call calls: 
+				 end bpf_tail_call calls}
+			 end recirculate calls}
+		 end process_encaped_ipip_pckt calls}
+	 parse_tcp	balancer_kern.c:550
+		 {parse_tcp calls: 
+		 calc_offset	pckt_parsing.h:108
+			 {calc_offset calls: 
+			 end calc_offset calls}
+		 calc_offset	XdpDumpKern.h:118
+			 {calc_offset calls: 
+			 end calc_offset calls}
+		 end parse_tcp calls}
+	 parse_udp	balancer_kern.c:554
+		 {parse_udp calls: 
+		 calc_offset	pckt_parsing.h:82
+			 {calc_offset calls: 
+			 end calc_offset calls}
+		 calc_offset	XdpDumpKern.h:99
+			 {calc_offset calls: 
+			 end calc_offset calls}
+		 end parse_udp calls}
+	 bpf_htons	balancer_kern.c:558
+		 {bpf_htons calls: 
+		 __builtin_constant_p	bpf_endian.h:45
+			 {__builtin_constant_p calls: 
+			 end __builtin_constant_p calls}
+		 __bpf_constant_htons	bpf_endian.h:45
+			 {__bpf_constant_htons calls: 
+			 ___constant_swab16	bpf_endian.h:26
+				 {___constant_swab16 calls: 
+				 end ___constant_swab16 calls}
+			 end __bpf_constant_htons calls}
+		 __bpf_htons	bpf_endian.h:45
+			 {__bpf_htons calls: 
+			 __builtin_bswap16	bpf_endian.h:24
+				 {__builtin_bswap16 calls: 
+				 end __builtin_bswap16 calls}
+			 end __bpf_htons calls}
+		 end bpf_htons calls}
+	 check_decap_dst	balancer_kern.c:560
+		 {check_decap_dst calls: 
+		 memcpy	balancer_kern.c:239
+			 {memcpy calls: 
+			 __nonnull	string.h:44
+				 {__nonnull calls: 
+				 __attribute__	cdefs.h:293
+					 {__attribute__ calls: 
+					 end __attribute__ calls}
+				 end __nonnull calls}
+			 __builtin___memcpy_chk	string_fortified.h:34
+				 {__builtin___memcpy_chk calls: 
+				 end __builtin___memcpy_chk calls}
+			 __bos0	string_fortified.h:34
+				 {__bos0 calls: 
+				 __builtin_object_size	cdefs.h:124
+					 {__builtin_object_size calls: 
+					 end __builtin_object_size calls}
+				 end __bos0 calls}
+			 end memcpy calls}
+		 bpf_map_lookup_elem	balancer_kern.c:243
+			 {bpf_map_lookup_elem calls: 
+			 end bpf_map_lookup_elem calls}
+		 bpf_map_lookup_elem	balancer_kern.c:248
+			 {bpf_map_lookup_elem calls: 
+			 end bpf_map_lookup_elem calls}
+		 end check_decap_dst calls}
+	 process_encaped_gue_pckt	balancer_kern.c:564
+		 {process_encaped_gue_pckt calls: 
+		 gue_decap_v6	decap_kern.c:141
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:399
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v6 calls}
+		 gue_decap_v6	decap_kern.c:146
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:399
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v6 calls}
+		 gue_decap_v4	decap_kern.c:156
+			 {gue_decap_v4 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:378
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+						 {bpf_map_update_elem calls: 
+						 end bpf_map_update_elem calls}
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:379
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 memcpy	pckt_encap.h:380
+				 {memcpy calls: 
+				 __nonnull	string.h:44
+					 {__nonnull calls: 
+					 __attribute__	cdefs.h:293
+						 {__attribute__ calls: 
+						 end __attribute__ calls}
+					 end __nonnull calls}
+				 __builtin___memcpy_chk	string_fortified.h:34
+					 {__builtin___memcpy_chk calls: 
+					 end __builtin___memcpy_chk calls}
+				 __bos0	string_fortified.h:34
+					 {__bos0 calls: 
+					 __builtin_object_size	cdefs.h:124
+						 {__builtin_object_size calls: 
+						 end __builtin_object_size calls}
+					 end __bos0 calls}
+				 end memcpy calls}
+			 bpf_xdp_adjust_head	pckt_encap.h:382
+				 {bpf_xdp_adjust_head calls: 
+				 end bpf_xdp_adjust_head calls}
+			 end gue_decap_v4 calls}
+		 decrement_ttl	balancer_kern.c:412
+			 {decrement_ttl calls: 
+			 end decrement_ttl calls}
+		 gue_decap_v6	balancer_kern.c:413
+			 {gue_decap_v6 calls: 
+			 RECORD_GUE_ROUTE	pckt_encap.h:397
+				 {RECORD_GUE_ROUTE calls: 
+				 gue_record_route	flow_debug.h:32
+					 {gue_record_route calls: 
+					 bpf_get_smp_processor_id	flow_debug_helpers.h:67
+						 {bpf_get_smp_processor_id calls: 
+						 end bpf_get_smp_processor_id calls}
+					 bpf_map_lookup_elem	flow_debug_helpers.h:68
+						 {bpf_map_lookup_elem calls: 
+						 end bpf_map_lookup_elem calls}
+					 __builtin_memcpy	flow_debug_helpers.h:87
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:91
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:108
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+								 {__bpf_ntohs calls: 
+								 __builtin_bswap16	bpf_endian.h:23
+									 {__builtin_bswap16 calls: 
+									 end __builtin_bswap16 calls}
+								 end __bpf_ntohs calls}
+							 end bpf_ntohs calls}
+						 end get_next_ports calls}
+					 __builtin_memcpy	flow_debug_helpers.h:117
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 __builtin_memcpy	flow_debug_helpers.h:118
+						 {__builtin_memcpy calls: 
+						 end __builtin_memcpy calls}
+					 get_next_ports	flow_debug_helpers.h:120
+						 {get_next_ports calls: 
+						 bpf_ntohs	flow_debug_helpers.h:39
+							 {bpf_ntohs calls: 
+							 __builtin_constant_p	bpf_endian.h:47
+								 {__builtin_constant_p calls: 
+								 end __builtin_constant_p calls}
+							 __bpf_constant_ntohs	bpf_endian.h:47
+								 {__bpf_constant_ntohs calls: 
+								 ___constant_swab16	bpf_endian.h:25
+									 {___constant_swab16 calls: 
+									 end ___constant_swab16 calls}
+								 end __bpf_constant_ntohs calls}
+							 __bpf_ntohs	bpf_endian.h:47
+Error: File myproject.db open error!
+							 end bpf_ntohs calls}
+						 bpf_ntohs	flow_debug_helpers.h:45
+Error: File myproject.db open error!
+						 end get_next_ports calls}
+					 bpf_map_update_elem	flow_debug_helpers.h:122
+Error: File myproject.db open error!
+					 end gue_record_route calls}
+				 end RECORD_GUE_ROUTE calls}
+			 memcpy	pckt_encap.h:398
+Error: File myproject.db open error!
+			 memcpy	pckt_encap.h:399
+Error: File myproject.db open error!
+			 bpf_xdp_adjust_head	pckt_encap.h:405
+Error: File myproject.db open error!
+			 end gue_decap_v6 calls}
+		 decrement_ttl	balancer_kern.c:418
+Error: File myproject.db open error!
+		 gue_decap_v6	balancer_kern.c:419
+Error: File myproject.db open error!
+		 decrement_ttl	balancer_kern.c:429
+Error: File myproject.db open error!
+		 gue_decap_v4	balancer_kern.c:430
+Error: File myproject.db open error!
+		 recirculate	balancer_kern.c:440
+Error: File myproject.db open error!
+		 end process_encaped_gue_pckt calls}
+	 memcpy	balancer_kern.c:573
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:580
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:583
+Error: File myproject.db open error!
+	 REPORT_PACKET_TOOBIG	balancer_kern.c:596
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:599
+Error: File myproject.db open error!
+	 send_icmp_too_big	balancer_kern.c:608
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:615
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:626
+Error: File myproject.db open error!
+	 parse_quic	balancer_kern.c:631
+Error: File myproject.db open error!
+	 increment_quic_cid_version_stats	balancer_kern.c:633
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:635
+Error: File myproject.db open error!
+	 increment_quic_cid_drop_real_0	balancer_kern.c:639
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:644
+Error: File myproject.db open error!
+	 increment_quic_cid_drop_no_real	balancer_kern.c:646
+Error: File myproject.db open error!
+	 REPORT_QUIC_PACKET_DROP_NO_REAL	balancer_kern.c:647
+Error: File myproject.db open error!
+	 bpf_get_smp_processor_id	balancer_kern.c:671
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:672
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:676
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:690
+Error: File myproject.db open error!
+	 tcp_hdr_opt_lookup	balancer_kern.c:694
+Error: File myproject.db open error!
+	 connection_table_lookup	balancer_kern.c:711
+Error: File myproject.db open error!
+	 perform_global_lru_lookup	balancer_kern.c:717
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:729
+Error: File myproject.db open error!
+	 REPORT_TCP_NONSYN_LRUMISS	balancer_kern.c:740
+Error: File myproject.db open error!
+	 get_packet_dst	balancer_kern.c:744
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:752
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:759
+Error: File myproject.db open error!
+	 bpf_map_lookup_elem	balancer_kern.c:767
+Error: File myproject.db open error!
+	 PCKT_ENCAP_V6	balancer_kern.c:781
+Error: File myproject.db open error!
+	 PCKT_ENCAP_V4	balancer_kern.c:785
+Error: File myproject.db open error!
+	 bpf_get_smp_processor_id	XdpDumpKern.h:142
+Error: File myproject.db open error!
+	 memcpy	XdpDumpKern.h:157
+Error: File myproject.db open error!
+	 memcpy	XdpDumpKern.h:158
+Error: File myproject.db open error!
+	 parse_tcp	XdpDumpKern.h:175
+Error: File myproject.db open error!
+	 parse_udp	XdpDumpKern.h:177
+Error: File myproject.db open error!
+	 memcpy	XdpDumpKern.h:233
+Error: File myproject.db open error!
+	 memcpy	XdpDumpKern.h:234
+Error: File myproject.db open error!
+	 perf_submit_skb	XdpDumpKern.h:245
+Error: File myproject.db open error!
+	 end process_packet calls}
+ process_packet	decap_kern.c:242
+Error: File myproject.db open error!
+ end xdpdecap calls}

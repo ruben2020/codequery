@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u16 __fswab16 (__u16 val)" startline="46" endline="55">
+static __inline__ __u16 __fswab16 (__u16 val) {
+#ifdef __HAVE_BUILTIN_BSWAP16__
+    return __builtin_bswap16 (val);
+#elif defined (__arch_swab16)
+    return __arch_swab16 (val);
+#else
+    return ___constant_swab16 (val);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u32 __fswab32 (__u32 val)" startline="57" endline="66">
+static __inline__ __u32 __fswab32 (__u32 val) {
+#ifdef __HAVE_BUILTIN_BSWAP32__
+    return __builtin_bswap32 (val);
+#elif defined(__arch_swab32)
+    return __arch_swab32 (val);
+#else
+    return ___constant_swab32 (val);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u64 __fswab64 (__u64 val)" startline="68" endline="81">
+static __inline__ __u64 __fswab64 (__u64 val) {
+#ifdef __HAVE_BUILTIN_BSWAP64__
+    return __builtin_bswap64 (val);
+#elif defined (__arch_swab64)
+    return __arch_swab64 (val);
+#elif defined(__SWAB_64_THRU_32__)
+    __u32 h = val >> 32;
+    __u32 l = val & ((1ULL << 32) - 1);
+    return (((__u64) __fswab32 (l)) << 32) | ((__u64) (__fswab32 (h)));
+#else
+    return ___constant_swab64 (val);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u32 __fswahw32 (__u32 val)" startline="83" endline="90">
+static __inline__ __u32 __fswahw32 (__u32 val) {
+#ifdef __arch_swahw32
+    return __arch_swahw32 (val);
+#else
+    return ___constant_swahw32 (val);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u32 __fswahb32 (__u32 val)" startline="92" endline="99">
+static __inline__ __u32 __fswahb32 (__u32 val) {
+#ifdef __arch_swahb32
+    return __arch_swahb32 (val);
+#else
+    return ___constant_swahb32 (val);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u16 __swab16p (const __u16 *p)" startline="154" endline="161">
+static __inline__ __u16 __swab16p (const __u16 *p) {
+#ifdef __arch_swab16p
+    return __arch_swab16p (p);
+#else
+    return __swab16 (*p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u32 __swab32p (const __u32 *p)" startline="167" endline="174">
+static __inline__ __u32 __swab32p (const __u32 *p) {
+#ifdef __arch_swab32p
+    return __arch_swab32p (p);
+#else
+    return __swab32 (*p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u64 __swab64p (const __u64 *p)" startline="180" endline="187">
+static __inline__ __u64 __swab64p (const __u64 *p) {
+#ifdef __arch_swab64p
+    return __arch_swab64p (p);
+#else
+    return __swab64 (*p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u32 __swahw32p (const __u32 *p)" startline="195" endline="202">
+static __inline__ __u32 __swahw32p (const __u32 *p) {
+#ifdef __arch_swahw32p
+    return __arch_swahw32p (p);
+#else
+    return __swahw32 (*p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ __u32 __swahb32p (const __u32 *p)" startline="210" endline="217">
+static __inline__ __u32 __swahb32p (const __u32 *p) {
+#ifdef __arch_swahb32p
+    return __arch_swahb32p (p);
+#else
+    return __swahb32 (*p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ void __swab16s (__u16 *p)" startline="223" endline="230">
+static __inline__ void __swab16s (__u16 *p) {
+#ifdef __arch_swab16s
+    __arch_swab16s (p);
+#else
+    *p = __swab16p (p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ void __swab32s (__u32 *p)" startline="235" endline="242">
+static __inline__ void __swab32s (__u32 *p) {
+#ifdef __arch_swab32s
+    __arch_swab32s (p);
+#else
+    *p = __swab32p (p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ void __swab64s (__u64 *p)" startline="248" endline="255">
+static __inline__ void __swab64s (__u64 *p) {
+#ifdef __arch_swab64s
+    __arch_swab64s (p);
+#else
+    *p = __swab64p (p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ void __swahw32s (__u32 *p)" startline="263" endline="270">
+static __inline__ void __swahw32s (__u32 *p) {
+#ifdef __arch_swahw32s
+    __arch_swahw32s (p);
+#else
+    *p = __swahw32p (p);
+#endif
+}
+</source>
+<source file="/home/sayandes/codequery/cilium/include/linux/swab.h" funcheader="static __inline__ void __swahb32s (__u32 *p)" startline="278" endline="285">
+static __inline__ void __swahb32s (__u32 *p) {
+#ifdef __arch_swahb32s
+    __arch_swahb32s (p);
+#else
+    *p = __swahb32p (p);
+#endif
+}
+</source>
+</doc>

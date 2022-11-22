@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+<source file="/root/github/demo_lpc/codequery/katran/xdp_root.c" funcheader="int SEC (\"xdp\") xdp_root (struct xdp_md *ctx)" startline="30" endline="37">
+int SEC ("xdp")
+xdp_root (struct xdp_md *ctx) {
+    __u32 *fd;
+#pragma clang loop unroll(full)
+    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
+        bpf_tail_call (ctx, & root_array, i);
+    }
+    return XDP_PASS;
+}
+</source>
+<source file="/root/github/demo_lpc/codequery/katran/xdp_root.c" funcheader="int SEC (\"xdp\") xdp_val (struct xdp_md *ctx)" startline="40" endline="47">
+int SEC ("xdp")
+xdp_val (struct xdp_md *ctx) {
+    __u32 *fd;
+#pragma clang loop unroll(full)
+    for (__u32 i = 0; i < ROOT_ARRAY_SIZE; i++) {
+        bpf_tail_call (ctx, & root_array, i);
+    }
+    return XDP_PASS;
+}
+</source>
+</doc>

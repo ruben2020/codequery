@@ -1,0 +1,123 @@
+#include <linux/ip.h>
+#include <linux/ipv6.h>
+#include <linux/pkt_cls.h>
+#include <linux/string.h>
+#include "bpf.h"
+#include "bpf_helpers.h"
+#define CTRL_MAP_SIZE 4
+#ifndef REALS_MAP_SIZE
+#define REALS_MAP_SIZE 4096
+#endif
+#define REDIRECT_EGRESS 0
+#define DEFAULT_TTL 64
+#ifndef MAX_PACKET_SIZE
+#define MAX_PACKET_SIZE 1474
+#endif
+#define GENERIC_STATS_INDEX 0
+#define STATS_SIZE 1
+#define NO_FLAGS 0
+#define V6DADDR (1 << 0)
+
+<struct>
+struct hc_real_definition {
+    union {
+        __be32 daddr;
+        __be32 v6daddr [4];
+    };
+    __u8 flags;
+};
+</struct>
+
+<struct>
+struct hc_stats {
+    __u64 pckts_processed;
+    __u64 pckts_dropped;
+    __u64 pckts_skipped;
+    __u64 pckts_too_big;
+};
+</struct>
+
+<struct>
+struct {
+    __uint (type, BPF_MAP_TYPE_ARRAY);
+    __type (key, __u32);
+    __type (value, __u32);
+    __uint (max_entries, CTRL_MAP_SIZE);
+} hc_ctrl_map SEC (".maps");
+</struct>
+
+<struct>
+struct {
+    __uint (type, BPF_MAP_TYPE_HASH);
+    __type (key, __u32);
+    __type (value, struct hc_real_definition);
+    __uint (max_entries, REALS_MAP_SIZE);
+} hc_reals_map SEC (".maps");
+</struct>
+
+<struct>
+struct {
+    __uint (type, BPF_MAP_TYPE_PERCPU_ARRAY);
+    __type (key, __u32);
+    __type (value, struct hc_stats);
+    __uint (max_entries, STATS_SIZE);
+    __uint (map_flags, NO_FLAGS);
+} hc_stats_map SEC (".maps");
+</struct>
+
+SEC ("tc")
+int healthcheck_encap (struct __sk_buff *skb) {
+    int ret = 0;
+    int tun_flag = 0;
+    __u32 ifindex;
+    __u32 somark = skb->mark;
+    __u32 v4_intf_pos = 1;
+    __u32 v6_intf_pos = 2;
+    struct bpf_tunnel_key tkey = {};
+    __u32 stats_key = GENERIC_STATS_INDEX;
+    struct hc_stats *prog_stats;
+    prog_stats = bpf_map_lookup_elem (&hc_stats_map, &stats_key);
+    if (!prog_stats) {
+        return TC_ACT_UNSPEC;
+    }
+    if (skb->mark == 0) {
+        prog_stats->pckts_skipped += 1;
+        return TC_ACT_UNSPEC;
+    }
+    struct hc_real_definition *real = bpf_map_lookup_elem (&hc_reals_map, &somark);
+    if (!real) {
+        prog_stats->pckts_skipped += 1;
+        return TC_ACT_UNSPEC;
+    }
+    if (skb->len > MAX_PACKET_SIZE) {
+        prog_stats->pckts_dropped += 1;
+        prog_stats->pckts_too_big += 1;
+        return TC_ACT_SHOT;
+    }
+    __u32 *v4_intf_ifindex = bpf_map_lookup_elem (&hc_ctrl_map, &v4_intf_pos);
+    if (!v4_intf_ifindex) {
+        prog_stats->pckts_dropped += 1;
+        return TC_ACT_SHOT;
+    }
+    __u32 *v6_intf_ifindex = bpf_map_lookup_elem (&hc_ctrl_map, &v6_intf_pos);
+    if (!v6_intf_ifindex) {
+        prog_stats->pckts_dropped += 1;
+        return TC_ACT_SHOT;
+    }
+    tkey.tunnel_ttl = DEFAULT_TTL;
+    skb->mark = 0;
+    if (real->flags == V6DADDR) {
+        tun_flag = BPF_F_TUNINFO_IPV6;
+        memcpy (tkey.remote_ipv6, real -> v6daddr, 16);
+        ifindex = *v6_intf_ifindex;
+    }
+    else {
+        tkey.remote_ipv4 = real->daddr;
+        ifindex = *v4_intf_ifindex;
+    }
+    prog_stats->pckts_processed += 1;
+    bpf_skb_set_tunnel_key (skb, & tkey, sizeof (tkey), tun_flag);
+    return bpf_redirect (ifindex, REDIRECT_EGRESS);
+}
+
+char _license [] SEC ("license") = "GPL";

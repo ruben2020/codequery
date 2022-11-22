@@ -1,0 +1,93 @@
+Successful function annotation for file: /home/sayandes/codequery/katran/balancer_kern.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/balancer_kern.c
+Successful function annotation for file: /home/sayandes/codequery/katran/decap_kern.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/decap_kern.c
+Successful function annotation for file: /home/sayandes/codequery/katran/x.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/x.c
+Successful function annotation for file: /home/sayandes/codequery/katran/xdp_root.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/xdp_root.c
+Successful function annotation for file: /home/sayandes/codequery/katran/healthchecking_kern.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/healthchecking_kern.c
+Successful function annotation for file: /home/sayandes/codequery/katran/xdp_pktcntr.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/xdp_pktcntr.c
+Successful function annotation for file: /home/sayandes/codequery/katran/healthchecking_ipip.c
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/healthchecking_ipip.c
+Successful function annotation for file: /home/sayandes/codequery/katran/introspection.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/introspection.h
+Successful function annotation for file: /home/sayandes/codequery/katran/balancer_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/balancer_maps.h
+Successful function annotation for file: /home/sayandes/codequery/katran/pckt_encap.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/pckt_encap.h
+Successful function annotation for file: /home/sayandes/codequery/katran/healthchecking_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/healthchecking_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/katran/balancer_consts.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/balancer_consts.h
+Successful function annotation for file: /home/sayandes/codequery/katran/encap_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/encap_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/katran/flow_debug.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/flow_debug.h
+Successful function annotation for file: /home/sayandes/codequery/katran/jhash.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/jhash.h
+Successful function annotation for file: /home/sayandes/codequery/katran/control_data_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/control_data_maps.h
+Successful function annotation for file: /home/sayandes/codequery/katran/healthchecking_structs.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/healthchecking_structs.h
+Successful function annotation for file: /home/sayandes/codequery/katran/balancer_structs.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/balancer_structs.h
+Successful function annotation for file: /home/sayandes/codequery/katran/healthchecking_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/healthchecking_maps.h
+Successful function annotation for file: /home/sayandes/codequery/katran/balancer_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/balancer_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/katran/pckt_parsing.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/pckt_parsing.h
+Successful function annotation for file: /home/sayandes/codequery/katran/flow_debug_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/flow_debug_maps.h
+Successful function annotation for file: /home/sayandes/codequery/katran/decap_maps.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/decap_maps.h
+Successful function annotation for file: /home/sayandes/codequery/katran/bpf.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/bpf.h
+Successful function annotation for file: /home/sayandes/codequery/katran/flow_debug_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/flow_debug_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/katran/bpf_common.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/bpf_common.h
+Successful function annotation for file: /home/sayandes/codequery/katran/csum_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/csum_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/katran/bpf_helpers.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/bpf_helpers.h
+Successful function annotation for file: /home/sayandes/codequery/katran/bpf_endian.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/bpf_endian.h
+Successful function annotation for file: /home/sayandes/codequery/katran/healthchecking_consts.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/healthchecking_consts.h
+Successful function annotation for file: /home/sayandes/codequery/katran/handle_icmp.h
+Generating comments 
+Failed function cwcomment generation for file: /home/sayandes/codequery/katran/handle_icmp.h

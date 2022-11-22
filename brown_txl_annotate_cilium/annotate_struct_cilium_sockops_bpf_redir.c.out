@@ -1,0 +1,44 @@
+#include <bpf/ctx/unspec.h>
+#include <bpf/api.h>
+#include <node_config.h>
+#include <linux/if_ether.h>
+#define SKIP_CALLS_MAP 1
+#define SKIP_POLICY_MAP 1
+#define SOCKMAP 1
+#include "../lib/common.h"
+#include "../lib/maps.h"
+#include "../lib/lb.h"
+#include "../lib/eps.h"
+#include "../lib/events.h"
+#include "../lib/policy.h"
+#include "bpf_sockops.h"
+
+static __always_inline void sk_msg_extract4_key (const struct sk_msg_md *msg, struct sock_key *key) {
+    key->dip4 = msg->remote_ip4;
+    key->sip4 = msg->local_ip4;
+    key->family = ENDPOINT_KEY_IPV4;
+    key->sport = (bpf_ntohl (msg->local_port) >> 16);
+    key->dport = READ_ONCE (msg->remote_port) >> 16;
+}
+
+__section ("sk_msg")
+int bpf_redir_proxy (struct sk_msg_md *msg) {
+    struct remote_endpoint_info *info;
+    __u64 flags = BPF_F_INGRESS;
+    struct sock_key key = {};
+    __u32 dst_id = 0;
+    int verdict;
+    sk_msg_extract4_key (msg, & key);
+    info = lookup_ip4_remote_endpoint (key.dip4);
+    if (info != NULL && info->sec_label)
+        dst_id = info->sec_label;
+    else
+        dst_id = WORLD_ID;
+    verdict = policy_sk_egress (dst_id, key.sip4, (__u16) key.dport);
+    if (verdict >= 0)
+        msg_redirect_hash (msg, &SOCK_OPS_MAP, &key, flags);
+    return SK_PASS;
+}
+
+BPF_LICENSE ("Dual BSD/GPL");
+int _version __section ("version") = 1;

@@ -1,7 +1,0 @@
-#ifndef __BPF_CTX_UNSPEC_H_
-#define __BPF_CTX_UNSPEC_H_
-#ifdef __non_bpf_context
-# define __BPF_FEATURES_SKB__	1
-#endif
-#include "skb.h"
-#endif /* __BPF_CTX_UNSPEC_H_ */

@@ -17,7 +17,7 @@
    <string>CodeQuery</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../codequery.qrc">
+   <iconset resource="../cqimages.qrc">
     <normaloff>:/mainwindow/images/logo.png</normaloff>:/mainwindow/images/logo.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -36,7 +36,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Database.png</normaloff>:/mainwindow/images/Database.png</iconset>
         </property>
         <property name="iconSize">
@@ -161,7 +161,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
         </property>
         <property name="iconSize">
@@ -184,7 +184,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
         </property>
         <property name="iconSize">
@@ -235,7 +235,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Search.png</normaloff>:/mainwindow/images/Search.png</iconset>
         </property>
         <property name="iconSize">
@@ -258,7 +258,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
         </property>
         <property name="iconSize">
@@ -281,7 +281,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Folder2.png</normaloff>:/mainwindow/images/Folder2.png</iconset>
         </property>
         <property name="iconSize">
@@ -307,7 +307,7 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="../codequery.qrc">
+         <iconset resource="../cqimages.qrc">
           <normaloff>:/mainwindow/images/Graph.png</normaloff>:/mainwindow/images/Graph.png</iconset>
         </property>
         <property name="iconSize">
@@ -367,7 +367,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Arrow2_Left.png</normaloff>:/mainwindow/images/Arrow2_Left.png</iconset>
             </property>
             <property name="iconSize">
@@ -390,7 +390,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Arrow2_Right.png</normaloff>:/mainwindow/images/Arrow2_Right.png</iconset>
             </property>
             <property name="iconSize">
@@ -413,7 +413,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Document2.png</normaloff>:/mainwindow/images/Document2.png</iconset>
             </property>
             <property name="iconSize">
@@ -436,7 +436,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Flag.png</normaloff>:/mainwindow/images/Flag.png</iconset>
             </property>
             <property name="iconSize">
@@ -459,7 +459,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Text_Minus.png</normaloff>:/mainwindow/images/Text_Minus.png</iconset>
             </property>
             <property name="iconSize">
@@ -482,7 +482,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Text_Plus.png</normaloff>:/mainwindow/images/Text_Plus.png</iconset>
             </property>
             <property name="iconSize">
@@ -512,7 +512,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Clipboard_Paste.png</normaloff>:/mainwindow/images/Clipboard_Paste.png</iconset>
             </property>
             <property name="iconSize">
@@ -555,7 +555,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Arrow2_Up.png</normaloff>:/mainwindow/images/Arrow2_Up.png</iconset>
             </property>
             <property name="iconSize">
@@ -578,7 +578,7 @@
              <string/>
             </property>
             <property name="icon">
-             <iconset resource="../codequery.qrc">
+             <iconset resource="../cqimages.qrc">
               <normaloff>:/mainwindow/images/Arrow2_Down.png</normaloff>:/mainwindow/images/Arrow2_Down.png</iconset>
             </property>
             <property name="iconSize">
@@ -590,27 +590,24 @@
            </widget>
           </item>
           <item>
-           <widget class="QLabel" name="labelFilePath">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+           <widget class="QLineEdit" name="labelFilePath">
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
             </property>
-            <property name="frameShape">
-             <enum>QFrame::Box</enum>
+            <property name="acceptDrops">
+             <bool>false</bool>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Sunken</enum>
+            <property name="autoFillBackground">
+             <bool>true</bool>
             </property>
             <property name="text">
              <string>FilePath:0</string>
             </property>
             <property name="alignment">
-             <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
             </property>
-            <property name="textInteractionFlags">
-             <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -683,7 +680,7 @@
      <x>0</x>
      <y>0</y>
      <width>967</width>
-     <height>28</height>
+     <height>29</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -798,7 +795,7 @@
   <tabstop>listWidgetFunc</tabstop>
  </tabstops>
  <resources>
-  <include location="../codequery.qrc"/>
+  <include location="../cqimages.qrc"/>
  </resources>
  <connections>
   <connection>

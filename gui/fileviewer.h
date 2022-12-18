@@ -69,7 +69,7 @@ QPushButton *m_pushButtonGoToLine;
 QPushButton *m_pushButtonTextShrink;
 QPushButton *m_pushButtonTextEnlarge;
 QCheckBox   *m_checkBoxSymbolOnly;
-QLabel *m_labelFilePath;
+QLineEdit *m_labelFilePath;
 ScintillaEdit *m_textEditSource;
 QListWidget *m_listWidgetFunc;
 QComboBox *m_comboBoxFuncListSort;
@@ -108,6 +108,8 @@ void annotate(QStringList annotstrLst);
 void recvFuncList(sqlqueryresultlist* reslist);
 void funcItemSelected(QListWidgetItem * curitem);
 void FuncListSort_indexChanged(const int& idx);
+void filePathLabelTextResized();
+void repaintWidget();
 
 signals:
 void searchCopiedText();
@@ -126,6 +128,7 @@ QStringList m_fontlist;
 QString m_fonttemp;
 QString m_themetemp;
 QString m_themelast;
+QString m_filepathlabeltextfull;
 int m_currentlang;
 int m_fontwidthtemp;
 int m_markerhandle;
@@ -142,6 +145,7 @@ void replaceLexer(int sclang, int lang);
 void clearTextEdit(void);
 void braceMatchCheck(void);
 void updateFuncList(void);
+void setFilePathLabelText(QString text);
 
 };
 

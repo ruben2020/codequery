@@ -15,6 +15,7 @@
 #include <QProcess>
 #include <QInputDialog>
 #include <QFontDatabase>
+#include <QFontMetrics>
 
 #include "ScintillaEdit.h"
 #include "SciLexer.h"
@@ -24,8 +25,10 @@
 #include "fileviewsettingsdialog.h"
 #include "themes.h"
 
-#ifdef _WIN32
+#if defined(_WIN32)
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
+#elif defined(__APPLE__)
+#define EXT_EDITOR_DEFAULT_PATH "open -t %f"
 #else
 #define EXT_EDITOR_DEFAULT_PATH "gedit %f +%n"
 #endif
@@ -266,14 +269,14 @@ void fileviewer::fileToBeOpened(QString filename, QString linenum, int fileid)
 #endif
 	if (!(QFile::exists(filename)))
 	{
-		m_labelFilePath->setText(tr("File not found"));
+		setFilePathLabelText(tr("File not found"));
 		handleFileCannotBeOpenedCase();
 		return;
 	}
 	QFile file(filename);
 	if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
 	{
-		m_labelFilePath->setText(tr("File could not be opened"));
+		setFilePathLabelText(tr("File could not be opened"));
 		handleFileCannotBeOpenedCase();
 		return;
 	}
@@ -422,8 +425,29 @@ void fileviewer::updateFilePathLabel(void)
 	QString labeltext = m_iter->filename;
 	labeltext += ":";
 	labeltext += m_iter->linenum;
-	m_labelFilePath->setText(labeltext);
+	setFilePathLabelText(labeltext);
 	m_pushButtonGoToLine->setEnabled(true);
+}
+
+void fileviewer::setFilePathLabelText(QString text)
+{
+	m_filepathlabeltextfull = text.simplified();
+	filePathLabelTextResized();
+	repaintWidget();
+}
+
+void fileviewer::filePathLabelTextResized()
+{
+	QFontMetrics metrics(m_labelFilePath->font());
+	QString elidedText = metrics.elidedText(m_filepathlabeltextfull, Qt::ElideLeft, m_labelFilePath->width());
+	m_labelFilePath->setText(elidedText);
+}
+
+void fileviewer::repaintWidget()
+{
+	QPalette palette = m_labelFilePath->palette();
+	palette.setColor(QPalette::Base, palette.color(QPalette::Window));
+	m_labelFilePath->setPalette(palette);
 }
 
 void fileviewer::braceMatchCheck(void)

@@ -85,6 +85,10 @@ void mainwindow::init(void)
 			m_searchhandler, SLOT(searchFuncList_filename(QString)));
 	connect(m_fileviewer, SIGNAL(requestFuncList_fileid(int)),
 			m_searchhandler, SLOT(searchFuncList_fileid(int)));
+	connect(this, SIGNAL(windowResized()),
+			m_fileviewer, SLOT(filePathLabelTextResized()));
+	connect(this, SIGNAL(windowRepainted()),
+			m_fileviewer, SLOT(repaintWidget()));
 	connect(ui->actionExit, SIGNAL(triggered(bool)),
 			this, SLOT(ExitTriggered(bool)));
 	connect(ui->actionAbout, SIGNAL(triggered(bool)),
@@ -338,4 +342,16 @@ void mainwindow::readSettings()
 
 }
 
+
+void mainwindow::resizeEvent(QResizeEvent* event)
+{
+	QMainWindow::resizeEvent(event);
+	emit windowResized();
+}
+
+void mainwindow::paintEvent(QPaintEvent* event)
+{
+	QMainWindow::paintEvent(event);
+	emit windowRepainted();
+}
 

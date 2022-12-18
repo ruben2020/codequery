@@ -51,6 +51,10 @@ void ExitTriggered(bool checked);
 void LanguageTriggered(bool checked);
 void prepareToExit();
 
+signals:
+void windowResized();
+void windowRepainted();
+
 private:
 QApplication *m_app;
 fileviewer* m_fileviewer;
@@ -60,6 +64,10 @@ QString m_currentLanguage;
 QTranslator m_translator;
 
 void init(void);
+
+protected:
+virtual void resizeEvent(QResizeEvent* event);
+virtual void paintEvent(QPaintEvent *event);
 
 };
 

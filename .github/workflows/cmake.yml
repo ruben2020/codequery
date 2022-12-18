@@ -72,8 +72,17 @@ jobs:
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
 
-      - name: Install dependencies on Ubuntu GCC Qt5
-        if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt5') || startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
+      - name: Install dependencies on Ubuntu-latest GCC Qt5
+        if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt5')"
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qtcreator qtbase5-dev qt5-qmake qttools5-dev-tools qttools5-dev cscope exuberant-ctags
+          uname -a
+          lsb_release -a
+          gcc -v && g++ -v && cmake --version && ninja --version
+
+      - name: Install dependencies on Ubuntu 18.04 GCC Qt5
+        if: "startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
         run: |
           sudo apt-get update
           sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags

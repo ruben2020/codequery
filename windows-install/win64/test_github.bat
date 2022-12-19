@@ -1,3 +1,5 @@
+cd
+echo PATH=%PATH%
 build\cqmakedb.exe -v
 "windows-install\win64\cscope.exe" -cbR
 "windows-install\win64\ctags.exe" --fields=+i -nR

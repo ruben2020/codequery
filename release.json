@@ -1,8 +1,8 @@
 {
-    "version": "0.25.0",
+    "version": "0.26.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "Workaround for pycscope trailer start offset bug",
+    "changes": "File path label GUI bug fixed",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

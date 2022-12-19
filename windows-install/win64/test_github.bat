@@ -1,6 +1,10 @@
 cd
 echo PATH=%PATH%
 dir/a build\*.exe
+copy "c:\vcpkg\installed\x64-windows\bin\sqlite3.dll" build
+copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libgcc_s_seh-1.dll" build
+copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libstdc++-6.dll" build
+copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libwinpthread-1.dll" build
 "windows-install\win64\cscope.exe" -cbR
 "windows-install\win64\ctags.exe" --fields=+i -nR
 dir/a

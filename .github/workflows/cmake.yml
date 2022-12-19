@@ -119,7 +119,7 @@ jobs:
 
       - name: Install Qt5 on Windows
         if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           version: '5.15.2'
           host: 'windows'

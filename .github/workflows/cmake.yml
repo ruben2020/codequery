@@ -139,7 +139,7 @@ jobs:
 
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
-        if: "contains(matrix.config.name, 'Ubuntu-latest GCC Qt5') || contains(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
+        if: "contains(matrix.config.name, 'Ubuntu-latest GCC Qt5') || contains(matrix.config.name, 'Ubuntu 20.04 GCC Qt5')"
         run: |
           mkdir -p build
           cd build

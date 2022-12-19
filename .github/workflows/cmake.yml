@@ -28,15 +28,15 @@ jobs:
             cxx: "g++",
           }
         - {
-            name: "Ubuntu 18.04 GCC Qt5",
-            os: ubuntu-18.04,
+            name: "Ubuntu 20.04 GCC Qt5",
+            os: ubuntu-20.04,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++"
           }
         - {
-            name: "Ubuntu 18.04 GCC Qt4",
-            os: ubuntu-18.04,
+            name: "Ubuntu 20.04 GCC Qt4",
+            os: ubuntu-20.04,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++"
@@ -81,8 +81,8 @@ jobs:
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version
 
-      - name: Install dependencies on Ubuntu 18.04 GCC Qt5
-        if: "startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt5')"
+      - name: Install dependencies on Ubuntu 20.04 GCC Qt5
+        if: "startsWith(matrix.config.name, 'Ubuntu 20.04 GCC Qt5')"
         run: |
           sudo apt-get update
           sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt5-default qttools5-dev-tools qttools5-dev cscope exuberant-ctags
@@ -90,9 +90,10 @@ jobs:
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version
 
-      - name: Install dependencies on Ubuntu 18.04 GCC Qt4
-        if: startsWith(matrix.config.name, 'Ubuntu 18.04 GCC Qt4')
+      - name: Install dependencies on Ubuntu 20.04 GCC Qt4
+        if: startsWith(matrix.config.name, 'Ubuntu 20.04 GCC Qt4')
         run: |
+          sudo add-apt-repository ppa:rock-core/qt4
           sudo apt-get update
           sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt4-dev-tools cscope exuberant-ctags
           uname -a
@@ -125,7 +126,7 @@ jobs:
           host: 'windows'
           target: 'desktop'
           arch: 'win64_mingw81'
-          cached: 'false'
+          cache: 'false'
 
       - name: Install sqlite3 on Windows
         shell: cmd
@@ -149,9 +150,9 @@ jobs:
           ninja package
           sudo ninja install
           
-      - name: Configure CMake and Build on Ubuntu 18.04 GCC Qt4
+      - name: Configure CMake and Build on Ubuntu 20.04 GCC Qt4
         shell: bash
-        if: contains(matrix.config.name, 'Ubuntu 18.04 GCC Qt4')
+        if: contains(matrix.config.name, 'Ubuntu 20.04 GCC Qt4')
         run: |
           mkdir -p build
           cd build

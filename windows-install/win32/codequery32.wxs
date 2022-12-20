@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-    <Product Name='CodeQuery 0.25.0 (Qt4, 32-bit)' Manufacturer='ruben2020_foss'
+    <Product Name='CodeQuery 0.26.0 (Qt4, 32-bit)' Manufacturer='ruben2020_foss'
         Id='10eefa4f-486a-42ad-811b-a7d3b1317393' 
         UpgradeCode='beb6eef7-0c01-4795-8861-bca4e2175cef'
-        Language='1033' Codepage='1252' Version='0.25.0'>
-		<Package Id='*' Keywords='Installer' Description="CodeQuery 0.25.0 (Qt4, 32-bit) Installer"
+        Language='1033' Codepage='1252' Version='0.26.0'>
+		<Package Id='*' Keywords='Installer' Description="CodeQuery 0.26.0 (Qt4, 32-bit) Installer"
 			Comments='Copyright 2013-2022 (C) ruben2020' Manufacturer='ruben2020_foss'
 			InstallerVersion='200' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 		<Condition Message="You need to be an administrator to install this product.">
@@ -33,7 +33,7 @@
 		<Directory Id='TARGETDIR' Name='SourceDir'>
 			<Directory Id='ProgramFilesFolder' Name='PFiles'>
 				<Directory Id='CodeQuery' Name='CodeQuery'>
-					<Directory Id='INSTALLDIR' Name='CodeQuery 0.25.0 32bit'>
+					<Directory Id='INSTALLDIR' Name='CodeQuery 0.26.0 32bit'>
 						<Component Id='CodeQueryGUI_32bit' Guid='71c4c0aa-0445-42f1-a691-b182badb16c6'>
 							<File Id='codequeryEXE' Name='codequery.exe' DiskId='1' Source='C:\workspace\codequery\build\output\codequery.exe' KeyPath='yes'>
 								<Shortcut Id="startmenuCodeQueryShortcut" Directory="AppProgramMenuFolder" Name="CodeQuery"
@@ -96,7 +96,7 @@
 				</Directory>
 			</Directory>
 			<Directory Id="ProgramMenuFolder" Name="Programs">
-				<Directory Id="AppProgramMenuFolder" Name="CodeQuery 0.25.0 (32-bit)" />
+				<Directory Id="AppProgramMenuFolder" Name="CodeQuery 0.26.0 (32-bit)" />
 			</Directory>
 		</Directory>
 		<DirectoryRef Id="AppProgramMenuFolder">
@@ -105,7 +105,7 @@
 				<RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
 			</Component>
 		</DirectoryRef>
-		<Feature Id='Complete' Title='CodeQuery 0.25.0 (Qt4, 32-bit)' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
+		<Feature Id='Complete' Title='CodeQuery 0.26.0 (Qt4, 32-bit)' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
 			<ComponentRef Id='CodeQueryGUI_32bit' />
 			<ComponentRef Id='cqmakedb_32bit' />
 			<ComponentRef Id='cqsearch_32bit' />

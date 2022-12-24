@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 0.26.0 - Dec 19, 2022
+-----------------------------
+Bugfix: File path label with too large contents extending window beyond viewport GUI bug fixed          
+Enhancement: Default external editor configuration for MacOS added
+
 Version 0.25.0 - Apr 17, 2022
 -----------------------------
 Enhancement: Workaround for pycscope trailer start offset bug running on Python 3.8         

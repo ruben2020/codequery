@@ -146,7 +146,9 @@ void setDebug(bool val);
 private:
 FILE *m_fp;
 char *m_buf;
+char *m_buf2;
 long int m_bufsize;
+bool m_compress;
 enState m_state;
 long int m_trailer_start;
 std::string m_base_path;
@@ -161,6 +163,7 @@ enResult parse_headers(void);
 enResult single_line_symbol(bool& endOfSymbData, bool& foundSomething);
 enResult symbolread(sym_data* data, symdata_pack* pack);
 bool srcfil_trailer_check(void);
+const char* decompress(char* dest, char* source);
 
 }; // class csdbparser
 

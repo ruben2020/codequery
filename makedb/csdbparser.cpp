@@ -23,7 +23,115 @@
                                   (m_trailer_start <= 0) || \
                                   (m_buf == NULL)) \
                                   {return resOTHER_ERR;}
-                                  
+
+
+
+////////////////////////////////////////////////////////////////////////////
+// This section comes from cscope
+
+/*===========================================================================
+ Copyright (c) 1998-2000, The Santa Cruz Operation 
+ All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+
+ *Redistributions of source code must retain the above copyright notice,
+ this list of conditions and the following disclaimer.
+
+ *Redistributions in binary form must reproduce the above copyright notice,
+ this list of conditions and the following disclaimer in the documentation
+ and/or other materials provided with the distribution.
+
+ *Neither name of The Santa Cruz Operation nor the names of its contributors
+ may be used to endorse or promote products derived from this software
+ without specific prior written permission. 
+
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS ``AS
+ IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE
+ LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ INTERRUPTION)
+ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+ OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+ DAMAGE. 
+ =========================================================================*/
+
+// from cscope's global.h
+extern	struct	keystruct {
+	const char	*text;
+	const char	delim;
+	const struct	keystruct *next;
+} keyword[];
+
+// from cscope's main.c
+const char	dichar1[] = " teisaprnl(of)=c";	/* 16 most frequent first chars */
+const char	dichar2[] = " tnerpla";		/* 8 most frequent second chars
+										   using the above as first chars */
+
+// from cscope's lookup.c
+/* keyword text for fast testing of keywords in the scanner */
+char	enumtext[] = "enum";
+char	externtext[] = "extern";
+char	structtext[] = "struct";
+char	typedeftext[] = "typedef";
+char	uniontext[] = "union";
+
+/* This keyword table is also used for keyword text compression.  Keywords
+ * with an index less than the numeric value of a space are replaced with the
+ * control character corresponding to the index, so they cannot be moved
+ * without changing the database file version and adding compatibility code
+ * for old databases.
+ */
+struct	keystruct keyword[] = {
+	{"",		'\0',	NULL},	/* dummy entry */
+	{"#define",	' ',	NULL},	/* must be table entry 1 */
+	{"#include",	' ',	NULL},	/* must be table entry 2 */
+	{"break",	'\0',	NULL},	/* rarely in cross-reference */
+	{"case",	' ',	NULL},
+	{"char",	' ',	NULL},
+	{"continue",	'\0',	NULL},	/* rarely in cross-reference */
+	{"default",	'\0',	NULL},	/* rarely in cross-reference */
+	{"double",	' ',	NULL},
+	{"\t",		'\0',	NULL},	/* must be the table entry 9 */
+	{"\n",		'\0',	NULL},	/* must be the table entry 10 */
+	{"else",	' ',	NULL},
+	{enumtext,	' ',	NULL},
+	{externtext,	' ',	NULL},
+	{"float",	' ',	NULL},
+	{"for",		'(',	NULL},
+	{"goto",	' ',	NULL},
+	{"if",		'(',	NULL},
+	{"int",		' ',	NULL},
+	{"long",	' ',	NULL},
+	{"register",	' ',	NULL},
+	{"return",	'\0',	NULL},
+	{"short",	' ',	NULL},
+	{"sizeof",	'\0',	NULL},
+	{"static",	' ',	NULL},
+	{structtext,	' ',	NULL},
+	{"switch",	'(',	NULL},
+	{typedeftext,	' ',	NULL},
+	{uniontext,	' ',	NULL},
+	{"unsigned",	' ',	NULL},
+	{"void",	' ',	NULL},
+	{"while",	'(',	NULL},
+	
+	/* these keywords are not compressed */
+	{"do",		'\0',	NULL},
+	{"auto",	' ',	NULL},
+	{"fortran",	' ',	NULL},
+	{"const",	' ',	NULL},
+	{"signed",	' ',	NULL},
+	{"volatile",	' ',	NULL},
+};
+#define KEYWORDS	(sizeof(keyword) / sizeof(keyword[0]))
+////////////////////////////////////////////////////////////////////////////
+
 typedef struct
 {
 int chr;
@@ -203,6 +311,7 @@ csdbparser::csdbparser()
 ,m_trailer_start(0)
 ,m_bufsize(0)
 ,m_debug(false)
+,m_compress(false)
 {
 }
 
@@ -226,8 +335,10 @@ void csdbparser::create_buf(long int size)
 	if (size >= CSDBP_MINIM_BUFSIZE)
 	{
 		destroy_buf();
-		m_buf = new char[size];
-		*m_buf = 0;
+		m_buf   = new char[size];
+		m_buf2  = new char[size];
+		*m_buf  = 0;
+		*m_buf2 = 0;
 		m_bufsize = size;
 	}
 }
@@ -236,6 +347,8 @@ void csdbparser::destroy_buf(void)
 {
 	delete[] m_buf;
 	m_buf = NULL;
+	delete[] m_buf2;
+	m_buf2 = NULL;
 	m_bufsize = 0;
 }
 
@@ -299,13 +412,8 @@ if (hdr.get_version() != CSDBP_SUPPORTED_VER_NUM)
 
 // Compare the parameters used to build the database with the supported one
 // We must have "c", we don't mind "q" and we cannot have any other
-chkok = false;
+chkok = true;
 tVecStr vs = hdr.get_param_list();
-for(i=0; i< (long) vs.size(); i++)
-{
-	if (vs[i].compare("c") == 0) chkok = true;
-}
-if (chkok == false) {return resUNSUPPORTED_PARAM;}
 
 for(i=0; i< (long) vs.size(); i++)
 {
@@ -324,6 +432,8 @@ return resOK;
 
 csdbparser::enResult csdbparser::parse_headers(void)
 {
+
+long i;
 
 if (m_fp == NULL) {return resFILE_NOT_OPEN;}
 create_buf();
@@ -344,9 +454,17 @@ hdr.set_header(s);
 if (hdr.parse() == false)
 	{return resUNRECOG_FORMAT;}
 
+tVecStr vs = hdr.get_param_list();
+m_compress = true;
+for(i=0; i< (long) vs.size(); i++)
+{
+	if (vs[i].compare("c") == 0) 
+		m_compress = false;
+}
+if (m_compress) printf("WARNING: Compression of cscope.out detected. This is experimental.\n");
+
 m_trailer_start = hdr.get_trailer_start();
 m_base_path = hdr.get_base_path();
-
 
 return resOK;
 }
@@ -472,7 +590,8 @@ if (fscanf(m_fp, "%ld", &(pack->line_num)) != 1)
 	}
 ch = fgetc(m_fp); // the space after the line number
 if (fgets(m_buf, m_bufsize, m_fp) == NULL) {return resFILE_ACCESS_ERR;}
-pack->line_text = chomp(m_buf);
+//pack->line_text = chomp(m_buf);
+pack->line_text = decompress(m_buf2, m_buf);
 if (m_debug) {printf("fn = %s, lineno=%ld, firstline=%s\n",
 		pack->filename.c_str(), pack->line_num, pack->line_text.c_str());}
 
@@ -507,7 +626,8 @@ while(loopcheck++ < 65500)
 			ungetc(ch, m_fp);
 			if (fgets(m_buf, m_bufsize, m_fp) == NULL)
 			{return resFILE_ACCESS_ERR;}
-			pack->line_text += chomp(m_buf);
+			//pack->line_text += chomp(m_buf);
+			pack->line_text += decompress(m_buf2, m_buf);
 		}
 	}
 return resOK;
@@ -531,7 +651,8 @@ if (ch == 9) // TAB
 			case '@': // start of a new file
 				if (fgets(m_buf, m_bufsize, m_fp) == NULL)
 					return resFILE_ACCESS_ERR;
-				m_current_srcfile = chomp(m_buf);
+				//m_current_srcfile = chomp(m_buf);
+				m_current_srcfile = decompress(m_buf2, m_buf);
 				if (m_debug) printf("New file=%s\n", m_buf);
 				endOfSymbData = m_current_srcfile.empty();
 				break;
@@ -610,7 +731,8 @@ if (ch == 9) // TAB
 	}
 else ungetc(ch, m_fp);
 if (fgets(m_buf, m_bufsize, m_fp) == NULL) {return resFILE_ACCESS_ERR;}
-data->symbname = chomp(m_buf);
+//data->symbname = chomp(m_buf);
+data->symbname = decompress(m_buf2, m_buf);
 if (data->valid) data->valid = (strlen(data->symbname.c_str()) > 0);
 if (m_debug) printf("sym name=%s, type = %s, valid=%d, ch=%c\n",
 	data->symbname.c_str(), data->getTypeDesc(), data->valid, ch);
@@ -624,4 +746,59 @@ else if (ch == '`')
 return resOK;
 }
 
+const char* csdbparser::decompress(char* dest, char* source)
+{
+	chomp(source);
+	if (m_compress == false) return source;
 
+	unsigned c;
+    unsigned long int i=0;
+	char decomp[3];
+	char k[2];
+	bool compressed = false;
+
+	dest[0] = 0; // null-terminated string
+	decomp[2] = 0; // null-terminated string
+	k[1] = 0; // null-terminated string
+
+	do
+	{
+		c = (unsigned) source[i++];
+		if (c == 0) break;
+
+		/* check for a compressed digraph */
+		if (c > '\177')
+		{
+			c &= 0177;
+			decomp[0] = dichar1[c / 8];
+			decomp[1] = dichar2[c & 7];
+			strcat(dest, decomp);
+			compressed = true;
+		}
+		/* check for a compressed keyword */
+		else if (c < ' ') 
+		{
+			strcat(dest, keyword[c].text);
+			if (keyword[c].delim != '\0') 
+			{
+				k[0] = ' ';
+				strcat(dest, k);
+			}
+			if (keyword[c].delim == '(')
+			{
+				k[0] = '(';
+				strcat(dest, k);
+			}
+			compressed = true;
+		}
+		else
+		{
+				k[0] = (char) c;
+				strcat(dest, k);
+		}
+	} while (c != 0);
+
+	//if (compressed) printf("Before: %s\nAfter :%s\n\n", source, dest);
+
+	return dest;
+}

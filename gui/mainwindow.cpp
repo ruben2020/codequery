@@ -273,12 +273,19 @@ void mainwindow::readSettings()
 
 	int sizee = settings.beginReadArray("OpenDBHistory");
 	QStringList dbhist;
+	QString ftoopen = checkForFileToOpen();
+	if (ftoopen.isEmpty() == false) 
+	{
+		//printf("%s\n", ftoopen.toStdString().c_str());
+		dbhist << ftoopen;
+	}
 	for (int i=0; i < sizee; i++)
 	{
 		settings.setArrayIndex(i);
 		dbhist << settings.value("db").toString();
 	}
 	settings.endArray();
+	dbhist.removeDuplicates();
 	if (dbhist.isEmpty() == false) ui->comboBoxDB->addItems(dbhist);
 
 	int sizef = settings.beginReadArray("FilterHistory");
@@ -342,6 +349,27 @@ void mainwindow::readSettings()
 
 }
 
+QString mainwindow::checkForFileToOpen(void)
+{
+	QStringList arg = m_app->arguments();
+	QString fn;
+	if (arg.size() <= 1) return fn;
+	if (arg.size() >= 3)
+	{
+		printf("codequery [path_to_codequery_database_file_to_open]\n");
+		printf("ERROR: More than 1 argument is not recognized.\n");
+		return fn;
+	}
+	QFileInfo qfi(arg[1]);
+	if ((qfi.exists() == false) || (qfi.isFile() == false))
+	{
+		printf("codequery [path_to_codequery_database_file_to_open]\n");
+		printf("ERROR: File \"%s\" does not exist!\n", arg[1].toStdString().c_str());
+		return fn;
+	}
+	fn = qfi.canonicalFilePath();
+	return fn;
+}
 
 void mainwindow::resizeEvent(QResizeEvent* event)
 {

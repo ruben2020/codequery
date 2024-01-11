@@ -28,8 +28,8 @@ html/
 .vscode/
 
 # Ignore cscope and ctags files, and our db files
-cscope.files
-cscope.out
+cscope*.files
+cscope*.out
 tags
 *.db
 

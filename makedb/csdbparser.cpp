@@ -336,7 +336,7 @@ void csdbparser::create_buf(long int size)
 	{
 		destroy_buf();
 		m_buf   = new char[size];
-		m_buf2  = new char[size];
+		m_buf2  = new char[size+1000];
 		*m_buf  = 0;
 		*m_buf2 = 0;
 		m_bufsize = size;
@@ -746,6 +746,8 @@ else if (ch == '`')
 return resOK;
 }
 
+// some code reused from putline function in cscope's find.c
+// source and dest are null-terminated strings
 const char* csdbparser::decompress(char* dest, char* source)
 {
 	chomp(source);

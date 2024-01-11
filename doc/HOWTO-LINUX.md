@@ -25,6 +25,7 @@ find . -iname "*.hh " >> ./cscope.files
 ```bash
 cscope -cb
 ```
+Omitting of `c` (to use compressed cscope database) is now supported experimentally.
 4. Create a ctags database like this.
 ```bash
 ctags --fields=+i -n -L ./cscope.files
@@ -55,6 +56,7 @@ find . -iname "*.java" > ./cscope.files
 ```bash
 cscope -cb
 ```
+Omitting of `c` (to use compressed cscope database) is now supported experimentally.
 4. Create a ctags database like this:
 ```bash
 ctags --fields=+i -n -L ./cscope.files

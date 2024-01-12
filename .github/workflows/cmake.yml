@@ -202,6 +202,12 @@ jobs:
           ctags --fields=+i -nR
           cqmakedb -s cq.db -c cscope.out -t tags -p -d
           cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
+          rm cscope.out
+          rm cq.db
+          cscope -bR
+          cqmakedb -s cq.db -c cscope.out -t tags -p -d
+          cqsearch -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
+          
 
       - name: Test on Windows
         shell: cmd

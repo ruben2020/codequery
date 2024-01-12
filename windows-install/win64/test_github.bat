@@ -7,8 +7,6 @@ copy "C:\mingw64\bin\libwinpthread-1.dll" build
 "windows-install\win64\ctags.exe" --fields=+i -nR
 "build\cqmakedb.exe" -s cq.db -c cscope.out -t tags -p -d
 "build\cqsearch.exe" -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
-del cscope.out
-del cq.db
-"windows-install\win64\cscope.exe" -bR
-"build\cqmakedb.exe" -s cq.db -c cscope.out -t tags -p -d
-"build\cqsearch.exe" -s cq.db -p 1 -t CODEQUERY_SW_VERSION -u
+"windows-install\win64\cscope.exe" -bR -f cscope1.out
+"build\cqmakedb.exe" -s cq1.db -c cscope1.out -t tags -p -d
+"build\cqsearch.exe" -s cq1.db -p 1 -t CODEQUERY_SW_VERSION -u

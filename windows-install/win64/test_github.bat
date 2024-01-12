@@ -1,6 +1,6 @@
-dir/b/a/s "c:\ProgramData\Chocolatey\lib\mingw\libgcc*.dll"
-dir/b/a/s "c:\ProgramData\Chocolatey\lib\mingw\libstdc++*.dll"
-dir/b/a/s "c:\ProgramData\Chocolatey\lib\mingw\libwinpthread*.dll"
+dir/b/a/s "C:\mingw64\libgcc*.dll"
+dir/b/a/s "C:\mingw64\libstdc++*.dll"
+dir/b/a/s "C:\mingw64\libwinpthread*.dll"
 copy "c:\vcpkg\installed\x64-windows\bin\sqlite3.dll" build
 copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libgcc_s_seh-1.dll" build
 copy "C:\ProgramData\Chocolatey\lib\mingw\tools\install\mingw64\bin\libstdc++-6.dll" build

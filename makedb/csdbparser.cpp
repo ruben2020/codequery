@@ -360,7 +360,7 @@ enResult res = file_sanity_check(fn);
 if (res != resOK) {return res;}
 
 close_file();
-m_fp = fopen(fn, "r");
+m_fp = fopen(fn, "rb");
 res = parse_headers();
 if (res != resOK) {close_file();}
 return res;

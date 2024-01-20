@@ -7,7 +7,7 @@ md output
 copy *.exe output
 copy "%MinGW64_DIR%\bin\sqlite3.dll" output
 cd output
-windeployqt codequery.exe
+windeployqt --release codequery.exe
 dir/b/a/s
 candle.exe -ext WixUIExtension -ext WixUtilExtension "c:\workspace\codequery\windows-install\win64\codequery64.wxs"
 light.exe -ext WixUIExtension -ext WixUtilExtension codequery64.wixobj

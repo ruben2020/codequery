@@ -284,8 +284,6 @@ void mainwindow::readSettings()
 	dbhist.removeDuplicates();
 	if (dbhist.count() > 7) dbhist.removeLast();
 	if (dbhist.isEmpty() == false) ui->comboBoxDB->addItems(dbhist);
-	if (ftoopen.isEmpty() == false) ui->comboBoxDB->setCurrentIndex(0);
-	else ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());
 
 	int sizef = settings.beginReadArray("FilterHistory");
 	QStringList filterhist;
@@ -309,6 +307,8 @@ void mainwindow::readSettings()
 	ui->checkBoxSymbolOnly->setChecked(settings.value("SymbolOnly", false).toBool());
 	ui->checkBoxFilter->setChecked(settings.value("FilterCheckBox", false).toBool());
 	ui->comboBoxQueryType->setCurrentIndex(settings.value("QueryType", 0).toInt());
+	if (ftoopen.isEmpty() == false) ui->comboBoxDB->setCurrentIndex(0);
+	else ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());
 	m_currentLanguage = settings.value("Language", QString("English")).toString();
 	retranslateUi();
 	m_fileviewer->m_externalEditorPath =

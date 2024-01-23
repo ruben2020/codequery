@@ -282,7 +282,7 @@ void mainwindow::readSettings()
 	}
 	settings.endArray();
 	dbhist.removeDuplicates();
-	if (dbhist->count() > 7) dbhist->removeItem(dbhist->count() - 1);
+	if (dbhist.count() > 7) dbhist.removeLast();
 	if (dbhist.isEmpty() == false) ui->comboBoxDB->addItems(dbhist);
 	if (ftoopen.isEmpty() == false) ui->comboBoxDB->setCurrentIndex(0);
 	else ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());

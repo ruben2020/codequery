@@ -274,15 +274,15 @@ void mainwindow::readSettings()
 	int sizee = settings.beginReadArray("OpenDBHistory");
 	QStringList dbhist;
 	QString ftoopen = checkForFileToOpen();
+	if (ftoopen.isEmpty() == false) dbhist << ftoopen;
 	for (int i=0; i < sizee; i++)
 	{
 		settings.setArrayIndex(i);
 		dbhist << settings.value("db").toString();
 	}
 	settings.endArray();
-	if (ftoopen.isEmpty() == false) dbhist << ftoopen;
 	dbhist.removeDuplicates();
-	if (dbhist.size() > 20) dbhist.erase(dbhist.begin());
+	if (dbhist->count() > 7) dbhist->removeItem(dbhist->count() - 1);
 	if (dbhist.isEmpty() == false) ui->comboBoxDB->addItems(dbhist);
 	if (ftoopen.isEmpty() == false) ui->comboBoxDB->setCurrentIndex(-1);
 	else ui->comboBoxDB->setCurrentIndex(settings.value("LastOpenDB", ui->comboBoxDB->currentIndex()).toInt());

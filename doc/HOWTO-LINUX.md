@@ -25,6 +25,7 @@ find . -iname "*.hh " >> ./cscope.files
 ```bash
 cscope -cb
 ```
+Omitting of `c` (to use compressed cscope database) is now supported experimentally.
 4. Create a ctags database like this.
 ```bash
 ctags --fields=+i -n -L ./cscope.files
@@ -38,6 +39,7 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 
 
 
@@ -55,6 +57,7 @@ find . -iname "*.java" > ./cscope.files
 ```bash
 cscope -cb
 ```
+Omitting of `c` (to use compressed cscope database) is now supported experimentally.
 4. Create a ctags database like this:
 ```bash
 ctags --fields=+i -n -L ./cscope.files
@@ -68,6 +71,7 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 
 
 
@@ -100,6 +104,7 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 
 
 
@@ -134,4 +139,5 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 

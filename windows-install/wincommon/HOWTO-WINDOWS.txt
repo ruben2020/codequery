@@ -28,6 +28,7 @@ dir /b/a/s *.hh  >> cscope.files
 
 cscope -cb
 
+Omitting of c (to use compressed cscope database) is now supported experimentally.
 
 4. Create a ctags database like this.
 
@@ -46,6 +47,7 @@ cqmakedb -s .\myproject.db -c cscope.out -t tags -p
    for more info).
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
+Use codequery -h to get help on codequery command line arguments.
 
 
 
@@ -68,6 +70,7 @@ dir /b/a/s *.java > cscope.files
 
 cscope -cb
 
+Omitting of c (to use compressed cscope database) is now supported experimentally.
 
 4. Create a ctags database like this:
 
@@ -86,6 +89,7 @@ cqmakedb -s .\myproject.db -c cscope.out -t tags -p
    for more info).
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
+Use codequery -h to get help on codequery command line arguments.
 
 
 
@@ -127,6 +131,7 @@ cqmakedb -s .\myproject.db -c cscope.out -t tags -p
    for more info).
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
+Use codequery -h to get help on codequery command line arguments.
 
 
 
@@ -171,5 +176,5 @@ cqmakedb -s .\myproject.db -c cscope.out -t tags -p
    for more info).
 
 Use cqmakedb -h to get help on cqmakedb command line arguments.
-
+Use codequery -h to get help on codequery command line arguments.
 

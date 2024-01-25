@@ -9,12 +9,14 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://api.travis-ci.org/ruben2020/codequery.svg)](https://travis-ci.org/ruben2020/codequery)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
+[![Build Status](https://github.com/ruben2020/codequery/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/ruben2020/codequery/actions)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
 ## Latest version
 
-Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+Windows binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+
+On Debian and Ubuntu Linux, the software can be installed using `apt-get install codequery`.
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
@@ -84,9 +86,15 @@ Here's a function call graph based on the search term of "updateFilePathLabel". 
 ![Visualization screenshot](doc/screenshot2.png)
 
 
-## Are other editors like vim or emacs supported?
+## Are other editors like vim or emacs or Visual Studio Code supported?
 
-Yes! There is a vim plugin for CodeQuery called [vim-codequery](https://github.com/devjoe/vim-codequery) by [devjoe](https://github.com/devjoe). We welcome contributors to develop plugins for other editors too.
+Yes!
+
+There is a vim plugin for CodeQuery called [vim-codequery](https://github.com/devjoe/vim-codequery) by [devjoe](https://github.com/devjoe).
+
+There is a Visual Studio Code extension for CodeQuery called [codequery4vscode](https://github.com/ruben2020/codequery4vscode) by [ruben2020](https://github.com/ruben2020). The Visual Studio Code Extension Marketplace page for this extension is [ruben2020.codequery4vscode](https://marketplace.visualstudio.com/items?itemName=ruben2020.codequery4vscode).
+
+We welcome contributors to develop plugins for other editors too.
 
 
 ## What does it cost? How is it licensed?
@@ -123,7 +131,7 @@ Contributions are welcomed to update or provide new translations.
 
 On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby, Go and Javascript) are not bundled together with this setup package and need to be installed separately.
 
-On Linux, tar.gz, RPM and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
+On Debian and Ubuntu Linux, the software can be installed using `apt-get install codequery`.
 
 On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
 
@@ -211,5 +219,4 @@ We thank the people behind the following projects:
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    
-
 

@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 0.27.0 - Jan 25, 2024
+-----------------------------
+Enhancement: Compressed cscope.out (built without -c) supported experimentally.
+Enhancement: CodeQuery database file can be opened by CodeQuery GUI through command line argument.
+
 Version 0.26.0 - Dec 19, 2022
 -----------------------------
 Bugfix: File path label with too large contents extending window beyond viewport GUI bug fixed          

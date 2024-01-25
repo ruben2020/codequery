@@ -129,7 +129,7 @@ Contributions are welcomed to update or provide new translations.
 
 On Windows, EXE setup packages will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/). The EXE setup package shall also contain cscope.exe, ctags.exe and the required DLLs. So, everything you need is in one package. However, [pycscope](https://github.com/portante/pycscope) (optional - only for Python) and [starscope](https://github.com/eapache/starscope) (optional - only for Ruby, Go and Javascript) are not bundled together with this setup package and need to be installed separately.
 
-On Linux, tar.gz, RPM and Debian package installations will be provided here: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/).
+On Debian and Ubuntu Linux, the software can be installed using `apt-get install codequery`.
 
 On Mac, the software can be installed through [Brew](http://brew.sh/) using `brew install codequery`.
 

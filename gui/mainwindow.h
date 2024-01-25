@@ -65,6 +65,7 @@ QTranslator m_translator;
 
 void init(void);
 QString checkForFileToOpen(void);
+void printHelpAndExit(QString str);
 
 protected:
 virtual void resizeEvent(QResizeEvent* event);

@@ -354,20 +354,40 @@ QString mainwindow::checkForFileToOpen(void)
 	if (arg.size() <= 1) return fn;
 	if (arg.size() >= 3)
 	{
-		printf("codequery [path_to_codequery_database_file_to_open]\n");
-		printf("ERROR: More than 1 argument is not recognized.\n");
+		printHelpAndExit("ERROR: More than 1 argument is not recognized.");
+		return fn;
+	}
+	if ((arg[1] == "--help")||
+		(arg[1] == "-h")||
+		(arg[1] == "-?")||
+		(arg[1] == "/?"))
+	{
+		printHelpAndExit("");
 		return fn;
 	}
 	QFileInfo qfi(arg[1]);
 	if ((qfi.exists() == false) || (qfi.isFile() == false))
 	{
-		printf("codequery [path_to_codequery_database_file_to_open]\n");
-		printf("ERROR: File \"%s\" does not exist!\n", arg[1].toStdString().c_str());
+		tempbuf buf(3000);
+		sprintf(buf.get(), "ERROR: File \"%s\" does not exist!", arg[1].toStdString().c_str());
+		printHelpAndExit(buf.get());
 		return fn;
 	}
 	fn = qfi.canonicalFilePath();
 	return fn;
 }
+
+void mainwindow::printHelpAndExit(QString str)
+{
+		printf("codequery [path_to_codequery_database_file_to_open]\n");
+		printf("The argument is optional.\n");
+		if (str.isEmpty() == false) printf("%s\n", str.toStdString().c_str());
+		printf("\n");
+		m_listhandler->prepareToExit();
+		m_app->quit();
+		exit(str.isEmpty() ? 0 : 1);
+}
+
 
 void mainwindow::resizeEvent(QResizeEvent* event)
 {

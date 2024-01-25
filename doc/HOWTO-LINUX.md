@@ -39,6 +39,7 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 
 
 
@@ -70,6 +71,7 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 
 
 
@@ -102,6 +104,7 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 
 
 
@@ -136,4 +139,5 @@ cqmakedb -s ./myproject.db -c ./cscope.out -t ./tags -p
 codequery
 ```
 Use `cqmakedb -h` to get help on cqmakedb command line arguments.
+Use `codequery -h` to get help on codequery command line arguments.
 

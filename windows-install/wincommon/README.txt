@@ -14,7 +14,9 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 
 ## Latest version
 
-Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+Windows binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+
+On Debian and Ubuntu Linux, the software can be installed using `apt-get install codequery`.
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 
@@ -217,3 +219,4 @@ We thank the people behind the following projects:
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    
+

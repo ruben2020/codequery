@@ -14,7 +14,9 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 
 ## Latest version = 0.27.0
 
-Windows and Linux binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+Windows binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
+
+On Debian and Ubuntu Linux, the software can be installed using `apt-get install codequery`.
 
 To build on Linux, please read the [INSTALL-LINUX](doc/INSTALL-LINUX.md) file.
 

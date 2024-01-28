@@ -7,10 +7,10 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 3.16.0)
 project(CodeQuery)
 
-
+option(BUILD_QT6 "Qt6 option"    OFF)
 option(BUILD_QT5 "Qt5 option"    ON)
 option(NO_GUI    "No GUI option" OFF)
 option(GHAWIN    "GitHub Actions on Windows" OFF)
@@ -19,6 +19,7 @@ MESSAGE("-- NO_GUI = " ${NO_GUI})
 if (NO_GUI)
 else (NO_GUI)
 MESSAGE("-- BUILD_QT5 = " ${BUILD_QT5})
+MESSAGE("-- BUILD_QT6 = " ${BUILD_QT6})
 endif(NO_GUI)
 
 if (GHAWIN)
@@ -29,9 +30,13 @@ endif(GHAWIN)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakefind/")
 
 
-# C++11 now always required
-SET( CMAKE_CXX_STANDARD 11 )
+# C++17 now always required
+SET( CMAKE_CXX_STANDARD 17 )
 SET( CMAKE_CXX_STANDARD_REQUIRED ON )
+
+#set(CMAKE_BUILD_TYPE Debug)
+#SET(CMAKE_C_FLAGS_DEBUG "-g -ggdb -O0 -Wno-unused-result")
+#SET(CMAKE_CXX_FLAGS_DEBUG "-g -ggdb -O0 -Wno-unused-result")
 
 IF(MSVC)
 ADD_DEFINITIONS(/D _CRT_SECURE_NO_WARNINGS)
@@ -51,9 +56,22 @@ add_subdirectory( "cli" )
 
 if (NO_GUI)
 else (NO_GUI)
+
+if (BUILD_QT6)
+add_subdirectory( "lexilla" )
 add_subdirectory( "scintilla/qt/ScintillaEdit" )
+else (BUILD_QT6)
+if (BUILD_QT5)
+add_subdirectory( "lexilla" )
+add_subdirectory( "scintilla/qt/ScintillaEdit" )
+else (BUILD_QT5)
+add_subdirectory( "scintilla_qt4/qt/ScintillaEdit" )
+endif (BUILD_QT5)
+endif (BUILD_QT6)
+
 add_subdirectory( "showgraph" )
 add_subdirectory( "gui" )
+
 endif (NO_GUI)
 
 # Increasing minimum version numbers of dependencies to support Ubuntu 16.04 LTS (xenial)

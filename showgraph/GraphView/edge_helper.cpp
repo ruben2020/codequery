@@ -31,6 +31,13 @@
 #define QLINEF_INTERSECT intersect
 #endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#define LEVELOFDETAIL(p,x) p->levelOfDetailFromTransform(x)
+#else
+#define LEVELOFDETAIL(p,x) p->levelOfDetail
+#endif
+
+
 
 /**
  * EdgeHelper implementaion
@@ -178,7 +185,7 @@ EdgeHelper::paint( QPainter *painter,
 {
     if ( isNullP( src_item) || state == HELPER_STATE_INITIAL)
         return;
-    if ( option->levelOfDetail < 0.1)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) < 0.1)
         return;
 
     /** Do not draw edges when adjacent nodes intersect */
@@ -212,7 +219,7 @@ EdgeHelper::paint( QPainter *painter,
     painter->setPen( pen);
     painter->setBrush( option->palette.QT45_FOREGROUND().color());
     // Draw the arrows if there's enough room and level of detail is appropriate
-    if ( option->levelOfDetail >= draw_arrow_detail_level)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) >= draw_arrow_detail_level)
     {
         double angle = ::acos(line.dx() / line.length());
         if ( line.dy() >= 0)

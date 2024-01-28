@@ -21,6 +21,7 @@ build/
 buildnogui/
 buildqt4/
 buildqt5/
+buildqt6/
 output/
 Output/
 bin/

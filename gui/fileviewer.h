@@ -14,7 +14,7 @@
 #define FILEVIEWER_H_CQ
 
 #include <QtGlobal>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 #include <QtWidgets>
 #else
 #include <QtGui>
@@ -75,7 +75,11 @@ QListWidget *m_listWidgetFunc;
 QComboBox *m_comboBoxFuncListSort;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+void *m_lexer;
+#else
 int m_lexer;
+#endif
 int m_fontsize;
 QString m_theme;
 

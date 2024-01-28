@@ -2,7 +2,7 @@
 # CheckMentioned.py
 # Find all the symbols in scintilla/include/Scintilla.h and check if they
 # are mentioned in scintilla/doc/ScintillaDoc.html.
-# Requires Python 2.7 or later
+# Requires Python 3.6 or later
 
 import re, string, sys
 
@@ -21,10 +21,7 @@ uninteresting = {
 
 incFileName = srcRoot + "/scintilla/include/Scintilla.h"
 docFileName = srcRoot + "/scintilla/doc/ScintillaDoc.html"
-try:	# Old Python
-	identCharacters = "_" + string.letters + string.digits
-except AttributeError:	# Python 3.x
-	identCharacters = "_" + string.ascii_letters + string.digits
+identCharacters = "_" + string.ascii_letters + string.digits
 
 # Convert all punctuation characters except '_' into spaces.
 def depunctuate(s):
@@ -64,21 +61,18 @@ def convertIFaceTypeToC(t):
 		return "Sci_TextToFind *"
 	elif t == "formatrange":
 		return "Sci_RangeToFormat *"
+	elif t == "textrangefull":
+		return "Sci_TextRangeFull *"
+	elif t == "findtextfull":
+		return "Sci_TextToFindFull *"
+	elif t == "formatrangefull":
+		return "Sci_RangeToFormatFull *"
 	elif Face.IsEnumeration(t):
 		return "int "
 	return t + " "
 
 def makeParm(t, n, v):
 	return (convertIFaceTypeToC(t) + n).rstrip()
-
-def makeRet(params):
-	retType = params["ReturnType"]
-	if retType in ["void", "string", "stringresult"]:
-		retType = ""
-	if retType:
-		retType = " &rarr; " + retType
-
-	return retType
 
 def makeSig(params):
 	p1 = makeParm(params["Param1Type"], params["Param1Name"], params["Param1Value"])
@@ -95,7 +89,6 @@ def makeSig(params):
 	if p1 == "" and p2 == "":
 		return retType
 
-	ret = ""
 	if p1 == "":
 		p1 = "&lt;unused&gt;"
 	joiner = ""
@@ -143,11 +136,13 @@ def checkDocumentation():
 	# Examine header sections which point to definitions
 	#<a class="message" href="#SCI_SETLAYOUTCACHE">SCI_SETLAYOUTCACHE(int cacheMode)</a><br />
 	dirPattern = re.compile(r'<a class="message" href="#([A-Z0-9_]+)">([A-Z][A-Za-z0-9_() *&;,\n]+)</a>')
-	firstWord = re.compile(r'[A-Z0-9_]+')
 	for api, sig in re.findall(dirPattern, docs):
-		sigApi = re.split('\W+', sig)[0]
+		sigApi = re.split(r'\W+', sig)[0]
 		sigFlat = flattenSpaces(sig)
+		sigFlat = sigFlat.replace('colouralpha ', 'xxxx ')	# Temporary to avoid next line
 		sigFlat = sigFlat.replace('alpha ', 'int ')
+		sigFlat = sigFlat.replace('xxxx ', 'colouralpha ')
+
 		sigFlat = sigFlat.replace("document *", "int ")
 		sigFlat = sigFlat.rstrip()
 		if '(' in sigFlat or api.startswith("SCI_"):
@@ -166,19 +161,22 @@ def checkDocumentation():
 		#~ if api not in headers:
 			#~ print("No header for ", api)
 
-	# Examine  definitions
+	# Examine definitions
 	#<b id="SCI_SETLAYOUTCACHE">SCI_SETLAYOUTCACHE(int cacheMode)</b>
 	defPattern = re.compile(r'<b id="([A-Z_0-9]+)">([A-Z][A-Za-z0-9_() *#\"=<>/&;,\n-]+?)</b>')
 	for api, sig in re.findall(defPattern, docs):
 		sigFlat = flattenSpaces(sig)
 		if '<a' in sigFlat	:	# Remove anchors
 			sigFlat = re.sub('<a.*>(.+)</a>', '\\1', sigFlat)
+		sigFlat = sigFlat.replace('colouralpha ', 'xxxx ')	# Temporary to avoid next line
 		sigFlat = sigFlat.replace('alpha ', 'int ')
+		sigFlat = sigFlat.replace('xxxx ', 'colouralpha ')
 		sigFlat = sigFlat.replace("document *", "int ")
+
 		sigFlat = sigFlat.replace(' NUL-terminated', '')
 		sigFlat = sigFlat.rstrip()
 		#~ sigFlat = sigFlat.replace(' NUL-terminated', '')
-		sigApi = re.split('\W+', sigFlat)[0]
+		sigApi = re.split(r'\W+', sigFlat)[0]
 		#~ print(sigFlat, ";;", sig, ";;", api)
 		if '(' in sigFlat or api.startswith("SCI_"):
 			try:
@@ -203,7 +201,7 @@ def checkDocumentation():
 	with open(outName, "wt") as docFile:
 		docFile.write(docs)
 
-	# Examine  constant definitions
+	# Examine constant definitions
 	#<code>SC_CARETSTICKY_WHITESPACE</code> (2)
 	constPattern = re.compile(r'<code>(\w+)</code> *\((\w+)\)')
 	for name, val in re.findall(constPattern, docs):
@@ -213,6 +211,17 @@ def checkDocumentation():
 				print(val, "<-", name, ";;", valOfName)
 		except KeyError:
 			print("***", val, "<-", name)
+
+	# Examine 'seealso' definitions
+	#<a class="seealso" href="#SCI_CREATEDOCUMENT">SCI_CREATEDOCUMENT</a>
+	seealsoPattern = re.compile(r'"seealso" href="#(\w+)">(\w+)[<(]')
+	for ref, text in re.findall(seealsoPattern, docs):
+		if ref != text:
+			print(f"seealso {text} -> {ref}")
+
+	for name in sccToValue.keys():
+		if name not in ["SCI_OPTIONAL_START", "SCI_LEXER_START"] and name not in docs:
+			print(f"Unknown {name}")
 
 for identifier in sorted(symbols.keys()):
 	if not symbols[identifier] and identifier not in uninteresting:

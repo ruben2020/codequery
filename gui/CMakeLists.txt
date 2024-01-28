@@ -7,7 +7,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-cmake_minimum_required(VERSION 3.5.0)
+cmake_minimum_required(VERSION 3.16.0)
 project(CodeQueryGUI)
 
 #ADD_DEFINITIONS( -Wall )
@@ -61,6 +61,13 @@ endif()
        ui/aboutDialog.ui
        ui/fileViewSettingsDialog.ui
   )
+
+  SET( CODEQUERY_QT4_UIS
+       ui_qt4/mainWindow.ui
+       ui_qt4/graphDialog.ui
+       ui_qt4/aboutDialog.ui
+       ui_qt4/fileViewSettingsDialog.ui
+  )
   
   # and finally an resource file
   SET( CODEQUERY_RCS
@@ -101,11 +108,6 @@ endif (WIN32)
 
   add_definitions( -DNO_QDESIGNER_WIDGET_EXPORT )
 
-  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
-  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
-  INCLUDE_DIRECTORIES( "../scintilla/include" )
-  INCLUDE_DIRECTORIES( "../scintilla/src" )
-  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
   INCLUDE_DIRECTORIES( "${CMAKE_CURRENT_BINARY_DIR}" )
   INCLUDE_DIRECTORIES( "." )
   INCLUDE_DIRECTORIES( "./translations" )
@@ -122,9 +124,47 @@ find_package(Sqlite REQUIRED)
 include_directories( "${SQLITE_INCLUDE_DIR}" )
 endif(GHAWIN)
 
+if (BUILD_QT6)
 
+  INCLUDE_DIRECTORIES( "../lexilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
+  INCLUDE_DIRECTORIES( "../scintilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/src" )
+  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
+
+  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml LinguistTools)
+  qt6_standard_project_setup()
+
+  add_definitions( -DUSE_QT5 )
+  add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
+
+  set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+
+  set(CMAKE_AUTORCC ON)
+
+  qt6_add_translation( codequery TS_FILES ${CODEQUERY_TRANS} )
+
+if(WIN32)
+  SET(CQ_WIN_RCS cqwin64.rc)
+  qt6_add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_HDRS} ${CODEQUERY_UIS} ${CQIMAGES_RC_QRC} ${CQ_WIN_RCS} )
+  target_link_libraries( codequery PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt6 scintillaedit lexilla)
+else()
+  qt6_add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_HDRS} ${CODEQUERY_UIS} ${CQIMAGES_RC_QRC} )
+  target_link_libraries( codequery PRIVATE Qt6::Widgets Qt6::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt6 scintillaedit lexilla)
+endif()
+
+  install(TARGETS codequery RUNTIME DESTINATION bin)
+
+else (BUILD_QT6)
 if (BUILD_QT5)
 
+  INCLUDE_DIRECTORIES( "../lexilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
+  INCLUDE_DIRECTORIES( "../scintilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/src" )
+  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
   
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
@@ -135,6 +175,7 @@ if (BUILD_QT5)
   FIND_PACKAGE( Qt5LinguistTools REQUIRED )
 
   add_definitions( -DUSE_QT5 )
+  add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
   set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
   
@@ -180,16 +221,22 @@ if (BUILD_QT5)
 if(WIN32)
   SET(CQ_WIN_RCS cqwin64.rc)
   add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
-  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent Qt5::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit lexilla)
 else()
   add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
-  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit)
+  target_link_libraries( codequery Qt5::Widgets Qt5::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt5 scintillaedit lexilla)
 endif()
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 
 
 else (BUILD_QT5)
+
+  INCLUDE_DIRECTORIES( "../scintilla_qt4/qt/ScintillaEdit" )
+  INCLUDE_DIRECTORIES( "../scintilla_qt4/qt/ScintillaEditBase" )
+  INCLUDE_DIRECTORIES( "../scintilla_qt4/include" )
+  INCLUDE_DIRECTORIES( "../scintilla_qt4/src" )
+  INCLUDE_DIRECTORIES( "../scintilla_qt4/lexlib" )
 
   add_definitions( -DUSE_QT4 )
 
@@ -235,7 +282,7 @@ else (BUILD_QT5)
     
 
   # this will run uic on .ui files:
-  QT4_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
+  QT4_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_QT4_UIS} )
   
   # and finally this will run moc:
   QT4_WRAP_CPP( CODEQUERY_MOC_SRCS ${CODEQUERY_MOC_HDRS} )
@@ -253,5 +300,5 @@ endif()
   install(TARGETS codequery RUNTIME DESTINATION bin)
 
 endif (BUILD_QT5)
-
+endif (BUILD_QT6)
 

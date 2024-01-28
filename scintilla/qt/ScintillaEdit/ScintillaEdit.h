@@ -1,4 +1,4 @@
-// ScintillaEdit.h
+// @file ScintillaEdit.h
 // Extended version of ScintillaEditBase with a method for each API
 // Copyright (c) 2011 Archaeopteryx Software, Inc. d/b/a Wingware
 
@@ -16,8 +16,8 @@
 #define EXPORT_IMPORT_API __declspec(dllexport)
 #else
 // Defining dllimport upsets moc
-#define EXPORT_IMPORT_API __declspec(dllimport)
-//#define EXPORT_IMPORT_API
+//#define EXPORT_IMPORT_API __declspec(dllimport)
+#define EXPORT_IMPORT_API
 #endif
 #else
 #define EXPORT_IMPORT_API
@@ -71,6 +71,7 @@ public:
 	sptr_t currentPos() const;
 	sptr_t anchor() const;
 	sptr_t styleAt(sptr_t pos) const;
+	sptr_t styleIndexAt(sptr_t pos) const;
 	void redo();
 	void setUndoCollection(bool collectUndo);
 	void selectAll();
@@ -107,12 +108,18 @@ public:
 	void addTabStop(sptr_t line, sptr_t x);
 	sptr_t getNextTabStop(sptr_t line, sptr_t x);
 	void setCodePage(sptr_t codePage);
+	void setFontLocale(const char * localeName);
+	QByteArray fontLocale() const;
 	sptr_t iMEInteraction() const;
 	void setIMEInteraction(sptr_t imeInteraction);
 	void markerDefine(sptr_t markerNumber, sptr_t markerSymbol);
 	void markerSetFore(sptr_t markerNumber, sptr_t fore);
 	void markerSetBack(sptr_t markerNumber, sptr_t back);
 	void markerSetBackSelected(sptr_t markerNumber, sptr_t back);
+	void markerSetForeTranslucent(sptr_t markerNumber, sptr_t fore);
+	void markerSetBackTranslucent(sptr_t markerNumber, sptr_t back);
+	void markerSetBackSelectedTranslucent(sptr_t markerNumber, sptr_t back);
+	void markerSetStrokeWidth(sptr_t markerNumber, sptr_t hundredths);
 	void markerEnableHighlight(bool enabled);
 	sptr_t markerAdd(sptr_t line, sptr_t markerNumber);
 	void markerDelete(sptr_t line, sptr_t markerNumber);
@@ -123,6 +130,8 @@ public:
 	void markerDefinePixmap(sptr_t markerNumber, const char * pixmap);
 	void markerAddSet(sptr_t line, sptr_t markerSet);
 	void markerSetAlpha(sptr_t markerNumber, sptr_t alpha);
+	sptr_t markerLayer(sptr_t markerNumber) const;
+	void markerSetLayer(sptr_t markerNumber, sptr_t layer);
 	void setMarginTypeN(sptr_t margin, sptr_t marginType);
 	sptr_t marginTypeN(sptr_t margin) const;
 	void setMarginWidthN(sptr_t margin, sptr_t pixelWidth);
@@ -167,12 +176,28 @@ public:
 	sptr_t styleWeight(sptr_t style) const;
 	void styleSetCharacterSet(sptr_t style, sptr_t characterSet);
 	void styleSetHotSpot(sptr_t style, bool hotspot);
+	void styleSetCheckMonospaced(sptr_t style, bool checkMonospaced);
+	bool styleCheckMonospaced(sptr_t style) const;
+	void styleSetInvisibleRepresentation(sptr_t style, const char * representation);
+	QByteArray styleInvisibleRepresentation(sptr_t style) const;
+	void setElementColour(sptr_t element, sptr_t colourElement);
+	sptr_t elementColour(sptr_t element) const;
+	void resetElementColour(sptr_t element);
+	bool elementIsSet(sptr_t element) const;
+	bool elementAllowsTranslucent(sptr_t element) const;
+	sptr_t elementBaseColour(sptr_t element) const;
 	void setSelFore(bool useSetting, sptr_t fore);
 	void setSelBack(bool useSetting, sptr_t back);
 	sptr_t selAlpha() const;
 	void setSelAlpha(sptr_t alpha);
 	bool selEOLFilled() const;
 	void setSelEOLFilled(bool filled);
+	sptr_t selectionLayer() const;
+	void setSelectionLayer(sptr_t layer);
+	sptr_t caretLineLayer() const;
+	void setCaretLineLayer(sptr_t layer);
+	bool caretLineHighlightSubLine() const;
+	void setCaretLineHighlightSubLine(bool subLine);
 	void setCaretFore(sptr_t fore);
 	void assignCmdKey(sptr_t keyDefinition, sptr_t sciCommand);
 	void clearCmdKey(sptr_t keyDefinition);
@@ -199,6 +224,8 @@ public:
 	sptr_t indicHoverFore(sptr_t indicator) const;
 	void indicSetFlags(sptr_t indicator, sptr_t flags);
 	sptr_t indicFlags(sptr_t indicator) const;
+	void indicSetStrokeWidth(sptr_t indicator, sptr_t hundredths);
+	sptr_t indicStrokeWidth(sptr_t indicator) const;
 	void setWhitespaceFore(bool useSetting, sptr_t fore);
 	void setWhitespaceBack(bool useSetting, sptr_t back);
 	void setWhitespaceSize(sptr_t size);
@@ -232,6 +259,8 @@ public:
 	void userListShow(sptr_t listType, const char * itemList);
 	void autoCSetAutoHide(bool autoHide);
 	bool autoCAutoHide() const;
+	void autoCSetOptions(sptr_t options);
+	sptr_t autoCOptions() const;
 	void autoCSetDropRestOfWord(bool dropRestOfWord);
 	bool autoCDropRestOfWord() const;
 	void registerImage(sptr_t type, const char * xpmData);
@@ -272,9 +301,12 @@ public:
 	sptr_t printMagnification() const;
 	void setPrintColourMode(sptr_t mode);
 	sptr_t printColourMode() const;
+	void setChangeHistory(sptr_t changeHistory);
+	sptr_t changeHistory() const;
 	sptr_t firstVisibleLine() const;
 	QByteArray getLine(sptr_t line);
 	sptr_t lineCount() const;
+	void allocateLines(sptr_t lines);
 	void setMarginLeft(sptr_t pixelWidth);
 	sptr_t marginLeft() const;
 	void setMarginRight(sptr_t pixelWidth);
@@ -283,6 +315,7 @@ public:
 	void setSel(sptr_t anchor, sptr_t caret);
 	QByteArray getSelText();
 	void hideSelection(bool hide);
+	bool selectionHidden() const;
 	sptr_t pointXFromPosition(sptr_t pos);
 	sptr_t pointYFromPosition(sptr_t pos);
 	sptr_t lineFromPosition(sptr_t pos);
@@ -305,6 +338,7 @@ public:
 	QByteArray getText(sptr_t length);
 	sptr_t textLength() const;
 	sptr_t directFunction() const;
+	sptr_t directStatusFunction() const;
 	sptr_t directPointer() const;
 	void setOvertype(bool overType);
 	bool overtype() const;
@@ -324,6 +358,7 @@ public:
 	void targetWholeDocument();
 	sptr_t replaceTarget(sptr_t length, const char * text);
 	sptr_t replaceTargetRE(sptr_t length, const char * text);
+	sptr_t replaceTargetMinimal(sptr_t length, const char * text);
 	sptr_t searchInTarget(sptr_t length, const char * text);
 	void setSearchFlags(sptr_t searchFlags);
 	sptr_t searchFlags() const;
@@ -400,8 +435,6 @@ public:
 	void setVScrollBar(bool visible);
 	bool vScrollBar() const;
 	void appendText(sptr_t length, const char * text);
-	bool twoPhaseDraw() const;
-	void setTwoPhaseDraw(bool twoPhase);
 	sptr_t phasesDraw() const;
 	void setPhasesDraw(sptr_t phases);
 	void setFontQuality(sptr_t fontQuality);
@@ -558,7 +591,9 @@ public:
 	void copyRange(sptr_t start, sptr_t end);
 	void copyText(sptr_t length, const char * text);
 	void setSelectionMode(sptr_t selectionMode);
+	void changeSelectionMode(sptr_t selectionMode);
 	sptr_t selectionMode() const;
+	void setMoveExtendsSelection(bool moveExtendsSelection);
 	bool moveExtendsSelection() const;
 	sptr_t getLineSelStartPosition(sptr_t line);
 	sptr_t getLineSelEndPosition(sptr_t line);
@@ -602,6 +637,7 @@ public:
 	void toggleCaretSticky();
 	void setPasteConvertEndings(bool convert);
 	bool pasteConvertEndings() const;
+	void replaceRectangular(sptr_t length, const char * text);
 	void selectionDuplicate();
 	void setCaretLineBackAlpha(sptr_t alpha);
 	sptr_t caretLineBackAlpha() const;
@@ -619,6 +655,8 @@ public:
 	sptr_t indicatorEnd(sptr_t indicator, sptr_t pos);
 	void setPositionCache(sptr_t size);
 	sptr_t positionCache() const;
+	void setLayoutThreads(sptr_t threads);
+	sptr_t layoutThreads() const;
 	void copyAllowLine();
 	sptr_t characterPointer() const;
 	sptr_t rangePointer(sptr_t start, sptr_t lengthRange) const;
@@ -675,6 +713,7 @@ public:
 	void clearSelections();
 	void setSelection(sptr_t caret, sptr_t anchor);
 	void addSelection(sptr_t caret, sptr_t anchor);
+	sptr_t selectionFromPoint(sptr_t x, sptr_t y);
 	void dropSelectionN(sptr_t selection);
 	void setMainSelection(sptr_t selection);
 	sptr_t mainSelection() const;
@@ -744,6 +783,11 @@ public:
 	void setRepresentation(const char * encodedCharacter, const char * representation);
 	QByteArray representation(const char * encodedCharacter) const;
 	void clearRepresentation(const char * encodedCharacter);
+	void clearAllRepresentations();
+	void setRepresentationAppearance(const char * encodedCharacter, sptr_t appearance);
+	sptr_t representationAppearance(const char * encodedCharacter) const;
+	void setRepresentationColour(const char * encodedCharacter, sptr_t colour);
+	sptr_t representationColour(const char * encodedCharacter) const;
 	void eOLAnnotationSetText(sptr_t line, const char * text);
 	QByteArray eOLAnnotationText(sptr_t line) const;
 	void eOLAnnotationSetStyle(sptr_t line, sptr_t style);
@@ -753,15 +797,18 @@ public:
 	sptr_t eOLAnnotationVisible() const;
 	void eOLAnnotationSetStyleOffset(sptr_t style);
 	sptr_t eOLAnnotationStyleOffset() const;
+	bool supportsFeature(sptr_t feature) const;
+	sptr_t lineCharacterIndex() const;
+	void allocateLineCharacterIndex(sptr_t lineCharacterIndex);
+	void releaseLineCharacterIndex(sptr_t lineCharacterIndex);
+	sptr_t lineFromIndexPosition(sptr_t pos, sptr_t lineCharacterIndex);
+	sptr_t indexPositionFromLine(sptr_t line, sptr_t lineCharacterIndex);
 	void startRecord();
 	void stopRecord();
-	void setLexer(sptr_t lexer);
 	sptr_t lexer() const;
 	void colourise(sptr_t start, sptr_t end);
 	void setProperty(const char * key, const char * value);
 	void setKeyWords(sptr_t keyWordSet, const char * keyWords);
-	void setLexerLanguage(const char * language);
-	void loadLexerLibrary(const char * path);
 	QByteArray property(const char * key) const;
 	QByteArray propertyExpanded(const char * key) const;
 	sptr_t propertyInt(const char * key, sptr_t defaultValue) const;
@@ -785,11 +832,9 @@ public:
 	QByteArray nameOfStyle(sptr_t style);
 	QByteArray tagsOfStyle(sptr_t style);
 	QByteArray descriptionOfStyle(sptr_t style);
-	sptr_t lineCharacterIndex() const;
-	void allocateLineCharacterIndex(sptr_t lineCharacterIndex);
-	void releaseLineCharacterIndex(sptr_t lineCharacterIndex);
-	sptr_t lineFromIndexPosition(sptr_t pos, sptr_t lineCharacterIndex);
-	sptr_t indexPositionFromLine(sptr_t line, sptr_t lineCharacterIndex);
+	void setILexer(sptr_t ilexer);
+	sptr_t bidirectional() const;
+	void setBidirectional(sptr_t bidirectional);
 /* --Autogenerated -- end of section automatically generated from Scintilla.iface */
 
 };

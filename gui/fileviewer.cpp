@@ -17,6 +17,8 @@
 #include <QFontDatabase>
 #include <QFontMetrics>
 
+#include "ILexer.h"
+#include "Lexilla.h"
 #include "ScintillaEdit.h"
 #include "SciLexer.h"
 
@@ -121,7 +123,11 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+,m_lexer(NULL)
+#else
 ,m_lexer(SCLEX_NULL)
+#endif
 ,m_fontsize(0)
 ,m_currentlang(enHighlightCPP)
 ,m_currentline(1)
@@ -178,7 +184,8 @@ QString fileviewer::checkFontFamily(QString fontname)
 	}
 	else
 	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+
 		newfont = QFontDatabase::systemFont(QFontDatabase::FixedFont).family();
 #else
 		if      (m_fontlist.contains(tryfont1)) newfont = tryfont1;
@@ -191,7 +198,10 @@ QString fileviewer::checkFontFamily(QString fontname)
 
 void fileviewer::init(void)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#else
 	Scintilla_LinkLexers();
+#endif
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);
@@ -621,7 +631,6 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 	if (cqdg.result() == QDialog::Accepted)
 	{
 		m_textEditSourceFont.setFamily(m_fonttemp);
-		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setTabWidth(m_fontwidthtemp);
 		m_textEditSource->setZoom(m_fontsize);
 		m_theme = m_themetemp;
@@ -723,7 +732,6 @@ void fileviewer::TextEnlarge_ButtonClick(bool checked)
 void fileviewer::textSizeChange(int n)
 {
 	//m_fontwidthtemp = (m_textEditSource->tabWidth());
-	//m_lexer->setFont(m_textEditSourceFont);
 	m_fontsize += n;
 	m_textEditSource->setZoom(m_fontsize);
 	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
@@ -800,8 +808,36 @@ void fileviewer::replaceLexer(int sclang, int lang)
 {
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
-	//if (m_lexer != sclang)
-	{
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+		switch (lang)
+		{
+			case enHighlightCPP:
+				m_lexer = CreateLexer("cpp");
+				break;
+
+			case enHighlightPython:
+				m_lexer = CreateLexer("python");
+				break;
+
+			case enHighlightJava:
+				m_lexer = CreateLexer("cpp");
+				break;
+
+			case enHighlightRuby:
+				m_lexer = CreateLexer("ruby");
+				break;
+
+			case enHighlightJavascript:
+				m_lexer = CreateLexer("cpp");
+				break;
+
+			default:
+				m_lexer = CreateLexer("cpp");
+				break;
+		}
+		m_textEditSource->setILexer((sptr_t)m_lexer);
+#else
 		switch (lang)
 		{
 			case enHighlightCPP:
@@ -829,12 +865,10 @@ void fileviewer::replaceLexer(int sclang, int lang)
 				break;
 		}
 		m_textEditSource->setLexer(m_lexer);
+#endif
 		m_textEditSource->clearDocumentStyle();
 		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
-	}
-	//if (m_themelast.compare(m_theme) != 0)
-	{
 		m_themelast = m_theme;
 		themes::setTheme(m_theme, lang, m_textEditSource, m_textEditSourceFont, markerlinebgcolor, linenumfgcolor);
 		m_textEditSource->markerSetBack(m_markerhandle, themes::QC2SC(markerlinebgcolor));
@@ -846,7 +880,6 @@ void fileviewer::replaceLexer(int sclang, int lang)
 		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
 		themes::setKeywords(lang, m_textEditSource);
 		m_textEditSource->colourise(0, -1);
-	}
 }
 
 void fileviewer::annotate(QStringList annotstrLst)

@@ -17,6 +17,7 @@
  * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <QRegExp>
 #include "gview_impl.h"
 
 //#define DRAW_AXIS
@@ -26,6 +27,13 @@
 #else
 #define QT45_FOREGROUND(x) foreground(x)
 #endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#define LEVELOFDETAIL(p,x) p->levelOfDetailFromTransform(x)
+#else
+#define LEVELOFDETAIL(p,x) p->levelOfDetail
+#endif
+
 
 /** Constant for adjusting item's border rectangle */
 const qreal box_adjust = 5;
@@ -485,7 +493,7 @@ NodeItem::paint( QPainter *painter,
         painter->drawLine( QPoint( 0, -boundingRect().height()), QPoint( 0, boundingRect().height()));
 #endif
         QPen pen( option->palette.QT45_FOREGROUND().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-        if ( option->levelOfDetail < 0.1)
+        if ( LEVELOFDETAIL(option, painter->worldTransform()) < 0.1)
         {
             painter->fillRect( borderRect(), option->palette.highlight().color());
         }
@@ -518,14 +526,14 @@ NodeItem::paint( QPainter *painter,
                 painter->drawRect( borderRect());
             }
         }
-        if ( option->levelOfDetail >= 0.2)
+        if ( LEVELOFDETAIL(option, painter->worldTransform()) >= 0.2)
         {
             if ( painter->isActive())     
                 QGraphicsTextItem::paint( painter, option, widget);
         }
     } else if ( node()->isEdgeControl())
     {
-        if ( option->levelOfDetail < 0.2)
+        if ( LEVELOFDETAIL(option, painter->worldTransform()) < 0.2)
             return;
         if ( node()->firstPred()->item()->isSelected()
              || node()->firstSucc()->item()->isSelected())

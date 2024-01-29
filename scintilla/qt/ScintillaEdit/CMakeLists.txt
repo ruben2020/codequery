@@ -38,7 +38,7 @@ if (BUILD_QT6)
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
 
   qt6_add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${SCINT_SRCS} )
-  target_link_libraries( scintillaedit PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Core5Compat)
+  target_link_libraries( scintillaedit PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Core5Compat Threads::Threads )
 
 else (BUILD_QT6)
 if (BUILD_QT5)
@@ -56,7 +56,7 @@ if (BUILD_QT5)
   INCLUDE_DIRECTORIES( "${Qt5Widgets_INCLUDE_DIRS}" )
 
   add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${SCINT_SRCS} )
-  target_link_libraries( scintillaedit Qt5::Widgets Qt5::Concurrent )
+  target_link_libraries( scintillaedit Qt5::Widgets Qt5::Concurrent Threads::Threads )
 
 endif (BUILD_QT5)
 endif (BUILD_QT6)

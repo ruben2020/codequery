@@ -123,7 +123,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 ,m_lexer(NULL)
 #else
 ,m_lexer(SCLEX_NULL)
@@ -184,7 +184,7 @@ QString fileviewer::checkFontFamily(QString fontname)
 	}
 	else
 	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 
 		newfont = QFontDatabase::systemFont(QFontDatabase::FixedFont).family();
 #else
@@ -198,7 +198,7 @@ QString fileviewer::checkFontFamily(QString fontname)
 
 void fileviewer::init(void)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #else
 	Scintilla_LinkLexers();
 #endif
@@ -809,7 +809,7 @@ void fileviewer::replaceLexer(int sclang, int lang)
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 		switch (lang)
 		{
 			case enHighlightCPP:

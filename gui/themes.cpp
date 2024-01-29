@@ -19,7 +19,7 @@
 #include "fileviewer.h"
 #include "themes.h"
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #define QT45_TOASCII(x) toLatin1(x)
 #else
 #define QT45_TOASCII(x) toAscii(x)

@@ -21,6 +21,13 @@ jobs:
       matrix:
         config: 
         - {
+            name: "Ubuntu-latest GCC Qt6",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++",
+          }
+        - {
             name: "Ubuntu-latest GCC Qt5",
             os: ubuntu-latest,
             build_type: "Debug",
@@ -71,6 +78,15 @@ jobs:
         run: |
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
+
+      - name: Install dependencies on Ubuntu-latest GCC Qt6
+        if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt6')"
+        run: |
+          sudo apt-get update
+          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt6-base-dev Package qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools cscope exuberant-ctags
+          uname -a
+          lsb_release -a
+          gcc -v && g++ -v && cmake --version && ninja --version
 
       - name: Install dependencies on Ubuntu-latest GCC Qt5
         if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt5')"
@@ -136,6 +152,19 @@ jobs:
       - name: Install ninja on Windows
         if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
         uses: seanmiddleditch/gha-setup-ninja@master
+
+      - name: Configure CMake and Build on Ubuntu GCC Qt6
+        shell: bash
+        if: "contains(matrix.config.name, 'Ubuntu-latest GCC Qt6')"
+        run: |
+          mkdir -p build
+          cd build
+          export CC=gcc
+          export CXX=g++
+          cmake -G Ninja -DBUILD_QT6=ON ..
+          ninja
+          ninja package
+          sudo ninja install
 
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
@@ -205,7 +234,6 @@ jobs:
           cscope -bR -f cscope1.out
           cqmakedb -s cq1.db -c cscope1.out -t tags -p -d
           cqsearch -s cq1.db -p 1 -t CODEQUERY_SW_VERSION -u
-          
 
       - name: Test on Windows
         shell: cmd

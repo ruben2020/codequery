@@ -175,7 +175,7 @@ if (BUILD_QT5)
   FIND_PACKAGE( Qt5LinguistTools REQUIRED )
 
   add_definitions( -DUSE_QT5 )
-  add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
+  #add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
   set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
   

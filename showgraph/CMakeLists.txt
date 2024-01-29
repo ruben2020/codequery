@@ -72,7 +72,7 @@ if (BUILD_QT5)
   add_definitions( -DUSE_QT5 )
   
   set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
-  add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
+  #add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
   SET(CMAKE_AUTOMOC ON)
   SET(CMAKE_INCLUDE_CURRENT_DIR ON)

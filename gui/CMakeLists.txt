@@ -133,25 +133,48 @@ if (BUILD_QT6)
   INCLUDE_DIRECTORIES( "../scintilla/src" )
   INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
 
-  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml LinguistTools)
-  qt6_standard_project_setup()
+  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml LinguistTools Core5Compat )
+  set(CMAKE_AUTOMOC ON)
+  set(CMAKE_AUTORCC OFF)
+  set(CMAKE_AUTOUIC OFF)
 
   add_definitions( -DUSE_QT5 )
   add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
 
-  set(CMAKE_AUTORCC ON)
+  get_target_property(QT_RCC_EXECUTABLE Qt6::rcc LOCATION)
 
-  qt6_add_translation( codequery TS_FILES ${CODEQUERY_TRANS} )
+  qt6_add_translation( QM ${CODEQUERY_TRANS} )
+
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQIMAGES_RC_SRCS}
+    COMMAND ${QT_RCC_EXECUTABLE}
+    ARGS ${rcc_options} -name cqimages -o ${CQIMAGES_RC_SRCS} ${CQIMAGES_RC_QRC}
+    )
+
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_SRCS}
+    COMMAND ${QT_RCC_EXECUTABLE}
+    ARGS ${rcc_options} -name cqtrans -o ${CQTRANS_RC_SRCS} ${CQTRANS_RC_QRC}
+    DEPENDS ${QM} ${CQTRANS_RC_QRC}
+    )
+
+  ADD_CUSTOM_COMMAND(
+    OUTPUT ${CQTRANS_RC_QRC}
+    COMMAND ${COPY_COMMAND}
+    ARGS ${CQTRANS_RC_QRCT_CP} ${CQTRANS_RC_QRC_CP}
+    )
+
+  qt6_wrap_ui( CODEQUERY_UI_HDRS ${CODEQUERY_UIS} )
 
 if(WIN32)
   SET(CQ_WIN_RCS cqwin64.rc)
-  qt6_add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_HDRS} ${CODEQUERY_UIS} ${CQIMAGES_RC_QRC} ${CQ_WIN_RCS} )
-  target_link_libraries( codequery PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt6 scintillaedit lexilla)
+  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
+  target_link_libraries( codequery PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::WinMain ${SQLITE_LIBRARIES} cqshowgraph-qt6 scintillaedit lexilla Qt6::Core5Compat)
 else()
-  qt6_add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_HDRS} ${CODEQUERY_UIS} ${CQIMAGES_RC_QRC} )
-  target_link_libraries( codequery PRIVATE Qt6::Widgets Qt6::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt6 scintillaedit lexilla)
+  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
+  target_link_libraries( codequery PRIVATE Qt6::Widgets Qt6::Concurrent ${SQLITE_LIBRARIES} cqshowgraph-qt6 scintillaedit lexilla Qt6::Core5Compat)
 endif()
 
   install(TARGETS codequery RUNTIME DESTINATION bin)
@@ -168,7 +191,7 @@ if (BUILD_QT5)
   
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
-  FIND_PACKAGE( Qt5Widgets 5.2.1 REQUIRED )
+  FIND_PACKAGE( Qt5Widgets REQUIRED )
   FIND_PACKAGE( Qt5Core REQUIRED )
   FIND_PACKAGE( Qt5Concurrent REQUIRED )
   FIND_PACKAGE( Qt5Xml REQUIRED )

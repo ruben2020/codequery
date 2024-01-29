@@ -16,6 +16,7 @@
 #include <QInputDialog>
 #include <QFontDatabase>
 #include <QFontMetrics>
+#include <QRegExp>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #include "ILexer.h"

@@ -49,8 +49,10 @@ project(ShowGraph)
 if (BUILD_QT6)
 
   find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml Core5Compat)
-  qt6_standard_project_setup()
-
+  set(CMAKE_AUTOMOC ON)
+  set(CMAKE_AUTORCC ON)
+  set(CMAKE_AUTOUIC ON)
+  
   add_definitions( -DUSE_QT5 )
 
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
@@ -65,7 +67,7 @@ if (BUILD_QT5)
 
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
-  FIND_PACKAGE( Qt5Widgets 5.2.1 REQUIRED )
+  FIND_PACKAGE( Qt5Widgets REQUIRED )
   FIND_PACKAGE( Qt5Concurrent REQUIRED )
   FIND_PACKAGE( Qt5Xml REQUIRED )
 

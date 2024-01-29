@@ -33,6 +33,7 @@ project(ScintillaEdit)
 if (BUILD_QT6)
 
   find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Core5Compat )
+	find_package( Threads REQUIRED )
   qt6_standard_project_setup()
 
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
@@ -46,7 +47,8 @@ if (BUILD_QT5)
   FIND_PACKAGE( Qt5Widgets 5.2.1 REQUIRED )
   FIND_PACKAGE( Qt5Core REQUIRED )
   FIND_PACKAGE( Qt5Concurrent REQUIRED )
-
+  FIND_PACKAGE( Threads REQUIRED )
+	
   set_target_properties(Qt5::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
 # add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
   

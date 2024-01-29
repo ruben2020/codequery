@@ -17,8 +17,10 @@
 #include <QFontDatabase>
 #include <QFontMetrics>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #include "ILexer.h"
 #include "Lexilla.h"
+#endif
 #include "ScintillaEdit.h"
 #include "SciLexer.h"
 

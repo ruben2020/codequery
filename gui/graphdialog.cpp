@@ -48,7 +48,7 @@ void cqDialogGraph::setupGraphFromXML(QStringList& grpxml, QStringList& grpdot, 
 	m_grpdot = grpdot;
 	m_img = showgraph::convertToImage(grpxml[0]);
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap(Qt::ReturnByValue).mask());
 #else
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());
@@ -65,7 +65,7 @@ void cqDialogGraph::numberOfLevelsChanged(int num)
 {
 	m_img = showgraph::convertToImage(m_grpxml[dialog_ui->comboBoxNbrOfLevels->currentIndex()]);
 	dialog_ui->labelGraph->setPixmap(QPixmap::fromImage(m_img));
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap(Qt::ReturnByValue).mask());
 #else
 	dialog_ui->labelGraph->setMask(dialog_ui->labelGraph->pixmap()->mask());

@@ -83,7 +83,8 @@ jobs:
         if: "startsWith(matrix.config.name, 'Ubuntu-latest GCC Qt6')"
         run: |
           sudo apt-get update
-          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools cscope exuberant-ctags
+          sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev cscope exuberant-ctags
+          sudo apt-get install qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools libglx-dev libgl1-mesa-dev
           uname -a
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version

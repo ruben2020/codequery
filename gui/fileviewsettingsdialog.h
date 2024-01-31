@@ -42,7 +42,12 @@ void setCurrentTheme(const QString& theme);
 void setTabWidth(const int& width);
 
 public slots:
+void fontSelectionTemporary(int index);
+void themeSelectionTemporary(int index);
 
+signals:
+void fontSelectionChanged(const QString& str);
+void themeSelectionChanged(const QString& str);
 
 private:
 QIntValidator m_tabwidthvalidator;

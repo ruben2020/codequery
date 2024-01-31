@@ -30,12 +30,16 @@ cqDialogFileViewSettings::cqDialogFileViewSettings(QWidget *parent,
 		this, SLOT(accept()));
 	connect(dialog_ui->pushButtonCancel, SIGNAL(clicked()),
 		this, SLOT(reject()));
-	connect(dialog_ui->comboBoxFont, SIGNAL(currentIndexChanged(const QString &)),
-			fv, SLOT(fontSelectionTemporary(const QString &)));
-	connect(dialog_ui->comboBoxTheme, SIGNAL(currentIndexChanged(const QString &)),
-			fv, SLOT(themeSelectionTemporary(const QString &)));
+	connect(dialog_ui->comboBoxFont, SIGNAL(currentIndexChanged(int)),
+		this, SLOT(fontSelectionTemporary(int)));
+	connect(dialog_ui->comboBoxTheme, SIGNAL(currentIndexChanged(int)),
+		this, SLOT(themeSelectionTemporary(int)));
 	connect(dialog_ui->lineEditTabWidth, SIGNAL(textEdited(const QString &)),
 			fv, SLOT(tabWidthSelectionTemporary(const QString &)));
+	connect(this, SIGNAL(fontSelectionChanged(const QString &)),
+		fv, SLOT(fontSelectionTemporary(const QString &)));
+	connect(this, SIGNAL(themeSelectionChanged(const QString &)),
+		fv, SLOT(themeSelectionTemporary(const QString &)));
 	resize(sizeHint());
 	layout()->setSizeConstraint(QLayout::SetFixedSize) ;
 	setSizeGripEnabled(false) ;
@@ -64,4 +68,13 @@ void cqDialogFileViewSettings::setTabWidth(const int& width)
 	dialog_ui->lineEditTabWidth->setText(QString::number(width));
 }
 
+void cqDialogFileViewSettings::fontSelectionTemporary(int index)
+{
+	emit fontSelectionChanged(dialog_ui->comboBoxFont->itemText(index));
+}
+
+void cqDialogFileViewSettings::themeSelectionTemporary(int index)
+{
+	emit themeSelectionChanged(dialog_ui->comboBoxTheme->itemText(index));
+}
 

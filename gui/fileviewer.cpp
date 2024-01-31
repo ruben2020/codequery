@@ -30,6 +30,12 @@
 #include "fileviewsettingsdialog.h"
 #include "themes.h"
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
+#define QREGEXP QRegularExpression
+#else
+#define QREGEXP QRegExp
+#endif
+
 #if defined(_WIN32)
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
 #elif defined(__APPLE__)
@@ -695,15 +701,15 @@ void fileviewer::OpenInEditor_ButtonClick(bool checked)
 		if (pos != -1)
 		{
 			program = rx.cap(1);
-			arguments = (rx.cap(2)).split(QRegExp("[ ]+"));
+			arguments = (rx.cap(2)).split(QREGEXP("[ ]+"));
 		}
 		else
 		{
-			arguments = m_externalEditorPath.split(QRegExp("[ ]+"));
+			arguments = m_externalEditorPath.split(QREGEXP("[ ]+"));
 			program = arguments.takeFirst();
 		}
-		arguments.replaceInStrings(QRegExp("%f"), m_iter->filename);
-		arguments.replaceInStrings(QRegExp("%n"), m_iter->linenum);
+		arguments.replaceInStrings(QREGEXP("%f"), m_iter->filename);
+		arguments.replaceInStrings(QREGEXP("%n"), m_iter->linenum);
 
 		if (QProcess::startDetached(program, arguments) == false)
 		{

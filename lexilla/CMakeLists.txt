@@ -1,9 +1,16 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(Lexilla)
   
-FILE(GLOB LEXER_SRCS  "./lexers/*.cxx")
+#FILE(GLOB LEXER_SRCS  "./lexers/*.cxx")
 FILE(GLOB LEXLIB_SRCS "./lexlib/*.cxx")
 FILE(GLOB LEXINT_SRCS  "./src/*.cxx")
+
+  SET( LEXER_SRCS
+       ./lexers/LexCPP.cxx
+       ./lexers/LexRuby.cxx
+       ./lexers/LexPython.cxx
+  )
+
 
 INCLUDE_DIRECTORIES( "./include" )
 INCLUDE_DIRECTORIES( "./src" )

@@ -70,9 +70,9 @@ endif()
   )
   
   # and finally an resource file
-  SET( CODEQUERY_RCS
-       codequery.qrc
-  )
+  #SET( CODEQUERY_RCS
+  #     codequery.qrc
+  #)
 
   # translation files
   SET( CODEQUERY_TRANS
@@ -115,6 +115,12 @@ endif (WIN32)
   INCLUDE_DIRECTORIES( "../makedb" )
   INCLUDE_DIRECTORIES( "../showgraph" )
   INCLUDE_DIRECTORIES( "/usr/local/include" )
+  INCLUDE_DIRECTORIES( "../lexilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
+  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
+  INCLUDE_DIRECTORIES( "../scintilla/include" )
+  INCLUDE_DIRECTORIES( "../scintilla/src" )
+  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
 
 if(GHAWIN)
 find_package(unofficial-sqlite3 CONFIG REQUIRED)
@@ -125,13 +131,6 @@ include_directories( "${SQLITE_INCLUDE_DIR}" )
 endif(GHAWIN)
 
 if (BUILD_QT6)
-
-  INCLUDE_DIRECTORIES( "../lexilla/include" )
-  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
-  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
-  INCLUDE_DIRECTORIES( "../scintilla/include" )
-  INCLUDE_DIRECTORIES( "../scintilla/src" )
-  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
 
   find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml LinguistTools Core5Compat )
   set(CMAKE_AUTOMOC ON)
@@ -180,14 +179,6 @@ endif()
   install(TARGETS codequery RUNTIME DESTINATION bin)
 
 else (BUILD_QT6)
-if (BUILD_QT5)
-
-  INCLUDE_DIRECTORIES( "../lexilla/include" )
-  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEdit" )
-  INCLUDE_DIRECTORIES( "../scintilla/qt/ScintillaEditBase" )
-  INCLUDE_DIRECTORIES( "../scintilla/include" )
-  INCLUDE_DIRECTORIES( "../scintilla/src" )
-  INCLUDE_DIRECTORIES( "../scintilla/lexlib" )
   
   # this command finds Qt4 libraries and sets all required variables
   # note that it's Qt4, not QT4 or qt4
@@ -252,76 +243,5 @@ endif()
   
   install(TARGETS codequery RUNTIME DESTINATION bin)
 
-
-else (BUILD_QT5)
-
-  INCLUDE_DIRECTORIES( "../scintilla_qt4/qt/ScintillaEdit" )
-  INCLUDE_DIRECTORIES( "../scintilla_qt4/qt/ScintillaEditBase" )
-  INCLUDE_DIRECTORIES( "../scintilla_qt4/include" )
-  INCLUDE_DIRECTORIES( "../scintilla_qt4/src" )
-  INCLUDE_DIRECTORIES( "../scintilla_qt4/lexlib" )
-
-  add_definitions( -DUSE_QT4 )
-
-  # by default only QtCore and QtGui modules are enabled
-  # other modules must be enabled like this:
-  #SET( QT_USE_QTXML TRUE )
-  #SET( QT_USE_QTSQL TRUE )
-  SET( QT_DONT_USE_QTGUI FALSE )
-  
-  # this command finds Qt4 libraries and sets all required variables
-  # note that it's Qt4, not QT4 or qt4
-  FIND_PACKAGE( Qt4 REQUIRED )
-  
-  # add some useful macros and variables
-  # (QT_USE_FILE is a variable defined by FIND_PACKAGE( Qt4 ) that contains a path to CMake script)
-  INCLUDE( "${QT_USE_FILE}" )
-
-  QT4_ADD_TRANSLATION( QM ${CODEQUERY_TRANS} )  
-  
-  # this command will generate rules that will run rcc on all files from CODEQUERY_RCS
-  # in result CQIMAGES_RC_SRCS variable will contain paths to files produced by rcc
-  # QT4_ADD_RESOURCES( CQIMAGES_RC_SRCS ${CODEQUERY_RCS} )
-
-  # Run the resource compiler (rcc_options should already be set).
-  ADD_CUSTOM_COMMAND(
-    OUTPUT ${CQIMAGES_RC_SRCS}
-    COMMAND ${QT_RCC_EXECUTABLE}
-    ARGS ${rcc_options} -name cqimages -o ${CQIMAGES_RC_SRCS} ${CQIMAGES_RC_QRC}
-    )
-
-  ADD_CUSTOM_COMMAND(
-    OUTPUT ${CQTRANS_RC_SRCS}
-    COMMAND ${QT_RCC_EXECUTABLE}
-    ARGS ${rcc_options} -name cqtrans -o ${CQTRANS_RC_SRCS} ${CQTRANS_RC_QRC}
-    DEPENDS ${QM} ${CQTRANS_RC_QRC}
-    )
-
-  ADD_CUSTOM_COMMAND(
-    OUTPUT ${CQTRANS_RC_QRC}
-    COMMAND ${COPY_COMMAND}
-    ARGS ${CQTRANS_RC_QRCT_CP} ${CQTRANS_RC_QRC_CP}
-    )
-    
-
-  # this will run uic on .ui files:
-  QT4_WRAP_UI( CODEQUERY_UI_HDRS ${CODEQUERY_QT4_UIS} )
-  
-  # and finally this will run moc:
-  QT4_WRAP_CPP( CODEQUERY_MOC_SRCS ${CODEQUERY_MOC_HDRS} )
-
-
-if(WIN32)
-  SET(CQ_WIN_RCS cqwin32.rc)
-  add_executable( codequery WIN32 ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} ${CQ_WIN_RCS} )
-else()
-  add_executable( codequery ${CODEQUERY_SRCS} ${CODEQUERY_MOC_SRCS} ${CQIMAGES_RC_SRCS} ${CQTRANS_RC_SRCS} ${CODEQUERY_UI_HDRS} ${QM} )
-endif()
-
-  target_link_libraries( codequery ${QT_LIBRARIES} ${SQLITE_LIBRARIES} cqshowgraph scintillaedit)
-  
-  install(TARGETS codequery RUNTIME DESTINATION bin)
-
-endif (BUILD_QT5)
 endif (BUILD_QT6)
 

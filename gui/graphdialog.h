@@ -14,12 +14,7 @@
 #define GRAPHDIALOG_H_CQ
 
 #include <QtGlobal>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
-
 
  namespace Ui {
      class DialogGraph;

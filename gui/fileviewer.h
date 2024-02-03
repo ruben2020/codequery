@@ -14,12 +14,7 @@
 #define FILEVIEWER_H_CQ
 
 #include <QtGlobal>
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
-
 #include "sqlquery.h"
 Q_DECLARE_METATYPE(sqlqueryresultlist*)
 
@@ -75,11 +70,7 @@ QListWidget *m_listWidgetFunc;
 QComboBox *m_comboBoxFuncListSort;
 QString m_externalEditorPath;
 QFont m_textEditSourceFont;
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 void *m_lexer;
-#else
-int m_lexer;
-#endif
 int m_fontsize;
 QString m_theme;
 

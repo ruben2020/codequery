@@ -14,10 +14,7 @@
 #include <QPair>
 #include "graphdialog.h"
 #include "searchhandler.h"
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #include <QtConcurrent/QtConcurrent>
-#endif
 
 sqlquery* searchhandler::sq = NULL;
 bool searchhandler::m_grepExactMatch = false;

@@ -18,10 +18,8 @@
 #include <QFontMetrics>
 #include <QRegExp>
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 #include "ILexer.h"
 #include "Lexilla.h"
-#endif
 #include "ScintillaEdit.h"
 #include "SciLexer.h"
 
@@ -29,12 +27,6 @@
 #include "mainwindow.h"
 #include "fileviewsettingsdialog.h"
 #include "themes.h"
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
-#define QREGEXP QRegularExpression
-#else
-#define QREGEXP QRegExp
-#endif
 
 #if defined(_WIN32)
 #define EXT_EDITOR_DEFAULT_PATH "notepad %f"
@@ -132,11 +124,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 ,m_lexer(NULL)
-#else
-,m_lexer(SCLEX_NULL)
-#endif
 ,m_fontsize(0)
 ,m_currentlang(enHighlightCPP)
 ,m_currentline(1)
@@ -193,24 +181,13 @@ QString fileviewer::checkFontFamily(QString fontname)
 	}
 	else
 	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
-
 		newfont = QFontDatabase::systemFont(QFontDatabase::FixedFont).family();
-#else
-		if      (m_fontlist.contains(tryfont1)) newfont = tryfont1;
-		else if (m_fontlist.contains(tryfont2)) newfont = tryfont2;
-		else newfont = m_fontlist[0];
-#endif
 	}
 	return newfont;
 }
 
 void fileviewer::init(void)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
-#else
-	Scintilla_LinkLexers();
-#endif
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);
@@ -701,15 +678,15 @@ void fileviewer::OpenInEditor_ButtonClick(bool checked)
 		if (pos != -1)
 		{
 			program = rx.cap(1);
-			arguments = (rx.cap(2)).split(QREGEXP("[ ]+"));
+			arguments = (rx.cap(2)).split(QRegularExpression("[ ]+"));
 		}
 		else
 		{
-			arguments = m_externalEditorPath.split(QREGEXP("[ ]+"));
+			arguments = m_externalEditorPath.split(QRegularExpression("[ ]+"));
 			program = arguments.takeFirst();
 		}
-		arguments.replaceInStrings(QREGEXP("%f"), m_iter->filename);
-		arguments.replaceInStrings(QREGEXP("%n"), m_iter->linenum);
+		arguments.replaceInStrings(QRegularExpression("%f"), m_iter->filename);
+		arguments.replaceInStrings(QRegularExpression("%n"), m_iter->linenum);
 
 		if (QProcess::startDetached(program, arguments) == false)
 		{
@@ -817,8 +794,6 @@ void fileviewer::replaceLexer(int sclang, int lang)
 {
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
-
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 9, 0))
 		switch (lang)
 		{
 			case enHighlightCPP:
@@ -846,35 +821,6 @@ void fileviewer::replaceLexer(int sclang, int lang)
 				break;
 		}
 		m_textEditSource->setILexer((sptr_t)m_lexer);
-#else
-		switch (lang)
-		{
-			case enHighlightCPP:
-				m_lexer = SCLEX_CPP;
-				break;
-
-			case enHighlightPython:
-				m_lexer = SCLEX_PYTHON;
-				break;
-
-			case enHighlightJava:
-				m_lexer = SCLEX_CPP;
-				break;
-
-			case enHighlightRuby:
-				m_lexer = SCLEX_RUBY;
-				break;
-
-			case enHighlightJavascript:
-				m_lexer = SCLEX_CPP;
-				break;
-
-			default:
-				m_lexer = SCLEX_CPP;
-				break;
-		}
-		m_textEditSource->setLexer(m_lexer);
-#endif
 		m_textEditSource->clearDocumentStyle();
 		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";

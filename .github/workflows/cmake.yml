@@ -42,18 +42,18 @@ jobs:
             cxx: "g++"
           }
         - {
-            name: "Ubuntu 20.04 GCC Qt4",
-            os: ubuntu-20.04,
-            build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++"
-          }
-        - {
             name: "Ubuntu-latest GCC NoGui",
             os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++"
+          }
+        - {
+            name: "macOS Clang Qt6",
+            os: macos-latest,
+            build_type: "Debug",
+            cc: "clang",
+            cxx: "clang++"
           }
         - {
             name: "macOS Clang Qt5",
@@ -86,7 +86,7 @@ jobs:
           sudo apt-get install build-essential g++ git cmake ninja-build sqlite3 libsqlite3-dev cscope exuberant-ctags
           sudo apt-get install libglx-dev libgl1-mesa-dev libvulkan-dev libxkbcommon-dev
           sudo apt-get install qt6-base-dev qt6-base-dev-tools qt6-tools-dev qt6-tools-dev-tools
-          sudo apt-get install libqt6core5compat6-dev qt6-l10n-tools
+          sudo apt-get install libqt6core5compat6-dev qt6-l10n-tools qt6-wayland
           uname -a
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version
@@ -127,6 +127,15 @@ jobs:
           uname -a
           lsb_release -a
           gcc -v && g++ -v && cmake --version && ninja --version
+
+      - name: Install dependencies on macOS Clang Qt6
+        if: startsWith(matrix.config.name, 'macOS Clang Qt6')
+        run: |
+          brew install cmake ninja qt@6 sqlite cscope ctags
+          clang -v
+          cmake --version
+          ninja --version
+          brew info qt@6
 
       - name: Install dependencies on macOS Clang Qt5
         if: startsWith(matrix.config.name, 'macOS Clang Qt5')
@@ -182,19 +191,6 @@ jobs:
           ninja package
           sudo ninja install
           
-      - name: Configure CMake and Build on Ubuntu 20.04 GCC Qt4
-        shell: bash
-        if: contains(matrix.config.name, 'Ubuntu 20.04 GCC Qt4')
-        run: |
-          mkdir -p build
-          cd build
-          export CC=gcc
-          export CXX=g++
-          cmake -G Ninja -DBUILD_QT5=OFF ..
-          ninja
-          ninja package
-          sudo ninja install
-
       - name: Configure CMake and Build on Ubuntu-latest GCC NoGui
         shell: bash
         if: contains(matrix.config.name, 'Ubuntu-latest GCC NoGui')
@@ -206,6 +202,18 @@ jobs:
           cmake -G Ninja -DNO_GUI=ON ..
           ninja
           ninja package
+          sudo ninja install
+
+      - name: Configure CMake and Build on macOS Clang Qt6
+        shell: bash
+        if: contains(matrix.config.name, 'macOS Clang Qt6')
+        run: |
+          mkdir -p build
+          cd build
+          export CC=clang
+          export CXX=clang++
+          cmake -G Ninja -DBUILD_QT6=ON -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@6/lib/cmake ..
+          ninja
           sudo ninja install
 
       - name: Configure CMake and Build on macOS Clang Qt5

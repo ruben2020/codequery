@@ -248,7 +248,7 @@ jobs:
       - name: Configure CMake and Build on Windows MinGW Qt6
         shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt6')
-        run: call "windows-install/win64/buildqt5win64_github.bat"
+        run: call "windows-install/win64/buildqt6win64_github.bat"
 
       - name: Configure CMake and Build on Windows MinGW Qt5
         shell: cmd
@@ -270,7 +270,7 @@ jobs:
 
       - name: Test on Windows
         shell: cmd
-        if: contains(matrix.config.name, 'Windows MinGW Qt5')
+        if: contains(matrix.config.name, 'Windows MinGW')
         run: call "windows-install/win64/test_github.bat"
 
       - name: Pack on Windows

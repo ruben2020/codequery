@@ -48,7 +48,7 @@ project(ShowGraph)
   
 if (BUILD_QT6)
 
-  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml Core5Compat)
+  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Xml )
   set(CMAKE_AUTOMOC ON)
   set(CMAKE_AUTORCC ON)
   set(CMAKE_AUTOUIC ON)
@@ -59,7 +59,7 @@ if (BUILD_QT6)
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
 
   qt6_add_library( cqshowgraph-qt6 STATIC ${SHOWGRAPH_SRCS} ${SHOWGRAPH_MOC_SRCS} )
-  target_link_libraries( cqshowgraph-qt6 PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Xml Qt6::Core5Compat )
+  target_link_libraries( cqshowgraph-qt6 PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Xml )
 
 else (BUILD_QT6)
 

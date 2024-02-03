@@ -24,7 +24,6 @@
 #include <QtGlobal>
 #include <QtGui>
 #include <QList>
-#include <QLinkedList>
 #include <QVector>
 #include <list>
 using namespace std;

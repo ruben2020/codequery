@@ -63,6 +63,13 @@ jobs:
             cxx: "clang++"
           }
         - {
+            name: "Windows MinGW Qt6",
+            os: windows-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
+        - {
             name: "Windows MinGW Qt5",
             os: windows-latest,
             build_type: "Debug",
@@ -146,6 +153,16 @@ jobs:
           ninja --version
           brew info qt@5
 
+      - name: Install Qt6 on Windows
+        if: startsWith(matrix.config.name, 'Windows MinGW Qt6')
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.6.*'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_mingw'
+          cache: 'false'
+
       - name: Install Qt5 on Windows
         if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
         uses: jurplel/install-qt-action@v3
@@ -228,6 +245,11 @@ jobs:
           ninja
           sudo ninja install
 
+      - name: Configure CMake and Build on Windows MinGW Qt6
+        shell: cmd
+        if: contains(matrix.config.name, 'Windows MinGW Qt6')
+        run: call "windows-install/win64/buildqt5win64_github.bat"
+
       - name: Configure CMake and Build on Windows MinGW Qt5
         shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
@@ -235,7 +257,7 @@ jobs:
 
       - name: Test on Linux, MacOS
         shell: bash
-        if: ${{ !contains(matrix.config.name, 'Windows MinGW Qt5') }}
+        if: ${{ !contains(matrix.config.name, 'Windows MinGW') }}
         run: |
           cqmakedb -v
           cscope -cbR

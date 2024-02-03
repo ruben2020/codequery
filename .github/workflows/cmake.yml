@@ -175,11 +175,11 @@ jobs:
 
       - name: Install sqlite3 on Windows
         shell: cmd
-        if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
+        if: startsWith(matrix.config.name, 'Windows MinGW')
         run: vcpkg install sqlite3:x64-windows
 
       - name: Install ninja on Windows
-        if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
+        if: startsWith(matrix.config.name, 'Windows MinGW')
         uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Configure CMake and Build on Ubuntu GCC Qt6

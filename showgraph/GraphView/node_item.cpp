@@ -17,16 +17,9 @@
  * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-#include <QRegExp>
 #include "gview_impl.h"
 
 //#define DRAW_AXIS
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
 
 #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
 #define LEVELOFDETAIL(p,x) p->levelOfDetailFromTransform(x)
@@ -213,10 +206,11 @@ GNode::readFromElement( QDomElement e)
     {
         QString str = e.attribute( "label");
         item()->setPlainText( str);
-        QRegExp rx("(\\d+)");
-        if ( rx.indexIn( str) != -1)
+        QRegularExpression rx("(\\d+)");
+        auto pos = rx.match(str);
+        if (pos.hasMatch())
         {
-            setIRId( rx.cap( 1).toInt());
+            setIRId( pos.captured(1).toInt());
         }
     }
     if ( e.hasAttribute("type"))
@@ -492,7 +486,7 @@ NodeItem::paint( QPainter *painter,
         painter->drawLine( QPoint( -boundingRect().width(), 0), QPoint( boundingRect().width(),0));
         painter->drawLine( QPoint( 0, -boundingRect().height()), QPoint( 0, boundingRect().height()));
 #endif
-        QPen pen( option->palette.QT45_FOREGROUND().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+        QPen pen( option->palette.windowText().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         if ( LEVELOFDETAIL(option, painter->worldTransform()) < 0.1)
         {
             painter->fillRect( borderRect(), option->palette.highlight().color());
@@ -541,11 +535,11 @@ NodeItem::paint( QPainter *painter,
             if ( bold_border && ( option->state & QStyle::State_Sunken)) 
             {
                 painter->setBrush( option->palette.highlight().color());
-                painter->setPen( QPen(option->palette.QT45_FOREGROUND().color(), 0));
+                painter->setPen( QPen(option->palette.windowText().color(), 0));
             } else
             {
                 painter->setBrush( option->palette.highlight().color());
-                painter->setPen( QPen(option->palette.QT45_FOREGROUND().color(), 0));
+                painter->setPen( QPen(option->palette.windowText().color(), 0));
             }
             painter->drawEllipse( -EdgeControlSize, -EdgeControlSize,
                                   2*EdgeControlSize, 2*EdgeControlSize);

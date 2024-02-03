@@ -19,12 +19,6 @@
  */
 #include "gview_impl.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 #define QLINEF_INTERSECT intersects
 #else
@@ -213,11 +207,11 @@ EdgeHelper::paint( QPainter *painter,
 
     //Set opacity
     painter->setOpacity( 0.3);
-    QPen pen( option->palette.QT45_FOREGROUND().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen( option->palette.windowText().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         
     // Draw the line itself
     painter->setPen( pen);
-    painter->setBrush( option->palette.QT45_FOREGROUND().color());
+    painter->setBrush( option->palette.windowText().color());
     // Draw the arrows if there's enough room and level of detail is appropriate
     if ( LEVELOFDETAIL(option, painter->worldTransform()) >= draw_arrow_detail_level)
     {

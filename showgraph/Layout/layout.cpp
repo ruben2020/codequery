@@ -19,12 +19,6 @@
 #include <algorithm>
 #include "layout_iface.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_SORT(x,y,z) std::sort(x,y,z)
-#else
-#define QT45_SORT(x,y,z) qSort(x,y,z)
-#endif
-
 /**
  * Arrange nodes in level
  */
@@ -71,7 +65,7 @@ bool compareGroups( NodeGroup* g1,
  */
 void Level::sortNodesByOrder()
 {
-    QT45_SORT( node_list.begin(), node_list.end(), compareOrders);
+    std::sort( node_list.begin(), node_list.end(), compareOrders);
 }
 
 /**
@@ -92,7 +86,7 @@ void Level::arrangeNodes( GraphDir dir, bool commit_placement, bool first_pass)
         }
     }
     /** Sort groups with respect to their coordinates */
-    QT45_SORT( list.begin(), list.end(), compareGroups);
+    std::sort( list.begin(), list.end(), compareGroups);
     
     std::list< NodeGroup *> groups;
     

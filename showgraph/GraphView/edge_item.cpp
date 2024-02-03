@@ -23,12 +23,6 @@
 //#define SHOW_CONTROL_POINTS
 //#define SHOW_BACKEDGES
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 #define QLINEF_INTERSECT intersects
 #else
@@ -457,7 +451,7 @@ EdgeItem::paint( QPainter *painter,
     if ( edge()->graph()->view()->isContext())
         painter->setOpacity( opacity);
 
-    QPen pen( option->palette.QT45_FOREGROUND().color(),
+    QPen pen( option->palette.windowText().color(),
               1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         
     if ( isNotNullP( edge()->style()))
@@ -505,7 +499,7 @@ EdgeItem::paint( QPainter *painter,
             painter->setBrush( edge()->style()->pen().color());
         } else
         {
-            painter->setBrush(option->palette.QT45_FOREGROUND().color());
+            painter->setBrush(option->palette.windowText().color());
         }
         if ( edge()->isSelf())
         {

@@ -19,12 +19,6 @@
  */
 #include "gview_impl.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
-
 ColorButton::ColorButton( QWidget *parent):
     QAbstractButton( parent)
 {
@@ -34,7 +28,7 @@ ColorButton::ColorButton( QWidget *parent):
 void ColorButton::paintEvent( QPaintEvent *event)
 {
     QPainter painter( this);
-    painter.setPen( palette().QT45_FOREGROUND().color());
+    painter.setPen( palette().windowText().color());
     painter.setBrush( color);
     painter.drawRect( rect());
 }
@@ -78,7 +72,7 @@ StyleEdit::StyleEdit( QWidget *parent, bool show_additional)
         shape_combo = NULL;
     }
 
-    color = QColor(palette().QT45_FOREGROUND().color());
+    color = QColor(palette().windowText().color());
     line_color_button = new ColorButton( this);
     line_color_button->setColor( color);
     

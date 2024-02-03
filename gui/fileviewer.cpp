@@ -16,7 +16,6 @@
 #include <QInputDialog>
 #include <QFontDatabase>
 #include <QFontMetrics>
-#include <QRegExp>
 
 #include "ILexer.h"
 #include "Lexilla.h"
@@ -372,25 +371,25 @@ void fileviewer::updateTextEdit(void)
 
 	int lang = enHighlightCPP; // default
 
-	QRegExp rx1("\\.py$", Qt::CaseInsensitive);
-	int pos = rx1.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightPython;
+	QRegularExpression rx1("\\.py$", QRegularExpression::CaseInsensitiveOption);
+	auto pos = rx1.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightPython;
 
-	QRegExp rx2("\\.java$", Qt::CaseInsensitive);
-	pos = rx2.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightJava;
+	QRegularExpression rx2("\\.java$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx2.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightJava;
 
-	QRegExp rx3("\\.rb$", Qt::CaseInsensitive);
-	pos = rx3.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightRuby;
+	QRegularExpression rx3("\\.rb$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx3.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightRuby;
 
-	QRegExp rx4("\\.js$", Qt::CaseInsensitive);
-	pos = rx4.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightJavascript;
+	QRegularExpression rx4("\\.js$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx4.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightJavascript;
 
-	QRegExp rx5("\\.go$", Qt::CaseInsensitive);
-	pos = rx5.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightGo;
+	QRegularExpression rx5("\\.go$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx5.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightGo;
 
 	m_currentlang = lang;
 
@@ -673,12 +672,12 @@ void fileviewer::OpenInEditor_ButtonClick(bool checked)
 
 		QStringList arguments;
 		QString program;
-		QRegExp rx("^\"([^\"]+)\" (.*)");
-		int pos = rx.indexIn(m_externalEditorPath);
-		if (pos != -1)
+		QRegularExpression rx("^\"([^\"]+)\" (.*)");
+		auto pos = rx.match(m_externalEditorPath);
+		if (pos.hasMatch())
 		{
-			program = rx.cap(1);
-			arguments = (rx.cap(2)).split(QRegularExpression("[ ]+"));
+			program = pos.captured(1);
+			arguments = (pos.captured(2)).split(QRegularExpression("[ ]+"));
 		}
 		else
 		{

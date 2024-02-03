@@ -15,7 +15,6 @@
 
 #include <QtGlobal>
 #include <QtWidgets>
-#include <QRegExp>
 
 #include "sqlquery.h"
 
@@ -63,7 +62,7 @@ QFutureWatcher<QStringList> m_autocompFutureWatcher;
 QFutureWatcher<QStringList> m_declarFutureWatcher;
 QFutureWatcher<sqlqueryresultlist> m_listFuncFutureWatcher;
 static bool m_grepExactMatch;
-static QRegExp* m_grepRegExp;
+static QRegularExpression* m_grepRegExp;
 
 searchhandler(mainwindow* pmw);
 ~searchhandler();

@@ -19,13 +19,6 @@
 #include <algorithm>
 #include "layout_iface.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_SORT(x,y,z) std::sort(x,y,z)
-#else
-#define QT45_SORT(x,y,z) qSort(x,y,z)
-#endif
-
-
 /**
  * Compare orders of nodes
  */
@@ -145,7 +138,7 @@ void NodeGroup::merge( NodeGroup *grp)
     int num = 0;
     qreal nodes_barycenter = 0;
     
-    QT45_SORT( node_list.begin(), node_list.end(), compareBc);
+    std::sort( node_list.begin(), node_list.end(), compareBc);
     
     foreach ( AuxNode* node, node_list)
     {

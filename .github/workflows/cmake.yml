@@ -21,6 +21,13 @@ jobs:
       matrix:
         config: 
         - {
+            name: "Ubuntu-latest GCC NoGui",
+            os: ubuntu-latest,
+            build_type: "Debug",
+            cc: "gcc",
+            cxx: "g++"
+          }
+        - {
             name: "Ubuntu-latest GCC Qt6",
             os: ubuntu-latest,
             build_type: "Debug",
@@ -37,13 +44,6 @@ jobs:
         - {
             name: "Ubuntu 20.04 GCC Qt5",
             os: ubuntu-20.04,
-            build_type: "Debug",
-            cc: "gcc",
-            cxx: "g++"
-          }
-        - {
-            name: "Ubuntu-latest GCC NoGui",
-            os: ubuntu-latest,
             build_type: "Debug",
             cc: "gcc",
             cxx: "g++"
@@ -138,7 +138,7 @@ jobs:
       - name: Install dependencies on macOS Clang Qt6
         if: startsWith(matrix.config.name, 'macOS Clang Qt6')
         run: |
-          brew install cmake ninja qt@6 sqlite cscope ctags
+          brew install cmake ninja qt@6 sqlite cscope ctags vulkan-headers
           clang -v
           cmake --version
           ninja --version

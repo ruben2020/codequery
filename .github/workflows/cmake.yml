@@ -161,6 +161,7 @@ jobs:
           host: 'windows'
           target: 'desktop'
           arch: 'win64_mingw'
+          modules: 'qt5compat'
           cache: 'false'
 
       - name: Install Qt5 on Windows

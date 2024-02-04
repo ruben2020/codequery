@@ -1,4 +1,4 @@
-aqt list-qt windows desktop --modules 6.6.1 win64_mingw81
+aqt list-qt windows desktop
 set PATH=%Qt6_DIR%/bin;%PATH%
 cmake --version
 gcc -v

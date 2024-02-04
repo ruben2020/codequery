@@ -1,4 +1,5 @@
 aqt list-qt windows desktop
+aqt list-qt windows desktop --arch 6.6.1
 set PATH=%Qt6_DIR%/bin;%PATH%
 cmake --version
 gcc -v

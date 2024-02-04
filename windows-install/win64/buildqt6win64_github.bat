@@ -1,4 +1,5 @@
-set PATH=%Qt5_DIR%/bin;%PATH%
+aqt list-qt windows desktop --modules 6.6.1 win64_mingw81
+set PATH=%Qt6_DIR%/bin;%PATH%
 cmake --version
 gcc -v
 g++ -v

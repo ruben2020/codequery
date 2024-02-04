@@ -280,6 +280,6 @@ jobs:
 
       - name: Pack on Windows
         shell: cmd
-        if: contains(matrix.config.name, 'Windows MinGW Qt5')
+        if: contains(matrix.config.name, 'Windows MinGW')
         run: call "windows-install/win64/pack_github.bat"
 

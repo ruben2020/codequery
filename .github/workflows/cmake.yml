@@ -249,12 +249,12 @@ jobs:
       - name: Configure CMake and Build on Windows MinGW Qt6
         shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt6')
-        run: call "windows-install/win64/buildqt6win64_github.bat"
+        run: call "windows-install/qt6/buildqt6_github.bat"
 
       - name: Configure CMake and Build on Windows MinGW Qt5
         shell: cmd
         if: contains(matrix.config.name, 'Windows MinGW Qt5')
-        run: call "windows-install/win64/buildqt5win64_github.bat"
+        run: call "windows-install/qt5/buildqt5_github.bat"
 
       - name: Test on Linux, MacOS
         shell: bash
@@ -273,13 +273,23 @@ jobs:
           cqmakedb -s cq1.db -c cscope1.out -t tags -p -d
           cqsearch -s cq1.db -p 1 -t CODEQUERY_SW_VERSION -u
 
-      - name: Test on Windows
+      - name: Test on Windows Qt6
         shell: cmd
-        if: contains(matrix.config.name, 'Windows MinGW')
-        run: call "windows-install/win64/test_github.bat"
+        if: contains(matrix.config.name, 'Windows MinGW Qt6')
+        run: call "windows-install/qt6/testqt6_github.bat"
 
-      - name: Pack on Windows
+      - name: Test on Windows Qt5
         shell: cmd
-        if: contains(matrix.config.name, 'Windows MinGW')
-        run: call "windows-install/win64/pack_github.bat"
+        if: contains(matrix.config.name, 'Windows MinGW Qt5')
+        run: call "windows-install/qt5/testqt5_github.bat"
+
+      - name: Pack on Windows Qt6
+        shell: cmd
+        if: contains(matrix.config.name, 'Windows MinGW Qt6')
+        run: call "windows-install/qt6/packqt6_github.bat"
+
+      - name: Pack on Windows Qt5
+        shell: cmd
+        if: contains(matrix.config.name, 'Windows MinGW Qt5')
+        run: call "windows-install/qt5/packqt5_github.bat"
 

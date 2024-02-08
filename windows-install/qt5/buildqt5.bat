@@ -9,5 +9,5 @@ copy "%MinGW64_DIR%\bin\sqlite3.dll" output
 cd output
 windeployqt --release codequery.exe
 dir/b/a/s
-candle.exe -ext WixUIExtension -ext WixUtilExtension "c:\workspace\codequery\windows-install\win64\codequeryqt5.wxs"
+candle.exe -ext WixUIExtension -ext WixUtilExtension "c:\workspace\codequery\windows-install\qt5\codequeryqt5.wxs"
 light.exe -ext WixUIExtension -ext WixUtilExtension codequeryqt5.wixobj

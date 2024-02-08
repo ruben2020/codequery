@@ -14,14 +14,11 @@
 #include <QPair>
 #include "graphdialog.h"
 #include "searchhandler.h"
-
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtConcurrent/QtConcurrent>
-#endif
 
 sqlquery* searchhandler::sq = NULL;
 bool searchhandler::m_grepExactMatch = false;
-QRegExp* searchhandler::m_grepRegExp = NULL;
+QRegularExpression* searchhandler::m_grepRegExp = NULL;
 
 searchitem::searchitem()
 :exactmatch(false)
@@ -88,7 +85,7 @@ searchhandler::searchhandler(mainwindow* pmw)
 {
 	sq = new sqlquery;
 	m_completer = new QCompleter(&m_srchStrLstModel, (QWidget*)mw);
-	m_grepRegExp = new QRegExp();
+	m_grepRegExp = new QRegularExpression();
 	m_iter = m_searchMemoryList.begin();
 }
 
@@ -475,10 +472,10 @@ void searchhandler::QueryType_indexChanged(const int& idx)
 	if (qrytype == sqlquery::sqlresultGREP)
 	{
 #ifndef QT_NO_TOOLTIP
-        m_comboBoxSearch->setToolTip("Grep: QRegExp regular expressions");
+        m_comboBoxSearch->setToolTip("Grep: QRegularExpression regular expressions");
 #endif // QT_NO_TOOLTIP
 #ifndef QT_NO_STATUSTIP
-        m_comboBoxSearch->setStatusTip("Grep: QRegExp regular expressions");
+        m_comboBoxSearch->setStatusTip("Grep: QRegularExpression regular expressions");
 #endif // QT_NO_STATUSTIP
 	}
 	else
@@ -586,8 +583,7 @@ sqlqueryresultlist searchhandler::perform_grep(QString searchtxt, sqlqueryresult
 	QObject::connect(&futureWatcher, SIGNAL(progressRangeChanged(int,int)), &dialog, SLOT(setRange(int,int)));
 	QObject::connect(&futureWatcher, SIGNAL(progressValueChanged(int)), &dialog, SLOT(setValue(int)));
 	m_grepExactMatch = exactmatch;
-	(*m_grepRegExp) = QRegExp(searchtxt.C_STR(), Qt::CaseInsensitive);
-	m_grepRegExp->setPatternSyntax(QRegExp::RegExp2);
+	(*m_grepRegExp) = QRegularExpression(searchtxt.C_STR(), QRegularExpression::CaseInsensitiveOption);
 	futureWatcher.setFuture(QtConcurrent::mappedReduced(strvec, doGrep,
 				collateGrep, QtConcurrent::SequentialReduce));
 	dialog.exec();
@@ -602,9 +598,10 @@ sqlqueryresultlist searchhandler::doGrep(const QPair<QString, int> &fp)
 	sqlqueryresultlist reslist;
 	sqlqueryresult res;
 	tStr str, fp2, fn;
-	long pos, linenumber=0;
+	QRegularExpressionMatch pos;
+	long linenumber=0;
 	char numtext[30];
-	QRegExp rx1(*m_grepRegExp);
+	QRegularExpression rx1(*m_grepRegExp);
 	reslist.result_type = sqlqueryresultlist::sqlresultFILE_LINE;
 	fp2 = fp.first; // path of file to be searched
 	fp2.replace(QString("$HOME"), QDir::homePath());
@@ -622,8 +619,8 @@ sqlqueryresultlist searchhandler::doGrep(const QPair<QString, int> &fp)
 	{
 		linenumber++;
 		str = in.readLine();
-		pos = rx1.indexIn(str);
-		if (pos != -1)
+		pos = rx1.match(str);
+		if (pos.hasMatch())
 		{
 			res.filepath = fp2;
 			res.filename = fn;

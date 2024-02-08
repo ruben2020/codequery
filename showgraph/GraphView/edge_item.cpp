@@ -23,18 +23,17 @@
 //#define SHOW_CONTROL_POINTS
 //#define SHOW_BACKEDGES
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 #define QLINEF_INTERSECT intersects
 #else
 #define QLINEF_INTERSECT intersect
 #endif
 
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#define LEVELOFDETAIL(p,x) p->levelOfDetailFromTransform(x)
+#else
+#define LEVELOFDETAIL(p,x) p->levelOfDetail
+#endif
 
 GEdge::GEdge( GGraph *graph_p, int _id, GNode *_pred, GNode* _succ):
     AuxEdge( (AuxGraph *)graph_p, _id, (AuxNode *)_pred, (AuxNode *)_succ), _style( NULL)
@@ -413,7 +412,7 @@ EdgeItem::paint( QPainter *painter,
                  const QStyleOptionGraphicsItem *option,
                  QWidget *widget)
 {
-    if ( option->levelOfDetail < 0.1)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) < 0.1)
         return;
 
     /** Do not draw edges when adjacent nodes intersect */
@@ -440,7 +439,7 @@ EdgeItem::paint( QPainter *painter,
     if ( edge()->isSelf())
     {
         path = selfEdgePath();
-    } else if ( option->levelOfDetail >= spline_detail_level)
+    } else if ( LEVELOFDETAIL(option, painter->worldTransform()) >= spline_detail_level)
     {
         path.cubicTo( cp1, cp2, dstP);
     }
@@ -452,7 +451,7 @@ EdgeItem::paint( QPainter *painter,
     if ( edge()->graph()->view()->isContext())
         painter->setOpacity( opacity);
 
-    QPen pen( option->palette.QT45_FOREGROUND().color(),
+    QPen pen( option->palette.windowText().color(),
               1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         
     if ( isNotNullP( edge()->style()))
@@ -461,7 +460,7 @@ EdgeItem::paint( QPainter *painter,
     }
 
     // Draw the line itself
-    if ( option->levelOfDetail >= spline_detail_level)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) >= spline_detail_level)
     {
         if ( option->state & QStyle::State_Selected)
         {
@@ -475,7 +474,7 @@ EdgeItem::paint( QPainter *painter,
     painter->setPen( pen);
     
     //Draw edge
-    if ( edge()->isSelf() || option->levelOfDetail >= spline_detail_level)
+    if ( edge()->isSelf() || LEVELOFDETAIL(option, painter->worldTransform()) >= spline_detail_level)
     {
         painter->drawPath( path);
     } else
@@ -484,7 +483,7 @@ EdgeItem::paint( QPainter *painter,
     }
     
     // Draw the arrows if there's enough room and level of detail is appropriate
-    if ( option->levelOfDetail >= draw_arrow_detail_level)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) >= draw_arrow_detail_level)
     {
         double angle = ::acos(line.dx() / line.length());
         if ( line.dy() >= 0)
@@ -500,7 +499,7 @@ EdgeItem::paint( QPainter *painter,
             painter->setBrush( edge()->style()->pen().color());
         } else
         {
-            painter->setBrush(option->palette.QT45_FOREGROUND().color());
+            painter->setBrush(option->palette.windowText().color());
         }
         if ( edge()->isSelf())
         {

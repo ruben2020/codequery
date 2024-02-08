@@ -8,12 +8,6 @@
  */
 #include "gview_impl.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 5, 0)
 #define WHEELEVENTYDELTA(x)           (x->angleDelta().y())
 #else
@@ -263,7 +257,7 @@ void GGraph::showEditEdgeStyle()
     GStyle* new_style;
     if ( isNullP( old_style))
     {
-        QColor color( view()->palette().QT45_FOREGROUND().color());
+        QColor color( view()->palette().windowText().color());
         new_style = new GStyle();
         new_style->setPenColor( color);
         new_style->setPenWidth( 1);
@@ -309,7 +303,7 @@ void GGraph::showEditNodeStyle()
     GStyle* new_style;
     if ( isNullP( old_style))
     {
-        QColor color( view()->palette().QT45_FOREGROUND().color());
+        QColor color( view()->palette().windowText().color());
         new_style = new GStyle();
         new_style->setPenColor( color);
         new_style->setPenWidth( 1);

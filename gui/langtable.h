@@ -15,7 +15,7 @@
 
 // Forward declarations
 class QString;
-class QStringList;
+//class QStringList;
 
 class langtable
 {

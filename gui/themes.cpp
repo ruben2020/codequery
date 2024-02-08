@@ -19,12 +19,6 @@
 #include "fileviewer.h"
 #include "themes.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_TOASCII(x) toLatin1(x)
-#else
-#define QT45_TOASCII(x) toAscii(x)
-#endif
-
 typedef struct
 {
 	const char *themename;
@@ -252,7 +246,7 @@ void themes::setTheme(const QString& theme, int lang, ScintillaEdit* lexer, cons
 			deffgcolor = QC2SC(QColor(QString("#").append(QString(lngstyle[i].defaultfgcolor))));
 			lexer->styleSetBack(  STYLE_DEFAULT, defbgcolor);
 			lexer->styleSetFore(  STYLE_DEFAULT, deffgcolor);
-			lexer->styleSetFont(  STYLE_DEFAULT, font1.family().QT45_TOASCII().data());
+			lexer->styleSetFont(  STYLE_DEFAULT, font1.family().toLatin1().data());
 			lexer->styleSetBold(  STYLE_DEFAULT, false);
 			lexer->styleSetItalic(STYLE_DEFAULT, false);
 			lexer->styleClearAll();
@@ -279,7 +273,7 @@ void themes::setThemeStyle(ScintillaEdit* lexer, lexstyle *lxstyle, int lxstyles
 				continue;
 		lexer->styleSetBack(lxstyle[i].styleid, QC2SC(QColor(QString("#").append(QString(lxstyle[i].bgcolor)))));
 		lexer->styleSetFore(lxstyle[i].styleid, QC2SC(QColor(QString("#").append(QString(lxstyle[i].fgcolor)))));
-		lexer->styleSetFont(lxstyle[i].styleid, font1.family().QT45_TOASCII().data());
+		lexer->styleSetFont(lxstyle[i].styleid, font1.family().toLatin1().data());
 		switch(lxstyle[i].fontstyle)
 		{
 			case 1:

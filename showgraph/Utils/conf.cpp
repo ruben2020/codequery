@@ -16,8 +16,8 @@
  * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+#include <QtWidgets>
 #include "utils_iface.h"
-#include <QRegExp>
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 #define QTENDL     Qt::endl
@@ -78,13 +78,15 @@ void Conf::readArgs( int argc, char** argv)
     for ( int i = 1; i < argc; i++)
     {
         QString curr( argv[ i]);
-        QRegExp short_rx("^-([^-]+)");
-        QRegExp long_rx("^--([^-]+)");
+        QRegularExpression short_rx("^-([^-]+)");
+        QRegularExpression long_rx("^--([^-]+)");
         Option *opt = NULL;
-        if ( short_rx.indexIn( curr) != -1 )
+        auto short_pos = short_rx.match ( curr);
+        auto long_pos  = long_rx.match ( curr);
+        if ( short_pos.hasMatch() )
         {
             /* We look for expression among short option names */
-            QString name = short_rx.cap( 1);
+            QString name = short_pos.captured( 1);
             
             if ( short_opts.find( name) != short_opts.end())
             {
@@ -94,10 +96,10 @@ void Conf::readArgs( int argc, char** argv)
                 err << "No such option " << name << QTENDL;
                 unknown_options.push_back( name);
             }
-        } else if (  long_rx.indexIn( curr) != -1)
+        } else if ( long_pos.hasMatch() )
         {
             /* We look for expression among long option names */
-            QString name = long_rx.cap( 1);
+            QString name = long_pos.captured( 1);
             if ( long_opts.find( name) != long_opts.end())
             {
                 opt = long_opts[ name];

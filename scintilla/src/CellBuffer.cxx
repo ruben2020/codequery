@@ -11,30 +11,37 @@
 #include <cstring>
 #include <cstdio>
 #include <cstdarg>
+#include <climits>
 
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <vector>
+#include <optional>
 #include <algorithm>
 #include <memory>
 
-#include "Platform.h"
+#include "ScintillaTypes.h"
 
-#include "Scintilla.h"
+#include "Debugging.h"
+
 #include "Position.h"
 #include "SplitVector.h"
 #include "Partitioning.h"
+#include "RunStyles.h"
+#include "SparseVector.h"
+#include "ChangeHistory.h"
 #include "CellBuffer.h"
 #include "UniConversion.h"
 
-namespace Scintilla {
+namespace Scintilla::Internal {
 
 struct CountWidths {
 	// Measures the number of characters in a string divided into those
 	// from the Base Multilingual Plane and those from other planes.
 	Sci::Position countBasePlane;
 	Sci::Position countOtherPlanes;
-	CountWidths(Sci::Position countBasePlane_=0, Sci::Position countOtherPlanes_=0) noexcept :
+	explicit CountWidths(Sci::Position countBasePlane_=0, Sci::Position countOtherPlanes_=0) noexcept :
 		countBasePlane(countBasePlane_),
 		countOtherPlanes(countOtherPlanes_) {
 	}
@@ -68,24 +75,31 @@ public:
 	virtual void SetLineStart(Sci::Line line, Sci::Position position) noexcept = 0;
 	virtual void RemoveLine(Sci::Line line) = 0;
 	virtual Sci::Line Lines() const noexcept = 0;
+	virtual void AllocateLines(Sci::Line lines) = 0;
 	virtual Sci::Line LineFromPosition(Sci::Position pos) const noexcept = 0;
 	virtual Sci::Position LineStart(Sci::Line line) const noexcept = 0;
 	virtual void InsertCharacters(Sci::Line line, CountWidths delta) noexcept = 0;
 	virtual void SetLineCharactersWidth(Sci::Line line, CountWidths width) noexcept = 0;
-	virtual int LineCharacterIndex() const noexcept = 0;
-	virtual bool AllocateLineCharacterIndex(int lineCharacterIndex, Sci::Line lines) = 0;
-	virtual bool ReleaseLineCharacterIndex(int lineCharacterIndex) = 0;
-	virtual Sci::Position IndexLineStart(Sci::Line line, int lineCharacterIndex) const noexcept = 0;
-	virtual Sci::Line LineFromPositionIndex(Sci::Position pos, int lineCharacterIndex) const noexcept = 0;
+	virtual Scintilla::LineCharacterIndexType LineCharacterIndex() const noexcept = 0;
+	virtual bool AllocateLineCharacterIndex(Scintilla::LineCharacterIndexType lineCharacterIndex, Sci::Line lines) = 0;
+	virtual bool ReleaseLineCharacterIndex(Scintilla::LineCharacterIndexType lineCharacterIndex) = 0;
+	virtual Sci::Position IndexLineStart(Sci::Line line, Scintilla::LineCharacterIndexType lineCharacterIndex) const noexcept = 0;
+	virtual Sci::Line LineFromPositionIndex(Sci::Position pos, Scintilla::LineCharacterIndexType lineCharacterIndex) const noexcept = 0;
 	virtual ~ILineVector() {}
 };
 
 }
 
 using namespace Scintilla;
+using namespace Scintilla::Internal;
 
 template <typename POS>
 class LineStartIndex {
+	// line_cast(): cast Sci::Line to either 32-bit or 64-bit value
+	// This avoids warnings from Visual C++ Code Analysis and shortens code
+	static constexpr POS line_cast(Sci::Line pos) noexcept {
+		return static_cast<POS>(pos);
+	}
 public:
 	int refCount;
 	Partitioning<POS> starts;
@@ -93,20 +107,13 @@ public:
 	LineStartIndex() : refCount(0), starts(4) {
 		// Minimal initial allocation
 	}
-	// Deleted so LineStartIndex objects can not be copied.
-	LineStartIndex(const LineStartIndex &) = delete;
-	LineStartIndex(LineStartIndex &&) = delete;
-	void operator=(const LineStartIndex &) = delete;
-	void operator=(LineStartIndex &&) = delete;
-	virtual ~LineStartIndex() {
-	}
 	bool Allocate(Sci::Line lines) {
 		refCount++;
 		Sci::Position length = starts.PositionFromPartition(starts.Partitions());
 		for (Sci::Line line = starts.Partitions(); line < lines; line++) {
 			// Produce an ascending sequence that will be filled in with correct widths later
 			length++;
-			starts.InsertPartition(static_cast<POS>(line), static_cast<POS>(length));
+			starts.InsertPartition(line_cast(line), line_cast(length));
 		}
 		return refCount == 1;
 	}
@@ -121,19 +128,24 @@ public:
 		return refCount > 0;
 	}
 	Sci::Position LineWidth(Sci::Line line) const noexcept {
-		return starts.PositionFromPartition(static_cast<POS>(line) + 1) -
-			starts.PositionFromPartition(static_cast<POS>(line));
+		return starts.PositionFromPartition(line_cast(line) + 1) -
+			starts.PositionFromPartition(line_cast(line));
 	}
 	void SetLineWidth(Sci::Line line, Sci::Position width) noexcept {
 		const Sci::Position widthCurrent = LineWidth(line);
-		starts.InsertText(static_cast<POS>(line), static_cast<POS>(width - widthCurrent));
+		starts.InsertText(line_cast(line), line_cast(width - widthCurrent));
+	}
+	void AllocateLines(Sci::Line lines) {
+		if (lines > starts.Partitions()) {
+			starts.ReAllocate(lines);
+		}
 	}
 	void InsertLines(Sci::Line line, Sci::Line lines) {
 		// Insert multiple lines with each temporarily 1 character wide.
 		// The line widths will be fixed up by later measuring code.
-		const POS lineAsPos = static_cast<POS>(line);
+		const POS lineAsPos = line_cast(line);
 		const POS lineStart = starts.PositionFromPartition(lineAsPos - 1) + 1;
-		for (POS l = 0; l < static_cast<POS>(lines); l++) {
+		for (POS l = 0; l < line_cast(lines); l++) {
 			starts.InsertPartition(lineAsPos + l, lineStart + l);
 		}
 	}
@@ -145,22 +157,28 @@ class LineVector : public ILineVector {
 	PerLine *perLine;
 	LineStartIndex<POS> startsUTF16;
 	LineStartIndex<POS> startsUTF32;
-	int activeIndices;
+	LineCharacterIndexType activeIndices;
 
 	void SetActiveIndices() noexcept {
-		activeIndices = (startsUTF32.Active() ? SC_LINECHARACTERINDEX_UTF32 : 0)
-			| (startsUTF16.Active() ? SC_LINECHARACTERINDEX_UTF16 : 0);
+		activeIndices =
+			  (startsUTF32.Active() ? LineCharacterIndexType::Utf32 : LineCharacterIndexType::None)
+			| (startsUTF16.Active() ? LineCharacterIndexType::Utf16 : LineCharacterIndexType::None);
+	}
+
+	// pos_cast(): cast Sci::Line and Sci::Position to either 32-bit or 64-bit value
+	// This avoids warnings from Visual C++ Code Analysis and shortens code
+	static constexpr POS pos_cast(Sci::Position pos) noexcept {
+		return static_cast<POS>(pos);
+	}
+
+	// line_from_pos_cast(): return 32-bit or 64-bit value as Sci::Line
+	// This avoids warnings from Visual C++ Code Analysis and shortens code
+	static constexpr Sci::Line line_from_pos_cast(POS line) noexcept {
+		return static_cast<Sci::Line>(line);
 	}
 
 public:
-	LineVector() : starts(256), perLine(nullptr), activeIndices(0) {
-	}
-	// Deleted so LineVector objects can not be copied.
-	LineVector(const LineVector &) = delete;
-	LineVector(LineVector &&) = delete;
-	LineVector &operator=(const LineVector &) = delete;
-	LineVector &operator=(LineVector &&) = delete;
-	~LineVector() override {
+	LineVector() : starts(256), perLine(nullptr), activeIndices(LineCharacterIndexType::None) {
 	}
 	void Init() override {
 		starts.DeleteAll();
@@ -174,16 +192,16 @@ public:
 		perLine = pl;
 	}
 	void InsertText(Sci::Line line, Sci::Position delta) noexcept override {
-		starts.InsertText(static_cast<POS>(line), static_cast<POS>(delta));
+		starts.InsertText(pos_cast(line), pos_cast(delta));
 	}
 	void InsertLine(Sci::Line line, Sci::Position position, bool lineStart) override {
-		const POS lineAsPos = static_cast<POS>(line);
-		starts.InsertPartition(lineAsPos, static_cast<POS>(position));
-		if (activeIndices) {
-			if (activeIndices & SC_LINECHARACTERINDEX_UTF32) {
+		const POS lineAsPos = pos_cast(line);
+		starts.InsertPartition(lineAsPos, pos_cast(position));
+		if (activeIndices != LineCharacterIndexType::None) {
+			if (FlagSet(activeIndices, LineCharacterIndexType::Utf32)) {
 				startsUTF32.InsertLines(line, 1);
 			}
-			if (activeIndices & SC_LINECHARACTERINDEX_UTF16) {
+			if (FlagSet(activeIndices, LineCharacterIndexType::Utf16)) {
 				startsUTF16.InsertLines(line, 1);
 			}
 		}
@@ -194,17 +212,17 @@ public:
 		}
 	}
 	void InsertLines(Sci::Line line, const Sci::Position *positions, size_t lines, bool lineStart) override {
-		const POS lineAsPos = static_cast<POS>(line);
-		if (sizeof(Sci::Position) == sizeof(POS)) {
-			starts.InsertPartitions(lineAsPos, reinterpret_cast<const POS *>(positions), lines);
+		const POS lineAsPos = pos_cast(line);
+		if constexpr (sizeof(Sci::Position) == sizeof(POS)) {
+			starts.InsertPartitions(lineAsPos, positions, lines);
 		} else {
 			starts.InsertPartitionsWithCast(lineAsPos, positions, lines);
 		}
-		if (activeIndices) {
-			if (activeIndices & SC_LINECHARACTERINDEX_UTF32) {
+		if (activeIndices != LineCharacterIndexType::None) {
+			if (FlagSet(activeIndices, LineCharacterIndexType::Utf32)) {
 				startsUTF32.InsertLines(line, lines);
 			}
-			if (activeIndices & SC_LINECHARACTERINDEX_UTF16) {
+			if (FlagSet(activeIndices, LineCharacterIndexType::Utf16)) {
 				startsUTF16.InsertLines(line, lines);
 			}
 		}
@@ -215,107 +233,115 @@ public:
 		}
 	}
 	void SetLineStart(Sci::Line line, Sci::Position position) noexcept override {
-		starts.SetPartitionStartPosition(static_cast<POS>(line), static_cast<POS>(position));
+		starts.SetPartitionStartPosition(pos_cast(line), pos_cast(position));
 	}
 	void RemoveLine(Sci::Line line) override {
-		starts.RemovePartition(static_cast<POS>(line));
-		if (activeIndices & SC_LINECHARACTERINDEX_UTF32) {
-			startsUTF32.starts.RemovePartition(static_cast<POS>(line));
+		starts.RemovePartition(pos_cast(line));
+		if (FlagSet(activeIndices, LineCharacterIndexType::Utf32)) {
+			startsUTF32.starts.RemovePartition(pos_cast(line));
 		}
-		if (activeIndices & SC_LINECHARACTERINDEX_UTF16) {
-			startsUTF16.starts.RemovePartition(static_cast<POS>(line));
+		if (FlagSet(activeIndices, LineCharacterIndexType::Utf16)) {
+			startsUTF16.starts.RemovePartition(pos_cast(line));
 		}
 		if (perLine) {
 			perLine->RemoveLine(line);
 		}
 	}
 	Sci::Line Lines() const noexcept override {
-		return static_cast<Sci::Line>(starts.Partitions());
+		return line_from_pos_cast(starts.Partitions());
+	}
+	void AllocateLines(Sci::Line lines) override {
+		if (lines > Lines()) {
+			starts.ReAllocate(lines);
+			if (FlagSet(activeIndices, LineCharacterIndexType::Utf32)) {
+				startsUTF32.AllocateLines(lines);
+			}
+			if (FlagSet(activeIndices, LineCharacterIndexType::Utf16)) {
+				startsUTF16.AllocateLines(lines);
+			}
+		}
 	}
 	Sci::Line LineFromPosition(Sci::Position pos) const noexcept override {
-		return static_cast<Sci::Line>(starts.PartitionFromPosition(static_cast<POS>(pos)));
+		return line_from_pos_cast(starts.PartitionFromPosition(pos_cast(pos)));
 	}
 	Sci::Position LineStart(Sci::Line line) const noexcept override {
-		return starts.PositionFromPartition(static_cast<POS>(line));
+		return starts.PositionFromPartition(pos_cast(line));
 	}
 	void InsertCharacters(Sci::Line line, CountWidths delta) noexcept override {
-		if (activeIndices & SC_LINECHARACTERINDEX_UTF32) {
-			startsUTF32.starts.InsertText(static_cast<POS>(line), static_cast<POS>(delta.WidthUTF32()));
+		if (FlagSet(activeIndices, LineCharacterIndexType::Utf32)) {
+			startsUTF32.starts.InsertText(pos_cast(line), pos_cast(delta.WidthUTF32()));
 		}
-		if (activeIndices & SC_LINECHARACTERINDEX_UTF16) {
-			startsUTF16.starts.InsertText(static_cast<POS>(line), static_cast<POS>(delta.WidthUTF16()));
+		if (FlagSet(activeIndices, LineCharacterIndexType::Utf16)) {
+			startsUTF16.starts.InsertText(pos_cast(line), pos_cast(delta.WidthUTF16()));
 		}
 	}
 	void SetLineCharactersWidth(Sci::Line line, CountWidths width) noexcept override {
-		if (activeIndices & SC_LINECHARACTERINDEX_UTF32) {
+		if (FlagSet(activeIndices, LineCharacterIndexType::Utf32)) {
 			assert(startsUTF32.starts.Partitions() == starts.Partitions());
 			startsUTF32.SetLineWidth(line, width.WidthUTF32());
 		}
-		if (activeIndices & SC_LINECHARACTERINDEX_UTF16) {
+		if (FlagSet(activeIndices, LineCharacterIndexType::Utf16)) {
 			assert(startsUTF16.starts.Partitions() == starts.Partitions());
 			startsUTF16.SetLineWidth(line, width.WidthUTF16());
 		}
 	}
 
-	int LineCharacterIndex() const noexcept override {
+	LineCharacterIndexType LineCharacterIndex() const noexcept override {
 		return activeIndices;
 	}
-	bool AllocateLineCharacterIndex(int lineCharacterIndex, Sci::Line lines) override {
-		const int activeIndicesStart = activeIndices;
-		if ((lineCharacterIndex & SC_LINECHARACTERINDEX_UTF32) != 0) {
+	bool AllocateLineCharacterIndex(LineCharacterIndexType lineCharacterIndex, Sci::Line lines) override {
+		const LineCharacterIndexType activeIndicesStart = activeIndices;
+		if (FlagSet(lineCharacterIndex, LineCharacterIndexType::Utf32)) {
 			startsUTF32.Allocate(lines);
 			assert(startsUTF32.starts.Partitions() == starts.Partitions());
 		}
-		if ((lineCharacterIndex & SC_LINECHARACTERINDEX_UTF16) != 0) {
+		if (FlagSet(lineCharacterIndex, LineCharacterIndexType::Utf16)) {
 			startsUTF16.Allocate(lines);
 			assert(startsUTF16.starts.Partitions() == starts.Partitions());
 		}
 		SetActiveIndices();
 		return activeIndicesStart != activeIndices;
 	}
-	bool ReleaseLineCharacterIndex(int lineCharacterIndex) override {
-		const int activeIndicesStart = activeIndices;
-		if ((lineCharacterIndex & SC_LINECHARACTERINDEX_UTF32) != 0) {
+	bool ReleaseLineCharacterIndex(LineCharacterIndexType lineCharacterIndex) override {
+		const LineCharacterIndexType activeIndicesStart = activeIndices;
+		if (FlagSet(lineCharacterIndex, LineCharacterIndexType::Utf32)) {
 			startsUTF32.Release();
 		}
-		if ((lineCharacterIndex & SC_LINECHARACTERINDEX_UTF16) != 0) {
+		if (FlagSet(lineCharacterIndex, LineCharacterIndexType::Utf16)) {
 			startsUTF16.Release();
 		}
 		SetActiveIndices();
 		return activeIndicesStart != activeIndices;
 	}
-	Sci::Position IndexLineStart(Sci::Line line, int lineCharacterIndex) const noexcept override {
-		if (lineCharacterIndex == SC_LINECHARACTERINDEX_UTF32) {
-			return startsUTF32.starts.PositionFromPartition(static_cast<POS>(line));
+	Sci::Position IndexLineStart(Sci::Line line, LineCharacterIndexType lineCharacterIndex) const noexcept override {
+		if (lineCharacterIndex == LineCharacterIndexType::Utf32) {
+			return startsUTF32.starts.PositionFromPartition(pos_cast(line));
 		} else {
-			return startsUTF16.starts.PositionFromPartition(static_cast<POS>(line));
+			return startsUTF16.starts.PositionFromPartition(pos_cast(line));
 		}
 	}
-	Sci::Line LineFromPositionIndex(Sci::Position pos, int lineCharacterIndex) const noexcept override {
-		if (lineCharacterIndex == SC_LINECHARACTERINDEX_UTF32) {
-			return static_cast<Sci::Line>(startsUTF32.starts.PartitionFromPosition(static_cast<POS>(pos)));
+	Sci::Line LineFromPositionIndex(Sci::Position pos, LineCharacterIndexType lineCharacterIndex) const noexcept override {
+		if (lineCharacterIndex == LineCharacterIndexType::Utf32) {
+			return line_from_pos_cast(startsUTF32.starts.PartitionFromPosition(pos_cast(pos)));
 		} else {
-			return static_cast<Sci::Line>(startsUTF16.starts.PartitionFromPosition(static_cast<POS>(pos)));
+			return line_from_pos_cast(startsUTF16.starts.PartitionFromPosition(pos_cast(pos)));
 		}
 	}
 };
 
 Action::Action() noexcept {
-	at = startAction;
+	at = ActionType::start;
 	position = 0;
 	lenData = 0;
 	mayCoalesce = false;
 }
 
-Action::~Action() {
-}
-
-void Action::Create(actionType at_, Sci::Position position_, const char *data_, Sci::Position lenData_, bool mayCoalesce_) {
+void Action::Create(ActionType at_, Sci::Position position_, const char *data_, Sci::Position lenData_, bool mayCoalesce_) {
 	data = nullptr;
 	position = position_;
 	at = at_;
 	if (lenData_) {
-		data = Sci::make_unique<char[]>(lenData_);
+		data = std::make_unique<char[]>(lenData_);
 		memcpy(&data[0], data_, lenData_);
 	}
 	lenData = lenData_;
@@ -354,10 +380,7 @@ UndoHistory::UndoHistory() {
 	savePoint = 0;
 	tentativePoint = -1;
 
-	actions[currentAction].Create(startAction);
-}
-
-UndoHistory::~UndoHistory() {
+	actions[currentAction].Create(ActionType::start);
 }
 
 void UndoHistory::EnsureUndoRoom() {
@@ -369,7 +392,7 @@ void UndoHistory::EnsureUndoRoom() {
 	}
 }
 
-const char *UndoHistory::AppendAction(actionType at, Sci::Position position, const char *data, Sci::Position lengthData,
+const char *UndoHistory::AppendAction(ActionType at, Sci::Position position, const char *data, Sci::Position lengthData,
 	bool &startSequence, bool mayCoalesce) {
 	EnsureUndoRoom();
 	//Platform::DebugPrintf("%% %d action %d %d %d\n", at, position, lengthData, currentAction);
@@ -377,15 +400,20 @@ const char *UndoHistory::AppendAction(actionType at, Sci::Position position, con
 	//	actions[currentAction - 1].position, actions[currentAction - 1].lenData);
 	if (currentAction < savePoint) {
 		savePoint = -1;
+		if (!detach) {
+			detach = currentAction;
+		}
+	} else if (detach && (*detach > currentAction)) {
+		detach = currentAction;
 	}
-	int oldCurrentAction = currentAction;
+	const int oldCurrentAction = currentAction;
 	if (currentAction >= 1) {
 		if (0 == undoSequenceDepth) {
 			// Top level actions may not always be coalesced
-			int targetAct = -1;
+			ptrdiff_t targetAct = -1;
 			const Action *actPrevious = &(actions[currentAction + targetAct]);
 			// Container actions may forward the coalesce state of Scintilla Actions.
-			while ((actPrevious->at == containerAction) && actPrevious->mayCoalesce) {
+			while ((actPrevious->at == ActionType::container) && actPrevious->mayCoalesce) {
 				targetAct--;
 				actPrevious = &(actions[currentAction + targetAct]);
 			}
@@ -398,15 +426,15 @@ const char *UndoHistory::AppendAction(actionType at, Sci::Position position, con
 				currentAction++;
 			} else if (!mayCoalesce || !actPrevious->mayCoalesce) {
 				currentAction++;
-			} else if (at == containerAction || actions[currentAction].at == containerAction) {
+			} else if (at == ActionType::container || actions[currentAction].at == ActionType::container) {
 				;	// A coalescible containerAction
-			} else if ((at != actPrevious->at) && (actPrevious->at != startAction)) {
+			} else if ((at != actPrevious->at) && (actPrevious->at != ActionType::start)) {
 				currentAction++;
-			} else if ((at == insertAction) &&
+			} else if ((at == ActionType::insert) &&
 			           (position != (actPrevious->position + actPrevious->lenData))) {
 				// Insertions must be immediately after to coalesce
 				currentAction++;
-			} else if (at == removeAction) {
+			} else if (at == ActionType::remove) {
 				if ((lengthData == 1) || (lengthData == 2)) {
 					if ((position + lengthData) == actPrevious->position) {
 						; // Backspace -> OK
@@ -436,7 +464,7 @@ const char *UndoHistory::AppendAction(actionType at, Sci::Position position, con
 	const int actionWithData = currentAction;
 	actions[currentAction].Create(at, position, data, lengthData, mayCoalesce);
 	currentAction++;
-	actions[currentAction].Create(startAction);
+	actions[currentAction].Create(ActionType::start);
 	maxAction = currentAction;
 	return actions[actionWithData].data.get();
 }
@@ -444,9 +472,9 @@ const char *UndoHistory::AppendAction(actionType at, Sci::Position position, con
 void UndoHistory::BeginUndoAction() {
 	EnsureUndoRoom();
 	if (undoSequenceDepth == 0) {
-		if (actions[currentAction].at != startAction) {
+		if (actions[currentAction].at != ActionType::start) {
 			currentAction++;
-			actions[currentAction].Create(startAction);
+			actions[currentAction].Create(ActionType::start);
 			maxAction = currentAction;
 		}
 		actions[currentAction].mayCoalesce = false;
@@ -459,9 +487,9 @@ void UndoHistory::EndUndoAction() {
 	EnsureUndoRoom();
 	undoSequenceDepth--;
 	if (0 == undoSequenceDepth) {
-		if (actions[currentAction].at != startAction) {
+		if (actions[currentAction].at != ActionType::start) {
 			currentAction++;
-			actions[currentAction].Create(startAction);
+			actions[currentAction].Create(ActionType::start);
 			maxAction = currentAction;
 		}
 		actions[currentAction].mayCoalesce = false;
@@ -477,17 +505,34 @@ void UndoHistory::DeleteUndoHistory() {
 		actions[i].Clear();
 	maxAction = 0;
 	currentAction = 0;
-	actions[currentAction].Create(startAction);
+	actions[currentAction].Create(ActionType::start);
 	savePoint = 0;
 	tentativePoint = -1;
 }
 
 void UndoHistory::SetSavePoint() noexcept {
 	savePoint = currentAction;
+	detach.reset();
 }
 
 bool UndoHistory::IsSavePoint() const noexcept {
 	return savePoint == currentAction;
+}
+
+bool UndoHistory::BeforeSavePoint() const noexcept {
+	return (savePoint < 0) || (savePoint > currentAction);
+}
+
+bool UndoHistory::BeforeReachableSavePoint() const noexcept {
+	return (savePoint >= 0) && !detach && (savePoint > currentAction);
+}
+
+bool UndoHistory::AfterSavePoint() const noexcept {
+	return (savePoint >= 0) && (savePoint <= currentAction);
+}
+
+bool UndoHistory::AfterDetachPoint() const noexcept {
+	return detach && (*detach < currentAction);
 }
 
 void UndoHistory::TentativeStart() {
@@ -506,7 +551,7 @@ bool UndoHistory::TentativeActive() const noexcept {
 
 int UndoHistory::TentativeSteps() noexcept {
 	// Drop any trailing startAction
-	if (actions[currentAction].at == startAction && currentAction > 0)
+	if (actions[currentAction].at == ActionType::start && currentAction > 0)
 		currentAction--;
 	if (tentativePoint >= 0)
 		return currentAction - tentativePoint;
@@ -520,12 +565,12 @@ bool UndoHistory::CanUndo() const noexcept {
 
 int UndoHistory::StartUndo() {
 	// Drop any trailing startAction
-	if (actions[currentAction].at == startAction && currentAction > 0)
+	if (actions[currentAction].at == ActionType::start && currentAction > 0)
 		currentAction--;
 
 	// Count the steps in this action
 	int act = currentAction;
-	while (actions[act].at != startAction && act > 0) {
+	while (actions[act].at != ActionType::start && act > 0) {
 		act--;
 	}
 	return currentAction - act;
@@ -545,12 +590,12 @@ bool UndoHistory::CanRedo() const noexcept {
 
 int UndoHistory::StartRedo() {
 	// Drop any leading startAction
-	if (currentAction < maxAction && actions[currentAction].at == startAction)
+	if (currentAction < maxAction && actions[currentAction].at == ActionType::start)
 		currentAction++;
 
 	// Count the steps in this action
 	int act = currentAction;
-	while (act < maxAction && actions[act].at != startAction) {
+	while (act < maxAction && actions[act].at != ActionType::start) {
 		act++;
 	}
 	return act - currentAction;
@@ -568,16 +613,15 @@ CellBuffer::CellBuffer(bool hasStyles_, bool largeDocument_) :
 	hasStyles(hasStyles_), largeDocument(largeDocument_) {
 	readOnly = false;
 	utf8Substance = false;
-	utf8LineEnds = 0;
+	utf8LineEnds = LineEndType::Default;
 	collectingUndo = true;
 	if (largeDocument)
-		plv = Sci::make_unique<LineVector<Sci::Position>>();
+		plv = std::make_unique<LineVector<Sci::Position>>();
 	else
-		plv = Sci::make_unique<LineVector<int>>();
+		plv = std::make_unique<LineVector<int>>();
 }
 
-CellBuffer::~CellBuffer() {
-}
+CellBuffer::~CellBuffer() noexcept = default;
 
 char CellBuffer::CharAt(Sci::Position position) const noexcept {
 	return substance.ValueAt(position);
@@ -603,7 +647,7 @@ void CellBuffer::GetCharRange(char *buffer, Sci::Position position, Sci::Positio
 }
 
 char CellBuffer::StyleAt(Sci::Position position) const noexcept {
-	return hasStyles ? style.ValueAt(position) : 0;
+	return hasStyles ? style.ValueAt(position) : '\0';
 }
 
 void CellBuffer::GetStyleRange(unsigned char *buffer, Sci::Position position, Sci::Position lengthRetrieve) const {
@@ -637,6 +681,21 @@ Sci::Position CellBuffer::GapPosition() const noexcept {
 	return substance.GapPosition();
 }
 
+SplitView CellBuffer::AllView() const noexcept {
+	const size_t length = substance.Length();
+	size_t length1 = substance.GapPosition();
+	if (length1 == 0) {
+		// Assign segment2 to segment1 / length1 to avoid useless test against 0 length1
+		length1 = length;
+	}
+	return SplitView {
+		substance.ElementPointer(0),
+		length1,
+		substance.ElementPointer(length1) - length1,
+		length
+	};
+}
+
 // The char* returned is to an allocation owned by the undo history
 const char *CellBuffer::InsertString(Sci::Position position, const char *s, Sci::Position insertLength, bool &startSequence) {
 	// InsertString and DeleteChars are the bottleneck though which all changes occur
@@ -645,10 +704,13 @@ const char *CellBuffer::InsertString(Sci::Position position, const char *s, Sci:
 		if (collectingUndo) {
 			// Save into the undo/redo stack, but only the characters - not the formatting
 			// This takes up about half load time
-			data = uh.AppendAction(insertAction, position, s, insertLength, startSequence);
+			data = uh.AppendAction(ActionType::insert, position, s, insertLength, startSequence);
 		}
 
 		BasicInsertString(position, s, insertLength);
+		if (changeHistory) {
+			changeHistory->Insert(position, insertLength, collectingUndo, uh.BeforeReachableSavePoint());
+		}
 	}
 	return data;
 }
@@ -694,7 +756,12 @@ const char *CellBuffer::DeleteChars(Sci::Position position, Sci::Position delete
 			// Save into the undo/redo stack, but only the characters - not the formatting
 			// The gap would be moved to position anyway for the deletion so this doesn't cost extra
 			data = substance.RangePointer(position, deleteLength);
-			data = uh.AppendAction(removeAction, position, data, deleteLength, startSequence);
+			data = uh.AppendAction(ActionType::remove, position, data, deleteLength, startSequence);
+		}
+
+		if (changeHistory) {
+			changeHistory->DeleteRangeSavingHistory(position, deleteLength,
+				uh.BeforeReachableSavePoint(), uh.AfterDetachPoint());
 		}
 
 		BasicDeleteChars(position, deleteLength);
@@ -707,6 +774,9 @@ Sci::Position CellBuffer::Length() const noexcept {
 }
 
 void CellBuffer::Allocate(Sci::Position newSize) {
+	if (!largeDocument && (newSize > INT32_MAX)) {
+		throw std::runtime_error("CellBuffer::Allocate: size of standard document limited to 2G.");
+	}
 	substance.ReAllocate(newSize);
 	if (hasStyles) {
 		style.ReAllocate(newSize);
@@ -717,9 +787,9 @@ void CellBuffer::SetUTF8Substance(bool utf8Substance_) noexcept {
 	utf8Substance = utf8Substance_;
 }
 
-void CellBuffer::SetLineEndTypes(int utf8LineEnds_) {
+void CellBuffer::SetLineEndTypes(LineEndType utf8LineEnds_) {
 	if (utf8LineEnds != utf8LineEnds_) {
-		const int indexes = plv->LineCharacterIndex();
+		const LineCharacterIndexType indexes = plv->LineCharacterIndex();
 		utf8LineEnds = utf8LineEnds_;
 		ResetLineEnds();
 		AllocateLineCharacterIndex(indexes);
@@ -733,7 +803,7 @@ bool CellBuffer::ContainsLineEnd(const char *s, Sci::Position length) const noex
 		const unsigned char ch = s[i];
 		if ((ch == '\r') || (ch == '\n')) {
 			return true;
-		} else if (utf8LineEnds) {
+		} else if (utf8LineEnds == LineEndType::Unicode) {
 			if (UTF8IsMultibyteLineEnd(chBeforePrev, chPrev, ch)) {
 				return true;
 			}
@@ -748,11 +818,11 @@ void CellBuffer::SetPerLine(PerLine *pl) noexcept {
 	plv->SetPerLine(pl);
 }
 
-int CellBuffer::LineCharacterIndex() const noexcept {
+LineCharacterIndexType CellBuffer::LineCharacterIndex() const noexcept {
 	return plv->LineCharacterIndex();
 }
 
-void CellBuffer::AllocateLineCharacterIndex(int lineCharacterIndex) {
+void CellBuffer::AllocateLineCharacterIndex(LineCharacterIndexType lineCharacterIndex) {
 	if (utf8Substance) {
 		if (plv->AllocateLineCharacterIndex(lineCharacterIndex, Lines())) {
 			// Changed so recalculate whole file
@@ -761,12 +831,16 @@ void CellBuffer::AllocateLineCharacterIndex(int lineCharacterIndex) {
 	}
 }
 
-void CellBuffer::ReleaseLineCharacterIndex(int lineCharacterIndex) {
+void CellBuffer::ReleaseLineCharacterIndex(LineCharacterIndexType lineCharacterIndex) {
 	plv->ReleaseLineCharacterIndex(lineCharacterIndex);
 }
 
 Sci::Line CellBuffer::Lines() const noexcept {
 	return plv->Lines();
+}
+
+void CellBuffer::AllocateLines(Sci::Line lines) {
+	plv->AllocateLines(lines);
 }
 
 Sci::Position CellBuffer::LineStart(Sci::Line line) const noexcept {
@@ -778,15 +852,42 @@ Sci::Position CellBuffer::LineStart(Sci::Line line) const noexcept {
 		return plv->LineStart(line);
 }
 
+Sci::Position CellBuffer::LineEnd(Sci::Line line) const noexcept {
+	if (line >= Lines() - 1) {
+		return LineStart(line + 1);
+	} else {
+		Sci::Position position = LineStart(line + 1);
+		if (LineEndType::Unicode == GetLineEndTypes()) {
+			const unsigned char bytes[] = {
+				UCharAt(position - 3),
+				UCharAt(position - 2),
+				UCharAt(position - 1),
+			};
+			if (UTF8IsSeparator(bytes)) {
+				return position - UTF8SeparatorLength;
+			}
+			if (UTF8IsNEL(bytes + 1)) {
+				return position - UTF8NELLength;
+			}
+		}
+		position--; // Back over CR or LF
+		// When line terminator is CR+LF, may need to go back one more
+		if ((position > LineStart(line)) && (CharAt(position - 1) == '\r')) {
+			position--;
+		}
+		return position;
+	}
+}
+
 Sci::Line CellBuffer::LineFromPosition(Sci::Position pos) const noexcept {
 	return plv->LineFromPosition(pos);
 }
 
-Sci::Position CellBuffer::IndexLineStart(Sci::Line line, int lineCharacterIndex) const noexcept {
+Sci::Position CellBuffer::IndexLineStart(Sci::Line line, LineCharacterIndexType lineCharacterIndex) const noexcept {
 	return plv->IndexLineStart(line, lineCharacterIndex);
 }
 
-Sci::Line CellBuffer::LineFromPositionIndex(Sci::Position pos, int lineCharacterIndex) const noexcept {
+Sci::Line CellBuffer::LineFromPositionIndex(Sci::Position pos, LineCharacterIndexType lineCharacterIndex) const noexcept {
 	return plv->LineFromPositionIndex(pos, lineCharacterIndex);
 }
 
@@ -808,6 +909,9 @@ bool CellBuffer::HasStyles() const noexcept {
 
 void CellBuffer::SetSavePoint() {
 	uh.SetSavePoint();
+	if (changeHistory) {
+		changeHistory->SetSavePoint();
+	}
 }
 
 bool CellBuffer::IsSavePoint() const noexcept {
@@ -863,7 +967,7 @@ bool CellBuffer::UTF8IsCharacterBoundary(Sci::Position position) const {
 			if (!UTF8IsTrailByte(back.front())) {
 				if (i > 0) {
 					// Have reached a non-trail
-					const int cla = UTF8Classify(reinterpret_cast<const unsigned char*>(back.data()), back.size());
+					const int cla = UTF8Classify(back);
 					if ((cla & UTF8MaskInvalid) || (cla != i)) {
 						return false;
 					}
@@ -883,13 +987,15 @@ bool CellBuffer::UTF8IsCharacterBoundary(Sci::Position position) const {
 
 void CellBuffer::ResetLineEnds() {
 	// Reinitialize line data -- too much work to preserve
+	const Sci::Line lines = plv->Lines();
 	plv->Init();
+	plv->AllocateLines(lines);
 
-	const Sci::Position position = 0;
+	constexpr Sci::Position position = 0;
 	const Sci::Position length = Length();
+	plv->InsertText(0, length);
 	Sci::Line lineInsert = 1;
-	const bool atLineStart = true;
-	plv->InsertText(lineInsert-1, length);
+	constexpr bool atLineStart = true;
 	unsigned char chBeforePrev = 0;
 	unsigned char chPrev = 0;
 	for (Sci::Position i = 0; i < length; i++) {
@@ -905,7 +1011,7 @@ void CellBuffer::ResetLineEnds() {
 				InsertLine(lineInsert, (position + i) + 1, atLineStart);
 				lineInsert++;
 			}
-		} else if (utf8LineEnds) {
+		} else if (utf8LineEnds == LineEndType::Unicode) {
 			if (UTF8IsMultibyteLineEnd(chBeforePrev, chPrev, ch)) {
 				InsertLine(lineInsert, (position + i) + 1, atLineStart);
 				lineInsert++;
@@ -918,14 +1024,14 @@ void CellBuffer::ResetLineEnds() {
 
 namespace {
 
-CountWidths CountCharacterWidthsUTF8(const char *s, size_t len) noexcept {
+CountWidths CountCharacterWidthsUTF8(std::string_view sv) noexcept {
 	CountWidths cw;
-	size_t remaining = len;
+	size_t remaining = sv.length();
 	while (remaining > 0) {
-		const int utf8Status = UTF8Classify(reinterpret_cast<const unsigned char*>(s), len);
+		const int utf8Status = UTF8Classify(sv);
 		const int lenChar = utf8Status & UTF8MaskWidth;
 		cw.CountChar(lenChar);
-		s += lenChar;
+		sv.remove_prefix(lenChar);
 		remaining -= lenChar;
 	}
 	return cw;
@@ -934,7 +1040,7 @@ CountWidths CountCharacterWidthsUTF8(const char *s, size_t len) noexcept {
 }
 
 bool CellBuffer::MaintainingLineCharacterIndex() const noexcept {
-	return plv->LineCharacterIndex() != SC_LINECHARACTERINDEX_NONE;
+	return plv->LineCharacterIndex() != LineCharacterIndexType::None;
 }
 
 void CellBuffer::RecalculateIndexLineStarts(Sci::Line lineFirst, Sci::Line lineLast) {
@@ -946,8 +1052,8 @@ void CellBuffer::RecalculateIndexLineStarts(Sci::Line lineFirst, Sci::Line lineL
 		posLineEnd = LineStart(line+1);
 		const Sci::Position width = posLineEnd - posLineStart;
 		text.resize(width);
-		GetCharRange(const_cast<char *>(text.data()), posLineStart, width);
-		const CountWidths cw = CountCharacterWidthsUTF8(text.data(), text.size());
+		GetCharRange(text.data(), posLineStart, width);
+		const CountWidths cw = CountCharacterWidthsUTF8(text);
 		plv->SetLineCharactersWidth(line, cw);
 	}
 }
@@ -959,7 +1065,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 
 	const unsigned char chAfter = substance.ValueAt(position);
 	bool breakingUTF8LineEnd = false;
-	if (utf8LineEnds && UTF8IsTrailByte(chAfter)) {
+	if (utf8LineEnds == LineEndType::Unicode && UTF8IsTrailByte(chAfter)) {
 		breakingUTF8LineEnd = UTF8LineEndOverlaps(position);
 	}
 
@@ -976,7 +1082,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 		// Actually, don't need to check that whole insertion is valid just that there
 		// are no potential fragments at ends.
 		simpleInsertion = UTF8IsCharacterBoundary(position) &&
-			UTF8IsValid(s, insertLength);
+			UTF8IsValid(std::string_view(s, insertLength));
 	}
 
 	substance.InsertFromArray(position, s, 0, insertLength);
@@ -1019,7 +1125,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 		uint8_t eolTable[256]{};
 		eolTable[static_cast<uint8_t>('\n')] = 1;
 		eolTable[static_cast<uint8_t>('\r')] = 2;
-		if (utf8LineEnds) {
+		if (utf8LineEnds == LineEndType::Unicode) {
 			// see UniConversion.h for LS, PS and NEL
 			eolTable[0x85] = 4;
 			eolTable[0xa8] = 3;
@@ -1040,6 +1146,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 				if (*ptr == '\n') {
 					++ptr;
 				}
+				[[fallthrough]];
 			case 1: // '\n'
 				positions[nPositions++] = position + ptr - s;
 				if (nPositions == PositionBlockSize) {
@@ -1078,7 +1185,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 		if (ch == '\r' || ch == '\n') {
 			InsertLine(lineInsert, (position + ptr - s), atLineStart);
 			lineInsert++;
-		} else if (utf8LineEnds && !UTF8IsAscii(ch)) {
+		} else if (utf8LineEnds == LineEndType::Unicode && !UTF8IsAscii(ch)) {
 			if (UTF8IsMultibyteLineEnd(chBeforePrev, chPrev, ch)) {
 				InsertLine(lineInsert, (position + ptr - s), atLineStart);
 				lineInsert++;
@@ -1093,7 +1200,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 			RemoveLine(lineInsert - 1);
 			simpleInsertion = false;
 		}
-	} else if (utf8LineEnds && !UTF8IsAscii(chAfter)) {
+	} else if (utf8LineEnds == LineEndType::Unicode && !UTF8IsAscii(chAfter)) {
 		chBeforePrev = chPrev;
 		chPrev = ch;
 		// May have end of UTF-8 line end in buffer and start in insertion
@@ -1114,7 +1221,7 @@ void CellBuffer::BasicInsertString(Sci::Position position, const char *s, Sci::P
 	}
 	if (maintainingIndex) {
 		if (simpleInsertion && (lineInsert == lineStart)) {
-			const CountWidths cw = CountCharacterWidthsUTF8(s, insertLength);
+			const CountWidths cw = CountCharacterWidthsUTF8(std::string_view(s, insertLength));
 			plv->InsertCharacters(linePosition, cw);
 		} else {
 			RecalculateIndexLineStarts(linePosition, lineInsert - 1);
@@ -1126,7 +1233,7 @@ void CellBuffer::BasicDeleteChars(Sci::Position position, Sci::Position deleteLe
 	if (deleteLength == 0)
 		return;
 
-	Sci::Line lineRecalculateStart = INVALID_POSITION;
+	Sci::Line lineRecalculateStart = Sci::invalidPosition;
 
 	if ((position == 0) && (deleteLength == substance.Length())) {
 		// If whole buffer is being deleted, faster to reinitialise lines data
@@ -1154,10 +1261,10 @@ void CellBuffer::BasicDeleteChars(Sci::Position position, Sci::Position deleteLe
 				UTF8IsCharacterBoundary(position) && UTF8IsCharacterBoundary(posEnd);
 			if (simpleDeletion) {
 				std::string text(deleteLength, '\0');
-				GetCharRange(const_cast<char *>(text.data()), position, deleteLength);
-				if (UTF8IsValid(text.data(), text.size())) {
+				GetCharRange(text.data(), position, deleteLength);
+				if (UTF8IsValid(text)) {
 					// Everything is good
-					const CountWidths cw = CountCharacterWidthsUTF8(text.data(), text.size());
+					const CountWidths cw = CountCharacterWidthsUTF8(text);
 					plv->InsertCharacters(linePosition, -cw);
 				} else {
 					lineRecalculateStart = linePosition;
@@ -1174,7 +1281,7 @@ void CellBuffer::BasicDeleteChars(Sci::Position position, Sci::Position deleteLe
 			lineRemove++;
 			ignoreNL = true; 	// First \n is not real deletion
 		}
-		if (utf8LineEnds && UTF8IsTrailByte(chNext)) {
+		if (utf8LineEnds == LineEndType::Unicode && UTF8IsTrailByte(chNext)) {
 			if (UTF8LineEndOverlaps(position)) {
 				RemoveLine(lineRemove);
 			}
@@ -1193,7 +1300,7 @@ void CellBuffer::BasicDeleteChars(Sci::Position position, Sci::Position deleteLe
 				} else {
 					RemoveLine(lineRemove);
 				}
-			} else if (utf8LineEnds) {
+			} else if (utf8LineEnds == LineEndType::Unicode) {
 				if (!UTF8IsAscii(ch)) {
 					const unsigned char next3[3] = {ch, chNext,
 						static_cast<unsigned char>(substance.ValueAt(position + i + 2))};
@@ -1242,8 +1349,8 @@ void CellBuffer::EndUndoAction() {
 }
 
 void CellBuffer::AddUndoAction(Sci::Position token, bool mayCoalesce) {
-	bool startSequence;
-	uh.AppendAction(containerAction, token, nullptr, 0, startSequence, mayCoalesce);
+	bool startSequence = false;
+	uh.AppendAction(ActionType::container, token, nullptr, 0, startSequence, mayCoalesce);
 }
 
 void CellBuffer::DeleteUndoHistory() {
@@ -1264,14 +1371,24 @@ const Action &CellBuffer::GetUndoStep() const {
 
 void CellBuffer::PerformUndoStep() {
 	const Action &actionStep = uh.GetUndoStep();
-	if (actionStep.at == insertAction) {
+	if (changeHistory && uh.BeforeSavePoint()) {
+		changeHistory->StartReversion();
+	}
+	if (actionStep.at == ActionType::insert) {
 		if (substance.Length() < actionStep.lenData) {
 			throw std::runtime_error(
 				"CellBuffer::PerformUndoStep: deletion must be less than document length.");
 		}
+		if (changeHistory) {
+			changeHistory->DeleteRange(actionStep.position, actionStep.lenData,
+				uh.BeforeSavePoint() && !uh.AfterDetachPoint());
+		}
 		BasicDeleteChars(actionStep.position, actionStep.lenData);
-	} else if (actionStep.at == removeAction) {
+	} else if (actionStep.at == ActionType::remove) {
 		BasicInsertString(actionStep.position, actionStep.data.get(), actionStep.lenData);
+		if (changeHistory) {
+			changeHistory->UndoDeleteStep(actionStep.position, actionStep.lenData, uh.AfterDetachPoint());
+		}
 	}
 	uh.CompletedUndoStep();
 }
@@ -1290,11 +1407,59 @@ const Action &CellBuffer::GetRedoStep() const {
 
 void CellBuffer::PerformRedoStep() {
 	const Action &actionStep = uh.GetRedoStep();
-	if (actionStep.at == insertAction) {
+	if (actionStep.at == ActionType::insert) {
 		BasicInsertString(actionStep.position, actionStep.data.get(), actionStep.lenData);
-	} else if (actionStep.at == removeAction) {
+		if (changeHistory) {
+			changeHistory->Insert(actionStep.position, actionStep.lenData, collectingUndo,
+				uh.BeforeSavePoint() && !uh.AfterDetachPoint());
+		}
+	} else if (actionStep.at == ActionType::remove) {
+		if (changeHistory) {
+			changeHistory->DeleteRangeSavingHistory(actionStep.position, actionStep.lenData,
+				uh.BeforeReachableSavePoint(), uh.AfterDetachPoint());
+		}
 		BasicDeleteChars(actionStep.position, actionStep.lenData);
+	}
+	if (changeHistory && uh.AfterSavePoint()) {
+		changeHistory->EndReversion();
 	}
 	uh.CompletedRedoStep();
 }
 
+void CellBuffer::ChangeHistorySet(bool set) {
+	if (set) {
+		if (!changeHistory && !uh.CanUndo()) {
+			changeHistory = std::make_unique<ChangeHistory>(Length());
+		}
+	} else {
+		changeHistory.reset();
+	}
+}
+
+int CellBuffer::EditionAt(Sci::Position pos) const noexcept {
+	if (changeHistory) {
+		return changeHistory->EditionAt(pos);
+	}
+	return 0;
+}
+
+Sci::Position CellBuffer::EditionEndRun(Sci::Position pos) const noexcept {
+	if (changeHistory) {
+		return changeHistory->EditionEndRun(pos);
+	}
+	return Length();
+}
+
+unsigned int CellBuffer::EditionDeletesAt(Sci::Position pos) const noexcept {
+	if (changeHistory) {
+		return changeHistory->EditionDeletesAt(pos);
+	}
+	return 0;
+}
+
+Sci::Position CellBuffer::EditionNextDelete(Sci::Position pos) const noexcept {
+	if (changeHistory) {
+		return changeHistory->EditionNextDelete(pos);
+	}
+	return Length() + 1;
+}

@@ -19,17 +19,18 @@
  */
 #include "gview_impl.h"
 
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
-#define QT45_FOREGROUND(x) windowText(x)
-#else
-#define QT45_FOREGROUND(x) foreground(x)
-#endif
-
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 #define QLINEF_INTERSECT intersects
 #else
 #define QLINEF_INTERSECT intersect
 #endif
+
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+#define LEVELOFDETAIL(p,x) p->levelOfDetailFromTransform(x)
+#else
+#define LEVELOFDETAIL(p,x) p->levelOfDetail
+#endif
+
 
 
 /**
@@ -178,7 +179,7 @@ EdgeHelper::paint( QPainter *painter,
 {
     if ( isNullP( src_item) || state == HELPER_STATE_INITIAL)
         return;
-    if ( option->levelOfDetail < 0.1)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) < 0.1)
         return;
 
     /** Do not draw edges when adjacent nodes intersect */
@@ -206,13 +207,13 @@ EdgeHelper::paint( QPainter *painter,
 
     //Set opacity
     painter->setOpacity( 0.3);
-    QPen pen( option->palette.QT45_FOREGROUND().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+    QPen pen( option->palette.windowText().color(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
         
     // Draw the line itself
     painter->setPen( pen);
-    painter->setBrush( option->palette.QT45_FOREGROUND().color());
+    painter->setBrush( option->palette.windowText().color());
     // Draw the arrows if there's enough room and level of detail is appropriate
-    if ( option->levelOfDetail >= draw_arrow_detail_level)
+    if ( LEVELOFDETAIL(option, painter->worldTransform()) >= draw_arrow_detail_level)
     {
         double angle = ::acos(line.dx() / line.length());
         if ( line.dy() >= 0)

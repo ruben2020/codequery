@@ -14,11 +14,7 @@
 #define SEARCHHANDLER_H_CQ
 
 #include <QtGlobal>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
 
 #include "sqlquery.h"
 
@@ -66,7 +62,7 @@ QFutureWatcher<QStringList> m_autocompFutureWatcher;
 QFutureWatcher<QStringList> m_declarFutureWatcher;
 QFutureWatcher<sqlqueryresultlist> m_listFuncFutureWatcher;
 static bool m_grepExactMatch;
-static QRegExp* m_grepRegExp;
+static QRegularExpression* m_grepRegExp;
 
 searchhandler(mainwindow* pmw);
 ~searchhandler();

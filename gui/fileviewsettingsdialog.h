@@ -14,12 +14,7 @@
 #define FILEVIEWSETTINGSDIALOG_H_CQ
 
 #include <QtGlobal>
-#if QT_VERSION >= QT_VERSION_CHECK(5, 0, 0)
 #include <QtWidgets>
-#else
-#include <QtGui>
-#endif
-
 
  namespace Ui {
      class fileViewSettingsDialog;
@@ -42,7 +37,12 @@ void setCurrentTheme(const QString& theme);
 void setTabWidth(const int& width);
 
 public slots:
+void fontSelectionTemporary(int index);
+void themeSelectionTemporary(int index);
 
+signals:
+void fontSelectionChanged(const QString& str);
+void themeSelectionChanged(const QString& str);
 
 private:
 QIntValidator m_tabwidthvalidator;

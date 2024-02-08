@@ -9,18 +9,18 @@
 #include <cstdlib>
 
 #include <stdexcept>
+#include <string_view>
 #include <vector>
+#include <optional>
 #include <algorithm>
 #include <memory>
 
-#include "Platform.h"
-
-#include "Scintilla.h"
+#include "Debugging.h"
 
 #include "Position.h"
 #include "Selection.h"
 
-using namespace Scintilla;
+using namespace Scintilla::Internal;
 
 void SelectionPosition::MoveForInsertDelete(bool insertion, Sci::Position startChange, Sci::Position length, bool moveForEqual) noexcept {
 	if (insertion) {
@@ -123,6 +123,13 @@ bool SelectionRange::ContainsCharacter(Sci::Position posCharacter) const noexcep
 		return (posCharacter >= anchor.Position()) && (posCharacter < caret.Position());
 }
 
+bool SelectionRange::ContainsCharacter(SelectionPosition spCharacter) const noexcept {
+	if (anchor > caret)
+		return (spCharacter >= caret) && (spCharacter < anchor);
+	else
+		return (spCharacter >= anchor) && (spCharacter < caret);
+}
+
 SelectionSegment SelectionRange::Intersect(SelectionSegment check) const noexcept {
 	const SelectionSegment inOrder(caret, anchor);
 	if ((inOrder.start <= check.end) || (inOrder.end >= check.start)) {
@@ -190,15 +197,12 @@ void SelectionRange::MinimizeVirtualSpace() noexcept {
 	}
 }
 
-Selection::Selection() : mainRange(0), moveExtends(false), tentativeMain(false), selType(selStream) {
+Selection::Selection() : mainRange(0), moveExtends(false), tentativeMain(false), selType(SelTypes::stream) {
 	AddSelection(SelectionRange(SelectionPosition(0)));
 }
 
-Selection::~Selection() {
-}
-
 bool Selection::IsRectangular() const noexcept {
-	return (selType == selRectangle) || (selType == selThin);
+	return (selType == SelTypes::rectangle) || (selType == SelTypes::thin);
 }
 
 Sci::Position Selection::MainCaret() const noexcept {
@@ -310,7 +314,7 @@ void Selection::MovePositions(bool insertion, Sci::Position startChange, Sci::Po
 	for (SelectionRange &range : ranges) {
 		range.MoveForInsertDelete(insertion, startChange, length);
 	}
-	if (selType == selRectangle) {
+	if (selType == SelTypes::rectangle) {
 		rangeRectangular.MoveForInsertDelete(insertion, startChange, length);
 	}
 }
@@ -390,20 +394,24 @@ void Selection::CommitTentative() noexcept {
 	tentativeMain = false;
 }
 
-int Selection::CharacterInSelection(Sci::Position posCharacter) const noexcept {
-	for (size_t i=0; i<ranges.size(); i++) {
-		if (ranges[i].ContainsCharacter(posCharacter))
-			return i == mainRange ? 1 : 2;
-	}
-	return 0;
+InSelection Selection::RangeType(size_t r) const noexcept {
+	return r == Main() ? InSelection::inMain : InSelection::inAdditional;
 }
 
-int Selection::InSelectionForEOL(Sci::Position pos) const noexcept {
+InSelection Selection::CharacterInSelection(Sci::Position posCharacter) const noexcept {
+	for (size_t i=0; i<ranges.size(); i++) {
+		if (ranges[i].ContainsCharacter(posCharacter))
+			return RangeType(i);
+	}
+	return InSelection::inNone;
+}
+
+InSelection Selection::InSelectionForEOL(Sci::Position pos) const noexcept {
 	for (size_t i=0; i<ranges.size(); i++) {
 		if (!ranges[i].Empty() && (pos > ranges[i].Start().Position()) && (pos <= ranges[i].End().Position()))
-			return i == mainRange ? 1 : 2;
+			return RangeType(i);
 	}
-	return 0;
+	return InSelection::inNone;
 }
 
 Sci::Position Selection::VirtualSpaceFor(Sci::Position pos) const noexcept {
@@ -421,7 +429,7 @@ void Selection::Clear() {
 	ranges.clear();
 	ranges.emplace_back();
 	mainRange = ranges.size() - 1;
-	selType = selStream;
+	selType = SelTypes::stream;
 	moveExtends = false;
 	ranges[mainRange].Reset();
 	rangeRectangular.Reset();

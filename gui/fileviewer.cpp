@@ -17,6 +17,8 @@
 #include <QFontDatabase>
 #include <QFontMetrics>
 
+#include "ILexer.h"
+#include "Lexilla.h"
 #include "ScintillaEdit.h"
 #include "SciLexer.h"
 
@@ -121,7 +123,7 @@ fileviewer::fileviewer(mainwindow* pmw)
 ,m_textEditSourceFont("Courier New", 12)
 ,m_externalEditorPath(EXT_EDITOR_DEFAULT_PATH)
 ,m_timestampMismatchWarned(false)
-,m_lexer(SCLEX_NULL)
+,m_lexer(NULL)
 ,m_fontsize(0)
 ,m_currentlang(enHighlightCPP)
 ,m_currentline(1)
@@ -178,20 +180,13 @@ QString fileviewer::checkFontFamily(QString fontname)
 	}
 	else
 	{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 2, 0))
 		newfont = QFontDatabase::systemFont(QFontDatabase::FixedFont).family();
-#else
-		if      (m_fontlist.contains(tryfont1)) newfont = tryfont1;
-		else if (m_fontlist.contains(tryfont2)) newfont = tryfont2;
-		else newfont = m_fontlist[0];
-#endif
 	}
 	return newfont;
 }
 
 void fileviewer::init(void)
 {
-	Scintilla_LinkLexers();
 	m_pushButtonPaste->setEnabled(false);
 	m_pushButtonPrev->setEnabled(false);
 	m_pushButtonNext->setEnabled(false);
@@ -376,25 +371,25 @@ void fileviewer::updateTextEdit(void)
 
 	int lang = enHighlightCPP; // default
 
-	QRegExp rx1("\\.py$", Qt::CaseInsensitive);
-	int pos = rx1.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightPython;
+	QRegularExpression rx1("\\.py$", QRegularExpression::CaseInsensitiveOption);
+	auto pos = rx1.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightPython;
 
-	QRegExp rx2("\\.java$", Qt::CaseInsensitive);
-	pos = rx2.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightJava;
+	QRegularExpression rx2("\\.java$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx2.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightJava;
 
-	QRegExp rx3("\\.rb$", Qt::CaseInsensitive);
-	pos = rx3.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightRuby;
+	QRegularExpression rx3("\\.rb$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx3.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightRuby;
 
-	QRegExp rx4("\\.js$", Qt::CaseInsensitive);
-	pos = rx4.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightJavascript;
+	QRegularExpression rx4("\\.js$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx4.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightJavascript;
 
-	QRegExp rx5("\\.go$", Qt::CaseInsensitive);
-	pos = rx5.indexIn(m_iter->filename);
-	if (pos != -1) lang = enHighlightGo;
+	QRegularExpression rx5("\\.go$", QRegularExpression::CaseInsensitiveOption);
+	pos = rx5.match(m_iter->filename);
+	if (pos.hasMatch()) lang = enHighlightGo;
 
 	m_currentlang = lang;
 
@@ -621,7 +616,6 @@ void fileviewer::fileViewSettings_Triggered(bool checked)
 	if (cqdg.result() == QDialog::Accepted)
 	{
 		m_textEditSourceFont.setFamily(m_fonttemp);
-		//m_lexer->setFont(m_textEditSourceFont);
 		m_textEditSource->setTabWidth(m_fontwidthtemp);
 		m_textEditSource->setZoom(m_fontsize);
 		m_theme = m_themetemp;
@@ -678,20 +672,20 @@ void fileviewer::OpenInEditor_ButtonClick(bool checked)
 
 		QStringList arguments;
 		QString program;
-		QRegExp rx("^\"([^\"]+)\" (.*)");
-		int pos = rx.indexIn(m_externalEditorPath);
-		if (pos != -1)
+		QRegularExpression rx("^\"([^\"]+)\" (.*)");
+		auto pos = rx.match(m_externalEditorPath);
+		if (pos.hasMatch())
 		{
-			program = rx.cap(1);
-			arguments = (rx.cap(2)).split(QRegExp("[ ]+"));
+			program = pos.captured(1);
+			arguments = (pos.captured(2)).split(QRegularExpression("[ ]+"));
 		}
 		else
 		{
-			arguments = m_externalEditorPath.split(QRegExp("[ ]+"));
+			arguments = m_externalEditorPath.split(QRegularExpression("[ ]+"));
 			program = arguments.takeFirst();
 		}
-		arguments.replaceInStrings(QRegExp("%f"), m_iter->filename);
-		arguments.replaceInStrings(QRegExp("%n"), m_iter->linenum);
+		arguments.replaceInStrings(QRegularExpression("%f"), m_iter->filename);
+		arguments.replaceInStrings(QRegularExpression("%n"), m_iter->linenum);
 
 		if (QProcess::startDetached(program, arguments) == false)
 		{
@@ -723,7 +717,6 @@ void fileviewer::TextEnlarge_ButtonClick(bool checked)
 void fileviewer::textSizeChange(int n)
 {
 	//m_fontwidthtemp = (m_textEditSource->tabWidth());
-	//m_lexer->setFont(m_textEditSourceFont);
 	m_fontsize += n;
 	m_textEditSource->setZoom(m_fontsize);
 	m_textEditSource->setMarginWidthN(0,  m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
@@ -800,41 +793,36 @@ void fileviewer::replaceLexer(int sclang, int lang)
 {
 	QColor markerlinebgcolor;
 	QColor linenumfgcolor;
-	//if (m_lexer != sclang)
-	{
 		switch (lang)
 		{
 			case enHighlightCPP:
-				m_lexer = SCLEX_CPP;
+				m_lexer = CreateLexer("cpp");
 				break;
 
 			case enHighlightPython:
-				m_lexer = SCLEX_PYTHON;
+				m_lexer = CreateLexer("python");
 				break;
 
 			case enHighlightJava:
-				m_lexer = SCLEX_CPP;
+				m_lexer = CreateLexer("cpp");
 				break;
 
 			case enHighlightRuby:
-				m_lexer = SCLEX_RUBY;
+				m_lexer = CreateLexer("ruby");
 				break;
 
 			case enHighlightJavascript:
-				m_lexer = SCLEX_CPP;
+				m_lexer = CreateLexer("cpp");
 				break;
 
 			default:
-				m_lexer = SCLEX_CPP;
+				m_lexer = CreateLexer("cpp");
 				break;
 		}
-		m_textEditSource->setLexer(m_lexer);
+		m_textEditSource->setILexer((sptr_t)m_lexer);
 		m_textEditSource->clearDocumentStyle();
 		m_textEditSource->setZoom(m_fontsize);
 		m_themelast = "1234";
-	}
-	//if (m_themelast.compare(m_theme) != 0)
-	{
 		m_themelast = m_theme;
 		themes::setTheme(m_theme, lang, m_textEditSource, m_textEditSourceFont, markerlinebgcolor, linenumfgcolor);
 		m_textEditSource->markerSetBack(m_markerhandle, themes::QC2SC(markerlinebgcolor));
@@ -846,7 +834,6 @@ void fileviewer::replaceLexer(int sclang, int lang)
 		m_textEditSource->setMarginWidthN(0, m_textEditSource->textWidth(STYLE_LINENUMBER, QString::number(m_textEditSource->lineCount() * 10).C_STR()));
 		themes::setKeywords(lang, m_textEditSource);
 		m_textEditSource->colourise(0, -1);
-	}
 }
 
 void fileviewer::annotate(QStringList annotstrLst)

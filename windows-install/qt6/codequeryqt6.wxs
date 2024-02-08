@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
-    <Product Name='CodeQuery 0.27.0 (Qt5, 64-bit)' Manufacturer='ruben2020_foss'
+    <Product Name='CodeQuery 0.27.0 (Qt6, 64-bit)' Manufacturer='ruben2020_foss'
         Id='71652e99-5d42-4ce9-ae32-4169e65254c2' 
         UpgradeCode='2368ce2d-f635-4c8c-9b92-6fa348b292af'
         Language='1033' Codepage='1252' Version='0.27.0'>
-		<Package Id='*' Keywords='Installer' Description="CodeQuery 0.27.0 (Qt5, 64-bit) Installer"
-			Comments='Copyright 2013-2022 (C) ruben2020' Manufacturer='ruben2020_foss'
+		<Package Id='*' Keywords='Installer' Description="CodeQuery 0.27.0 (Qt6, 64-bit) Installer"
+			Comments='Copyright 2013-2024 (C) ruben2020' Manufacturer='ruben2020_foss'
 			InstallerVersion='200' Languages='1033' Compressed='yes' SummaryCodepage='1252'
 			Platform="x64" />
 		<Condition Message="You need to be an administrator to install this product.">
 			Privileged
 		</Condition>
-		<Condition Message='This application only runs on 64-bit Windows. For 32-bit Windows, you have to download a different installer.'>
+		<Condition Message='This application only runs on 64-bit Windows.'>
 			VersionNT64
 		</Condition>
 		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
@@ -52,10 +52,10 @@
 							<File Id='cqsearchEXE' Name='cqsearch.exe' DiskId='1' Source='cqsearch.exe' KeyPath='yes' />
 						</Component>
 						<Component Id='cscope_64bit' Guid='22027772-b5a6-44c2-aac8-b62e5ac30d2d'>
-							<File Id='cscopeEXE' Name='cscope.exe' DiskId='1' Source='..\..\windows-install\win64\cscope.exe' KeyPath='yes' />
+							<File Id='cscopeEXE' Name='cscope.exe' DiskId='1' Source='..\..\windows-install\wincommon\cscope.exe' KeyPath='yes' />
 						</Component>
 						<Component Id='ctags_64bit' Guid='9596f520-e82c-46b6-aa51-dc7a675d50da'>
-							<File Id='ctagsEXE' Name='ctags.exe' DiskId='1' Source='..\..\windows-install\win64\ctags.exe' KeyPath='yes' />
+							<File Id='ctagsEXE' Name='ctags.exe' DiskId='1' Source='..\..\windows-install\wincommon\ctags.exe' KeyPath='yes' />
 						</Component>
 						<Component Id='docHOWTO' Guid='a8a737a0-9aef-4105-8004-2973e56a3f6d'>
 							<File Id='HOWTO' Name='HOWTO-WINDOWS.txt' DiskId='1' Source='..\..\windows-install\wincommon\HOWTO-WINDOWS.txt' KeyPath='yes'>
@@ -85,48 +85,59 @@
 						</Component>
 						<Component Id='GraphicsDLL64' Guid='4f5e985b-c383-447c-be0f-871002bdeb58'>
 							<File Id='Direct3D' Name='D3Dcompiler_47.dll' DiskId='1' Source='D3Dcompiler_47.dll' KeyPath='no' />
-							<File Id='EGL' Name='libEGL.dll' DiskId='1' Source='libEGL.dll' KeyPath='no' />
-							<File Id='GLESV2' Name='libGLESV2.dll' DiskId='1' Source='libGLESV2.dll' KeyPath='no' />
 							<File Id='OpenGL' Name='opengl32sw.dll' DiskId='1' Source='opengl32sw.dll' KeyPath='yes' />
 						</Component>
-						<Component Id='QT5MainDLL' Guid='4bd506fd-dd4f-4eed-a2ca-da8d95be829d'>
-							<File Id='Qt5Concurrent' Name='Qt5Concurrent.dll' DiskId='1' Source='Qt5Concurrent.dll' KeyPath='no' />
-							<File Id='Qt5Core' Name='Qt5Core.dll' DiskId='1' Source='Qt5Core.dll' KeyPath='yes' />
-							<File Id='Qt5Gui' Name='Qt5Gui.dll' DiskId='1' Source='Qt5Gui.dll' KeyPath='no' />
-							<File Id='Qt5Svg' Name='Qt5Svg.dll' DiskId='1' Source='Qt5Svg.dll' KeyPath='no' />
-							<File Id='Qt5Widgets' Name='Qt5Widgets.dll' DiskId='1' Source='Qt5Widgets.dll' KeyPath='no' />
-							<File Id='Qt5Xml' Name='Qt5Xml.dll' DiskId='1' Source='Qt5Xml.dll' KeyPath='no' />
+						<Component Id='QT6MainDLL' Guid='4bd506fd-dd4f-4eed-a2ca-da8d95be829d'>
+							<File Id='Qt6Concurrent' Name='Qt6Concurrent.dll' DiskId='1' Source='Qt6Concurrent.dll' KeyPath='no' />
+							<File Id='Qt6Core' Name='Qt6Core.dll' DiskId='1' Source='Qt6Core.dll' KeyPath='yes' />
+							<File Id='Qt6Gui' Name='Qt6Gui.dll' DiskId='1' Source='Qt6Gui.dll' KeyPath='no' />
+							<File Id='Qt6Svg' Name='Qt6Svg.dll' DiskId='1' Source='Qt6Svg.dll' KeyPath='no' />
+							<File Id='Qt6Widgets' Name='Qt6Widgets.dll' DiskId='1' Source='Qt6Widgets.dll' KeyPath='no' />
+							<File Id='Qt6Xml' Name='Qt6Xml.dll' DiskId='1' Source='Qt6Xml.dll' KeyPath='no' />
+							<File Id='Qt6Core5Compat' Name='Qt6Core5Compat.dll' DiskId='1' Source='Qt6Core5Compat.dll' KeyPath='no' />
 						</Component>
 						<Directory Id='iconengines' Name='iconengines'>
-							<Component Id='QT5IconEngines' Guid='4d0e247a-7b12-4b2d-b48c-3feee2db38c2'>
+							<Component Id='QT6IconEngines' Guid='4d0e247a-7b12-4b2d-b48c-3feee2db38c2'>
 								<File Id='qsvgicon' Name='qsvgicon.dll' DiskId='1' Source='iconengines\qsvgicon.dll' KeyPath='yes' />
 							</Component>
 						</Directory>
 						<Directory Id='imageformats' Name='imageformats'>
-							<Component Id='QT5ImageFormats' Guid='9cdb7a20-ef68-49a3-9c90-458b54ff22c2'>
+							<Component Id='QT6ImageFormats' Guid='9cdb7a20-ef68-49a3-9c90-458b54ff22c2'>
 								<File Id='qgif' Name='qgif.dll' DiskId='1' Source='imageformats\qgif.dll' KeyPath='no' />
-								<File Id='qicns' Name='qicns.dll' DiskId='1' Source='imageformats\qicns.dll' KeyPath='no' />
 								<File Id='qico' Name='qico.dll' DiskId='1' Source='imageformats\qico.dll' KeyPath='yes' />
 								<File Id='qjpeg' Name='qjpeg.dll' DiskId='1' Source='imageformats\qjpeg.dll' KeyPath='no' />
 								<File Id='qsvg' Name='qsvg.dll' DiskId='1' Source='imageformats\qsvg.dll' KeyPath='no' />
-								<File Id='qtga' Name='qtga.dll' DiskId='1' Source='imageformats\qtga.dll' KeyPath='no' />
-								<File Id='qtiff' Name='qtiff.dll' DiskId='1' Source='imageformats\qtiff.dll' KeyPath='no' />
-								<File Id='qwbmp' Name='qwbmp.dll' DiskId='1' Source='imageformats\qwbmp.dll' KeyPath='no' />
-								<File Id='qwebp' Name='qwebp.dll' DiskId='1' Source='imageformats\qwebp.dll' KeyPath='no' />
 							</Component>
 						</Directory>
 						<Directory Id='platforms' Name='platforms'>
-							<Component Id='QT5Platforms' Guid='eee144c7-e872-4760-8632-854b7959a761'>
+							<Component Id='QT6Platforms' Guid='eee144c7-e872-4760-8632-854b7959a761'>
 								<File Id='qwindows' Name='qwindows.dll' DiskId='1' Source='platforms\qwindows.dll' KeyPath='yes' />
 							</Component>
 						</Directory>
 						<Directory Id='styles' Name='styles'>
-							<Component Id='QT5Styles' Guid='136c1dfb-d763-4c20-a030-eaa9052b7210'>
+							<Component Id='QT6Styles' Guid='136c1dfb-d763-4c20-a030-eaa9052b7210'>
 								<File Id='qwindowsvistastyle' Name='qwindowsvistastyle.dll' DiskId='1' Source='styles\qwindowsvistastyle.dll' KeyPath='yes' />
 							</Component>
 						</Directory>
+						<Directory Id='generic' Name='generic'>
+							<Component Id='QT6Generic' Guid='136c1dfb-d763-4c20-a030-eaa9052b7211'>
+								<File Id='qtuiotouchplugin' Name='qtuiotouchplugin.dll' DiskId='1' Source='generic\qtuiotouchplugin.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='networkinformation' Name='networkinformation'>
+							<Component Id='QT6NetworkInformation' Guid='136c1dfb-d763-4c20-a030-eaa9052b7212'>
+								<File Id='qnetworklistmanager' Name='qnetworklistmanager.dll' DiskId='1' Source='networkinformation\qnetworklistmanager.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='tls' Name='tls'>
+							<Component Id='QT6TLS' Guid='136c1dfb-d763-4c20-a030-eaa9052b7213'>
+								<File Id='qcertonlybackend' Name='qcertonlybackend.dll' DiskId='1' Source='tls\qcertonlybackend.dll' KeyPath='yes' />
+								<File Id='qopensslbackend' Name='qopensslbackend.dll' DiskId='1' Source='tls\qopensslbackend.dll' KeyPath='no' />
+								<File Id='qschannelbackend' Name='qschannelbackend.dll' DiskId='1' Source='tls\qschannelbackend.dll' KeyPath='no' />
+							</Component>
+						</Directory>
 						<Directory Id='translations' Name='translations'>
-							<Component Id='QT5Translations' Guid='a7d44fc5-0d8c-49b3-b441-41750e69489d'>
+							<Component Id='QT6Translations' Guid='a7d44fc5-0d8c-49b3-b441-41750e69489d'>
 								<File Id='qt_ar' Name='qt_ar.qm' DiskId='1' Source='translations\qt_ar.qm' KeyPath='no' />
 								<File Id='qt_bg' Name='qt_bg.qm' DiskId='1' Source='translations\qt_bg.qm' KeyPath='no' />
 								<File Id='qt_ca' Name='qt_ca.qm' DiskId='1' Source='translations\qt_ca.qm' KeyPath='no' />
@@ -171,7 +182,7 @@
 				<RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
 			</Component>
 		</DirectoryRef>
-		<Feature Id='Complete' Title='CodeQuery 0.27.0 (Qt5, 64-bit)' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
+		<Feature Id='Complete' Title='CodeQuery 0.27.0 (Qt6, 64-bit)' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
 			<ComponentRef Id='CodeQueryGUI_64bit' />
 			<ComponentRef Id='cqmakedb_64bit' />
 			<ComponentRef Id='cqsearch_64bit' />
@@ -183,12 +194,15 @@
 			<ComponentRef Id='sqlite3_64bit' />
 			<ComponentRef Id='BaseDLLsWin64' />
 			<ComponentRef Id='GraphicsDLL64' />
-			<ComponentRef Id='QT5MainDLL' />
-			<ComponentRef Id='QT5IconEngines' />
-			<ComponentRef Id='QT5ImageFormats' />
-			<ComponentRef Id='QT5Platforms' />
-			<ComponentRef Id='QT5Styles' />
-			<ComponentRef Id='QT5Translations' />
+			<ComponentRef Id='QT6MainDLL' />
+			<ComponentRef Id='QT6IconEngines' />
+			<ComponentRef Id='QT6ImageFormats' />
+			<ComponentRef Id='QT6Platforms' />
+			<ComponentRef Id='QT6Styles' />
+			<ComponentRef Id='QT6Generic' />
+			<ComponentRef Id='QT6NetworkInformation' />
+			<ComponentRef Id='QT6TLS' />
+			<ComponentRef Id='QT6Translations' />
 			<ComponentRef Id='CodeQueryUninstall' />
 			<ComponentRef Id='AppProgramMenuFolder' />
 		</Feature>

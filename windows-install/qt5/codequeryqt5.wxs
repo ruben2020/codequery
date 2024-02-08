@@ -38,58 +38,58 @@
 			<Directory Id='ProgramFilesFolder' Name='PFiles'>
 				<Directory Id='CodeQuery' Name='CodeQuery'>
 					<Directory Id='INSTALLDIR' Name='CodeQuery 0.27.0 64bit'>
-						<Component Id='CodeQueryGUI_64bit' Guid='*'>
+						<Component Id='CodeQueryGUI_64bit' Guid='2989278c-93cd-4ef7-a692-4eef77e747fb'>
 							<File Id='codequeryEXE' Name='codequery.exe' DiskId='1' Source='codequery.exe' KeyPath='yes'>
 								<Shortcut Id="startmenuCodeQueryShortcut" Directory="AppProgramMenuFolder" Name="CodeQuery"
 									Advertise="yes" WorkingDirectory='INSTALLDIR' Icon="codequery.ico" IconIndex="0" />
 							</File>
 						</Component>
-						<Component Id='cqmakedb_64bit' Guid='*'>
+						<Component Id='cqmakedb_64bit' Guid='fe72a848-eb9d-471e-89c2-a81f1f26f8e0'>
 							<File Id='cqmakedbEXE' Name='cqmakedb.exe' DiskId='1' Source='cqmakedb.exe' KeyPath='yes' />
 							<Environment Id="PATH" Name="PATH" Value="[INSTALLDIR]" Permanent="no" Part="last" Action="set" System="no" />
 						</Component>
-						<Component Id='cqsearch_64bit' Guid='*'>
+						<Component Id='cqsearch_64bit' Guid='2753d8be-ff18-415f-99fb-bc6e2c5eb71c'>
 							<File Id='cqsearchEXE' Name='cqsearch.exe' DiskId='1' Source='cqsearch.exe' KeyPath='yes' />
 						</Component>
-						<Component Id='cscope_64bit' Guid='*'>
+						<Component Id='cscope_64bit' Guid='22027772-b5a6-44c2-aac8-b62e5ac30d2d'>
 							<File Id='cscopeEXE' Name='cscope.exe' DiskId='1' Source='..\..\windows-install\wincommon\cscope.exe' KeyPath='yes' />
 						</Component>
-						<Component Id='ctags_64bit' Guid='*'>
+						<Component Id='ctags_64bit' Guid='9596f520-e82c-46b6-aa51-dc7a675d50da'>
 							<File Id='ctagsEXE' Name='ctags.exe' DiskId='1' Source='..\..\windows-install\wincommon\ctags.exe' KeyPath='yes' />
 						</Component>
-						<Component Id='docHOWTO' Guid='*'>
+						<Component Id='docHOWTO' Guid='a8a737a0-9aef-4105-8004-2973e56a3f6d'>
 							<File Id='HOWTO' Name='HOWTO-WINDOWS.txt' DiskId='1' Source='..\..\windows-install\wincommon\HOWTO-WINDOWS.txt' KeyPath='yes'>
 								<Shortcut Id="startmenuHOWTOShortcut" Directory="AppProgramMenuFolder" Name="How to use CodeQuery"
 									Advertise="yes" WorkingDirectory='INSTALLDIR' />
 							</File>
 						</Component>
-						<Component Id='docLICENSE' Guid='*'>
+						<Component Id='docLICENSE' Guid='0a2ca9df-dc81-4b7f-8b82-fcbbd60181ca'>
 							<File Id='LICENSE' Name='LICENSE.txt' DiskId='1' Source='..\..\windows-install\wincommon\LICENSE.txt' KeyPath='yes'>
 								<Shortcut Id="startmenuLicenseShortcut" Directory="AppProgramMenuFolder" Name="LICENSE"
 									Advertise="yes" WorkingDirectory='INSTALLDIR' />
 							</File>
 						</Component>
-						<Component Id='docREADME' Guid='*'>
+						<Component Id='docREADME' Guid='cf10df14-cf2e-4200-b502-bdbdabebbdd2'>
 							<File Id='README' Name='README.txt' DiskId='1' Source='..\..\windows-install\wincommon\README.txt' KeyPath='yes'>
 								<Shortcut Id="startmenuREADMEShortcut" Directory="AppProgramMenuFolder" Name="README"
 									Advertise="yes" WorkingDirectory='INSTALLDIR' />
 							</File>
 						</Component>
-						<Component Id='sqlite3_64bit' Guid='*'>
+						<Component Id='sqlite3_64bit' Guid='3becd97b-1493-48f1-8a0a-564d8e84a041'>
 							<File Id='sqlite3DLL' Name='sqlite3.dll' DiskId='1' Source='sqlite3.dll' KeyPath='yes' />
 						</Component>
-						<Component Id='BaseDLLsWin64' Guid='*'>
+						<Component Id='BaseDLLsWin64' Guid='fa02bb08-440f-4170-9588-7eef443e572e'>
 							<File Id='GCCDLL' Name='libgcc_s_seh-1.dll' DiskId='1' Source='libgcc_s_seh-1.dll' KeyPath='yes' />
 							<File Id='STDCPPDLL' Name='libstdc++-6.dll' DiskId='1' Source='libstdc++-6.dll' KeyPath='no' />
 							<File Id='WinPThreadDLL' Name='libwinpthread-1.dll' DiskId='1' Source='libwinpthread-1.dll' KeyPath='no' />
 						</Component>
-						<Component Id='GraphicsDLL64' Guid='*'>
+						<Component Id='GraphicsDLL64' Guid='4f5e985b-c383-447c-be0f-871002bdeb58'>
 							<File Id='Direct3D' Name='D3Dcompiler_47.dll' DiskId='1' Source='D3Dcompiler_47.dll' KeyPath='no' />
 							<File Id='EGL' Name='libEGL.dll' DiskId='1' Source='libEGL.dll' KeyPath='no' />
 							<File Id='GLESV2' Name='libGLESV2.dll' DiskId='1' Source='libGLESV2.dll' KeyPath='no' />
 							<File Id='OpenGL' Name='opengl32sw.dll' DiskId='1' Source='opengl32sw.dll' KeyPath='yes' />
 						</Component>
-						<Component Id='QT5MainDLL' Guid='*'>
+						<Component Id='QT5MainDLL' Guid='4bd506fd-dd4f-4eed-a2ca-da8d95be829d'>
 							<File Id='Qt5Concurrent' Name='Qt5Concurrent.dll' DiskId='1' Source='Qt5Concurrent.dll' KeyPath='no' />
 							<File Id='Qt5Core' Name='Qt5Core.dll' DiskId='1' Source='Qt5Core.dll' KeyPath='yes' />
 							<File Id='Qt5Gui' Name='Qt5Gui.dll' DiskId='1' Source='Qt5Gui.dll' KeyPath='no' />
@@ -98,12 +98,12 @@
 							<File Id='Qt5Xml' Name='Qt5Xml.dll' DiskId='1' Source='Qt5Xml.dll' KeyPath='no' />
 						</Component>
 						<Directory Id='iconengines' Name='iconengines'>
-							<Component Id='QT5IconEngines' Guid='*'>
+							<Component Id='QT5IconEngines' Guid='4d0e247a-7b12-4b2d-b48c-3feee2db38c2'>
 								<File Id='qsvgicon' Name='qsvgicon.dll' DiskId='1' Source='iconengines\qsvgicon.dll' KeyPath='yes' />
 							</Component>
 						</Directory>
 						<Directory Id='imageformats' Name='imageformats'>
-							<Component Id='QT5ImageFormats' Guid='*'>
+							<Component Id='QT5ImageFormats' Guid='9cdb7a20-ef68-49a3-9c90-458b54ff22c2'>
 								<File Id='qgif' Name='qgif.dll' DiskId='1' Source='imageformats\qgif.dll' KeyPath='no' />
 								<File Id='qicns' Name='qicns.dll' DiskId='1' Source='imageformats\qicns.dll' KeyPath='no' />
 								<File Id='qico' Name='qico.dll' DiskId='1' Source='imageformats\qico.dll' KeyPath='yes' />
@@ -116,17 +116,17 @@
 							</Component>
 						</Directory>
 						<Directory Id='platforms' Name='platforms'>
-							<Component Id='QT5Platforms' Guid='*'>
+							<Component Id='QT5Platforms' Guid='eee144c7-e872-4760-8632-854b7959a761'>
 								<File Id='qwindows' Name='qwindows.dll' DiskId='1' Source='platforms\qwindows.dll' KeyPath='yes' />
 							</Component>
 						</Directory>
 						<Directory Id='styles' Name='styles'>
-							<Component Id='QT5Styles' Guid='*'>
+							<Component Id='QT5Styles' Guid='136c1dfb-d763-4c20-a030-eaa9052b7210'>
 								<File Id='qwindowsvistastyle' Name='qwindowsvistastyle.dll' DiskId='1' Source='styles\qwindowsvistastyle.dll' KeyPath='yes' />
 							</Component>
 						</Directory>
 						<Directory Id='translations' Name='translations'>
-							<Component Id='QT5Translations' Guid='*'>
+							<Component Id='QT5Translations' Guid='a7d44fc5-0d8c-49b3-b441-41750e69489d'>
 								<File Id='qt_ar' Name='qt_ar.qm' DiskId='1' Source='translations\qt_ar.qm' KeyPath='no' />
 								<File Id='qt_bg' Name='qt_bg.qm' DiskId='1' Source='translations\qt_bg.qm' KeyPath='no' />
 								<File Id='qt_ca' Name='qt_ca.qm' DiskId='1' Source='translations\qt_ca.qm' KeyPath='no' />
@@ -151,7 +151,7 @@
 								<File Id='qt_zh_TW' Name='qt_zh_TW.qm' DiskId='1' Source='translations\qt_zh_TW.qm' KeyPath='no' />
 							</Component>
 						</Directory>
-						<Component Id='CodeQueryUninstall' Guid='*'>
+						<Component Id='CodeQueryUninstall' Guid='089a8038-775a-11ea-bc55-0242ac130003'>
 							<File Id='uninstallBAT' Name='uninstall.bat' DiskId='1' Source='..\..\windows-install\wincommon\uninstall.bat' 
 									KeyPath='yes' >
 									<Shortcut Id="startmenuUninstallShortcut" Directory="AppProgramMenuFolder" Name="Uninstall CodeQuery" Show='minimized'
@@ -166,7 +166,7 @@
 			</Directory>
 		</Directory>
 		<DirectoryRef Id="AppProgramMenuFolder">
-			<Component Id="AppProgramMenuFolder" Guid="*">
+			<Component Id="AppProgramMenuFolder" Guid="5a6c2529-ab92-4324-b48e-9a14c43f09ef">
 				<RemoveFolder Id='AppProgramMenuFolder' On='uninstall' />
 				<RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
 			</Component>

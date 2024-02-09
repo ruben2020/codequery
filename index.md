@@ -115,7 +115,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7 64-bit, Windows XP 32-bit, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
+It has been tested on Windows 10 64-bit, Windows XP 32-bit (until version 0.27.0 only), Mac OS X, Ubuntu and Arch Linux 64-bit.
 
 Contributions are welcomed to attempt ports to other operating systems.
 

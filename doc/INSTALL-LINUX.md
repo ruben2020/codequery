@@ -8,7 +8,7 @@ This INSTALL guide applies to Linux and Mac only
 
 ## HOW TO INSTALL IN LINUX?
 
-Step 1: Install CMake (>2.7), sqlite3, Qt5 (>5.9) or Qt6 (>6.4) for Qt5 or Qt6, cscope (15.8a or higher), ctags. If you have Ubuntu, Linux Mint, Debian or Fedora installed, most of these should be obtainable through the package managers. Note that the cscope version on the Ubuntu repositories may not be the latest one. It's better to have the latest version of cscope installed.   
+Step 1: Install CMake (>=3.16), sqlite3, Qt5 (>=5.12) or Qt6 (>=6.4) for Qt5 or Qt6, cscope (15.8a or higher), ctags. If you have Ubuntu, Linux Mint, Debian or Fedora installed, most of these should be obtainable through the package managers. Note that the cscope version on the Ubuntu repositories may not be the latest one. It's better to have the latest version of cscope installed.   
 [CMake](http://www.cmake.org/)   
 [sqlite3](http://www.sqlite.org/)   
 [Qt5 or Qt6](http://qt-project.org/)   

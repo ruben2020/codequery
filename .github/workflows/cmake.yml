@@ -112,13 +112,6 @@ jobs:
         run: |
           sudo apt-get install qt5-default qttools5-dev-tools qttools5-dev
 
-      - name: Install dependencies on Ubuntu 20.04 GCC Qt4
-        if: startsWith(matrix.config.name, 'Ubuntu 20.04 GCC Qt4')
-        run: |
-          sudo add-apt-repository ppa:rock-core/qt4
-          sudo apt-get update
-          sudo apt-get install qt4-dev-tools
-
       - name: Install dependencies on macOS Clang Qt6
         if: startsWith(matrix.config.name, 'macOS Clang Qt6')
         run: |

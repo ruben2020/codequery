@@ -28,7 +28,7 @@ dir /b/a/s *.hh  >> cscope.files
 
 cscope -cb
 
-Omitting of c (to use compressed cscope database) is now supported experimentally.
+Omission of c (to use compressed cscope database) is now supported experimentally.
 
 4. Create a ctags database like this.
 
@@ -70,7 +70,7 @@ dir /b/a/s *.java > cscope.files
 
 cscope -cb
 
-Omitting of c (to use compressed cscope database) is now supported experimentally.
+Omission of c (to use compressed cscope database) is now supported experimentally.
 
 4. Create a ctags database like this:
 

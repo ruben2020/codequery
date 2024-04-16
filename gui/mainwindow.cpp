@@ -104,8 +104,8 @@ void mainwindow::init(void)
 	connect(ui->actionFileViewSettings, SIGNAL(triggered(bool)),
 			m_fileviewer, SLOT(fileViewSettings_Triggered(bool)));
 	m_app->setQuitOnLastWindowClosed(false);
-	connect(m_app, SIGNAL(lastWindowClosed()),
-			this, SLOT(prepareToExit()));
+//	connect(m_app, SIGNAL(lastWindowClosed()),
+//			this, SLOT(prepareToExit()));
 	readSettings();
 }
 
@@ -394,5 +394,10 @@ void mainwindow::paintEvent(QPaintEvent* event)
 {
 	QMainWindow::paintEvent(event);
 	emit windowRepainted();
+}
+
+void mainwindow::closeEvent(QCloseEvent* event)
+{
+	prepareToExit();
 }
 

@@ -64,7 +64,8 @@ void printHelpAndExit(QString str);
 
 protected:
 virtual void resizeEvent(QResizeEvent* event);
-virtual void paintEvent(QPaintEvent *event);
+virtual void paintEvent(QPaintEvent* event);
+virtual void closeEvent(QCloseEvent* event);
 
 };
 

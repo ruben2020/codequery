@@ -195,7 +195,7 @@ void mainwindow::retranslateUi(void)
 
 void mainwindow::ExitTriggered(bool checked)
 {
-	prepareToExit();
+	close();
 }
 
 void mainwindow::AboutQtTriggered(bool checked)

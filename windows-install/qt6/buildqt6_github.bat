@@ -7,6 +7,6 @@ gcc -v
 g++ -v
 md buildqt6
 cd buildqt6
-cmake -G Ninja -DBUILD_QT6=ON -DGHAWIN=ON -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE="c:\vcpkg\scripts\buildsystems\vcpkg.cmake" ..
+cmake -G Ninja -DGHAWIN=ON -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE="c:\vcpkg\scripts\buildsystems\vcpkg.cmake" ..
 ninja
 cd ..

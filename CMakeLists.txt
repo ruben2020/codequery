@@ -10,28 +10,21 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(CodeQuery)
 
-option(BUILD_QT6 "Qt6 option"    OFF)
-option(BUILD_QT5 "Qt5 option"    ON)
+option(BUILD_QT6 "Qt6 option"    ON)
+option(BUILD_QT5 "Qt5 option"    OFF)
 option(NO_GUI    "No GUI option" OFF)
 option(GHAWIN    "GitHub Actions on Windows" OFF)
 
-MESSAGE("-- NO_GUI = " ${NO_GUI})
 if (NO_GUI)
+MESSAGE("-- NO_GUI = " ${NO_GUI})
 else (NO_GUI)
 
-if (BUILD_QT6)
-message("-- BUILD_QT6 = " ${BUILD_QT6})
-else (BUILD_QT6)
-
-message("-- BUILD_QT6 = " ${BUILD_QT6})
-message("-- BUILD_QT5 = " ${BUILD_QT5})
-
 if (BUILD_QT5)
+message("-- BUILD_QT5 = " ${BUILD_QT5})
 else (BUILD_QT5)
-message(FATAL_ERROR "Qt4 is no longer supported!")
+message("-- BUILD_QT6 = " ${BUILD_QT6})
 endif(BUILD_QT5)
 
-endif(BUILD_QT6)
 endif(NO_GUI)
 
 if (GHAWIN)
@@ -84,17 +77,17 @@ set( CPACK_PACKAGE_NAME "codequery-nogui" )
 set( CPACK_DEBIAN_PACKAGE_DEPENDS "libsqlite3-0 (>= 3.11.0) " )
 
 else (NO_GUI)
-if (BUILD_QT6)
-
-set( CPACK_PACKAGE_NAME "codequery-qt6" )
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.5.1) , libsqlite3-0 (>= 3.11.0) " )
-
-else (BUILD_QT6)
+if (BUILD_QT5)
 
 set( CPACK_PACKAGE_NAME "codequery-qt5" )
 set( CPACK_DEBIAN_PACKAGE_DEPENDS "qtbase5-dev (>= 5.9.0) , libsqlite3-0 (>= 3.11.0) " )
 
-endif (BUILD_QT6)
+else (BUILD_QT5)
+
+set( CPACK_PACKAGE_NAME "codequery-qt6" )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "qt6-base-dev (>= 6.4.0) , libsqlite3-0 (>= 3.11.0) " )
+
+endif (BUILD_QT5)
 endif (NO_GUI)
 
 

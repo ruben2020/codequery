@@ -32,20 +32,7 @@ project(ScintillaEdit)
 
   find_package( Threads REQUIRED )
 
-if (BUILD_QT6)
-
-  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Core5Compat )
-
-  set(CMAKE_AUTOMOC ON)
-  set(CMAKE_AUTORCC ON)
-  set(CMAKE_AUTOUIC ON)
-
-  set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
-
-  qt6_add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${SCINT_SRCS} )
-  target_link_libraries( scintillaedit PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Core5Compat Threads::Threads )
-
-else (BUILD_QT6)
+if (BUILD_QT5)
 
   FIND_PACKAGE( Qt5Widgets REQUIRED )
   FIND_PACKAGE( Qt5Core REQUIRED )
@@ -62,5 +49,18 @@ else (BUILD_QT6)
   add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${SCINT_SRCS} )
   target_link_libraries( scintillaedit Qt5::Widgets Qt5::Concurrent Threads::Threads )
 
-endif (BUILD_QT6)
+else (BUILD_QT5)
+
+  find_package(Qt6 REQUIRED COMPONENTS Core Widgets Concurrent Core5Compat )
+
+  set(CMAKE_AUTOMOC ON)
+  set(CMAKE_AUTORCC ON)
+  set(CMAKE_AUTOUIC ON)
+
+  set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")
+
+  qt6_add_library( scintillaedit STATIC ${SCINTILLA_SRCS} ${SCINTILLA_MOC_SRCS} ${SCINT_SRCS} )
+  target_link_libraries( scintillaedit PRIVATE Qt6::Widgets Qt6::Concurrent Qt6::Core5Compat Threads::Threads )
+
+endif (BUILD_QT5)
 

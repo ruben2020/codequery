@@ -164,64 +164,58 @@ jobs:
         shell: bash
         if: "contains(matrix.config.name, 'Ubuntu-latest GCC Qt6')"
         run: |
-          mkdir -p build
-          cd build
           export CC=gcc
           export CXX=g++
-          cmake -G Ninja -DBUILD_QT6=ON ..
-          ninja
+          cmake -G Ninja -S . -B build
+          cmake --build build
+          sudo cmake --install build
+          cd build
           ninja package
-          sudo ninja install
+
 
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
         if: "contains(matrix.config.name, 'Ubuntu-latest GCC Qt5') || contains(matrix.config.name, 'Ubuntu 20.04 GCC Qt5')"
         run: |
-          mkdir -p build
-          cd build
           export CC=gcc
           export CXX=g++
-          cmake -G Ninja -DBUILD_QT5=ON ..
-          ninja
+          cmake -G Ninja -DBUILD_QT5=ON -S . -B build
+          cmake --build build
+          sudo cmake --install build
+          cd build
           ninja package
-          sudo ninja install
           
       - name: Configure CMake and Build on Ubuntu-latest GCC NoGui
         shell: bash
         if: contains(matrix.config.name, 'Ubuntu-latest GCC NoGui')
         run: |
-          mkdir -p build
-          cd build
           export CC=gcc
           export CXX=g++
-          cmake -G Ninja -DNO_GUI=ON ..
-          ninja
+          cmake -G Ninja -DNO_GUI=ON -S . -B build
+          cmake --build build
+          sudo cmake --install build
+          cd build
           ninja package
-          sudo ninja install
 
       - name: Configure CMake and Build on macOS Clang Qt6
         shell: bash
         if: contains(matrix.config.name, 'macOS Clang Qt6')
         run: |
-          mkdir -p build
-          cd build
           export CC=clang
           export CXX=clang++
-          cmake -G Ninja -DBUILD_QT6=ON -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@6/lib/cmake ..
-          ninja
-          sudo ninja install
+          cmake -G Ninja -DCMAKE_PREFIX_PATH=/usr/local/opt/qt@6/lib/cmake -S . -B build
+          cmake --build build
+          sudo cmake --install build
 
       - name: Configure CMake and Build on macOS Clang Qt5
         shell: bash
         if: contains(matrix.config.name, 'macOS Clang Qt5')
         run: |
-          mkdir -p build
-          cd build
           export CC=clang
           export CXX=clang++
-          cmake -G Ninja -DBUILD_QT5=ON -DCMAKE_PREFIX_PATH=/opt/homebrew/opt/qt@5/lib/cmake ..
-          ninja
-          sudo ninja install
+          cmake -G Ninja -DBUILD_QT5=ON -DCMAKE_PREFIX_PATH=/opt/homebrew/opt/qt@5/lib/cmake -S . -B build
+          cmake --build build
+          sudo cmake --install build
 
       - name: Configure CMake and Build on Windows MinGW Qt6
         shell: cmd

@@ -169,9 +169,6 @@ jobs:
           cmake -G Ninja -S . -B build
           cmake --build build
           sudo cmake --install build
-          cd build
-          ninja package
-
 
       - name: Configure CMake and Build on Ubuntu GCC Qt5
         shell: bash
@@ -182,8 +179,6 @@ jobs:
           cmake -G Ninja -DBUILD_QT5=ON -S . -B build
           cmake --build build
           sudo cmake --install build
-          cd build
-          ninja package
           
       - name: Configure CMake and Build on Ubuntu-latest GCC NoGui
         shell: bash
@@ -194,8 +189,6 @@ jobs:
           cmake -G Ninja -DNO_GUI=ON -S . -B build
           cmake --build build
           sudo cmake --install build
-          cd build
-          ninja package
 
       - name: Configure CMake and Build on macOS Clang Qt6
         shell: bash

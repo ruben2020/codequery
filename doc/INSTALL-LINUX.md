@@ -76,3 +76,5 @@ sudo cmake --install build
 
 Step 6: Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
 
+If the theming of the codequery GUI app looks strange in environments other than KDE Plasma, please refer to [this page](https://wiki.archlinux.org/title/Qt#Configuration_of_Qt_5/6_applications_under_environments_other_than_KDE_Plasma) for hints.
+

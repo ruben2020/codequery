@@ -5,8 +5,5 @@ set PATH=%Qt6_DIR%/bin;%PATH%
 cmake --version
 gcc -v
 g++ -v
-md buildqt6
-cd buildqt6
-cmake -G Ninja -DGHAWIN=ON -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE="c:\vcpkg\scripts\buildsystems\vcpkg.cmake" ..
-ninja
-cd ..
+cmake -G Ninja -DGHAWIN=ON -DVCPKG_TARGET_TRIPLET=x64-windows -DCMAKE_TOOLCHAIN_FILE="c:\vcpkg\scripts\buildsystems\vcpkg.cmake" -S . -B buildqt6
+cmake --build buildqt6

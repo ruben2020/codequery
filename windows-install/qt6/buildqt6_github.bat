@@ -1,6 +1,6 @@
 aqt list-qt windows desktop
-aqt list-qt windows desktop --arch 6.6.1
-aqt list-qt windows desktop --modules 6.6.1 win64_mingw
+aqt list-qt windows desktop --arch 6.7.1
+aqt list-qt windows desktop --modules 6.7.1 win64_mingw
 set PATH=%Qt6_DIR%/bin;%PATH%
 cmake --version
 gcc -v

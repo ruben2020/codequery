@@ -10,7 +10,7 @@ cd output
 rem windeployqt --release --verbose 0 --list relative codequery.exe
 windeployqt codequery.exe
 dir /b/a/s
-candle.exe -ext WixUIExtension -ext WixUtilExtension "..\..\windows-install\qt6\codequeryqt6.wxs"
-light.exe -ext WixUIExtension -ext WixUtilExtension codequeryqt6.wixobj
+candle.exe -ext WixUIExtension -ext WixUtilExtension "..\..\windows-install\qt6\codequeryqt671.wxs"
+light.exe -ext WixUIExtension -ext WixUtilExtension codequeryqt671.wixobj
 dir /a/s *.msi
 

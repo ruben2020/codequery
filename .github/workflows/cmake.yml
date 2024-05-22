@@ -132,9 +132,9 @@ jobs:
 
       - name: Install Qt6 on Windows
         if: startsWith(matrix.config.name, 'Windows MinGW Qt6')
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
-          version: '6.6.*'
+          version: '6.7.*'
           host: 'windows'
           target: 'desktop'
           arch: 'win64_mingw'
@@ -143,7 +143,7 @@ jobs:
 
       - name: Install Qt5 on Windows
         if: startsWith(matrix.config.name, 'Windows MinGW Qt5')
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: '5.15.2'
           host: 'windows'

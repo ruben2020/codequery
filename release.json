@@ -1,8 +1,8 @@
 {
-    "version": "0.27.0",
+    "version": "1.0.0",
     "state": "stable",
     "scope": "minor feature",
-    "changes": "compressed cscope.out supported experimentally and command line opening of db by GUI",
+    "changes": "Migrated to Qt6",
     "download": "https://sourceforge.net/projects/codequery/files/"
 }
 

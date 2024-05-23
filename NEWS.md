@@ -1,10 +1,17 @@
 Changelog
 =========
 
+Version 1.0.0 - May 24, 2024
+-----------------------------
+Enhancement: Migrated to Qt6, which is now the default build option           
+Enhancement: Updated Scintilla to 5.5.0          
+Qt5 and NO_GUI remain additional build options           
+Qt4 and 32-bit Windows support removed
+
 Version 0.27.0 - Jan 25, 2024
 -----------------------------
-Enhancement: Compressed cscope.out (built without -c) supported experimentally.          
-Enhancement: CodeQuery database file can be opened by CodeQuery GUI through command line argument.
+Enhancement: Compressed cscope.out (built without -c) supported experimentally          
+Enhancement: CodeQuery database file can be opened by CodeQuery GUI through command line argument
 
 Version 0.26.0 - Dec 19, 2022
 -----------------------------

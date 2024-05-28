@@ -60,7 +60,7 @@ cmake -G Ninja -DBUILD_QT5=ON -S . -B build
 cmake -G Ninja -DNO_GUI=ON -S . -B build
 ```
 
-Step 5: Run make and make install.       
+Step 5: Build and install.       
 ```bash
 cmake --build build
 sudo cmake --install build
@@ -68,7 +68,7 @@ sudo cmake --install build
 
 If you want to install to an alternative directory instead of the default one, use the following:     
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G Ninja -DBUILD_QT5=ON -S . -B build
+cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G Ninja -S . -B build
 cmake --build build
 sudo cmake --install build
 ```

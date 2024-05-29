@@ -9,8 +9,6 @@ The databases of *cscope* and *ctags* would be processed by the *cqmakedb* tool 
 
 The CodeQuery database file can be viewed and queried using the *codequery* GUI tool.
 
-[![Build Status](https://github.com/ruben2020/codequery/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/ruben2020/codequery/actions)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
-      
 
 ## Latest version
 
@@ -115,7 +113,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 7 64-bit, Windows XP 32-bit, Mac OS X, Ubuntu and Fedora Linux 64-bit and, Ubuntu and Fedora Linux 32-bit.
+It has been tested on Windows 10 64-bit, Mac OS X, Ubuntu and Arch Linux 64-bit.
 
 Contributions are welcomed to attempt ports to other operating systems.
 
@@ -219,4 +217,5 @@ We thank the people behind the following projects:
 [vim-codequery](https://github.com/devjoe/vim-codequery) - vim plugin for CodeQuery    
 [Axialis](http://www.axialis.com/iconworkshop) - free images for CodeQuery and this website    
 [brew](http://brew.sh/) - binaries for Mac here    
+
 

@@ -12,7 +12,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://github.com/ruben2020/codequery/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/ruben2020/codequery/actions)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 0.27.0
+## Latest version = 1.0.0
 
 Windows binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 
@@ -115,7 +115,7 @@ Yes. However, donations are welcomed.
 
 ## Which platforms are supported?
 
-It has been tested on Windows 10 64-bit, Windows XP 32-bit (until version 0.27.0 only), Mac OS X, Ubuntu and Arch Linux 64-bit.
+It has been tested on Windows 10 64-bit, Mac OS X, Ubuntu and Arch Linux 64-bit.
 
 Contributions are welcomed to attempt ports to other operating systems.
 

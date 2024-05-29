@@ -53,33 +53,28 @@ Step 3: Unzip to a directory and change to that directory.
 cd ~/myrepos/codequery
 ```
 
-Step 4: Create a directory called build and change to it.     
+Step 4: Run cmake (first line for Qt6 OR second line for Qt5 OR third line for no GUI).     
 ```bash
-mkdir build
-cd build
+cmake -G Ninja -S . -B build
+cmake -G Ninja -DBUILD_QT5=ON -S . -B build
+cmake -G Ninja -DNO_GUI=ON -S . -B build
 ```
 
-Step 5: Run cmake (first line for Qt5 OR second line for Qt6 OR third line for no GUI).     
-Qt5 and no GUI are the stable versions, while Qt6 is for development testing.       
+Step 5: Build and install.       
 ```bash
-cmake -G Ninja -DBUILD_QT5=ON ..
-cmake -G Ninja -DBUILD_QT6=ON ..
-cmake -G Ninja -DNO_GUI=ON ..
-```
-
-Step 6: Run make and make install.     
-```bash
-ninja
-sudo ninja install
+cmake --build build
+sudo cmake --install build
 ```
 
 If you want to install to an alternative directory instead of the default one, use the following:     
 ```bash
-cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G Ninja -DBUILD_QT5=ON ..
-ninja
-ninja install
+cmake -DCMAKE_INSTALL_PREFIX="/home/johndoe/tools/" -G Ninja -S . -B build
+cmake --build build
+sudo cmake --install build
 ```
 
 
-Step 7: Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
+Step 6: Please read [HOWTO-LINUX](HOWTO-LINUX.md) to learn how to use this software.
+
+If the theming of the codequery GUI app looks strange in environments other than KDE Plasma, please refer to [this page](https://wiki.archlinux.org/title/Qt#Configuration_of_Qt_5/6_applications_under_environments_other_than_KDE_Plasma) for hints.
 

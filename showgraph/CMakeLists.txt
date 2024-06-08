@@ -73,7 +73,7 @@ else (BUILD_QT5)
   set(CMAKE_AUTORCC ON)
   set(CMAKE_AUTOUIC ON)
   
-  add_definitions( -DUSE_QT5 )
+  add_definitions( -DUSE_QT6 )
   SET(CMAKE_INCLUDE_CURRENT_DIR ON)
 
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")

@@ -35,7 +35,7 @@
 #include <memory>
 #include <string>
 #include <stdexcept>
-#if defined(USE_QT5)||defined(USE_QT4)
+#if defined(USE_QT5)||defined(USE_QT6)
 #include <QString>
 #include <QStringList>
 #include <QSet>
@@ -51,11 +51,12 @@
 // Get number of elements of a fixed-sized array
 #define DIM(x)   (sizeof( x ) / sizeof( x [0] ) )
 
-#if defined(USE_QT5)||defined(USE_QT4)
+#if defined(USE_QT5)||defined(USE_QT6)
 typedef QString tStr;
 typedef QString::iterator tStrIter;
 typedef QStringList tVecStr;
 typedef QSet<QString> tSetStr;
+
 #else // only STL
 typedef std::string tStr;
 typedef std::string::iterator tStrIter;
@@ -63,14 +64,8 @@ typedef std::vector<std::string> tVecStr;
 typedef std::set<std::string> tSetStr;
 #endif
 
-#if defined(USE_QT5) // use Qt5's QString
+#if defined(USE_QT5)||defined(USE_QT6)
 #define C_STR(x) toLatin1(x).data(x)
-#define STRISEMPTY(x) isEmpty(x)
-#define STRTOLOWER(x,y) x = y.toLower()
-#define CHAR_AT(x) at(x).toLatin1()
-
-#elif defined(USE_QT4) // use Qt4's QString
-#define C_STR(x) toAscii(x).data(x)
 #define STRISEMPTY(x) isEmpty(x)
 #define STRTOLOWER(x,y) x = y.toLower()
 #define CHAR_AT(x) at(x).toLatin1()
@@ -188,7 +183,7 @@ std::string string_format( const std::string& format, Args ... args )
     return std::string( buf.get(), buf.get() + size - 1 ); // We don't want the '\0' inside
 }
 
-#if defined(USE_QT5)||defined(USE_QT4)
+#if defined(USE_QT5)||defined(USE_QT6)
 template<typename ... Args>
 QString string_format( const QString& format, Args ... args )
 {

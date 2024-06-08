@@ -196,7 +196,7 @@ else (BUILD_QT5)
   set(CMAKE_AUTORCC OFF)
   set(CMAKE_AUTOUIC OFF)
 
-  add_definitions( -DUSE_QT5 )
+  add_definitions( -DUSE_QT6 )
   add_compile_definitions(QT_DISABLE_DEPRECATED_UP_TO=0x050F00)
 
   set_target_properties(Qt6::Core PROPERTIES MAP_IMPORTED_CONFIG_COVERAGE "RELEASE")

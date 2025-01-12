@@ -35,7 +35,7 @@ Title: Lexilla 5.3.x
 Author: Neil Hodgson     
 Source: https://www.scintilla.org/     
 License: ISC-like license     
-License file: [scintilla/License.txt](scintilla/License.txt)       
+License file: [lexilla/License.txt](lexilla/License.txt)       
 Linking method: Static linking
 
 

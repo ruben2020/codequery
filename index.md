@@ -107,6 +107,7 @@ To understand the MPL-2.0 license, please read the [MPL-2.0 FAQ by mozilla.org](
 
 Files under the `querylib` directory are licensed under the [MIT license](http://opensource.org/licenses/MIT). See [QueryLib README](querylib/README.txt). This is a library to query CodeQuery database files. This library is MIT-licensed, so that it may be used to create plugins for editors, IDEs and other software without restrictions. It's only dependency is on sqlite3.
 
+Third party software attribution can be found in [THIRDPARTY.md](THIRDPARTY.md).
 
 ## Can I use it in a commercial environment without purchasing, for an unlimited time?
 

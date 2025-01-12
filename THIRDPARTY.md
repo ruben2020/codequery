@@ -26,7 +26,7 @@ Title: Scintilla 5.5.x
 Author: Neil Hodgson     
 Source: https://www.scintilla.org/     
 License: ISC-like license     
-License file: scintilla/License.txt     
+License file: [scintilla/License.txt](scintilla/License.txt)       
 Linking method: Static linking
 
 Lexilla
@@ -35,7 +35,7 @@ Title: Lexilla 5.3.x
 Author: Neil Hodgson     
 Source: https://www.scintilla.org/     
 License: ISC-like license     
-License file: lexilla/License.txt     
+License file: [scintilla/License.txt](scintilla/License.txt)       
 Linking method: Static linking
 
 
@@ -54,7 +54,7 @@ Title: getopt2
 Author: Russ Allbery, Benjamin Sittler     
 Source: (unknown)     
 License: MIT      
-License file: querylib/getopt2.h     
+License file: [querylib/getopt2.h](querylib/getopt2.h)     
 Linking method: Static linking
 
 showgraph
@@ -63,7 +63,7 @@ Title: showgraph
 Author: Boris Shurygin     
 Source: https://github.com/boris-shurygin/showgraph     
 License: BSD-3-Clause     
-License file: showgraph/LICENSE.txt     
+License file: [showgraph/LICENSE.txt](showgraph/LICENSE.txt)      
 Linking method: Static linking
 
 

@@ -134,7 +134,7 @@ jobs:
         if: startsWith(matrix.config.name, 'Windows MinGW Qt6')
         uses: jurplel/install-qt-action@v4
         with:
-          version: '6.7.*'
+          version: '6.9.*'
           host: 'windows'
           target: 'desktop'
           arch: 'win64_mingw'

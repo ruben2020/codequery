@@ -17,8 +17,8 @@ Author: The Qt Company Ltd. and other contributors.
 Source: https://www.qt.io/download-open-source     
 License: LGPL-3.0-only     
 License file: https://doc.qt.io/qt-6/lgpl.html     
-Linking method: Dynamic linking
-
+Linking method: Dynamic linking       
+Distribution method: Distributed together with CodeQuery for Windows
 
 Scintilla
 ---------
@@ -27,7 +27,8 @@ Author: Neil Hodgson
 Source: https://www.scintilla.org/     
 License: ISC-like license     
 License file: [scintilla/License.txt](scintilla/License.txt)       
-Linking method: Static linking
+Linking method: Static linking       
+Distribution method: Included in CodeQuery binaries
 
 Lexilla
 -------
@@ -36,8 +37,8 @@ Author: Neil Hodgson
 Source: https://www.scintilla.org/     
 License: ISC-like license     
 License file: [lexilla/License.txt](lexilla/License.txt)       
-Linking method: Static linking
-
+Linking method: Static linking         
+Distribution method: Included in CodeQuery binaries
 
 SQLite
 -------
@@ -46,7 +47,8 @@ Author: D. Richard Hipp, Dan Kennedy, Joe Mistachkin
 Source: https://www.sqlite.org/     
 License: Public domain     
 License file: https://www.sqlite.org/copyright.html     
-Linking method: Dynamic linking
+Linking method: Dynamic linking         
+Distribution method: Distributed together with CodeQuery for Windows
 
 getopt2
 -------
@@ -55,7 +57,8 @@ Author: Russ Allbery, Benjamin Sittler
 Source: (unknown)     
 License: MIT      
 License file: [querylib/getopt2.h](querylib/getopt2.h)     
-Linking method: Static linking
+Linking method: Static linking       
+Distribution method: Included in CodeQuery binaries
 
 showgraph
 ---------
@@ -64,8 +67,8 @@ Author: Boris Shurygin
 Source: https://github.com/boris-shurygin/showgraph     
 License: BSD-3-Clause     
 License file: [showgraph/LICENSE.txt](showgraph/LICENSE.txt)      
-Linking method: Static linking
-
+Linking method: Static linking         
+Distribution method: Included in CodeQuery binaries
 
 Axialis
 -------
@@ -73,9 +76,8 @@ Title: Axialis Free Icons
 Author: Axialis Software SA     
 Source: https://www.axialis.com/free/icons/     
 License: CC BY-ND 4.0     
-License file: https://www.axialis.com/icons/license.html#free     
-Linking method: Icon images used in the GUI app
-
+License file: https://www.axialis.com/icons/license.html#free       
+Distribution method: Icon images used in the GUI app
 
 cscope
 ------
@@ -83,9 +85,8 @@ Title: cscope 15.8a
 Author: Santa Cruz Operation Inc.     
 Source: https://cscope.sourceforge.net/      
 License: BSD-3-Clause     
-License file: https://cscope.sourceforge.net/license.html      
-Linking method: Distributed together with CodeQuery for Windows.
-
+License file: https://cscope.sourceforge.net/license.html        
+Distribution method: Distributed together with CodeQuery for Windows
 
 ctags
 -----
@@ -94,7 +95,7 @@ Author: Darren Hiebert
 Source: https://ctags.sourceforge.net/       
 License: GPL-2.0-only        
 License file: https://sourceforge.net/projects/ctags/         
-Linking method: Distributed together with CodeQuery for Windows.
+Distribution method: Distributed together with CodeQuery for Windows
 
 Wix Toolset
 -----------
@@ -102,5 +103,5 @@ Title: Wix Toolset
 Author: .NET Foundation and contributors     
 Source: https://github.com/wixtoolset/web      
 License: MS-RL      
-License file: https://github.com/wixtoolset/web/blob/master/LICENSE.TXT       
-Linking method: Used to create the Windows installer for CodeQuery.
+License file: https://github.com/wixtoolset/web/blob/master/LICENSE.TXT         
+Distribution method: Used to create the Windows installer for CodeQuery

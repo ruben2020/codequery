@@ -6,7 +6,8 @@ https://github.com/gosu/gosu/blob/master/src/WinMain.cpp
 
 This license applies only to this file:
 
-Copyright (C) 2001-2017 Julian Raschke, Jan Lücker and all contributors.
+Copyright (C) 2001-2023 Julian Raschke, Jan LÃ¼cker, cyberarm, and all
+other contributors: https://github.com/gosu/gosu/graphs/contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
@@ -27,57 +28,51 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
 
             Julian Raschke <julian@raschke.de> & contributors
-                        http://www.libgosu.org/
+                        https://www.libgosu.org/
 
 */
 
-#ifdef _MSC_VER
+//#ifdef _MSC_VER
+#ifdef _WIN32
 
-#include <windows.h>
 #include <exception>
 #include <string>
 #include <vector>
+#include <windows.h>
 using namespace std;
 
-vector<string> splitCmdLine()
+vector<string> split_cmd_line()
 {
     vector<string> result;
 
-    const char* cmdLine = ::GetCommandLineA();
+    const char* cmd_line = ::GetCommandLineA();
 
-    const char* argBegin = 0;
-    bool isQuotedArg = false;
+    const char* arg_begin = nullptr;
+    bool is_quoted_arg = false;
 
-    while (*cmdLine)
-    {
-        if (*cmdLine == '"')
-        {
-            if (argBegin == 0)
-            {
-                argBegin = cmdLine + 1;
-                isQuotedArg = true;
+    while (*cmd_line) {
+        if (*cmd_line == '"') {
+            if (arg_begin == nullptr) {
+                arg_begin = cmd_line + 1;
+                is_quoted_arg = true;
             }
-            else if (isQuotedArg)
-            {
-                result.push_back(std::string(argBegin, cmdLine));
-                argBegin = 0;
+            else if (is_quoted_arg) {
+                result.push_back(string(arg_begin, cmd_line));
+                arg_begin = nullptr;
             }
         }
-        else if (!isspace((unsigned char)*cmdLine) && argBegin == 0)
-        {
-            argBegin = cmdLine;
-            isQuotedArg = false;
+        else if (!isspace((unsigned char)*cmd_line) && arg_begin == nullptr) {
+            arg_begin = cmd_line;
+            is_quoted_arg = false;
         }
-        else if (isspace((unsigned char)*cmdLine) && argBegin != 0 && !isQuotedArg)
-        {
-            result.push_back(std::string(argBegin, cmdLine + 1));
-            argBegin = 0;
+        else if (isspace((unsigned char)*cmd_line) && arg_begin != nullptr && !is_quoted_arg) {
+            result.push_back(string(arg_begin, cmd_line + 1));
+            arg_begin = nullptr;
         }
-        ++cmdLine;
+        ++cmd_line;
     }
 
-    if (argBegin != 0)
-        result.push_back(argBegin);
+    if (arg_begin != 0) result.push_back(arg_begin);
 
     return result;
 }
@@ -86,20 +81,18 @@ int main(int argc, char* argv[]);
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
-    try
-    {
-        vector<string> arguments = splitCmdLine();
+    try {
+        vector<string> arguments = split_cmd_line();
         vector<char*> argv(arguments.size());
-        for (unsigned i = 0; i < argv.size(); ++i)
+        for (unsigned i = 0; i < argv.size(); ++i) {
             argv[i] = const_cast<char*>(arguments[i].c_str());
+        }
         return main(argv.size(), &argv[0]);
     }
-    catch (const std::exception& e)
-    {
+    catch (const exception& e) {
         ::MessageBoxA(0, e.what(), "Uncaught Exception", MB_OK | MB_ICONERROR);
         return EXIT_FAILURE;
     }
 }
 
 #endif
-

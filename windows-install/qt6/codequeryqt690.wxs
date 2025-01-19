@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns='http://schemas.microsoft.com/wix/2006/wi'>
+    <Product Name='CodeQuery 1.0.0 (Qt6, 64-bit)' Manufacturer='ruben2020_foss'
+        Id='*' 
+        UpgradeCode='2368ce2d-f635-4c8c-9b92-6fa348b292af'
+        Language='1033' Codepage='1252' Version='1.0.0'>
+		<Package Id='*' Keywords='Installer' Description="CodeQuery 1.0.0 (Qt6, 64-bit) Installer"
+			Comments='Copyright 2013-2024 (C) ruben2020' Manufacturer='ruben2020_foss'
+			InstallerVersion='200' Languages='1033' Compressed='yes' SummaryCodepage='1252'
+			Platform="x64" />
+		<Condition Message="You need to be an administrator to install this product.">
+			Privileged
+		</Condition>
+		<Condition Message='This application only runs on 64-bit Windows.'>
+			VersionNT64
+		</Condition>
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+		<WixVariable Id="WixUILicenseRtf" Value="..\..\windows-install\wincommon\LICENSE.rtf" />
+		<WixVariable Id="WixUIBannerBmp" Value="..\..\doc\banner.bmp" />
+		<WixVariable Id="WixUIDialogBmp" Value="..\..\doc\dialog.bmp" />
+		<Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch 'How to use CodeQuery'" />
+		<Property Id='NOTEPAD'>Notepad.exe</Property>
+		<CustomAction Id='LaunchFile' Property='NOTEPAD' ExeCommand='[#HOWTO]' Return='asyncNoWait' />
+		<Icon Id="codequery.ico" SourceFile="..\..\gui\images\codequery.ico" />
+		<Icon Id="msiexec.ico" SourceFile="C:\Windows\System32\msiexec.exe" />
+		<Property Id="ARPPRODUCTICON" Value="codequery.ico" />
+		<UI>
+			<UIRef Id="WixUI_InstallDir" />
+			<UIRef Id="WixUI_ErrorProgressText" />
+			<Publish Dialog="ExitDialog"
+				Control="Finish" 
+				Event="DoAction" 
+				Value="LaunchFile">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+		</UI>
+		<Media Id='1' Cabinet='CodeQuery64.cab' EmbedCab='yes' DiskPrompt='CD-ROM #1' />
+		<Property Id='DiskPrompt' Value="CodeQuery Installation [1]" />
+		<Directory Id='TARGETDIR' Name='SourceDir'>
+			<Directory Id='ProgramFilesFolder' Name='PFiles'>
+				<Directory Id='CodeQuery' Name='CodeQuery'>
+					<Directory Id='INSTALLDIR' Name='CodeQuery 1.0.0 64bit'>
+						<Component Id='CodeQueryGUI_64bit' Guid='dbac3c37-625f-46ac-9050-b470361351e7'>
+							<File Id='codequeryEXE' Name='codequery.exe' DiskId='1' Source='codequery.exe' KeyPath='yes'>
+								<Shortcut Id="startmenuCodeQueryShortcut" Directory="AppProgramMenuFolder" Name="CodeQuery"
+									Advertise="yes" WorkingDirectory='INSTALLDIR' Icon="codequery.ico" IconIndex="0" />
+							</File>
+						</Component>
+						<Component Id='cqmakedb_64bit' Guid='cd4795c7-e324-42df-852e-fca4e8d06f6e'>
+							<File Id='cqmakedbEXE' Name='cqmakedb.exe' DiskId='1' Source='cqmakedb.exe' KeyPath='yes' />
+							<Environment Id="PATH" Name="PATH" Value="[INSTALLDIR]" Permanent="no" Part="last" Action="set" System="no" />
+						</Component>
+						<Component Id='cqsearch_64bit' Guid='3186d51d-896d-4b4a-b6a4-135b13478b89'>
+							<File Id='cqsearchEXE' Name='cqsearch.exe' DiskId='1' Source='cqsearch.exe' KeyPath='yes' />
+						</Component>
+						<Component Id='cscope_64bit' Guid='b4691d05-05b0-439c-a710-e76a6f2c5663'>
+							<File Id='cscopeEXE' Name='cscope.exe' DiskId='1' Source='..\..\windows-install\wincommon\cscope.exe' KeyPath='yes' />
+						</Component>
+						<Component Id='ctags_64bit' Guid='eae5bea8-5e4b-4f22-9fc3-87f600ea9290'>
+							<File Id='ctagsEXE' Name='ctags.exe' DiskId='1' Source='..\..\windows-install\wincommon\ctags.exe' KeyPath='yes' />
+						</Component>
+						<Component Id='docHOWTO' Guid='7ec4912d-8651-4508-a1dc-cbed5fdea69e'>
+							<File Id='HOWTO' Name='HOWTO-WINDOWS.txt' DiskId='1' Source='..\..\windows-install\wincommon\HOWTO-WINDOWS.txt' KeyPath='yes'>
+								<Shortcut Id="startmenuHOWTOShortcut" Directory="AppProgramMenuFolder" Name="How to use CodeQuery"
+									Advertise="yes" WorkingDirectory='INSTALLDIR' />
+							</File>
+						</Component>
+						<Component Id='docLICENSE' Guid='92846404-91b4-4218-85a0-7243c83ee6e0'>
+							<File Id='LICENSE' Name='LICENSE.txt' DiskId='1' Source='..\..\windows-install\wincommon\LICENSE.txt' KeyPath='yes'>
+								<Shortcut Id="startmenuLicenseShortcut" Directory="AppProgramMenuFolder" Name="LICENSE"
+									Advertise="yes" WorkingDirectory='INSTALLDIR' />
+							</File>
+						</Component>
+						<Component Id='docREADME' Guid='9128116e-9015-45be-bf3c-1a43c162c2d3'>
+							<File Id='README' Name='README.txt' DiskId='1' Source='..\..\windows-install\wincommon\README.txt' KeyPath='yes'>
+								<Shortcut Id="startmenuREADMEShortcut" Directory="AppProgramMenuFolder" Name="README"
+									Advertise="yes" WorkingDirectory='INSTALLDIR' />
+							</File>
+						</Component>
+						<Component Id='sqlite3_64bit' Guid='30d870ff-0a4e-4dcf-b02e-af1cc1ba40d9'>
+							<File Id='sqlite3DLL' Name='sqlite3.dll' DiskId='1' Source='sqlite3.dll' KeyPath='yes' />
+						</Component>
+						<Component Id='BaseDLLsWin64' Guid='8ec9395d-83f5-43ef-b9d9-1c5e20fa309e'>
+							<File Id='GCCDLL' Name='libgcc_s_seh-1.dll' DiskId='1' Source='libgcc_s_seh-1.dll' KeyPath='yes' />
+							<File Id='STDCPPDLL' Name='libstdc++-6.dll' DiskId='1' Source='libstdc++-6.dll' KeyPath='no' />
+							<File Id='WinPThreadDLL' Name='libwinpthread-1.dll' DiskId='1' Source='libwinpthread-1.dll' KeyPath='no' />
+						</Component>
+						<Component Id='GraphicsDLL64' Guid='9d6c5d83-9fc1-49b6-b3a0-e2b40fc97fcc'>
+							<File Id='Direct3D' Name='D3Dcompiler_47.dll' DiskId='1' Source='D3Dcompiler_47.dll' KeyPath='no' />
+							<File Id='OpenGL' Name='opengl32sw.dll' DiskId='1' Source='opengl32sw.dll' KeyPath='yes' />
+						</Component>
+						<Component Id='QT6MainDLL' Guid='ba3688a5-ce0d-4d4e-8c24-3d7d3597f2b0'>
+							<File Id='Qt6Concurrent' Name='Qt6Concurrent.dll' DiskId='1' Source='Qt6Concurrent.dll' KeyPath='no' />
+							<File Id='Qt6Core' Name='Qt6Core.dll' DiskId='1' Source='Qt6Core.dll' KeyPath='yes' />
+							<File Id='Qt6Gui' Name='Qt6Gui.dll' DiskId='1' Source='Qt6Gui.dll' KeyPath='no' />
+							<File Id='Qt6Svg' Name='Qt6Svg.dll' DiskId='1' Source='Qt6Svg.dll' KeyPath='no' />
+							<File Id='Qt6Widgets' Name='Qt6Widgets.dll' DiskId='1' Source='Qt6Widgets.dll' KeyPath='no' />
+							<File Id='Qt6Xml' Name='Qt6Xml.dll' DiskId='1' Source='Qt6Xml.dll' KeyPath='no' />
+							<File Id='Qt6Core5Compat' Name='Qt6Core5Compat.dll' DiskId='1' Source='Qt6Core5Compat.dll' KeyPath='no' />
+						</Component>
+						<Directory Id='iconengines' Name='iconengines'>
+							<Component Id='QT6IconEngines' Guid='e9d0d52b-4b9f-4fa4-88eb-169208a4e4ea'>
+								<File Id='qsvgicon' Name='qsvgicon.dll' DiskId='1' Source='iconengines\qsvgicon.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='imageformats' Name='imageformats'>
+							<Component Id='QT6ImageFormats' Guid='79dc182e-cca3-4662-a6bd-c509469b39f2'>
+								<File Id='qgif' Name='qgif.dll' DiskId='1' Source='imageformats\qgif.dll' KeyPath='no' />
+								<File Id='qico' Name='qico.dll' DiskId='1' Source='imageformats\qico.dll' KeyPath='yes' />
+								<File Id='qjpeg' Name='qjpeg.dll' DiskId='1' Source='imageformats\qjpeg.dll' KeyPath='no' />
+								<File Id='qsvg' Name='qsvg.dll' DiskId='1' Source='imageformats\qsvg.dll' KeyPath='no' />
+							</Component>
+						</Directory>
+						<Directory Id='platforms' Name='platforms'>
+							<Component Id='QT6Platforms' Guid='ddf5da25-f17e-4244-8a02-d14b383f7d8d'>
+								<File Id='qwindows' Name='qwindows.dll' DiskId='1' Source='platforms\qwindows.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='styles' Name='styles'>
+							<Component Id='QT6Styles' Guid='247d54df-7f3c-40f7-a1f7-2cc3f70e7db1'>
+								<File Id='qmodernwindowsstyle' Name='qmodernwindowsstyle.dll' DiskId='1' Source='styles\qmodernwindowsstyle.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='generic' Name='generic'>
+							<Component Id='QT6Generic' Guid='ee67889c-1428-46c1-b3b1-13ce4374522c'>
+								<File Id='qtuiotouchplugin' Name='qtuiotouchplugin.dll' DiskId='1' Source='generic\qtuiotouchplugin.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='networkinformation' Name='networkinformation'>
+							<Component Id='QT6NetworkInformation' Guid='24eecbd4-7d77-4ca9-a2a4-723f1e859976'>
+								<File Id='qnetworklistmanager' Name='qnetworklistmanager.dll' DiskId='1' Source='networkinformation\qnetworklistmanager.dll' KeyPath='yes' />
+							</Component>
+						</Directory>
+						<Directory Id='tls' Name='tls'>
+							<Component Id='QT6TLS' Guid='47410719-3419-4c30-a947-99650eebc95e'>
+								<File Id='qcertonlybackend' Name='qcertonlybackend.dll' DiskId='1' Source='tls\qcertonlybackend.dll' KeyPath='yes' />
+								<!--<File Id='qopensslbackend' Name='qopensslbackend.dll' DiskId='1' Source='tls\qopensslbackend.dll' KeyPath='no' />-->
+								<File Id='qschannelbackend' Name='qschannelbackend.dll' DiskId='1' Source='tls\qschannelbackend.dll' KeyPath='no' />
+							</Component>
+						</Directory>
+						<Directory Id='translations' Name='translations'>
+							<Component Id='QT6Translations' Guid='5830199b-4009-4d9b-a788-306e19a498a8'>
+								<File Id='qt_ar' Name='qt_ar.qm' DiskId='1' Source='translations\qt_ar.qm' KeyPath='no' />
+								<File Id='qt_bg' Name='qt_bg.qm' DiskId='1' Source='translations\qt_bg.qm' KeyPath='no' />
+								<File Id='qt_ca' Name='qt_ca.qm' DiskId='1' Source='translations\qt_ca.qm' KeyPath='no' />
+								<File Id='qt_cs' Name='qt_cs.qm' DiskId='1' Source='translations\qt_cs.qm' KeyPath='no' />
+								<File Id='qt_da' Name='qt_da.qm' DiskId='1' Source='translations\qt_da.qm' KeyPath='no' />
+								<File Id='qt_de' Name='qt_de.qm' DiskId='1' Source='translations\qt_de.qm' KeyPath='no' />
+								<File Id='qt_en' Name='qt_en.qm' DiskId='1' Source='translations\qt_en.qm' KeyPath='yes' />
+								<File Id='qt_es' Name='qt_es.qm' DiskId='1' Source='translations\qt_es.qm' KeyPath='no' />
+								<File Id='qt_fi' Name='qt_fi.qm' DiskId='1' Source='translations\qt_fi.qm' KeyPath='no' />
+								<File Id='qt_fr' Name='qt_fr.qm' DiskId='1' Source='translations\qt_fr.qm' KeyPath='no' />
+								<File Id='qt_gd' Name='qt_gd.qm' DiskId='1' Source='translations\qt_gd.qm' KeyPath='no' />
+								<File Id='qt_he' Name='qt_he.qm' DiskId='1' Source='translations\qt_he.qm' KeyPath='no' />
+								<File Id='qt_hu' Name='qt_hu.qm' DiskId='1' Source='translations\qt_hu.qm' KeyPath='no' />
+								<File Id='qt_it' Name='qt_it.qm' DiskId='1' Source='translations\qt_it.qm' KeyPath='no' />
+								<File Id='qt_ja' Name='qt_ja.qm' DiskId='1' Source='translations\qt_ja.qm' KeyPath='no' />
+								<File Id='qt_ko' Name='qt_ko.qm' DiskId='1' Source='translations\qt_ko.qm' KeyPath='no' />
+								<File Id='qt_lv' Name='qt_lv.qm' DiskId='1' Source='translations\qt_lv.qm' KeyPath='no' />
+								<File Id='qt_pl' Name='qt_pl.qm' DiskId='1' Source='translations\qt_pl.qm' KeyPath='no' />
+								<File Id='qt_ru' Name='qt_ru.qm' DiskId='1' Source='translations\qt_ru.qm' KeyPath='no' />
+								<File Id='qt_sk' Name='qt_sk.qm' DiskId='1' Source='translations\qt_sk.qm' KeyPath='no' />
+								<File Id='qt_uk' Name='qt_uk.qm' DiskId='1' Source='translations\qt_uk.qm' KeyPath='no' />
+								<File Id='qt_zh_TW' Name='qt_zh_TW.qm' DiskId='1' Source='translations\qt_zh_TW.qm' KeyPath='no' />
+							</Component>
+						</Directory>
+						<Component Id='CodeQueryUninstall' Guid='72881870-977f-40c7-991d-00dc5c04540e'>
+							<File Id='uninstallBAT' Name='uninstall.bat' DiskId='1' Source='..\..\windows-install\wincommon\uninstall.bat' 
+									KeyPath='yes' >
+									<Shortcut Id="startmenuUninstallShortcut" Directory="AppProgramMenuFolder" Name="Uninstall CodeQuery" Show='minimized'
+									Arguments='[ProductCode]' Advertise="yes" WorkingDirectory='INSTALLDIR' Icon="msiexec.ico" IconIndex="0" />
+							</File>
+						</Component>
+					</Directory>
+				</Directory>
+			</Directory>
+			<Directory Id="ProgramMenuFolder" Name="Programs">
+				<Directory Id="AppProgramMenuFolder" Name="CodeQuery 1.0.0 (64-bit)" />
+			</Directory>
+		</Directory>
+		<DirectoryRef Id="AppProgramMenuFolder">
+			<Component Id="AppProgramMenuFolder" Guid="54927fbd-15b3-4599-998d-e3acad24120a">
+				<RemoveFolder Id='AppProgramMenuFolder' On='uninstall' />
+				<RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+			</Component>
+		</DirectoryRef>
+		<Feature Id='Complete' Title='CodeQuery 1.0.0 (Qt6, 64-bit)' Description='The complete package.' Level='1' ConfigurableDirectory='INSTALLDIR' InstallDefault='local' Absent='disallow'>
+			<ComponentRef Id='CodeQueryGUI_64bit' />
+			<ComponentRef Id='cqmakedb_64bit' />
+			<ComponentRef Id='cqsearch_64bit' />
+			<ComponentRef Id='cscope_64bit' />
+			<ComponentRef Id='ctags_64bit' />
+			<ComponentRef Id='docHOWTO' />
+			<ComponentRef Id='docLICENSE' />
+			<ComponentRef Id='docREADME' />
+			<ComponentRef Id='sqlite3_64bit' />
+			<ComponentRef Id='BaseDLLsWin64' />
+			<ComponentRef Id='GraphicsDLL64' />
+			<ComponentRef Id='QT6MainDLL' />
+			<ComponentRef Id='QT6IconEngines' />
+			<ComponentRef Id='QT6ImageFormats' />
+			<ComponentRef Id='QT6Platforms' />
+			<ComponentRef Id='QT6Styles' />
+			<ComponentRef Id='QT6Generic' />
+			<ComponentRef Id='QT6NetworkInformation' />
+			<ComponentRef Id='QT6TLS' />
+			<ComponentRef Id='QT6Translations' />
+			<ComponentRef Id='CodeQueryUninstall' />
+			<ComponentRef Id='AppProgramMenuFolder' />
+		</Feature>
+    </Product>
+</Wix>

@@ -60,6 +60,16 @@ License file: [querylib/getopt2.h](querylib/getopt2.h)
 Linking method: Static linking       
 Distribution method: Included in CodeQuery binaries
 
+winmain.cpp from gosu project
+-----------------------------
+Title: WinMain.cpp (gosu)      
+Author: Julian Raschke, Jan Lücker, cyberarm, and all       
+Source: https://github.com/gosu/gosu/blob/master/src/WinMain.cpp       
+License: MIT      
+License file: [gui/winmain.cpp](gui/winmain.cpp)       
+Linking method: Static linking       
+Distribution method: Included in CodeQuery binaries for Windows
+
 showgraph
 ---------
 Title: showgraph     

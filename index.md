@@ -12,7 +12,7 @@ The CodeQuery database file can be viewed and queried using the *codequery* GUI 
 [![Build Status](https://github.com/ruben2020/codequery/actions/workflows/cmake.yml/badge.svg?branch=master)](https://github.com/ruben2020/codequery/actions)        [![Coverity Status](https://scan.coverity.com/projects/10066/badge.svg)](https://scan.coverity.com/projects/ruben2020-codequery)
       
 
-## Latest version = 1.0.0
+## Latest version = 1.0.1
 
 Windows binaries available here for download: [CodeQuery@sourceforge downloads](https://sourceforge.net/projects/codequery/files/)
 

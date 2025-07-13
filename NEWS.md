@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.0.1 - July 14, 2025
+-----------------------------
+Minor code changes to avoid compilation errors with certain versions of the dependent libraries          
+Added THIRDPARTY.md file to provide info on third party dependencies
+
 Version 1.0.0 - May 24, 2024
 -----------------------------
 Enhancement: Migrated to Qt6, which is now the default build option           

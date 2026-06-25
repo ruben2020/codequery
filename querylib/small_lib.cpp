@@ -134,8 +134,8 @@ const char* chomp(char* str)
 		if (charr != NULL)
 		{
 			*charr = 0; // Unix chomp, Windows half-chomp
-			charr--;
-			if (*charr == 0xD) *charr = 0; // Windows chomp
+			if ((charr > str) && (*(charr - 1) == 0xD))
+				*(charr - 1) = 0; // Windows chomp
 		}
 		else
 		{

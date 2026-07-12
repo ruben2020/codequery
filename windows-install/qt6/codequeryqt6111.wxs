@@ -5,7 +5,7 @@
         UpgradeCode='2368ce2d-f635-4c8c-9b92-6fa348b292af'
         Language='1033' Codepage='1252' Version='1.1.0'>
 		<Package Id='*' Keywords='Installer' Description="CodeQuery 1.1.0 (Qt6, 64-bit) Installer"
-			Comments='Copyright 2013-2024 (C) ruben2020' Manufacturer='ruben2020_foss'
+			Comments='Copyright 2013-2026 (C) ruben2020' Manufacturer='ruben2020_foss'
 			InstallerVersion='200' Languages='1033' Compressed='yes' SummaryCodepage='1252'
 			Platform="x64" />
 		<Condition Message="You need to be an administrator to install this product.">
@@ -85,6 +85,7 @@
 						</Component>
 						<Component Id='GraphicsDLL64' Guid='9d6c5d83-9fc1-49b6-b3a0-e2b40fc97fcc'>
 							<File Id='Direct3D' Name='D3Dcompiler_47.dll' DiskId='1' Source='D3Dcompiler_47.dll' KeyPath='no' />
+							<File Id='dxcompiler' Name='dxcompiler.dll' DiskId='1' Source='dxcompiler.dll' KeyPath='no' />
 							<File Id='OpenGL' Name='opengl32sw.dll' DiskId='1' Source='opengl32sw.dll' KeyPath='yes' />
 						</Component>
 						<Component Id='QT6MainDLL' Guid='ba3688a5-ce0d-4d4e-8c24-3d7d3597f2b0'>

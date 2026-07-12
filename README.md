@@ -201,6 +201,7 @@ Website: [CodeQuery website](https://github.com/ruben2020/codequery)
 [brianonn](https://github.com/brianonn)    
 [teungri](https://github.com/teungri)    
 [stweise](https://github.com/stweise)    
+[DarkaMaul](https://github.com/DarkaMaul)        
 (More welcomed)
 
 

@@ -77,7 +77,7 @@ vector<string> split_cmd_line()
     return result;
 }
 
-int main(int argc, char* argv[]);
+int gui_main(int argc, char* argv[]);
 
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -87,7 +87,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         for (unsigned i = 0; i < argv.size(); ++i) {
             argv[i] = const_cast<char*>(arguments[i].c_str());
         }
-        return main(argv.size(), &argv[0]);
+        return gui_main(argv.size(), &argv[0]);
     }
     catch (const exception& e) {
         ::MessageBoxA(0, e.what(), "Uncaught Exception", MB_OK | MB_ICONERROR);

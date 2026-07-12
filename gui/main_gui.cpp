@@ -16,8 +16,16 @@
 
 #include "mainwindow.h"
 
+int gui_main(int argc, char *argv[]);
 
+#ifndef _WIN32
 int main(int argc, char *argv[])
+{
+  return gui_main(argc, argv);
+}
+#endif
+
+int gui_main(int argc, char *argv[])
 {
 	QApplication app(argc, argv);
 	QMainWindow *wndw = new QMainWindow;

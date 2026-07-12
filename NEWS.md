@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.1.0 - July 11, 2026
+-----------------------------
+Bugfix: chomp out-of-bound access fix in small_lib         
+Bugfix: solution for start-up crash in Windows
+
 Version 1.0.1 - July 14, 2025
 -----------------------------
 Minor code changes to avoid compilation errors with certain versions of the dependent libraries          
